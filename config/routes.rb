@@ -6,6 +6,8 @@ MySkiChalet::Application.routes.draw do
   match "my/details" => "users#edit", :as => :my_details
   resources :users
 
+  match "my/properties/for_rent" => "properties#for_rent", :as => :my_properties_for_rent
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:
