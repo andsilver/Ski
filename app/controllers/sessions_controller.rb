@@ -12,4 +12,10 @@ class SessionsController < ApplicationController
       redirect_to sign_in_path
     end
   end
+
+  def destroy
+    reset_session
+    flash[:notice] = I18n.t('signed_out')
+    redirect_to root_path
+  end
 end

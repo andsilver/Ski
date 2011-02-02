@@ -8,5 +8,6 @@ en:
   save: 'Save'
   sign_in: 'Sign In'
   sign_in_invalid: 'Your sign in attempt failed. No account was found with this email address and password.'
+  signed_out: 'You are now signed out.'
   sleeps: 'Sleeps'
   title: 'Title'
