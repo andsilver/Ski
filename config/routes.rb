@@ -1,4 +1,9 @@
 MySkiChalet::Application.routes.draw do
+  match "login" => "sessions#new"
+  resources :sessions
+
+  match "my_details" => "users#show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

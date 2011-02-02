@@ -1,0 +1,4 @@
+<%= form_tag :action => 'create' do -%>
+  <label for="email">Email</label> <%= text_field_tag :email, params[:email] %>
+  <%= submit_tag 'Login' %>
+<% end -%>
