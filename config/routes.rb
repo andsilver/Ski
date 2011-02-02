@@ -1,5 +1,5 @@
 MySkiChalet::Application.routes.draw do
-  match "login" => "sessions#new"
+  match "sign_in" => "sessions#new"
   resources :sessions
 
   match "my_details" => "users#show"
