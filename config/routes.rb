@@ -4,6 +4,8 @@ MySkiChalet::Application.routes.draw do
 
   match "my_details" => "users#show"
 
+  root :to => "home#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
