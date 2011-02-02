@@ -1,5 +1,12 @@
 <% if signed_in? %>
-My Details
+<nav>
+  <ul>
+    <li>My Details</li>
+    <li>Receipts</li>
+    <li>Stats</li>
+    <li>My Feedback</li>
+  </ul>
+</nav>
 <% else %>
-sign in
+<%= I18n.t('sign_in') %>
 <% end %>

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     @current_user = User.find_by_email(params[:email])
     if @current_user
       session[:user] = @current_user.id
-      redirect_to my_details_path
+      redirect_to advertiser_home_path
     else
       flash[:notice] = I18n.t('sign_in_invalid')
       redirect_to sign_in_path

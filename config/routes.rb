@@ -2,7 +2,7 @@ MySkiChalet::Application.routes.draw do
   match "sign_in" => "sessions#new"
   resources :sessions
 
-  match "my_details" => "users#show"
+  match "advertiser_home" => "users#show"
 
   root :to => "home#index"
 
