@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  def for_rent
+  def rent
     @properties = @current_user.properties
   end
 

@@ -10,7 +10,7 @@ MySkiChalet::Application.routes.draw do
   match "my/details" => "users#edit", :as => :my_details
   resources :users
 
-  match "my/properties/for_rent" => "properties#for_rent", :as => :my_properties_for_rent
+  match "my/properties/rent" => "properties#rent", :as => :my_properties_for_rent
   resources :properties
 
   root :to => "home#index"
