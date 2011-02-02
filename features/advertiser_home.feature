@@ -18,3 +18,9 @@ Feature: Advertiser Home
     And I should see "Stats"
     And I should see "My Feedback"
     But I should not see "Sign In"
+
+  Scenario: Advertisers can go to the My Details page
+    Given that I am signed in
+    And I am on the advertiser home page
+    When I follow "My Details"
+    Then I should see the "My Details" heading

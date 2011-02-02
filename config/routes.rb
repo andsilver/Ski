@@ -3,6 +3,7 @@ MySkiChalet::Application.routes.draw do
   resources :sessions
 
   match "advertiser_home" => "users#show"
+  match "my_details" => "users#edit"
 
   root :to => "home#index"
 
