@@ -1,4 +1,6 @@
+<h1><%= I18n.t('sign_in') %></h1>
+
 <%= form_tag :action => 'create' do -%>
   <label for="email">Email</label> <%= text_field_tag :email, params[:email] %>
-  <%= submit_tag 'Sign In' %>
+  <%= submit_tag I18n.t('sign_in') %>
 <% end -%>

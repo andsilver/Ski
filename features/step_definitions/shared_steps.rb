@@ -8,3 +8,7 @@ end
 
 Given /^that I am not signed in$/ do
 end
+
+Then /^I get redirected$/ do
+  follow_redirect!
+end
