@@ -1,4 +1,7 @@
 .bundle
+*.jpg
+*.png
+*.psd
 db/*.sqlite3
 log/*.log
 tmp/**/*
