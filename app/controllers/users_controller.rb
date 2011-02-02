@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :user_required
+
   def show
   end
 
