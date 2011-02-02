@@ -1,0 +1,15 @@
+austria:
+  id: 1
+  name: Austria
+
+france:
+  id: 2
+  name: France
+
+italy:
+  id: 3
+  name: Italy
+
+switzerland:
+  id: 4
+  name: Switzerland

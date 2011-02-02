@@ -10,7 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110202153941) do
+ActiveRecord::Schema.define(:version => 20110202181254) do
+
+  create_table "countries", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "properties", :force => true do |t|
     t.integer  "user_id",          :default => 0,  :null => false
@@ -22,6 +28,15 @@ ActiveRecord::Schema.define(:version => 20110202153941) do
   end
 
   add_index "properties", ["user_id"], :name => "index_properties_on_user_id"
+
+  create_table "resorts", :force => true do |t|
+    t.integer  "country_id", :default => 0,   :null => false
+    t.string   "name",       :default => "0", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                                 :default => "",    :null => false

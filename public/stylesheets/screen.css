@@ -21,7 +21,7 @@ body {
   width: 920px;
   margin-left: auto;
   margin-right: auto;
-  padding: 260px 20px 20px 20px;
+  padding: 240px 20px 20px 20px;
 
   color: #2b1d24;
   font-family: 'Lucida Sans';
@@ -55,4 +55,28 @@ h3 {
   color: #543e38;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+}
+
+#main_menu ul {
+  margin: 0 0 20px 0;
+  padding: 0;
+  list-style: none;
+  height: 30px;
+  padding: 1px;
+  background: #111;
+}
+
+#main_menu li {
+  font-size: 1.8em;
+  float: left;
+  margin-right: 1px;
+}
+
+#main_menu a {
+  display: block;
+  line-height: 30px;
+  padding: 0 20px;
+  color: #fff;
+  background: #222;
+  text-decoration: none;
 }

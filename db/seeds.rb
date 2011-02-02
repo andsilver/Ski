@@ -7,3 +7,13 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 alice = User.create(:name => 'Alice', :email => 'alice@myskichalet.co.uk')
+
+france = Country.create(:name => 'France')
+
+Country.create([
+  {:name => 'Austria'},
+  {:name => 'Italy'},
+  {:name => 'Switzerland'}
+  ])
+
+chamonix = Resort.create(:country_id => france.id, :name => 'Chamonix')

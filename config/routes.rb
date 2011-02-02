@@ -1,4 +1,7 @@
 MySkiChalet::Application.routes.draw do
+  resources :countries
+  resources :resorts
+
   match "sign_in" => "sessions#new"
   resources :sessions
 
