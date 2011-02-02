@@ -24,3 +24,10 @@ Feature: Advertiser Home
     And I am on the advertiser home page
     When I follow "My Details"
     Then I should see the "My Details" heading
+
+  Scenario: Advertisers can go to the My Properties for Rent page
+    Given that I am signed in
+    And I am interested in advertising properties for rent
+    And I am on the advertiser home page
+    When I follow "My Properties for Rent"
+    Then I should be on the my properties for rent page

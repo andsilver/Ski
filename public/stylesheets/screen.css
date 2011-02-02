@@ -1,0 +1,58 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #98bae2;
+  background-image: url(/images/sky-gradient.png);
+  background-repeat: repeat-x;
+  padding-top: 20px;
+  font-size: 62.5%;
+}
+
+#wrapper {
+  background: #fff;
+  background-image: url(/images/my-ski-chalet.jpg);
+  background-position: center 20px;
+  background-repeat: no-repeat;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 260px 20px 20px 20px;
+
+  color: #2b1d24;
+  font-family: 'Lucida Sans';
+}
+
+li, p, td, th {
+  font-size: 1.4em;
+}
+
+h1, h2, h3 {
+  color: #7d4116;
+}
+
+h1 {
+  font-size: 1.8em;
+}
+
+h2 {
+  font-size: 1.6em;
+}
+
+h3 {
+  font-size: 1.4em;
+}
+
+#flash_notice {
+  background: #e9edf0;
+  padding: 5px;
+  border: 1px solid #8ba4c3;
+  font-size: 1.2em;
+  color: #543e38;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}

@@ -2,7 +2,11 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  distance_from_lift: 'Distance from Lift'
   my_details_saved: 'Your details have been saved.'
+  my_properties_for_rent: 'My Properties for Rent'
   save: 'Save'
   sign_in: 'Sign In'
   sign_in_invalid: 'Your sign in attempt failed. No account was found with this email address and password.'
+  sleeps: 'Sleeps'
+  title: 'Title'

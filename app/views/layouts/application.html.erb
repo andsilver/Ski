@@ -7,7 +7,13 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-
+<div id="wrapper">
+<nav>
+  <ul>
+    <li><%= link_to 'Home', root_path %></li>
+    <li><%= link_to 'Advertise', advertiser_home_path %></li>
+  </ul>
+</nav>
 <nav id="browse">
   <ul>
     <li>Austria</li>
@@ -19,6 +25,6 @@
 
 <%= flash_notice %>
 <%= yield %>
-
+</div><!--#wrapper-->
 </body>
 </html>
