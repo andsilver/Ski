@@ -5,6 +5,9 @@
     <li>Receipts</li>
     <li>Stats</li>
     <li>My Feedback</li>
+<% if @current_user.interested_in_renting_out_properties? %>
+    <li>My Properties for Rent</li>
+<% end %>
   </ul>
 </nav>
 <% else %>

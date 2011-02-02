@@ -1,1 +1,7 @@
 <h1>My Details</h1>
+
+<%= form_for(@user) do |f| %>
+<%= f.check_box :interested_in_renting_out_properties %>
+<%= f.label :interested_in_renting_out_properties %>
+<%= f.submit I18n.t('save') %>
+<% end %>

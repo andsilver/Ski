@@ -1,3 +1,7 @@
+def alice
+  User.find_by_name('Alice')
+end
+
 Given /^that I am signed in$/ do
   @current_user = User.create!(:name => 'Alice', :email => 'alice@myskichalet.co.uk')
 
