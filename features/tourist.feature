@@ -15,3 +15,12 @@ Feature: Tourist
     Given I am on the home page
     When I follow "France"
     Then I should see "Chamonix"
+
+  Scenario: Select a resort to see a list of browse options
+    Given I am on the home page
+    When I follow "France"
+    And I follow "Chamonix"
+    Then I should see "Properties for Rent"
+    And I should see "Properties for Sale"
+    And I should see "Directory"
+    And I should see "Resort Info"
