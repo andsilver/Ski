@@ -7,8 +7,7 @@ Feature: Advertiser Home
   Scenario: Advertisers are asked to sign up or sign in
     Given that I am not signed in
     When I go to the advertiser home page
-    Then I get redirected
-    And I should see "Please sign in or sign up first."
+    Then I should see "Please sign in or sign up first."
 
   Scenario: Advertisers see a link to their details and other features
     Given that I am signed in

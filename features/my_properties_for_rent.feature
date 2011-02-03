@@ -20,4 +20,4 @@ Feature: My Properties for Rent
     Given that I am signed in
     And I am on the my properties for rent page
     When I follow "new property"
-    Then I am on the new property page
+    Then I should be on the new property page

@@ -8,7 +8,7 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-alice = User.create(:name => 'Alice', :email => 'alice@myskichalet.co.uk')
+alice = User.create(:name => 'Alice', :email => 'alice@myskichalet.co.uk', :password => 'secret')
 
 countries = Country.create([
   { :name => 'Andorra',               :iso_3166_1_alpha_2 => 'AD' },

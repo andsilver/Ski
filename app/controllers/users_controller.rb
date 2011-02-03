@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(@user, :notice => 'Your account was successfully created.') }
+        session[:user] = @user.id
+        format.html { redirect_to(my_details_path, :notice => 'Your account was successfully created.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }

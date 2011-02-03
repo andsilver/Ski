@@ -14,10 +14,6 @@ end
 Given /^that I am not signed in$/ do
 end
 
-Then /^I get redirected$/ do
-  follow_redirect!
-end
-
 Then /^I should see the "([^"]*)" heading$/ do |arg1|
   response.should have_selector("h1", :content => arg1)
 end

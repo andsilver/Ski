@@ -17,8 +17,7 @@ Feature: Sign In
     When I fill in "Email" with "bob@myskichalet.co.uk"
     And I fill in "Password" with "secret"
     And I press "Sign In"
-    Then I get redirected
-    And I should see "Welcome back, Bob"
+    Then I should see "Welcome back, Bob"
 
   Scenario: Both my email address and password are incorrect
     Given that I am not signed in
@@ -26,8 +25,7 @@ Feature: Sign In
     When I fill in "Email" with "nonsense"
     And I fill in "Password" with "wrong"
     And I press "Sign In"
-    Then I get redirected
-    And I should see "failed"
+    Then I should see "failed"
 
   Scenario: My email address is correct but my password is not
     Given that I am not signed in
@@ -35,5 +33,4 @@ Feature: Sign In
     When I fill in "Email" with "bob@myskichalet.co.uk"
     And I fill in "Password" with "wrong"
     And I press "Sign In"
-    Then I get redirected
-    And I should see "failed"
+    Then I should see "failed"

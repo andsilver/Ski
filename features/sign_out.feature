@@ -10,5 +10,5 @@ Feature: Sign out
     Given that I am signed in
     And I am on the home page
     When I follow "sign out"
-    Then I am on the home page
+    Then I should be on the home page
     And I should not see "Sign Out"
