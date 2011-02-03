@@ -7,3 +7,8 @@ When /^I have properties for rent$/ do
     {:user_id => alice.id, :title => 'Chalet Maya, Luxury, Sleeps 8', :metres_from_lift => 800, :sleeps => 8}
     ])
 end
+
+Then /^my new property for rent has been saved$/ do
+  property = Property.find_by_title('Apartment Loft, Chalet Des Sapins')
+  property.should_not be_nil
+end

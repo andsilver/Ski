@@ -21,3 +21,16 @@ Feature: My Properties for Rent
     And I am on the my properties for rent page
     When I follow "new property"
     Then I should be on the new property page
+
+  Scenario: Advertisers can create a new property for rent
+    Given that I am signed in
+    And I am on the new property page
+    And I fill in "Title" with "Apartment Loft, Chalet Des Sapins"
+    And I fill in "Sleeps" with "4"
+    And I fill in "Distance from lift" with "1200"
+    And I select "Chamonix" from "Resort"
+    And I press "Save"
+    Then my new property for rent has been saved
+    And I should be on the my properties for rent page
+    And I should see "Your property advert was successfully created."
+    And I should see "Apartment Loft, Chalet Des Sapins"

@@ -1,0 +1,21 @@
+<%= form_for @property do |f| %>
+<p>
+  <%= f.label :title, I18n.t('title') %><br>
+  <%= f.text_field :title %>
+</p>
+<p>
+  <%= f.label :resort_id, I18n.t('resort') %><br>
+  <%= select("property", "resort_id", Resort.all.collect {|r| [ r.name, r.id ] }, {:prompt => 'Select Resort'}) %>
+</p>
+<p>
+  <%= f.label :sleeps, I18n.t('sleeps') %><br>
+  <%= f.text_field :sleeps %>
+</p>
+<p>
+  <%= f.label :metres_from_lift, I18n.t('distance_from_lift') %><br>
+  <%= f.text_field :metres_from_lift %> metres
+</p>
+<p>
+  <%= f.submit I18n.t('save') %>
+</p>
+<% end %>
