@@ -5,6 +5,7 @@ MySkiChalet::Application.routes.draw do
 
   match "sign_in" => "sessions#new"
   match "sign_out" => "sessions#destroy"
+  match "sign_up" => "users#new"
   resources :sessions
 
   match "advertiser_home" => "users#show"

@@ -11,6 +11,7 @@ en:
   sign_in: 'Sign In'
   sign_in_invalid: 'Your sign in attempt failed. No account was found with this email address and password.'
   sign_in_required: 'Please sign in or sign up first.'
+  sign_up: 'Sign Up'
   signed_out: 'You are now signed out.'
   sleeps: 'Sleeps'
   title: 'Title'

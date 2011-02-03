@@ -1,0 +1,22 @@
+<%= form_for @user do |f| %>
+<h2>Your Details</h2>
+<p>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :email %><br>
+  <%= f.text_field :email %>
+</p>
+<h3>Advertising Features</h3>
+<p>
+  I am:
+</p>
+<p>
+  <%= f.check_box :interested_in_renting_out_properties %>
+  <%= f.label :interested_in_renting_out_properties %>
+</p>
+<p>
+  <%= f.submit I18n.t(submit_label) %>
+</p>
+<% end %>
