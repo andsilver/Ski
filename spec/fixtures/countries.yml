@@ -1,15 +1,23 @@
 austria:
   id: 1
   name: Austria
+  iso_3166_1_alpha_2: AU
+  valid_for_resorts: true
 
 france:
   id: 2
   name: France
+  iso_3166_1_alpha_2: FR
+  valid_for_resorts: true
 
 italy:
   id: 3
   name: Italy
+  iso_3166_1_alpha_2: IT
+  valid_for_resorts: true
 
 switzerland:
   id: 4
   name: Switzerland
+  iso_3166_1_alpha_2: CH
+  valid_for_resorts: true

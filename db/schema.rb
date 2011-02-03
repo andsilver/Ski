@@ -13,10 +13,14 @@
 ActiveRecord::Schema.define(:version => 20110202194446) do
 
   create_table "countries", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
+    t.string   "name",               :default => "",    :null => false
+    t.string   "iso_3166_1_alpha_2", :default => "",    :null => false
+    t.boolean  "valid_for_resorts",  :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "countries", ["valid_for_resorts"], :name => "index_countries_on_valid_for_resorts"
 
   create_table "properties", :force => true do |t|
     t.integer  "user_id",          :default => 0,  :null => false

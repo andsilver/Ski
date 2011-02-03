@@ -1,6 +1,7 @@
 .bundle
 *.jpg
 *.png
+!public/images/flags/*.png
 *.psd
 db/*.sqlite3
 log/*.log
