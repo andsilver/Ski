@@ -3,9 +3,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @current_user = User.find_by_email(params[:email])
+    @current_user = User.authenticate(params[:email], params[:password])
     if @current_user
       session[:user] = @current_user.id
+      flash[:notice] = 'Welcome back, ' + @current_user.name
       redirect_to advertiser_home_path
     else
       flash[:notice] = I18n.t('sign_in_invalid')

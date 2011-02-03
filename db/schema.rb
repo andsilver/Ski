@@ -43,9 +43,13 @@ ActiveRecord::Schema.define(:version => 20110202194446) do
   create_table "users", :force => true do |t|
     t.string   "name",                                 :default => "",    :null => false
     t.string   "email",                                                   :null => false
+    t.string   "encrypted_password"
+    t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "interested_in_renting_out_properties", :default => false, :null => false
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email"
 
 end

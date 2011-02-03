@@ -3,8 +3,10 @@
 
 en:
   distance_from_lift: 'Distance from Lift'
+  email: 'Email'
   my_details_saved: 'Your details have been saved.'
   my_properties_for_rent: 'My Properties for Rent'
+  password: 'Password'
   save: 'Save'
   sign_in: 'Sign In'
   sign_in_invalid: 'Your sign in attempt failed. No account was found with this email address and password.'
