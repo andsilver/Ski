@@ -13,7 +13,8 @@ Feature: Advertiser Home
   Scenario: Advertisers see a link to their details and other features
     Given that I am signed in
     When I go to the advertiser home page
-    Then I should see "My Details"
+    Then I should see the "Advertiser Home" heading
+    And I should see "My Details"
     And I should see "Receipts"
     And I should see "Stats"
     And I should see "My Feedback"
