@@ -21,3 +21,9 @@ switzerland:
   name: Switzerland
   iso_3166_1_alpha_2: CH
   valid_for_resorts: true
+
+united_kingdom:
+  id: 5
+  name: United Kingdom
+  iso_3166_1_alpha_2: GB
+  valid_for_resorts: false

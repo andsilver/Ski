@@ -21,7 +21,7 @@
 </nav>
 <nav id="browse">
   <ul>
-<% Country.all_with_resorts.each do |c| %>
+<% Country.all_valid_for_resorts.each do |c| %>
     <li><%= link_to c.name, c %></li>
 <% end %>
   </ul>

@@ -10,6 +10,7 @@ Feature: Tourist
     And I should see "Italy"
     And I should see "Austria"
     And I should see "Switzerland"
+    But I should not see "United Kingdom"
 
   Scenario: Select a country to see a list of resorts
     Given I am on the home page
