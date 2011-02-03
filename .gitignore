@@ -5,5 +5,5 @@
 *.psd
 db/*.sqlite3
 log/*.log
-tmp/**/*
+tmp/*
 webrat.log
