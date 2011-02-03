@@ -31,4 +31,5 @@ group :test, :development do
   gem "rspec-rails", ">= 2.4.1"
   gem "cucumber-rails", ">= 0.3.2"
   gem "webrat", ">= 0.7.3"
+  gem "launchy", ">= 0.3.7"
 end
