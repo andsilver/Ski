@@ -32,6 +32,10 @@ begin
       t.profile = 'rerun'
     end
 
+    Cucumber::Rake::Task.new(:doc) do |t|
+      t.cucumber_opts = "features --format html --out doc/features.html"
+    end
+
     desc 'Run all features'
     task :all => [:ok, :wip]
   end
