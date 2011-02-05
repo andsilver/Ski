@@ -1,4 +1,5 @@
-<h1><%= I18n.t('my_properties_for_rent') %></h1>
+<h1><%= link_to I18n.t('advertiser_home'), advertiser_home_path %> &rarr;
+  <%= I18n.t('my_properties_for_rent') %></h1>
 
 <p>
   <%= link_to 'Advertise a new property for rent', new_property_path %>

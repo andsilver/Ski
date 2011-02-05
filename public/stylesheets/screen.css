@@ -90,3 +90,30 @@ input[type=text] {
   background: #222;
   text-decoration: none;
 }
+
+table#properties_for_rent {
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+#properties_for_rent td, th {
+  padding: 0.3em 0.6em;
+}
+
+#properties_for_rent td {
+  border-top: 1px solid #ccc;
+}
+
+#properties_for_rent th {
+  width: 14em;
+}
+
+#properties_for_rent th+th {
+  width: 6em;
+}
+
+#properties_for_rent td+td,
+#properties_for_rent td+td+td,
+#properties_for_rent td+td+td+td {
+  text-align: right;
+}
