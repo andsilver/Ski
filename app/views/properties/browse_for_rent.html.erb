@@ -1,0 +1,19 @@
+<h1>Properties for Rent in <%= @resort.name %></h1>
+
+<p>
+  <label>Sort by:</label>
+  <select>
+    <option>Price low to high</option>
+    <option>Price high to low</option>
+    <option>Distance from lift</option>
+    <option>Distance from town</option>
+    <option>Sleeps</option>
+    <option>Number of bedrooms</option>
+  </select>
+</p>
+
+<ul>
+<% @properties.each do |p| %>
+  <li><%= p.title %> (<%= I18n.t('sleeps') %>: <%= p.sleeps %>, <%= p.metres_from_lift %>m from lift)</li>
+<% end %>
+</ul>

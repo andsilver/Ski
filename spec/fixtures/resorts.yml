@@ -1,3 +1,4 @@
 chamonix:
+  id: 1
   country_id: 2 # France
   name: Chamonix

@@ -25,3 +25,10 @@ Feature: Tourist
     And I should see "Properties for Sale"
     And I should see "Directory"
     And I should see "Resort Info"
+
+  Scenario: Browse a list of properties for rent in a resort
+    Given I am on the home page
+    When I follow "France"
+    And I follow "Chamonix"
+    And I follow "Properties for Rent"
+    Then I should see "Alpen Lounge"
