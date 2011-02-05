@@ -25,13 +25,6 @@
     <li><%= link_to c.name, c %></li>
 <% end %>
   </ul>
-<% unless @browse_country.nil? %>
-  <ul>
-<% @browse_country.resorts.each do |r| %>
-    <li><%= link_to r.name, r %></li>
-<% end %>
-  </ul>
-<% end %>
 </nav>
 
 <%= flash_notice %>
