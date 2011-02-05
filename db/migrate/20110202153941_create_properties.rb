@@ -6,6 +6,7 @@ class CreateProperties < ActiveRecord::Migration
       t.string :title, :default => '', :null => false
       t.integer :metres_from_lift, :default => 0, :null => false
       t.integer :sleeps, :default => 0, :null => false
+      t.integer :weekly_rent_price, :default => 0, :null => false
 
       t.timestamps
     end

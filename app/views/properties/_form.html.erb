@@ -8,6 +8,10 @@
   <%= select("property", "resort_id", Resort.all.collect {|r| [ r.name, r.id ] }, {:prompt => 'Select Resort'}) %>
 </p>
 <p>
+  <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price') %><br>
+  <%= f.text_field :weekly_rent_price %> EUR
+</p>
+<p>
   <%= f.label :sleeps, I18n.t('sleeps') %><br>
   <%= f.text_field :sleeps %>
 </p>

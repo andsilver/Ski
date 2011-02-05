@@ -12,8 +12,23 @@
   </select>
 </p>
 
-<ul>
+<table>
+  <thead>
+    <tr>
+      <th><%= I18n.t('title') %></th>
+      <th><%= I18n.t('sleeps') %></th>
+      <th><%= I18n.t('distance_from_lift') %></th>
+      <th><%= I18n.t('weekly_rent_price') %></th>
+    </tr>
+  </thead>
+  <tbody>
 <% @properties.each do |p| %>
-  <li><%= p.title %> (<%= I18n.t('sleeps') %>: <%= p.sleeps %>, <%= p.metres_from_lift %>m from lift)</li>
+    <tr>
+      <td><%= p.title %></td>
+      <td><%= p.sleeps %></td>
+      <td><%= p.metres_from_lift %>m</td>
+      <td><%= euros(p.weekly_rent_price) %></td>
+    </tr>
 <% end %>
-</ul>
+  </tbody>
+</table>

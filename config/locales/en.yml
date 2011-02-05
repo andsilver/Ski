@@ -2,7 +2,7 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  distance_from_lift: 'Distance from Lift'
+  distance_from_lift: 'Distance from lift'
   email: 'Email'
   my_details_saved: 'Your details have been saved.'
   my_properties_for_rent: 'My Properties for Rent'
@@ -14,5 +14,6 @@ en:
   sign_in_required: 'Please sign in or sign up first.'
   sign_up: 'Sign Up'
   signed_out: 'You are now signed out.'
-  sleeps: 'Sleeps'
+  sleeps: 'Sleeping capacity'
   title: 'Title'
+  weekly_rent_price: 'Weekly rent price'

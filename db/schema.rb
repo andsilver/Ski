@@ -23,11 +23,12 @@ ActiveRecord::Schema.define(:version => 20110202181254) do
   add_index "countries", ["valid_for_resorts"], :name => "index_countries_on_valid_for_resorts"
 
   create_table "properties", :force => true do |t|
-    t.integer  "user_id",          :default => 0,  :null => false
-    t.integer  "resort_id",        :default => 0,  :null => false
-    t.string   "title",            :default => "", :null => false
-    t.integer  "metres_from_lift", :default => 0,  :null => false
-    t.integer  "sleeps",           :default => 0,  :null => false
+    t.integer  "user_id",           :default => 0,  :null => false
+    t.integer  "resort_id",         :default => 0,  :null => false
+    t.string   "title",             :default => "", :null => false
+    t.integer  "metres_from_lift",  :default => 0,  :null => false
+    t.integer  "sleeps",            :default => 0,  :null => false
+    t.integer  "weekly_rent_price", :default => 0,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
