@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
 
+  validates_length_of :password, :within => 5..40, :if => :password_required?
+
   before_save :encrypt_password
 
   def self.encrypt(pass, salt)
