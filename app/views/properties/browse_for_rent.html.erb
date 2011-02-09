@@ -24,7 +24,7 @@
   <tbody>
 <% @properties.each do |p| %>
     <tr>
-      <td><%= p.title %></td>
+      <td><%= link_to p.title, property_path(p) %></td>
       <td><%= p.sleeps %></td>
       <td><%= p.metres_from_lift %>m</td>
       <td><%= euros(p.weekly_rent_price) %></td>

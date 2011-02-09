@@ -12,6 +12,10 @@ class PropertiesController < ApplicationController
     @property = Property.new
   end
 
+  def show
+    @property = Property.find(params[:id])
+  end
+
   def create
     @property = Property.new(params[:property])
     @property.user_id = @current_user.id

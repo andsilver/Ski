@@ -32,3 +32,9 @@ Feature: Tourist
     And I follow "Chamonix"
     And I follow "Properties for Rent"
     Then I should see "Alpen Lounge"
+
+  Scenario: View more details about a property for rent
+    Given I am on the Chamonix Properties for Rent page
+    When I follow "Alpen Lounge"
+    Then I should be on the Alpen Lounge page
+    And I should see the "Alpen Lounge" heading
