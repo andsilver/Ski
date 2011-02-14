@@ -1,7 +1,8 @@
 class PropertiesController < ApplicationController
   def browse_for_rent
     @resort = Resort.find(params[:id])
-    @properties = @resort.properties
+    @properties = Property.paginate :page => params[:page], :order => 'title',
+      :conditions => {:resort_id => params[:id]}
   end
 
   def my_for_rent
