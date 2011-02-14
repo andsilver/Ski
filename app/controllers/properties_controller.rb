@@ -6,7 +6,6 @@ class PropertiesController < ApplicationController
     whitelist = [ "weekly_rent_price DESC", "metres_from_lift ASC", "sleeping_capacity ASC",
       "number_of_bedrooms ASC" ]
     order = whitelist.include?(params[:sort_method]) ? params[:sort_method] : 'weekly_rent_price ASC'
-    puts order
     @properties = Property.paginate :page => params[:page], :order => order,
       :conditions => {:resort_id => params[:id]}
   end
