@@ -117,3 +117,42 @@ table#properties_for_rent {
 #properties_for_rent td+td+td+td {
   text-align: right;
 }
+
+#browse {
+  float: left;
+}
+
+#browse ul {
+  list-style: none;
+}
+
+#browse li {
+  margin: 0;
+  padding: 0;
+}
+
+#browse a {
+  font-size: 1.2em;
+  color: #333;
+  background: #eee;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: 4px center;
+  padding: 0 24px;
+}
+
+#flag_AU a {
+  background-image: url(/images/flags/au.png);
+}
+
+#flag_FR a {
+  background-image: url(/images/flags/fr.png);
+}
+
+#flag_IT a {
+  background-image: url(/images/flags/it.png);
+}
+
+#flag_CH a {
+  background-image: url(/images/flags/ch.png);
+}
