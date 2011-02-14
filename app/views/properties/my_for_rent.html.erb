@@ -14,18 +14,18 @@
   <thead>
     <tr>
       <th><%= I18n.t('resort') %></th>
-      <th><%= I18n.t('title') %></th>
+      <th><%= I18n.t('name') %></th>
       <th><%= I18n.t('distance_from_lift') %></th>
-      <th><%= I18n.t('sleeps') %></th>
+      <th><%= I18n.t('sleeping_capacity') %></th>
     </tr>
   </thead>
   <tbody>
 <% @properties.each do |p| %>
     <tr>
       <td><%= p.resort.name %></td>
-      <td><%= p.title %></td>
+      <td><%= p.name %></td>
       <td><%= p.metres_from_lift %></td>
-      <td><%= p.sleeps %></td>
+      <td><%= p.sleeping_capacity %></td>
     </tr>
 <% end %>
   </tbody>

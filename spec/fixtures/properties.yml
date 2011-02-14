@@ -2,6 +2,7 @@ alpen_lounge:
   id: 1
   resort_id: 1 # Chamonix
   user_id: 1 # Bob
-  title: Alpen Lounge
-  sleeps: 6
+  name: Alpen Lounge
+  sleeping_capacity: 6
   metres_from_lift: 8000
+  number_of_bedrooms: 3

@@ -1,7 +1,7 @@
 <%= form_for @property do |f| %>
 <p>
-  <%= f.label :title, I18n.t('title') %><br>
-  <%= f.text_field :title %>
+  <%= f.label :name, I18n.t('name') %><br>
+  <%= f.text_field :name %>
 </p>
 <p>
   <%= f.label :resort_id, I18n.t('resort') %><br>
@@ -12,8 +12,12 @@
   <%= f.text_field :weekly_rent_price %> EUR
 </p>
 <p>
-  <%= f.label :sleeps, I18n.t('sleeps') %><br>
-  <%= f.text_field :sleeps %>
+  <%= f.label :sleeping_capacity, I18n.t('sleeping_capacity') %><br>
+  <%= f.text_field :sleeping_capacity %>
+</p>
+<p>
+  <%= f.label :number_of_bedrooms, I18n.t('number_of_bedrooms') %><br>
+  <%= f.text_field :number_of_bedrooms %>
 </p>
 <p>
   <%= f.label :metres_from_lift, I18n.t('distance_from_lift') %><br>

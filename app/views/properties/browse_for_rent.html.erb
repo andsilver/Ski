@@ -1,22 +1,24 @@
 <h1>Properties for Rent in <%= @resort.name %></h1>
 
+<%= form_tag request.path, :method => 'get' do %>
 <p>
-  <label>Sort by:</label>
-  <select>
-    <option>Price low to high</option>
-    <option>Price high to low</option>
-    <option>Distance from lift</option>
+  <label for="sort_method">Sort by:</label>
+  <select id="sort_method" name="sort_method" onchange="this.form.submit()">
+    <option value="weekly_rent_price ASC">Price low to high</option>
+    <option value="weekly_rent_price DESC">Price high to low</option>
+    <option value="metres_from_lift ASC">Distance from lift</option>
     <option>Distance from town</option>
-    <option><%= I18n.t('sleeps') %></option>
-    <option>Number of bedrooms</option>
+    <option value="sleeping_capacity ASC"><%= I18n.t('sleeping_capacity') %></option>
+    <option value="number_of_bedrooms ASC">Number of bedrooms</option>
   </select>
 </p>
+<% end %>
 
 <table id="properties_for_rent">
   <thead>
     <tr>
-      <th><%= I18n.t('title') %></th>
-      <th><%= I18n.t('sleeps') %></th>
+      <th><%= I18n.t('name') %></th>
+      <th><%= I18n.t('sleeping_capacity') %></th>
       <th><%= I18n.t('distance_from_lift') %></th>
       <th><%= I18n.t('weekly_rent_price') %></th>
     </tr>
@@ -24,8 +26,8 @@
   <tbody>
 <% @properties.each do |p| %>
     <tr>
-      <td><%= link_to p.title, property_path(p) %></td>
-      <td><%= p.sleeps %></td>
+      <td><%= link_to p.name, property_path(p) %></td>
+      <td><%= p.sleeping_capacity %></td>
       <td><%= p.metres_from_lift %>m</td>
       <td><%= euros(p.weekly_rent_price) %></td>
     </tr>

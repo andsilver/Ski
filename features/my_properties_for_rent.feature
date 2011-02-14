@@ -25,10 +25,11 @@ Feature: My Properties for Rent
   Scenario: Advertisers can create a new property for rent
     Given that I am signed in
     And I am on the new property page
-    And I fill in "Title" with "Apartment Loft, Chalet Des Sapins"
+    And I fill in "Name" with "Apartment Loft, Chalet Des Sapins"
     And I fill in "Weekly rent price" with "1650"
     And I fill in "Sleeping capacity" with "4"
     And I fill in "Distance from lift" with "1200"
+    And I fill in "Number of bedrooms" with "2"
     And I select "Chamonix" from "Resort"
     And I press "Save"
     Then my new property for rent has been saved
