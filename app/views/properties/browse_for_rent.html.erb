@@ -17,6 +17,7 @@
 <table id="properties_for_rent">
   <thead>
     <tr>
+      <th>&nbsp;</th>
       <th><%= I18n.t('name') %></th>
       <th><%= I18n.t('sleeping_capacity') %></th>
       <th><%= I18n.t('distance_from_lift') %></th>
@@ -26,6 +27,7 @@
   <tbody>
 <% @properties.each do |p| %>
     <tr>
+      <td><% unless p.image.nil? %><%= image_tag(p.image.url(100)) %><% else %>&nbsp;<% end %></td>
       <td><%= link_to p.name, property_path(p) %></td>
       <td><%= p.sleeping_capacity %></td>
       <td><%= p.metres_from_lift %>m</td>

@@ -1,6 +1,7 @@
 class Property < ActiveRecord::Base
   belongs_to :user
   belongs_to :resort
+  belongs_to :image
 
   validates_presence_of :resort_id
   validates_associated :resort

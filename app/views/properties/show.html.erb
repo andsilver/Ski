@@ -1,1 +1,7 @@
 <h1><%= @property.name %></h1>
+
+<% unless @property.image.nil? %>
+<p>
+  <%= image_tag(@property.image.url(400)) %>
+</p>
+<% end %>

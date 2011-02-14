@@ -28,7 +28,7 @@ body {
 }
 
 #content {
-  width: 500px;
+  width: 600px;
   float: left;
   margin-left: 40px;
 }
@@ -115,16 +115,20 @@ table#properties_for_rent {
 }
 
 #properties_for_rent th {
-  width: 14em;
+  width: 100px;
 }
 
 #properties_for_rent th+th {
+  width: 14em;
+}
+
+#properties_for_rent th+th+th {
   width: 6em;
 }
 
-#properties_for_rent td+td,
 #properties_for_rent td+td+td,
-#properties_for_rent td+td+td+td {
+#properties_for_rent td+td+td+td,
+#properties_for_rent td+td+td+td+td {
   text-align: right;
 }
 
