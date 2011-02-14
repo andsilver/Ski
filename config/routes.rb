@@ -17,6 +17,8 @@ MySkiChalet::Application.routes.draw do
     get 'rent', :on => :collection
   end
 
+  resources :images
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:

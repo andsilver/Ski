@@ -1,6 +1,9 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    RubyInline (3.8.6)
+      ZenTest (~> 4.3)
+    ZenTest (4.4.2)
     abstract (1.0.0)
     actionmailer (3.0.3)
       actionpack (= 3.0.3)
@@ -45,6 +48,7 @@ GEM
     gherkin (2.3.3)
       json (~> 1.4.6)
     i18n (0.5.0)
+    image_science (1.2.1)
     json (1.4.6)
     launchy (0.3.7)
       configuration (>= 0.0.5)
@@ -108,7 +112,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RubyInline (= 3.8.6)
   cucumber-rails (>= 0.3.2)
+  image_science (= 1.2.1)
   launchy (>= 0.3.7)
   mysql2 (= 0.2.6)
   rails (= 3.0.3)

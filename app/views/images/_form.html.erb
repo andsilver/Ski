@@ -1,0 +1,22 @@
+<% if @image.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+    <ul>
+    <% @image.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% form_for @image, :html => { :multipart => true } do |form| %>
+
+<div>
+	<%= form.label :image, "Image (.jpeg, .jpg, .gif, .png)" %><br>
+	<%= form.file_field :image %>
+</div>
+
+<%= submit_tag "Upload Image" %>
+
+<% end %>

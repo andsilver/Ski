@@ -1,0 +1,10 @@
+<h1>Images</h1>
+<p><%= link_to 'Upload a new image', new_image_path %></p>
+<ul id="images_list">
+  <% @images.each do |i| %>
+  <li>
+    <div class="image_thumbnail"><%= link_to image_tag(i.url(64)), :action => 'edit', :id => i %></div>
+  </li>
+  <% end %>
+  <%= content_tag(:li, 'No images') if @images.empty? %>
+</ul>
