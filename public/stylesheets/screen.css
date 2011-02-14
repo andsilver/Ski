@@ -47,6 +47,10 @@ h3 {
   font-size: 1.4em;
 }
 
+footer[role=contentinfo] {
+  clear: left;
+}
+
 input[type=email],
 input[type=password],
 input[type=text] {
