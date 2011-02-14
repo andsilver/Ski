@@ -13,6 +13,7 @@
 <table>
   <thead>
     <tr>
+      <th><%= I18n.t('resort') %></th>
       <th><%= I18n.t('title') %></th>
       <th><%= I18n.t('distance_from_lift') %></th>
       <th><%= I18n.t('sleeps') %></th>
@@ -21,6 +22,7 @@
   <tbody>
 <% @properties.each do |p| %>
     <tr>
+      <td><%= p.resort.name %></td>
       <td><%= p.title %></td>
       <td><%= p.metres_from_lift %></td>
       <td><%= p.sleeps %></td>

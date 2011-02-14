@@ -1,8 +1,8 @@
 class CreateProperties < ActiveRecord::Migration
   def self.up
     create_table :properties do |t|
-      t.integer :user_id, :default => 0, :null => false
-      t.integer :resort_id, :default => 0, :null => false
+      t.integer :user_id, :null => false
+      t.integer :resort_id, :null => false
       t.string :title, :default => '', :null => false
       t.integer :metres_from_lift, :default => 0, :null => false
       t.integer :sleeps, :default => 0, :null => false
