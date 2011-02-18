@@ -8,4 +8,8 @@ class Property < ActiveRecord::Base
 
   cattr_reader :per_page
   @@per_page = 10
+
+  def to_param
+    "#{id}-#{PermalinkFu.escape(name)}-#{PermalinkFu.escape(resort.name)}-#{PermalinkFu.escape(resort.country.name)}"
+  end
 end
