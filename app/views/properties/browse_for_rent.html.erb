@@ -4,12 +4,12 @@
 <p>
   <label for="sort_method">Sort by:</label>
   <select id="sort_method" name="sort_method" onchange="this.form.submit()">
-    <option value="weekly_rent_price ASC">Price low to high</option>
-    <option value="weekly_rent_price DESC">Price high to low</option>
-    <option value="metres_from_lift ASC">Distance from lift</option>
-    <option>Distance from town</option>
-    <option value="sleeping_capacity ASC"><%= I18n.t('sleeping_capacity') %></option>
-    <option value="number_of_bedrooms ASC">Number of bedrooms</option>
+    <option<%= ' selected' if params[:sort_method]=='weekly_rent_price ASC' %> value="weekly_rent_price ASC">Price low to high</option>
+    <option<%= ' selected' if params[:sort_method]=='weekly_rent_price DESC' %> value="weekly_rent_price DESC">Price high to low</option>
+    <option<%= ' selected' if params[:sort_method]=='metres_from_lift ASC' %> value="metres_from_lift ASC">Distance from lift</option>
+    <option<%= ' selected' if params[:sort_method]=='metres_from_town ASC' %> value="metres_from_town ASC">Distance from town</option>
+    <option<%= ' selected' if params[:sort_method]=='sleeping_capacity ASC' %> value="sleeping_capacity ASC"><%= I18n.t('sleeping_capacity') %></option>
+    <option<%= ' selected' if params[:sort_method]=='number_of_bedrooms ASC' %> value="number_of_bedrooms ASC">Number of bedrooms</option>
   </select>
 </p>
 <% end %>
@@ -27,8 +27,8 @@
   <tbody>
 <% @properties.each do |p| %>
     <tr>
-      <td><% unless p.image.nil? %><%= image_tag(p.image.url(100)) %><% else %>&nbsp;<% end %></td>
-      <td><%= link_to p.name, property_path(p) %></td>
+      <td><% unless p.image.nil? %><%= link_to(image_tag(p.image.url(100)), p) %><% else %>&nbsp;<% end %></td>
+      <td><%= link_to p.name, p %></td>
       <td><%= p.sleeping_capacity %></td>
       <td><%= p.metres_from_lift %>m</td>
       <td><%= euros(p.weekly_rent_price) %></td>
