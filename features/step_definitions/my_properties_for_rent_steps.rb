@@ -9,6 +9,6 @@ When /^I have properties for rent$/ do
 end
 
 Then /^my new property for rent has been saved$/ do
-  property = Property.find_by_name('Apartment Loft, Chalet Des Sapins')
+  property = Property.find_by_name('Chalet Des Sapins')
   property.should_not be_nil
 end
