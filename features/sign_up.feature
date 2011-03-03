@@ -26,3 +26,12 @@ Feature: Sign Up
     And I press "Sign Up"
     Then I should be on the users page
     And I should see "Password is too short (minimum is 5 characters)"
+
+  Scenario: Email address should be unique
+    Given I am on the sign up page
+    When I fill in "Name" with "Bob"
+    And I fill in "Email" with "bob@myskichalet.co.uk"
+    And I fill in "Password" with "secret"
+    And I press "Sign Up"
+    Then I should be on the users page
+    And I should see "Email has already been taken"

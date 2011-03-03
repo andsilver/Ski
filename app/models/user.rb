@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   validates_length_of :password, :within => 5..40, :if => :password_required?
 
+  validates_uniqueness_of :email
+
   before_save :encrypt_password
 
   def self.encrypt(pass, salt)
