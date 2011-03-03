@@ -1,0 +1,10 @@
+<h1>Resorts</h1>
+<p>
+  <%= link_to 'Add new resort', new_resort_path %>
+</p>
+<ul>
+<% @resorts.each do |resort| %>
+  <li><%= link_to resort.name, edit_resort_path(resort) %> (<%= link_to 'Delete', resort, :confirm => 'Are you sure?', :method => :delete %>)
+  </li>
+<% end %>
+</ul>

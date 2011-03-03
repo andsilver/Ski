@@ -18,7 +18,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def admin_required
+    unless admin?
+      flash[:notice] = 'You need to be logged in as an administrator to do that.'
+      redirect_to sign_in_path
+    end
+  end
+
   def signed_in?
     @current_user.is_a?(User)
+  end
+
+  def admin?
+    signed_in? and @current_user.admin
   end
 end

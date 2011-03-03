@@ -1,0 +1,25 @@
+<% if @resort.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@resort.errors.count, "error") %> prohibited this resort from being saved:</h2>
+
+    <ul>
+    <% @resort.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @resort do |f| %>
+<p>
+  <%= f.label :name, I18n.t('name') %><br>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :country_id, I18n.t('country') %><br>
+  <%= select("resort", "country_id", Country.all.collect {|c| [ c.name, c.id ] }, {:prompt => 'Select Country'}) %>
+</p>
+<p>
+  <%= f.submit I18n.t('save') %>
+</p>
+<% end %>

@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(:version => 20110214151208) do
   add_index "properties", ["user_id"], :name => "index_properties_on_user_id"
 
   create_table "resorts", :force => true do |t|
-    t.integer  "country_id", :default => 0,   :null => false
-    t.string   "name",       :default => "0", :null => false
+    t.integer  "country_id", :default => 0,  :null => false
+    t.string   "name",       :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
