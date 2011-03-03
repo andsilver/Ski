@@ -2,7 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
       t.string :name, :default => '', :null => false
-      t.string :email, :defailt => '', :null => false
+      t.string :email, :default => '', :null => false
       t.string :encrypted_password
       t.string :salt
       t.boolean :admin, :default => false, :null => false
