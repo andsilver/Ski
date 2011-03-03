@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :properties
 
+  attr_protected :admin
+
   attr_accessor :password
 
   validates_length_of :password, :within => 5..40, :if => :password_required?

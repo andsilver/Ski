@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email, :defailt => '', :null => false
       t.string :encrypted_password
       t.string :salt
+      t.boolean :admin, :default => false, :null => false
 
       t.timestamps
     end

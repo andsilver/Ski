@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20110214151208) do
     t.string   "email",                                                   :null => false
     t.string   "encrypted_password"
     t.string   "salt"
+    t.boolean  "admin",                                :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "interested_in_renting_out_properties", :default => false, :null => false
