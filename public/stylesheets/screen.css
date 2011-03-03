@@ -228,3 +228,20 @@ table#properties_for_rent {
 .pagination .next_page {
   margin-left: 1em;
 }
+
+input[type=text] .LV_invalid_field,
+input[type=email] .LV_invalid_field {
+  border: 1px solid #f00;
+}
+
+.LV_validation_message {
+  margin-left: 10px;
+}
+
+.LV_invalid {
+  color: red;
+}
+
+.LV_valid {
+  color: green;
+}

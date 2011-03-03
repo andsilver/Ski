@@ -36,3 +36,14 @@
   <%= f.submit I18n.t(submit_label) %>
 </p>
 <% end %>
+
+<script>
+  var user_name = new LiveValidation('user_name');
+  user_name.add( Validate.Length, { minimum: 5, maximum: 40 } );
+
+  var user_email = new LiveValidation('user_email');
+  user_email.add(Validate.Email);
+
+  var user_password = new LiveValidation('user_password');
+  user_password.add( Validate.Length, { minimum: 5, maximum: 40 } );
+</script>
