@@ -3,7 +3,16 @@ def alice
 end
 
 Given /^I am signed in$/ do
-  @current_user = User.create!(:name => 'Alice', :email => 'alice@myskichalet.co.uk', :password => 'sesame')
+  @current_user = User.create!(
+    :name => 'Alice',
+    :email => 'alice@myskichalet.co.uk',
+    :password => 'sesame',
+    :description => '',
+    :billing_street => '1 Main Avenue',
+    :billing_city => 'Winchester',
+    :billing_country_id => 5,
+    :terms_and_conditions => true
+    )
 
   Given "I am on the sign in page"
   fill_in("Email", :with => @current_user.email)

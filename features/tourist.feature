@@ -1,8 +1,8 @@
 Feature: Tourist
 
+  In order to find a chalet with and near to facilities I want
   As a tourist
   I want to search through properties to rent
-  So that I can find a chalet with and near to facilities I want
 
   Scenario: Browse a list of countries
     Given I am on the home page

@@ -4,3 +4,7 @@ bob:
   email: bob@myskichalet.co.uk
   encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
   salt: salt
+  description: An owner of many chalets
+  billing_street: 10 Pound Walk
+  billing_city: Manchester
+  terms_and_conditions: true

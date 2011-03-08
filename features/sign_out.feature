@@ -1,4 +1,4 @@
-Feature: Sign out
+Feature: Sign Out
 
   As an advertiser or administrator
   I want to be able to sign out

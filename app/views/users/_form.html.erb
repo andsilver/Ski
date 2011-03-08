@@ -24,6 +24,60 @@
   <%= f.label :password %><br>
   <%= f.password_field :password %>
 </p>
+<p>
+  <%= f.label :phone %><br>
+  <%= f.text_field :phone %>
+</p>
+<p>
+  <%= f.label :mobile %><br>
+  <%= f.text_field :mobile %>
+</p>
+<h2>A Bit About You or Your Business</h2>
+<p>
+  <%= f.label :description %><br>
+  <%= f.text_area :description %>
+</p>
+<p>
+  <%= f.label :website %><br>
+  <%= f.text_field :website %>
+</p>
+
+<h2>If this is a Business Account</h2>
+<p>
+  <%= f.label :business_name %><br>
+  <%= f.text_field :business_name %>
+</p>
+<p>
+  <%= f.label :position, 'Your position' %><br>
+  <%= f.text_field :position %>
+</p>
+
+<h2>Card/Billing Details</h2>
+<p>
+  <%= f.label :billing_street, 'House number and street' %><br>
+  <%= f.text_field :billing_street %>
+</p>
+<p>
+  <%= f.text_field :billing_locality %>
+</p>
+<p>
+  <%= f.label :billing_city, 'Town/city' %><br>
+  <%= f.text_field :billing_city %>
+</p>
+<p>
+  <%= f.label :billing_county, 'State/county' %><br>
+  <%= f.text_field :billing_county %>
+</p>
+<p>
+  <%= f.label :billing_postcode, 'ZIP/postcode' %><br>
+  <%= f.text_field :billing_postcode %>
+</p>
+<p>
+  <%= f.label :billing_country_id, I18n.t('country') %><br>
+  <%= select("user", "billing_country_id", Country.all.collect {|c| [ c.name, c.id ] }, {:prompt => 'Select Country'}) %>
+</p>
+
+
 <h3>Advertising Features</h3>
 <p>
   I am:
@@ -32,9 +86,17 @@
   <%= f.check_box :interested_in_renting_out_properties %>
   <%= f.label :interested_in_renting_out_properties %>
 </p>
+
+<h3>Terms &amp; Conditions</h3>
+<p>
+  <%= f.check_box :terms_and_conditions %>
+  <%= f.label :terms_and_conditions, 'I accept the terms & conditions below' %> 
+</p>
+
 <p>
   <%= f.submit I18n.t(submit_label) %>
 </p>
+
 <% end %>
 
 <script>

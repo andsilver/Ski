@@ -8,8 +8,22 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-alice = User.create(:name => 'Alice', :email => 'alice@myskichalet.co.uk', :password => 'secret') { |u| u.admin = true }
-bob = User.create(:name => 'Bob', :email => 'bob@myskichalet.co.uk', :password => 'secret')
+alice = User.create(
+  :name => 'Alice',
+  :email => 'alice@myskichalet.co.uk',
+  :password => 'secret',
+  :billing_street => '1, High St',
+  :billing_city => 'Portsmouth',
+  :terms_and_conditions => true
+  ) { |u| u.admin = true }
+bob = User.create(
+  :name => 'Bob',
+  :email => 'bob@myskichalet.co.uk',
+  :password => 'secret',
+  :billing_street => '2, Main Rd',
+  :billing_city => 'Newcastle',
+  :terms_and_conditions => true
+  )
 
 countries = Country.create([
   { :name => 'Andorra',               :iso_3166_1_alpha_2 => 'AD' },

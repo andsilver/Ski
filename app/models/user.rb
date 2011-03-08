@@ -11,6 +11,13 @@ class User < ActiveRecord::Base
   validates_length_of :name, :within => 5..40
 
   validates_uniqueness_of :email
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
+  validates_presence_of :billing_street
+  validates_presence_of :billing_city
+  validates_presence_of :billing_country_id
+
+  validates_acceptance_of :terms_and_conditions, :on => :create, :accept => true
 
   before_save :encrypt_password
 
