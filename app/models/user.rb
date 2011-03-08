@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :enquiries, :dependent => :delete_all
   has_many :properties
 
   attr_protected :admin

@@ -1,0 +1,31 @@
+class EnquiriesController < ApplicationController
+  include SpamProtection
+
+  before_filter :user_required, :only => [:my]
+
+  def my
+    @enquiries = @current_user.enquiries
+  end
+
+  def create
+    @property = Property.find(params[:enquiry][:property_id])
+
+    @enquiry = Enquiry.new(params[:enquiry])
+
+    unless good_token?
+      render 'properties/show'
+      return
+    end
+
+    @enquiry.user = @property.user
+
+    if @enquiry.save
+      notifier = EnquiryNotifier.notify(@enquiry)
+      notifier.deliver
+      redirect_to @property, :notice => 'Your enquiry has been sent.'
+    else
+      render 'properties/show'
+      return
+    end
+  end
+end

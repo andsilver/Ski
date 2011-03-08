@@ -1,5 +1,7 @@
 class PropertiesController < ApplicationController
-  before_filter :user_required, :except => [:browse_for_rent, :show]
+  include SpamProtection
+
+  before_filter :user_required, :except => [:browse_for_rent, :contact, :current_time, :show]
 
   def browse_for_rent
     @resort = Resort.find(params[:id])
@@ -20,6 +22,13 @@ class PropertiesController < ApplicationController
 
   def show
     @property = Property.find(params[:id])
+    @enquiry = Enquiry.new
+    @enquiry.property_id = @property.id
+  end
+
+  def edit
+    @property = Property.find_by_id_and_user_id(params[:id], @current_user.id)
+    not_found unless @property
   end
 
   def create

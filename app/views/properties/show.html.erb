@@ -1,7 +1,53 @@
 <h1><%= @property.name %></h1>
 
+<%= render 'spam/spam' %>
+
 <% unless @property.image.nil? %>
 <p>
   <%= image_tag(@property.image.url(400)) %>
 </p>
+<% end %>
+
+<h2>Contact Owner</h2>
+<% if @enquiry.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@enquiry.errors.count, "error") %> prohibited this enquiry from being sent:</h2>
+
+    <ul>
+    <% @enquiry.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @enquiry do |f| %>
+<%= f.hidden_field :property_id %>
+
+<span id="current_time">
+  <!-- current time placed here by AJAX request -->
+</span>
+
+<p>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</p>
+
+<p>
+  <%= f.label :email %><br>
+  <%= f.text_field :email %>
+</p>
+
+<p>
+  <%= f.label :phone %><br>
+  <%= f.text_field :phone %>
+</p>
+
+<p>
+  <%= f.label :postcode, 'ZIP/postcode' %><br>
+  <%= f.text_field :postcode %>
+</p>
+
+<%= f.submit 'Send' %>
+
 <% end %>

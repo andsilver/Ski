@@ -32,4 +32,8 @@ class ApplicationController < ActionController::Base
   def admin?
     signed_in? and @current_user.admin
   end
+
+  def not_found
+    render :file => "#{Rails.root.to_s}/public/404.html", :layout => false, :status => 404
+  end
 end
