@@ -1,0 +1,25 @@
+<% if @category.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+    <ul>
+    <% @category.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for [@category.resort, @category] do |f| %>
+<p>
+  <%= f.label :name, I18n.t('name') %><br>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :resort_id, I18n.t('resort') %><br>
+  <%= select("category", "resort_id", (Resort.all.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
+</p>
+<p>
+  <%= f.submit I18n.t('save') %>
+</p>
+<% end %>

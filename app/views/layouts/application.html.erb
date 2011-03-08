@@ -39,7 +39,7 @@
     <li class="back"><a href="<%= resort_path(r) %>" onclick="$('options_for_<%= r.id %>').hide();$('resorts_for_<%= c.id %>').show();return false"><%= r.name %></a></li>
     <li><%= link_to 'Properties for Rent', resort_property_rent_path(r) %></li>
     <li><a href="#">Properties for Sale</a></li>
-    <li><a href="#">Directory</a></li>
+    <li><%= link_to 'Directory', resort_categories_path(r) %></li>
     <li><a href="#">Resort Info</a></li>
   </ul>
 <% end %>

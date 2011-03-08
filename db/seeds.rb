@@ -8,23 +8,6 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-alice = User.create(
-  :name => 'Alice',
-  :email => 'alice@myskichalet.co.uk',
-  :password => 'secret',
-  :billing_street => '1, High St',
-  :billing_city => 'Portsmouth',
-  :terms_and_conditions => true
-  ) { |u| u.admin = true }
-bob = User.create(
-  :name => 'Bob',
-  :email => 'bob@myskichalet.co.uk',
-  :password => 'secret',
-  :billing_street => '2, Main Rd',
-  :billing_city => 'Newcastle',
-  :terms_and_conditions => true
-  )
-
 countries = Country.create([
   { :name => 'Andorra',               :iso_3166_1_alpha_2 => 'AD' },
   { :name => 'Afghanistan',           :iso_3166_1_alpha_2 => 'AF' },
@@ -275,6 +258,28 @@ countries = Country.create([
 austria = Country.find_by_name('Austria').id
 france = Country.find_by_name('France').id
 italy = Country.find_by_name('Italy').id
+united_kingdom = Country.find_by_name('United Kingdom').id
+
+alice = User.create(
+  :name => 'Alice',
+  :email => 'alice@myskichalet.co.uk',
+  :password => 'secret',
+  :billing_street => '1, High St',
+  :billing_city => 'Portsmouth',
+  :billing_country_id => united_kingdom,
+  :terms_and_conditions => true
+  ) { |u| u.admin = true }
+bob = User.create(
+  :name => 'Bob',
+  :email => 'bob@myskichalet.co.uk',
+  :password => 'secret',
+  :billing_street => '2, Main Rd',
+  :billing_city => 'Newcastle',
+  :billing_country_id => united_kingdom,
+  :terms_and_conditions => true
+  )
+
+
 
 chamonix = Resort.create(:country_id => france, :name => 'Chamonix')
 
@@ -291,6 +296,18 @@ Resort.create([
   { :country_id => italy, :name => 'Cervinia' },
   { :country_id => italy, :name => 'Dolomites' },
   { :country_id => italy, :name => 'Italian Alps' },
+])
+
+Category.create([
+  { :resort_id => chamonix.id, :name => 'Bars' },
+  { :resort_id => chamonix.id, :name => 'Restaurants' },
+  { :resort_id => chamonix.id, :name => 'Nightclubs' },
+  { :resort_id => chamonix.id, :name => 'Babysitters' },
+  { :resort_id => chamonix.id, :name => 'Child Clubs' },
+  { :resort_id => chamonix.id, :name => 'Car Hire' },
+  { :resort_id => chamonix.id, :name => 'Mountain Guides' },
+  { :resort_id => chamonix.id, :name => 'Estate Agents' },
+  { :resort_id => chamonix.id, :name => 'Lawyers' },
 ])
 
 images = Image.create([

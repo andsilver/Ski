@@ -1,7 +1,9 @@
 MySkiChalet::Application.routes.draw do
   resources :countries
   match "resorts/:id/properties/rent" => "properties#browse_for_rent", :as => :resort_property_rent
-  resources :resorts
+  resources :resorts do
+    resources :categories
+  end
 
   match "sign_in" => "sessions#new"
   match "sign_out" => "sessions#destroy"

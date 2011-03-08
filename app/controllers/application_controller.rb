@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :signed_in?
+  helper_method :admin?, :signed_in?
 
   before_filter :initialize_user
 
