@@ -6,7 +6,7 @@ Feature: My Details
   features of interest to me
 
   Scenario: Register an interest in advertising properties for rent
-    Given that I am signed in
+    Given I am signed in
     And I am not interested in advertising properties for rent
     When I go to the my details page
     And I check "interested in renting out properties"

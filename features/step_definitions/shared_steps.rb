@@ -2,7 +2,7 @@ def alice
   User.find_by_name('Alice')
 end
 
-Given /^that I am signed in$/ do
+Given /^I am signed in$/ do
   @current_user = User.create!(:name => 'Alice', :email => 'alice@myskichalet.co.uk', :password => 'sesame')
 
   Given "I am on the sign in page"
@@ -11,7 +11,7 @@ Given /^that I am signed in$/ do
   click_button('Sign In')
 end
 
-Given /^that I am not signed in$/ do
+Given /^I am not signed in$/ do
 end
 
 Then /^I should see the "([^"]*)" heading$/ do |arg1|

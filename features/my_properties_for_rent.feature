@@ -5,25 +5,25 @@ Feature: My Properties for Rent
   So that I can see when my adverts expire and make changes to them
 
   Scenario: Advertisers see no properties
-    Given that I am signed in
+    Given I am signed in
     When I have no properties for rent
     And I am on the my properties for rent page
     Then I should see "no properties for rent"
 
   Scenario: Advertisers see properties
-    Given that I am signed in
+    Given I am signed in
     When I have properties for rent
     And I am on the my properties for rent page
     Then I should not see "no properties for rent"
 
   Scenario: Advertisers can go to the new property for rent page
-    Given that I am signed in
+    Given I am signed in
     And I am on the my properties for rent page
     When I follow "new property"
     Then I should be on the new property page
 
   Scenario: Advertisers can create a new property for rent
-    Given that I am signed in
+    Given I am signed in
     And I am on the new property page
     When I fill in the following:
       | Name               | Chalet Des Sapins |
