@@ -31,7 +31,7 @@ Feature: My Properties for Rent
       | Sleeping capacity  | 4                 |
       | Distance from lift | 1200              |
       | Number of bedrooms | 2                 |
-    And I select "Chamonix" from "Resort"
+    And I select "France > Chamonix" from "Resort"
     And I press "Save"
     Then my new property for rent has been saved
     And I should be on the my properties for rent page

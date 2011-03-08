@@ -5,7 +5,7 @@
 </p>
 <p>
   <%= f.label :resort_id, I18n.t('resort') %><br>
-  <%= select("property", "resort_id", Resort.all.collect {|r| [ r.name, r.id ] }, {:prompt => 'Select Resort'}) %>
+  <%= select("property", "resort_id", (Resort.all.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
 </p>
 <p>
   <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price') %><br>
