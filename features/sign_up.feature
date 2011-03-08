@@ -15,7 +15,7 @@ Feature: Sign Up
     And I fill in "Email" with "carol@myskichalet.co.uk"
     And I fill in "Password" with "secret"
     And I press "Sign Up"
-    Then I should be on the my details page
+    Then I should be on the advertiser home page
     And I have a new account set up
 
   Scenario: Password should be at least 5 characters long

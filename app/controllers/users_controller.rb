@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user] = @user.id
-        format.html { redirect_to(my_details_path, :notice => 'Your account was successfully created.') }
+        format.html { redirect_to(advertiser_home_path, :notice => 'Your account was successfully created.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
