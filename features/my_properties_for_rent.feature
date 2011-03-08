@@ -37,3 +37,12 @@ Feature: My Properties for Rent
     And I should be on the my properties for rent page
     And I should see "Your property advert was successfully created."
     And I should see "Chalet Des Sapins"
+
+  Scenario: Advertisers can edit properties
+    Given I am signed in
+    And I have properties for rent
+    When I am on the my properties for rent page
+    And I follow "Chalet Maya"
+    Then I should see the "Edit Property" heading
+    When I press "Save"
+    Then I should see "Your property advert details have been saved."

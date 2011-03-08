@@ -23,7 +23,7 @@
 <% @properties.each do |p| %>
     <tr>
       <td><%= p.resort.name %></td>
-      <td><%= p.name %></td>
+      <td><%= link_to p.name, edit_property_path(p) %></td>
       <td><%= p.metres_from_lift %></td>
       <td><%= p.sleeping_capacity %></td>
     </tr>

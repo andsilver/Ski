@@ -2,6 +2,7 @@ class PropertiesController < ApplicationController
   include SpamProtection
 
   before_filter :user_required, :except => [:browse_for_rent, :contact, :current_time, :show]
+  before_filter :find_property_for_user, :only => [:edit, :update]
 
   def browse_for_rent
     @resort = Resort.find(params[:id])
@@ -27,8 +28,6 @@ class PropertiesController < ApplicationController
   end
 
   def edit
-    @property = Property.find_by_id_and_user_id(params[:id], @current_user.id)
-    not_found unless @property
   end
 
   def create
@@ -44,5 +43,20 @@ class PropertiesController < ApplicationController
         format.xml  { render :xml => @property.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def update
+    if @property.update_attributes(params[:property])
+      redirect_to property_path(@property), :notice => "Your property advert details have been saved."
+    else
+      render "edit"
+    end
+  end
+
+  protected
+
+  def find_property_for_user
+    @property = Property.find_by_id_and_user_id(params[:id], @current_user.id)
+    not_found unless @property
   end
 end
