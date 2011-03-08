@@ -151,7 +151,7 @@ table#properties_for_rent {
 #browse a {
   font-size: 1.2em;
   color: #333;
-  background: #eee;
+  background-color: #eee;
   display: block;
   background-repeat: no-repeat;
   background-position: 6px center;
@@ -164,22 +164,25 @@ table#properties_for_rent {
   color: #111;
 }
 
-#flag_AU a {
+.flag_AU a {
   background-image: url(/images/flags/au.png);
 }
 
-#flag_FR a {
+.flag_FR a {
   background-image: url(/images/flags/fr.png);
 }
 
-#flag_IT a {
+.flag_IT a {
   background-image: url(/images/flags/it.png);
 }
 
-#flag_CH a {
+.flag_CH a {
   background-image: url(/images/flags/ch.png);
 }
 
+.back a {
+  background-image: url(/images/back.png);
+}
 
 .pagination {
   font-size: 1.2em;

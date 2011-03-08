@@ -7,7 +7,7 @@ Feature: Sign out
   sign in using another account if I have one
 
   Scenario: Sign out when signed in
-    Given that I am signed in
+    Given I am signed in
     And I am on the home page
     When I follow "sign out"
     Then I should be on the home page

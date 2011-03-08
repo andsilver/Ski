@@ -258,7 +258,26 @@ countries = Country.create([
   { :name => 'Zimbabwe',              :iso_3166_1_alpha_2 => 'ZW' }
   ])
 
-chamonix = Resort.create(:country_id => Country.find_by_name('France').id, :name => 'Chamonix')
+austria = Country.find_by_name('Austria').id
+france = Country.find_by_name('France').id
+italy = Country.find_by_name('Italy').id
+
+chamonix = Resort.create(:country_id => france, :name => 'Chamonix')
+
+Resort.create([
+  { :country_id => austria, :name => 'Alpbach' },
+  { :country_id => austria, :name => 'Bad Gastein' },
+  { :country_id => austria, :name => 'St Anton' },
+  { :country_id => austria, :name => 'Tyrol' },
+  { :country_id => austria, :name => 'Westendorf' },
+  { :country_id => france, :name => 'Avoriaz' },
+  { :country_id => france, :name => 'Bernex' },
+  { :country_id => france, :name => 'La Tania' },
+  { :country_id => france, :name => 'Morzine' },
+  { :country_id => italy, :name => 'Cervinia' },
+  { :country_id => italy, :name => 'Dolomites' },
+  { :country_id => italy, :name => 'Italian Alps' },
+])
 
 images = Image.create([
   { :filename => 'chalet1.jpg' },
