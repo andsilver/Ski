@@ -32,6 +32,8 @@ GEM
       activesupport (= 3.0.5)
     activesupport (3.0.5)
     arel (2.0.9)
+    autotest (4.4.6)
+      ZenTest (>= 4.4.1)
     builder (2.1.2)
     configuration (1.2.0)
     cucumber (0.10.0)
@@ -45,7 +47,7 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    gherkin (2.3.3)
+    gherkin (2.3.4)
       json (~> 1.4.6)
     i18n (0.5.0)
     image_science (1.2.1)
@@ -114,6 +116,7 @@ PLATFORMS
 
 DEPENDENCIES
   RubyInline (= 3.8.6)
+  autotest (= 4.4.6)
   cucumber-rails (>= 0.3.2)
   image_science (= 1.2.1)
   launchy (>= 0.3.7)
