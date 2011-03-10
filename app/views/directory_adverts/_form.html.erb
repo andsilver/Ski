@@ -1,0 +1,12 @@
+<%= form_for @directory_advert do |f| %>
+
+<p>
+  <%= f.label :category_id, I18n.t('category') %><br>
+  <%= select("directory_advert", "category_id", (Category.all.collect {|c| [ c.resort.country.name + ' > ' + c.resort.name + ' > ' + c.name, c.id ] }).sort, {:prompt => 'Select Category'}) %>
+</p>
+
+<p>
+  <%= f.submit(I18n.t(:save)) %>
+</p>
+
+<% end %>

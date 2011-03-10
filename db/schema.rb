@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(:version => 20110308175148) do
 
   add_index "countries", ["valid_for_resorts"], :name => "index_countries_on_valid_for_resorts"
 
+  create_table "directory_adverts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "enquiries", :force => true do |t|
     t.integer  "user_id",                              :null => false
     t.integer  "property_id"

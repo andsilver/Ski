@@ -1,5 +1,5 @@
 def alice
-  User.find_by_name('Alice')
+  @alice ||= User.find_by_name('Alice')
 end
 
 Given /^I am signed in$/ do

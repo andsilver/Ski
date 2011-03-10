@@ -20,6 +20,10 @@ MySkiChalet::Application.routes.draw do
     post 'current_time', :on => :collection
   end
 
+  resources :directory_adverts do
+    get 'my', :on => :collection
+  end
+
   resources :enquiries do
     post 'current_time', :on => :collection
     get 'my', :on => :collection
