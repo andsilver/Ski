@@ -1,0 +1,149 @@
+HTML Structure Reference
+========================
+
+This document is a general reference for anyone wanting to script or style
+the HTML produced by this application.
+
+HTML5
+-----
+
+The code includes new HTML5 elements. The current code includes modernizr
+and CSS to display:block the block-level elements for older browsers.
+
+Part of the Main Layout
+-----------------------
+
+* `html.no-js` interacts with modernizr to detect feature support. This
+  class attribute will change if the user's browser has Javascript
+  working. Google modernizr for more information.
+* `div#wrapper` wraps everything within the body on every page. It is
+  currently used to display the header image but this will change.
+* `li.flag_XX` is used for country navigation where XX is the ISO country
+  code.
+* `nav#main_menu` is the main menu for general site areas.
+* `nav#browse` is the menu for navigating resort content and is
+  likely to change drastically.
+* `div#content` holds the bulk of the page content -- the content that
+  changes between pages.
+* `footer` is only used once and is used for the main site footer.
+
+Found Frequently
+----------------
+
+* `div#error_explanation` appears above forms that have failed to validate
+  and surrounds an `<h2>` and a list of error messages.
+
+Forms
+-----
+
+Each form for creating a new object has the selectors `form.new_objectname`
+and `form#new_objectname`. Existing object names are:
+
+* category
+* country
+* directory_advert
+* enquiry
+* property
+* resort
+* role
+* user
+
+When the form is used for editing the selectors become form.edit_objectname
+and form#edit_objectname_X where X is the ID of the object being edited.
+As the ID changes you would use the form.edit_objectname for applying CSS.
+
+Categories
+----------
+
+### categories/_form.html.erb
+
+* `form.new_category` and `form#new_category`
+* `form.edit_category` and `form#edit_category_X`
+* `input#category_name`
+* `input#category_resort_id`
+* `input#category_submit`
+
+Properties
+----------
+
+### properties/show.html.erb
+
+* `p#property_main_image`
+  Surrounds the main property `<img>`
+* `form.new_enquiry` and `form#new_enquiry`
+* `input#enquiry_name`
+* `input#enquiry_email`
+* `input#enquiry_phone`
+* `input#enquiry_postcode`
+* `input#enquiry_submit`
+* `span#current_time` is where Javascript puts a hidden input field inside
+  with the current time. This is part of the spam protection.
+
+Resorts
+-------
+
+### resorts/_form.html.erb
+
+* `input#resort_name`
+* `input#resort_country_id`
+* `textarea#resort_info`
+
+Routes
+------
+
+This is a list of pages in the website.
+
+<pre>
+/countries
+/countries/new
+/countries/:id/edit
+/countries/:id
+/resorts/:id/properties/rent
+/resorts/:resort_id/categories
+/resorts/:resort_id/categories/new
+/resorts/:resort_id/categories/:id/edit
+/resorts/:resort_id/categories/:id
+/resorts/:id/info
+/resorts
+/resorts/new
+/resorts/:id/edit
+/resorts/:id
+/sign_in
+/sign_out
+/sign_up
+/sessions
+/sessions/new
+/sessions/:id/edit
+/sessions/:id
+/advertiser_home
+/my/details
+/users
+/users/new
+/users/:id/edit
+/users/:id
+/my/properties/for_rent
+/my/properties/for_sale
+/properties/rent
+/properties/sale
+/properties/current_time
+/properties
+/properties/new
+/properties/:id/edit
+/properties/:id
+/directory_adverts/my
+/directory_adverts
+/directory_adverts/new
+/directory_adverts/:id/edit
+/directory_adverts/:id
+/enquiries/current_time
+/enquiries/my
+/enquiries
+/enquiries/new
+/enquiries/:id/edit
+/enquiries/:id
+/images
+/images/new
+/images/:id/edit
+/images/:id
+/
+</pre>

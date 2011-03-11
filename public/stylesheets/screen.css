@@ -53,6 +53,10 @@ h3 {
   font-size: 1.4em;
 }
 
+pre {
+  font-size: 1.4em;
+}
+
 footer[role=contentinfo] {
   clear: left;
 }
