@@ -1,0 +1,13 @@
+estate_agent:
+  id: 1
+  name: Estate agent
+  admin: false
+  select_on_signup: true
+  flag_new_development: false
+
+property_developer:
+  id: 2
+  name: Property developer
+  admin: false
+  select_on_signup: true
+  flag_new_development: true

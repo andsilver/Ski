@@ -10,6 +10,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @role = Role.find_by_id(params[:user][:role_id])
+    if @role && @role.select_on_signup?
+      @user.role_id = @role.id
+    end
 
     respond_to do |format|
       if @user.save

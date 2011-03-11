@@ -260,6 +260,48 @@ france = Country.find_by_name('France').id
 italy = Country.find_by_name('Italy').id
 united_kingdom = Country.find_by_name('United Kingdom').id
 
+admin = Role.create(
+  :name => "Administrator",
+  :admin => true,
+  :select_on_signup => false,
+  :flag_new_development => true
+)
+
+property_owner = Role.create(
+  :name => "Property owner",
+  :admin => false,
+  :select_on_signup => true,
+  :flag_new_development => false
+)
+
+estate_agent = Role.create(
+  :name => "Estate agent",
+  :admin => false,
+  :select_on_signup => true,
+  :flag_new_development => false
+)
+
+property_agent = Role.create(
+  :name => "Property agent",
+  :admin => false,
+  :select_on_signup => true,
+  :flag_new_development => false
+)
+
+property_developer = Role.create(
+  :name => "Property developer",
+  :admin => false,
+  :select_on_signup => true,
+  :flag_new_development => true
+)
+
+other_business = Role.create(
+  :name => "Other business",
+  :admin => false,
+  :select_on_signup => true,
+  :flag_new_development => false
+)
+
 alice = User.create(
   :name => 'Alice',
   :email => 'alice@myskichalet.co.uk',
@@ -268,7 +310,7 @@ alice = User.create(
   :billing_city => 'Portsmouth',
   :billing_country_id => united_kingdom,
   :terms_and_conditions => true
-  ) { |u| u.admin = true }
+  ) { |u| u.role_id = admin.id }
 bob = User.create(
   :name => 'Bob',
   :email => 'bob@myskichalet.co.uk',
@@ -277,7 +319,7 @@ bob = User.create(
   :billing_city => 'Newcastle',
   :billing_country_id => united_kingdom,
   :terms_and_conditions => true
-  )
+  ) { |u| u.role_id = property_developer.id }
 
 
 

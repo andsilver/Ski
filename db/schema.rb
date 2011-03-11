@@ -83,12 +83,20 @@ ActiveRecord::Schema.define(:version => 20110308175148) do
 
   add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"
 
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.boolean  "select_on_signup"
+    t.boolean  "admin"
+    t.boolean  "flag_new_development"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name",                                 :default => "",    :null => false
     t.string   "email",                                :default => "",    :null => false
     t.string   "encrypted_password"
     t.string   "salt"
-    t.boolean  "admin",                                :default => false, :null => false
     t.string   "website",                              :default => "",    :null => false
     t.text     "description",                                             :null => false
     t.string   "billing_street",                                          :null => false
@@ -105,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20110308175148) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "interested_in_renting_out_properties", :default => false, :null => false
+    t.integer  "role_id",                                                 :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

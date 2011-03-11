@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    signed_in? and @current_user.admin
+    signed_in? and @current_user.role.admin?
   end
 
   def not_found

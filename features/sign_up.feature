@@ -26,6 +26,7 @@ Feature: Sign Up
       | Business name           | Carol's Holidays Ltd    |
       | Your position           | Managing director       |
     And I select "United Kingdom" from "Country"
+    And I select "Estate agent" from "Role"
     And I check "I accept the terms & conditions below"
     And I press "Sign Up"
     Then I should be on the advertiser home page

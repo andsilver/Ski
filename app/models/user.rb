@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
+  belongs_to :role
   has_many :directory_adverts
   has_many :enquiries, :dependent => :delete_all
   has_many :properties
 
-  attr_protected :admin
+  attr_protected :role_id
 
   attr_accessor :password
 
@@ -17,6 +18,7 @@ class User < ActiveRecord::Base
   validates_presence_of :billing_street
   validates_presence_of :billing_city
   validates_presence_of :billing_country_id
+  validates_presence_of :role_id
 
   validates_acceptance_of :terms_and_conditions, :on => :create, :accept => true
 
