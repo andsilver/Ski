@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :directory_adverts
   has_many :enquiries, :dependent => :delete_all
   has_many :properties
+  has_many :properties_for_rent, :class_name => 'Property', :conditions => {:for_sale => false}
+  has_many :properties_for_sale, :class_name => 'Property', :conditions => {:for_sale => true}
 
   attr_protected :role_id
 
@@ -35,6 +37,14 @@ class User < ActiveRecord::Base
 
   def authenticated?(pass)
     encrypted_password == User.encrypt(pass, salt)
+  end
+
+  def has_properties_for_rent?
+    properties_for_rent.count > 0
+  end
+
+  def has_properties_for_sale?
+    properties_for_sale.count > 0
   end
 
   protected

@@ -10,11 +10,11 @@ class PropertiesController < ApplicationController
       "number_of_bedrooms ASC" ]
     order = whitelist.include?(params[:sort_method]) ? params[:sort_method] : 'weekly_rent_price ASC'
     @properties = Property.paginate :page => params[:page], :order => order,
-      :conditions => {:resort_id => params[:id]}
+      :conditions => {:resort_id => params[:id], :for_sale => false}
   end
 
   def my_for_rent
-    @properties = @current_user.properties
+    @properties = @current_user.properties_for_rent
   end
 
   def new
