@@ -13,3 +13,4 @@ Feature: My Details
     And I press "Save"
     And I go to the advertiser home page
     Then I should see "My Properties for Rent"
+

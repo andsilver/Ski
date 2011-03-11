@@ -16,8 +16,10 @@ MySkiChalet::Application.routes.draw do
   resources :users
 
   match "my/properties/for_rent" => "properties#my_for_rent", :as => :my_properties_for_rent
+  match "my/properties/for_sale" => "properties#my_for_sale", :as => :my_properties_for_sale
   resources :properties do
     get 'rent', :on => :collection
+    get 'sale', :on => :collection
     post 'current_time', :on => :collection
   end
 

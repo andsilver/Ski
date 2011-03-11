@@ -3,6 +3,35 @@ require 'spec_helper'
 describe PropertiesController do
   let(:property) { mock_model(Property).as_null_object }
 
+  describe "GET new" do
+    let(:current_user) { mock_model(User).as_null_object }
+
+    before do
+      session[:user] = 1
+      User.stub(:find_by_id).and_return(current_user)
+      Property.stub(:new).and_return(property)
+    end
+
+    it "instantiates a new property" do
+      Property.should_receive(:new)
+      get :new
+    end
+
+    context "with params[:for_sale] set" do
+      it "sets property.for_sale to true" do
+        property.should_receive(:for_sale=).with(true)
+        get :new, :for_sale => ""
+      end
+    end
+
+    context "with params[:for_sale] not set" do
+      it "doesn't set property.for_sale" do
+        property.should_not_receive(:for_sale=)
+        get :new
+      end
+    end
+  end
+
   describe "PUT update" do
     let(:current_user) { mock_model(User).as_null_object }
 

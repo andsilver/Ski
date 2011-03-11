@@ -6,6 +6,9 @@ class Property < ActiveRecord::Base
   validates_presence_of :resort_id
   validates_associated :resort
 
+  validates_length_of :name, :within => 5..30
+  validates_length_of :strapline, :within => 0..60
+
   cattr_reader :per_page
   @@per_page = 10
 

@@ -30,6 +30,27 @@
   <%= f.text_field :metres_from_lift %> metres
 </p>
 <p>
+  <%= f.check_box :pets %> <%= f.label :pets, 'Pets allowed' %>
+</p>
+<p>
+  <%= f.check_box :smoking %> <%= f.label :smoking, 'Smoking allowed' %>
+</p>
+<p>
+  <%= f.check_box :tv %> <%= f.label :tv, 'TV' %>
+</p>
+<p>
+  <%= f.check_box :wifi %> <%= f.label :wifi, 'WiFi' %>
+</p>
+<p>
+  <%= f.check_box :disabled %> <%= f.label :disabled, 'Suitable for disabled people' %>
+</p>
+<p>
+  <%= f.check_box :fully_equipped_kitchen %> <%= f.label :fully_equipped_kitchen, 'Fully equipped kitchen' %>
+</p>
+<p>
+  <%= f.check_box :parking %> <%= f.label :parking, 'Parking' %>
+</p>
+<p>
   <%= f.submit I18n.t('save') %>
 </p>
 <% end %>

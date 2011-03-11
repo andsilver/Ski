@@ -3,7 +3,7 @@ end
 
 When /^I have properties for rent$/ do
   properties = Property.create!([
-    {:user_id => alice.id, :resort_id => resorts(:chamonix).id, :name => 'Catered Chalet in Chamonix, Sleeps 4, with Cave', :metres_from_lift => 1000, :sleeping_capacity => 4},
+    {:user_id => alice.id, :resort_id => resorts(:chamonix).id, :name => 'Chalet Azimuth', :strapline => 'Catered Chalet in Chamonix, Sleeps 4, with Cave', :metres_from_lift => 1000, :sleeping_capacity => 4},
     {:user_id => alice.id, :resort_id => resorts(:chamonix).id, :name => 'Chalet Maya', :metres_from_lift => 800, :sleeping_capacity => 8}
     ])
 end

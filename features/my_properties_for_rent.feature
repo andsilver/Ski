@@ -32,6 +32,13 @@ Feature: My Properties for Rent
       | Distance from lift | 1200              |
       | Number of bedrooms | 2                 |
     And I select "France > Chamonix" from "Resort"
+    And I check "Pets allowed"
+    And I check "Smoking allowed"
+    And I check "TV"
+    And I check "WiFi"
+    And I check "Suitable for disabled people"
+    And I check "Fully equipped kitchen"
+    And I check "Parking"
     And I press "Save"
     Then my new property for rent has been saved
     And I should be on the my properties for rent page

@@ -1,9 +1,13 @@
-<h1><%= @property.name %></h1>
+<h1 class="property_name"><%= @property.name %></h1>
+
+<% unless @property.strapline.empty? %>
+<h3 class="property_strapline"><%= @property.strapline %></h3>
+<% end %>
 
 <%= render 'spam/spam' %>
 
 <% unless @property.image.nil? %>
-<p>
+<p id="property_main_image">
   <%= image_tag(@property.image.url(400)) %>
 </p>
 <% end %>

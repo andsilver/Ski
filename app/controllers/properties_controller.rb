@@ -19,6 +19,9 @@ class PropertiesController < ApplicationController
 
   def new
     @property = Property.new
+    if params[:for_sale]
+      @property.for_sale = true
+    end
   end
 
   def show
