@@ -1,10 +1,25 @@
-bob:
+alice:
   id: 1
+  name: Alice
+  email: alice@myskichalet.co.uk
+  encrypted_password: 53a9042fc50d6abdf8f54930b6e76d0c3bb514f2 # =sesame
+  salt: salt
+  description: An estate agent
+  billing_street: 1 Main Avenue
+  billing_city: Winchester
+  billing_country_id: 5
+  terms_and_conditions: true
+  role_id: 1
+
+bob:
+  id: 2
   name: Bob
   email: bob@myskichalet.co.uk
   encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
   salt: salt
-  description: An owner of many chalets
+  description: A property developer
   billing_street: 10 Pound Walk
   billing_city: Manchester
+  billing_country_id: 5
   terms_and_conditions: true
+  role_id: 2

@@ -3,6 +3,12 @@
   <%= f.label :name, I18n.t('name') %><br>
   <%= f.text_field :name %>
 </p>
+<% if @current_user.role.flag_new_development? %>
+<p>
+  <%= f.check_box :new_development %>
+  <%= f.label :new_development %>
+</p>
+<% end %>
 <p>
   <%= f.label :resort_id, I18n.t('resort') %><br>
   <%= select("property", "resort_id", (Resort.all.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
