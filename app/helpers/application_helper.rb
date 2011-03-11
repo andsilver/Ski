@@ -18,4 +18,8 @@ module ApplicationHelper
   def euros(number)
     number_to_currency(number, :unit => '€', :precision => 0)
   end
+
+  def md(text)
+    RDiscount.new(text).to_html.html_safe
+  end
 end

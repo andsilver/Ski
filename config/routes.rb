@@ -3,6 +3,7 @@ MySkiChalet::Application.routes.draw do
   match "resorts/:id/properties/rent" => "properties#browse_for_rent", :as => :resort_property_rent
   resources :resorts do
     resources :categories
+    get 'info', :on => :member
   end
 
   match "sign_in" => "sessions#new"

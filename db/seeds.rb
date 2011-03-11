@@ -323,7 +323,9 @@ bob = User.create(
 
 
 
-chamonix = Resort.create(:country_id => france, :name => 'Chamonix')
+chamonix = Resort.create(:country_id => france, :name => 'Chamonix',
+  :info => 'Chamonix, with a population of approximately 10,000, is a world famous resort and was the location of the first winter Olympics in 1924.'
+)
 
 Resort.create([
   { :country_id => austria, :name => 'Alpbach' },

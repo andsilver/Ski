@@ -2,3 +2,4 @@ chamonix:
   id: 1
   country_id: 2 # France
   name: Chamonix
+  info: "Chamonix, with a population of approximately 10,000"

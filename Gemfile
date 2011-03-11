@@ -5,6 +5,7 @@ gem 'mysql2', '0.2.6'
 gem "will_paginate", "~> 3.0.pre2"
 gem 'image_science', '1.2.1'
 gem 'RubyInline', '3.8.6'
+gem 'rdiscount', '1.6.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

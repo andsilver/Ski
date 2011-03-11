@@ -1,6 +1,6 @@
 class ResortsController < ApplicationController
-  before_filter :admin_required, :except => [:show]
-  before_filter :find_resort, :only => [:edit, :update, :show, :destroy]
+  before_filter :admin_required, :except => [:show, :info]
+  before_filter :find_resort, :only => [:edit, :update, :show, :info, :destroy]
 
   def index
     @resorts = Resort.all
