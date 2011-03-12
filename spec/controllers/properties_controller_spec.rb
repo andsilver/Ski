@@ -3,6 +3,29 @@ require 'spec_helper'
 describe PropertiesController do
   let(:property) { mock_model(Property).as_null_object }
 
+  describe "GET new_developments" do
+    let(:properties) { mock(ActiveRecord::Relation).as_null_object }
+
+    before do
+      Property.stub(:paginate).and_return(properties)
+    end
+
+    it "finds paginated properties ordered by when created" do
+      Property.should_receive(:paginate).with(hash_including(:order => "created_at DESC"))
+      get :new_developments
+    end
+
+    it "finds new developments" do
+      Property.should_receive(:paginate).with(hash_including(:conditions => {:new_development => true}))
+      get :new_developments
+    end
+
+    it "assigns @properties" do
+      get :new_developments
+      assigns[:properties].should equal(properties)
+    end
+  end
+
   describe "GET new" do
     let(:current_user) { mock_model(User).as_null_object }
 

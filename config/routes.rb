@@ -15,6 +15,7 @@ MySkiChalet::Application.routes.draw do
   match "my/details" => "users#edit", :as => :my_details
   resources :users
 
+  match "new-developments" => "properties#new_developments", :as => :new_developments
   match "my/properties/for_rent" => "properties#my_for_rent", :as => :my_properties_for_rent
   match "my/properties/for_sale" => "properties#my_for_sale", :as => :my_properties_for_sale
   resources :properties do

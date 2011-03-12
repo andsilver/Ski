@@ -1,0 +1,26 @@
+<h1><%= I18n.t(:new_developments) %></h1>
+
+<table id="new_developments">
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <th><%= I18n.t('name') %></th>
+      <th><%= I18n.t('number_of_bedrooms') %></th>
+      <th><%= I18n.t('distance_from_lift') %></th>
+      <th><%= I18n.t('sale_price') %></th>
+    </tr>
+  </thead>
+  <tbody>
+<% @properties.each do |p| %>
+    <tr>
+      <td><% unless p.image.nil? %><%= link_to(image_tag(p.image.url(100)), p) %><% else %>&nbsp;<% end %></td>
+      <td><%= link_to p.name, p %></td>
+      <td><%= p.number_of_bedrooms %></td>
+      <td><%= p.metres_from_lift %>m</td>
+      <td><%= euros(p.sale_price) %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @properties %>

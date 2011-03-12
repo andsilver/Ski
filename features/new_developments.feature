@@ -26,3 +26,20 @@ Feature:
     Examples:
     | role           |
     | property owner |
+
+  Scenario: I can get to the new developments page from the home page
+    Given I am on the home page
+    When I follow "New Developments"
+    Then I should be on the new developments page
+    And I should see the "New Developments" heading
+
+  Scenario: I can see new developments on the new developments page
+    Given there are 3 new developments
+    When I am on the new developments page
+    Then I should see 3 new developments
+
+  Scenario: When there are more than 10 new developments they are paginated
+    Given there are 11 new developments
+    When I am on the new developments page
+    Then I should see 10 new developments
+    And I should see "Next →"

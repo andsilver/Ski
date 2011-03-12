@@ -1,7 +1,8 @@
 class PropertiesController < ApplicationController
   include SpamProtection
 
-  before_filter :user_required, :except => [:browse_for_rent, :contact, :current_time, :show]
+  before_filter :user_required, :except => [:browse_for_rent,
+    :new_developments, :contact, :current_time, :show]
   before_filter :find_property_for_user, :only => [:edit, :update]
 
   def browse_for_rent
@@ -15,6 +16,11 @@ class PropertiesController < ApplicationController
 
   def my_for_rent
     @properties = @current_user.properties_for_rent
+  end
+
+  def new_developments
+    @properties = Property.paginate(:page => params[:page], :order => 'created_at DESC',
+      :conditions => {:new_development => true})
   end
 
   def new
