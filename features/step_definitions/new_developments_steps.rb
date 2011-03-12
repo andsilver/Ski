@@ -1,7 +1,5 @@
-Given /^I am signed in as a property developer$/ do
-  sign_in_with('bob@myskichalet.co.uk', 'secret')
-end
-
-Given /^I am signed in but not as a property developer$/ do
-  sign_in_with('alice@myskichalet.co.uk', 'sesame')
+Given /^I am signed in as a ([^"]*)$/ do |role|
+  sign_in_with('alice@myskichalet.co.uk', 'sesame') if role == 'estate agent'
+  sign_in_with('bob@myskichalet.co.uk', 'secret') if role == 'property developer'
+  sign_in_with('dave@myskichalet.co.uk', 'secret') if role == 'property owner'
 end

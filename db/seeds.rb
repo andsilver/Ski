@@ -278,7 +278,7 @@ estate_agent = Role.create(
   :name => "Estate agent",
   :admin => false,
   :select_on_signup => true,
-  :flag_new_development => false
+  :flag_new_development => true
 )
 
 property_agent = Role.create(
