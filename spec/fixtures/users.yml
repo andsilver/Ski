@@ -36,3 +36,16 @@ dave:
   billing_country_id: 5
   terms_and_conditions: true
   role_id: 3
+
+tony:
+  id: 4
+  name: Tony
+  email: tony@myskichalet.co.uk
+  encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
+  salt: salt
+  description: An administrator
+  billing_street: Restover Lodge
+  billing_city: Doncaster
+  billing_country_id: 5
+  terms_and_conditions: true
+  role_id: 4

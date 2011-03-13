@@ -8,10 +8,11 @@ def valid_property attributes
   Property.new defaults.merge(attributes)
 end
 
-Given /^I am signed in as a ([^"]*)$/ do |role|
+Given /^I am signed in as an? ([^"]*)$/ do |role|
   sign_in_with('alice@myskichalet.co.uk', 'sesame') if role == 'estate agent'
   sign_in_with('bob@myskichalet.co.uk', 'secret') if role == 'property developer'
   sign_in_with('dave@myskichalet.co.uk', 'secret') if role == 'property owner'
+  sign_in_with('tony@myskichalet.co.uk', 'secret') if role == 'administrator'
 end
 
 Given /^there are (\d+) new developments$/ do |how_many|

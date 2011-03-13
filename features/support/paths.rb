@@ -17,6 +17,12 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
+    when /the new Chamonix category page/
+      new_resort_category_path(resorts(:chamonix))
+
+    when /the Chamonix directory page/
+      resort_categories_path(resorts(:chamonix))
+
     when /the Chamonix resort info page/
       info_resort_path(resorts(:chamonix))
 

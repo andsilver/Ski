@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_filter :admin_required, :except => [:show]
+  before_filter :admin_required, :except => [:index, :show]
   before_filter :find_resort, :only => [:index, :new]
   before_filter :find_category, :only => [:edit, :update, :show, :destroy]
 
