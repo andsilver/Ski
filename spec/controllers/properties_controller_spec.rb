@@ -98,16 +98,60 @@ describe PropertiesController do
     end
   end
 
+  def find_a_property_belonging_to_the_current_user
+    Property.should_receive(:find_by_id_and_user_id).with("1", anything())
+  end
+
+  def signed_in_user
+    session[:user] = 1
+    User.stub(:find_by_id).and_return(current_user)
+  end
+
+  describe "GET edit" do
+    let(:current_user) { mock_model(User).as_null_object }
+    let(:property) { mock_model(Property).as_null_object }
+
+    before do
+      signed_in_user
+    end
+
+    it "finds a property belonging to the current user" do
+      find_a_property_belonging_to_the_current_user
+      get :edit, { :id => "1" }
+    end
+
+    context "when a valid_property is found" do
+      before do
+        Property.stub(:find_by_id_and_user_id).and_return(property)
+      end
+
+      it "assigns @property" do
+        get :edit, :id => "1"
+        assigns[:property].should equal(property)
+      end
+    end
+
+    context "when a valid_property is not found" do
+      before do
+        Property.stub(:find_by_id_and_user_id).and_return(nil)
+      end
+
+      it "renders not found" do
+        get :edit, { :id => 1 }
+        response.status.should eql 404
+      end
+    end
+  end
+
   describe "PUT update" do
     let(:current_user) { mock_model(User).as_null_object }
 
     before do
-      session[:user] = 1
-      User.stub(:find_by_id).and_return(current_user)
+      signed_in_user
     end
 
-    it "finds a property" do
-      Property.should_receive(:find_by_id_and_user_id).with("1", anything())
+    it "finds a property belonging to the current user" do
+      find_a_property_belonging_to_the_current_user
       put :update, { :id => "1" }
     end
 
