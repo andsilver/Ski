@@ -31,9 +31,13 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.find(params[:id])
-    @enquiry = Enquiry.new
-    @enquiry.property_id = @property.id
+    @property = Property.find_by_id(params[:id])
+    if @property
+      @enquiry = Enquiry.new
+      @enquiry.property_id = @property.id
+    else
+      not_found
+    end
   end
 
   def edit

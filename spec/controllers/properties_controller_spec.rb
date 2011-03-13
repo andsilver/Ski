@@ -55,6 +55,49 @@ describe PropertiesController do
     end
   end
 
+  describe "GET show" do
+    it "finds a property" do
+      Property.should_receive(:find_by_id).with("1")
+      get :show, :id => "1"
+    end
+
+    context "when a property is found" do
+      let(:property) { mock_model(Property).as_null_object }
+      let(:enquiry) { mock_model(Enquiry).as_null_object }
+
+      before do
+        Property.stub(:find_by_id).and_return(property)
+        Enquiry.stub(:new).and_return(enquiry)
+      end
+
+      it "assigns @property" do
+        get :show, :id => "1"
+        assigns[:property].should equal(property)
+      end
+
+      it "instantiates a new enquiry" do
+        Enquiry.should_receive(:new)
+        get :show, :id => "1"
+      end
+
+      it "assigns @enquiry" do
+        get :show, :id => "1"
+        assigns[:enquiry].should equal(enquiry)
+      end
+    end
+
+    context "when a property is not found" do
+      before do
+        Property.stub(:find_by_id).and_return(nil)
+      end
+
+      it "renders not found" do
+        get :show, { :id => 1 }
+        response.status.should eql 404
+      end
+    end
+  end
+
   describe "PUT update" do
     let(:current_user) { mock_model(User).as_null_object }
 
