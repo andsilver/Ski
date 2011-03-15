@@ -20,3 +20,9 @@ Feature: Categories Admin
     And I select "France > Chamonix" from "Resort"
     And I press "Save"
     Then I should see "Category created."
+
+  Scenario: Attempt to create an invalid category
+    Given I am signed in as an administrator
+    And I am on the new Chamonix category page
+    When I press "Save"
+    Then I should see "1 error prohibited this category from being saved"
