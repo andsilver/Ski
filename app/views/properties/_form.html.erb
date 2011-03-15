@@ -5,6 +5,10 @@
   <%= f.label :name, I18n.t('name') %><br>
   <%= f.text_field :name %>
 </p>
+<p>
+  <%= f.label :strapline, I18n.t('strapline') %><br>
+  <%= f.text_field :strapline %>
+</p>
 <% if @current_user.role.flag_new_development? %>
 <p>
   <%= f.check_box :new_development %>

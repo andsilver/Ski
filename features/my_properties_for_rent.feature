@@ -26,11 +26,12 @@ Feature: My Properties for Rent
     Given I am signed in
     And I am on the new property page
     When I fill in the following:
-      | Name               | Chalet Des Sapins |
-      | Weekly rent price  | 1650              |
-      | Sleeping capacity  | 4                 |
-      | Distance from lift | 1200              |
-      | Number of bedrooms | 2                 |
+      | Name               | Chalet Des Sapins              |
+      | Strapline          | Excellent facilities, sleeps 4 |
+      | Weekly rent price  | 1650                           |
+      | Sleeping capacity  | 4                              |
+      | Distance from lift | 1200                           |
+      | Number of bedrooms | 2                              |
     And I select "France > Chamonix" from "Resort"
     And I check "Pets allowed"
     And I check "Smoking allowed"
