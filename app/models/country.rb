@@ -1,7 +1,5 @@
 class Country < ActiveRecord::Base
   has_many :resorts
 
-  def self.all_valid_for_resorts
-    where(:valid_for_resorts => true).order('name')
-  end
+  scope :with_resorts, where('id IN (SELECT DISTINCT(country_id) FROM resorts)')
 end

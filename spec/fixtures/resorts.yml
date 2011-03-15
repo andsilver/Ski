@@ -1,5 +1,20 @@
-chamonix:
+st_anton:
   id: 1
+  country_id: 1 # Austria
+  name: St Anton
+
+chamonix:
+  id: 2
   country_id: 2 # France
   name: Chamonix
   info: "Chamonix, with a population of approximately 10,000"
+
+italian_alps:
+  id: 3
+  country_id: 3 # Italy
+  name: Italian Alps
+
+davos:
+  id: 4
+  country_id: 4 # Switzerland
+  name: Davos

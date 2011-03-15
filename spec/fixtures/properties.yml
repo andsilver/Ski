@@ -1,6 +1,6 @@
 alpen_lounge:
   id: 1
-  resort_id: 1 # Chamonix
+  resort_id: 2 # Chamonix
   user_id: 2 # Bob
   name: Alpen Lounge
   sleeping_capacity: 6

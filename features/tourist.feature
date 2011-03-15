@@ -34,7 +34,7 @@ Feature: Tourist
     Given I am on the home page
     When I follow "France"
     And I follow "Chamonix"
-    And I follow "Properties for Rent"
+    And I follow "Properties for Rent in Chamonix"
     Then I should see "Alpen Lounge"
 
   Scenario: View more details about a property for rent

@@ -23,11 +23,11 @@
 </nav>
 <nav id="browse">
   <ul id="countries">
-<% Country.all_valid_for_resorts.each do |c| %>
+<% Country.with_resorts.each do |c| %>
     <li class="flag_<%= c.iso_3166_1_alpha_2 %>"><a href="<%= country_path(c) %>" onclick="$('resorts_for_<%= c.id %>').show();$('countries').hide();return false"><%= c.name %></a></li>
 <% end %>
   </ul>
-<% Country.all_valid_for_resorts.each do |c| %>
+<% Country.with_resorts.each do |c| %>
   <ul style="display: none;" id="resorts_for_<%= c.id %>">
     <li class="back"><a href="<%= country_path(c) %>" onclick="$('resorts_for_<%= c.id %>').hide();$('countries').show();return false"><%= c.name %></a></li>
 <% c.resorts.each do |r| %>
