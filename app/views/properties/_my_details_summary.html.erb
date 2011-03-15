@@ -1,0 +1,23 @@
+<div id="my_details_summary">
+  <div id="general_details">
+    <h3>Details</h3>
+    <p>
+      Name: <%= @current_user.name %><br>
+      Email: <%= @current_user.email %><br>
+      Phone: <%= @current_user.phone %><br>
+      Mobile: <%= @current_user.mobile %>
+    </p>
+  </div>
+  <div id="billing_address">
+    <h3>Billing Address</h3>
+    <p>
+      <%= @current_user.billing_street %><br>
+      <%= @current_user.billing_locality %><br>
+      <%= @current_user.billing_city %><br>
+      <%= @current_user.billing_county %><br>
+      <%= @current_user.billing_postcode %><br>
+      <%= @current_user.billing_country.name %>
+    </p>
+  </div>
+  <p><%= link_to 'Edit my details', my_details_path %></p>
+</div>

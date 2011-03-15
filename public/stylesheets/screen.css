@@ -252,3 +252,11 @@ input[type=email] .LV_invalid_field {
 .LV_valid {
   color: green;
 }
+
+#my_details_summary {
+  background: #eee;
+  font-size: .8em;
+  border-radius: 1em;
+  border: 1px solid #ccc;
+  padding: 10px;
+}

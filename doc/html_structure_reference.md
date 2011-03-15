@@ -66,6 +66,15 @@ Categories
 Properties
 ----------
 
+### properties/_my_details_summary.html.erb
+
+An area that reminds the advertiser of their current details in the context
+of the new advert, prompting the advertiser to update them if necessary.
+
+* `#my_details_summary`
+* `#general_address`
+* `#billing_address`
+
 ### properties/show.html.erb
 
 * `p#property_main_image`

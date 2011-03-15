@@ -1,8 +1,8 @@
 Feature: Advertiser Home
 
+  In order to manage my contact details and advertisements
   As an advertiser
   I want to see my account details
-  So that I can manage my contact details and advertisements
 
   Scenario: Advertisers are asked to sign up or sign in
     Given I am not signed in

@@ -1,9 +1,9 @@
 Feature: My Details
 
+  In order to be contacted and billed and to see advertising features of
+  interest to me
   As an advertiser
   I want to keep my details up to date
-  So that I can be contacted and billed and so that I can see advertising
-  features of interest to me
 
   Scenario: Register an interest in advertising properties for rent
     Given I am signed in

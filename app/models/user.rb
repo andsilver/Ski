@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :role
+  belongs_to :billing_country, :class_name => 'Country'
   has_many :directory_adverts
   has_many :enquiries, :dependent => :delete_all
   has_many :properties
