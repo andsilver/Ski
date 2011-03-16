@@ -35,6 +35,8 @@ MySkiChalet::Application.routes.draw do
 
   resources :images
 
+  match "basket" => "adverts#basket"
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:

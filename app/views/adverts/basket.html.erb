@@ -1,0 +1,11 @@
+<h1>Basket</h1>
+
+<% if @adverts.empty? %>
+  <p>Your basket is empty.</p>
+<% else %>
+  <ul>
+    <% @adverts.each do |advert| %>
+      <li><%= @advert %></li>
+    <% end %>
+  </ul>
+<% end %>
