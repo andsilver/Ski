@@ -167,9 +167,9 @@ describe PropertiesController do
           property.stub(:update_attributes).and_return(true)
         end
 
-        it "redirects to the updated property" do
+        it "redirects to my properties for rent page" do
           put :update, { :id => "1" }
-          response.should redirect_to(property_path(property))
+          response.should redirect_to(my_properties_for_rent_path)
         end
 
         it "sets a flash[:notice] message" do

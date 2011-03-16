@@ -59,7 +59,7 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update_attributes(params[:property])
-      redirect_to property_path(@property), :notice => "Your property advert details have been saved."
+      redirect_to my_properties_for_rent_path, :notice => "Your property advert details have been saved."
     else
       render "edit"
     end
