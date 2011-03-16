@@ -46,6 +46,12 @@ Feature: My Properties for Rent
     And I should see "Your property advert was successfully created."
     And I should see "Chalet Des Sapins"
 
+  Scenario: Advertisers see error messages when property details are invalid
+    Given I am signed in
+    And I am on the new property page
+    When I press "Save"
+    Then I should see "errors prohibited this property from being saved"
+
   Scenario: Advertisers can edit properties
     Given I am signed in
     And I have properties for rent
