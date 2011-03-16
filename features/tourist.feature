@@ -42,3 +42,10 @@ Feature: Tourist
     When I follow "Alpen Lounge"
     Then I should be on the Alpen Lounge page
     And I should see the "Alpen Lounge" heading
+
+  Scenario: Browse the directory
+    Given I am on the Chamonix directory page
+    And there are bars advertised in Chamonix
+    When I follow "Bars"
+    Then I should see the "Bars in Chamonix" heading
+    And I should see a list of bars in Chamonix

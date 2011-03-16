@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(:version => 20110315120823) do
   end
 
   create_table "directory_adverts", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "category_id"
+    t.integer  "user_id",     :null => false
+    t.integer  "category_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -63,6 +63,10 @@ Categories
 * `input#category_resort_id`
 * `input#category_submit`
 
+### categories/show.html.erb
+
+* `table#directory_adverts`
+
 Properties
 ----------
 

@@ -1,1 +1,16 @@
 <h1><%= @category.name %> in <%= @category.resort.name %></h1>
+
+<table id="directory_adverts">
+  <thead>
+    <tr>
+      <th>Business</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @category.directory_adverts.each do |da| %>
+    <tr>
+      <td><%= da.user.business_name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
