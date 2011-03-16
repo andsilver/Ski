@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   belongs_to :billing_country, :class_name => 'Country'
   has_many :directory_adverts
   has_many :enquiries, :dependent => :delete_all
+  has_many :adverts
+  has_many :adverts_in_basket, :class_name => 'Advert', :conditions => {:starts_at => nil}
   has_many :properties
   has_many :properties_for_rent, :class_name => 'Property', :conditions => {:for_sale => false}
   has_many :properties_for_sale, :class_name => 'Property', :conditions => {:for_sale => true}

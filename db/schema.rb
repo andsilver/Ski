@@ -10,7 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110315120823) do
+ActiveRecord::Schema.define(:version => 20110315145114) do
+
+  create_table "adverts", :force => true do |t|
+    t.integer  "user_id",                                :null => false
+    t.integer  "months",              :default => 3,     :null => false
+    t.datetime "starts_at"
+    t.datetime "expires_at"
+    t.boolean  "moderated",           :default => false, :null => false
+    t.boolean  "paused",              :default => false, :null => false
+    t.integer  "views",               :default => 0,     :null => false
+    t.integer  "banner_advert_id"
+    t.integer  "directory_advert_id"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "adverts", ["banner_advert_id"], :name => "index_adverts_on_banner_advert_id"
+  add_index "adverts", ["directory_advert_id"], :name => "index_adverts_on_directory_advert_id"
+  add_index "adverts", ["property_id"], :name => "index_adverts_on_property_id"
+  add_index "adverts", ["user_id"], :name => "index_adverts_on_user_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"

@@ -3,6 +3,9 @@ class Property < ActiveRecord::Base
   belongs_to :resort
   belongs_to :image
 
+  has_many :adverts
+  has_many :adverts_in_basket
+
   validates_presence_of :resort_id
   validates_associated :resort
 

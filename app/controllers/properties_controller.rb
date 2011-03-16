@@ -47,14 +47,13 @@ class PropertiesController < ApplicationController
     @property = Property.new(params[:property])
     @property.user_id = @current_user.id
 
-    respond_to do |format|
-      if @property.save
-        format.html { redirect_to(my_properties_for_rent_path, :notice => 'Your property advert was successfully created.') }
-        format.xml  { render :xml => @property, :status => :created, :location => @property }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @property.errors, :status => :unprocessable_entity }
-      end
+    if @property.save
+      advert = Advert.new_for(@property)
+      advert.months = 3
+      advert.save!
+      redirect_to(basket_path, :notice => 'Your property advert was successfully created.')
+    else
+      render :action => "new"
     end
   end
 
