@@ -52,6 +52,21 @@ When the form is used for editing the selectors become form.edit_objectname
 and form#edit_objectname_X where X is the ID of the object being edited.
 As the ID changes you would use the form.edit_objectname for applying CSS.
 
+Pagination
+----------
+
+Page navigation used on search results that are displayed over a number of
+pages.
+
+* `.pagination`
+* `.pagination a`
+* `.pagination em`
+* `.pagination span`
+* `.pagination span.disabled`
+* `.pagination .page_info`
+* `.pagination .next_page`
+* `.pagination .previous_page`
+
 Categories
 ----------
 
