@@ -43,6 +43,10 @@ Feature: Tourist
     Then I should be on the Alpen Lounge page
     And I should see the "Alpen Lounge" heading
 
+  Scenario: Be told when there are no properties for rent
+    Given I am on the Italian Alps Properties for Rent page
+    Then I should see "There are no properties advertised for rent at this resort."
+
   Scenario: Browse the directory
     Given I am on the Chamonix directory page
     And there are bars advertised in Chamonix

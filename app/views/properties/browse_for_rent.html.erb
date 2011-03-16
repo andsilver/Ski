@@ -14,6 +14,12 @@
 </p>
 <% end %>
 
+<% if @properties.empty? %>
+
+<p>There are no properties advertised for rent at this resort.</p>
+
+<% else %>
+
 <table id="properties_for_rent">
   <thead>
     <tr>
@@ -38,3 +44,5 @@
 </table>
 
 <%= will_paginate @properties %>
+
+<% end %>
