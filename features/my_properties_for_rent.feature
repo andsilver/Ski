@@ -42,7 +42,7 @@ Feature: My Properties for Rent
     And I check "Parking"
     And I press "Save"
     Then my new property for rent has been saved
-    And I should be on the my properties for rent page
+    And I should be on the basket page
     And I should see "Your property advert was successfully created."
     And I should see "Chalet Des Sapins"
 

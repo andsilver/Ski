@@ -55,6 +55,22 @@ describe PropertiesController do
     end
   end
 
+  describe "POST create" do
+    let(:current_user) { mock_model(User).as_null_object }
+
+    before do
+      session[:user] = 1
+      User.stub(:find_by_id).and_return(current_user)
+      Property.stub(:new).and_return(property)
+      property.stub(:user_id).and_return(1)
+    end
+
+    it "redirects to the basket" do
+      post :create
+      response.should redirect_to(basket_path)
+    end
+  end
+
   describe "GET show" do
     it "finds a property" do
       Property.should_receive(:find_by_id).with("1")
