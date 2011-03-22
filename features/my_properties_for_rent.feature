@@ -44,7 +44,7 @@ Feature: My Properties for Rent
     Then my new property for rent has been saved
     And I should be on the basket page
     And I should see "Your property advert was successfully created."
-    And I should see "Chalet Des Sapins"
+    And I should be on the basket page
 
   Scenario: Advertisers see error messages when property details are invalid
     Given I am signed in
