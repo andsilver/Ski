@@ -35,8 +35,9 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 group :test, :development do
   gem "autotest", "4.4.6"
   gem "rspec-rails", ">= 2.4.1"
-  gem "cucumber-rails", ">= 0.3.2"
+  gem "cucumber-rails", ">= 0.4"
+  gem 'database_cleaner'
   gem "webrat", ">= 0.7.3"
   gem "launchy", ">= 0.3.7"
-  gem "relevance-rcov", "0.9.2.1", :require => "rcov"
+  gem "rcov"
 end
