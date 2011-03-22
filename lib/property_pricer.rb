@@ -22,7 +22,7 @@ class PropertyPricer
     percentage_off = 0
 
     VOLUME_DISCOUNTS.each_pair do |threshold, p_o|
-      percentage_off = p_o if @property_number >= threshold
+      percentage_off = p_o if @property_number >= threshold && p_o > percentage_off
     end
 
     percentage_off
