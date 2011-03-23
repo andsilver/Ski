@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
     properties_for_sale.count > 0
   end
 
+  def has_adverts_in_basket?
+    adverts_in_basket.count > 0
+  end
+
   protected
 
   def encrypt_password
