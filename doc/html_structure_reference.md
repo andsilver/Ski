@@ -32,6 +32,7 @@ Found Frequently
 
 * `div#error_explanation` appears above forms that have failed to validate
   and surrounds an `<h2>` and a list of error messages.
+* `span.km` surrounds the letters 'km' when displaying distances.
 * `td.numeric` for table cells containing numeric data (numbers, prices,
   distances).
 

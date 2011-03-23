@@ -19,6 +19,10 @@ module ApplicationHelper
     number_to_currency(number, :unit => '€', :precision => 0)
   end
 
+  def km(metres)
+    ((metres / 1000.0).to_s + '<span class="km">km</span>').html_safe
+  end
+
   def md(text)
     RDiscount.new(text).to_html.html_safe
   end

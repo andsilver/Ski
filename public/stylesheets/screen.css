@@ -278,3 +278,8 @@ textarea#directory_advert_business_address {
   height: 5em;
   width: 20em;
 }
+
+.km {
+  font-size: 0.8em;
+  padding-left: 0.2em;
+}
