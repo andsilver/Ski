@@ -24,7 +24,7 @@ body {
   padding: 240px 20px 20px 20px;
 
   color: #2b1d24;
-  font-family: 'Lucida Sans';
+  font-family: 'Lucida Sans', Arial, Helvetica, sans-serif;
 }
 
 #content {
@@ -63,12 +63,17 @@ footer[role=contentinfo] {
 
 input[type=email],
 input[type=password],
-input[type=text] {
+input[type=text],
+textarea {
   border: 1px solid #0f113e;
   padding: 2px;
-  font-family: 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Lucida Sans', Arial, Helvetica, sans-serif;
   font-size: 1em;
   width: 14em;
+}
+
+textarea {
+  width: 30em;
 }
 
 #flash_notice {
@@ -259,4 +264,13 @@ input[type=email] .LV_invalid_field {
   border-radius: 1em;
   border: 1px solid #ccc;
   padding: 10px;
+}
+
+textarea#description {
+  height: 10em;
+}
+
+textarea#directory_advert_business_address {
+  height: 5em;
+  width: 20em;
 }

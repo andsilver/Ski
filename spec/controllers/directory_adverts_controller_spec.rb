@@ -39,6 +39,11 @@ describe DirectoryAdvertsController do
       post "create", :directory_advert => { :category_id => "1" }
     end
 
+    it "associates the advert with the current user" do
+      directory_advert.should_receive(:user_id=).with(current_user.id)
+      post "create", :directory_advert => { :category_id => "1" }
+    end
+
     context "when the directory advert saves successfully" do
       before do
         directory_advert.stub(:save).and_return(true)

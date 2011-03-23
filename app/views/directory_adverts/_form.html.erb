@@ -1,4 +1,41 @@
+<% if @directory_advert.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@directory_advert.errors.count, "error") %> prohibited this directory advert from being saved:</h2>
+
+    <ul>
+    <% @directory_advert.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @directory_advert do |f| %>
+
+<p>
+  <%= label_tag 'business name' %><br>
+  <%= text_field_tag 'business_name', @current_user.business_name %>
+</p>
+
+<p>
+  <%= label_tag 'website' %><br>
+  <%= text_field_tag 'website', @current_user.website %>
+</p>
+
+<p>
+  <%= label_tag 'description' %><br>
+  <%= text_area_tag 'description', @current_user.description %>
+</p>
+
+<p>
+  <%= f.label :business_address %><br>
+  <%= f.text_area :business_address %>
+</p>
+
+<p>
+  <%= f.label :postcode, 'ZIP / postcode' %><br>
+  <%= f.text_field :postcode %>
+</p>
 
 <p>
   <%= f.label :category_id, I18n.t('category') %><br>

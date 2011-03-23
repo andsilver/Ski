@@ -9,7 +9,7 @@
   <tbody>
     <% @category.directory_adverts.each do |da| %>
     <tr>
-      <td><%= da.user.business_name %></td>
+      <td><%= link_to da.user.business_name, da %></td>
     </tr>
     <% end %>
   </tbody>

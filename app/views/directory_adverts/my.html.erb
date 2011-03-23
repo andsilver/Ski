@@ -9,7 +9,7 @@
 <% else %>
 <ul>
   <% @directory_adverts.each do |advert| %>
-  <li><%= advert.user.business_name %></li>
+  <li><%= link_to advert.user.business_name, edit_directory_advert_path(advert) %></li>
   <% end %>
 </ul>
 <% end %>
