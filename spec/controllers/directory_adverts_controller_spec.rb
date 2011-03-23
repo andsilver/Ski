@@ -32,6 +32,11 @@ describe DirectoryAdvertsController do
 
     before do
       DirectoryAdvert.stub(:new).and_return(directory_advert)
+      directory_advert.stub(:user_id).and_return(1)
+    end
+
+    def post_valid
+      post "create", :directory_advert => { :category_id => "1", :business_address => '123 av' }
     end
 
     it "instantiates a new directory advert" do
@@ -41,7 +46,7 @@ describe DirectoryAdvertsController do
 
     it "associates the advert with the current user" do
       directory_advert.should_receive(:user_id=).with(current_user.id)
-      post "create", :directory_advert => { :category_id => "1" }
+      post_valid
     end
 
     context "when the directory advert saves successfully" do
@@ -50,13 +55,13 @@ describe DirectoryAdvertsController do
       end
 
       it "sets a flash[:notice] message" do
-        post "create", :directory_advert => { :category_id => "1" }
+        post_valid
         flash[:notice].should eq("Your directory advert was successfully created.")
       end
 
       it "redirects to my directory adverts" do
-        post "create", :directory_advert => { :category_id => "1" }
-        response.should redirect_to(:action => "my")
+        post_valid
+        response.should redirect_to(basket_path)
       end
     end
 
