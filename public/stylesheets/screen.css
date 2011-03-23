@@ -110,6 +110,10 @@ textarea {
   text-decoration: none;
 }
 
+td.numeric {
+  text-align: right;
+}
+
 table#properties_for_rent {
   border-collapse: collapse;
   border: 1px solid #ccc;

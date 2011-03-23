@@ -24,8 +24,8 @@
     <tr>
       <td><%= p.resort.name %></td>
       <td><%= link_to p.name, edit_property_path(p) %></td>
-      <td><%= p.metres_from_lift %></td>
-      <td><%= p.sleeping_capacity %></td>
+      <td class="numeric"><%= km(p.metres_from_lift) %></td>
+      <td class="numeric"><%= p.sleeping_capacity %></td>
     </tr>
 <% end %>
   </tbody>
