@@ -12,3 +12,9 @@ Feature: Basket
     And I have no adverts in my basket
     When I am on the basket page
     Then I should see "Your basket is empty."
+
+  Scenario: I have adverts in my basket
+    Given I am signed in
+    And I have adverts in my basket
+    When I am on the basket page
+    Then I should see my adverts

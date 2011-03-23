@@ -10,6 +10,7 @@ alice:
   billing_country_id: 5
   terms_and_conditions: true
   role_id: 1
+  business_name: 'Alice Properties'
 
 bob:
   id: 2
