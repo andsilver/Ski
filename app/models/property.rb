@@ -4,7 +4,6 @@ class Property < ActiveRecord::Base
   belongs_to :image
 
   has_many :adverts
-  has_many :adverts_in_basket
 
   validates_presence_of :resort_id
   validates_associated :resort
@@ -17,5 +16,10 @@ class Property < ActiveRecord::Base
 
   def to_param
     "#{id}-#{PermalinkFu.escape(name)}-#{PermalinkFu.escape(resort.name)}-#{PermalinkFu.escape(resort.country.name)}"
+  end
+
+  def price(advert, property_number)
+    pp = PropertyPricer.new(:months => advert.months, :property_number => property_number)
+    pp.price_in_cents
   end
 end

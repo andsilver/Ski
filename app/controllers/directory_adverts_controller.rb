@@ -22,8 +22,10 @@ class DirectoryAdvertsController < ApplicationController
     update_user_details
 
     if @directory_advert.save
-      redirect_to my_directory_adverts_path,
-        :notice => "Your directory advert was successfully created."
+      advert = Advert.new_for(@directory_advert)
+      advert.months = 3
+      advert.save!
+      redirect_to(basket_path, :notice => 'Your directory advert was successfully created.')
     else
       render "new"
     end

@@ -6,7 +6,7 @@ Then /^I should see the French, Italian, Austrian and Swiss flags$/ do
 end
 
 Given /^there are bars advertised in Chamonix$/ do
-  DirectoryAdvert.create!(:category_id => categories(:bars).id, :user_id => users(:alice).id)
+  DirectoryAdvert.create!(:category_id => categories(:bars).id, :user_id => users(:alice).id, :business_address => '123 av')
 end
 
 Then /^I should see a list of bars in Chamonix$/ do

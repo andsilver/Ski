@@ -3,9 +3,22 @@
 <% if @adverts.empty? %>
   <p>Your basket is empty.</p>
 <% else %>
-  <ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Months</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
     <% @adverts.each do |advert| %>
-      <li><%= @advert %></li>
+      <tr>
+        <td><%= advert %></td>
+        <td><%= advert.months %></td>
+        <td><%= euros_from_cents advert.price(@current_user.property_adverts_so_far) %></td>
+      </tr>
     <% end %>
-  </ul>
+    </tbody>
+  </table>
 <% end %>

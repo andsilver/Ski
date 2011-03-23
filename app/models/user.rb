@@ -54,6 +54,12 @@ class User < ActiveRecord::Base
     adverts_in_basket.count > 0
   end
 
+  def property_adverts_so_far
+    Advert.count(
+      :conditions => ['user_id = ? AND property_id IS NOT NULL AND starts_at IS NOT NULL',
+      id])
+  end
+
   protected
 
   def encrypt_password
