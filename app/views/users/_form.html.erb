@@ -42,6 +42,17 @@
   <%= f.text_field :website %>
 </p>
 
+<% if admin? %>
+<h2>Coupon Code</h2>
+<p>
+  Apply the following coupon code to this user's purchases:
+</p>
+<p>
+  <%= f.label :coupon_id %><br>
+  <%= select("user", "coupon_id", Coupon.all.collect {|c| [ c.code, c.id ] }, {:prompt => 'Select Coupon'}) %>
+</p>
+<% end %>
+
 <h2>If this is a Business Account</h2>
 <p>
   <%= f.label :business_name %><br>

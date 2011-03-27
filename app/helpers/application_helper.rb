@@ -30,4 +30,24 @@ module ApplicationHelper
   def md(text)
     RDiscount.new(text).to_html.html_safe
   end
+
+  def a_tick
+    '<span class="tick">✔</span>'.html_safe
+  end
+
+  def a_cross
+    '<span class="cross">✘</span>'.html_safe
+  end
+
+  def tick_cross yes, show_cross=true
+    if yes
+      a_tick
+    elsif show_cross
+      a_cross
+    end
+  end
+
+  def tick yes
+    tick_cross yes, false
+  end
 end

@@ -1,0 +1,24 @@
+<h1>Coupons</h1>
+<p>
+  <%= link_to 'New Coupon', new_coupon_path %>
+</p>
+<% if @coupons.empty? %>
+<p>There are no coupons set up yet.</p>
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th># Free Adverts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @coupons.each do |coupon| %>
+    <tr>
+      <td><%= link_to coupon.code, edit_coupon_path(coupon) %></td>
+      <td class="numeric"><%= coupon.free_adverts %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

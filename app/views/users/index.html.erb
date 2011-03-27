@@ -1,0 +1,21 @@
+<h1>Users</h1>
+<p><%= link_to 'New user', :action => 'new' %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Admin</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |u| -%>
+    <tr>
+      <td><%= link_to h(u.name), :controller => 'users', :action => 'show', :id => u %></td>
+      <td><%= mail_to u.email, u.email %>&nbsp;</td>
+      <td><%= tick u.role.admin? %></td>
+    </tr>
+  <% end -%>
+  </tbody>
+</table>

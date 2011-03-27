@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110327140115) do
+ActiveRecord::Schema.define(:version => 20110327170842) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(:version => 20110327140115) do
   create_table "countries", :force => true do |t|
     t.string   "name",               :default => "", :null => false
     t.string   "iso_3166_1_alpha_2", :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "coupons", :force => true do |t|
+    t.string   "code"
+    t.integer  "free_adverts"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -208,6 +215,7 @@ ActiveRecord::Schema.define(:version => 20110327140115) do
     t.datetime "updated_at"
     t.boolean  "interested_in_renting_out_properties", :default => false, :null => false
     t.integer  "role_id",                                                 :null => false
+    t.integer  "coupon_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

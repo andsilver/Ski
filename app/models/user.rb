@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   belongs_to :role
   belongs_to :billing_country, :class_name => 'Country'
+  belongs_to :coupon
+
   has_many :directory_adverts
   has_many :enquiries, :dependent => :delete_all
   has_many :adverts
@@ -12,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :orders_with_receipts, :class_name => 'Order', :conditions => {:status => Order::WAITING_FOR_PAYMENT}, :order => 'created_at DESC'
 
   attr_protected :role_id
+  attr_protected :coupon_id
 
   attr_accessor :password
 

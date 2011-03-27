@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
+  before_filter :admin_required, :only => [:index]
   before_filter :user_required, :except => [:new, :create]
+
+  def index
+    @users = User.all(:order => :email)
+  end
 
   def show
   end
@@ -33,6 +38,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
+    if admin?
+      @user.coupon_id = params[:user][:coupon_id]
+    end
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
