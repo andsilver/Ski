@@ -46,8 +46,12 @@ MySkiChalet::Application.routes.draw do
 
   resources :orders do
     collection do
-      get 'receipt'
+      get 'latest_receipt'
+      get 'receipts'
       get 'select_payment_method'
+    end
+    member do
+      get 'receipt'
     end
   end
 

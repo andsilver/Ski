@@ -1,18 +1,30 @@
 class OrdersController < ApplicationController
-  before_filter :require_order, :only => [:select_payment_method, :receipt]
+  before_filter :user_required
+  before_filter :require_order_from_session, :only => [:select_payment_method, :latest_receipt]
 
   def select_payment_method
   end
 
   def receipt
+    @order = Order.find_by_id_and_user_id(params[:id], @current_user.id)
+    if @order.nil?
+      redirect_to(receipts_orders_path, :notice => "We couldn't find that order.")
+    end
+  end
+
+  def latest_receipt
     redirect_to basket_path and return unless (@order.payment_received? or @order.status==Order::PAYMENT_ON_ACCOUNT)
     @google_ecommerce_tracking = true
+    render "receipt"
+  end
+
+  def receipts
+    @orders = @current_user.orders_with_receipts
   end
 
   protected
 
-  # get valid order from current session or send user back to their basket
-  def require_order
+  def require_order_from_session
     @order = Order.from_session session
     if @order.nil?
       redirect_to(basket_path, :notice => "We couldn't find an order for you.")
