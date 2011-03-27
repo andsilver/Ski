@@ -3,6 +3,8 @@ class Advert < ActiveRecord::Base
   belongs_to :property
   belongs_to :directory_advert
 
+  has_one :order_line
+
   def self.new_for(object)
     advert = Advert.new
     advert.send((object.class.to_s.underscore + "_id=").to_sym, object.id)
@@ -27,5 +29,11 @@ class Advert < ActiveRecord::Base
 
   def price(advert_number)
     object.price(self, advert_number)
+  end
+
+  def start_and_save!
+    self.starts_at = Time.now
+    self.expires_at = Time.now + months.months
+    save
   end
 end

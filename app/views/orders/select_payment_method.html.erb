@@ -1,0 +1,81 @@
+<h1>Choose How You Would Like to Pay</h1>
+
+<h2>Simulating payment for WorldPay</h2>
+<p>The correct values are entered below and can be changed for testing.
+  <code>callbackPW</code> is neither displayed nor verified in this test mode.</p>
+<form action="/payments/worldpay_callback" method="post">
+  <p>
+    <input type="submit" value="Simulate WorldPay payment">
+  </p>
+  <p>
+    <label>instId</label>:<br>
+    <input type="text" name="instId" value="0">
+  </p>
+  <p>
+    <label>cartId</label>:<br>
+    <input type="text" name="cartId" value="<%= @order.order_number %>">
+  </p>
+  <p>
+    <label>desc</label>:<br>
+    <input type="text" name="desc" value="Web purchase">
+  </p>
+  <p>
+    <label>amount</label>:<br>
+    <input type="text" name="amount" value="<%= @order.total / 100.0 %>">
+  </p>
+  <p>
+    <label>currency</label>:<br>
+    <input type="text" name="currency" value="GBP">
+  </p>
+  <p>
+    <label>testMode</label>:<br>
+    <input type="text" name="testMode" value="100">
+  </p>
+  <p>
+    <label>name</label>:<br>
+    <input type="text" name="name" value="<%= @order.name %>">
+  </p>
+  <p>
+    <label>address</label>:<br>
+    <textarea name="address"><%= raw address_for_worldpay(@order) %></textarea>
+  </p>
+  <p>
+    <label>postcode</label>:<br>
+    <input type="text" name="postcode" value="<%= @order.postcode %>">
+  </p>
+  <p>
+    <label>country</label>:<br>
+    <input type="text" name="country" value="<%= @order.country.iso_3166_1_alpha_2 %>">
+  </p>
+  <p>
+    <label>tel</label>:<br>
+    <input type="text" name="tel" value="">
+  </p>
+  <p>
+    <label>fax</label>:<br>
+    <input type="text" name="fax" value="">
+  </p>
+  <p>
+    <label>email</label>:<br>
+    <input type="text" name="email" value="<%= @order.email %>">
+  </p>
+  <p>
+    <label>transId</label>:<br>
+    <input type="text" name="transId" value="SIMULATED">
+  </p>
+  <p>
+    <label>transStatus</label>:<br>
+    <input type="text" name="transStatus" value="Y">
+  </p>
+  <p>
+    <label>transTime</label>:<br>
+    <input type="text" name="transTime" value="SIMULATED">
+  </p>
+  <p>
+    <label>rawAuthMessage</label>:<br>
+    <input type="text" name="rawAuthMessage" value="SIMULATED">
+  </p>
+  <p>
+    <input type="submit" value="Simulate WorldPay payment">
+  </p>
+</form>

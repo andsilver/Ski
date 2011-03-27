@@ -1,6 +1,6 @@
 class DirectoryAdvertsController < ApplicationController
   before_filter :user_required
-  before_filter :find_directory_advert_for_current_user, :only => [:edit, :update]
+  before_filter :find_directory_advert_for_current_user, :only => [:edit, :update, :advertise_now]
 
   def my
     @directory_adverts = @current_user.directory_adverts
@@ -44,6 +44,11 @@ class DirectoryAdvertsController < ApplicationController
     end
   end
 
+  def advertise_now
+    create_advert
+    redirect_to(basket_path, :notice => 'Your directory advert has been added to your basket.')
+  end
+
   protected
 
   def find_directory_advert_for_current_user
@@ -55,5 +60,11 @@ class DirectoryAdvertsController < ApplicationController
     @current_user.website = params[:website]
     @current_user.description = params[:description]
     @current_user.save
+  end
+
+  def create_advert
+    advert = Advert.new_for(@directory_advert)
+    advert.months = 3
+    advert.save!
   end
 end

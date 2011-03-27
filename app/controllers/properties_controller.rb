@@ -3,7 +3,7 @@ class PropertiesController < ApplicationController
 
   before_filter :user_required, :except => [:browse_for_rent,
     :new_developments, :contact, :current_time, :show]
-  before_filter :find_property_for_user, :only => [:edit, :update]
+  before_filter :find_property_for_user, :only => [:edit, :update, :advertise_now]
 
   def browse_for_rent
     @resort = Resort.find(params[:id])
@@ -48,9 +48,7 @@ class PropertiesController < ApplicationController
     @property.user_id = @current_user.id
 
     if @property.save
-      advert = Advert.new_for(@property)
-      advert.months = 3
-      advert.save!
+      create_advert
       redirect_to(basket_path, :notice => 'Your property advert was successfully created.')
     else
       render :action => "new"
@@ -65,10 +63,21 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def advertise_now
+    create_advert
+    redirect_to(basket_path, :notice => 'Your property advert has been added to your basket.')
+  end
+
   protected
 
   def find_property_for_user
     @property = Property.find_by_id_and_user_id(params[:id], @current_user.id)
     not_found unless @property
+  end
+
+  def create_advert
+    advert = Advert.new_for(@property)
+    advert.months = 3
+    advert.save!
   end
 end

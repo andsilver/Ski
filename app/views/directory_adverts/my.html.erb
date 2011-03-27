@@ -7,9 +7,25 @@
   You have no directory adverts.
 </p>
 <% else %>
-<ul>
+<table>
+  <thead>
+    <tr>
+      <th><%= I18n.t('resort') %></th>
+      <th><%= I18n.t('category') %></th>
+      <th><%= I18n.t('name') %></th>
+    </tr>
+  </thead>
+  <tbody>
   <% @directory_adverts.each do |advert| %>
-  <li><%= link_to advert.user.business_name, edit_directory_advert_path(advert) %></li>
+    <tr>
+      <td><%= advert.category.resort %></td>
+      <td><%= advert.category %></td>
+      <td><%= link_to advert.user.business_name, edit_directory_advert_path(advert) %></td>
+      <td><%= form_tag :action => "advertise_now", :id => advert.id do %>
+        <%= submit_tag "Advertise Now" %>
+        <% end %></td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
 <% end %>

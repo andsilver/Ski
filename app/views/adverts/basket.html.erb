@@ -1,24 +1,42 @@
 <h1>Basket</h1>
+<%= render 'users/my_details_summary' %>
 
-<% if @adverts.empty? %>
+<% if @lines.empty? %>
   <p>Your basket is empty.</p>
 <% else %>
-  <table>
+<%= form_tag :action => 'update_basket_contents' do %>
+  <table id="basket">
     <thead>
       <tr>
         <th>Name</th>
-        <th>Months</th>
+        <th>Duration</th>
         <th>Price</th>
       </tr>
     </thead>
     <tbody>
-    <% @adverts.each do |advert| %>
+    <% @lines.each do |line| %>
       <tr>
-        <td><%= advert %></td>
-        <td><%= advert.months %></td>
-        <td><%= euros_from_cents advert.price(@current_user.property_adverts_so_far) %></td>
+        <td><%= line.advert %></td>
+        <td class="numeric"><select name="months[<%= line.advert.id %>]">
+          <option value="1"<%= " selected" if line.advert.months==1 %>>1 month</option>
+          <option value="3"<%= " selected" if line.advert.months==3 %>>3 months</option>
+          <option value="6"<%= " selected" if line.advert.months==6 %>>6 months</option>
+          <option value="9"<%= " selected" if line.advert.months==9 %>>9 months</option>
+          <option value="12"<%= " selected" if line.advert.months==12 %>>12 months</option>
+        </select></td>
+        <td class="numeric"><%= euros_from_cents line.price %></td>
+        <td><input type="submit" value="Remove" name="remove_advert[<%= line.advert.id %>]"></td>
       </tr>
     <% end %>
+      <tr>
+        <th colspan="2">Total</th>
+        <td class="numeric"><%= euros_from_cents @total %></td>
+      </tr>
     </tbody>
   </table>
+  <p class="basket_buttons">
+    <input type="submit" name="update_durations" value="Update">
+    <input type="submit" name="place_order" value="Place Order">
+  </p>
+<% end %>
 <% end %>

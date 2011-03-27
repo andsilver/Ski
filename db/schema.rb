@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110323120953) do
+ActiveRecord::Schema.define(:version => 20110327140115) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -76,6 +76,65 @@ ActiveRecord::Schema.define(:version => 20110323120953) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "order_lines", :force => true do |t|
+    t.integer  "order_id",    :null => false
+    t.string   "description", :null => false
+    t.integer  "amount",      :null => false
+    t.integer  "advert_id",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "order_lines", ["advert_id"], :name => "index_order_lines_on_advert_id"
+  add_index "order_lines", ["order_id"], :name => "index_order_lines_on_order_id"
+
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "order_number",                 :null => false
+    t.string   "email",                        :null => false
+    t.integer  "status",                       :null => false
+    t.string   "name",                         :null => false
+    t.string   "address",                      :null => false
+    t.integer  "country_id",                   :null => false
+    t.string   "phone",                        :null => false
+    t.integer  "total",                        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "postcode",     :default => "", :null => false
+  end
+
+  add_index "orders", ["email"], :name => "index_orders_on_email"
+  add_index "orders", ["order_number"], :name => "index_orders_on_order_number"
+  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "payments", :force => true do |t|
+    t.integer  "order_id"
+    t.string   "service_provider"
+    t.string   "installation_id"
+    t.string   "cart_id"
+    t.string   "description"
+    t.string   "amount"
+    t.string   "currency"
+    t.boolean  "test_mode"
+    t.string   "name"
+    t.string   "address"
+    t.string   "postcode"
+    t.string   "country"
+    t.string   "telephone"
+    t.string   "fax"
+    t.string   "email"
+    t.string   "transaction_id"
+    t.string   "transaction_status"
+    t.string   "transaction_time"
+    t.text     "raw_auth_message"
+    t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payments", ["created_at"], :name => "index_payments_on_created_at"
+  add_index "payments", ["order_id"], :name => "index_payments_on_order_id"
 
   create_table "properties", :force => true do |t|
     t.integer  "user_id",                                   :null => false

@@ -15,16 +15,23 @@ MySkiChalet::Application.routes.draw do
   match "my/details" => "users#edit", :as => :my_details
   resources :users
 
+  resources :adverts do
+    post 'update_basket_contents', :on => :collection
+    get 'place_order', :on => :collection
+  end
+
   match "new-developments" => "properties#new_developments", :as => :new_developments
   match "my/properties/for_rent" => "properties#my_for_rent", :as => :my_properties_for_rent
   match "my/properties/for_sale" => "properties#my_for_sale", :as => :my_properties_for_sale
   resources :properties do
+    post 'advertise_now', :on => :member
     get 'rent', :on => :collection
     get 'sale', :on => :collection
     post 'current_time', :on => :collection
   end
 
   resources :directory_adverts do
+    post 'advertise_now', :on => :member
     get 'my', :on => :collection
   end
 
@@ -36,6 +43,17 @@ MySkiChalet::Application.routes.draw do
   resources :images
 
   match "basket" => "adverts#basket"
+
+  resources :orders do
+    collection do
+      get 'receipt'
+      get 'select_payment_method'
+    end
+  end
+
+  resources :payments do
+    post 'worldpay_callback', :on => :collection
+  end
 
   root :to => "home#index"
 
