@@ -9,4 +9,8 @@ class Resort < ActiveRecord::Base
   def to_param
     "#{id}-#{PermalinkFu.escape(name)}"
   end
+
+  def to_s
+    name
+  end
 end
