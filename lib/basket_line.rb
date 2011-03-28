@@ -1,3 +1,3 @@
 class BasketLine
-  attr_accessor :advert, :price
+  attr_accessor :advert, :coupon, :description, :price
 end

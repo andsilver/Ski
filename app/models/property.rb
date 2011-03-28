@@ -22,4 +22,16 @@ class Property < ActiveRecord::Base
     pp = PropertyPricer.new(:months => advert.months, :property_number => property_number)
     pp.price_in_cents
   end
+
+  def features
+    f = []
+    f << "Pets allowed" if pets?
+    f << "Smoking allowed" if smoking?
+    f << "TV" if tv?
+    f << "WiFi" if wifi?
+    f << "Suitable for disabled people" if disabled?
+    f << "Fully equipped kitchen" if fully_equipped_kitchen?
+    f << "Parking" if parking?
+    f.inject() { |r,e| r + ", " + e }
+  end
 end

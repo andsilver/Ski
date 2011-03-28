@@ -28,13 +28,13 @@ body {
 }
 
 #content {
-  width: 600px;
+  width: 660px;
   float: left;
   margin-left: 40px;
 }
 
 li, p, td, th {
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 
 h1, h2, h3 {
@@ -132,17 +132,11 @@ table#properties_for_rent {
 }
 
 #properties_for_rent th+th {
-  width: 14em;
+  width: 7em;
 }
 
-#properties_for_rent th+th+th {
-  width: 6em;
-}
-
-#properties_for_rent td+td+td,
-#properties_for_rent td+td+td+td,
-#properties_for_rent td+td+td+td+td {
-  text-align: right;
+#properties_for_rent td.features {
+  border: none;
 }
 
 #browse {
