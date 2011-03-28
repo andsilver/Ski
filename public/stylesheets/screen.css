@@ -117,6 +117,7 @@ td.numeric {
 table#properties_for_rent {
   border-collapse: collapse;
   border: 1px solid #ccc;
+  clear: left;
 }
 
 #properties_for_rent td, th {
@@ -132,11 +133,26 @@ table#properties_for_rent {
 }
 
 #properties_for_rent th+th {
-  width: 7em;
+  width: 12em;
+}
+
+#properties_for_rent th+th+th {
+  width: 8em;
 }
 
 #properties_for_rent td.features {
   border: none;
+}
+
+.filter {
+  background: #eee;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 4px 10px 4px 6px;
+  margin: 4px;
+  display: block;
+  float: left;
 }
 
 #browse {

@@ -10,8 +10,19 @@ class PropertiesController < ApplicationController
     whitelist = [ "weekly_rent_price DESC", "metres_from_lift ASC", "sleeping_capacity ASC",
       "number_of_bedrooms ASC" ]
     order = whitelist.include?(params[:sort_method]) ? params[:sort_method] : 'weekly_rent_price ASC'
+    conditions = {:resort_id => params[:id], :for_sale => false}
+
+    # filters
+    conditions[:pets] = true if params[:filter_pets]
+    conditions[:smoking] = true if params[:filter_smoking]
+    conditions[:tv] = true if params[:filter_tv]
+    conditions[:wifi] = true if params[:filter_wifi]
+    conditions[:disabled] = true if params[:filter_disabled]
+    conditions[:fully_equipped_kitchen] = true if params[:filter_fully_equipped_kitchen]
+    conditions[:parking] = true if params[:filter_parking]
+
     @properties = Property.paginate :page => params[:page], :order => order,
-      :conditions => {:resort_id => params[:id], :for_sale => false}
+      :conditions => conditions
   end
 
   def my_for_rent
