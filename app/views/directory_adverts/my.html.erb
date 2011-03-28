@@ -1,4 +1,5 @@
-<h1><%= I18n.t(:my_directory_adverts) %></h1>
+<h1><%= link_to I18n.t('advertiser_home'), advertiser_home_path %> &rarr;
+  <%= I18n.t(:my_directory_adverts) %></h1>
 <p>
   <%= link_to 'New Directory Advert', new_directory_advert_path %>
 </p>

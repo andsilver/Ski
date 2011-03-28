@@ -14,7 +14,7 @@
 <nav id="main_menu">
   <ul>
     <li><%= link_to 'Home', root_path %></li>
-    <li><%= link_to 'Advertise', advertiser_home_path %></li>
+    <li><%= link_to I18n.t('advertiser_home'), advertiser_home_path %></li>
     <li><%= link_to 'New Developments', new_developments_path %></li>
 <% if signed_in? %>
 <% if @current_user.has_adverts_in_basket? %>
