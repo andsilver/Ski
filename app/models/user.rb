@@ -71,6 +71,10 @@ class User < ActiveRecord::Base
       id])
   end
 
+  def adverts_so_far
+    directory_adverts_so_far + property_adverts_so_far
+  end
+
   protected
 
   def encrypt_password

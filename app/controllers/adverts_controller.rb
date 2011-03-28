@@ -23,11 +23,18 @@ class AdvertsController < ApplicationController
     copy_user_details_to_order
 
     @lines.each do |line|
-      @order.order_lines << OrderLine.new(
-        :advert_id => line.advert.id,
-        :description => "#{line.advert.months.to_s} month(s): #{line.advert}",
-        :amount => line.price
-      )
+      if line.advert
+        @order.order_lines << OrderLine.new(
+          :advert_id => line.advert.id,
+          :description => "#{line.advert.months.to_s} month(s): #{line.advert}",
+          :amount => line.price
+        )
+      else
+        @order.order_lines << OrderLine.new(
+          :description => line.description,
+          :amount => line.price
+        )
+      end
     end
 
     @order.total = @total
@@ -53,6 +60,7 @@ class AdvertsController < ApplicationController
     @lines = Array.new
     @total = 0
 
+    total_adverts = @current_user.adverts_so_far
     advert_number = Hash.new
     advert_number = {
       :directory_advert => @current_user.directory_adverts_so_far,
@@ -60,11 +68,21 @@ class AdvertsController < ApplicationController
     }
     @current_user.adverts_in_basket.each do |advert|
       advert_number[advert.type] += 1
+      total_adverts += 1
       line = BasketLine.new
-      line.advert = advert
+      line.description = line.advert = advert
       line.price = advert.price(advert_number[advert.type])
       @lines << line
       @total += line.price
+      if @current_user.coupon && @current_user.coupon.free_adverts >= total_adverts
+        discount_line = BasketLine.new
+        discount_line.advert = advert
+        discount_line.coupon = @current_user.coupon
+        discount_line.price = -1 * line.price
+        discount_line.description = @current_user.coupon.code + ' #' + total_adverts.to_s
+        @lines << discount_line
+        @total -= line.price
+      end
     end
   end
 
