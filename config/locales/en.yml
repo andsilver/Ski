@@ -12,12 +12,15 @@ en:
   floor_area: 'Floor area'
   my_details_saved: 'Your details have been saved.'
   my_directory_adverts: 'My Directory Adverts'
-  my_properties_for_rent: 'My Properties for Rent'
-  my_properties_for_sale: 'My Properties for Sale'
+  my_properties_for_rent: 'My Property Rentals'
+  my_properties_for_sale: 'My Property Sales'
   name: 'Name'
   new_developments: 'New Developments'
   number_of_bedrooms: 'Number of bedrooms'
   password: 'Password'
+  plot_size: 'Plot size'
+  property_rentals: 'Property Rentals'
+  property_sales: 'Property Sales'
   properties:
     filters:
       disabled: Suitable for disabled people
@@ -28,7 +31,6 @@ en:
       smoking: Smoking allowed
       tv: TV
       wifi: WiFi
-  plot_size: 'Plot size'
   resort: 'Resort'
   sale_price: 'Sale price'
   save: 'Save'
