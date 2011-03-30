@@ -42,7 +42,7 @@
     <li class="back"><a href="<%= country_path(c) %>" onclick="$('options_for_<%= r.id %>').hide();$('countries').show();return false"><%= c.name %></a></li>
     <li class="back"><a href="<%= resort_path(r) %>" onclick="$('options_for_<%= r.id %>').hide();$('resorts_for_<%= c.id %>').show();return false"><%= r.name %></a></li>
     <li><%= link_to 'Properties for Rent', resort_property_rent_path(r) %></li>
-    <li><a href="#">Properties for Sale</a></li>
+    <li><%= link_to 'Properties for Sale', resort_property_sale_path(r) %></li>
     <li><%= link_to 'Directory', resort_categories_path(r) %></li>
     <li><%= link_to 'Resort Info', info_resort_path(r) %></li>
   </ul>

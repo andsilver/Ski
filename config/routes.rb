@@ -1,6 +1,7 @@
 MySkiChalet::Application.routes.draw do
   resources :countries
   match "resorts/:id/properties/rent" => "properties#browse_for_rent", :as => :resort_property_rent
+  match "resorts/:id/properties/sale" => "properties#browse_for_sale", :as => :resort_property_sale
   resources :resorts do
     resources :categories
     get 'info', :on => :member

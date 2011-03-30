@@ -13,6 +13,7 @@
 <% end %>
 
 <%= form_for @property do |f| %>
+<%= f.hidden_field :for_sale %>
 <p>
   <%= f.label :name, I18n.t('name') %><br>
   <%= f.text_field :name %>
@@ -31,6 +32,23 @@
   <%= f.label :resort_id, I18n.t('resort') %><br>
   <%= select("property", "resort_id", (Resort.all.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
 </p>
+<% if @property.for_sale? %>
+<p>
+  <%= f.label :sale_price, I18n.t('sale_price') %><br>
+  <%= f.text_field :sale_price %> EUR
+</p>
+<p>
+  <%= f.label :floor_area_metres_2, I18n.t('floor_area') %><br>
+  <%= f.text_field :floor_area_metres_2 %> square metres
+</p>
+<p>
+  <%= f.label :plot_size_metres_2, I18n.t('plot_size') %><br>
+  <%= f.text_field :plot_size_metres_2 %> square metres
+</p>
+<p>
+  <%= f.check_box :private_garden %> <%= f.label :private_garden, 'Private garden' %>
+</p>
+<% else %>
 <p>
   <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price') %><br>
   <%= f.text_field :weekly_rent_price %> EUR
@@ -38,14 +56,6 @@
 <p>
   <%= f.label :sleeping_capacity, I18n.t('sleeping_capacity') %><br>
   <%= f.text_field :sleeping_capacity %>
-</p>
-<p>
-  <%= f.label :number_of_bedrooms, I18n.t('number_of_bedrooms') %><br>
-  <%= f.text_field :number_of_bedrooms %>
-</p>
-<p>
-  <%= f.label :metres_from_lift, I18n.t('distance_from_lift') %><br>
-  <%= f.text_field :metres_from_lift %> metres
 </p>
 <p>
   <%= f.check_box :pets %> <%= f.label :pets, 'Pets allowed' %>
@@ -57,7 +67,19 @@
   <%= f.check_box :tv %> <%= f.label :tv, 'TV' %>
 </p>
 <p>
+  <%= f.check_box :satellite %> <%= f.label :satellite, 'Satellite' %>
+</p>
+<p>
   <%= f.check_box :wifi %> <%= f.label :wifi, 'WiFi' %>
+</p>
+<% end %>
+<p>
+  <%= f.label :number_of_bedrooms, I18n.t('number_of_bedrooms') %><br>
+  <%= f.text_field :number_of_bedrooms %>
+</p>
+<p>
+  <%= f.label :metres_from_lift, I18n.t('distance_from_lift') %><br>
+  <%= f.text_field :metres_from_lift %> metres
 </p>
 <p>
   <%= f.check_box :disabled %> <%= f.label :disabled, 'Suitable for disabled people' %>

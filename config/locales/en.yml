@@ -8,13 +8,26 @@ en:
   distance_from_lift: 'Distance from lift'
   email: 'Email'
   features: 'Features'
+  floor_area: 'Floor area'
   my_details_saved: 'Your details have been saved.'
   my_directory_adverts: 'My Directory Adverts'
   my_properties_for_rent: 'My Properties for Rent'
+  my_properties_for_sale: 'My Properties for Sale'
   name: 'Name'
   new_developments: 'New Developments'
   number_of_bedrooms: 'Number of bedrooms'
   password: 'Password'
+  properties:
+    filters:
+      disabled: Suitable for disabled people
+      fully_equipped_kitchen: Fully equipped kitchen
+      parking: Parking
+      pets: Pets allowed
+      satellite: Satellite
+      smoking: Smoking allowed
+      tv: TV
+      wifi: WiFi
+  plot_size: 'Plot size'
   resort: 'Resort'
   sale_price: 'Sale price'
   save: 'Save'

@@ -10,6 +10,7 @@
     <li><%= link_to 'My Directory Adverts', my_directory_adverts_path %></li>
 <% if @current_user.interested_in_renting_out_properties? || @current_user.has_properties_for_rent? %>
     <li><%= link_to 'My Properties for Rent', my_properties_for_rent_path %></li>
+    <li><%= link_to 'My Properties for Sale', my_properties_for_sale_path %></li>
 <% end %>
   </ul>
 </nav>

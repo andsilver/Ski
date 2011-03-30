@@ -1,0 +1,36 @@
+<h1><%= link_to I18n.t('advertiser_home'), advertiser_home_path %> &rarr;
+  <%= I18n.t('my_properties_for_sale') %></h1>
+
+<p>
+  <%= link_to 'Advertise a new property for sale', new_property_path(:for_sale => true) %>
+</p>
+
+<% if @properties.empty? %>
+<p>
+  You have no properties for sale.
+</p>
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th><%= I18n.t('resort') %></th>
+      <th><%= I18n.t('name') %></th>
+      <th><%= I18n.t('distance_from_lift') %></th>
+      <th><%= I18n.t('sleeping_capacity') %></th>
+    </tr>
+  </thead>
+  <tbody>
+<% @properties.each do |p| %>
+    <tr>
+      <td><%= p.resort.name %></td>
+      <td><%= link_to p.name, edit_property_path(p) %></td>
+      <td class="numeric"><%= km(p.metres_from_lift) %></td>
+      <td class="numeric"><%= p.sleeping_capacity %></td>
+      <td><%= form_tag :action => "advertise_now", :id => p.id do %>
+        <%= submit_tag "Advertise Now" %>
+        <% end %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+<% end %>

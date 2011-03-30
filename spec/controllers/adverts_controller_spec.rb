@@ -9,14 +9,18 @@ describe AdvertsController do
   end
 
   describe "GET basket" do
+    before do
+      current_user.stub(:adverts_in_basket).and_return []
+    end
+
     it "finds the adverts in the user's basket" do
       current_user.should_receive(:adverts_in_basket)
       get :basket
     end
 
-    it "assigns @adverts" do
+    it "assigns @lines" do
       get :basket
-      assigns(:adverts).should_not be_nil
+      assigns(:lines).should_not be_nil
     end
   end
 end

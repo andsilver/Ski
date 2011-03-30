@@ -1,4 +1,4 @@
-<h1>Properties for Rent in <%= @resort.name %></h1>
+<h1>Properties for Sale in <%= @resort.name %></h1>
 
 <%= form_tag request.path, :method => 'get' do %>
 <p>
@@ -12,14 +12,32 @@
     <option<%= ' selected' if params[:sort_method]=='number_of_bedrooms ASC' %> value="number_of_bedrooms ASC">Number of bedrooms</option>
   </select>
   <br>
-  <%= raw property_search_filters [:pets, :smoking, :tv, :satellite, :wifi,
-    :disabled, :fully_equipped_kitchen, :parking] %>
+  <label class="filter"><input<%= ' checked' if params[:filter_private_garden]=='on' %>
+    type="checkbox" name="filter_private_garden" onchange="this.form.submit()">
+    Private garden</label>
+  <label class="filter"><input<%= ' checked' if params[:filter_smoking]=='on' %>
+    type="checkbox" name="filter_smoking" onchange="this.form.submit()">
+    Smoking allowed</label>
+  <label class="filter"><input<%= ' checked' if params[:filter_tv]=='on' %>
+    type="checkbox" name="filter_tv" onchange="this.form.submit()">
+    TV</label>
+  <label class="filter"><input<%= ' checked' if params[:filter_wifi]=='on' %>
+    type="checkbox" name="filter_wifi" onchange="this.form.submit()">
+    WiFi</label>
+  <label class="filter"><input<%= ' checked' if params[:filter_disabled]=='on' %>
+    type="checkbox" name="filter_disabled" onchange="this.form.submit()">
+    Suitable for disabled people</label>
+  <label class="filter"><input<%= ' checked' if params[:filter_fully_equipped_kitchen]=='on' %>
+    type="checkbox" name="filter_fully_equipped_kitchen" onchange="this.form.submit()"> Fully equipped kitchen</label>
+  <label class="filter"><input<%= ' checked' if params[:filter_parking]=='on' %>
+    type="checkbox" name="filter_parking" onchange="this.form.submit()">
+    Parking</label>
 </p>
 <% end %>
 
 <% if @properties.empty? %>
 
-<p>There are no properties advertised for rent at this resort that match
+<p>There are no properties advertised for sale at this resort that match
   your search criteria.</p>
 
 <% else %>
@@ -30,6 +48,7 @@
       <th>&nbsp;</th>
       <th><%= I18n.t('name') %></th>
       <th><%= I18n.t('number_of_bedrooms') %></th>
+      <th><%= I18n.t('number_of_bathrooms') %></th>
       <th><%= I18n.t('distance_from_lift') %></th>
       <th><%= I18n.t('weekly_rent_price') %></th>
     </tr>
@@ -39,7 +58,8 @@
     <tr>
       <td><% unless p.image.nil? %><%= link_to(image_tag(p.image.url(100)), p) %><% else %>&nbsp;<% end %></td>
       <td><%= link_to p.name, p %><br><%= p.strapline %></td>
-      <td class="numeric"><%= p.number_of_bedrooms %> (sleeps <%= p.sleeping_capacity %>)</td>
+      <td class="numeric"><%= p.number_of_bedrooms %></td>
+      <td class="numeric"><%= p.number_of_bathrooms %></td>
       <td class="numeric"><%= p.metres_from_lift %>m</td>
       <td class="numeric price"><%= euros(p.weekly_rent_price) %></td>
     </tr>

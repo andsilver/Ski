@@ -5,8 +5,9 @@ class PropertiesController < ApplicationController
     :new_developments, :contact, :current_time, :show]
   before_filter :find_property_for_user, :only => [:edit, :update, :advertise_now]
 
+  before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale]
+
   def browse_for_rent
-    @resort = Resort.find(params[:id])
     whitelist = [ "weekly_rent_price DESC", "metres_from_lift ASC", "sleeping_capacity ASC",
       "number_of_bedrooms ASC" ]
     order = whitelist.include?(params[:sort_method]) ? params[:sort_method] : 'weekly_rent_price ASC'
@@ -16,6 +17,7 @@ class PropertiesController < ApplicationController
     conditions[:pets] = true if params[:filter_pets]
     conditions[:smoking] = true if params[:filter_smoking]
     conditions[:tv] = true if params[:filter_tv]
+    conditions[:satellite] = true if params[:filter_satellite]
     conditions[:wifi] = true if params[:filter_wifi]
     conditions[:disabled] = true if params[:filter_disabled]
     conditions[:fully_equipped_kitchen] = true if params[:filter_fully_equipped_kitchen]
@@ -25,8 +27,21 @@ class PropertiesController < ApplicationController
       :conditions => conditions
   end
 
+  def browse_for_sale
+    conditions = {:resort_id => params[:id], :for_sale => true}
+
+    order = 'sale_price ASC'
+
+    @properties = Property.paginate :page => params[:page], :order => order,
+      :conditions => conditions
+  end
+
   def my_for_rent
     @properties = @current_user.properties_for_rent
+  end
+
+  def my_for_sale
+    @properties = @current_user.properties_for_sale
   end
 
   def new_developments
@@ -90,5 +105,9 @@ class PropertiesController < ApplicationController
     advert = Advert.new_for(@property)
     advert.months = 3
     advert.save!
+  end
+
+  def find_resort
+    @resort = Resort.find(params[:id])
   end
 end
