@@ -48,7 +48,7 @@
   Apply the following coupon code to this user's purchases:
 </p>
 <p>
-  <%= f.label :coupon_id %><br>
+  <%= f.label :coupon_id, I18n.t('coupon') %><br>
   <%= select("user", "coupon_id", Coupon.all.collect {|c| [ c.code, c.id ] }, {:prompt => 'Select Coupon'}) %>
 </p>
 <% end %>
