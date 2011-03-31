@@ -17,6 +17,17 @@ property_owner:
   name: Property owner
   admin: false
   select_on_signup: true
+  advertises_generally: false
+  advertises_properties: true
+  flag_new_development: false
+
+other_business:
+  id: 5
+  name: Other business
+  admin: false
+  select_on_signup: true
+  advertises_generally: true
+  advertises_properties: false
   flag_new_development: false
 
 administrator:

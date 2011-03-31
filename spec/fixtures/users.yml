@@ -38,6 +38,19 @@ dave:
   terms_and_conditions: true
   role_id: 3
 
+emily:
+  id: 5
+  name: Emily
+  email: emily@myskichalet.co.uk
+  encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
+  salt: salt
+  description: A bar owner
+  billing_street: Restover Lodge
+  billing_city: Doncaster
+  billing_country_id: 5
+  terms_and_conditions: true
+  role_id: 5 # Other business
+
 tony:
   id: 4
   name: Tony
