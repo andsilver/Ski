@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110330164713) do
+ActiveRecord::Schema.define(:version => 20110330180416) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -192,30 +192,32 @@ ActiveRecord::Schema.define(:version => 20110330164713) do
     t.boolean  "flag_new_development"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "advertises_properties", :default => false, :null => false
+    t.boolean  "advertises_generally",  :default => false, :null => false
+    t.boolean  "has_business_details",  :default => false, :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                                 :default => "",    :null => false
-    t.string   "email",                                :default => "",    :null => false
+    t.string   "name",                 :default => "", :null => false
+    t.string   "email",                :default => "", :null => false
     t.string   "encrypted_password"
     t.string   "salt"
-    t.string   "website",                              :default => "",    :null => false
-    t.text     "description",                                             :null => false
-    t.string   "billing_street",                                          :null => false
-    t.string   "billing_locality",                     :default => "",    :null => false
-    t.string   "billing_city",                                            :null => false
-    t.string   "billing_county",                       :default => "",    :null => false
-    t.string   "billing_postcode",                     :default => "",    :null => false
+    t.string   "website",              :default => "", :null => false
+    t.text     "description",                          :null => false
+    t.string   "billing_street",                       :null => false
+    t.string   "billing_locality",     :default => "", :null => false
+    t.string   "billing_city",                         :null => false
+    t.string   "billing_county",       :default => "", :null => false
+    t.string   "billing_postcode",     :default => "", :null => false
     t.integer  "billing_country_id"
-    t.string   "phone",                                :default => "",    :null => false
-    t.string   "mobile",                               :default => "",    :null => false
-    t.string   "business_name",                        :default => "",    :null => false
-    t.string   "position",                             :default => "",    :null => false
-    t.boolean  "terms_and_conditions",                                    :null => false
+    t.string   "phone",                :default => "", :null => false
+    t.string   "mobile",               :default => "", :null => false
+    t.string   "business_name",        :default => "", :null => false
+    t.string   "position",             :default => "", :null => false
+    t.boolean  "terms_and_conditions",                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "interested_in_renting_out_properties", :default => false, :null => false
-    t.integer  "role_id",                                                 :null => false
+    t.integer  "role_id",                              :null => false
     t.integer  "coupon_id"
   end
 
