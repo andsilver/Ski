@@ -19,3 +19,7 @@ end
 Then /^I should see the "([^"]*)" heading$/ do |arg1|
   response.should have_selector("h1", :content => arg1)
 end
+
+Then /^I should see a link to "([^"]*)"$/ do |arg1|
+  response.should have_selector("a", :content => arg1)
+end
