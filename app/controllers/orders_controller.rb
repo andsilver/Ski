@@ -2,6 +2,12 @@ class OrdersController < ApplicationController
   before_filter :user_required
   before_filter :require_order_from_session, :only => [:select_payment_method, :latest_receipt]
 
+  before_filter :admin_required, :only => [:index]
+
+  def index
+    @orders = Order.all
+  end
+
   def select_payment_method
   end
 
