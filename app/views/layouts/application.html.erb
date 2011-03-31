@@ -10,6 +10,7 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+<%= render "shared/admin_bar" if admin? %>
 <div id="wrapper">
 <nav id="main_menu">
   <ul>
