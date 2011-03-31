@@ -42,6 +42,7 @@ Feature: Tourist
     When I follow "Alpen Lounge"
     Then I should be on the Alpen Lounge page
     And I should see the "Alpen Lounge" heading
+    And I should see "The Alpen Lounge is a 100 square meter self catering chalet."
 
   Scenario: Be told when there are no properties for rent
     Given I am on the Italian Alps Properties for Rent page

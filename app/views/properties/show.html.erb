@@ -13,6 +13,10 @@
 <% end %>
 
 <h2>Contact Owner</h2>
+<% unless @property.description.nil? %>
+<%= md @property.description %>
+<% end %>
+
 <% if @enquiry.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@enquiry.errors.count, "error") %> prohibited this enquiry from being sent:</h2>
