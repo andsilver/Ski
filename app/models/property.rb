@@ -43,4 +43,12 @@ class Property < ActiveRecord::Base
       description.split[0..(wordcount-1)].join(" ") + (description.split.size > wordcount ? "…" : "")
     end
   end
+
+  def current_advert
+    Advert.where("property_id = ? AND expires_at > ?", id, Time.now).first
+  end
+
+  def currently_advertised?
+    !current_advert.nil?
+  end
 end

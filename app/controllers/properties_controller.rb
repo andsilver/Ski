@@ -5,12 +5,13 @@ class PropertiesController < ApplicationController
     :new_developments, :contact, :current_time, :show]
   before_filter :find_property_for_user, :only => [:edit, :update, :advertise_now]
 
+  before_filter :resort_conditions, :only => [:browse_for_rent, :browse_for_sale]
   before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale]
 
   def browse_for_rent
     order = selected_order([ "weekly_rent_price ASC", "weekly_rent_price DESC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
-    @conditions = {:resort_id => params[:id], :for_sale => false}
+    @conditions[0] += " AND for_sale = 0"
 
     @search_filters = [:pets, :smoking, :tv, :satellite, :wifi, :disabled,
       :fully_equipped_kitchen, :parking]
@@ -26,9 +27,11 @@ class PropertiesController < ApplicationController
     order = selected_order([ 'sale_price ASC', 'sale_price DESC',
       'metres_from_lift ASC', 'number_of_bathrooms ASC',
       'number_of_bedrooms ASC' ])
-    @conditions = {:resort_id => params[:id], :for_sale => true}
+    @conditions[0] += " AND for_sale = 1"
 
     @search_filters = [:private_garden]
+
+    filter_conditions
 
     @properties = Property.paginate :page => params[:page], :order => order,
       :conditions => @conditions
@@ -45,8 +48,10 @@ class PropertiesController < ApplicationController
   end
 
   def new_developments
+    @conditions = currently_advertised
+    @conditions[0] += " AND new_development = 1"
     @properties = Property.paginate(:page => params[:page], :order => 'created_at DESC',
-      :conditions => {:new_development => true})
+      :conditions => @conditions)
   end
 
   def new
@@ -83,7 +88,8 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update_attributes(params[:property])
-      redirect_to my_properties_for_rent_path, :notice => "Your property advert details have been saved."
+      flash[:notice] = "Your property advert details have been saved."
+      redirect_to @property.for_sale? ? my_properties_for_sale_path : my_properties_for_rent_path
     else
       render "edit"
     end
@@ -115,9 +121,19 @@ class PropertiesController < ApplicationController
     whitelist.include?(params[:sort_method]) ? params[:sort_method] : whitelist.first
   end
 
+  def resort_conditions
+    @conditions = currently_advertised
+    @conditions[0] += " AND resort_id = ?"
+    @conditions << params[:id]
+  end
+
+  def currently_advertised
+    ["id IN (SELECT adverts.property_id FROM adverts WHERE adverts.property_id=properties.id AND adverts.expires_at > NOW())"]
+  end
+
   def filter_conditions
     @search_filters.each do |filter|
-      @conditions[filter] = true if params["filter_" + filter.to_s]
+      @conditions[0] += " AND #{filter.to_s}=1" if params["filter_" + filter.to_s]
     end
   end
 end

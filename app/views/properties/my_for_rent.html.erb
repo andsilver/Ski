@@ -26,9 +26,15 @@
       <td><%= link_to p.name, edit_property_path(p) %></td>
       <td class="numeric"><%= km(p.metres_from_lift) %></td>
       <td class="numeric"><%= p.sleeping_capacity %></td>
-      <td><%= form_tag :action => "advertise_now", :id => p.id do %>
+      <td>
+        <% if p.currently_advertised? %>
+        Advert running until <%= p.current_advert.expires_at %>
+        <% else %>
+        <%= form_tag :action => "advertise_now", :id => p.id do %>
         <%= submit_tag "Advertise Now" %>
-        <% end %></td>
+        <% end %>
+        <% end %>
+      </td>
     </tr>
 <% end %>
   </tbody>
