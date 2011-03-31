@@ -30,12 +30,26 @@ Feature: Tourist
     And I should see "Directory"
     And I should see "Resort Info"
 
-  Scenario: Browse a list of properties for rent in a resort
+  Scenario: Get to and browse a list of properties for rent in a resort
     Given I am on the home page
     When I follow "France"
     And I follow "Chamonix"
     And I follow "Properties for Rent in Chamonix"
     Then I should see "Alpen Lounge"
+
+  Scenario: See rental details
+    Given I am on the Chamonix Properties for Rent page
+    Then I should see "Weekly rent price"
+    And I should see weekly rent prices
+    And I should see "sleeps"
+    But I should not see "Sale price"
+
+  Scenario: See sale details
+    Given I am on the Chamonix Properties for Sale page
+    Then I should see "Sale price"
+    And I should see sale prices
+    But I should not see "Weekly rent price"
+    And I should not see "sleeps"
 
   Scenario: View more details about a property for rent
     Given I am on the Chamonix Properties for Rent page

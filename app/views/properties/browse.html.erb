@@ -60,7 +60,7 @@
       <td>
         <%= p.short_description %>
       </td>
-      <td class="numeric price"><%= euros(p.weekly_rent_price) %></td>
+      <td class="numeric price"><%= @for_sale ? euros(p.sale_price) : euros(p.weekly_rent_price) %></td>
     </tr>
 <% end %>
   </tbody>

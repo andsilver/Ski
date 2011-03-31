@@ -29,6 +29,9 @@ module NavigationHelpers
     when /the Chamonix Properties for Rent page/
       resort_property_rent_path(resorts(:chamonix))
 
+    when /the Chamonix Properties for Sale page/
+      resort_property_sale_path(resorts(:chamonix))
+
     when /the Italian Alps Properties for Rent page/
       resort_property_rent_path(resorts(:italian_alps))
 
