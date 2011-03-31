@@ -31,6 +31,10 @@ module ApplicationHelper
     RDiscount.new(text).to_html.html_safe
   end
 
+  def required_field
+    '<span class="required">*</span>'.html_safe
+  end
+
   def a_tick
     '<span class="tick">✔</span>'.html_safe
   end

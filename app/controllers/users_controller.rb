@@ -20,15 +20,15 @@ class UsersController < ApplicationController
       @user.role_id = @role.id
     end
 
-    respond_to do |format|
-      if @user.save
-        session[:user] = @user.id
-        format.html { redirect_to(advertiser_home_path, :notice => 'Your account was successfully created.') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    if params[:stage] && params[:stage]=="1"
+      render "new" and return
+    end
+
+    if @user.save
+      session[:user] = @user.id
+      redirect_to(advertiser_home_path, :notice => 'Your account was successfully created.')
+    else
+      render :action => "new"
     end
   end
 

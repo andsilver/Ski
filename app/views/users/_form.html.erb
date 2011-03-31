@@ -11,99 +11,96 @@
 <% end %>
 
 <%= form_for @user do |f| %>
+<%= f.hidden_field :role_id %>
 <h2>Your Details</h2>
-<p>
+<div class="field">
   <%= f.label :name %><br>
-  <%= f.text_field :name %>
-</p>
-<p>
+  <%= f.text_field :name %> <%= required_field %>
+</div>
+<div class="field">
   <%= f.label :email %><br>
-  <%= f.text_field :email %>
-</p>
-<p>
+  <%= f.text_field :email %> <%= required_field %>
+</div>
+<div class="field">
   <%= f.label :password %><br>
-  <%= f.password_field :password %>
-</p>
-<p>
+  <%= f.password_field :password %> <%= required_field if @user.new_record? %>
+</div>
+<div class="field">
   <%= f.label :phone %><br>
   <%= f.text_field :phone %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :mobile %><br>
   <%= f.text_field :mobile %>
-</p>
-<h2>A Bit About You or Your Business</h2>
-<p>
+</div>
+<h2>A Bit About <%= @user.role.has_business_details? ? 'Your Business' : 'Yourself' %></h2>
+<div class="field">
   <%= f.label :description %><br>
   <%= f.text_area :description %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :website %><br>
   <%= f.text_field :website %>
-</p>
+</div>
 
 <% if admin? %>
 <h2>Coupon Code</h2>
 <p>
   Apply the following coupon code to this user's purchases:
 </p>
-<p>
+<div class="field">
   <%= f.label :coupon_id, I18n.t('coupon') %><br>
   <%= select("user", "coupon_id", Coupon.all.collect {|c| [ c.code, c.id ] }, {:prompt => 'Select Coupon'}) %>
-</p>
+</div>
 <% end %>
 
-<h2>If this is a Business Account</h2>
-<p>
+<% if @user.role.has_business_details? %>
+<h2>Business Details</h2>
+<div class="field">
   <%= f.label :business_name %><br>
   <%= f.text_field :business_name %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :position, 'Your position' %><br>
   <%= f.text_field :position %>
-</p>
+</div>
+<% end %>
 
 <h2>Card/Billing Details</h2>
-<p>
+<div class="field">
   <%= f.label :billing_street, 'House number and street' %><br>
-  <%= f.text_field :billing_street %>
-</p>
-<p>
+  <%= f.text_field :billing_street %> <%= required_field %>
+</div>
+<div class="field">
   <%= f.text_field :billing_locality %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :billing_city, 'Town/city' %><br>
-  <%= f.text_field :billing_city %>
-</p>
-<p>
+  <%= f.text_field :billing_city %> <%= required_field %>
+</div>
+<div class="field">
   <%= f.label :billing_county, 'State/county' %><br>
   <%= f.text_field :billing_county %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :billing_postcode, 'ZIP/postcode' %><br>
   <%= f.text_field :billing_postcode %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :billing_country_id, I18n.t('country') %><br>
   <%= select("user", "billing_country_id", Country.all.collect {|c| [ c.name, c.id ] }, {:prompt => 'Select Country'}) %>
-</p>
-
-
-<h3>Advertising Features</h3>
-<p>
-  <%= f.label :role_id %><br>
-  <%= select("user", "role_id", Role.where(:select_on_signup => true).collect {|r| [ r.name, r.id ] }, {:prompt => 'Select Role'}) %>
-</p>
+  <%= required_field %>
+</div>
 
 <h3>Terms &amp; Conditions</h3>
-<p>
+<div class="field">
   <%= f.check_box :terms_and_conditions %>
-  <%= f.label :terms_and_conditions, 'I accept the terms & conditions below' %> 
-</p>
+  <%= f.label :terms_and_conditions, 'I accept the terms & conditions below' %>  <%= required_field %>
+</div>
 
-<p>
+<div class="field">
   <%= f.submit I18n.t(submit_label) %>
-</p>
+</div>
 
 <% end %>
 
