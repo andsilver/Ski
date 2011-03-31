@@ -11,6 +11,8 @@ Feature: Sign Up
 
   Scenario: Sign up for a new account
     Given I am on the sign up page
+    And I select "Estate agent" from "Account type"
+    And I press "Continue"
     When I fill in the following:
       | Name                    | Carol                   |
       | Email                   | carol@myskichalet.co.uk |
@@ -26,7 +28,6 @@ Feature: Sign Up
       | Business name           | Carol's Holidays Ltd    |
       | Your position           | Managing director       |
     And I select "United Kingdom" from "Country"
-    And I select "Estate agent" from "Role"
     And I check "I accept the terms & conditions below"
     And I press "Sign Up"
     Then I should be on the advertiser home page
@@ -34,6 +35,8 @@ Feature: Sign Up
 
   Scenario: Password should be at least 5 characters long
     Given I am on the sign up page
+    And I select "Estate agent" from "Account type"
+    And I press "Continue"
     When I fill in "Name" with "Carol"
     And I fill in "Email" with "carol@myskichalet.co.uk"
     And I fill in "Password" with "1234"
@@ -43,6 +46,8 @@ Feature: Sign Up
 
   Scenario: Email address should be unique
     Given I am on the sign up page
+    And I select "Estate agent" from "Account type"
+    And I press "Continue"
     When I fill in "Name" with "Bob"
     And I fill in "Email" with "bob@myskichalet.co.uk"
     And I fill in "Password" with "secret"

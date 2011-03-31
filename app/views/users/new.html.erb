@@ -6,11 +6,11 @@
 <%= raw '<p>You will be able to create banner or directory adverts.</p>' if @user.role.advertises_generally? %>
 <%= render 'form', :submit_label => 'sign_up' %>
 <% else %>
-<p>Please choose an account type that best matches you or your business:</p>
+<p>Please choose an account type that best matches you or your business.</p>
 <%= form_for @user do |f| %>
 <input type="hidden" name="stage" value="1">
 <p>
-  <%= select("user", "role_id", Role.where(:select_on_signup => true).collect {|r| [ r.name, r.id ] }, {:prompt => 'Select account type'}) %>
+  <%= f.label :role_id, 'Account type' %> <%= select("user", "role_id", Role.where(:select_on_signup => true).collect {|r| [ r.name, r.id ] }, {:prompt => 'Select account type'}) %>
 </p>
 <p>
   <%= f.submit 'Continue' %>
