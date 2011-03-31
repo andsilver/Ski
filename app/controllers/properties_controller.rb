@@ -8,32 +8,32 @@ class PropertiesController < ApplicationController
   before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale]
 
   def browse_for_rent
-    whitelist = [ "weekly_rent_price DESC", "metres_from_lift ASC", "sleeping_capacity ASC",
-      "number_of_bedrooms ASC" ]
-    order = whitelist.include?(params[:sort_method]) ? params[:sort_method] : 'weekly_rent_price ASC'
-    conditions = {:resort_id => params[:id], :for_sale => false}
+    order = selected_order([ "weekly_rent_price ASC", "weekly_rent_price DESC",
+      "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
+    @conditions = {:resort_id => params[:id], :for_sale => false}
 
-    # filters
-    conditions[:pets] = true if params[:filter_pets]
-    conditions[:smoking] = true if params[:filter_smoking]
-    conditions[:tv] = true if params[:filter_tv]
-    conditions[:satellite] = true if params[:filter_satellite]
-    conditions[:wifi] = true if params[:filter_wifi]
-    conditions[:disabled] = true if params[:filter_disabled]
-    conditions[:fully_equipped_kitchen] = true if params[:filter_fully_equipped_kitchen]
-    conditions[:parking] = true if params[:filter_parking]
+    @search_filters = [:pets, :smoking, :tv, :satellite, :wifi, :disabled,
+      :fully_equipped_kitchen, :parking]
+
+    filter_conditions
 
     @properties = Property.paginate :page => params[:page], :order => order,
-      :conditions => conditions
+      :conditions => @conditions
+    render "browse"
   end
 
   def browse_for_sale
-    conditions = {:resort_id => params[:id], :for_sale => true}
+    order = selected_order([ 'sale_price ASC', 'sale_price DESC',
+      'metres_from_lift ASC', 'number_of_bathrooms ASC',
+      'number_of_bedrooms ASC' ])
+    @conditions = {:resort_id => params[:id], :for_sale => true}
 
-    order = 'sale_price ASC'
+    @search_filters = [:private_garden]
 
     @properties = Property.paginate :page => params[:page], :order => order,
-      :conditions => conditions
+      :conditions => @conditions
+    @for_sale = true
+    render "browse"
   end
 
   def my_for_rent
@@ -109,5 +109,15 @@ class PropertiesController < ApplicationController
 
   def find_resort
     @resort = Resort.find(params[:id])
+  end
+
+  def selected_order(whitelist)
+    whitelist.include?(params[:sort_method]) ? params[:sort_method] : whitelist.first
+  end
+
+  def filter_conditions
+    @search_filters.each do |filter|
+      @conditions[filter] = true if params["filter_" + filter.to_s]
+    end
   end
 end

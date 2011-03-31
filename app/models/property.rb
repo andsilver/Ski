@@ -34,4 +34,13 @@ class Property < ActiveRecord::Base
     f << "Parking" if parking?
     f.inject() { |r,e| r + ", " + e }
   end
+
+  def short_description
+    if description.nil?
+      ""
+    else
+      wordcount = 25
+      description.split[0..(wordcount-1)].join(" ") + (description.split.size > wordcount ? "…" : "")
+    end
+  end
 end

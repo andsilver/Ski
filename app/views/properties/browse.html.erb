@@ -1,19 +1,27 @@
-<h1>Properties for Rent in <%= @resort.name %></h1>
+<h1>Properties for <%= @for_sale ? "Sale" : "Rent" %> in <%= @resort.name %></h1>
 
 <%= form_tag request.path, :method => 'get' do %>
 <p>
   <label for="sort_method">Sort by:</label>
   <select id="sort_method" name="sort_method" onchange="this.form.submit()">
+<% if @for_sale %>
+    <option<%= ' selected' if params[:sort_method]=='sale_price ASC' %> value="sale_price ASC">Price low to high</option>
+    <option<%= ' selected' if params[:sort_method]=='sale_price DESC' %> value="sale_price DESC">Price high to low</option>
+<% else %>
     <option<%= ' selected' if params[:sort_method]=='weekly_rent_price ASC' %> value="weekly_rent_price ASC">Price low to high</option>
     <option<%= ' selected' if params[:sort_method]=='weekly_rent_price DESC' %> value="weekly_rent_price DESC">Price high to low</option>
+<% end %>
     <option<%= ' selected' if params[:sort_method]=='metres_from_lift ASC' %> value="metres_from_lift ASC">Distance from lift</option>
     <option<%= ' selected' if params[:sort_method]=='metres_from_town ASC' %> value="metres_from_town ASC">Distance from town</option>
+<% if @for_sale %>
+    <option<%= ' selected' if params[:sort_method]=='number_of_bathrooms ASC' %> value="number_of_bathrooms ASC">Number of bathrooms</option>
+<% else %>
     <option<%= ' selected' if params[:sort_method]=='sleeping_capacity ASC' %> value="sleeping_capacity ASC"><%= I18n.t('sleeping_capacity') %></option>
+<% end %>
     <option<%= ' selected' if params[:sort_method]=='number_of_bedrooms ASC' %> value="number_of_bedrooms ASC">Number of bedrooms</option>
   </select>
   <br>
-  <%= raw property_search_filters [:pets, :smoking, :tv, :satellite, :wifi,
-    :disabled, :fully_equipped_kitchen, :parking] %>
+  <%= raw property_search_filters @search_filters %>
 </p>
 <% end %>
 
@@ -28,25 +36,31 @@
   <thead>
     <tr>
       <th>&nbsp;</th>
-      <th><%= I18n.t('name') %></th>
-      <th><%= I18n.t('number_of_bedrooms') %></th>
-      <th><%= I18n.t('distance_from_lift') %></th>
+      <th><%= I18n.t('details') %></th>
+      <th><%= I18n.t('description') %></th>
+<% if @for_sale %>
+      <th><%= I18n.t('sale_price') %></th>
+<% else %>
       <th><%= I18n.t('weekly_rent_price') %></th>
+<% end %>
     </tr>
   </thead>
   <tbody>
 <% @properties.each do |p| %>
     <tr>
       <td><% unless p.image.nil? %><%= link_to(image_tag(p.image.url(100)), p) %><% else %>&nbsp;<% end %></td>
-      <td><%= link_to p.name, p %><br><%= p.strapline %></td>
-      <td class="numeric"><%= p.number_of_bedrooms %> (sleeps <%= p.sleeping_capacity %>)</td>
-      <td class="numeric"><%= p.metres_from_lift %>m</td>
-      <td class="numeric price"><%= euros(p.weekly_rent_price) %></td>
-    </tr>
-    <tr>
-      <td class="features" colspan="5"><%= I18n.t('features') %>:
+      <td><%= link_to p.name, p %><br><%= p.strapline %><br>
+        <% if @for_sale %>
+        <% else %>
+        <%= I18n.t('bedrooms') %>: <%= p.number_of_bedrooms %> (sleeps <%= p.sleeping_capacity %>)<br>
+        <% end %>
+        <%= I18n.t('nearest_lift') %>: <%= p.metres_from_lift %>m<br>
         <%= p.features %>
       </td>
+      <td>
+        <%= p.short_description %>
+      </td>
+      <td class="numeric price"><%= euros(p.weekly_rent_price) %></td>
     </tr>
 <% end %>
   </tbody>

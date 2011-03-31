@@ -77,6 +77,12 @@
   <%= f.label :number_of_bedrooms, I18n.t('number_of_bedrooms') %><br>
   <%= f.text_field :number_of_bedrooms %>
 </p>
+<% if @property.for_sale? %>
+<p>
+  <%= f.label :number_of_bathrooms, I18n.t('number_of_bathrooms') %><br>
+  <%= f.text_field :number_of_bathrooms %>
+</p>
+<% end %>
 <p>
   <%= f.label :metres_from_lift, I18n.t('distance_from_lift') %><br>
   <%= f.text_field :metres_from_lift %> metres
@@ -90,6 +96,10 @@
 <p>
   <%= f.check_box :parking %> <%= f.label :parking, 'Parking' %>
 </p>
+<div class="field">
+  <%= f.label :description, I18n.t('description') %><br>
+  <%= f.text_area :description %>
+</div>
 <p>
   <%= f.submit I18n.t('save') %>
 </p>

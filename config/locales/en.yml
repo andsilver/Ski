@@ -3,9 +3,13 @@
 
 en:
   advertiser_home: 'Advertiser Home'
+  bathrooms: 'Bathrooms'
+  bedrooms: 'Bedrooms'
   category: 'Category'
   coupon: 'Promotion code'
   country: 'Country'
+  description: 'Description'
+  details: 'Details'
   distance_from_lift: 'Distance from lift'
   email: 'Email'
   features: 'Features'
@@ -15,7 +19,9 @@ en:
   my_properties_for_rent: 'My Property Rentals'
   my_properties_for_sale: 'My Property Sales'
   name: 'Name'
+  nearest_lift: 'Nearest lift'
   new_developments: 'New Developments'
+  number_of_bathrooms: 'Number of bathrooms'
   number_of_bedrooms: 'Number of bedrooms'
   password: 'Password'
   plot_size: 'Plot size'
@@ -27,6 +33,7 @@ en:
       fully_equipped_kitchen: Fully equipped kitchen
       parking: Parking
       pets: Pets allowed
+      private_garden: 'Private garden'
       satellite: Satellite
       smoking: Smoking allowed
       tv: TV
