@@ -35,12 +35,12 @@ Feature:
     And I should see the "New Developments" heading
 
   Scenario: I can see new developments on the new developments page
-    Given there are 3 new developments
+    Given there are 3 new developments advertised
     When I am on the new developments page
     Then I should see 3 new developments
 
   Scenario: When there are more than 10 new developments they are paginated
-    Given there are 11 new developments
+    Given there are 11 new developments advertised
     When I am on the new developments page
     Then I should see 10 new developments
     And I should see "Next →"
