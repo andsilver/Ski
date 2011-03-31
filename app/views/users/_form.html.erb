@@ -94,13 +94,6 @@
   <%= f.label :role_id %><br>
   <%= select("user", "role_id", Role.where(:select_on_signup => true).collect {|r| [ r.name, r.id ] }, {:prompt => 'Select Role'}) %>
 </p>
-<p>
-  I am:
-</p>
-<p>
-  <%= f.check_box :interested_in_renting_out_properties %>
-  <%= f.label :interested_in_renting_out_properties %>
-</p>
 
 <h3>Terms &amp; Conditions</h3>
 <p>

@@ -61,6 +61,7 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :coupons
+  resources :roles
 
   root :to => "home#index"
 
