@@ -1,3 +1,11 @@
+<h1>Images for <%= @image.property.name %></h1>
+
+<p>
+  Here you can upload photographs from your computer. The first photo you
+  upload will be the main photo for your advert, but you can change this
+  later if you want.
+</p>
+
 <% if @image.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
@@ -12,11 +20,35 @@
 
 <%= form_for @image, :html => { :multipart => true } do |form| %>
 
-<div>
+<div class="field">
 	<%= form.label :image, "Image (.jpeg, .jpg, .gif, .png)" %><br>
 	<%= form.file_field :image %>
 </div>
 
 <%= submit_tag "Upload Image" %>
 
+<% end %>
+
+<h2>Uploaded So Far</h2>
+
+<ul class="thumbnails">
+<% @image.property.images.each do |i| %>
+  <li><div class="image_thumbnail"><%= link_to image_tag(i.url(64)), edit_image_path(i) %></div></li>
+<% end %>
+</ul>
+
+<%= clear %>
+
+<h2>Finished?</h2>
+<p>
+<% if @image.property.for_sale? %><%= link_to 'Add a new property for sale', new_property_path + "?for_sale=true" %><% else %>
+<%= link_to 'Add a new property for rent', new_property_path %><% end %>
+</p>
+
+<p><%= link_to 'Edit this property', edit_property_path(@image.property) %></p>
+
+<% if @current_user.has_adverts_in_basket? %>
+<p>
+  <%= link_to 'Continue to basket', basket_path %>
+</p>
 <% end %>

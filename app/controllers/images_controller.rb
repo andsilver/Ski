@@ -2,21 +2,24 @@
 
 class ImagesController < ApplicationController
   def index
-    @images = Image.all
+    @images = @current_user.images
   end
 
   def new
     @image = Image.new
+    @image.property_id = session[:property_id]
   end
 
   def create
     @image = Image.new(params[:image])
+    @image.property_id = session[:property_id]
+    @image.user_id = @current_user.id
 
     if @image.save
-      flash[:notice] = 'Image uploaded.'
-      redirect_to :action => 'index'
+      set_main_image_if_first
+      redirect_to new_image_path, :notice => 'Image uploaded.'
     else
-      render :action => 'new'
+      render 'new'
     end
   end
 
@@ -40,5 +43,15 @@ class ImagesController < ApplicationController
     @image.destroy
     flash[:notice] = 'Image deleted.'
     redirect_to :action => 'index'
+  end
+
+  protected
+
+  def set_main_image_if_first
+    if @image.property.images.count == 1
+      p = @image.property
+      p.image_id = @image.id
+      p.save
+    end
   end
 end

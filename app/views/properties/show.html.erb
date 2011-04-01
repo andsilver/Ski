@@ -10,6 +10,12 @@
 <p id="property_main_image">
   <%= image_tag(@property.image.url(400)) %>
 </p>
+<ul class="thumbnails" id="property_thumbnails">
+<% @property.images.each do |i| %>
+  <li><div class="image_thumbnail"><%= image_tag(i.url(96)) %></div></li>
+<% end %>
+</ul>
+<%= clear %>
 <% end %>
 
 <% unless @property.description.nil? %>

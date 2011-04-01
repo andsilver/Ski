@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :properties
   has_many :properties_for_rent, :class_name => 'Property', :conditions => {:for_sale => false}
   has_many :properties_for_sale, :class_name => 'Property', :conditions => {:for_sale => true}
+  has_many :images
   has_many :orders
   has_many :orders_with_receipts, :class_name => 'Order', :conditions => "status NOT IN (#{Order::WAITING_FOR_PAYMENT})",
     :order => 'created_at DESC'

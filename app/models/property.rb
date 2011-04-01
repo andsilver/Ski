@@ -3,6 +3,7 @@ class Property < ActiveRecord::Base
   belongs_to :resort
   belongs_to :image
 
+  has_many :images, :dependent => :destroy
   has_many :adverts
 
   validates_presence_of :resort_id

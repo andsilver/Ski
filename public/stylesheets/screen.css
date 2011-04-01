@@ -61,6 +61,10 @@ pre {
   font-size: 1.4em;
 }
 
+p {
+  margin: 1em 0;
+}
+
 footer[role=contentinfo] {
   clear: left;
 }
@@ -112,6 +116,14 @@ textarea {
   color: #fff;
   background: #222;
   text-decoration: none;
+}
+
+.clear {
+  font-size: 1px;
+  line-height: 1px;
+  margin: 0;
+  padding: 0;
+  clear: both;
 }
 
 td.numeric {
@@ -319,6 +331,37 @@ div.field_with_errors {
 #map_canvas {
   width: 100%;
   height: 350px;
+}
+
+ul.thumbnails {
+  list-style: none;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.thumbnails li {
+  float: left;
+  margin: 2px;
+}
+
+.thumbnails img {
+  display: block;
+}
+
+.thumbnails div {
+  border: 1px solid #ccc;
+  padding: 2px;
+  background: #eee;
+}
+
+ul#property_thumbnails {
+  width: 222px;
+  float: left;
+}
+
+p#property_main_image {
+  float: left;
+  width: 400px;
 }
 
 /**

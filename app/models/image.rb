@@ -9,6 +9,8 @@ class Image < ActiveRecord::Base
   after_save    :write_file
   after_destroy :delete_files
 
+  belongs_to :property
+
   def image=(file_data)
     unless file_data.kind_of? String and file_data.empty?
       @file_data = file_data

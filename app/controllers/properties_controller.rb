@@ -74,6 +74,7 @@ class PropertiesController < ApplicationController
   end
 
   def edit
+    session[:property_id] = @property.id
   end
 
   def create
@@ -82,7 +83,8 @@ class PropertiesController < ApplicationController
 
     if @property.save
       create_advert
-      redirect_to(basket_path, :notice => 'Your property advert was successfully created.')
+      session[:property_id] = @property.id
+      redirect_to new_image_path, :notice => "Your property advert was successfully created. Now let's add some photos."
     else
       render :action => "new"
     end

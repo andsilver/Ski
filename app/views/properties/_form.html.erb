@@ -14,6 +14,17 @@
 
 <%= form_for @property do |f| %>
 <%= f.hidden_field :for_sale %>
+<% unless @property.new_record? %>
+<h2>Images</h2>
+<p><%= link_to 'Add or remove images for this property', new_image_path %> (changes made on this page will not be saved)</p>
+<% unless @property.images.empty? %>
+<p>
+  <%= f.label :image_id, I18n.t('main_image') %><br>
+  <%= select("property", "image_id", (@property.images.collect {|i| [ i.filename, i.id ] }).sort, {:prompt => 'Select Image'}) %>
+</p>
+<% end %>
+<% end %>
+<h2><%= I18n.t('details') %></h2>
 <p>
   <%= f.label :name, I18n.t('name') %><br>
   <%= f.text_field :name %>

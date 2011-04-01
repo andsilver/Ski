@@ -35,6 +35,10 @@ module ApplicationHelper
     '<span class="required">*</span>'.html_safe
   end
 
+  def clear
+    '<p class="clear">&nbsp;</p>'.html_safe
+  end
+
   def a_tick
     '<span class="tick">✔</span>'.html_safe
   end
