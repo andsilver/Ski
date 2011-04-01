@@ -37,6 +37,10 @@ body {
   font-size: 1.3em;
 }
 
+td {
+  vertical-align: top;
+}
+
 h1, h2, h3 {
   color: #7d4116;
 }
@@ -137,7 +141,11 @@ table#properties_for_rent {
 }
 
 #properties_for_rent th+th+th {
-  width: 8em;
+  width: 12em;
+}
+
+#properties_for_rent th+th+th {
+  width: 5em;
 }
 
 #properties_for_rent td.features {
@@ -306,6 +314,11 @@ div.field_with_errors {
 .required {
   font-weight: bold;
   color: red;
+}
+
+#map_canvas {
+  width: 100%;
+  height: 350px;
 }
 
 /**

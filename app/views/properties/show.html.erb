@@ -12,11 +12,49 @@
 </p>
 <% end %>
 
-<h2>Contact Owner</h2>
 <% unless @property.description.nil? %>
 <%= md @property.description %>
 <% end %>
 
+<% unless @property.latitude.empty? %>
+<h2 id="map">Map</h2>
+<script>
+  function showMap() {
+    var latlng = new google.maps.LatLng(<%= @property.latitude %>, <%= @property.longitude %>);
+    var myOptions = {
+      zoom: 14,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.TERRAIN
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+      myOptions);
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title:"<%= @property.name %>"
+    });
+  }
+
+  function mapOnload() {
+    var oldOnload = window.onload;
+
+    if (typeof(window.onload) != "function") {
+      window.onload = showMap;
+    }
+    else {
+      window.onload = function() {
+        oldOnload();
+        showMap();
+      }
+    }
+  }
+
+  mapOnload();
+</script>
+<div id="map_canvas"></div>
+<% end %>
+
+<h2 id="contact_owner">Contact Owner</h2>
 <% if @enquiry.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@enquiry.errors.count, "error") %> prohibited this enquiry from being sent:</h2>

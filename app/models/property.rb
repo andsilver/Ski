@@ -12,6 +12,8 @@ class Property < ActiveRecord::Base
   validates_length_of :name, :within => 5..30
   validates_length_of :strapline, :within => 0..60
 
+  before_save :geocode
+
   cattr_reader :per_page
   @@per_page = 10
 
@@ -51,5 +53,30 @@ class Property < ActiveRecord::Base
 
   def currently_advertised?
     !current_advert.nil?
+  end
+
+  def geocode
+    self.latitude = ''
+    self.longitude = ''
+    attempt_geocode(address + ',' + postcode + ',' + resort.name)
+  end
+
+  def attempt_geocode a
+    a = "#{a},#{resort.country.name}".gsub("\n", ' ').gsub(' ', '+')
+    Rails.logger.info('attempting geocode: ' + a)
+    url = '/maps/api/geocode/json?address=' + a + '&sensor=false'
+    require 'net/http'
+    http = Net::HTTP.new('maps.googleapis.com', 80)
+    response, data = http.get(url)
+    json = JSON.parse(data)
+    Rails.logger.info json.inspect
+    if 'OK' == json['status']
+      self.latitude = json['results'][0]['geometry']['location']['lat']
+      self.longitude = json['results'][0]['geometry']['location']['lng']
+      true
+    else
+      Rails.logger.info "geocode for #{a} failed; url=#{url}; data=#{data}"
+      false
+    end
   end
 end

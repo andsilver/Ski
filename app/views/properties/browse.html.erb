@@ -58,7 +58,9 @@
         <%= p.features %>
       </td>
       <td>
-        <%= p.short_description %>
+        <%= p.short_description %><br>
+        <%= link_to 'Map', property_path(p) + "#map" unless p.latitude.empty? %>
+        <%= link_to 'Contact Owner', property_path(p) + "#contact_owner" %>
       </td>
       <td class="numeric price"><%= @for_sale ? euros(p.sale_price) : euros(p.weekly_rent_price) %></td>
     </tr>
