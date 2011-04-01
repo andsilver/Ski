@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110331144544) do
+ActiveRecord::Schema.define(:version => 20110401121130) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -172,6 +172,8 @@ ActiveRecord::Schema.define(:version => 20110331144544) do
     t.boolean  "satellite",              :default => false, :null => false
     t.text     "description"
     t.integer  "number_of_bathrooms",    :default => 0,     :null => false
+    t.string   "address",                :default => "",    :null => false
+    t.string   "postcode",               :default => "",    :null => false
   end
 
   add_index "properties", ["resort_id"], :name => "index_properties_on_resort_id"

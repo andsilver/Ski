@@ -4,7 +4,6 @@ Feature: Admin Bar
   As an administrator
   I want to be able to get to website admin pages from any page
 
-  @wip
   Scenario: Admin bar shows on the home page
     Given I am signed in as an administrator
     When I am on the home page

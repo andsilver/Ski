@@ -2,6 +2,7 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  address: 'Address'
   advertiser_home: 'Advertiser Home'
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
@@ -25,6 +26,7 @@ en:
   number_of_bedrooms: 'Number of bedrooms'
   password: 'Password'
   plot_size: 'Plot size'
+  postcode: 'ZIP / postcode'
   property_rentals: 'Property Rentals'
   property_sales: 'Property Sales'
   properties:
