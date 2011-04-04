@@ -1,0 +1,24 @@
+<h1>Countries</h1>
+<p>
+  <%= link_to 'New Country', new_country_path %>
+</p>
+<% if @countries.empty? %>
+<p>There are no countries set up yet.</p>
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>ISO 3166-1 Alpha 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @countries.each do |country| %>
+    <tr>
+      <td><%= link_to country.name, edit_country_path(country) %></td>
+      <td><%= country.iso_3166_1_alpha_2 %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

@@ -1,0 +1,25 @@
+<% if @country.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@country.errors.count, "error") %> prohibited this country from being saved:</h2>
+
+    <ul>
+    <% @country.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @country do |f| %>
+<p>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :iso_3166_1_alpha_2, 'ISO 3166-1 Alpha 2' %><br>
+  <%= f.text_field :iso_3166_1_alpha_2 %>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
