@@ -1,0 +1,25 @@
+<% if @website.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@website.errors.count, "error") %> prohibited this website's settings from being saved:</h2>
+
+    <ul>
+    <% @website.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @website do |f| %>
+<p>
+  <%= f.label :terms %><br>
+  <%= f.text_area :terms %>
+</p>
+<p>
+  <%= f.label :pricing_info %><br>
+  <%= f.text_area :pricing_info %>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>

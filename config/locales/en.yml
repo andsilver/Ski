@@ -29,6 +29,7 @@ en:
   password: 'Password'
   plot_size: 'Plot size'
   postcode: 'ZIP / postcode'
+  pricing: 'Pricing'
   property_rentals: 'Property Rentals'
   property_sales: 'Property Sales'
   properties:
@@ -52,4 +53,5 @@ en:
   signed_out: 'You are now signed out.'
   sleeping_capacity: 'Sleeping capacity'
   strapline: 'Strapline'
+  terms: 'Terms and Conditions'
   weekly_rent_price: 'Weekly rent price'

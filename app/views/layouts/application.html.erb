@@ -2,7 +2,7 @@
 <html class="no-js">
 <head>
   <meta charset="utf-8">
-  <title><%= @page_title ? @page_title : "MySkiChalet" %></title>
+  <title><%= @page_title ? @page_title : "My Ski Chalet" %></title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag 'modernizr-1.6.min' %>
@@ -31,6 +31,7 @@
   <ul>
     <li><%= link_to 'Home', root_path %></li>
     <li><%= link_to I18n.t('advertiser_home'), advertiser_home_path %></li>
+    <li><%= link_to I18n.t('pricing'), pricing_path %></li>
     <li><%= link_to 'New Developments', new_developments_path %></li>
 <% if signed_in? %>
 <% if @current_user.has_adverts_in_basket? %>
@@ -73,7 +74,9 @@
 
 <footer role="contentinfo">
   <p>
-    &copy;2011 MySkiChalet.com
+    &copy;2011 My Holiday Home Ventures Limited
+    |
+    <%= link_to I18n.t(:terms), terms_path %>
   </p>
 </footer>
 </div><!--#wrapper-->

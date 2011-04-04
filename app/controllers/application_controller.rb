@@ -3,9 +3,14 @@ class ApplicationController < ActionController::Base
 
   helper_method :admin?, :signed_in?
 
-  before_filter :initialize_user
+  before_filter :initialize_website, :initialize_user
 
   protected
+
+  def initialize_website
+    @w = Website.first
+    not_found if @w.nil?
+  end
 
   def initialize_user
     @current_user = User.find_by_id(session[:user])

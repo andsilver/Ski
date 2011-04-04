@@ -69,6 +69,10 @@ MySkiChalet::Application.routes.draw do
     delete 'delete_file', :on => :member
   end
 
+  resources :websites
+
+  match "pricing" => "home#pricing"
+  match "terms" => "home#terms"
   root :to => "home#index"
 
   # The priority is based upon order of creation:
