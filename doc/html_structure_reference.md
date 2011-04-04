@@ -16,6 +16,8 @@ Part of the Main Layout
 * `html.no-js` interacts with modernizr to detect feature support. This
   class attribute will change if the user's browser has Javascript
   working. Google modernizr for more information.
+* `div#admin_bar` contains a menu which is displayed when an administrator
+  is logged in.
 * `div#wrapper` wraps everything within the body on every page. It is
   currently used to display the header image but this will change.
 * `li.flag_XX` is used for country navigation where XX is the ISO country
@@ -32,9 +34,15 @@ Found Frequently
 
 * `div#error_explanation` appears above forms that have failed to validate
   and surrounds an `<h2>` and a list of error messages.
+* `div.field` surrounds most form fields.
+* `div.field_with_errors` appears inside `div.field` when the field contains
+  validation errors.
+* `p.clear` is used to clear leading floating elements
 * `span.km` surrounds the letters 'km' when displaying distances.
+* `span.required` surrounds an asterisk after a required form field.
 * `td.numeric` for table cells containing numeric data (numbers, prices,
   distances).
+* `td.price` for table cells containing prices
 
 Forms
 -----
@@ -44,6 +52,7 @@ and `form#new_objectname`. Existing object names are:
 
 * category
 * country
+* coupon
 * directory_advert
 * enquiry
 * property
@@ -96,6 +105,7 @@ of the new advert, prompting the advertiser to update them if necessary.
 * `#my_details_summary`
 * `#general_address`
 * `#billing_address`
+* `label.filter` for search filter checkboxes and their labels
 
 ### properties/show.html.erb
 
@@ -176,5 +186,20 @@ This is a list of pages in the website.
 /images/new
 /images/:id/edit
 /images/:id
+/basket
+/orders/latest_receipt
+/orders/receipts
+/orders/select_payment_method
+/orders/:id/receipt
+/orders
+/orders/new
+/orders/:id/edit
+/coupons
+/coupons/new
+/coupons/:id/edit
+/roles
+/roles/new
+/roles/:id/edit
+/uploads
 /
 </pre>
