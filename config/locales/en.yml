@@ -9,6 +9,7 @@ en:
   category: 'Category'
   coupon: 'Promotion code'
   country: 'Country'
+  delete: 'Delete'
   description: 'Description'
   details: 'Details'
   distance_from_lift: 'Distance from lift'

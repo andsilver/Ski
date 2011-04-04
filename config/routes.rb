@@ -63,6 +63,12 @@ MySkiChalet::Application.routes.draw do
   resources :coupons
   resources :roles
 
+  match "uploads/:filename/delete_file" => "uploads#delete_file", :as => :delete_uploaded_file,
+    :constraints => { :filename => /[^\/]+/ }
+  resources :uploads do
+    delete 'delete_file', :on => :member
+  end
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:

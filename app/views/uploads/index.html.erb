@@ -1,0 +1,20 @@
+<h1>Uploads</h1>
+
+<%= form_tag({:action => :create}, :multipart => true) do %>
+<%= file_field_tag :file %>
+<%= submit_tag 'Upload' %>
+<% end %>
+
+<% if @uploads.empty? %>
+<p>
+  The uploads folder is empty.
+</p>
+<% else %>
+<ul>
+<% @uploads.each do |upload| %>
+  <li><%= upload %> (<%= link_to I18n.t(:delete), delete_uploaded_file_path(upload),
+	 						 :confirm => 'Are you sure?',
+							 :method => :delete %>)</li>
+<% end %>
+</ul>
+<% end %>
