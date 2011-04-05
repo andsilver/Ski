@@ -61,7 +61,7 @@ pre {
   font-size: 1.4em;
 }
 
-p {
+p, div.field {
   margin: 1em 0;
 }
 
@@ -70,6 +70,7 @@ footer[role=contentinfo] {
 }
 
 input[type=email],
+input[type=number],
 input[type=password],
 input[type=text],
 textarea {
@@ -78,6 +79,10 @@ textarea {
   font-family: 'Lucida Sans', Arial, Helvetica, sans-serif;
   font-size: 1em;
   width: 14em;
+}
+
+input[type=number] {
+  width: 7em;
 }
 
 textarea {

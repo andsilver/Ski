@@ -22,6 +22,10 @@ class Property < ActiveRecord::Base
     "#{id}-#{PermalinkFu.escape(name)}-#{PermalinkFu.escape(resort.name)}-#{PermalinkFu.escape(resort.country.name)}"
   end
 
+  def for_rent?
+    !for_sale?
+  end
+
   def price(advert, property_number)
     pp = PropertyPricer.new(:months => advert.months, :property_number => property_number)
     pp.price_in_cents

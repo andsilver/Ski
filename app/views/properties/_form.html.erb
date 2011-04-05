@@ -18,108 +18,110 @@
 <h2>Images</h2>
 <p><%= link_to 'Add or remove images for this property', new_image_path %> (changes made on this page will not be saved)</p>
 <% unless @property.images.empty? %>
-<p>
+<div class="field">
   <%= f.label :image_id, I18n.t('main_image') %><br>
   <%= select("property", "image_id", (@property.images.collect {|i| [ i.filename, i.id ] }).sort, {:prompt => 'Select Image'}) %>
 </p>
 <% end %>
 <% end %>
 <h2><%= I18n.t('details') %></h2>
-<p>
+<div class="field">
   <%= f.label :name, I18n.t('name') %><br>
   <%= f.text_field :name %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :strapline, I18n.t('strapline') %><br>
   <%= f.text_field :strapline %>
-</p>
+</div>
 <% if @current_user.role.flag_new_development? %>
-<p>
+<div class="field">
   <%= f.check_box :new_development %>
   <%= f.label :new_development %>
-</p>
+</div>
 <% end %>
-<p>
+<div class="field">
   <%= f.label :resort_id, I18n.t('resort') %><br>
   <%= select("property", "resort_id", (Resort.all.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :address, I18n.t('address') %><br>
   <%= f.text_field :address %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :postcode, I18n.t('postcode') %><br>
   <%= f.text_field :postcode %>
-</p>
+</div>
 <% if @property.for_sale? %>
-<p>
+<div class="field">
   <%= f.label :sale_price, I18n.t('sale_price') %><br>
   <%= f.text_field :sale_price %> EUR
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :floor_area_metres_2, I18n.t('floor_area') %><br>
-  <%= f.text_field :floor_area_metres_2 %> square metres
-</p>
-<p>
+  <%= f.number_field :floor_area_metres_2, :min => 10, :max => 2500, :step => 10 %> square metres
+</div>
+<div class="field">
   <%= f.label :plot_size_metres_2, I18n.t('plot_size') %><br>
-  <%= f.text_field :plot_size_metres_2 %> square metres
-</p>
-<p>
+  <%= f.number_field :plot_size_metres_2, :min => 10, :max => 5000, :step => 10 %> square metres
+</div>
+<div class="field">
   <%= f.check_box :private_garden %> <%= f.label :private_garden, 'Private garden' %>
-</p>
+</div>
 <% else %>
-<p>
+<div class="field">
   <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price') %><br>
   <%= f.text_field :weekly_rent_price %> EUR
-</p>
-<p>
-  <%= f.label :sleeping_capacity, I18n.t('sleeping_capacity') %><br>
-  <%= f.text_field :sleeping_capacity %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :pets %> <%= f.label :pets, 'Pets allowed' %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :smoking %> <%= f.label :smoking, 'Smoking allowed' %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :tv %> <%= f.label :tv, 'TV' %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :satellite %> <%= f.label :satellite, 'Satellite' %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :wifi %> <%= f.label :wifi, 'WiFi' %>
-</p>
+</div>
 <% end %>
-<p>
+<div class="field">
   <%= f.label :number_of_bedrooms, I18n.t('number_of_bedrooms') %><br>
-  <%= f.text_field :number_of_bedrooms %>
-</p>
-<% if @property.for_sale? %>
-<p>
-  <%= f.label :number_of_bathrooms, I18n.t('number_of_bathrooms') %><br>
-  <%= f.text_field :number_of_bathrooms %>
-</p>
+  <%= select("property", "number_of_bedrooms", ((1..10).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+</div>
+<% if @property.for_rent? %>
+<div class="field">
+  <%= f.label :sleeping_capacity, I18n.t('sleeping_capacity') %><br>
+  <%= select("property", "sleeping_capacity", ((1..30).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+</div>
 <% end %>
-<p>
+<% if @property.for_sale? %>
+<div class="field">
+  <%= f.label :number_of_bathrooms, I18n.t('number_of_bathrooms') %><br>
+  <%= select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+</div>
+<% end %>
+<div class="field">
   <%= f.label :metres_from_lift, I18n.t('distance_from_lift') %><br>
-  <%= f.text_field :metres_from_lift %> metres
-</p>
-<p>
+  <%= f.number_field :metres_from_lift, :range => 50..5000, :step => 50 %> metres
+</div>
+<div class="field">
   <%= f.check_box :disabled %> <%= f.label :disabled, 'Suitable for disabled people' %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :fully_equipped_kitchen %> <%= f.label :fully_equipped_kitchen, 'Fully equipped kitchen' %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :parking %> <%= f.label :parking, 'Parking' %>
-</p>
+</div>
 <div class="field">
   <%= f.label :description, I18n.t('description') %><br>
   <%= f.text_area :description %>
 </div>
-<p>
+<div class="field">
   <%= f.submit I18n.t('save') %>
-</p>
+</div>
 <% end %>
