@@ -12,6 +12,7 @@ class DirectoryAdvertsController < ApplicationController
 
   def show
     @directory_advert = DirectoryAdvert.find(params[:id])
+    @directory_advert.current_advert.record_view
   end
 
   def create

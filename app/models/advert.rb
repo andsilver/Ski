@@ -36,4 +36,9 @@ class Advert < ActiveRecord::Base
     self.expires_at = Time.now + months.months
     save
   end
+
+  def record_view
+    self.views += 1
+    save
+  end
 end

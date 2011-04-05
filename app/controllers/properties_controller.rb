@@ -64,6 +64,7 @@ class PropertiesController < ApplicationController
   def show
     @property = Property.find_by_id(params[:id])
     if @property
+      @property.current_advert.record_view
       @enquiry = Enquiry.new
       @enquiry.property_id = @property.id
       rent_or_sale = @property.for_sale? ? "Sale" : "Rent"

@@ -16,4 +16,8 @@ class DirectoryAdvert < ActiveRecord::Base
   def price(advert, directory_adverts_so_far)
     PRICES[advert.months]
   end
+
+  def current_advert
+    Advert.where("directory_advert_id = ? AND expires_at > ?", id, Time.now).first
+  end
 end
