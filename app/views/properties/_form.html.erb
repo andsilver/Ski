@@ -64,9 +64,6 @@
   <%= f.label :plot_size_metres_2, I18n.t('plot_size') %><br>
   <%= f.number_field :plot_size_metres_2, :min => 10, :max => 5000, :step => 10 %> square metres
 </div>
-<div class="field">
-  <%= f.check_box :private_garden %> <%= f.label :private_garden, 'Private garden' %>
-</div>
 <% else %>
 <div class="field">
   <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price') %><br>
@@ -113,6 +110,12 @@
 </div>
 <div class="field">
   <%= f.check_box :fully_equipped_kitchen %> <%= f.label :fully_equipped_kitchen, 'Fully equipped kitchen' %>
+</div>
+<div class="field">
+  <%= f.check_box :private_garden %> <%= f.label :private_garden, 'Private garden' %>
+</div>
+<div class="field">
+  <%= f.check_box :garage %> <%= f.label :garage, 'Garage' %>
 </div>
 <div class="field">
   <%= f.check_box :parking %> <%= f.label :parking, 'Parking' %>

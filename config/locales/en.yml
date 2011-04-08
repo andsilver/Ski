@@ -37,6 +37,7 @@ en:
     filters:
       disabled: Suitable for disabled people
       fully_equipped_kitchen: Fully equipped kitchen
+      garage: 'Garage'
       parking: Parking
       pets: Pets allowed
       private_garden: 'Private garden'
