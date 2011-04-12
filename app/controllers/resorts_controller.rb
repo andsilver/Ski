@@ -3,7 +3,7 @@ class ResortsController < ApplicationController
   before_filter :find_resort, :only => [:edit, :update, :show, :info, :destroy]
 
   def index
-    @resorts = Resort.all
+    @countries = Country.with_resorts
   end
 
   def new

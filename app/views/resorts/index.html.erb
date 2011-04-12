@@ -2,9 +2,12 @@
 <p>
   <%= link_to 'Add new resort', new_resort_path %>
 </p>
+<% @countries.each do |country| %>
+<h2><%= country.name %></h2>
 <ul>
-<% @resorts.each do |resort| %>
+<% country.resorts.each do |resort| %>
   <li><%= link_to resort.name, edit_resort_path(resort) %> (<%= link_to 'Delete', resort, :confirm => 'Are you sure?', :method => :delete %>)
   </li>
 <% end %>
 </ul>
+<% end %>
