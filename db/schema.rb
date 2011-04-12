@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110404194617) do
+ActiveRecord::Schema.define(:version => 20110412094529) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -185,11 +185,36 @@ ActiveRecord::Schema.define(:version => 20110404194617) do
   add_index "properties", ["user_id"], :name => "index_properties_on_user_id"
 
   create_table "resorts", :force => true do |t|
-    t.integer  "country_id", :default => 0,  :null => false
-    t.string   "name",       :default => "", :null => false
+    t.integer  "country_id",               :default => 0,  :null => false
+    t.string   "name",                     :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "info"
+    t.integer  "altitude_m"
+    t.integer  "top_lift_m"
+    t.integer  "ski_area_km"
+    t.integer  "black"
+    t.integer  "red"
+    t.integer  "blue"
+    t.integer  "green"
+    t.integer  "longest_run_km"
+    t.integer  "drags"
+    t.integer  "chair"
+    t.integer  "gondola"
+    t.integer  "cable_car"
+    t.integer  "funicular"
+    t.integer  "railways"
+    t.string   "slope_direction"
+    t.integer  "snowboard_parks"
+    t.integer  "cross_country_km"
+    t.integer  "mountain_restaurants"
+    t.boolean  "glacier_skiing"
+    t.string   "nearest_airport"
+    t.integer  "distance_from_airport_km"
+    t.boolean  "lively_apres_ski"
+    t.boolean  "good_for_families"
+    t.boolean  "creche"
+    t.boolean  "babysitting_services"
   end
 
   add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"

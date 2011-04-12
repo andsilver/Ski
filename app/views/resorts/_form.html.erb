@@ -11,19 +11,128 @@
 <% end %>
 
 <%= form_for @resort do |f| %>
-<p>
+<div class="field">
   <%= f.label :name, I18n.t('name') %><br>
   <%= f.text_field :name %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :country_id, I18n.t('country') %><br>
   <%= select("resort", "country_id", Country.all.collect {|c| [ c.name, c.id ] }, {:prompt => 'Select Country'}) %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :info %><br>
   <%= f.text_area :info %>
-</p>
-<p>
+</div>
+<div class="field">
+  <%= f.label :altitude_m %><br>
+  <%= f.text_field :altitude_m %>
+</div>
+<div class="field">
+  <%= f.label :top_lift_m %><br>
+  <%= f.text_field :top_lift_m %>
+</div>
+<div class="field">
+  <%= f.label :ski_area_km %><br>
+  <%= f.text_field :ski_area_km %>
+</div>
+<div class="field">
+  <%= f.label :black %><br>
+  <%= f.text_field :black %>
+</div>
+<div class="field">
+  <%= f.label :red %><br>
+  <%= f.text_field :red %>
+</div>
+<div class="field">
+  <%= f.label :blue %><br>
+  <%= f.text_field :blue %>
+</div>
+<div class="field">
+  <%= f.label :green %><br>
+  <%= f.text_field :green %>
+</div>
+<div class="field">
+  <%= f.label :altitude_m %><br>
+  <%= f.text_field :altitude_m %>
+</div>
+<div class="field">
+  <%= f.label :longest_run_km %><br>
+  <%= f.text_field :longest_run_km %>
+</div>
+<div class="field">
+  <%= f.label :drags %><br>
+  <%= f.text_field :drags %>
+</div>
+<div class="field">
+  <%= f.label :chair %><br>
+  <%= f.text_field :chair %>
+</div>
+<div class="field">
+  <%= f.label :gondola %><br>
+  <%= f.text_field :gondola %>
+</div>
+<div class="field">
+  <%= f.label :cable_car %><br>
+  <%= f.text_field :cable_car %>
+</div>
+<div class="field">
+  <%= f.label :funicular %><br>
+  <%= f.text_field :funicular %>
+</div>
+<div class="field">
+  <%= f.label :railways %><br>
+  <%= f.text_field :railways %>
+</div>
+<div class="field">
+  <%= f.label :slope_direction %><br>
+  <%= f.text_field :slope_direction %>
+</div>
+<div class="field">
+  <%= f.label :snowboard_parks %><br>
+  <%= f.text_field :snowboard_parks %>
+</div>
+<div class="field">
+  <%= f.label :cross_country_km %><br>
+  <%= f.text_field :cross_country_km %>
+</div>
+<div class="field">
+  <%= f.label :mountain_restaurants %><br>
+  <%= f.text_field :mountain_restaurants %>
+</div>
+<div class="field">
+  <%= f.label :nearest_airport %><br>
+  <%= f.text_field :nearest_airport %>
+</div>
+<div class="field">
+  <%= f.label :distance_from_airport_km %><br>
+  <%= f.text_field :distance_from_airport_km %>
+</div>
+<div class="field">
+  <%= f.label :glacier_skiing %><br>
+  <%= f.select(:glacier_skiing, [["Yes", true], ["No", false]],
+    {:include_blank => true, :selected => @resort.glacier_skiing.to_s}) %>
+</div>
+<div class="field">
+  <%= f.label :lively_apres_ski %><br>
+  <%= f.select(:lively_apres_ski, [["Yes", true], ["No", false]],
+    {:include_blank => true, :selected => @resort.lively_apres_ski.to_s}) %>
+</div>
+<div class="field">
+  <%= f.label :good_for_families %><br>
+  <%= f.select(:good_for_families, [["Yes", true], ["No", false]],
+    {:include_blank => true, :selected => @resort.good_for_families.to_s}) %>
+</div>
+<div class="field">
+  <%= f.label :creche %><br>
+  <%= f.select(:creche, [["Yes", true], ["No", false]],
+    {:include_blank => true, :selected => @resort.creche.to_s}) %>
+</div>
+<div class="field">
+  <%= f.label :babysitting_services_ %><br>
+  <%= f.select(:babysitting_services, [["Yes", true], ["No", false]],
+    {:include_blank => true, :selected => @resort.babysitting_services.to_s}) %>
+</div>
+<div class="field">
   <%= f.submit I18n.t('save') %>
-</p>
+</div>
 <% end %>
