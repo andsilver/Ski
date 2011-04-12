@@ -8,6 +8,7 @@ class ResortsController < ApplicationController
 
   def new
     @resort = Resort.new
+    @resort.country_id = session[:last_country_id] unless session[:last_country_id].nil?
   end
 
   def create
@@ -15,6 +16,7 @@ class ResortsController < ApplicationController
 
     respond_to do |format|
       if @resort.save
+        session[:last_country_id] = @resort.country_id
         format.html { redirect_to(resorts_path, :notice => 'Resort created.') }
         format.xml  { render :xml => @resort, :status => :created, :location => @resort }
       else
