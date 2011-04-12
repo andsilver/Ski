@@ -72,6 +72,7 @@ MySkiChalet::Application.routes.draw do
   resources :websites
 
   match "pricing" => "home#pricing"
+  match "privacy" => "home#privacy"
   match "terms" => "home#terms"
   root :to => "home#index"
 
