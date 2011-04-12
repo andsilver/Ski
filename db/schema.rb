@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110412094529) do
+ActiveRecord::Schema.define(:version => 20110412162134) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -185,8 +185,8 @@ ActiveRecord::Schema.define(:version => 20110412094529) do
   add_index "properties", ["user_id"], :name => "index_properties_on_user_id"
 
   create_table "resorts", :force => true do |t|
-    t.integer  "country_id",               :default => 0,  :null => false
-    t.string   "name",                     :default => "", :null => false
+    t.integer  "country_id",               :default => 0,     :null => false
+    t.string   "name",                     :default => "",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "info"
@@ -215,9 +215,11 @@ ActiveRecord::Schema.define(:version => 20110412094529) do
     t.boolean  "good_for_families"
     t.boolean  "creche"
     t.boolean  "babysitting_services"
+    t.boolean  "visible",                  :default => false, :null => false
   end
 
   add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"
+  add_index "resorts", ["visible"], :name => "index_resorts_on_visible"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
