@@ -1,5 +1,5 @@
 class Country < ActiveRecord::Base
-  has_many :resorts
+  has_many :resorts, :order => 'name'
 
   scope :with_resorts, where('id IN (SELECT DISTINCT(country_id) FROM resorts)')
 
