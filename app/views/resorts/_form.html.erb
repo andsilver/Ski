@@ -17,7 +17,7 @@
 </div>
 <div class="field">
   <%= f.label :country_id, I18n.t('country') %><br>
-  <%= select("resort", "country_id", Country.all.collect {|c| [ c.name, c.id ] }, {:prompt => 'Select Country'}) %>
+  <%= select("resort", "country_id", Country.all(:order => 'name').collect {|c| [ c.name, c.id ] }, {:prompt => 'Select Country'}) %>
 </div>
 <div class="field">
   <%= f.label :info %><br>
