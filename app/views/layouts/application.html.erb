@@ -44,7 +44,9 @@
 <nav id="browse">
   <ul id="countries">
 <% Country.with_resorts.each do |c| %>
-    <li class="flag_<%= c.iso_3166_1_alpha_2 %>"><a href="<%= country_path(c) %>" onclick="$('resorts_for_<%= c.id %>').show();$('countries').hide();return false"><%= c.name %></a></li>
+    <li><a href="<%= country_path(c) %>"
+       style="background-image: url(/images/flags/<%= c.iso_3166_1_alpha_2.downcase %>.png)"
+       onclick="$('resorts_for_<%= c.id %>').show();$('countries').hide();return false"><%= c.name %></a></li>
 <% end %>
   </ul>
 <% Country.with_resorts.each do |c| %>
