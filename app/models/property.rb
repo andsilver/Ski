@@ -63,7 +63,7 @@ class Property < ActiveRecord::Base
   def geocode
     self.latitude = ''
     self.longitude = ''
-    attempt_geocode(address + ',' + postcode + ',' + resort.name)
+    attempt_geocode(address + ',' + postcode + ',' + resort.name) if PERFORM_GEOCODE
   end
 
   def attempt_geocode a
