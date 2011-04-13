@@ -7,7 +7,8 @@ Feature: Admin Bar
   Scenario: Admin bar shows on the home page
     Given I am signed in as an administrator
     When I am on the home page
-    Then I should see a link to "Coupons"
+    Then I should see a link to "Promotions Codes"
+    And I should see a link to "Countries"
     And I should see a link to "Resorts"
     And I should see a link to "Orders"
     And I should see a link to "Users"

@@ -28,6 +28,7 @@ Feature: My Properties for Rent
     When I fill in the following:
       | Name               | Chalet Des Sapins              |
       | Strapline          | Excellent facilities, sleeps 4 |
+      | Address            | 74400                          |
       | Weekly rent price  | 1650                           |
       | Sleeping capacity  | 4                              |
       | Distance from lift | 1200                           |
@@ -42,9 +43,8 @@ Feature: My Properties for Rent
     And I check "Parking"
     And I press "Save"
     Then my new property for rent has been saved
-    And I should be on the basket page
+    And I should be on the new image page
     And I should see "Your property advert was successfully created."
-    And I should be on the basket page
 
   Scenario: Advertisers see error messages when property details are invalid
     Given I am signed in

@@ -12,10 +12,6 @@ Feature: Tourist
     And I should see "Switzerland"
     But I should not see "United Kingdom"
 
-  Scenario: Countries have flags
-    Given I am on the home page
-    Then I should see the French, Italian, Austrian and Swiss flags
-
   Scenario: Select a country to see a list of resorts
     Given I am on the home page
     When I follow "France"

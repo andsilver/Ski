@@ -29,5 +29,5 @@ Feature: Advertiser Home
   Scenario: Advertisers can go to the My Properties for Rent page
     Given I am signed in as a property owner
     And I am on the advertiser home page
-    When I follow "My Properties for Rent"
+    When I follow "View/Change My Property Rentals"
     Then I should be on the my properties for rent page

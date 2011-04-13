@@ -2,19 +2,23 @@ st_anton:
   id: 1
   country_id: 1 # Austria
   name: St Anton
+  visible: 1
 
 chamonix:
   id: 2
   country_id: 2 # France
   name: Chamonix
   info: "Chamonix, with a population of approximately 10,000"
+  visible: 1
 
 italian_alps:
   id: 3
   country_id: 3 # Italy
   name: Italian Alps
+  visible: 1
 
 davos:
   id: 4
   country_id: 4 # Switzerland
   name: Davos
+  visible: 1
