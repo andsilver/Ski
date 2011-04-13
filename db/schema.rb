@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110412163243) do
+ActiveRecord::Schema.define(:version => 20110413165119) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -147,38 +147,48 @@ ActiveRecord::Schema.define(:version => 20110412163243) do
   add_index "payments", ["order_id"], :name => "index_payments_on_order_id"
 
   create_table "properties", :force => true do |t|
-    t.integer  "user_id",                                   :null => false
-    t.integer  "resort_id",                                 :null => false
-    t.string   "name",                   :default => "",    :null => false
-    t.string   "strapline",              :default => "",    :null => false
-    t.integer  "metres_from_lift",       :default => 0,     :null => false
-    t.integer  "sleeping_capacity",      :default => 0,     :null => false
-    t.integer  "number_of_bedrooms",     :default => 0,     :null => false
-    t.boolean  "new_development",        :default => false, :null => false
-    t.boolean  "for_sale",               :default => false, :null => false
+    t.integer  "user_id",                                        :null => false
+    t.integer  "resort_id",                                      :null => false
+    t.string   "name",                        :default => "",    :null => false
+    t.string   "strapline",                   :default => "",    :null => false
+    t.integer  "metres_from_lift",            :default => 0,     :null => false
+    t.integer  "sleeping_capacity",           :default => 0,     :null => false
+    t.integer  "number_of_bedrooms",          :default => 0,     :null => false
+    t.boolean  "new_development",             :default => false, :null => false
+    t.boolean  "for_sale",                    :default => false, :null => false
     t.integer  "image_id"
-    t.integer  "weekly_rent_price",      :default => 0,     :null => false
-    t.boolean  "fully_equipped_kitchen", :default => false, :null => false
-    t.boolean  "tv",                     :default => false, :null => false
-    t.boolean  "wifi",                   :default => false, :null => false
-    t.boolean  "disabled",               :default => false, :null => false
-    t.boolean  "parking",                :default => false, :null => false
-    t.boolean  "pets",                   :default => false, :null => false
-    t.boolean  "smoking",                :default => false, :null => false
-    t.integer  "sale_price",             :default => 0,     :null => false
-    t.boolean  "garage",                 :default => false, :null => false
-    t.boolean  "private_garden",         :default => false, :null => false
-    t.integer  "floor_area_metres_2",    :default => 0,     :null => false
-    t.integer  "plot_size_metres_2",     :default => 0,     :null => false
+    t.integer  "weekly_rent_price",           :default => 0,     :null => false
+    t.boolean  "fully_equipped_kitchen",      :default => false, :null => false
+    t.integer  "tv",                          :default => 0,     :null => false
+    t.boolean  "wifi",                        :default => false, :null => false
+    t.boolean  "disabled",                    :default => false, :null => false
+    t.integer  "parking",                     :default => 0,     :null => false
+    t.boolean  "pets",                        :default => false, :null => false
+    t.boolean  "smoking",                     :default => false, :null => false
+    t.integer  "sale_price",                  :default => 0,     :null => false
+    t.boolean  "garden",                      :default => false, :null => false
+    t.integer  "floor_area_metres_2",         :default => 0,     :null => false
+    t.integer  "plot_size_metres_2",          :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "satellite",              :default => false, :null => false
     t.text     "description"
-    t.integer  "number_of_bathrooms",    :default => 0,     :null => false
-    t.string   "address",                :default => "",    :null => false
-    t.string   "postcode",               :default => "",    :null => false
-    t.string   "latitude",               :default => "",    :null => false
-    t.string   "longitude",              :default => "",    :null => false
+    t.integer  "number_of_bathrooms",         :default => 0,     :null => false
+    t.string   "address",                     :default => "",    :null => false
+    t.string   "postcode",                    :default => "",    :null => false
+    t.string   "latitude",                    :default => "",    :null => false
+    t.string   "longitude",                   :default => "",    :null => false
+    t.boolean  "long_term_lets_available",    :default => false, :null => false
+    t.boolean  "balcony",                     :default => false, :null => false
+    t.boolean  "mountain_views",              :default => false, :null => false
+    t.boolean  "log_fire",                    :default => false, :null => false
+    t.boolean  "cave",                        :default => false, :null => false
+    t.boolean  "ski_in_ski_out",              :default => false, :null => false
+    t.boolean  "hot_tub",                     :default => false, :null => false
+    t.boolean  "indoor_swimming_pool",        :default => false, :null => false
+    t.boolean  "outdoor_swimming_pool",       :default => false, :null => false
+    t.boolean  "sauna",                       :default => false, :null => false
+    t.integer  "distance_from_town_centre_m", :default => 0,     :null => false
+    t.integer  "accommodation_type",          :default => 0,     :null => false
   end
 
   add_index "properties", ["resort_id"], :name => "index_properties_on_resort_id"
