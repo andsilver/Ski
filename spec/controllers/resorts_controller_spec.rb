@@ -1,27 +1,29 @@
 require 'spec_helper'
 
 describe ResortsController do
+  let(:website) { mock_model(Website).as_null_object }
   let(:resort) { mock_model(Resort).as_null_object }
 
   before do
+    Website.stub(:first).and_return(website)
     controller.stub(:admin?).and_return(true)
   end
 
   describe "GET index" do
-    let(:resorts) { mock(Array) }
+    let(:countries) { mock(Array) }
 
     before do
-      Resort.stub(:all).and_return(resorts)
+      Country.stub(:with_resorts).and_return(countries)
     end
 
-    it "finds all resorts" do
-      Resort.should_receive(:all)
+    it "finds all countries with resorts" do
+      Country.should_receive(:with_resorts)
       get :index
     end
 
-    it "assigns @resorts" do
+    it "assigns @countries" do
       get :index
-      assigns[:resorts].should equal(resorts)
+      assigns[:countries].should equal(countries)
     end
   end
 

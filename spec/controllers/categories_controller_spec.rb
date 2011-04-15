@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe CategoriesController do
+  let(:website) { mock_model(Website).as_null_object }
   let(:category) { mock_model(Category).as_null_object }
   let(:resort) { mock_model(Resort).as_null_object }
 
   before do
+    Website.stub(:first).and_return(website)
     Category.stub(:new).and_return(category)
     Resort.stub(:find).and_return(resort)
     controller.stub(:admin?).and_return(true)

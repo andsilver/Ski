@@ -1,6 +1,8 @@
 class PropertiesController < ApplicationController
   include SpamProtection
 
+  CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.property_id FROM adverts WHERE adverts.property_id=properties.id AND adverts.expires_at > NOW())"]
+
   before_filter :user_required, :except => [:browse_for_rent, :browse_for_sale,
     :new_developments, :contact, :current_time, :show]
   before_filter :find_property_for_user, :only => [:edit, :update, :advertise_now]
@@ -48,7 +50,7 @@ class PropertiesController < ApplicationController
   end
 
   def new_developments
-    @conditions = currently_advertised
+    @conditions = CURRENTLY_ADVERTISED.dup
     @conditions[0] += " AND new_development = 1"
     @properties = Property.paginate(:page => params[:page], :order => 'created_at DESC',
       :conditions => @conditions)
@@ -127,13 +129,9 @@ class PropertiesController < ApplicationController
   end
 
   def resort_conditions
-    @conditions = currently_advertised
+    @conditions = CURRENTLY_ADVERTISED.dup
     @conditions[0] += " AND resort_id = ?"
     @conditions << params[:id]
-  end
-
-  def currently_advertised
-    ["id IN (SELECT adverts.property_id FROM adverts WHERE adverts.property_id=properties.id AND adverts.expires_at > NOW())"]
   end
 
   def filter_conditions

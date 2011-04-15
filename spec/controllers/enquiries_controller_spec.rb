@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe EnquiriesController do
+  let(:website) { mock_model(Website).as_null_object }
+
+  before do
+    Website.stub(:first).and_return(website)
+  end
+
   describe "GET my" do
     context "when signed in" do
       let(:current_user) { mock_model(User).as_null_object }

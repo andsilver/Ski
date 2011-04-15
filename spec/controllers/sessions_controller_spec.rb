@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe SessionsController do
+  let(:website) { mock_model(Website).as_null_object }
+
+  before do
+    Website.stub(:first).and_return(website)
+  end
+
   describe "GET new" do
     it "does nothing" do
     end

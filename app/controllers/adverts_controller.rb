@@ -86,6 +86,8 @@ class AdvertsController < ApplicationController
     end
   end
 
+  protected
+
   def update_durations
     params[:months].each_pair do |id,months|
       months = months.to_i

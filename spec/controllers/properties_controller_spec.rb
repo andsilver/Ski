@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe PropertiesController do
   let(:property) { mock_model(Property).as_null_object }
+  let(:website) { mock_model(Website).as_null_object }
+
+  before do
+    Website.stub(:first).and_return(website)
+  end
 
   describe "GET new_developments" do
     let(:properties) { mock(ActiveRecord::Relation).as_null_object }
@@ -16,7 +21,7 @@ describe PropertiesController do
     end
 
     it "finds new developments" do
-      Property.should_receive(:paginate).with(hash_including(:conditions => {:new_development => true}))
+      Property.should_receive(:paginate).with(hash_including(:conditions => [PropertiesController::CURRENTLY_ADVERTISED[0] + " AND new_development = 1"]))
       get :new_developments
     end
 
@@ -65,9 +70,9 @@ describe PropertiesController do
       property.stub(:user_id).and_return(1)
     end
 
-    it "redirects to the basket" do
+    it "redirects to image uploading form" do
       post :create
-      response.should redirect_to(basket_path)
+      response.should redirect_to(new_image_path)
     end
   end
 
@@ -183,9 +188,20 @@ describe PropertiesController do
           property.stub(:update_attributes).and_return(true)
         end
 
-        it "redirects to my properties for rent page" do
-          put :update, { :id => "1" }
-          response.should redirect_to(my_properties_for_rent_path)
+        context "when updating a property rental" do
+          it "redirects to my properties for rent page" do
+            property.stub(:for_sale?).and_return(false)
+            put :update, { :id => "1" }
+            response.should redirect_to(my_properties_for_rent_path)
+          end
+        end
+
+        context "when updating a property sale" do
+          it "redirects to my properties for rent page" do
+            property.stub(:for_sale?).and_return(true)
+            put :update, { :id => "1" }
+            response.should redirect_to(my_properties_for_sale_path)
+          end
         end
 
         it "sets a flash[:notice] message" do

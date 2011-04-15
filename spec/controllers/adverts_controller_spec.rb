@@ -1,9 +1,11 @@
 require 'spec_helper'
 
 describe AdvertsController do
+  let(:website) { mock_model(Website).as_null_object }
   let(:current_user) { mock_model(User).as_null_object }
 
   before do
+    Website.stub(:first).and_return(website)
     session[:user] = 1
     User.stub(:find_by_id).and_return(current_user)
   end
@@ -21,6 +23,22 @@ describe AdvertsController do
     it "assigns @lines" do
       get :basket
       assigns(:lines).should_not be_nil
+    end
+  end
+
+  describe "POST update_basket_contents" do
+    context "when durations have been updated" do
+      it "updates durations" do
+        controller.should_receive(:update_durations)
+        post :update_basket_contents, :update_durations => "1", :months => {"1" => "1"}
+      end
+    end
+
+    context "when and advert is removed" do
+      it "removes the advert" do
+        controller.should_receive(:remove_advert)
+        post :update_basket_contents, :remove_advert => {"1" => "1"}
+      end
     end
   end
 end
