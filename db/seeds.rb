@@ -265,42 +265,48 @@ admin = Role.create(
   :name => "Administrator",
   :admin => true,
   :select_on_signup => false,
-  :flag_new_development => true
+  :flag_new_development => true,
+  :has_a_website => true
 )
 
 property_owner = Role.create(
   :name => "Property owner",
   :admin => false,
   :select_on_signup => true,
-  :flag_new_development => false
+  :flag_new_development => false,
+  :has_a_website => false
 )
 
 estate_agent = Role.create(
   :name => "Estate agent",
   :admin => false,
   :select_on_signup => true,
-  :flag_new_development => true
+  :flag_new_development => true,
+  :has_a_website => true
 )
 
-property_agent = Role.create(
-  :name => "Property agent",
+letting_agent = Role.create(
+  :name => "Letting agent",
   :admin => false,
   :select_on_signup => true,
-  :flag_new_development => false
+  :flag_new_development => false,
+  :has_a_website => true
 )
 
 property_developer = Role.create(
   :name => "Property developer",
   :admin => false,
   :select_on_signup => true,
-  :flag_new_development => true
+  :flag_new_development => true,
+  :has_a_website => true
 )
 
 other_business = Role.create(
   :name => "Other business",
   :admin => false,
   :select_on_signup => true,
-  :flag_new_development => false
+  :flag_new_development => false,
+  :has_a_website => true
 )
 
 alice = User.create(

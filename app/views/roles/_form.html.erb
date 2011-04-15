@@ -1,24 +1,27 @@
 <%= form_for(@role) do |f| %>
-<p>
+<div class="field">
   <%= f.label :name %><br>
   <%= f.text_field :name %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :admin %> <%= f.label :admin %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :advertises_properties %> <%= f.label :advertises_properties %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :flag_new_development %> <%= f.label :flag_new_development %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :advertises_generally %> <%= f.label :advertises_generally %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.check_box :has_business_details %> <%= f.label :has_business_details %>
-</p>
-<p>
+</div>
+<div class="field">
+  <%= f.check_box :has_a_website %> <%= f.label :has_a_website %>
+</div>
+<div class="field">
   <%= f.submit %>
-</p>
+</div>
 <% end %>
