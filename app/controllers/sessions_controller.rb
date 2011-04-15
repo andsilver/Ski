@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if @current_user
       session[:user] = @current_user.id
       flash[:notice] = 'Welcome back, ' + @current_user.name
-      redirect_to advertiser_home_path
+      redirect_to advertise_path
     else
       redirect_to sign_in_path, :notice => I18n.t('sign_in_invalid')
     end

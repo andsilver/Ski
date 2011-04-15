@@ -30,7 +30,7 @@ Feature: Sign Up
     And I select "United Kingdom" from "Country"
     And I check "I accept the terms & conditions below"
     And I press "Sign Up"
-    Then I should be on the advertiser home page
+    Then I should be on the advertise page
     And I have a new account set up
 
   Scenario: Password should be at least 5 characters long

@@ -12,7 +12,7 @@ MySkiChalet::Application.routes.draw do
   match "sign_up" => "users#new"
   resources :sessions
 
-  match "advertiser_home" => "users#show"
+  match "advertise" => "users#show"
   match "my/details" => "users#edit", :as => :my_details
   resources :users do
     collection do

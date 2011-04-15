@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user] = @user.id
-      redirect_to(advertiser_home_path, :notice => 'Your account was successfully created.')
+      redirect_to(advertise_path, :notice => 'Your account was successfully created.')
     else
       render :action => "new"
     end

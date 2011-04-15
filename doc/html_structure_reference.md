@@ -156,7 +156,7 @@ This is a list of pages in the website.
 /sessions/new
 /sessions/:id/edit
 /sessions/:id
-/advertiser_home
+/advertise
 /my/details
 /users
 /users/new

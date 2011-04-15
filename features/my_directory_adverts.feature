@@ -4,9 +4,9 @@ Feature: My Directory Adverts
   As an advertiser
   I would like to see a list of my directory adverts
 
-  Scenario: I can get to My Directory Adverts from Advertiser Home
+  Scenario: I can get to My Directory Adverts from the Advertise page
     Given I am signed in as an other business
-    And I am on the advertiser home page
+    And I am on the advertise page
     When I follow "My Directory Adverts"
     Then I should be on the my directory adverts page
     And I should see the "My Directory Adverts" heading
