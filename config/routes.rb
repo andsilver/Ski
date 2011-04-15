@@ -14,7 +14,14 @@ MySkiChalet::Application.routes.draw do
 
   match "advertiser_home" => "users#show"
   match "my/details" => "users#edit", :as => :my_details
-  resources :users
+  resources :users do
+    collection do
+      get 'forgot_password'
+      post 'forgot_password_change'
+      get 'forgot_password_new'
+      post 'forgot_password_send'
+    end
+  end
 
   resources :adverts do
     post 'update_basket_contents', :on => :collection

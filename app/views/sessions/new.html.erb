@@ -1,15 +1,18 @@
 <h1><%= I18n.t('sign_in') %></h1>
 
 <%= form_tag :action => 'create' do -%>
-  <p>
+  <div class="field">
     <label for="email"><%= I18n.t('email') %></label><br>
     <%= text_field_tag :email, params[:email] %>
-  </p>
-  <p>
+  </div>
+  <div class="field">
     <label for="password"><%= I18n.t('password') %></label><br>
     <%= password_field_tag :password, params[:password] %>
-  </p>
+  </div>
   <%= submit_tag I18n.t('sign_in') %>
+  <p id="forgot_your_password">
+    <%= link_to 'Forgot your password?', :controller => 'users', :action => 'forgot_password' %>
+  </p>
 <% end -%>
 
 <h2>Don&apos;t have an account yet?</h2>

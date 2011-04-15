@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110413165119) do
+ActiveRecord::Schema.define(:version => 20110415125605) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -244,27 +244,28 @@ ActiveRecord::Schema.define(:version => 20110413165119) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                 :default => "", :null => false
-    t.string   "email",                :default => "", :null => false
+    t.string   "name",                  :default => "", :null => false
+    t.string   "email",                 :default => "", :null => false
     t.string   "encrypted_password"
     t.string   "salt"
-    t.string   "website",              :default => "", :null => false
-    t.text     "description",                          :null => false
-    t.string   "billing_street",                       :null => false
-    t.string   "billing_locality",     :default => "", :null => false
-    t.string   "billing_city",                         :null => false
-    t.string   "billing_county",       :default => "", :null => false
-    t.string   "billing_postcode",     :default => "", :null => false
+    t.string   "website",               :default => "", :null => false
+    t.text     "description",                           :null => false
+    t.string   "billing_street",                        :null => false
+    t.string   "billing_locality",      :default => "", :null => false
+    t.string   "billing_city",                          :null => false
+    t.string   "billing_county",        :default => "", :null => false
+    t.string   "billing_postcode",      :default => "", :null => false
     t.integer  "billing_country_id"
-    t.string   "phone",                :default => "", :null => false
-    t.string   "mobile",               :default => "", :null => false
-    t.string   "business_name",        :default => "", :null => false
-    t.string   "position",             :default => "", :null => false
-    t.boolean  "terms_and_conditions",                 :null => false
+    t.string   "phone",                 :default => "", :null => false
+    t.string   "mobile",                :default => "", :null => false
+    t.string   "business_name",         :default => "", :null => false
+    t.string   "position",              :default => "", :null => false
+    t.boolean  "terms_and_conditions",                  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "role_id",                              :null => false
+    t.integer  "role_id",                               :null => false
     t.integer  "coupon_id"
+    t.string   "forgot_password_token", :default => "", :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

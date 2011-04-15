@@ -49,6 +49,11 @@ class User < ActiveRecord::Base
     encrypted_password == User.encrypt(pass, salt)
   end
 
+  def self.generate_forgot_password_token
+    charset = %w{ 2 3 4 6 7 9 A C D E F G H J K L M N P Q R T V W X Y Z}
+    (0...8).map{ charset.to_a[rand(charset.size)] }.join
+  end
+
   def has_properties_for_rent?
     properties_for_rent.count > 0
   end
