@@ -30,9 +30,9 @@ describe SessionsController do
         flash[:notice].should =~ /Welcome back, /
       end
 
-      it "redirects to the advertiser home page" do
+      it "redirects to the advertise page" do
         post :create
-        response.should redirect_to advertiser_home_path
+        response.should redirect_to advertise_path
       end
     end
 
