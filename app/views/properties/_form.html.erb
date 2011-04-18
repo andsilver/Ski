@@ -31,7 +31,7 @@
 </div>
 <div class="field">
   <%= f.label :strapline, I18n.t('strapline') %><br>
-  <%= f.text_field :strapline %>
+  <%= f.text_area :strapline %>
 </div>
 <% if @current_user.role.flag_new_development? %>
 <div class="field">

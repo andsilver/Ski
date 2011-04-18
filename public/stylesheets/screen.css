@@ -298,6 +298,10 @@ textarea#directory_advert_business_address {
   width: 20em;
 }
 
+textarea#property_strapline {
+  height: 5em;
+}
+
 .km {
   font-size: 0.8em;
   padding-left: 0.2em;
