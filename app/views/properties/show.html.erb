@@ -1,5 +1,5 @@
 <h1 class="property_name"><%= @property.name %></h1>
-
+<p class="property_id">Property ID: <span><%= @property.id %></span></p>
 <p><%= link_to 'Contact Owner', contact_property_path(@property) %></p>
 <% unless @property.strapline.empty? %>
 <h3 class="property_strapline"><%= @property.strapline %></h3>
