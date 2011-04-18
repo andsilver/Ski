@@ -1,10 +1,9 @@
 <h1 class="property_name"><%= @property.name %></h1>
 
+<p><%= link_to 'Contact Owner', contact_property_path(@property) %></p>
 <% unless @property.strapline.empty? %>
 <h3 class="property_strapline"><%= @property.strapline %></h3>
 <% end %>
-
-<%= render 'spam/spam' %>
 
 <% unless @property.image.nil? %>
 <p id="property_main_image">
@@ -58,53 +57,4 @@
   mapOnload();
 </script>
 <div id="map_canvas"></div>
-<% end %>
-
-<h2 id="contact_owner">Contact Owner</h2>
-<% if @enquiry.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@enquiry.errors.count, "error") %> prohibited this enquiry from being sent:</h2>
-
-    <ul>
-    <% @enquiry.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= form_for @enquiry do |f| %>
-<%= f.hidden_field :property_id %>
-
-<span id="current_time">
-  <!-- current time placed here by AJAX request -->
-</span>
-
-<p>
-  <%= f.label :name %><br>
-  <%= f.text_field :name %>
-</p>
-
-<p>
-  <%= f.label :email %><br>
-  <%= f.text_field :email %>
-</p>
-
-<p>
-  <%= f.label :phone %><br>
-  <%= f.text_field :phone %>
-</p>
-
-<p>
-  <%= f.label :postcode, 'ZIP/postcode' %><br>
-  <%= f.text_field :postcode %>
-</p>
-
-<p>
-  <%= f.label :comments %><br>
-  <%= f.text_area :comments %>
-</p>
-
-<%= f.submit 'Send' %>
-
 <% end %>

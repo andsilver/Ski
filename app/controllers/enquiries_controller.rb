@@ -13,7 +13,7 @@ class EnquiriesController < ApplicationController
     @enquiry = Enquiry.new(params[:enquiry])
 
     unless good_token?
-      render 'properties/show'
+      render 'properties/contact'
       return
     end
 
@@ -24,7 +24,7 @@ class EnquiriesController < ApplicationController
       notifier.deliver
       redirect_to @property, :notice => 'Your enquiry has been sent.'
     else
-      render 'properties/show'
+      render 'properties/contact'
       return
     end
   end

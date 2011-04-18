@@ -68,10 +68,18 @@ class PropertiesController < ApplicationController
     @property = Property.find_by_id(params[:id])
     if @property
       @property.current_advert.record_view
-      @enquiry = Enquiry.new
-      @enquiry.property_id = @property.id
       rent_or_sale = @property.for_sale? ? "Sale" : "Rent"
       @page_title = "#{@property.name} - Chalet / Apartment for #{rent_or_sale} in #{@property.resort}, #{@property.resort.country} - MySkiChalet"
+    else
+      not_found
+    end
+  end
+
+  def contact
+    @property = Property.find_by_id(params[:id])
+    if @property
+      @enquiry = Enquiry.new
+      @enquiry.property_id = @property.id
     else
       not_found
     end

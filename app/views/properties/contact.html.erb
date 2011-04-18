@@ -1,0 +1,49 @@
+<%= render 'spam/spam' %>
+<h1><%= link_to @property.name, @property %> &gt; Contact Owner</h1>
+<% if @enquiry.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@enquiry.errors.count, "error") %> prohibited this enquiry from being sent:</h2>
+
+    <ul>
+    <% @enquiry.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @enquiry do |f| %>
+<%= f.hidden_field :property_id %>
+
+<span id="current_time">
+  <!-- current time placed here by AJAX request -->
+</span>
+
+<div class="field">
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</div>
+
+<div class="field">
+  <%= f.label :email %><br>
+  <%= f.text_field :email %>
+</div>
+
+<div class="field">
+  <%= f.label :phone %><br>
+  <%= f.text_field :phone %>
+</div>
+
+<div class="field">
+  <%= f.label :postcode, 'ZIP/postcode' %><br>
+  <%= f.text_field :postcode %>
+</div>
+
+<div class="field">
+  <%= f.label :comments %><br>
+  <%= f.text_area :comments %>
+</div>
+
+<%= f.submit 'Send' %>
+
+<% end %>

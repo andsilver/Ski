@@ -33,6 +33,7 @@ MySkiChalet::Application.routes.draw do
   match "my/properties/for_sale" => "properties#my_for_sale", :as => :my_properties_for_sale
   resources :properties do
     post 'advertise_now', :on => :member
+    get 'contact', :on => :member
     get 'rent', :on => :collection
     get 'sale', :on => :collection
     post 'current_time', :on => :collection
