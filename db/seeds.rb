@@ -298,6 +298,7 @@ property_developer = Role.create(
   :admin => false,
   :select_on_signup => true,
   :flag_new_development => true,
+  :new_development_by_default => true,
   :has_a_website => true
 )
 

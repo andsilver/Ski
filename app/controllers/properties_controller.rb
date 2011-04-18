@@ -58,6 +58,7 @@ class PropertiesController < ApplicationController
 
   def new
     @property = Property.new
+    @property.new_development = @current_user.role.new_development_by_default?
     if params[:for_sale]
       @property.for_sale = true
     end
