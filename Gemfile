@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.6'
+gem 'rails', '3.0.7'
 gem 'mysql2', '0.2.6'
 gem "will_paginate", "~> 3.0.pre2"
 gem 'image_science', '1.2.1'
