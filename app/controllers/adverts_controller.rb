@@ -1,4 +1,5 @@
 class AdvertsController < ApplicationController
+  before_filter :no_browse_menu
   before_filter :user_required
   before_filter :prepare_basket, :only => [:basket, :place_order]
 

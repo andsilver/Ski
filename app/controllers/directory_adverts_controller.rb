@@ -1,4 +1,5 @@
 class DirectoryAdvertsController < ApplicationController
+  before_filter :no_browse_menu
   before_filter :user_required
   before_filter :find_directory_advert_for_current_user, :only => [:edit, :update, :advertise_now]
 

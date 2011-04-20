@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :no_browse_menu
   before_filter :admin_required, :only => [:index]
   before_filter :user_required, :only => [:show, :edit, :update]
   before_filter :find_user, :only => [:forgot_password_new, :forgot_password_change]

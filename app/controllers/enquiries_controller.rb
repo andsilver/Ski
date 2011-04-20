@@ -2,6 +2,7 @@ class EnquiriesController < ApplicationController
   include SpamProtection
 
   before_filter :user_required, :only => [:my]
+  before_filter :no_browse_menu, :only => [:my]
 
   def my
     @enquiries = @current_user.enquiries

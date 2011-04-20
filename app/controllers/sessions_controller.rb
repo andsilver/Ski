@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_filter :no_browse_menu
+
   def new
   end
 
