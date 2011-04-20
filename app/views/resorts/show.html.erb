@@ -1,7 +1,7 @@
 <h1><%= @resort.name %></h1>
 <ul>
   <li><%= link_to 'Properties for Rent in ' + @resort.name, resort_property_rent_path(@resort) %></li>
-  <li>Properties for Sale</li>
-  <li>Directory</li>
-  <li>Resort Info</li>
+  <li><%= link_to 'Properties for Sale in ' + @resort.name, resort_property_sale_path(@resort) %></li>
+  <li><%= link_to 'Directory', resort_categories_path(@resort) %></li>
+  <li><%= link_to 'Resort Info', info_resort_path(@resort) %></li>
 </ul>
