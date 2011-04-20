@@ -9,6 +9,7 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Edit</th>
         <th>Duration</th>
         <th>Price</th>
       </tr>
@@ -17,6 +18,7 @@
     <% @lines.each do |line| %>
       <tr>
         <td><%= line.description %></td>
+        <td><% unless line.coupon %><%= link_to 'Edit', edit_advert_object_path(line.advert) %><% end %></td>
         <td class="numeric">
           <% unless line.coupon %>
           <select name="months[<%= line.advert.id %>]" onchange="this.form.submit()">
