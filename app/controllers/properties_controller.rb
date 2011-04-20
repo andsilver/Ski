@@ -3,6 +3,8 @@ class PropertiesController < ApplicationController
 
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.property_id FROM adverts WHERE adverts.property_id=properties.id AND adverts.expires_at > NOW())"]
 
+  before_filter :no_browse_menu
+
   before_filter :user_required, :except => [:browse_for_rent, :browse_for_sale,
     :new_developments, :contact, :current_time, :show]
   before_filter :find_property_for_user, :only => [:edit, :update, :advertise_now]

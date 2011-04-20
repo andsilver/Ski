@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :admin?, :signed_in?
 
-  before_filter :initialize_website, :initialize_user
+  before_filter :initialize_website, :initialize_user, :page_defaults
 
   protected
 
@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
 
   def initialize_user
     @current_user = User.find_by_id(session[:user])
+  end
+
+  def page_defaults
+    @browse_menu = true
+  end
+
+  def no_browse_menu
+    @browse_menu = false
   end
 
   def user_required
