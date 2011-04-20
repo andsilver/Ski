@@ -11,7 +11,7 @@ class Property < ActiveRecord::Base
   validates_presence_of :address
 
   validates_length_of :name, :within => 5..30
-  validates_length_of :strapline, :within => 0..60
+  validates_length_of :strapline, :within => 0..255
 
   before_save :geocode
 
