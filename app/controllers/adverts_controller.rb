@@ -7,7 +7,7 @@ class AdvertsController < ApplicationController
   end
 
   def update_basket_contents
-    update_durations if params[:update_durations]
+    update_durations unless params[:months].nil?
     remove_advert if params[:remove_advert]
     redirect_to :action => 'place_order' and return if params[:place_order]
     redirect_to basket_path, :notice => 'Basket updated.'
