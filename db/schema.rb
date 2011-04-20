@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418135254) do
+ActiveRecord::Schema.define(:version => 20110420151134) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -278,6 +278,7 @@ ActiveRecord::Schema.define(:version => 20110418135254) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "privacy_policy"
+    t.text     "home_content"
   end
 
 end
