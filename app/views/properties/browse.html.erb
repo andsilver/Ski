@@ -1,4 +1,4 @@
-<h1>Properties for <%= @for_sale ? "Sale" : "Rent" %> in <%= @resort.name %></h1>
+<h1><%= link_to @resort.name, @resort %> &gt; Properties for <%= @for_sale ? "Sale" : "Rent" %> in <%= @resort.name %></h1>
 
 <%= form_tag request.path, :method => 'get' do %>
 <p>

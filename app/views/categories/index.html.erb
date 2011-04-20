@@ -1,4 +1,4 @@
-<h1><%= @resort.name %> Directory</h1>
+<h1><%= link_to @resort.name, @resort %> &gt; Directory</h1>
 <% if admin? %>
 <p>
   <%= link_to 'Add new category', new_resort_category_path(@resort) %>
