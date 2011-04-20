@@ -1,5 +1,3 @@
-<%= render 'users/my_details_summary' %>
-
 <% if @property.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
@@ -14,25 +12,35 @@
 
 <%= form_for @property do |f| %>
 <%= f.hidden_field :for_sale %>
+
+<div id="panel_1">
+
+<div class="group_panel">
+<div class="field">
+  <div class="field_left">
+    <%= f.label :name, I18n.t('name') %>
+  </div>
+  <div class="field_right">
+    <%= f.text_field :name %>
+  </div>
+</div>
+<%= clear %>
+</div>
+
 <% unless @property.new_record? %>
+<div class="group_panel">
 <h2>Images</h2>
 <p><%= link_to 'Add or remove images for this property', new_image_path %> (changes made on this page will not be saved)</p>
 <% unless @property.images.empty? %>
 <div class="field">
   <%= f.label :image_id, I18n.t('main_image') %><br>
   <%= select("property", "image_id", (@property.images.collect {|i| [ i.filename, i.id ] }).sort, {:prompt => 'Select Image'}) %>
-</p>
-<% end %>
-<% end %>
-<h2><%= I18n.t('details') %></h2>
-<div class="field">
-  <%= f.label :name, I18n.t('name') %><br>
-  <%= f.text_field :name %>
 </div>
-<div class="field">
-  <%= f.label :strapline, I18n.t('strapline') %><br>
-  <%= f.text_area :strapline %>
+<% end %>
 </div>
+<% end %>
+
+<div class="group_panel">
 <% if @current_user.role.flag_new_development? %>
 <div class="field">
   <%= f.check_box :new_development %>
@@ -45,70 +53,123 @@
   <%= f.label :long_term_lets_available %>
 </div>
 <% end %>
+</div>
+
+<div class="group_panel">
 <div class="field">
-  <%= f.label :resort_id, I18n.t('resort') %><br>
-  <%= select("property", "resort_id", (Resort.where(:visible => true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
+  <div class="field_left">
+    <%= f.label :resort_id, I18n.t('resort') %>
+  </div>
+  <div class="field_right">
+    <%= select("property", "resort_id", (Resort.where(:visible => true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
+  </div>
 </div>
 <div class="field">
-  <%= f.label :accommodation_type, 'Accommodation type' %><br>
-  <select id="property_accommodation_type" name="property[accommodation_type]">
-    <% [Property::ACCOMMODATION_TYPE_CHALET, Property::ACCOMMODATION_TYPE_APARTMENT].each do |value| %>
-    <option value="<%= value %>"<%= ' selected="selected"' if @property.accommodation_type==value %>><%= Property.accommodation_type_description(value) %></option>
-    <% end %>
-  </select>
+  <div class="field_left">
+    <%= f.label :accommodation_type, 'Accommodation type' %>
+  </div>
+  <div class="field_right">
+    <select id="property_accommodation_type" name="property[accommodation_type]">
+      <% [Property::ACCOMMODATION_TYPE_CHALET, Property::ACCOMMODATION_TYPE_APARTMENT].each do |value| %>
+      <option value="<%= value %>"<%= ' selected="selected"' if @property.accommodation_type==value %>><%= Property.accommodation_type_description(value) %></option>
+      <% end %>
+    </select>
+  </div>
+</div>
+
+<div class="field">
+  <div class="field_left">
+    <%= f.label :distance_from_town_centre_m, 'Distance from town centre' %>
+  </div>
+  <div class="field_right">
+    <%= f.number_field :distance_from_town_centre_m, :range => 50..5000, :step => 50 %> metres
+  </div>
+</div>
+
+<div class="field">
+  <div class="field_left">
+    <%= f.label :metres_from_lift, I18n.t('distance_from_lift') %>
+  </div>
+  <div class="field_right">
+    <%= f.number_field :metres_from_lift, :range => 50..5000, :step => 50 %> metres
+  </div>
 </div>
 <div class="field">
-  <%= f.label :distance_from_town_centre_m, 'Distance from town centre' %><br>
-  <%= f.number_field :distance_from_town_centre_m, :range => 50..5000, :step => 50 %> metres
-</div>
-<div class="field">
-  <%= f.label :metres_from_lift, I18n.t('distance_from_lift') %><br>
-  <%= f.number_field :metres_from_lift, :range => 50..5000, :step => 50 %> metres
-</div>
-<div class="field">
-  <%= f.label :number_of_bedrooms, I18n.t('number_of_bedrooms') %><br>
-  <%= select("property", "number_of_bedrooms", ((1..10).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+  <div class="field_left">
+    <%= f.label :number_of_bedrooms, I18n.t('number_of_bedrooms') %>
+  </div>
+  <div class="field_right">
+    <%= select("property", "number_of_bedrooms", ((1..10).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+  </div>
 </div>
 <% if @property.for_rent? %>
 <div class="field">
-  <%= f.label :sleeping_capacity, I18n.t('sleeping_capacity') %><br>
-  <%= select("property", "sleeping_capacity", ((1..30).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+  <div class="field_left">
+    <%= f.label :sleeping_capacity, I18n.t('sleeping_capacity') %>
+  </div>
+  <div class="field_right">
+    <%= select("property", "sleeping_capacity", ((1..30).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+  </div>
 </div>
 <% end %>
 <div class="field">
-  <%= f.label :number_of_bathrooms, I18n.t('number_of_bathrooms') %><br>
-  <%= select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+  <div class="field_left">
+    <%= f.label :number_of_bathrooms, I18n.t('number_of_bathrooms') %>
+  </div>
+  <div class="field_right">
+    <%= select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+  </div>
 </div>
 <div class="field">
-  <%= f.label :floor_area_metres_2, I18n.t('floor_area') %><br>
-  <%= f.number_field :floor_area_metres_2, :min => 10, :max => 2500, :step => 10 %> square metres
+  <div class="field_left">
+    <%= f.label :floor_area_metres_2, I18n.t('floor_area') %>
+  </div>
+  <div class="field_right">
+    <%= f.number_field :floor_area_metres_2, :min => 10, :max => 2500, :step => 10 %> square metres
+  </div>
 </div>
 <% if @property.for_sale? %>
 <div class="field">
-  <%= f.label :plot_size_metres_2, I18n.t('plot_size') %><br>
-  <%= f.number_field :plot_size_metres_2, :min => 10, :max => 5000, :step => 10 %> square metres
+  <div class="field_left">
+    <%= f.label :plot_size_metres_2, I18n.t('plot_size') %>
+  </div>
+  <div class="field_right">
+    <%= f.number_field :plot_size_metres_2, :min => 10, :max => 5000, :step => 10 %> square metres
+  </div>
 </div>
 <% end %>
-<div class="field">
-  <%= f.label :address, I18n.t('address') %><br>
-  <%= f.text_field :address %>
+<%= clear %>
 </div>
-<div class="field">
-  <%= f.label :postcode, I18n.t('postcode') %><br>
-  <%= f.text_field :postcode %>
-</div>
-<% if @property.for_sale? %>
-<div class="field">
-  <%= f.label :sale_price, I18n.t('sale_price') %><br>
-  <%= f.text_field :sale_price %> EUR
-</div>
-<% end %>
+
+<div class="group_panel">
 <% if @property.for_rent? %>
 <div class="field">
-  <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price') %><br>
-  <%= f.text_field :weekly_rent_price %> EUR
+  <div class="field_left">
+    <%= f.label :tv, 'TV' %>
+  </div>
+  <div class="field_right">
+    <select id="property_tv" name="property[tv]">
+      <% [Property::TV_NO, Property::TV_YES, Property::TV_FREEVIEW, Property::TV_SATELLITE].each do |value| %>
+      <option value="<%= value %>"<%= ' selected="selected"' if @property.tv==value %>><%= Property.tv_description(value) %></option>
+      <% end %>
+    </select>
+  </div>
+</div>
+<div class="field">
+  <div class="field_left">
+    <%= f.label :parking, 'Parking' %>
+  </div>
+  <div class="field_right">
+    <select id="property_parking" name="property[parking]">
+      <% [Property::PARKING_NO, Property::PARKING_ON_STREET, Property::PARKING_OFF_STREET, Property::PARKING_GARAGE].each do |value| %>
+      <option value="<%= value %>"<%= ' selected="selected"' if @property.parking==value %>><%= Property.parking_description(value) %></option>
+      <% end %>
+    </select>
+  </div>
 </div>
 <% end %>
+<table>
+<tr><td>
 <div class="field">
   <%= f.check_box :balcony %> <%= f.label :balcony, 'Balcony' %>
 </div>
@@ -119,14 +180,6 @@
 <div class="field">
   <%= f.check_box :wifi %> <%= f.label :wifi, 'WiFi' %>
 </div>
-<div class="field">
-  <%= f.label :tv, 'TV' %><br>
-  <select id="property_tv" name="property[tv]">
-    <% [Property::TV_NO, Property::TV_YES, Property::TV_FREEVIEW, Property::TV_SATELLITE].each do |value| %>
-    <option value="<%= value %>"<%= ' selected="selected"' if @property.tv==value %>><%= Property.tv_description(value) %></option>
-    <% end %>
-  </select>
-</div>
 <% end %>
 <div class="field">
   <%= f.check_box :log_fire %> <%= f.label :log_fire, 'Log fire' %>
@@ -135,19 +188,13 @@
   <%= f.check_box :fully_equipped_kitchen %> <%= f.label :fully_equipped_kitchen, 'Fully equipped kitchen' %>
 </div>
 <div class="field">
-  <%= f.label :parking, 'Parking' %><br>
-  <select id="property_parking" name="property[parking]">
-    <% [Property::PARKING_NO, Property::PARKING_ON_STREET, Property::PARKING_OFF_STREET, Property::PARKING_GARAGE].each do |value| %>
-    <option value="<%= value %>"<%= ' selected="selected"' if @property.parking==value %>><%= Property.parking_description(value) %></option>
-    <% end %>
-  </select>
-</div>
-<div class="field">
   <%= f.check_box :cave %> <%= f.label :cave, 'Cave' %>
 </div>
 <div class="field">
   <%= f.check_box :ski_in_ski_out %> <%= f.label :ski_in_ski_out, 'Ski in / ski out' %>
 </div>
+</td>
+<td>
 <% if @property.for_rent? %>
 <div class="field">
   <%= f.check_box :pets %> <%= f.label :pets, 'Pets allowed' %>
@@ -174,10 +221,65 @@
 <div class="field">
   <%= f.check_box :sauna %> <%= f.label :sauna, 'Sauna' %>
 </div>
+</td></tr>
+</table>
+</div>
+
+</div><!--#panel_1-->
+
+<div id="panel_2">
+
+<div class="group_panel">
+<% if @property.for_sale? %>
+<div class="field">
+  <div class="field_left">
+    <%= f.label :sale_price, I18n.t('sale_price') %>
+  </div>
+  <div class="field_right">
+    <%= f.text_field :sale_price %> EUR
+  </div>
+</div>
+<% end %>
+<% if @property.for_rent? %>
+<div class="field">
+  <div class="field_left">
+    <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price') %>
+  </div>
+  <div class="field_right">
+    <%= f.text_field :weekly_rent_price %> EUR
+  </div>
+</div>
+<% end %>
+<%= clear %>
+</div>
+
+<div class="group_panel">
+<div class="field">
+  <%= f.label :address, I18n.t('address') %><br>
+  <%= f.text_area :address %>
+</div>
+<div class="field">
+  <%= f.label :postcode, I18n.t('postcode') %><br>
+  <%= f.text_field :postcode %>
+</div>
+</div>
+
+<div class="group_panel">
+<div class="field">
+  <%= f.label :strapline, I18n.t('strapline') %><br>
+  <%= f.text_area :strapline %>
+</div>
+
 <div class="field">
   <%= f.label :description, I18n.t('description') %><br>
   <%= f.text_area :description %>
 </div>
+</div>
+
+</div><!--#panel_2-->
+
+<%= clear %>
+
 <div class="field">
   <%= f.submit I18n.t('save') %>
 </div>

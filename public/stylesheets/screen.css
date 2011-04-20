@@ -37,6 +37,27 @@ body {
   font-size: 1.3em;
 }
 
+td .field {
+  font-size: 1em;
+}
+
+.field {
+  clear: left;
+}
+
+.field_left {
+  float: left;
+  width: 180px;
+  line-height: 25px;
+  height: 30px;
+}
+
+.field_right {
+  width: 250px;
+  float: left;
+  height: 30px;
+}
+
 td {
   vertical-align: top;
 }
@@ -298,8 +319,45 @@ textarea#directory_advert_business_address {
   width: 20em;
 }
 
+input#property_weekly_rent_price, input#property_sale_price {
+  width: 5em;
+}
+
+textarea#property_address {
+  height: 5em;
+}
+
 textarea#property_strapline {
   height: 5em;
+}
+
+textarea#property_description {
+  height: 32em;
+}
+
+#panel_1, #panel_2 {
+  width: 455px;
+  float: left;
+}
+
+#panel_2 {
+  margin-left: 10px;
+}
+
+.group_panel {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  background: #eee;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+}
+
+.group_panel table {
+  width: 100%;
+}
+
+.group_panel table td {
+  width: 50%;
 }
 
 .km {
