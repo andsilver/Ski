@@ -40,4 +40,5 @@ group :test, :development do
   gem "webrat", ">= 0.7.3"
   gem "launchy", ">= 0.3.7"
   gem "rcov"
+  gem "railroad", "0.5.0"
 end

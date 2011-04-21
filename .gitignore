@@ -3,9 +3,11 @@
 *.png
 !public/images/flags/*.png
 *.psd
+*.svg
 config/database.yml
 coverage/*
 db/*.sqlite3
+doc/features.html
 log/*.log
 tmp/*
 webrat.log
