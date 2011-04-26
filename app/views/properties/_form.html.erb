@@ -236,20 +236,18 @@
     <%= f.label :sale_price, I18n.t('sale_price') %>
   </div>
   <div class="field_right">
-    <%= f.text_field :sale_price %> EUR
-  </div>
-</div>
-<% end %>
-<% if @property.for_rent? %>
+    <%= f.text_field :sale_price %>
+<% else %>
 <div class="field">
   <div class="field_left">
     <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price') %>
   </div>
   <div class="field_right">
-    <%= f.text_field :weekly_rent_price %> EUR
+    <%= f.text_field :weekly_rent_price %>
+<% end %>
+  <%= select("property", "currency_id", (Currency.order(:code).all.collect {|c| [ c.code, c.id ] }).sort, {:prompt => 'Select Currency'}) %>
   </div>
 </div>
-<% end %>
 <%= clear %>
 </div>
 

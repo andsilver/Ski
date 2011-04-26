@@ -2,6 +2,7 @@ class Property < ActiveRecord::Base
   belongs_to :user
   belongs_to :resort
   belongs_to :image
+  belongs_to :currency
 
   has_many :images, :dependent => :destroy
   has_many :adverts
@@ -13,10 +14,11 @@ class Property < ActiveRecord::Base
   validates_length_of :name, :within => 5..30
   validates_length_of :strapline, :within => 0..255
 
-  before_save :geocode
+  before_save :geocode, :normalise_prices
 
   cattr_reader :per_page
   @@per_page = 10
+  @@perform_geocode = PERFORM_GEOCODE
 
   ACCOMMODATION_TYPE_CHALET = 0
   ACCOMMODATION_TYPE_APARTMENT = 1
@@ -68,6 +70,14 @@ class Property < ActiveRecord::Base
     Property.tv_description tv
   end
 
+  def self.normalise_prices
+    @@perform_geocode = false
+    Property.all.each do |p|
+      p.save
+    end
+    @@perform_geocode = PERFORM_GEOCODE
+  end
+
   def to_param
     "#{id}-#{PermalinkFu.escape(name)}-#{PermalinkFu.escape(resort.name)}-#{PermalinkFu.escape(resort.country.name)}"
   end
@@ -113,7 +123,7 @@ class Property < ActiveRecord::Base
   def geocode
     self.latitude = ''
     self.longitude = ''
-    attempt_geocode(address + ',' + postcode + ',' + resort.name) if PERFORM_GEOCODE
+    attempt_geocode(address + ',' + postcode + ',' + resort.name) if @@perform_geocode
   end
 
   def attempt_geocode a
@@ -133,5 +143,10 @@ class Property < ActiveRecord::Base
       Rails.logger.info "geocode for #{a} failed; url=#{url}; data=#{data}"
       false
     end
+  end
+
+  def normalise_prices
+    self.normalised_sale_price = sale_price * currency.in_euros
+    self.normalised_weekly_rent_price = weekly_rent_price * currency.in_euros
   end
 end

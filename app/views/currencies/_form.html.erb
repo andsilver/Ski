@@ -1,0 +1,36 @@
+<% if @currency.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@currency.errors.count, "error") %> prohibited this currency from being saved:</h2>
+
+    <ul>
+    <% @currency.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @currency do |f| %>
+<div class="field">
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</div>
+<div class="field">
+  <%= f.label :unit %><br>
+  <%= f.text_field :unit %>
+</div>
+<div class="field">
+  <%= f.check_box :pre %> <%= f.label :pre, 'Unit goes before the number' %>
+</div>
+<div class="field">
+  <%= f.label :code %><br>
+  <%= f.text_field :code %>
+</div>
+<div class="field">
+  <%= f.label :in_euros %><br>
+  <%= f.text_field :in_euros %>
+</div>
+<div class="field">
+  <%= f.submit %>
+</div>
+<% end %>

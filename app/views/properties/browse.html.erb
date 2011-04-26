@@ -5,11 +5,11 @@
   <label for="sort_method">Sort by:</label>
   <select id="sort_method" name="sort_method" onchange="this.form.submit()">
 <% if @for_sale %>
-    <option<%= ' selected' if params[:sort_method]=='sale_price ASC' %> value="sale_price ASC">Price low to high</option>
-    <option<%= ' selected' if params[:sort_method]=='sale_price DESC' %> value="sale_price DESC">Price high to low</option>
+    <option<%= ' selected' if params[:sort_method]=='normalised_sale_price ASC' %> value="normalised_sale_price ASC">Price low to high</option>
+    <option<%= ' selected' if params[:sort_method]=='normalised_sale_price DESC' %> value="normalised_sale_price DESC">Price high to low</option>
 <% else %>
-    <option<%= ' selected' if params[:sort_method]=='weekly_rent_price ASC' %> value="weekly_rent_price ASC">Price low to high</option>
-    <option<%= ' selected' if params[:sort_method]=='weekly_rent_price DESC' %> value="weekly_rent_price DESC">Price high to low</option>
+    <option<%= ' selected' if params[:sort_method]=='normalised_weekly_rent_price ASC' %> value="normalised_weekly_rent_price ASC">Price low to high</option>
+    <option<%= ' selected' if params[:sort_method]=='normalised_weekly_rent_price DESC' %> value="normalised_weekly_rent_price DESC">Price high to low</option>
 <% end %>
     <option<%= ' selected' if params[:sort_method]=='metres_from_lift ASC' %> value="metres_from_lift ASC">Distance from lift</option>
     <option<%= ' selected' if params[:sort_method]=='metres_from_town ASC' %> value="metres_from_town ASC">Distance from town</option>
@@ -62,7 +62,7 @@
         <%= link_to 'Map', property_path(p) + "#map" unless p.latitude.empty? %>
         <%= link_to 'Contact Owner', contact_property_path(p) %>
       </td>
-      <td class="numeric price"><%= @for_sale ? euros(p.sale_price) : euros(p.weekly_rent_price) %></td>
+      <td class="numeric price"><%= @for_sale ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></td>
     </tr>
 <% end %>
   </tbody>

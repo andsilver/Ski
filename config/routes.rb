@@ -69,6 +69,9 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :coupons
+  resources :currencies do
+    get 'update_exchange_rates', :on => :collection
+  end
   resources :roles
 
   match "uploads/:filename/delete_file" => "uploads#delete_file", :as => :delete_uploaded_file,

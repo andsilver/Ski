@@ -23,6 +23,11 @@ module ApplicationHelper
     number_to_currency(number / 100.00, :unit => '€', :precision => 2)
   end
 
+  def format_currency(number, currency)
+    format = currency.pre? ? "%u%n" : "%n %u"
+    number_to_currency(number, :unit => currency.unit, :precision => 0, :format => format)
+  end
+
   def km(metres)
     ((metres / 1000.0).to_s + '<span class="km">km</span>').html_safe
   end

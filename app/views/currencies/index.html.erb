@@ -1,0 +1,33 @@
+<h1>Currencies</h1>
+<p>
+  <%= link_to 'New Currency', new_currency_path %>
+</p>
+<p>
+  <%= link_to 'Update Exchange Rates', update_exchange_rates_currencies_path %>
+</p>
+<% if @currencies.empty? %>
+<p>There are no currencies set up yet.</p>
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Unit</th>
+      <th>Unit before number?</th>
+      <th>Code</th>
+      <th>In Euros</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @currencies.each do |currency| %>
+    <tr>
+      <td><%= link_to currency.name, edit_currency_path(currency) %></td>
+      <td><%= currency.unit %></td>
+      <td><%= tick_cross(currency.pre) %></td>
+      <td><%= currency.code %></td>
+      <td class="numeric"><%= currency.in_euros %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

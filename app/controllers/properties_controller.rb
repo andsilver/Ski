@@ -13,7 +13,7 @@ class PropertiesController < ApplicationController
   before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale]
 
   def browse_for_rent
-    order = selected_order([ "weekly_rent_price ASC", "weekly_rent_price DESC",
+    order = selected_order([ "normalised_weekly_rent_price ASC", "normalised_weekly_rent_price DESC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
     @conditions[0] += " AND for_sale = 0"
 
@@ -28,7 +28,7 @@ class PropertiesController < ApplicationController
   end
 
   def browse_for_sale
-    order = selected_order([ 'sale_price ASC', 'sale_price DESC',
+    order = selected_order([ 'normalised_sale_price ASC', 'normalised_sale_price DESC',
       'metres_from_lift ASC', 'number_of_bathrooms ASC',
       'number_of_bedrooms ASC' ])
     @conditions[0] += " AND for_sale = 1"
