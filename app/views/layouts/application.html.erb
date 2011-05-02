@@ -45,8 +45,8 @@
 <nav id="browse">
 <% if @resort %>
   <ul>
-    <li class="back"><a href="<%= country_path(@resort.country) %>"><%= @resort.country.name %></a></li>
-    <li class="back"><a href="<%= resort_path(@resort) %>"><%= @resort.name %></a></li>
+    <li class="back"><a href="<%= root_path %>"><%= @resort.country.name %></a></li>
+    <li class="back"><a href="<%= country_path(@resort.country) %>"><%= @resort.name %></a></li>
     <li><%= link_to I18n.t('property_rentals'), resort_property_rent_path(@resort) %></li>
     <li><%= link_to I18n.t('property_sales'), resort_property_sale_path(@resort) %></li>
     <li><%= link_to 'Directory', resort_categories_path(@resort) %></li>
@@ -54,7 +54,7 @@
   </ul>
 <% elsif @country %>
   <ul>
-    <li class="back"><a href="<%= country_path(@country) %>"><%= @country.name %></a></li>
+    <li class="back"><a href="<%= root_path %>"><%= @country.name %></a></li>
 <% @country.resorts.each do |r| %>
     <li><%= link_to r.name, r %></li>
 <% end %>
