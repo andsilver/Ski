@@ -99,7 +99,7 @@ class PropertiesController < ApplicationController
   def update
     if @property.update_attributes(params[:property])
       flash[:notice] = "Your property advert details have been saved."
-      redirect_to @property.for_sale? ? my_properties_for_sale_path : my_properties_for_rent_path
+      redirect_to my_adverts_path
     else
       render "edit"
     end

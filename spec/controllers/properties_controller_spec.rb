@@ -178,20 +178,10 @@ describe PropertiesController do
           property.stub(:update_attributes).and_return(true)
         end
 
-        context "when updating a property rental" do
-          it "redirects to my properties for rent page" do
-            property.stub(:for_sale?).and_return(false)
-            put :update, { :id => "1" }
-            response.should redirect_to(my_properties_for_rent_path)
-          end
-        end
-
-        context "when updating a property sale" do
-          it "redirects to my properties for rent page" do
-            property.stub(:for_sale?).and_return(true)
-            put :update, { :id => "1" }
-            response.should redirect_to(my_properties_for_sale_path)
-          end
+        it "redirects to my adverts page" do
+          property.stub(:for_sale?).and_return(false)
+          put :update, { :id => "1" }
+          response.should redirect_to(my_adverts_path)
         end
 
         it "sets a flash[:notice] message" do
