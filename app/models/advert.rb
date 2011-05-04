@@ -5,6 +5,25 @@ class Advert < ActiveRecord::Base
 
   has_one :order_line
 
+  def self.create_for(object)
+    unless basket_contains? object
+      advert = Advert.new_for(object)
+      advert.months = 3
+      advert.save!
+    end
+  end
+
+  def self.basket_contains?(object)
+    object.user.adverts_in_basket.each do |advert|
+      if advert.type == object.class.to_s.underscore.to_sym
+        if advert.object.id == object.id
+          return true
+        end
+      end
+    end
+    false
+  end
+
   def self.new_for(object)
     advert = Advert.new
     advert.send((object.class.to_s.underscore + "_id=").to_sym, object.id)

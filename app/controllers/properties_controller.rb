@@ -88,7 +88,7 @@ class PropertiesController < ApplicationController
     @property.user_id = @current_user.id
 
     if @property.save
-      create_advert
+      Advert.create_for(@property)
       session[:property_id] = @property.id
       redirect_to new_image_path, :notice => "Your property advert was successfully created. Now let's add some photos."
     else
@@ -106,7 +106,7 @@ class PropertiesController < ApplicationController
   end
 
   def advertise_now
-    create_advert
+    Advert.create_for(@property)
     redirect_to(basket_path, :notice => 'Your property advert has been added to your basket.')
   end
 
@@ -115,12 +115,6 @@ class PropertiesController < ApplicationController
   def find_property_for_user
     @property = Property.find_by_id_and_user_id(params[:id], @current_user.id)
     not_found unless @property
-  end
-
-  def create_advert
-    advert = Advert.new_for(@property)
-    advert.months = 3
-    advert.save!
   end
 
   def find_resort
