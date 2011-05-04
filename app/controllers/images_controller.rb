@@ -1,6 +1,8 @@
 # coding: utf-8
 
 class ImagesController < ApplicationController
+  before_filter :no_browse_menu
+
   def index
     @images = @current_user.images
   end
