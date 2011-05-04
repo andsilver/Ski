@@ -32,6 +32,7 @@ en:
   postcode: 'ZIP / postcode'
   pricing: 'Pricing'
   privacy: 'Privacy Policy'
+  property_name: 'Property name'
   property_rentals: 'Property Rentals'
   property_sales: 'Property Sales'
   properties:
