@@ -16,8 +16,6 @@
       <th>ID</th>
       <th><%= I18n.t('resort') %></th>
       <th><%= I18n.t('name') %></th>
-      <th><%= I18n.t('distance_from_lift') %></th>
-      <th><%= I18n.t('sleeping_capacity') %></th>
     </tr>
   </thead>
   <tbody>
@@ -26,8 +24,6 @@
       <td><%= p.id %></td>
       <td><%= p.resort.name %></td>
       <td><%= link_to p.name, edit_property_path(p) %></td>
-      <td class="numeric"><%= km(p.metres_from_lift) %></td>
-      <td class="numeric"><%= p.sleeping_capacity %></td>
       <td>
         <% if p.currently_advertised? %>
         Advert running until <%= p.current_advert.expires_at %>
