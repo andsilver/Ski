@@ -1,3 +1,5 @@
+<%= render :partial => 'shared/steps', :locals => { :step => @user.role ? 2 : 1 } %>
+
 <h1><%= I18n.t('sign_up') %></h1>
 
 <% if @user.role %>

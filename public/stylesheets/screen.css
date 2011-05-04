@@ -473,3 +473,39 @@ p#property_main_image {
 #admin_bar a:hover {
   background: #111;
 }
+
+/**
+ * Steps
+ */
+
+ol#steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#steps li {
+  width: 90px;
+  line-height: 18px;
+  float: left;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  padding: 3px;
+  font-size: 11px;
+}
+
+#steps span {
+  display: block;
+}
+
+.active_step_1 #step_1,
+.active_step_2 #step_2,
+.active_step_3 #step_3,
+.active_step_4 #step_4,
+.active_step_5 #step_5,
+.active_step_6 #step_6,
+.active_step_7 #step_7,
+.active_step_8 #step_8 {
+  font-weight: bold;
+  border: 1px solid #000;
+}
