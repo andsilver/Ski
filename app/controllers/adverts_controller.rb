@@ -3,6 +3,12 @@ class AdvertsController < ApplicationController
   before_filter :user_required
   before_filter :prepare_basket, :only => [:basket, :place_order]
 
+  def my
+    @rentals = @current_user.properties_for_rent
+    @sales = @current_user.properties_for_sale
+    @directory_adverts = @current_user.directory_adverts
+  end
+
   def basket
   end
 

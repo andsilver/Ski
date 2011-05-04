@@ -43,14 +43,6 @@ class PropertiesController < ApplicationController
     render "browse"
   end
 
-  def my_for_rent
-    @properties = @current_user.properties_for_rent
-  end
-
-  def my_for_sale
-    @properties = @current_user.properties_for_sale
-  end
-
   def new_developments
     @conditions = CURRENTLY_ADVERTISED.dup
     @conditions[0] += " AND new_development = 1"

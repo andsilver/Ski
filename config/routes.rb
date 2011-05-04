@@ -27,10 +27,9 @@ MySkiChalet::Application.routes.draw do
     post 'update_basket_contents', :on => :collection
     get 'place_order', :on => :collection
   end
+  match "my/adverts" => "adverts#my", :as => :my_adverts
 
   match "new-developments" => "properties#new_developments", :as => :new_developments
-  match "my/properties/for_rent" => "properties#my_for_rent", :as => :my_properties_for_rent
-  match "my/properties/for_sale" => "properties#my_for_sale", :as => :my_properties_for_sale
   resources :properties do
     post 'advertise_now', :on => :member
     get 'contact', :on => :member
@@ -41,7 +40,6 @@ MySkiChalet::Application.routes.draw do
 
   resources :directory_adverts do
     post 'advertise_now', :on => :member
-    get 'my', :on => :collection
   end
 
   resources :enquiries do

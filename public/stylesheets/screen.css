@@ -156,17 +156,17 @@ td.numeric {
   text-align: right;
 }
 
-table#properties_for_rent {
+table#properties_for_rent, table.grid {
   border-collapse: collapse;
   border: 1px solid #ccc;
   clear: left;
 }
 
-#properties_for_rent td, th {
+#properties_for_rent td, #properties_for_rent th, .grid td, .grid th {
   padding: 0.3em 0.6em;
 }
 
-#properties_for_rent td {
+#properties_for_rent td, .grid td {
   border-top: 1px solid #ccc;
 }
 

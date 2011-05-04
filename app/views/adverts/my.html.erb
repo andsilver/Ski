@@ -1,0 +1,94 @@
+<h1><%= link_to I18n.t('advertise'), advertise_path %> &rarr;
+  <%= I18n.t('my_adverts') %></h1>
+
+<% unless @rentals.empty? %>
+<h2><%= I18n.t('property_rentals') %></h2>
+<table class="grid">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= I18n.t('resort') %></th>
+      <th><%= I18n.t('name') %></th>
+      <th><%= I18n.t('advert_status') %></th>
+    </tr>
+  </thead>
+  <tbody>
+<% @rentals.each do |p| %>
+    <tr>
+      <td class="numeric"><%= p.id %></td>
+      <td><%= p.resort.name %></td>
+      <td><%= link_to p.name, edit_property_path(p) %></td>
+      <td>
+        <% if p.currently_advertised? %>
+        Advert running until <%= p.current_advert.expires_at %>
+        <% else %>
+        <%= form_tag :controller => "properties", :action => "advertise_now", :id => p.id do %>
+        <%= submit_tag "Advertise Now" %>
+        <% end %>
+        <% end %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+<% end %>
+
+<% unless @sales.empty? %>
+<h2><%= I18n.t('property_sales') %></h2>
+<table class="grid">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= I18n.t('resort') %></th>
+      <th><%= I18n.t('name') %></th>
+      <th><%= I18n.t('advert_status') %></th>
+    </tr>
+  </thead>
+  <tbody>
+<% @sales.each do |p| %>
+    <tr>
+      <td class="numeric"><%= p.id %></td>
+      <td><%= p.resort.name %></td>
+      <td><%= link_to p.name, edit_property_path(p) %></td>
+      <td>
+        <% if p.currently_advertised? %>
+        Advert running until <%= p.current_advert.expires_at %>
+        <% else %>
+        <%= form_tag :controller => "properties", :action => "advertise_now", :id => p.id do %>
+        <%= submit_tag "Advertise Now" %>
+        <% end %>
+        <% end %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+<% end %>
+
+<% unless @directory_adverts.empty? %>
+<h2><%= I18n.t(:directory_adverts) %></h2>
+<table class="grid">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= I18n.t('resort') %></th>
+      <th><%= I18n.t('category') %></th>
+      <th><%= I18n.t('name') %></th>
+      <th><%= I18n.t('advert_status') %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @directory_adverts.each do |advert| %>
+    <tr>
+      <td class="numeric"><%= advert.id %></td>
+      <td><%= advert.category.resort %></td>
+      <td><%= advert.category %></td>
+      <td><%= link_to advert.user.business_name, edit_directory_advert_path(advert) %></td>
+      <td><%= form_tag :controller => "directory_adverts", :action => "advertise_now", :id => advert.id do %>
+        <%= submit_tag "Advertise Now" %>
+        <% end %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>

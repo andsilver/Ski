@@ -3,10 +3,6 @@ class DirectoryAdvertsController < ApplicationController
   before_filter :user_required
   before_filter :find_directory_advert_for_current_user, :only => [:edit, :update, :advertise_now]
 
-  def my
-    @directory_adverts = @current_user.directory_adverts
-  end
-
   def new
     @directory_advert = DirectoryAdvert.new
   end
