@@ -95,16 +95,6 @@ describe PropertiesController do
         get :show, :id => "1"
         assigns[:property].should equal(property)
       end
-
-      it "instantiates a new enquiry" do
-        Enquiry.should_receive(:new)
-        get :show, :id => "1"
-      end
-
-      it "assigns @enquiry" do
-        get :show, :id => "1"
-        assigns[:enquiry].should equal(enquiry)
-      end
     end
 
     context "when a property is not found" do
