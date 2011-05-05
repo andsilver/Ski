@@ -1,4 +1,6 @@
 class Property < ActiveRecord::Base
+  include AdvertBehaviours
+
   belongs_to :user
   belongs_to :resort
   belongs_to :image
@@ -110,14 +112,6 @@ class Property < ActiveRecord::Base
       wordcount = 25
       description.split[0..(wordcount-1)].join(" ") + (description.split.size > wordcount ? "…" : "")
     end
-  end
-
-  def current_advert
-    Advert.where("property_id = ? AND expires_at > ?", id, Time.now).first
-  end
-
-  def currently_advertised?
-    !current_advert.nil?
   end
 
   def geocode
