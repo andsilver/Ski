@@ -31,11 +31,12 @@ MySkiChalet::Application.routes.draw do
 
   match "new-developments" => "properties#new_developments", :as => :new_developments
   resources :properties do
-    post 'advertise_now', :on => :member
-    get 'contact', :on => :member
-    get 'rent', :on => :collection
-    get 'sale', :on => :collection
-    post 'current_time', :on => :collection
+    post 'advertise_now',  :on => :member
+    get  'contact',        :on => :member
+    get  'email_a_friend', :on => :member
+    get  'rent',           :on => :collection
+    get  'sale',           :on => :collection
+    post 'current_time',   :on => :collection
   end
 
   resources :directory_adverts do
@@ -46,6 +47,11 @@ MySkiChalet::Application.routes.draw do
     post 'current_time', :on => :collection
     get 'my', :on => :collection
   end
+
+  resources :email_a_friend_form do
+    post 'current_time', :on => :collection
+  end
+  match "email_a_friend_form/1" => "email_a_friend_form#create"
 
   resources :images
 

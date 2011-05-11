@@ -76,6 +76,11 @@ class PropertiesController < ApplicationController
     @enquiry.property_id = @property.id
   end
 
+  def email_a_friend
+    @form = EmailAFriendForm.new
+    @form.property_id = @property.id
+  end
+
   def edit
     session[:property_id] = @property.id
   end

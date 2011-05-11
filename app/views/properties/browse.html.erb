@@ -62,6 +62,7 @@
       </td>
       <td class="numeric price"><%= @for_sale ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></td>
     </tr>
+  <p class="email_a_friend"><%= link_to 'Email a Friend', email_a_friend_property_path(p) %></p>
 <% end %>
   </tbody>
 </table>
