@@ -4,11 +4,7 @@ module AdvertBehaviours
   end
 
   def current_advert
-    Advert.where("#{foreign_key} = ? AND expires_at > ?", id, Time.now).first
-  end
-
-  def foreign_key
-    self.class.to_s + "_id"
+    Advert.where("#{self.class.to_s.foreign_key} = ? AND expires_at > ?", id, Time.now).first
   end
 
   def views
