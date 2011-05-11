@@ -9,7 +9,11 @@ class DirectoryAdvertsController < ApplicationController
 
   def show
     @directory_advert = DirectoryAdvert.find(params[:id])
-    @directory_advert.current_advert.record_view
+    if @directory_advert.current_advert.nil?
+      not_found
+    else
+      @directory_advert.current_advert.record_view
+    end
   end
 
   def create
