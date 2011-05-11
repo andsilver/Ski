@@ -4,6 +4,8 @@ class CategoriesController < ApplicationController
   before_filter :find_resort, :only => [:index, :new]
   before_filter :find_category, :only => [:edit, :update, :show, :destroy]
 
+  CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]
+
   def index
     @categories = @resort.categories
   end
@@ -43,6 +45,12 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @conditions = CURRENTLY_ADVERTISED.dup
+    @conditions[0] += " AND category_id = ?"
+    @conditions << params[:id]
+
+    @directory_adverts = DirectoryAdvert.paginate :page => params[:page], :order => 'RAND()',
+      :conditions => @conditions
   end
 
   def destroy
