@@ -12,6 +12,8 @@ class PropertiesController < ApplicationController
   before_filter :resort_conditions, :only => [:browse_for_rent, :browse_for_sale]
   before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale]
 
+  before_filter :find_property, :only => [:show, :contact, :email_a_friend]
+
   def browse_for_rent
     @heading_a = render_to_string(:partial => 'browse_property_heading')
 
@@ -64,24 +66,14 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.find_by_id(params[:id])
-    if @property
-      @property.current_advert.record_view
-      rent_or_sale = @property.for_sale? ? "Sale" : "Rent"
-      @page_title = "#{@property.name} - Chalet / Apartment for #{rent_or_sale} in #{@property.resort}, #{@property.resort.country} - MySkiChalet"
-    else
-      not_found
-    end
+    @property.current_advert.record_view
+    rent_or_sale = @property.for_sale? ? "Sale" : "Rent"
+    @page_title = "#{@property.name} - Chalet / Apartment for #{rent_or_sale} in #{@property.resort}, #{@property.resort.country} - MySkiChalet"
   end
 
   def contact
-    @property = Property.find_by_id(params[:id])
-    if @property
-      @enquiry = Enquiry.new
-      @enquiry.property_id = @property.id
-    else
-      not_found
-    end
+    @enquiry = Enquiry.new
+    @enquiry.property_id = @property.id
   end
 
   def edit
@@ -116,6 +108,11 @@ class PropertiesController < ApplicationController
   end
 
   protected
+
+  def find_property
+    @property = Property.find_by_id(params[:id])
+    not_found unless @property
+  end
 
   def find_property_for_user
     @property = Property.find_by_id_and_user_id(params[:id], @current_user.id)
