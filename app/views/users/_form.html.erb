@@ -33,11 +33,13 @@
   <%= f.label :mobile %><br>
   <%= f.text_field :mobile %>
 </div>
-<h2>A Bit About <%= @user.role.has_business_details? ? 'Your Business' : 'Yourself' %></h2>
+<% if @user.role.advertises_generally? %>
+<h2>Describe <%= @user.role.has_business_details? ? 'Your Business' : 'Yourself' %></h2>
 <div class="field">
   <%= f.label :description %><br>
   <%= f.text_area :description %>
 </div>
+<% end %>
 <% if @user.role.has_a_website? %>
 <div class="field">
   <%= f.label :website %><br>
