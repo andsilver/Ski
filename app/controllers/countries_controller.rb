@@ -32,6 +32,7 @@ class CountriesController < ApplicationController
   end
 
   def show
+    @heading_a = @country.name
   end
 
   protected

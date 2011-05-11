@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_filter :no_browse_menu
+  before_filter :no_browse_menu, :except => [:index, :show]
   before_filter :admin_required, :except => [:index, :show]
   before_filter :find_resort, :only => [:index, :new]
   before_filter :find_category, :only => [:edit, :update, :show, :destroy]
@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]
 
   def index
+    @heading_a = "Directory for #{@resort.name}, #{@resort.country.name}"
     @categories = @resort.categories
   end
 
@@ -45,6 +46,9 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @heading_a = "#{@category.name} in #{@category.resort.name}, #{@category.resort.country.name}"
+    @resort = @category.resort
+
     @conditions = CURRENTLY_ADVERTISED.dup
     @conditions[0] += " AND category_id = ?"
     @conditions << params[:id]

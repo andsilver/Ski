@@ -19,6 +19,8 @@ en:
   email: 'Email'
   features: 'Features'
   floor_area: 'Floor area'
+  for_rent: 'For Rent'
+  for_sale: 'For Sale'
   main_image: 'Main image'
   my_details_saved: 'Your details have been saved.'
   my_adverts: 'My Adverts'

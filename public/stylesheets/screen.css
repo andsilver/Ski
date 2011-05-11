@@ -28,10 +28,21 @@ body {
   font-family: 'Lucida Sans', Arial, Helvetica, sans-serif;
 }
 
+#logo {
+  margin-left: 4px;
+  margin-top: 35px;
+  margin-bottom: 197px;
+  display: block;
+}
+
+#column_headings {
+  height: 20px;
+  border-bottom: 1px solid #68c8e7;
+}
+
 .browse_menu #content {
-  width: 660px;
+  width: 554px;
   float: left;
-  margin-left: 40px;
 }
 
 .field, li, p, td, th {
@@ -213,29 +224,62 @@ table#properties_for_rent, table.grid {
   padding: 0;
 }
 
+ul#countries {
+  width: 135px;
+}
+
+ul#resorts {
+  width: 195px;
+  background-image: url(/images/resorts-menu-bg.png);
+}
+
+#browse #resorts a:hover {
+  color: #2ab8e3;
+}
+
+ul#countries, ul#resort_options {
+  text-transform: uppercase;
+}
+
+ul#resort_options {
+  width: 110px;
+}
+
+#countries li, #resort_options li {
+  border-bottom: 1px solid #68c8e7;
+}
+
+#browse #countries a:hover, #browse #resort_options a:hover {
+  color: #043d7c;
+}
+
 #browse li {
+  font-size: 1.2em;
   margin: 0;
   padding: 0;
 }
 
 #browse a {
-  font-size: 1.2em;
-  color: #333;
-  background-color: #eee;
   display: block;
-  background-repeat: no-repeat;
-  background-position: 6px center;
-  padding: 4px 28px;
   text-decoration: none;
+  color: #333;
+}
+
+#countries a, #resort_options a {
+  background-color: #fff;
+  background-image: url(/images/countries-menu-bg.png);
+  background-position: right top;
+  background-repeat: repeat-y;
+  padding: 4px 0px 4px 8px;
+}
+
+#resorts a {
+  padding: 2px 0px 2px 12px;
 }
 
 #browse a:hover {
-  background-color: #ccc;
+  background-position: right bottom;
   color: #111;
-}
-
-.back a {
-  background-image: url(/images/back.png);
 }
 
 .pagination {
