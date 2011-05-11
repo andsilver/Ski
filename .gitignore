@@ -1,8 +1,10 @@
 .bundle
+*.gif
 *.jpg
 *.png
 !public/images/flags/*.png
 *.psd
+*.pxm
 *.svg
 config/database.yml
 coverage/*
