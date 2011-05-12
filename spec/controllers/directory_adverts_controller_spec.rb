@@ -10,13 +10,6 @@ describe DirectoryAdvertsController do
     User.stub(:find_by_id).and_return(current_user)
   end
 
-  describe "GET my" do
-    it "finds directory adverts belonging to the current user" do
-      current_user.should_receive(:directory_adverts)
-      get "my"
-    end
-  end
-
   describe "GET new" do
     it "instantiates a new directory advert" do
       DirectoryAdvert.should_receive(:new)
