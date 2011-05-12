@@ -4,28 +4,20 @@ html, body {
 }
 
 body {
-  background-color: #98bae2;
-  background-image: url(/images/sky-gradient.png);
-  background-repeat: repeat-x;
-  padding-top: 20px;
+  background-color: #fff;
   font-size: 62.5%;
   font-family: "anivers-1","anivers-2", 'Lucida Sans', Arial, Helvetica, sans-serif;
 }
 
 #wrapper {
   background: #fff;
-  background-image: url(/images/my-ski-chalet.jpg);
-  background-position: center 20px;
+  background-image: url(/images/ski-group-mountain.jpg);
+  background-position: right top;
   background-repeat: no-repeat;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  width: 920px;
+  width: 996px;
   margin-left: auto;
   margin-right: auto;
-  padding: 240px 20px 20px 20px;
-
   color: #2b1d24;
-  font-family: 'Lucida Sans', Arial, Helvetica, sans-serif;
 }
 
 #logo {
@@ -43,6 +35,16 @@ body {
 .browse_menu #content {
   width: 554px;
   float: left;
+}
+
+#content_with_wide_skyscrapers {
+  width: 330px;
+  float: left;
+}
+
+#wide_skyscrapers {
+  float: right;
+  padding-top: 8px;
 }
 
 .field, li, p, td, th {
@@ -74,12 +76,9 @@ td {
   vertical-align: top;
 }
 
-h1, h2, h3 {
-  color: #7d4116;
-}
-
 h1 {
-  font-size: 1.8em;
+  font-size: 1.4em;
+  text-transform: uppercase;
 }
 
 h2 {
@@ -98,8 +97,18 @@ p, div.field {
   margin: 1em 0;
 }
 
-footer[role=contentinfo] {
+footer {
   clear: left;
+  padding-top: 8px;
+}
+
+footer p {
+  border-top: 1px solid #68c8e7;
+  padding-top: 8px;
+}
+
+footer a {
+  color: #000;
 }
 
 input[type=email],
@@ -132,27 +141,40 @@ textarea {
   -webkit-border-radius: 5px;
 }
 
-#main_menu ul {
-  margin: 0 0 20px 0;
-  padding: 0;
-  list-style: none;
-  height: 30px;
-  padding: 1px;
-  background: #111;
+#property {
+  width: 720px;
 }
 
-#main_menu li {
-  font-size: 1.8em;
-  float: left;
-  margin-right: 1px;
+#features {
+  border-top: 1px solid #00aeef;
+  border-bottom: 1px solid #00aeef;
+  background-image: url(/images/features-bg.png);
+  padding: 12px 0;
 }
 
-#main_menu a {
-  display: block;
-  line-height: 30px;
-  padding: 0 20px;
-  color: #fff;
-  background: #222;
+h1.property_name {
+  font-weight: normal;
+  text-transform: none;
+  font-size: 1.6em;
+}
+
+.property_name span {
+  color: #00aeef;
+}
+
+.property_summary {
+  width: 322px;
+  background-image: url(/images/property-summary-bg.png);
+  border-bottom: 1px solid #68c8e7;
+  padding: 6px 8px 0 0;
+}
+
+.property_summary h3 {
+  margin-top: 0;
+}
+
+.property_summary h3 a {
+  color: #00aeef;
   text-decoration: none;
 }
 
@@ -168,38 +190,18 @@ td.numeric {
   text-align: right;
 }
 
-table#properties_for_rent, table.grid {
+table.grid {
   border-collapse: collapse;
   border: 1px solid #ccc;
   clear: left;
 }
 
-#properties_for_rent td, #properties_for_rent th, .grid td, .grid th {
+.grid td, .grid th {
   padding: 0.3em 0.6em;
 }
 
-#properties_for_rent td, .grid td {
+.grid td {
   border-top: 1px solid #ccc;
-}
-
-#properties_for_rent th {
-  width: 100px;
-}
-
-#properties_for_rent th+th {
-  width: 12em;
-}
-
-#properties_for_rent th+th+th {
-  width: 12em;
-}
-
-#properties_for_rent th+th+th {
-  width: 5em;
-}
-
-#properties_for_rent td.features {
-  border: none;
 }
 
 .filter {
@@ -215,10 +217,11 @@ table#properties_for_rent, table.grid {
 
 #browse {
   float: left;
-  width: 200px;
+  width: 440px;
 }
 
 #browse ul {
+  float: left;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -482,41 +485,36 @@ p#property_main_image {
 
 #admin_bar {
   height: 24px;
-  position: fixed;
-  top: 0;
-  width: 100%;
+  width: 996px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #333;
 }
 
 #admin_bar ul {
   margin: 0;
-  padding: 0;
+  padding: 3px 0;
 }
 
 #admin_bar li {
   list-style: none;
   float: left;
-  margin: 5px 0 0 5px;
+  font-size: 1.1em;
+  text-transform: uppercase;
 }
 
 #admin_bar a {
   display: block;
   background: #333;
   color: #fff;
-  height: 24px;
-  line-height: 24px;
-  padding: 0 10px;
-  font-family: sans-serif;
+  line-height: 18px;
+  padding: 0 12px;
+  border-right: 1px solid #fff;
   text-decoration: none;
-  border: 1px solid #000;
-  filter:alpha(opacity=90);
-  opacity:0.9;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
 }
 
 #admin_bar a:hover {
-  background: #111;
+  text-decoration: underline;
 }
 
 /**

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My Ski Chalet</title>
+  <script src="http://use.typekit.com/lxc8myw.js"></script>
+  <script>try{Typekit.load();}catch(e){}</script>
+<link rel="stylesheet" href="/stylesheets/main_menu.css">
+<style>
+#main_menu {
+  background-image: url(/images/home-menu-bg.jpg);
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fff;
+  font-size: 62.5%;
+  font-family: "anivers-1","anivers-2", 'Lucida Sans', Arial, Helvetica, sans-serif;  
+}
+
+#wrapper {
+  width: 996px;
+  height: 700px;
+  background-image: url(/images/skier.jpg);
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  position: relative;
+  border-bottom: 1px solid #00aeef;
+}
+
+#logo {
+  margin-left: 4px;
+  margin-top: 35px;
+  margin-bottom: 197px;
+  display: block;
+}
+
+h1 {
+  color: #00529c;
+  font-size: 4em;
+  font-weight: normal;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+p#intro {
+  position: absolute;
+  top: 160px;
+  left: 4px;
+  width: 330px;
+  font-size: 1.5em;
+  line-height: 1.4em;
+}
+
+.stage p {
+  font-size: 2em;
+  color: #00aeef;
+  text-transform: uppercase;
+}
+
+.stage {
+  position: absolute;
+  height: 150px;
+  padding-top: 200px;
+  bottom: 10px;
+  z-index: 0;
+}
+
+#stage_1 {
+  width: 270px;
+  border-right: 1px solid #918f90;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
+#stage_2 {
+  left: 320px;
+  width: 320px;
+  border-right: 1px solid #918f90;
+  padding-right: 20px;
+}
+
+#stage_3 {
+  left: 680px;
+  width: 270px;
+}
+
+#start_here {
+  position: absolute;
+  z-index: 1;
+  top: 340px;
+  left: 8px;
+}
+
+</style>
+</head>
+<body>
+<div id="wrapper">
+  <%= render "shared/main_menu" %>
+  <a href="/start" title="Home" id="logo"><img src="/images/my-ski-chalet-logo.png" alt="My Ski Chalet"></a>
+  <p id="intro">
+Welcome to MySkiChalet.co.uk, the holiday portal where you can rent or buy your holiday home either direct from the property owner or through one of our member companies, making choosing your ski holiday property simpler and faster, without having to waste your valuable time searching through dozens of websites.
+  </p>
+  <a href="/start" id="start_here"><img src="/images/start-here.png" alt="[Start Here]" title="[Start Here]"></a>
+  <div id="stage_1" class="stage">
+    <h1>Stage 1:</h1>
+    <p>Choose from our vast array of European countries and destinations</p>
+  </div>
+  <div id="stage_2" class="stage">
+    <h1>Stage 2:</h1>
+    <p>
+      Details on properties for sale or rent, including key resort
+      information and useful site directories
+    </p>
+  </div>
+  <div id="stage_3" class="stage">
+    <h1>Stage 3:</h1>
+    <p>
+      Simply find &amp; select your chosen property and enquire for further details
+    </p>
+  </div>
+</div>
+</body>
+</html>
