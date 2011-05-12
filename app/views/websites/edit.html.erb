@@ -13,19 +13,19 @@
 <%= form_for @website do |f| %>
 <p>
   <%= f.label :home_content %><br>
-  <%= f.text_area :home_content %>
+  <%= f.text_area :home_content, :class => 'ckeditor' %>
 </p>
 <p>
   <%= f.label :terms %><br>
-  <%= f.text_area :terms %>
+  <%= f.text_area :terms, :class => 'ckeditor' %>
 </p>
 <p>
   <%= f.label :pricing_info %><br>
-  <%= f.text_area :pricing_info %>
+  <%= f.text_area :pricing_info, :class => 'ckeditor' %>
 </p>
 <p>
   <%= f.label :privacy_policy %><br>
-  <%= f.text_area :privacy_policy %>
+  <%= f.text_area :privacy_policy, :class => 'ckeditor' %>
 </p>
 <p>
   <%= f.submit %>
