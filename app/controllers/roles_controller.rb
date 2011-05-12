@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-  before_filter :admin_required
+  before_filter :admin_required, :except => [:sales_pitch]
   before_filter :find_role, :only => [:edit, :update]
   before_filter :no_browse_menu
 
