@@ -1,6 +1,6 @@
 class PropertyBasePricesController < ApplicationController
   before_filter :admin_required
-  before_filter :find_property_base_price, :only => [:edit, :update]
+  before_filter :find_property_base_price, :only => [:edit, :update, :destroy]
 
   def index
     @property_base_prices = PropertyBasePrice.all(:order => :number_of_months)
@@ -29,6 +29,11 @@ class PropertyBasePricesController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def destroy
+    @property_base_price.destroy
+    redirect_to(property_base_prices_path, :notice => 'Property base price deleted.')
   end
 
   protected

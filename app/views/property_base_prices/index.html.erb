@@ -10,6 +10,7 @@
     <tr>
       <th>Number of Months</th>
       <th>Price</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,7 @@
     <tr>
       <td class="numeric"><%= link_to property_base_price.number_of_months, edit_property_base_price_path(property_base_price) %></td>
       <td class="numeric price"><%= property_base_price.price %> EUR</td>
+      <td><%= link_to 'Delete', property_base_price, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
     <% end %>
   </tbody>
