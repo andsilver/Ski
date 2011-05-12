@@ -1,0 +1,24 @@
+<h1>Property Volume Discounts</h1>
+<p>
+  <%= link_to 'New Property Volume Discount', new_property_volume_discount_path %>
+</p>
+<% if @property_volume_discounts.empty? %>
+<p>There are no property volume discounts set up yet.</p>
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>Current Property Number</th>
+      <th>Discount Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @property_volume_discounts.each do |property_volume_discount| %>
+    <tr>
+      <td class="numeric"><%= link_to property_volume_discount.current_property_number, edit_property_volume_discount_path(property_volume_discount) %></td>
+      <td class="numeric price"><%= property_volume_discount.discount_percentage %>%</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

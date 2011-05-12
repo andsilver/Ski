@@ -1,0 +1,25 @@
+<% if @property_volume_discount.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@property_volume_discount.errors.count, "error") %> prohibited this property volume discount from being saved:</h2>
+
+    <ul>
+    <% @property_volume_discount.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @property_volume_discount do |f| %>
+<div class="field">
+  <%= f.label :current_property_number %><br>
+  <%= f.text_field :current_property_number %>
+</div>
+<div class="field">
+  <%= f.label :discount_percentage %><br>
+  <%= f.text_field :discount_percentage %> %
+</div>
+<div class="field">
+  <%= f.submit %>
+</div>
+<% end %>

@@ -40,6 +40,7 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :property_base_prices
+  resources :property_volume_discounts
 
   resources :directory_adverts do
     post 'advertise_now', :on => :member

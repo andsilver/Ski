@@ -1,9 +1,6 @@
 class PropertyPricer
   attr_accessor :property_number
 
-  VOLUME_DISCOUNTS = { 1 => 0, 3 => 5, 11 => 7, 21 => 10, 31 => 15,
-    51 => 20, 101 => 25, 201 => 30, 301 => 35 }
-
   def initialize opts
     unless opts.include?(:property_number) && opts.include?(:months)
       raise ArgumentError.new("Options should include both :property_number and :months")
@@ -20,8 +17,8 @@ class PropertyPricer
   def volume_discount
     percentage_off = 0
 
-    VOLUME_DISCOUNTS.each_pair do |threshold, p_o|
-      percentage_off = p_o if @property_number >= threshold && p_o > percentage_off
+    PropertyVolumeDiscount.order(:current_property_number).all.each do |pvd|
+      percentage_off = pvd.discount_percentage if @property_number >= pvd.current_property_number
     end
 
     percentage_off

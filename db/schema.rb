@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110426115820) do
+ActiveRecord::Schema.define(:version => 20110511185324) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -210,6 +210,13 @@ ActiveRecord::Schema.define(:version => 20110426115820) do
   create_table "property_base_prices", :force => true do |t|
     t.integer  "number_of_months", :default => 0, :null => false
     t.integer  "price",            :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "property_volume_discounts", :force => true do |t|
+    t.integer  "current_property_number", :default => 0, :null => false
+    t.integer  "discount_percentage",     :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
