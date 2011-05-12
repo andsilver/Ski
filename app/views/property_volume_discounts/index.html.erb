@@ -10,6 +10,7 @@
     <tr>
       <th>Current Property Number</th>
       <th>Discount Percentage</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,7 @@
     <tr>
       <td class="numeric"><%= link_to property_volume_discount.current_property_number, edit_property_volume_discount_path(property_volume_discount) %></td>
       <td class="numeric price"><%= property_volume_discount.discount_percentage %>%</td>
+      <td><%= link_to 'Delete', property_volume_discount, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
     <% end %>
   </tbody>

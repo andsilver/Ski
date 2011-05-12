@@ -1,6 +1,6 @@
 class PropertyVolumeDiscountsController < ApplicationController
   before_filter :admin_required
-  before_filter :find_property_volume_discounts, :only => [:edit, :update]
+  before_filter :find_property_volume_discount, :only => [:edit, :update, :destroy]
 
   def index
     @property_volume_discounts = PropertyVolumeDiscount.all(:order => :current_property_number)
@@ -29,6 +29,11 @@ class PropertyVolumeDiscountsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def destroy
+    @property_volume_discount.destroy
+    redirect_to(property_volume_discounts_path, :notice => 'Property volume discount deleted.')
   end
 
   protected
