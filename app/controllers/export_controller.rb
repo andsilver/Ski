@@ -3,7 +3,8 @@ class ExportController < ApplicationController
   before_filter :no_browse_menu
 
   CLASSES = %w{Advert Category Country Coupon Currency DirectoryAdvert
-    Enquiry Image Order OrderLine Payment Property Resort Role User Website}
+    Enquiry Image Order OrderLine Payment Property PropertyBasePrice
+    PropertyVolumeDiscount Resort Role User Website}
 
   def index
     @classes = CLASSES
