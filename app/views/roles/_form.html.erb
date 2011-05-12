@@ -25,6 +25,10 @@
   <%= f.check_box :has_a_website %> <%= f.label :has_a_website %>
 </div>
 <div class="field">
+  <%= f.label :sales_pitch %><br>
+  <%= f.text_area :sales_pitch, :class => "ckeditor" %>
+</div>
+<div class="field">
   <%= f.submit %>
 </div>
 <% end %>

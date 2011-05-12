@@ -1,6 +1,7 @@
 class RolesController < ApplicationController
   before_filter :admin_required
   before_filter :find_role, :only => [:edit, :update]
+  before_filter :no_browse_menu
 
   def index
     @roles = Role.all
@@ -15,6 +16,11 @@ class RolesController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def sales_pitch
+    @role = Role.find_by_name(params[:role].gsub('-', ' '))
+    not_found unless @role
   end
 
   protected

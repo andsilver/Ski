@@ -79,7 +79,11 @@ MySkiChalet::Application.routes.draw do
   resources :currencies do
     get 'update_exchange_rates', :on => :collection
   end
-  resources :roles
+
+  resources :roles do
+    get 'sales_pitch', :on => :member
+  end
+  match "welcome/:role" => "roles#sales_pitch", :as => :sales_pitch
 
   match "uploads/:filename/delete_file" => "uploads#delete_file", :as => :delete_uploaded_file,
     :constraints => { :filename => /[^\/]+/ }

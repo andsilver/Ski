@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110511185324) do
+ActiveRecord::Schema.define(:version => 20110512161621) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -270,6 +270,7 @@ ActiveRecord::Schema.define(:version => 20110511185324) do
     t.boolean  "has_business_details",       :default => false, :null => false
     t.boolean  "has_a_website",              :default => false, :null => false
     t.boolean  "new_development_by_default", :default => false, :null => false
+    t.text     "sales_pitch"
   end
 
   create_table "users", :force => true do |t|
