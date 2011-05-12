@@ -1,7 +1,6 @@
 class PropertyPricer
   attr_accessor :property_number
 
-  BASE_PRICES = { 1 => 15, 3 => 40, 6 => 75, 9 => 80, 12 => 99 }
   VOLUME_DISCOUNTS = { 1 => 0, 3 => 5, 11 => 7, 21 => 10, 31 => 15,
     51 => 20, 101 => 25, 201 => 30, 301 => 35 }
 
@@ -15,7 +14,7 @@ class PropertyPricer
   end
 
   def price_in_cents
-    base_price = BASE_PRICES[@months] * (100 - volume_discount)
+    PropertyBasePrice.find_by_number_of_months(@months).price * (100 - volume_discount)
   end
 
   def volume_discount

@@ -39,6 +39,8 @@ MySkiChalet::Application.routes.draw do
     post 'current_time',   :on => :collection
   end
 
+  resources :property_base_prices
+
   resources :directory_adverts do
     post 'advertise_now', :on => :member
   end

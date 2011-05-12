@@ -207,6 +207,13 @@ ActiveRecord::Schema.define(:version => 20110426115820) do
   add_index "properties", ["resort_id"], :name => "index_properties_on_resort_id"
   add_index "properties", ["user_id"], :name => "index_properties_on_user_id"
 
+  create_table "property_base_prices", :force => true do |t|
+    t.integer  "number_of_months", :default => 0, :null => false
+    t.integer  "price",            :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "resorts", :force => true do |t|
     t.integer  "country_id",               :default => 0,     :null => false
     t.string   "name",                     :default => "",    :null => false

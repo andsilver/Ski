@@ -1,0 +1,25 @@
+<% if @property_base_price.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@property_base_price.errors.count, "error") %> prohibited this property base price from being saved:</h2>
+
+    <ul>
+    <% @property_base_price.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @property_base_price do |f| %>
+<div class="field">
+  <%= f.label :number_of_months %><br>
+  <%= f.text_field :number_of_months %>
+</div>
+<div class="field">
+  <%= f.label :price %><br>
+  <%= f.text_field :price %> EUR
+</div>
+<div class="field">
+  <%= f.submit %>
+</div>
+<% end %>

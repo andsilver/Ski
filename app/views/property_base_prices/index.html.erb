@@ -1,0 +1,24 @@
+<h1>Property Base Prices</h1>
+<p>
+  <%= link_to 'New Property Base Price', new_property_base_price_path %>
+</p>
+<% if @property_base_prices.empty? %>
+<p>There are no property base prices set up yet.</p>
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>Number of Months</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @property_base_prices.each do |property_base_price| %>
+    <tr>
+      <td class="numeric"><%= link_to property_base_price.number_of_months, edit_property_base_price_path(property_base_price) %></td>
+      <td class="numeric price"><%= property_base_price.price %> EUR</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
