@@ -237,7 +237,7 @@ ul#resorts {
   background-image: url(/images/resorts-menu-bg.png);
 }
 
-#browse #resorts a:hover {
+#browse #resorts a:hover, #browse #resorts .selected a {
   color: #2ab8e3;
 }
 
@@ -253,7 +253,7 @@ ul#resort_options {
   border-bottom: 1px solid #68c8e7;
 }
 
-#browse #countries a:hover, #browse #resort_options a:hover {
+#browse #countries a:hover, #browse #countries .selected a, #browse #resort_options a:hover {
   color: #043d7c;
 }
 
@@ -281,7 +281,7 @@ ul#resort_options {
   padding: 2px 0px 2px 12px;
 }
 
-#browse a:hover {
+#browse a:hover, #browse .selected a {
   background-position: right bottom;
   color: #111;
 }
