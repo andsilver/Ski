@@ -1,4 +1,5 @@
 <%= form_tag request.path, :method => 'get' do %>
+<div id="search_options">
 <p>
   <label for="sort_method">Sort by:</label>
   <select id="sort_method" name="sort_method" onchange="this.form.submit()">
@@ -21,6 +22,7 @@
   <br>
   <%= raw property_search_filters @search_filters %>
 </p>
+</div>
 <% end %>
 
 <% if @properties.empty? %>

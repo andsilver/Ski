@@ -166,8 +166,10 @@ h1.property_name {
 .property_summary {
   width: 322px;
   background-image: url(/images/property-summary-bg.png);
+  background-position: right top;
+  background-repeat: repeat-y;
   border-bottom: 1px solid #68c8e7;
-  padding: 6px 8px 0 0;
+  padding: 6px 8px 0 12px;
 }
 
 .property_summary h3 {
@@ -205,13 +207,20 @@ table.grid {
   border-top: 1px solid #ccc;
 }
 
+#search_options {
+  position: absolute;
+  left: 4px;
+  top: 160px;
+  width: 350px;
+}
+
 .filter {
   background: #eee;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  padding: 4px 10px 4px 6px;
-  margin: 4px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  padding: 2px 5px 2px 3px;
+  margin: 3px;
   display: block;
   float: left;
 }
