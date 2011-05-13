@@ -1,5 +1,6 @@
 class WebsitesController < ApplicationController
   before_filter :admin_required
+  before_filter :no_browse_menu
   before_filter :find_website, :only => [:edit, :update]
 
   def edit
