@@ -11,15 +11,15 @@
 <% end %>
 
 <%= form_for @country do |f| %>
-<p>
+<div class="field">
   <%= f.label :name %><br>
   <%= f.text_field :name %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :iso_3166_1_alpha_2, 'ISO 3166-1 Alpha 2' %><br>
   <%= f.text_field :iso_3166_1_alpha_2 %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.submit %>
-</p>
+</div>
 <% end %>
