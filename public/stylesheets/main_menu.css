@@ -57,3 +57,19 @@
   text-decoration: underline;
   opacity: 1;
 }
+
+.count {
+  color: #fff;
+  background: #f00;
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  padding: 3px 6px;
+  height: 18px;
+  font-size: 11px;
+  position: relative;
+  vertical-align: baseline;
+  top: -2px;
+  line-height: 1px;
+  font-weight: bold;
+}
