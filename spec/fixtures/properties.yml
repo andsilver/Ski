@@ -8,6 +8,7 @@ alpen_lounge:
   number_of_bedrooms: 3
   for_sale: 0
   weekly_rent_price: 1200
+  currency_id: 1 # Euros
   description: "The Alpen Lounge is a 100 square meter self catering chalet."
 
 chalet_alaska:
@@ -18,3 +19,4 @@ chalet_alaska:
   number_of_bedrooms: 4
   for_sale: 1
   sale_price: 195000
+  currency_id: 1 # Euros

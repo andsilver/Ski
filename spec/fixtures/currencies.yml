@@ -1,0 +1,7 @@
+euros:
+  id: 1
+  name: Euros
+  unit: €
+  pre: true
+  code: EUR
+  in_euros: 1
