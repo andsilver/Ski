@@ -7,6 +7,20 @@ class RolesController < ApplicationController
     @roles = Role.all
   end
 
+  def new
+    @role = Role.new
+  end
+
+  def create
+    @role = Role.new(params[:role])
+
+    if @role.save
+      redirect_to(roles_path, :notice => 'Role created.')
+    else
+      render "new"
+    end
+  end
+
   def edit
   end
 

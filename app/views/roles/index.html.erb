@@ -1,4 +1,7 @@
-<h1>Roles</h1>
+<h1><%= link_to 'CMS', cms_path %> &rarr; Roles</h1>
+<p>
+  <%= link_to 'Add new role', new_role_path %>
+</p>
 <ul>
 <% @roles.each do |role| %>
   <li><%= link_to role.name, edit_role_path(role) %></li>
