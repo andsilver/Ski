@@ -26,8 +26,8 @@ Feature: Advertise
     When I follow "My Details"
     Then I should see the "My Details" heading
 
-  Scenario: Advertisers can go to the My Properties for Rent page
+  Scenario: Advertisers can go to the my adverts page
     Given I am signed in as a property owner
     And I am on the advertise page
-    When I follow "View/Change My Property Rentals"
-    Then I should be on the my properties for rent page
+    When I follow "My Adverts"
+    Then I should be on the my adverts page
