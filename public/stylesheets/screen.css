@@ -508,3 +508,29 @@ ol#steps {
   font-weight: bold;
   border: 1px solid #000;
 }
+
+/**
+ * CMS
+ */
+
+.cms_box {
+  display: block;
+  text-decoration: none;
+  margin: 4px;
+  width: 239px;
+  height: 100px;
+  border: 1px solid #444;
+  float: left;
+}
+
+.cms_box h2 {
+  background: #444;
+  margin: 0;
+  color: #fff;
+  padding: 2px 9px;
+}
+
+.cms_box p {
+  padding: 9px;
+  color: #00aeef;
+}

@@ -1,6 +1,7 @@
 class ResortsController < ApplicationController
   before_filter :admin_required, :except => [:show, :info]
   before_filter :find_resort, :only => [:edit, :update, :show, :info, :destroy]
+  before_filter :no_browse_menu, :except => [:show]
 
   def index
     @countries = Country.with_resorts
