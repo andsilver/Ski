@@ -18,3 +18,6 @@ Feature: Basket
     And I have adverts in my basket
     When I am on the basket page
     Then I should see my adverts
+    And I should see a drop down box to change advert duration
+    And I should see a remove button
+    And I should see a place order button
