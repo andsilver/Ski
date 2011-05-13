@@ -2,6 +2,7 @@ class Resort < ActiveRecord::Base
   belongs_to :country
   has_many :properties, :dependent => :nullify
   has_many :categories, :order => :name, :dependent => :destroy
+  has_many :order_lines
 
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :country_id

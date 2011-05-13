@@ -1,5 +1,6 @@
 class Coupon < ActiveRecord::Base
   has_many :users, :dependent => :nullify
+  has_many :order_lines
 
   validates_presence_of :code
   validates_uniqueness_of :code

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110512161621) do
+ActiveRecord::Schema.define(:version => 20110513151754) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -104,10 +104,16 @@ ActiveRecord::Schema.define(:version => 20110512161621) do
     t.integer  "advert_id",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "coupon_id"
+    t.integer  "country_id"
+    t.integer  "resort_id"
   end
 
   add_index "order_lines", ["advert_id"], :name => "index_order_lines_on_advert_id"
+  add_index "order_lines", ["country_id"], :name => "index_order_lines_on_country_id"
+  add_index "order_lines", ["coupon_id"], :name => "index_order_lines_on_coupon_id"
   add_index "order_lines", ["order_id"], :name => "index_order_lines_on_order_id"
+  add_index "order_lines", ["resort_id"], :name => "index_order_lines_on_resort_id"
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"

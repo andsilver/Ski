@@ -38,6 +38,7 @@ class CountriesController < ApplicationController
   def destroy
     @errors = []
     @errors << "This country has orders associated with it. " unless @country.orders.empty?
+    @errors << "This country has order lines associated with it. " unless @country.order_lines.empty?
     @errors << "This country has resorts associated with it. " unless @country.resorts.empty?
     @errors << "This country has users associated with it. " unless @country.users.empty?
     if @errors.empty?

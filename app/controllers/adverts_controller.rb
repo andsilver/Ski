@@ -31,17 +31,23 @@ class AdvertsController < ApplicationController
 
     @lines.each do |line|
       if line.advert
-        @order.order_lines << OrderLine.new(
-          :advert_id => line.advert.id,
-          :description => "#{line.advert.months.to_s} month(s): #{line.advert}",
-          :amount => line.price
-        )
+        advert_id = line.advert.id
+        country_id = line.advert.object.resort.country.id
+        resort_id = line.advert.object.resort.id
       else
-        @order.order_lines << OrderLine.new(
-          :description => line.description,
-          :amount => line.price
-        )
+        advert_id = country_id = resort_id = nil
       end
+
+      coupon_id = line.coupon ? line.coupon.id : nil
+
+      @order.order_lines << OrderLine.new(
+        :advert_id => advert_id,
+        :description => line.order_description,
+        :amount => line.price,
+        :coupon_id => coupon_id,
+        :country_id => country_id,
+        :resort_id => resort_id
+      )
     end
 
     @order.total = @total
