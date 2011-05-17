@@ -1,5 +1,6 @@
 class PropertyBasePricesController < ApplicationController
   before_filter :admin_required
+  before_filter :no_browse_menu
   before_filter :find_property_base_price, :only => [:edit, :update, :destroy]
 
   def index
