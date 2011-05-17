@@ -1,0 +1,28 @@
+<table class="grid">
+  <tr>
+    <th>Country</th>
+    <th>€ Properties Rent</th>
+    <th>€ Properties Sale</th>
+    <th>€ Directory Adverts</th>
+    <th>€ Banner Adverts</th>
+    <th>€ Total Revenue</th>
+    <th># Properties Rent</th>
+    <th># Properties Sale</th>
+    <th># Directory Adverts</th>
+    <th># Banner Adverts</th>
+  </tr>
+<% Country.with_resorts.each do |c| %>
+  <tr>
+    <th><%= c.name %></th>
+    <td><%= euros_from_cents(c.gross_revenue_rentals_ytd) %></td>
+    <td><%= euros_from_cents(c.gross_revenue_sales_ytd) %></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><%= c.count_rentals_ytd %></td>
+    <td><%= c.count_sales_ytd %></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+<% end %>
+</table>
