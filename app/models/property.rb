@@ -43,10 +43,10 @@ class Property < ActiveRecord::Base
 
   def self.parking_description parking_param
     {
-      PARKING_NO => 'No parking',
-      PARKING_ON_STREET => 'On-street parking',
-      PARKING_OFF_STREET => 'Off-street parking',
-      PARKING_GARAGE => 'Garage'
+      PARKING_NO => I18n.t('properties.features.no_parking'),
+      PARKING_ON_STREET => I18n.t('properties.features.on_street_parking'),
+      PARKING_OFF_STREET => I18n.t('properties.features.off_street_parking'),
+      PARKING_GARAGE => I18n.t('properties.features.garage')
     }[parking_param]
   end
 
@@ -95,14 +95,22 @@ class Property < ActiveRecord::Base
 
   def features
     f = []
+    f << "Bedrooms: #{number_of_bedrooms} (sleeps #{sleeping_capacity})"
+    f << "Nearest lift: #{metres_from_lift}m"
     f << "Pets allowed" if pets?
     f << "Smoking allowed" if smoking?
-    f << "TV" if tv?
+    f << tv_description
     f << "WiFi" if wifi?
     f << "Suitable for disabled people" if disabled?
     f << "Fully equipped kitchen" if fully_equipped_kitchen?
-    f << "Parking" if parking?
-    f.inject() { |r,e| r + ", " + e }
+    f << "Cave" if cave?
+    f << "Garden" if garden?
+    f << "Indoor swimming pool" if indoor_swimming_pool?
+    f << "Outdoor swimming pool" if outdoor_swimming_pool?
+    f << "Sauna" if sauna?
+    f << "Hot tub" if hot_tub?
+    f << parking_description
+    f
   end
 
   def short_description

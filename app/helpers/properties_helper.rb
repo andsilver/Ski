@@ -10,4 +10,14 @@ module PropertiesHelper
     end
     html
   end
+
+  def feature_tick ticked, label
+    html = ''
+    if ticked
+      html += '<div class="ticked_feature"><span>Has</span>'
+    else
+      html += '<div class="unticked_feature"><span>Does not have</span>'
+    end
+    (html + ' ' + label + '</div>').html_safe
+  end
 end

@@ -1,3 +1,4 @@
+<div id="content_with_wide_skyscrapers">
 <%= form_tag request.path, :method => 'get' do %>
 <div id="search_options">
 <p>
@@ -32,43 +33,36 @@
 
 <% else %>
 
-<table id="properties_for_rent">
-  <thead>
-    <tr>
-      <th>&nbsp;</th>
-      <th><%= I18n.t('details') %></th>
-      <th><%= I18n.t('description') %></th>
-<% if @for_sale %>
-      <th><%= I18n.t('sale_price') %></th>
-<% else %>
-      <th><%= I18n.t('weekly_rent_price') %></th>
-<% end %>
-    </tr>
-  </thead>
-  <tbody>
 <% @properties.each do |p| %>
-    <tr>
-      <td><% unless p.image.nil? %><%= link_to(image_tag(p.image.url(100)), p) %><% else %>&nbsp;<% end %></td>
-      <td><%= link_to p.name, p %><br><%= p.strapline %><br>
-        <% if @for_sale %>
-        <% else %>
-        <%= I18n.t('bedrooms') %>: <%= p.number_of_bedrooms %> (sleeps <%= p.sleeping_capacity %>)<br>
-        <% end %>
-        <%= I18n.t('nearest_lift') %>: <%= p.metres_from_lift %>m<br>
-        <%= p.features %>
-      </td>
-      <td>
-        <%= p.short_description %><br>
-        <%= link_to 'Map', property_path(p) + "#map" unless p.latitude.empty? %>
-        <%= link_to 'Contact Owner', contact_property_path(p) %>
-      </td>
-      <td class="numeric price"><%= @for_sale ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></td>
-    </tr>
-  <p class="email_a_friend"><%= link_to 'Email a Friend', email_a_friend_property_path(p) %></p>
+<div class="property_summary">
+  <h3><%= link_to p.name, p %></h3>
+  <p class="strapline"><%= p.strapline %></p>
+  <p class="thumbnail">
+    <% unless p.image.nil? %>
+    <%= link_to(image_tag(p.image.url(90)), p) %>
+    <% end %>
+  </p>
+  <% unless p.features.empty? %>
+  <ul class="features">
+    <% p.features.each do |feature| %>
+    <li><%= feature %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <div class="actions">
+    <p class="price"><%= @for_sale ? "Sale price" : "Weekly price from" %><br>
+    <span><%= @for_sale ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span></p>
+    <p class="contact_owner"><%= link_to 'Contact Owner', contact_property_path(p) %></p>
+    <p class="email_a_friend"><%= link_to 'Email a Friend', email_a_friend_property_path(p) %></p>
+  </div>
+  <%= clear %>
+</div>
 <% end %>
-  </tbody>
-</table>
 
 <%= will_paginate @properties %>
 
 <% end %>
+</div>
+<div id="wide_skyscrapers">
+  <img src="/images/160x600.gif" alt="Banner advert">
+</div>

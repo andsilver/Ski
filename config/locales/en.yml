@@ -21,7 +21,9 @@ en:
   floor_area: 'Floor area'
   for_rent: 'For Rent'
   for_sale: 'For Sale'
+  garden: 'Garden'
   main_image: 'Main image'
+  map: Map
   my_details_saved: 'Your details have been saved.'
   my_adverts: 'My Adverts'
   name: 'Name'
@@ -34,19 +36,37 @@ en:
   postcode: 'ZIP / postcode'
   pricing: 'Pricing'
   privacy: 'Privacy Policy'
+  property_id: Property ID
   property_name: 'Property name'
   property_rentals: 'Property Rentals'
   property_sales: 'Property Sales'
   properties:
-    filters:
-      disabled: Suitable for disabled people
+    features:
+      balcony: Balcony
+      cave: Cave
+      disabled: Disabled access
       fully_equipped_kitchen: Fully equipped kitchen
-      garage: 'Garage'
-      parking: Parking
+      garden: Garden
+      hot_tub: Hot tub
+      log_fire: Log fire
+      mountain_views: Mountain views
+      no_parking: No parking
+      off_street_parking: Off-street parking
+      on_street_parking: On-street parking
       pets: Pets allowed
-      private_garden: 'Private garden'
-      satellite: Satellite
+      sauna: Sauna
+      ski_in_ski_out: Ski in/ski out
       smoking: Smoking allowed
+      swimming_pool: Swimming pool
+      wifi: WiFi
+    filters:
+      disabled: Disabled access
+      fully_equipped_kitchen: Fully equipped kitchen
+      garage: Garage
+      parking: Parking
+      pets: Pets
+      satellite: Satellite
+      smoking: Smoking
       tv: TV
       wifi: WiFi
   resort: 'Resort'

@@ -1,28 +1,86 @@
-<h1 class="property_name"><%= @property.name %></h1>
-<p class="property_id">Property ID: <span><%= @property.id %></span></p>
-<p><%= link_to 'Contact Owner', contact_property_path(@property) %></p>
-<% unless @property.strapline.empty? %>
-<h3 class="property_strapline"><%= @property.strapline %></h3>
-<% end %>
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+		$('#property_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
+	});
+</script>
+<div id="property">
+<h1 class="property_name"><span><%= I18n.t('property_name') %>:</span> <%= @property.name %></h1>
+<p class="property_id"><%= I18n.t('property_id') %>: <span><%= @property.id %></span></p>
 
 <% unless @property.image.nil? %>
-<p id="property_main_image">
-  <%= image_tag(@property.image.url(400)) %>
-</p>
-<ul class="thumbnails" id="property_thumbnails">
+<p class="thumbnails" id="property_thumbnails">
 <% @property.images.each do |i| %>
-  <li><div class="image_thumbnail"><%= image_tag(i.url(96)) %></div></li>
+  <a href="#pic_<%= i.id %>"><%= image_tag(i.sized_url(135, :height)) %></a>
 <% end %>
-</ul>
+</p>
+<% @property.images.each do |i| %>
+<div id="pic_<%= i.id %>"><img src="<%= i.url %>"></div>
+<% end %>
 <%= clear %>
 <% end %>
 
+<h2><%= I18n.t('features') %></h2>
+
+<div id="features">
+  <div class="column">
+    <%= @property.number_of_bedrooms %> <%= I18n.t('bedrooms') %>
+  </div>
+  <div class="column">
+    <%= @property.number_of_bathrooms %> <%= I18n.t('bathrooms') %>
+  </div>
+  <div class="column">
+    <%= @property.sleeping_capacity %> <%= I18n.t('sleeping_capacity') %>
+  </div>
+  <p class="divider">&nbsp;</p>
+  <div class="column">
+    <%= feature_tick(true, @property.tv_description) %><br>
+    <%= feature_tick(@property.balcony?,
+      I18n.t('properties.features.balcony')) %><br>
+    <%= feature_tick(@property.mountain_views?,
+      I18n.t('properties.features.mountain_views')) %><br>
+    <%= feature_tick(@property.wifi?,
+      I18n.t('properties.features.wifi')) %><br>
+  </div>
+  <div class="column">
+    <%= feature_tick(@property.log_fire?,
+      I18n.t('properties.features.log_fire')) %><br>
+    <%= feature_tick(@property.fully_equipped_kitchen?,
+      I18n.t('properties.features.fully_equipped_kitchen')) %><br>
+    <%= feature_tick(@property.cave?,
+      I18n.t('properties.features.cave')) %><br>
+    <%= feature_tick(@property.ski_in_ski_out?,
+      I18n.t('properties.features.ski_in_ski_out')) %><br>
+  </div>
+  <div class="column">
+    <%= feature_tick(@property.pets?,
+      I18n.t('properties.features.pets')) %><br>
+    <%= feature_tick(@property.smoking?,
+      I18n.t('properties.features.smoking')) %><br>
+    <%= feature_tick(@property.disabled?,
+      I18n.t('properties.features.disabled')) %><br>
+    <%= feature_tick(@property.garden?,
+      I18n.t('properties.features.garden')) %><br>
+  </div>
+  <div class="column">
+    <%= feature_tick(@property.hot_tub?,
+      I18n.t('properties.features.hot_tub')) %><br>
+    <%= feature_tick(@property.indoor_swimming_pool? ||
+      @property.outdoor_swimming_pool?,
+      I18n.t('properties.features.swimming_pool')) %><br>
+    <%= feature_tick(@property.sauna?,
+      I18n.t('properties.features.sauna')) %><br>
+    <%= feature_tick(true, @property.parking_description) %><br>
+  </div>
+  <%= clear %>
+</div>
+
 <% unless @property.description.nil? %>
+<h2><%= I18n.t('description') %></h2>
 <%= md @property.description %>
 <% end %>
 
 <% unless @property.latitude.empty? %>
-<h2 id="map">Map</h2>
+<h2 id="map"><%= I18n.t('map') %></h2>
 <script>
   function showMap() {
     var latlng = new google.maps.LatLng(<%= @property.latitude %>, <%= @property.longitude %>);
@@ -58,3 +116,7 @@
 </script>
 <div id="map_canvas"></div>
 <% end %>
+
+<p><%= link_to 'Contact Owner', contact_property_path(@property) %></p>
+
+</div><!--#property-->
