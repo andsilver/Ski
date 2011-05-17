@@ -127,7 +127,12 @@ class Property < ActiveRecord::Base
     require 'net/http'
     http = Net::HTTP.new('maps.googleapis.com', 80)
     response, data = http.get(url)
-    json = JSON.parse(data)
+    begin
+      json = JSON.parse(data)
+    rescue
+      Rails.logger.warn "Error parsing JSON response in Property#attempt_geocode"
+      return
+    end
     Rails.logger.info json.inspect
     if 'OK' == json['status']
       self.latitude = json['results'][0]['geometry']['location']['lat']
