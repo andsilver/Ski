@@ -8,6 +8,8 @@ describe PropertyPricer do
   end
 
   describe "#price_in_cents" do
+    fixtures :property_base_prices, :property_volume_discounts
+
     it "returns correct prices" do
       example_cases = [
         {:months => 1, :property_number => 1, :cents => 1500},

@@ -1,0 +1,20 @@
+one_month:
+  number_of_months: 1
+  price: 15
+
+three_months:
+  number_of_months: 3
+  price: 40
+
+six_months:
+  number_of_months: 6
+  price: 75
+
+nine_months:
+  number_of_months: 9
+  price: 80
+
+twelve_months:
+  number_of_months: 12
+  price: 99
+

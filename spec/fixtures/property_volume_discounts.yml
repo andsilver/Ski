@@ -1,0 +1,36 @@
+with_1_property:
+  current_property_number: 1
+  discount_percentage: 0
+
+with_3_properties:
+  current_property_number: 3
+  discount_percentage: 5
+
+with_11_properties:
+  current_property_number: 11
+  discount_percentage: 7
+
+with_21_properties:
+  current_property_number: 21
+  discount_percentage: 10
+
+with_31_properties:
+  current_property_number: 31
+  discount_percentage: 15
+
+with_51_properties:
+  current_property_number: 51
+  discount_percentage: 20
+
+with_101_properties:
+  current_property_number: 101
+  discount_percentage: 25
+
+with_201_properties:
+  current_property_number: 201
+  discount_percentage: 30
+
+with_301_properties:
+  current_property_number: 301
+  discount_percentage: 35
+
