@@ -39,24 +39,42 @@ class Image < ActiveRecord::Base
 
   def url(size=nil)
     if size.nil?
-      f = filename
+      url_for_filename(filename)
     else
-      f = 'sized_' + size.to_s + '.' + extension
-      path = "#{IMAGE_STORAGE_PATH}/#{id}/#{f}"
-      # create a new image of the required size if it doesn't exist
-      unless FileTest.exists?(path)
-        begin
-          ImageScience.with_image("#{IMAGE_STORAGE_PATH}/#{id}/#{filename}") do |img|
+      sized_url(size, :longest_side)
+    end
+  end
+
+  def url_for_filename(fn)
+    "#{IMAGE_STORAGE_URL}/#{id}/#{fn}"
+  end
+
+  def sized_url(size, method)
+    if method != :longest_side && method != :height
+      raise ArgumentError.new("method must be :longest_side or :height")
+    end
+
+    f = method.to_s + '_' + size.to_s + '.' + extension
+    path = "#{IMAGE_STORAGE_PATH}/#{id}/#{f}"
+    # create a new image of the required size if it doesn't exist
+    unless FileTest.exists?(path)
+      begin
+        ImageScience.with_image("#{IMAGE_STORAGE_PATH}/#{id}/#{filename}") do |img|
+          if(method == :longest_side)
             img.thumbnail(size) do |thumb|
               thumb.save path
             end
+          elsif(method == :height)
+            img.resize(img.width * size / img.height, size) do |thumb|
+              thumb.save path
+            end
           end
-        rescue
-          return IMAGE_MISSING
         end
+      rescue
+        return IMAGE_MISSING
       end
     end
-    "#{IMAGE_STORAGE_URL}/#{id}/#{f}"
+    url_for_filename(f)
   end
 
   # deletes the file(s) by removing the whole dir
