@@ -95,6 +95,8 @@ MySkiChalet::Application.routes.draw do
   resources :websites
 
   match "cms" => "cms#index"
+  match "management_information" => "cms#management_information"
+  match "gross_sales_analysis" => "cms#gross_sales_analysis"
 
   match "export" => "export#index"
   match "export/spreadsheet/:class_name" => "export#spreadsheet", :as => :export_spreadsheet
