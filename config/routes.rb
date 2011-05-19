@@ -102,7 +102,6 @@ MySkiChalet::Application.routes.draw do
   match "export/spreadsheet/:class_name" => "export#spreadsheet", :as => :export_spreadsheet
 
   match "start" => "home#start"
-  match "pricing" => "home#pricing"
   match "privacy" => "home#privacy"
   match "terms" => "home#terms"
   root :to => "home#index"
