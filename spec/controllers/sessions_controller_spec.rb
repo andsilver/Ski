@@ -36,9 +36,20 @@ describe SessionsController do
         flash[:notice].should =~ /Welcome back, /
       end
 
-      it "redirects to the advertise page" do
-        post :create
-        response.should redirect_to advertise_path
+      context "when user is an admin" do
+        it "redirects to the cms page" do
+          user.stub(:admin?).and_return(true)
+          post :create
+          response.should redirect_to cms_path
+        end
+      end
+
+      context "when user is not an admin" do
+        it "redirects to the advertise page" do
+          user.stub(:admin?).and_return(false)
+          post :create
+          response.should redirect_to advertise_path
+        end
       end
     end
 
