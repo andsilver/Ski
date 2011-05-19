@@ -22,7 +22,7 @@ class PropertiesController < ApplicationController
     @conditions[0] += " AND for_sale = 0"
 
     @search_filters = [:pets, :smoking, :tv, :satellite, :wifi, :disabled,
-      :fully_equipped_kitchen]
+      :fully_equipped_kitchen, :long_term_lets_available]
 
     filter_conditions
 

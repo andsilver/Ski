@@ -31,6 +31,10 @@
   <div class="column">
     <%= @property.sleeping_capacity %> <%= I18n.t('sleeping_capacity') %>
   </div>
+  <div class="column">
+    <%= feature_tick(@property.long_term_lets_available?,
+      I18n.t('properties.features.long_term_lets_available')) %>
+  </div>
   <p class="divider">&nbsp;</p>
   <div class="column">
     <%= feature_tick(true, @property.tv_description) %><br>

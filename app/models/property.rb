@@ -109,6 +109,7 @@ class Property < ActiveRecord::Base
     f << "Outdoor swimming pool" if outdoor_swimming_pool?
     f << "Sauna" if sauna?
     f << "Hot tub" if hot_tub?
+    f << I18n.t('properties.filters.long_term_lets_available') if long_term_lets_available?
     f << parking_description
     f
   end
