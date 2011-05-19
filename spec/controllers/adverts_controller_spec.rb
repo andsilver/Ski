@@ -10,6 +10,23 @@ describe AdvertsController do
     User.stub(:find_by_id).and_return(current_user)
   end
 
+  describe "GET my" do
+    it "finds directory adverts belonging to the current user" do
+      current_user.should_receive(:directory_adverts)
+      get "my"
+    end
+
+    it "finds property rentals belonging to the current user" do
+      current_user.should_receive(:properties_for_rent)
+      get "my"
+    end
+
+    it "finds property sales belonging to the current user" do
+      current_user.should_receive(:properties_for_sale)
+      get "my"
+    end
+  end
+
   describe "GET basket" do
     before do
       current_user.stub(:adverts_in_basket).and_return []
