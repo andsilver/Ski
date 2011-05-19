@@ -44,8 +44,7 @@
 <nav id="browse">
   <ul id="countries">
 <% Country.with_visible_resorts.each do |c| %>
-    <li <%= 'class="selected"'.html_safe if @country && c.id == @country.id %>><a href="<%= country_path(c) %>"
-       onclick="$('resorts_for_<%= c.id %>').show();$('countries').hide();return false">
+    <li <%= 'class="selected"'.html_safe if @country && c.id == @country.id %>><a href="<%= country_path(c) %>">
        <span style="background-image: url(/images/flags/<%= c.iso_3166_1_alpha_2.downcase %>.png); width:16px;height:11px; display:block;float:left;margin-right:4px;">&nbsp;</span>
        <%= c.name %></a></li>
 <% end %>
