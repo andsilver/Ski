@@ -2,21 +2,49 @@
 
 <h1><%= I18n.t(:advertise) %></h1>
 
-<nav>
-  <ul>
 <% if @current_user.role.advertises_generally? %>
-    <li><%= link_to 'New Directory Advert', new_directory_advert_path %></li>
+<a class="cms_box" href="<%= new_directory_advert_path %>">
+  <h2>New Directory Advert</h2>
+  <p>Advertise your business within a resort's directory.</p>
+</a>
 <% end %>
 <% if @current_user.role.advertises_properties? %>
-    <li><%= link_to 'Advertise a new property for rent', new_property_path %></li>
-    <li><%= link_to 'Advertise a new property for sale', new_property_path(:for_sale => true) %></li>
+<a class="cms_box" href="<%= new_property_path %>">
+  <h2>Advertise a Property for Rent</h2>
+  <p>Advertise your property in a resort's property rentals area.</p>
+</a>
+<a class="cms_box" href="<%= new_property_path(:for_sale => true) %>">
+  <h2>Advertise a Property for Sale</h2>
+  <p>Advertise your property in a resort's property sales area.</p>
+</a>
 <% end %>
-    <li><%= link_to I18n.t('my_adverts'), my_adverts_path %></li>
-    <li><%= link_to 'My Details', my_details_path %></li>
-    <li><%= link_to 'Receipts', receipts_orders_path %></li>
-    <li>Stats</li>
-    <li>My Feedback</li>
+<a class="cms_box" href="<%= my_adverts_path %>">
+  <h2><%= I18n.t('my_adverts') %></h2>
+  <p>
+    View and update your past and current adverts.
+    See your advert stats.
+  </p>
+</a>
+<a class="cms_box" href="<%= my_details_path %>">
+  <h2>My Details</h2>
+  <p>Update your name, contact and billing details.</p>
+</a>
+<a class="cms_box" href="<%= receipts_orders_path %>">
+  <h2>Receipts</h2>
+  <p>View and print off receipts for orders that you have
+    placed here.</p>
+</a>
+<a class="cms_box" href="#">
+  <h2>Feedback</h2>
+  <p>
+    Enter feedback / testimonials from your customers.
+    These be shown alongside your advert.</p>
+</a>
+<a class="cms_box" href="<%= my_enquiries_path %>">
+  <h2>My Enquiries</h2>
+  <p>
+    View enquiries that have been sent to you through your contact forms.
+  </p>
+</a>
 
-    <li><%= link_to 'My Enquiries', my_enquiries_path %></li>
-  </ul>
-</nav>
+<%= clear %>
