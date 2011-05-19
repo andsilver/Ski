@@ -1,5 +1,5 @@
 class Country < ActiveRecord::Base
-  require 'lib/ruby_19'
+  require File.expand_path('../../../lib/ruby_19', __FILE__)
   has_many :resorts, :order => 'name'
   has_many :visible_resorts, :class_name => 'Resort', :conditions => 'visible = 1'
   has_many :orders

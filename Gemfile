@@ -1,17 +1,27 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
-gem 'mysql2', '0.2.6'
-gem "will_paginate", "~> 3.0.pre2"
+gem 'rails', '3.1.0.beta1'
+gem 'mysql2', '0.3.2'
+#gem "will_paginate", "~> 3.0.pre2"
+gem 'will_paginate', :git => 'git@github.com:bridgeutopia/will_paginate.git', :branch => 'rails3'
 gem 'image_science', '1.2.1'
 gem 'RubyInline', '3.8.6'
 gem 'rdiscount', '1.6.8'
 gem 'spreadsheet', '0.6.5.4'
+gem 'sprockets', '2.0.0.beta.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
+
+# Asset template engines
+gem 'json'
+gem 'sass'
+gem 'coffee-script'
+gem 'uglifier'
+
+gem 'jquery-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -19,19 +29,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
+# To use debugger
 # gem 'ruby-debug'
-# gem 'ruby-debug19'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
 
 group :test, :development do
   gem "autotest", "4.4.6"

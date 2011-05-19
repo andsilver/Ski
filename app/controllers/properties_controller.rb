@@ -15,7 +15,7 @@ class PropertiesController < ApplicationController
   before_filter :find_property, :only => [:show, :contact, :email_a_friend]
 
   def browse_for_rent
-    @heading_a = render_to_string(:partial => 'browse_property_heading')
+    @heading_a = render_to_string(:partial => 'browse_property_heading').html_safe
 
     order = selected_order([ "normalised_weekly_rent_price ASC", "normalised_weekly_rent_price DESC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
@@ -33,7 +33,7 @@ class PropertiesController < ApplicationController
 
   def browse_for_sale
     @for_sale = true
-    @heading_a = render_to_string(:partial => 'browse_property_heading')
+    @heading_a = render_to_string(:partial => 'browse_property_heading').html_safe
 
     order = selected_order([ 'normalised_sale_price ASC', 'normalised_sale_price DESC',
       'metres_from_lift ASC', 'number_of_bathrooms ASC',
