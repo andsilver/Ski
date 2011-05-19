@@ -40,7 +40,7 @@ class PropertiesController < ApplicationController
       'number_of_bedrooms ASC' ])
     @conditions[0] += " AND for_sale = 1"
 
-    @search_filters = [:garage, :parking, :private_garden]
+    @search_filters = [:garage, :parking, :garden]
 
     filter_conditions
 
