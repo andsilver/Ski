@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.beta1'
+gem 'rack', '1.3.0.beta'
 gem 'mysql2', '0.3.2'
 #gem "will_paginate", "~> 3.0.pre2"
 gem 'will_paginate', :git => 'git@github.com:bridgeutopia/will_paginate.git', :branch => 'rails3'
