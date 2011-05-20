@@ -1,3 +1,7 @@
+nav {
+  display: block;
+}
+
 #main_menu {
   background-color: #72c9e4;
   background-image: url(/images/menu-bg.jpg);

@@ -9,6 +9,10 @@ body {
   font-family: "anivers-1","anivers-2", 'Lucida Sans', Arial, Helvetica, sans-serif;
 }
 
+a img {
+  border: none;
+}
+
 #wrapper {
   background: #fff;
   background-image: url(/images/ski-group-mountain.jpg);

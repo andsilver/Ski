@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>My Ski Chalet</title>
+  <%= javascript_include_tag 'application' %>
   <script src="http://use.typekit.com/lxc8myw.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
-<link rel="stylesheet" href="/stylesheets/main_menu.css">
+<link rel="stylesheet" href="/assets/main_menu.css">
 <style>
 #main_menu {
   background-image: url(/images/home-menu-bg.jpg);
@@ -20,6 +21,10 @@ body {
   background-color: #fff;
   font-size: 62.5%;
   font-family: "anivers-1","anivers-2", 'Lucida Sans', Arial, Helvetica, sans-serif;  
+}
+
+a img {
+  border: none;
 }
 
 #wrapper {
