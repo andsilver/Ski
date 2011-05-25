@@ -2,6 +2,8 @@ MySkiChalet::Application.routes.draw do
   resources :countries
   match "resorts/:id/properties/rent" => "properties#browse_for_rent", :as => :resort_property_rent
   match "resorts/:id/properties/sale" => "properties#browse_for_sale", :as => :resort_property_sale
+  match "resorts/:id/properties/new-developments" => "properties#new_developments",
+    :as => :resort_property_new_developments
   resources :resorts do
     resources :categories
     get 'info', :on => :member
@@ -30,7 +32,6 @@ MySkiChalet::Application.routes.draw do
   end
   match "my/adverts" => "adverts#my", :as => :my_adverts
 
-  match "new-developments" => "properties#new_developments", :as => :new_developments
   resources :properties do
     post 'advertise_now',  :on => :member
     get  'contact',        :on => :member

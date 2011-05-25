@@ -3,14 +3,14 @@ class PropertiesController < ApplicationController
 
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.property_id FROM adverts WHERE adverts.property_id=properties.id AND adverts.expires_at > NOW())"]
 
-  before_filter :no_browse_menu, :except => [:browse_for_rent, :browse_for_sale]
+  before_filter :no_browse_menu, :except => [:browse_for_rent, :browse_for_sale, :new_developments]
 
   before_filter :user_required, :except => [:browse_for_rent, :browse_for_sale,
     :new_developments, :contact, :current_time, :show]
   before_filter :find_property_for_user, :only => [:edit, :update, :advertise_now]
 
-  before_filter :resort_conditions, :only => [:browse_for_rent, :browse_for_sale]
-  before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale]
+  before_filter :resort_conditions, :only => [:browse_for_rent, :browse_for_sale, :new_developments]
+  before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale, :new_developments]
 
   before_filter :find_property, :only => [:show, :contact, :email_a_friend]
 
@@ -35,9 +35,8 @@ class PropertiesController < ApplicationController
     @for_sale = true
     @heading_a = render_to_string(:partial => 'browse_property_heading').html_safe
 
-    order = selected_order([ 'normalised_sale_price ASC', 'normalised_sale_price DESC',
-      'metres_from_lift ASC', 'number_of_bathrooms ASC',
-      'number_of_bedrooms ASC' ])
+    order = for_sale_selected_order
+
     @conditions[0] += " AND for_sale = 1"
 
     @search_filters = [:garage, :parking, :garden]
@@ -51,10 +50,17 @@ class PropertiesController < ApplicationController
 
   def new_developments
     @heading_a = I18n.t(:new_developments)
-    @conditions = CURRENTLY_ADVERTISED.dup
     @conditions[0] += " AND new_development = 1"
-    @properties = Property.paginate(:page => params[:page], :order => 'created_at DESC',
+
+    order = for_sale_selected_order
+
+    @search_filters = [:garage, :parking, :garden]
+
+    filter_conditions
+
+    @properties = Property.paginate(:page => params[:page], :order => order,
       :conditions => @conditions)
+    render "browse"
   end
 
   def new
@@ -130,6 +136,12 @@ class PropertiesController < ApplicationController
 
   def selected_order(whitelist)
     whitelist.include?(params[:sort_method]) ? params[:sort_method] : whitelist.first
+  end
+
+  def for_sale_selected_order
+    selected_order([ 'normalised_sale_price ASC', 'normalised_sale_price DESC',
+      'metres_from_lift ASC', 'number_of_bathrooms ASC',
+      'number_of_bedrooms ASC' ])
   end
 
   def resort_conditions
