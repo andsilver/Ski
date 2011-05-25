@@ -6,7 +6,6 @@ MySkiChalet::Application.routes.draw do
     :as => :resort_property_new_developments
   resources :resorts do
     resources :categories
-    get 'info', :on => :member
   end
 
   match "sign_in" => "sessions#new"

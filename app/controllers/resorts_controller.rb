@@ -43,7 +43,7 @@ class ResortsController < ApplicationController
   end
 
   def show
-    @heading_a = @resort.name
+    @heading_a = @resort.name + ' Resort Information'
   end
 
   def destroy
