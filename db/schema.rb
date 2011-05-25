@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525124230) do
+ActiveRecord::Schema.define(:version => 20110525145547) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20110525124230) do
     t.string   "iso_3166_1_alpha_2", :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "info"
   end
 
   create_table "coupons", :force => true do |t|
