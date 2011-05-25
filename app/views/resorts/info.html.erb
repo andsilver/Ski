@@ -1,3 +1,5 @@
 <h1><%= @resort.name %> Resort Information</h1>
 
+<% unless @resort.info.blank? %>
 <%= md @resort.info %>
+<% end %>
