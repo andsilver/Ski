@@ -1,9 +1,8 @@
 <script>
-function prepareForm() {
-  $('no_ajax').hide();
-  <%= remote_function :url => { :action => 'current_time' } %>
-}
-Event.observe(window, 'load', prepareForm);
+$(function() {
+  $('#no_ajax').hide()
+  $('#current_time').load('<%= url_for(:action => "current_time") %>')
+});
 </script>
 
 <p id="no_ajax">You need to have Javascript switched on to use this form</p>

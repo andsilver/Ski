@@ -7,9 +7,7 @@ module SpamProtection
   def current_time
     current_time = Time.now.to_i.to_s
     session[:enquiry_token] = hash current_time
-    render :update do |page|
-      page.replace_html 'current_time', :partial => 'spam/current_time', :object => current_time
-    end
+    render :partial => 'spam/current_time', :object => current_time
   end
 
   private
