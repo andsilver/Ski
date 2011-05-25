@@ -19,6 +19,25 @@
   <!-- current time placed here by AJAX request -->
 </span>
 
+<% if @property.for_rent? %>
+<script>
+$(function () {
+  $('#enquiry_date_of_arrival').datepicker({dateFormat: 'D, d M yy'});
+  $('#enquiry_date_of_departure').datepicker({dateFormat: 'D, d M yy'});
+});
+</script>
+
+<div class="field">
+  <%= f.label :date_of_arrival %><br>
+  <%= f.text_field :date_of_arrival %>
+</div>
+
+<div class="field">
+  <%= f.label :date_of_departure %><br>
+  <%= f.text_field :date_of_departure %>
+</div>
+<% end %>
+
 <div class="field">
   <%= f.label :name %><br>
   <%= f.text_field :name %>
