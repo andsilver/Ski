@@ -1,7 +1,7 @@
 class ResortsController < ApplicationController
-  before_filter :admin_required, :except => [:show, :info]
-  before_filter :find_resort, :only => [:edit, :update, :show, :info, :destroy]
-  before_filter :no_browse_menu, :except => [:show]
+  before_filter :admin_required, :except => [:show, :feature, :featured]
+  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :feature]
+  before_filter :no_browse_menu, :except => [:show, :feature]
 
   def index
     @countries = Country.with_resorts
@@ -53,6 +53,13 @@ class ResortsController < ApplicationController
       format.html { redirect_to(resorts_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def featured
+    @heading_a = I18n.t('featured_resorts')
+  end
+
+  def feature
   end
 
   protected

@@ -27,7 +27,9 @@ nav {
 #main_menu a {
   display: block;
   line-height: 18px;
-  padding: 0 12px;
+  padding: 0;
+  width: 140px;
+  text-align: center;
   color: #fff;
   text-decoration: none;
   border-left: 1px solid #fff;
@@ -37,26 +39,32 @@ nav {
   text-decoration: underline;
 }
 
-#welcome_advertisers {
+.drop {
   visibility: hidden;
   position: absolute;
   width: 140px;
-  right: 0;
-  text-align: right;
+  text-align: center;
   font-size: 1.1em;
   line-height: 24px;
 }
 
-#welcome_advertisers a {
+#welcome_advertisers {
+  right: 0;
+}
+
+#featured_resorts {
+  right: 142px;
+}
+
+.drop a {
   background: #444;
-  padding-right: 12px;
   opacity: 0.9;
   color: #fff;
   text-decoration: none;
   display: block;
 }
 
-#welcome_advertisers a:hover {
+.drop a:hover {
   background: #222;
   text-decoration: underline;
   opacity: 1;

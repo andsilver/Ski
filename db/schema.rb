@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110519163623) do
+ActiveRecord::Schema.define(:version => 20110525124230) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -260,9 +260,12 @@ ActiveRecord::Schema.define(:version => 20110519163623) do
     t.boolean  "creche"
     t.boolean  "babysitting_services"
     t.boolean  "visible",                  :default => false, :null => false
+    t.boolean  "featured",                 :default => false, :null => false
+    t.text     "feature"
   end
 
   add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"
+  add_index "resorts", ["featured"], :name => "index_resorts_on_featured"
   add_index "resorts", ["visible"], :name => "index_resorts_on_visible"
 
   create_table "roles", :force => true do |t|

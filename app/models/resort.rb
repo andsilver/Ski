@@ -4,6 +4,8 @@ class Resort < ActiveRecord::Base
   has_many :categories, :order => :name, :dependent => :destroy
   has_many :order_lines
 
+  scope :featured, where('featured = 1').order('name')
+
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :country_id
 
