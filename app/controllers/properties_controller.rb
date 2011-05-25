@@ -131,7 +131,7 @@ class PropertiesController < ApplicationController
   end
 
   def find_resort
-    @resort = Resort.find(params[:id])
+    @resort = Resort.find(params[:resort_id])
   end
 
   def selected_order(whitelist)
@@ -147,7 +147,7 @@ class PropertiesController < ApplicationController
   def resort_conditions
     @conditions = CURRENTLY_ADVERTISED.dup
     @conditions[0] += " AND resort_id = ?"
-    @conditions << params[:id]
+    @conditions << params[:resort_id]
   end
 
   def filter_conditions

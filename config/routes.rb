@@ -1,8 +1,8 @@
 MySkiChalet::Application.routes.draw do
   resources :countries
-  match "resorts/:id/properties/rent" => "properties#browse_for_rent", :as => :resort_property_rent
-  match "resorts/:id/properties/sale" => "properties#browse_for_sale", :as => :resort_property_sale
-  match "resorts/:id/properties/new-developments" => "properties#new_developments",
+  match "resorts/:resort_id/properties/rent" => "properties#browse_for_rent", :as => :resort_property_rent
+  match "resorts/:resort_id/properties/sale" => "properties#browse_for_sale", :as => :resort_property_sale
+  match "resorts/:resort_id/properties/new-developments" => "properties#new_developments",
     :as => :resort_property_new_developments
   resources :resorts do
     resources :categories
@@ -39,7 +39,7 @@ MySkiChalet::Application.routes.draw do
     get  'email_a_friend', :on => :member
     get  'rent',           :on => :collection
     get  'sale',           :on => :collection
-    post 'current_time',   :on => :collection
+    get 'current_time',   :on => :collection
   end
 
   resources :property_base_prices
@@ -50,7 +50,7 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :enquiries do
-    post 'current_time', :on => :collection
+    get 'current_time', :on => :collection
     get 'my', :on => :collection
   end
 
