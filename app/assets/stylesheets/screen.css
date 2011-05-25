@@ -160,6 +160,11 @@ input[type=number] {
   width: 7em;
 }
 
+.placeholder {
+  color: #333;
+  font-size: 0.9em;
+}
+
 textarea {
   width: 30em;
 }

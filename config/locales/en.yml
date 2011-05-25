@@ -87,6 +87,7 @@ en:
   stage_1_inactive: <span class="inactive">Stage 1<br><em>Choose your country and resort selection</em></span>
   stage_2: "<span>Stage 2<br><em>Select from property sales, rentals, directory or resort information</em></span>"
   strapline: 'Strapline'
+  strapline_placeholder: "Summarise the property's key features (e.g., size, location) in under 255 characters."
   terms: 'Terms and Conditions'
   views: 'Views'
   weekly_rent_price: 'Weekly rent price'
