@@ -82,6 +82,9 @@ en:
   sign_up: 'Sign Up'
   signed_out: 'You are now signed out.'
   sleeping_capacity: 'Sleeping capacity'
+  stage_1: <span>Stage 1<br><em>Choose your country and resort selection</em></span>
+  stage_1_inactive: <span class="inactive">Stage 1<br><em>Choose your country and resort selection</em></span>
+  stage_2: "<span>Stage 2<br><em>Select from property sales, rentals, directory or resort information</em></span>"
   strapline: 'Strapline'
   terms: 'Terms and Conditions'
   views: 'Views'

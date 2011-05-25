@@ -43,6 +43,8 @@ class ResortsController < ApplicationController
   end
 
   def show
+    @stage_heading_a = I18n.t('stage_1_inactive')
+    @stage_heading_b = I18n.t('stage_2')
     @heading_a = @resort.name + ' Resort Information'
   end
 

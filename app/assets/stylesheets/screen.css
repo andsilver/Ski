@@ -28,13 +28,41 @@ a img {
 #logo {
   margin-left: 4px;
   margin-top: 35px;
-  margin-bottom: 197px;
+  margin-bottom: 177px;
   display: block;
 }
 
-#column_headings {
-  height: 20px;
+#stage_headings {
+  height: 40px;
   border-bottom: 1px solid #68c8e7;
+  line-height: 16px;
+}
+
+#stage_headings span {
+  font-size: 2em;
+  display: block;
+  float: left;
+  width: 440px;
+}
+
+#stage_headings span.inactive {
+  color: #999;
+}
+
+#stage_headings span em {
+  font-size: 0.55em;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+#column_headings {
+  height: 30px;
+  border-bottom: 1px solid #68c8e7;
+}
+
+#column_headings h1 {
+  line-height: 30px;
+  margin: 0;
 }
 
 .browse_menu #content {
