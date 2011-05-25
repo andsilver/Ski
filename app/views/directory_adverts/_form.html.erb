@@ -12,38 +12,43 @@
 
 <%= form_for @directory_advert do |f| %>
 
-<p>
+<div class="field">
   <%= label_tag 'business name' %><br>
   <%= text_field_tag 'business_name', @current_user.business_name %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <%= label_tag 'website' %><br>
   <%= text_field_tag 'website', @current_user.website %>
-</p>
+</div>
 
-<p>
+<div>
   <%= label_tag 'description' %><br>
   <%= text_area_tag 'description', @current_user.description %>
-</p>
+</div>
 
-<p>
+<div class="field">
+  <%= f.label :opening_hours %><br>
+  <%= f.text_area :opening_hours %>
+</div>
+
+<div class="field">
   <%= f.label :business_address %><br>
   <%= f.text_area :business_address %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <%= f.label :postcode, 'ZIP / postcode' %><br>
   <%= f.text_field :postcode %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <%= f.label :category_id, I18n.t('category') %><br>
   <%= select("directory_advert", "category_id", (Category.all.collect {|c| [ c.resort.country.name + ' > ' + c.resort.name + ' > ' + c.name, c.id ] }).sort, {:prompt => 'Select Category'}) %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <%= f.submit(I18n.t(:save)) %>
-</p>
+</div>
 
 <% end %>
