@@ -15,18 +15,18 @@ describe PropertiesController do
       Property.stub(:paginate).and_return(properties)
     end
 
-    it "finds paginated properties ordered by when created" do
-      Property.should_receive(:paginate).with(hash_including(:order => "created_at DESC"))
-      get :new_developments
+    it "finds paginated properties" do
+      Property.should_receive(:paginate)
+      get :new_developments, :resort_id => "1"
     end
 
     it "finds new developments" do
-      Property.should_receive(:paginate).with(hash_including(:conditions => [PropertiesController::CURRENTLY_ADVERTISED[0] + " AND new_development = 1"]))
-      get :new_developments
+      Property.should_receive(:paginate).with(hash_including(:conditions => [PropertiesController::CURRENTLY_ADVERTISED[0] + " AND resort_id = ? AND new_development = 1", "1"]))
+      get :new_developments, :resort_id => "1"
     end
 
     it "assigns @properties" do
-      get :new_developments
+      get :new_developments, :resort_id => "1"
       assigns[:properties].should equal(properties)
     end
   end

@@ -27,15 +27,15 @@ describe ResortsController do
     end
   end
 
-  describe "GET info" do
+  describe "GET show" do
     it "finds a resort" do
       Resort.should_receive(:find_by_id).with("1")
-      get :info, :id => "1"
+      get :show, :id => "1"
     end
 
     it "assigns @resort" do
       Resort.stub(:find_by_id).and_return(resort)
-      get :info, :id => "1"
+      get :show, :id => "1"
       assigns[:resort].should equal(resort)
     end
   end
