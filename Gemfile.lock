@@ -134,7 +134,7 @@ GEM
     rspec-expectations (2.6.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.6.0)
-    rspec-rails (2.6.0)
+    rspec-rails (2.6.1.beta1)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
       railties (~> 3.0)
@@ -189,7 +189,7 @@ DEPENDENCIES
   rails (= 3.1.0.rc1)
   rcov
   rdiscount (= 1.6.8)
-  rspec-rails (>= 2.4.1)
+  rspec-rails (>= 2.6.1.beta1)
   sass
   spreadsheet (= 0.6.5.4)
   sprockets (= 2.0.0.beta.8)

@@ -35,7 +35,7 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem "autotest", "4.4.6"
-  gem "rspec-rails", ">= 2.4.1"
+  gem "rspec-rails", ">= 2.6.1.beta1"
   gem "cucumber-rails", ">= 0.4"
   gem 'database_cleaner'
   gem "webrat", ">= 0.7.3"
