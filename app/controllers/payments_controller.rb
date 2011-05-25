@@ -41,6 +41,33 @@ class PaymentsController < ApplicationController
     render :layout => false
   end
 
+  def cardsave_callback
+    @payment = Payment.new
+    @payment.service_provider = 'CardSave'
+    @payment.installation_id = params[:MerchantID]
+    @payment.amount = params[:Amount]
+    @payment.currency = params[:CurrencyCode]
+    @payment.cart_id = params[:OrderID]
+    @payment.transaction_status = (params[:StatusCode] and params[:StatusCode]=='0')
+    @payment.transaction_time = params[:TransactionDateTime]
+    @payment.accepted = false # for now
+    @payment.save # this first save is for safety
+
+    if cardsave_hash_matches?
+      if params[:StatusCode]=='0'
+        complete_order
+      elsif params[:StatusCode]=='5'
+        @message = 'Your payment was declined'
+      elsif params[:StatusCode]=='30'
+        @message = 'There was an error processing your payment'
+      elsif
+        @message = 'Your payment has not recorded by us as we could not confirm if it was successful'
+      end
+    else
+      @message = 'There has been a failure validating your payment'
+    end
+  end
+
   protected
 
   def complete_order
