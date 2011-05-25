@@ -50,8 +50,8 @@
   </ul>
   <% end %>
   <div class="actions">
-    <p class="price"><%= @for_sale ? "Sale price" : "Weekly price from" %><br>
-    <span><%= @for_sale ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span></p>
+    <p class="price"><%= p.for_sale ? "Sale price" : "Weekly price from" %><br>
+    <span><%= p.for_sale ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span></p>
     <p class="contact_owner"><%= link_to 'Contact Owner', contact_property_path(p) %></p>
     <p class="email_a_friend"><%= link_to 'Email a Friend', email_a_friend_property_path(p) %></p>
   </div>
