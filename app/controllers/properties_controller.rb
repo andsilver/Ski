@@ -21,8 +21,8 @@ class PropertiesController < ApplicationController
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
     @conditions[0] += " AND for_sale = 0"
 
-    @search_filters = [:pets, :smoking, :tv, :satellite, :wifi, :disabled,
-      :fully_equipped_kitchen, :long_term_lets_available]
+    @search_filters = [:parking, :pets, :smoking, :tv, :satellite, :wifi, :disabled,
+      :fully_equipped_kitchen, :long_term_lets_available, :ski_in_ski_out]
 
     filter_conditions
 
@@ -152,7 +152,23 @@ class PropertiesController < ApplicationController
 
   def filter_conditions
     @search_filters.each do |filter|
-      @conditions[0] += " AND #{filter.to_s}=1" if params["filter_" + filter.to_s]
+      @conditions[0] += " AND #{filter_column(filter)}>=#{filter_threshold(filter)}" if params["filter_" + filter.to_s]
+    end
+  end
+
+  def filter_column filter
+    if filter == :satellite
+      'tv'
+    else
+      filter.to_s
+    end
+  end
+
+  def filter_threshold filter
+    if filter == :satellite
+      Property::TV_SATELLITE
+    else
+      1
     end
   end
 end
