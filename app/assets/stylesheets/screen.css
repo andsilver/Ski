@@ -109,6 +109,10 @@ td {
   vertical-align: top;
 }
 
+th {
+  text-align: left;
+}
+
 h1 {
   font-size: 1.4em;
   text-transform: uppercase;
@@ -267,22 +271,27 @@ textarea {
   clear: both;
 }
 
-td.numeric {
+td.numeric, th.numeric {
   text-align: right;
 }
 
 table.grid {
+  background: #fff;
   border-collapse: collapse;
   border: 1px solid #ccc;
   clear: left;
 }
 
 .grid td, .grid th {
-  padding: 0.3em 0.6em;
+  padding: 0.4em 0.8em;
 }
 
 .grid td {
   border-top: 1px solid #ccc;
+}
+
+.grid tr:hover {
+  background: yellow;
 }
 
 #search_options {
@@ -492,7 +501,7 @@ textarea#property_description {
   width: 100%;
 }
 
-.group_panel table td {
+.edit_property .group_panel table td {
   width: 50%;
 }
 

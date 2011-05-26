@@ -1,10 +1,24 @@
 module AdvertBehaviours
+  def advert_status
+    if currently_advertised?
+      :live
+    elsif latest_expired_advert
+      :expired
+    else
+      :new
+    end
+  end
+
   def currently_advertised?
     !current_advert.nil?
   end
 
   def current_advert
     Advert.where("#{self.class.to_s.foreign_key} = ? AND expires_at > ?", id, Time.now).first
+  end
+
+  def latest_expired_advert
+    Advert.where("#{self.class.to_s.foreign_key} = ? AND expires_at < ?", id, Time.now).first
   end
 
   def views

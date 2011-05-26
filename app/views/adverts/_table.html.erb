@@ -1,0 +1,55 @@
+<div class="group_panel">
+<h2><%= t title %></h2>
+
+<table class="grid">
+  <thead>
+    <tr>
+      <th class="numeric">ID</th>
+      <th><%= t 'resort' %></th>
+      <th><%= t 'name' %></th>
+      <th class="numeric"><%= t 'views' %></th>
+      <th><%= t 'advert_start_date' %></th>
+      <th><%= t 'advert_end_date' %></th>
+      <th><%= t 'advert_status' %></th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+<% adverts.each do |a| %>
+    <tr>
+      <td class="numeric"><%= a.id %></td>
+      <td><%= a.resort.name %></td>
+      <td><%= link_to a.name, edit_polymorphic_path(a) %></td>
+      <td class="numeric"><%= a.views %></td>
+      <% if a.currently_advertised? %>
+      <td>
+        <%= l a.current_advert.starts_at, :format => :short %>
+      </td>
+      <td>
+        <%= l a.current_advert.expires_at, :format => :short %>
+      </td>
+      <% else %>
+      <td>
+        &nbsp;
+      </td>
+      <td>
+        &nbsp;
+      </td>
+      <% end %>
+      <td>
+        <%= t 'advert_statuses.' + a.advert_status.to_s %>
+      </td>
+      <td class="numeric">
+        <% if a.currently_advertised? %>
+        &nbsp;
+        <% else %>
+        <%= form_tag :controller => a.class.table_name, :action => "advertise_now", :id => a.id do %>
+        <%= submit_tag t('advertise_action.' + a.advert_status.to_s) %>
+        <% end %>
+        <% end %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+</div>

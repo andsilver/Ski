@@ -3,7 +3,16 @@
 
 en:
   address: 'Address'
+  advert_start_date: Advert Start Date
+  advert_end_date: Advert End Date
   advert_status: 'Advert Status'
+  advert_statuses:
+    expired: Expired
+    live: Live
+    new: Awaiting Checkout
+  advertise_action:
+    expired: 'Readvertise'
+    new: 'Advertise Now'
   advertise: 'Advertise'
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
@@ -91,5 +100,8 @@ en:
   strapline: 'Strapline'
   strapline_placeholder: "Summarise the property's key features (e.g., size, location) in under 255 characters."
   terms: 'Terms and Conditions'
+  time:
+    formats:
+      short: %d %b %Y
   views: 'Views'
   weekly_rent_price: 'Weekly rent price'
