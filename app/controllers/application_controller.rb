@@ -26,14 +26,14 @@ class ApplicationController < ActionController::Base
 
   def user_required
     unless signed_in?
-      flash[:notice] = I18n.t('sign_in_required')
+      flash[:notice] = t('notices.sign_in_required')
       redirect_to sign_in_path
     end
   end
 
   def admin_required
     unless admin?
-      flash[:notice] = 'You need to be logged in as an administrator to do that.'
+      flash[:notice] = t('notices.admin_required')
       redirect_to sign_in_path
     end
   end

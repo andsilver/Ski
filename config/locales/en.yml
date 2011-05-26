@@ -14,8 +14,10 @@ en:
     expired: 'Readvertise'
     new: 'Advertise Now'
   advertise: 'Advertise'
+  basket: Basket
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
+  business_details: Business Details
   category: 'Category'
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
@@ -26,6 +28,7 @@ en:
   directory_adverts: 'Directory Adverts'
   distance_from_lift: 'Distance from lift'
   email: 'Email'
+  enquire: Enquire
   featured_resorts: 'Featured Resorts'
   features: 'Features'
   floor_area: 'Floor area'
@@ -40,6 +43,12 @@ en:
   name: 'Name'
   nearest_lift: 'Nearest lift'
   new_developments: 'New Developments'
+  notices:
+    admin_required: You need to be logged in as an administrator to do that.
+    advert_removed: Advert removed.
+    basket_updated: Basket updated.
+    saved: Saved.
+    sign_in_required: Please sign in or sign up first.
   number_of_bathrooms: 'Number of bathrooms'
   number_of_bedrooms: 'Number of bedrooms'
   password: 'Password'
@@ -90,8 +99,7 @@ en:
   save: 'Save'
   sign_in: 'Sign In'
   sign_in_invalid: 'Your sign in attempt failed. No account was found with this email address and password.'
-  sign_in_required: 'Please sign in or sign up first.'
-  sign_up: 'Sign Up'
+  sign_up: Register
   signed_out: 'You are now signed out.'
   sleeping_capacity: 'Sleeping capacity'
   stage_1: <span>Stage 1<br><em>Choose your country and resort selection</em></span>
@@ -103,5 +111,11 @@ en:
   time:
     formats:
       short: %d %b %Y
+  users:
+    forgot_your_password: Forgot your password?
+    or: Or
+    register_to_advertise: Register to advertise your property or business
+    sign_in_to_access_your_account: Sign in to access your account
+    your_position: Your position
   views: 'Views'
   weekly_rent_price: 'Weekly rent price'

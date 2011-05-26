@@ -489,6 +489,21 @@ textarea#property_description {
   margin-left: 10px;
 }
 
+#user_panel_1, #user_panel_2, #user_panel_3 {
+  width: 332px;
+  float: left;
+}
+
+#user_panel_2 p {
+  font-size: 2em;
+  text-align: center;
+  padding-top: 2em;
+}
+
+#user_panel_1 .group_panel, #user_panel_3 .group_panel {
+  height: 220px;
+}
+
 .group_panel {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;

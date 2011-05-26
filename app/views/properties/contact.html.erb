@@ -1,5 +1,5 @@
 <%= render 'spam/spam' %>
-<h1><%= link_to @property.name, @property %> &gt; Contact Owner</h1>
+<h1><%= link_to @property.name, @property %> &gt; <%= t('enquire') %></h1>
 <% if @enquiry.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@enquiry.errors.count, "error") %> prohibited this enquiry from being sent:</h2>

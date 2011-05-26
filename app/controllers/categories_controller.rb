@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to(resort_categories_path(@category.resort), :notice => 'Saved') }
+        format.html { redirect_to(resort_categories_path(@category.resort), :notice => t('notices.saved')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

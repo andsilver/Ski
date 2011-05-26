@@ -12,10 +12,12 @@ class UsersController < ApplicationController
   end
 
   def new
+    @heading_a = t 'sign_up'
     @user = User.new
   end
 
   def create
+    @heading_a = t 'sign_up'
     @user = User.new(params[:user])
     @role = Role.find_by_id(params[:user][:role_id])
     if @role && @role.select_on_signup?

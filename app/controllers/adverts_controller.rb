@@ -16,7 +16,7 @@ class AdvertsController < ApplicationController
     update_durations unless params[:months].nil?
     remove_advert if params[:remove_advert]
     redirect_to :action => 'place_order' and return if params[:place_order]
-    redirect_to basket_path, :notice => 'Basket updated.'
+    redirect_to basket_path, :notice => t('notices.basket_updated')
   end
 
   def place_order
@@ -62,7 +62,7 @@ class AdvertsController < ApplicationController
     @advert = Advert.find_by_id_and_user_id_and_starts_at(params[:id], @current_user.id, nil)
     if @advert
       @advert.destroy
-      notice = "Advert removed."
+      notice = t('notices.advert_removed')
     end
     redirect_to basket_path, :notice => notice
   end

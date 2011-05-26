@@ -1,13 +1,13 @@
 <%= render :partial => 'shared/steps', :locals => { :step => @user.role ? 2 : 1 } %>
 
-<h1><%= I18n.t('sign_up') %></h1>
-
 <% if @user.role %>
 <p>Account type: <strong><%= @user.role.name %></strong> (<%= link_to 'change', sign_up_path %>)</p>
 <%= raw '<p>You will be able to advertise properties for rent or sale.</p>' if @user.role.advertises_properties? %>
 <%= raw '<p>You will be able to create banner or directory adverts.</p>' if @user.role.advertises_generally? %>
 <%= render 'form', :submit_label => 'sign_up' %>
 <% else %>
+<div id="user_panel_1">
+  <div class="group_panel">
 <p>Please choose an account type that best matches you or your business.</p>
 <%= form_for @user do |f| %>
 <input type="hidden" name="stage" value="1">
@@ -18,4 +18,6 @@
   <%= f.submit 'Continue' %>
 </p>
 <% end %>
+  </div>
+</div>
 <% end %>

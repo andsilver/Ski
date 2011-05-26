@@ -1,20 +1,35 @@
-<%= form_tag :action => 'create' do -%>
-  <div class="field">
-    <label for="email"><%= I18n.t('email') %></label><br>
-    <%= text_field_tag :email, params[:email] %>
+<div id="user_panel_1">
+  <div class="group_panel">
+    <h2><%= t 'users.sign_in_to_access_your_acount' %></h2>
+  <%= form_tag :action => 'create' do -%>
+    <div class="field">
+      <label for="email"><%= I18n.t('email') %></label><br>
+      <%= text_field_tag :email, params[:email] %>
+    </div>
+    <div class="field">
+      <label for="password"><%= I18n.t('password') %></label><br>
+      <%= password_field_tag :password, params[:password] %>
+    </div>
+    <%= submit_tag I18n.t('sign_in') %>
+    <p id="forgot_your_password">
+      <%= link_to t('users.forgot_your_password'), :controller => 'users', :action => 'forgot_password' %>
+    </p>
+  <% end -%>
   </div>
-  <div class="field">
-    <label for="password"><%= I18n.t('password') %></label><br>
-    <%= password_field_tag :password, params[:password] %>
-  </div>
-  <%= submit_tag I18n.t('sign_in') %>
-  <p id="forgot_your_password">
-    <%= link_to 'Forgot your password?', :controller => 'users', :action => 'forgot_password' %>
+</div>
+
+<div id="user_panel_2">
+  <p>
+    <%= t('users.or') %>
   </p>
-<% end -%>
+</div>
 
-<h2>Don&apos;t have an account yet?</h2>
+<div id="user_panel_3">
+  <div class="group_panel">
+    <h2>Don&apos;t have an account yet?</h2>
 
-<p>
-  <%= link_to 'Sign up', sign_up_path %> for an advertiser account.
-</p>
+    <p>
+      <%= link_to t('users.register_to_advertise'), sign_up_path %>
+    </p>
+  </div>
+</div>
