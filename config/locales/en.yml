@@ -25,8 +25,9 @@ en:
   garden: 'Garden'
   main_image: 'Main image'
   map: Map
-  my_details_saved: 'Your details have been saved.'
   my_adverts: 'My Adverts'
+  my_enquiries: My Email Enquiries
+  my_details_saved: 'Your details have been saved.'
   name: 'Name'
   nearest_lift: 'Nearest lift'
   new_developments: 'New Developments'
