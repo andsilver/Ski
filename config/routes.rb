@@ -6,8 +6,9 @@ MySkiChalet::Application.routes.draw do
     :as => :resort_property_new_developments
   resources :resorts do
     resources :categories
-    get 'featured', :on => :collection
-    get 'feature', :on => :member
+    get 'featured',  :on => :collection
+    get 'feature',   :on => :member
+    get 'piste_map', :on => :member
   end
 
   match "sign_in" => "sessions#new"
@@ -39,7 +40,7 @@ MySkiChalet::Application.routes.draw do
     get  'email_a_friend', :on => :member
     get  'rent',           :on => :collection
     get  'sale',           :on => :collection
-    get 'current_time',   :on => :collection
+    get  'current_time',   :on => :collection
   end
 
   resources :property_base_prices

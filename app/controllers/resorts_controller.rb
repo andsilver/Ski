@@ -1,6 +1,6 @@
 class ResortsController < ApplicationController
-  before_filter :admin_required, :except => [:show, :feature, :featured]
-  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :feature]
+  before_filter :admin_required, :except => [:show, :feature, :featured, :piste_map]
+  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :feature, :piste_map]
   before_filter :no_browse_menu, :except => [:show, :feature]
 
   def index
@@ -59,6 +59,10 @@ class ResortsController < ApplicationController
 
   def featured
     @heading_a = I18n.t('featured_resorts')
+  end
+
+  def piste_map
+    @heading_a = I18n.t('piste_map')
   end
 
   def feature

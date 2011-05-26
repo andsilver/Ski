@@ -33,6 +33,7 @@ en:
   number_of_bathrooms: 'Number of bathrooms'
   number_of_bedrooms: 'Number of bedrooms'
   password: 'Password'
+  piste_map: Piste Map
   plot_size: 'Plot size'
   postcode: 'ZIP / postcode'
   privacy: 'Privacy Policy'
