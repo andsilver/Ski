@@ -2,15 +2,18 @@ Hello <%= @enquiry.user.name %>
 
 You have a new enquiry from My Ski Chalet!
 
+Property ID: <%= @property.id %>
+Property Name: <%= @property.name %>
+
 <% unless @enquiry.date_of_arrival.blank? -%>
 Date of arrival:
 <%= @enquiry.date_of_arrival %>
-<% end %>
+<% end -%>
 
 <% unless @enquiry.date_of_departure.blank? -%>
 Date of departure:
 <%= @enquiry.date_of_departure %>
-<% end %>
+<% end -%>
 
 Name:
 <%= @enquiry.name %>
