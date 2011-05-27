@@ -3,6 +3,7 @@ class EnquiryNotifier < ActionMailer::Base
 
   def notify enquiry, property
     @enquiry = enquiry
+    @property = property
     mail(:to => enquiry.user.email,
       :subject => "My Ski Chalet: Enquiry for property ##{property.id}")
   end

@@ -94,7 +94,7 @@ td .field {
 
 .field_left {
   float: left;
-  width: 180px;
+  width: 200px;
   line-height: 25px;
   height: 30px;
 }
@@ -157,7 +157,7 @@ textarea {
   padding: 2px;
   font-family: 'Lucida Sans', Arial, Helvetica, sans-serif;
   font-size: 1em;
-  width: 14em;
+  width: 18em;
 }
 
 input[type=number] {
@@ -170,7 +170,7 @@ input[type=number] {
 }
 
 textarea {
-  width: 30em;
+  width: 36em;
 }
 
 #flash_notice {
@@ -352,8 +352,12 @@ textarea#property_description {
   height: 32em;
 }
 
+input#property_postcode {
+  width: 10em;
+}
+
 #panel_1, #panel_2 {
-  width: 455px;
+  width: 493px;
   float: left;
 }
 
