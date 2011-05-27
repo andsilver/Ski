@@ -1,0 +1,79 @@
+.property_summary {
+  width: 367px;
+  background-image: url(/images/property-summary-bg.png);
+  background-position: right top;
+  background-repeat: repeat-y;
+  border-bottom: 1px solid #68c8e7;
+  padding: 6px 8px 0 12px;
+}
+
+.property_summary h3 {
+  margin: 0;
+  font-weight: normal;
+  font-size: 1.5em;
+}
+
+.property_summary h3 a {
+  color: #00aeef;
+  text-decoration: none;
+}
+
+.property_summary p.strapline {
+  margin: 0.5em 0;
+}
+
+.property_summary .features li {
+  font-size: 1.1em;
+}
+
+.property_summary .thumbnail,
+.property_summary .features,
+.property_summary .actions {
+  margin-top: 0;
+  float: left;
+  width: 120px;
+  padding: 0 8px 0 0;
+}
+
+.property_summary .actions {
+  width: 100px;
+}
+
+.property_summary .price {
+  text-align: right;
+  margin-top: 0;
+  font-size: 1.1em;
+}
+
+.property_summary .price span {
+  font-size: 1.4em;
+}
+
+.property_summary p.contact_owner,
+.property_summary p.email_a_friend {
+  margin: 0.5em 0;
+}
+
+.property_summary .contact_owner a,
+.property_summary .email_a_friend a {
+  text-decoration: none;
+  color: #fff;
+  background: #00b3f0;
+  background-image: url(/images/tiny-button-arrow.png);
+  background-repeat: no-repeat;
+  background-position: 4px 6px;
+  font-size: 0.9em;
+  border: 2px solid #00529c;
+  display: block;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  text-transform: lowercase;
+  text-align: right;
+  padding: 3px 5px;
+}
+
+.property_summary .contact_owner a:hover,
+.property_summary .email_a_friend a:hover {
+  background: #00529c;
+}
