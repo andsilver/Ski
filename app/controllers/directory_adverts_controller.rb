@@ -39,7 +39,7 @@ class DirectoryAdvertsController < ApplicationController
   def update
     update_user_details
     if @directory_advert.update_attributes(params[:directory_advert])
-      redirect_to my_directory_adverts_path,
+      redirect_to my_adverts_path,
         :notice => "Your directory advert was successfully updated."
     else
       render "edit"
