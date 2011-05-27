@@ -382,54 +382,6 @@ ul#resort_options {
   color: #111;
 }
 
-.pagination {
-  font-size: 1.2em;
-  text-align: center;
-  padding: .3em;
-  margin-top: 1em;
-}
-
-.pagination a, .pagination span, .pagination em {
-  padding: .2em .5em;
-}
-
-.pagination span.disabled {
-  color: #AAA;
-}
-
-.pagination em {
-  font-weight: bold;
-  color: #FF0084;
-}
-
-.pagination a {
-  border: 1px solid #DDDDDD;
-  color: #0063DC;
-  text-decoration: none;
-}
-
-.pagination a:hover, .pagination a:focus {
-  border-color: #003366;
-  background: #0063DC;
-  color: white; }
-
-.pagination .page_info {
-  color: #aaa;
-  padding-top: .8em;
-}
-
-.pagination .previous_page, .pagination .next_page {
-  border-width: 2px;
-}
-
-.pagination .previous_page {
-  margin-right: 1em;
-}
-
-.pagination .next_page {
-  margin-left: 1em;
-}
-
 input[type=text] .LV_invalid_field,
 input[type=email] .LV_invalid_field {
   border: 1px solid #f00;
