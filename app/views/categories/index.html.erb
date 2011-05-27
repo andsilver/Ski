@@ -1,13 +1,13 @@
-<% if admin? %>
 <p>
-  <%= link_to 'Add new category', new_resort_category_path(@resort) %>
+  <%= link_to 'Add new category', new_category_path %>
 </p>
-<% end %>
-<ul>
+
+<table class="grid">
 <% @categories.each do |category| %>
-  <li><%= link_to category.name, resort_category_path(@resort, category) %><% if admin? %>
-    (<%= link_to 'Edit', edit_resort_category_path(@resort, category) %>,
-    <%= link_to 'Delete', [@resort, category], :confirm => 'Are you sure?', :method => :delete %>)
-    <% end %></li>
+  <tr>
+    <td><%= category.name %></td>
+    <td><%= link_to 'Edit', edit_category_path(category) %></td>
+    <td><%= link_to 'Delete', category, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
 <% end %>
-</ul>
+</table>

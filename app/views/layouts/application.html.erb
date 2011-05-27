@@ -70,7 +70,7 @@
     <li <%= 'class="selected"'.html_safe if current_page?(resort_property_new_developments_path(@resort)) %>><%=
       link_to I18n.t('new_developments') + ' ' + count_new_developments_in(@resort),
       resort_property_new_developments_path(@resort) %></li>
-    <li <%= 'class="selected"'.html_safe if current_page?(resort_categories_path(@resort)) %>><%= link_to 'Directory', resort_categories_path(@resort) %></li>
+    <li <%= 'class="selected"'.html_safe if current_page?(directory_resort_path(@resort)) %>><%= link_to 'Directory', directory_resort_path(@resort) %></li>
     <li <%= 'class="selected"'.html_safe if current_page?(piste_map_resort_path(@resort)) %>><%= link_to I18n.t('piste_map'), piste_map_resort_path(@resort) %></li>
   </ul>
 <% end %>

@@ -1,19 +1,18 @@
 class CategoriesController < ApplicationController
-  before_filter :no_browse_menu, :except => [:index, :show]
-  before_filter :admin_required, :except => [:index, :show]
-  before_filter :find_resort, :only => [:index, :new]
+  before_filter :no_browse_menu, :except => [:show]
+  before_filter :admin_required, :except => [:show]
+  before_filter :find_resort, :only => [:show]
   before_filter :find_category, :only => [:edit, :update, :show, :destroy]
 
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]
 
   def index
-    @heading_a = "Directory for #{@resort.name}, #{@resort.country.name}"
-    @categories = @resort.categories
+    @heading_a = "Categories"
+    @categories = Category.order(:name).all
   end
 
   def new
     @category = Category.new
-    @category.resort_id = @resort.id
   end
 
   def create
@@ -21,7 +20,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to(resort_categories_path(@category.resort), :notice => 'Category created.') }
+        format.html { redirect_to(categories_path, :notice => 'Category created.') }
         format.xml  { render :xml => @category, :status => :created, :location => @category }
       else
         format.html { render :action => "new" }
@@ -36,7 +35,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to(resort_categories_path(@category.resort), :notice => t('notices.saved')) }
+        format.html { redirect_to(categories_path, :notice => t('notices.saved')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -46,12 +45,12 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @heading_a = "#{@category.name} in #{@category.resort.name}, #{@category.resort.country.name}"
-    @resort = @category.resort
+    @heading_a = "#{t(@category.name)} in #{@resort.name}, #{@resort.country.name}"
 
     @conditions = CURRENTLY_ADVERTISED.dup
-    @conditions[0] += " AND category_id = ?"
-    @conditions << params[:id]
+    @conditions[0] += " AND category_id = ? AND resort_id = ?"
+    @conditions << @category.id
+    @conditions << @resort.id
 
     @directory_adverts = DirectoryAdvert.paginate :page => params[:page], :order => 'RAND()',
       :conditions => @conditions

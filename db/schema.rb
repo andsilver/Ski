@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525145547) do
+ActiveRecord::Schema.define(:version => 20110526163945) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20110525145547) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.integer  "resort_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,7 +71,10 @@ ActiveRecord::Schema.define(:version => 20110525145547) do
     t.string   "business_address",                 :null => false
     t.string   "postcode",         :default => "", :null => false
     t.string   "opening_hours",    :default => "", :null => false
+    t.integer  "resort_id"
   end
+
+  add_index "directory_adverts", ["resort_id"], :name => "index_directory_adverts_on_resort_id"
 
   create_table "enquiries", :force => true do |t|
     t.integer  "user_id",                              :null => false

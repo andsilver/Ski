@@ -1,0 +1,5 @@
+<ul>
+  <% @categories.each do |category| %>
+  <li><%= link_to t(category.name), category_path(category, :resort_id => @resort.id) %></li>
+  <% end %>
+</ul>

@@ -22,7 +22,7 @@
   <%= text_field_tag 'website', @current_user.website %>
 </div>
 
-<div>
+<div class="field">
   <%= label_tag 'description' %><br>
   <%= text_area_tag 'description', @current_user.description %>
 </div>
@@ -44,7 +44,12 @@
 
 <div class="field">
   <%= f.label :category_id, I18n.t('category') %><br>
-  <%= select("directory_advert", "category_id", (Category.all.collect {|c| [ c.resort.country.name + ' > ' + c.resort.name + ' > ' + c.name, c.id ] }).sort, {:prompt => 'Select Category'}) %>
+  <%= select("directory_advert", "category_id", (Category.all.collect {|c| [ t(c.name), c.id ] }).sort, {:prompt => 'Select Category'}) %>
+</div>
+
+<div class="field">
+  <%= f.label :resort_id, I18n.t('resort') %><br>
+  <%= select("directory_advert", "resort_id", (Resort.all.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
 </div>
 
 <div class="field">

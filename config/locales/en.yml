@@ -19,6 +19,25 @@ en:
   bedrooms: 'Bedrooms'
   business_details: Business Details
   category: 'Category'
+  category_names:
+    airport_transfer: Airport transfer
+    architect: Architects
+    babysitter: Babysitters
+    bars: Bars
+    car_hire: Car hire
+    cleaners: Cleaners
+    creche: Creches
+    home_appliances: Home appliances
+    home_insurance: Home insurance
+    interior_design: Interior designers
+    internet_cafe: Internet cafés
+    letting_agents: Letting agents
+    mountain_guide: Mountain guides
+    other: Other
+    restaurants: Restaurants
+    ski_hire: Ski hire
+    takeaway: Takeaways
+    taxi: Taxis
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
   country: 'Country'

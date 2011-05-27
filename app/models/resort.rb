@@ -1,7 +1,6 @@
 class Resort < ActiveRecord::Base
   belongs_to :country
   has_many :properties, :dependent => :nullify
-  has_many :categories, :order => :name, :dependent => :destroy
   has_many :order_lines
 
   scope :featured, where('featured = 1').order('name')
