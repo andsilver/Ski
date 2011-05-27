@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user] = @user.id
+      UserNotifier.welcome(@user, request.host).deliver
       redirect_to(advertise_path, :notice => 'Your account was successfully created.')
     else
       render :action => "new"
