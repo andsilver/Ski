@@ -119,7 +119,6 @@ en:
       wifi: WiFi
     filters:
       disabled: Disabled access
-      fully_equipped_kitchen: Fully equipped kitchen
       garage: Garage
       garden: Garden
       long_term_lets_available: Long lets
