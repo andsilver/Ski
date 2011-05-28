@@ -13,19 +13,23 @@
 <% end %>
 
 <%= form_for @website do |f| %>
-<p>
+<div class="field">
+  <%= f.label :directory_advert_price %><br>
+  <%= f.text_field :directory_advert_price %> EUR
+</div>
+<div class="field">
   <%= f.label :home_content %><br>
   <%= f.text_area :home_content, :class => 'ckeditor' %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :terms %><br>
   <%= f.text_area :terms, :class => 'ckeditor' %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.label :privacy_policy %><br>
   <%= f.text_area :privacy_policy, :class => 'ckeditor' %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.submit %>
-</p>
+</div>
 <% end %>

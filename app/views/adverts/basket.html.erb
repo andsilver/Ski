@@ -24,11 +24,9 @@
         <td class="numeric">
           <% unless line.coupon %>
           <select name="months[<%= line.advert.id %>]" onchange="this.form.submit()">
-          <option value="1"<%= " selected" if line.advert.months==1 %>>1 month</option>
-          <option value="3"<%= " selected" if line.advert.months==3 %>>3 months</option>
-          <option value="6"<%= " selected" if line.advert.months==6 %>>6 months</option>
-          <option value="9"<%= " selected" if line.advert.months==9 %>>9 months</option>
-          <option value="12"<%= " selected" if line.advert.months==12 %>>12 months</option>
+            <% line.advert.object.valid_months.each do |months| %>
+            <option value="<%= months %>"<%= " selected" if line.advert.months==months %>><%= pluralize(months, 'month') %></option>
+            <% end %>
           </select>
           <% end %>
         </td>

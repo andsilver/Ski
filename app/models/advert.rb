@@ -8,7 +8,7 @@ class Advert < ActiveRecord::Base
   def self.create_for(object)
     unless basket_contains? object
       advert = Advert.new_for(object)
-      advert.months = 3
+      advert.months = object.default_months
       advert.save!
     end
   end

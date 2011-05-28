@@ -158,4 +158,12 @@ class Property < ActiveRecord::Base
     self.normalised_sale_price = sale_price * currency.in_euros
     self.normalised_weekly_rent_price = weekly_rent_price * currency.in_euros
   end
+
+  def valid_months
+    PropertyBasePrice.order('number_of_months').all.collect {|pbp| pbp.number_of_months}
+  end
+
+  def default_months
+    3
+  end
 end

@@ -16,8 +16,15 @@ class DirectoryAdvert < ActiveRecord::Base
     user.business_name
   end
 
-  PRICES = { 1 => 1000, 3 => 2700, 6 => 4800, 9 => 6300, 12 => 7200 }
   def price(advert, directory_adverts_so_far)
-    PRICES[advert.months]
+    Website.first.directory_advert_price * 100
+  end
+
+  def valid_months
+    [default_months]
+  end
+
+  def default_months
+    12
   end
 end

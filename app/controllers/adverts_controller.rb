@@ -104,7 +104,7 @@ class AdvertsController < ApplicationController
       months = months.to_i
       advert = Advert.find_by_id_and_user_id(id, @current_user.id)
       if advert
-        if months == 1 || months == 3 || months == 6 || months == 9 || months == 12
+        if advert.object.valid_months.include? months
           advert.months = months
           advert.save
         end
