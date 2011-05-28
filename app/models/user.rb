@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   belongs_to :coupon
 
   has_many :directory_adverts
-  has_many :enquiries, :dependent => :delete_all
+  has_many :enquiries, :dependent => :delete_all, :order => "created_at DESC"
   has_many :adverts
   has_many :adverts_in_basket, :class_name => 'Advert', :conditions => {:starts_at => nil}
   has_many :properties

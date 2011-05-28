@@ -41,6 +41,9 @@ en:
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
   country: 'Country'
+  date:
+    formats:
+      short: %d %b %Y
   delete: 'Delete'
   description: 'Description'
   details: 'Details'
@@ -48,6 +51,16 @@ en:
   distance_from_lift: 'Distance from lift'
   email: 'Email'
   enquire: Enquire
+  enquiries_controller:
+    comments: Comments
+    date_of_arrival: Date of arrival
+    date_of_departure: Date of departure
+    enquiry_introduction: 'To enquire about the availability and prices of your selected accommodation, you can either call the owner or agent directly on the number below or complete the details in the form and send an email.  We hope you have a great holiday.'
+    number_of_adults: Number of adults
+    number_of_children: Number of children (3 to 16)
+    number_of_infants: Number of infants (under 3)
+    send_an_email: Send an Email
+    your_enquiry_has_been_sent: Your enquiry has been sent.
   featured_resorts: 'Featured Resorts'
   features: 'Features'
   floor_area: 'Floor area'
@@ -56,6 +69,7 @@ en:
   garden: 'Garden'
   main_image: 'Main image'
   map: Map
+  mobile: Mobile
   my_adverts: 'My Adverts'
   my_enquiries: My Email Enquiries
   my_details_saved: 'Your details have been saved.'
@@ -71,6 +85,7 @@ en:
   number_of_bathrooms: 'Number of bathrooms'
   number_of_bedrooms: 'Number of bedrooms'
   password: 'Password'
+  phone: Phone
   piste_map: Piste Map
   plot_size: 'Plot size'
   postcode: 'ZIP / postcode'

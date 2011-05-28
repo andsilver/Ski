@@ -1,5 +1,10 @@
 <%= render 'spam/spam' %>
 <h1><%= link_to @property.name, @property %> &gt; <%= t('enquire') %></h1>
+
+<p>
+  <%= t('enquiries_controller.enquiry_introduction') %>
+</p>
+
 <% if @enquiry.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@enquiry.errors.count, "error") %> prohibited this enquiry from being sent:</h2>
@@ -12,12 +17,30 @@
   </div>
 <% end %>
 
+<div id="panel_1">
+<div class="group_panel">
+  <h2><%= t('enquiries_controller.send_an_email') %></h2>
 <%= form_for @enquiry do |f| %>
 <%= f.hidden_field :property_id %>
 
 <span id="current_time">
   <!-- current time placed here by AJAX request -->
 </span>
+
+<div class="field">
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</div>
+
+<div class="field">
+  <%= f.label :email, t('email') %><br>
+  <%= f.text_field :email %>
+</div>
+
+<div class="field">
+  <%= f.label :phone %><br>
+  <%= f.text_field :phone %>
+</div>
 
 <% if @property.for_rent? %>
 <script>
@@ -28,41 +51,46 @@ $(function () {
 </script>
 
 <div class="field">
-  <%= f.label :date_of_arrival %><br>
+  <%= f.label :date_of_arrival, t('enquiries_controller.date_of_arrival') %><br>
   <%= f.text_field :date_of_arrival %>
 </div>
 
 <div class="field">
-  <%= f.label :date_of_departure %><br>
+  <%= f.label :date_of_departure, t('enquiries_controller.date_of_departure') %><br>
   <%= f.text_field :date_of_departure %>
 </div>
 <% end %>
 
 <div class="field">
-  <%= f.label :name %><br>
-  <%= f.text_field :name %>
+  <%= f.label :number_of_adults, t('enquiries_controller.number_of_adults') %><br>
+  <%= select("enquiry", "number_of_adults", (0..10).collect {|n| [ n, n ] }, {:prompt => 'Select'}) %>
 </div>
 
 <div class="field">
-  <%= f.label :email %><br>
-  <%= f.text_field :email %>
+  <%= f.label :number_of_children, t('enquiries_controller.number_of_children') %><br>
+  <%= select("enquiry", "number_of_children", (0..10).collect {|n| [ n, n ] }, {:prompt => 'Select'}) %>
 </div>
 
 <div class="field">
-  <%= f.label :phone %><br>
-  <%= f.text_field :phone %>
+  <%= f.label :number_of_infants, t('enquiries_controller.number_of_infants') %><br>
+  <%= select("enquiry", "number_of_infants", (0..10).collect {|n| [ n, n ] }, {:prompt => 'Select'}) %>
 </div>
 
 <div class="field">
-  <%= f.label :postcode, 'ZIP/postcode' %><br>
-  <%= f.text_field :postcode %>
-</div>
-
-<div class="field">
-  <%= f.label :comments %><br>
+  <%= f.label :comments, t('enquiries_controller.comments') %><br>
   <%= f.text_area :comments %>
 </div>
 
 <%= f.submit 'Send' %>
-
 <% end %>
+
+</div>
+</div><!--#panel_1-->
+<div id="panel_2">
+  <div class="group_panel">
+    <h2>Contact Details</h2>
+    <p><%= t('phone') %>: <%= @property.user.phone %></p>
+    <p><%= t('mobile') %>: <%= @property.user.mobile %></p>
+    <p><%= t('email') %>: <%= mail_to @property.user.email, @property.user.email, :encode => "javascript" %></p>
+  </div>
+</div><!--#panel_2-->

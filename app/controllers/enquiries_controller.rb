@@ -23,7 +23,7 @@ class EnquiriesController < ApplicationController
     if @enquiry.save
       notifier = EnquiryNotifier.notify(@enquiry, @property)
       notifier.deliver
-      redirect_to @property, :notice => 'Your enquiry has been sent.'
+      redirect_to @property, :notice => t('enquiries_controller.your_enquiry_has_been_sent')
     else
       render 'properties/contact'
       return

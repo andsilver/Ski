@@ -9,13 +9,27 @@
     <tr>
       <th>From</th>
       <th>When</th>
+      <th><%= t('phone') %></th>
+      <th><%= t('enquiries_controller.date_of_arrival') %></th>
+      <th><%= t('enquiries_controller.date_of_departure') %></th>
+      <th><%= t('enquiries_controller.number_of_adults') %></th>
+      <th><%= t('enquiries_controller.number_of_children') %></th>
+      <th><%= t('enquiries_controller.number_of_infants') %></th>
+      <th><%= t('enquiries_controller.comments') %></th>
     </tr>
   </thead>
   <tbody>
     <% @enquiries.each do |enquiry| %>
     <tr>
-      <td><%= enquiry.email %></td>
+      <td><%= enquiry.name %> &lt;<%= mail_to(enquiry.email) %>&gt;</td>
       <td><%= l enquiry.created_at, :format => :short %></td>
+      <td><%= enquiry.phone %></td>
+      <td><%= l(enquiry.date_of_arrival, :format => :short) unless enquiry.date_of_arrival.nil? %></td>
+      <td><%= l(enquiry.date_of_departure, :format => :short) unless enquiry.date_of_departure.nil? %></td>
+      <td><%= enquiry.number_of_adults %></td>
+      <td><%= enquiry.number_of_children %></td>
+      <td><%= enquiry.number_of_infants %></td>
+      <td><%= enquiry.comments %></td>
     </tr>
     <% end %>
   </tbody>

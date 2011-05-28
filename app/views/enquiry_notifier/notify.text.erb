@@ -7,12 +7,12 @@ Property Name: <%= @property.name %>
 
 <% unless @enquiry.date_of_arrival.blank? -%>
 Date of arrival:
-<%= @enquiry.date_of_arrival %>
+<%= l @enquiry.date_of_arrival, :format => :short %>
 <% end -%>
 
 <% unless @enquiry.date_of_departure.blank? -%>
 Date of departure:
-<%= @enquiry.date_of_departure %>
+<%= l @enquiry.date_of_departure, :format => :short %>
 <% end -%>
 
 Name:
@@ -24,8 +24,16 @@ Email:
 Phone:
 <%= @enquiry.phone %>
 
-ZIP/postcode:
-<%= @enquiry.postcode %>
+<% if @property.for_rent? -%>
+Number of adults:
+<%= @enquiry.number_of_adults %>
+
+Number of children:
+<%= @enquiry.number_of_children %>
+
+Number of infants:
+<%= @enquiry.number_of_infants %>
+<% end -%>
 
 Comments:
 <%= @enquiry.comments %>

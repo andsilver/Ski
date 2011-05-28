@@ -416,6 +416,15 @@ div.field_with_errors {
 }
 
 /**
+ * Enquiry form
+ */
+
+textarea#enquiry_comments {
+  width: 18em;
+  height: 4em;
+}
+
+/**
  * CMS
  */
 
