@@ -49,6 +49,11 @@
   </table>
   <p class="basket_buttons">
     <input type="submit" name="update_durations" value="Update">
+  </p>
+  <p>
+    <%= t('adverts_controller.by_pressing_place_order_you_agree_to_the_terms_and_conditions') %>
+    <%= link_to t('view'), terms_path %>
+  <p>
     <input type="submit" name="place_order" value="Place Order">
   </p>
 <% end %>

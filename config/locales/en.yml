@@ -14,6 +14,8 @@ en:
     expired: 'Readvertise'
     new: 'Advertise Now'
   advertise: 'Advertise'
+  adverts_controller:
+    by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
   basket: Basket
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
@@ -151,5 +153,6 @@ en:
     register_to_advertise: Register to advertise your property or business
     sign_in_to_access_your_account: Sign in to access your account
     your_position: Your position
+  view: View
   views: 'Views'
   weekly_rent_price: 'Weekly rent price'
