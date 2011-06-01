@@ -60,7 +60,7 @@ class PaymentsController < ApplicationController
         @message = 'Your payment was declined'
       elsif params[:StatusCode]=='30'
         @message = 'There was an error processing your payment'
-      elsif
+      else
         @message = 'Your payment has not recorded by us as we could not confirm if it was successful'
       end
     else
