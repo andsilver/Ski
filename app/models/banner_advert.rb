@@ -1,8 +1,11 @@
 class BannerAdvert < ActiveRecord::Base
   include AdvertBehaviours
 
+  CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.banner_advert_id FROM adverts WHERE adverts.banner_advert_id=banner_adverts.id AND adverts.expires_at > NOW())"]
+
   belongs_to :resort
   belongs_to :user
+  belongs_to :image
 
   has_many :adverts
 
@@ -24,5 +27,20 @@ class BannerAdvert < ActiveRecord::Base
 
   def default_months
     12
+  end
+
+  def self.wide_skyscraper_for(resort)
+    conditions = CURRENTLY_ADVERTISED.dup
+    conditions[0] += " AND resort_id = ?"
+    conditions[0] += " AND image_id IS NOT NULL"
+    conditions << resort.id
+
+    ad = nil
+    uncached do
+      ad = BannerAdvert.all(:order => 'RAND()', :conditions => conditions).first
+    end
+
+    ad.current_advert.record_view if ad
+    ad
   end
 end
