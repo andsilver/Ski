@@ -1,0 +1,30 @@
+<h1><%= link_to 'CMS', cms_path %> &rarr; Pages</h1>
+<p>
+  <%= link_to 'New Page', new_page_path %>
+</p>
+<% if @pages.empty? %>
+<p>There are no pages set up yet.</p>
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>Path</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Keywords</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pages.each do |page| %>
+    <tr>
+      <td><%= link_to page.path, edit_page_path(page) %></td>
+      <td><%= page.title %></td>
+      <td><%= page.description %></td>
+      <td><%= page.keywords %></td>
+      <td><%= link_to 'Delete', page, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

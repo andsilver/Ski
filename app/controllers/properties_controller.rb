@@ -74,7 +74,7 @@ class PropertiesController < ApplicationController
   def show
     @property.current_advert.record_view
     rent_or_sale = @property.for_sale? ? "Sale" : "Rent"
-    @page_title = "#{@property.name} - Chalet / Apartment for #{rent_or_sale} in #{@property.resort}, #{@property.resort.country} - MySkiChalet"
+    default_page_title "#{@property.name} - Chalet / Apartment for #{rent_or_sale} in #{@property.resort}, #{@property.resort.country} - MySkiChalet"
   end
 
   def contact

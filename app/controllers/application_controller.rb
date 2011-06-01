@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
 
   def page_defaults
     @browse_menu = true
+    page = Page.find_by_path(request.path)
+    if page
+      @page_title = page.title
+    end
   end
 
   def no_browse_menu
@@ -48,5 +52,9 @@ class ApplicationController < ActionController::Base
 
   def not_found
     render :file => "#{Rails.root.to_s}/public/404.html", :layout => false, :status => 404
+  end
+
+  def default_page_title suggested_title
+    @page_title = suggested_title if @page_title.blank?
   end
 end

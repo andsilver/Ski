@@ -103,6 +103,7 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :websites
+  resources :pages
 
   match "cms" => "cms#index"
   match "management_information" => "cms#management_information"

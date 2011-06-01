@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>My Ski Chalet</title>
+  <title><%= @page_title ? @page_title + " - My Ski Chalet" : "My Ski Chalet" %></title>
   <%= javascript_include_tag 'application' %>
   <script src="http://use.typekit.com/lxc8myw.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
