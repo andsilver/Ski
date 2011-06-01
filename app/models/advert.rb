@@ -1,6 +1,7 @@
 class Advert < ActiveRecord::Base
   belongs_to :user
   belongs_to :property
+  belongs_to :banner_advert
   belongs_to :directory_advert
 
   has_one :order_line

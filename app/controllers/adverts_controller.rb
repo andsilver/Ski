@@ -6,6 +6,7 @@ class AdvertsController < ApplicationController
   def my
     @rentals = @current_user.properties_for_rent
     @sales = @current_user.properties_for_sale
+    @banner_adverts = @current_user.banner_adverts
     @directory_adverts = @current_user.directory_adverts
   end
 
@@ -76,6 +77,7 @@ class AdvertsController < ApplicationController
     total_adverts = @current_user.adverts_so_far
     advert_number = Hash.new
     advert_number = {
+      :banner_advert => @current_user.banner_adverts_so_far,
       :directory_advert => @current_user.directory_adverts_so_far,
       :property => @current_user.property_adverts_so_far
     }

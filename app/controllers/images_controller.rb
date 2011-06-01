@@ -3,18 +3,24 @@
 class ImagesController < ApplicationController
   before_filter :no_browse_menu
 
+  before_filter :find_object, :only => [:new, :edit, :create]
+
   def index
     @images = @current_user.images
   end
 
   def new
     @image = Image.new
-    @image.property_id = session[:property_id]
+    if session[:image_mode] == 'property'
+      @image.property_id = session[:property_id]
+    end
   end
 
   def create
     @image = Image.new(params[:image])
-    @image.property_id = session[:property_id]
+    if session[:image_mode] == 'property'
+      @image.property_id = session[:property_id]
+    end
     @image.user_id = @current_user.id
 
     if @image.save
@@ -50,10 +56,23 @@ class ImagesController < ApplicationController
   protected
 
   def set_main_image_if_first
-    if @image.property.images.count == 1
-      p = @image.property
-      p.image_id = @image.id
-      p.save
+    if session[:image_mode] == 'property'
+      return if @object.images.count > 1
     end
+
+    @object.image_id = @image.id
+    @object.save
+  end
+
+  def find_object
+    @object = object_class.find(object_id)
+  end
+
+  def object_class
+    Kernel.const_get(session[:image_mode].classify)
+  end
+
+  def object_id
+    session[session[:image_mode] + '_id']
   end
 end

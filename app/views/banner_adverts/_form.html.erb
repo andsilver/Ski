@@ -1,0 +1,31 @@
+<%= render :partial => 'shared/steps', :locals => { :step => 4 } %>
+
+<% if @banner_advert.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@banner_advert.errors.count, "error") %> prohibited this banner advert from being saved:</h2>
+
+    <ul>
+    <% @banner_advert.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @banner_advert do |f| %>
+
+<div class="field">
+  <%= f.label :url, 'Target URL' %><br>
+  <%= f.text_field :url %>
+</div>
+
+<div class="field">
+  <%= f.label :resort_id, I18n.t('resort') %><br>
+  <%= select("banner_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
+</div>
+
+<div class="field">
+  <%= f.submit(I18n.t(:save)) %>
+</div>
+
+<% end %>

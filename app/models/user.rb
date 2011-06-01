@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   belongs_to :billing_country, :class_name => 'Country'
   belongs_to :coupon
 
+  has_many :banner_adverts
   has_many :directory_adverts
   has_many :enquiries, :dependent => :delete_all, :order => "created_at DESC"
   has_many :adverts
@@ -66,6 +67,12 @@ class User < ActiveRecord::Base
     adverts_in_basket.count > 0
   end
 
+  def banner_adverts_so_far
+    Advert.count(
+      :conditions => ['user_id = ? AND banner_advert_id IS NOT NULL AND starts_at IS NOT NULL',
+      id])
+  end
+
   def directory_adverts_so_far
     Advert.count(
       :conditions => ['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL',
@@ -79,7 +86,7 @@ class User < ActiveRecord::Base
   end
 
   def adverts_so_far
-    directory_adverts_so_far + property_adverts_so_far
+    banner_adverts_so_far + directory_adverts_so_far + property_adverts_so_far
   end
 
   def to_s

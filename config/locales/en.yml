@@ -16,6 +16,7 @@ en:
   advertise: 'Advertise'
   adverts_controller:
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
+  banner_adverts: Banner Adverts
   basket: Basket
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
@@ -40,6 +41,7 @@ en:
     ski_hire: Ski hire
     takeaway: Takeaways
     taxi: Taxis
+  clicks: Clicks
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
   country: 'Country'

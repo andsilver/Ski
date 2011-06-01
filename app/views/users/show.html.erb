@@ -1,6 +1,10 @@
 <h1><%= I18n.t(:advertise) %></h1>
 
 <% if @current_user.role.advertises_generally? %>
+<a class="cms_box" href="<%= new_banner_advert_path %>">
+  <h2>New Banner Advert</h2>
+  <p>Advertise your business throughout a resort's pages.</p>
+</a>
 <a class="cms_box" href="<%= new_directory_advert_path %>">
   <h2>New Directory Advert</h2>
   <p>Advertise your business within a resort's directory.</p>

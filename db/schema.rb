@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528180635) do
+ActiveRecord::Schema.define(:version => 20110531143200) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -31,6 +31,21 @@ ActiveRecord::Schema.define(:version => 20110528180635) do
   add_index "adverts", ["directory_advert_id"], :name => "index_adverts_on_directory_advert_id"
   add_index "adverts", ["property_id"], :name => "index_adverts_on_property_id"
   add_index "adverts", ["user_id"], :name => "index_adverts_on_user_id"
+
+  create_table "banner_adverts", :force => true do |t|
+    t.integer  "user_id",                   :null => false
+    t.integer  "resort_id",                 :null => false
+    t.integer  "image_id"
+    t.string   "url",                       :null => false
+    t.integer  "width",      :default => 0, :null => false
+    t.integer  "height",     :default => 0, :null => false
+    t.integer  "clicks",     :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "banner_adverts", ["resort_id"], :name => "index_banner_adverts_on_resort_id"
+  add_index "banner_adverts", ["user_id"], :name => "index_banner_adverts_on_user_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"

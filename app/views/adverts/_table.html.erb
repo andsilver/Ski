@@ -8,6 +8,9 @@
       <th><%= t 'resort' %></th>
       <th><%= t 'name' %></th>
       <th class="numeric"><%= t 'views' %></th>
+      <% if adverts.first.respond_to? :clicks %>
+      <th class="numeric"><%= t 'clicks' %></th>
+      <% end %>
       <th><%= t 'advert_start_date' %></th>
       <th><%= t 'advert_end_date' %></th>
       <th><%= t 'advert_status' %></th>
@@ -21,6 +24,9 @@
       <td><%= a.resort.name %></td>
       <td><%= link_to a.name, edit_polymorphic_path(a) %></td>
       <td class="numeric"><%= a.views %></td>
+      <% if a.respond_to? :clicks %>
+      <td class="numeric"><%= a.clicks %></td>
+      <% end %>
       <% if a.currently_advertised? %>
       <td>
         <%= l a.current_advert.starts_at, :format => :short %>

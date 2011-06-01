@@ -88,7 +88,7 @@ class PropertiesController < ApplicationController
   end
 
   def edit
-    session[:property_id] = @property.id
+    set_image_mode
   end
 
   def create
@@ -97,7 +97,7 @@ class PropertiesController < ApplicationController
 
     if @property.save
       Advert.create_for(@property)
-      session[:property_id] = @property.id
+      set_image_mode
       redirect_to new_image_path, :notice => "Your property advert was successfully created. Now let's add some photos."
     else
       render :action => "new"
@@ -170,5 +170,10 @@ class PropertiesController < ApplicationController
     else
       1
     end
+  end
+
+  def set_image_mode
+    session[:image_mode] = 'property'
+    session[:property_id] = @property.id
   end
 end

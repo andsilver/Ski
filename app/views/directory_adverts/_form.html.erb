@@ -49,7 +49,7 @@
 
 <div class="field">
   <%= f.label :resort_id, I18n.t('resort') %><br>
-  <%= select("directory_advert", "resort_id", (Resort.all.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
+  <%= select("directory_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
 </div>
 
 <div class="field">
