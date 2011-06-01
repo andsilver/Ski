@@ -3,9 +3,11 @@ require 'spec_helper'
 describe PropertiesController do
   let(:property) { mock_model(Property).as_null_object }
   let(:website) { mock_model(Website).as_null_object }
+  let(:resort) { mock_model(Resort).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
+    Resort.stub(:find).and_return(resort)
   end
 
   describe "GET new_developments" do
@@ -65,9 +67,15 @@ describe PropertiesController do
 
     before do
       session[:user] = 1
+      Advert.stub(:create_for)
       User.stub(:find_by_id).and_return(current_user)
       Property.stub(:new).and_return(property)
       property.stub(:user_id).and_return(1)
+    end
+
+    it "creates a corresponding advert" do
+      Advert.should_receive(:create_for).with(property)
+      post :create
     end
 
     it "redirects to image uploading form" do

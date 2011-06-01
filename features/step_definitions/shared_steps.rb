@@ -2,6 +2,10 @@ def alice
   @alice ||= User.find_by_name('Alice')
 end
 
+def emily
+  @emily ||= User.find_by_name('Emily')
+end
+
 def sign_in_with(email, password)
   Given "I am on the sign in page"
   fill_in("Email", :with => email)
@@ -17,9 +21,9 @@ Given /^I am not signed in$/ do
 end
 
 Then /^I should see the "([^"]*)" heading$/ do |arg1|
-  response.should have_selector("h1", :content => arg1)
+  page.should have_selector("h1", :content => arg1)
 end
 
 Then /^I should see a link to "([^"]*)"$/ do |arg1|
-  response.should have_selector("a", :content => arg1)
+  page.should have_selector("a", :content => arg1)
 end

@@ -6,6 +6,7 @@ estate_agent:
   advertises_properties: true
   flag_new_development: true
   has_business_details: true
+  has_a_website: true
 
 property_developer:
   id: 2
@@ -37,4 +38,5 @@ administrator:
   name: Administrator
   admin: true
   select_on_signup: false
+  advertises_properties: true
   flag_new_development: true

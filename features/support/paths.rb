@@ -8,7 +8,7 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /the home\s?page/
+    when /^the home\s?page$/
       '/'
 
     # Add more mappings here.
@@ -21,10 +21,13 @@ module NavigationHelpers
       new_resort_category_path(resorts(:chamonix))
 
     when /the Chamonix directory page/
-      resort_categories_path(resorts(:chamonix))
+      directory_resort_path(resorts(:chamonix))
+
+    when /the Chamonix new developments page/
+      resort_property_new_developments_path(resorts(:chamonix))
 
     when /the Chamonix resort info page/
-      info_resort_path(resorts(:chamonix))
+      resort_path(resorts(:chamonix))
 
     when /the Chamonix Properties for Rent page/
       resort_property_rent_path(resorts(:chamonix))
@@ -40,10 +43,10 @@ module NavigationHelpers
 
     else
       begin
-        page_name =~ /the (.*) page/
+        page_name =~ /^the (.*) page$/
         path_components = $1.split(/\s+/)
         self.send(path_components.push('path').join('_').to_sym)
-      rescue Object => e
+      rescue NoMethodError, ArgumentError
         raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
           "Now, go and add a mapping in #{__FILE__}"
       end

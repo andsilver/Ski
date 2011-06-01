@@ -40,9 +40,9 @@ end
 group :test, :development do
   gem "autotest", "4.4.6"
   gem "rspec-rails", ">= 2.6.1.beta1"
-  gem "cucumber-rails", ">= 0.4"
+  gem "cucumber-rails", ">= 0.5"
   gem 'database_cleaner'
-  gem "webrat", ">= 0.7.3"
+  gem "capybara"
   gem "launchy", ">= 0.3.7"
   gem "rcov"
   gem "railroad", "0.5.0"

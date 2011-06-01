@@ -13,24 +13,14 @@ describe CategoriesController do
   end
 
   describe "GET new" do
-    it "finds a resort" do
-      Resort.should_receive(:find).with("1")
-      get :new, :resort_id => "1"
-    end
-
     it "instantiates a new category" do
       Category.should_receive(:new)
-      get :new, :resort_id => "1"
+      get :new
     end
 
     it "assigns @category" do
-      get :new, :resort_id => "1"
+      get :new
       assigns[:category].should equal(category)
-    end
-
-    it "sets the category's resort" do
-      category.should_receive(:resort_id=).with(resort.id)
-      get :new, :resort_id => "1"
     end
   end
 
@@ -52,9 +42,9 @@ describe CategoriesController do
         flash[:notice].should eq("Category created.")
       end
 
-      it "redirects to the resort categories page" do
+      it "redirects to the categories page" do
         post :create, params
-        response.should redirect_to(resort_categories_path(category.resort))
+        response.should redirect_to(categories_path)
       end
     end
 

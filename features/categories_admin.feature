@@ -6,23 +6,21 @@ Feature: Categories Admin
   As the website owner
   I want to be able to create, edit and delete categories
 
-  Scenario: I can get to the new category page from the Chamonix directory
-  page
+  Scenario: I can get to the new category page from the categories page
     Given I am signed in as an administrator
-    And I am on the Chamonix directory page
+    And I am on the categories page
     When I follow "Add new category"
-    Then I should be on the new Chamonix category page
+    Then I should be on the new category page
 
   Scenario: Create a new category
     Given I am signed in as an administrator
-    And I am on the new Chamonix category page
+    And I am on the new category page
     When I fill in "Name" with "Restaurants"
-    And I select "France > Chamonix" from "Resort"
     And I press "Save"
     Then I should see "Category created."
 
   Scenario: Attempt to create an invalid category
     Given I am signed in as an administrator
-    And I am on the new Chamonix category page
+    And I am on the new category page
     When I press "Save"
     Then I should see "1 error prohibited this category from being saved"

@@ -4,7 +4,7 @@ class Category < ActiveRecord::Base
   validates_presence_of :name
 
   def to_param
-    "#{id}-#{PermalinkFu.escape(I18n.t('category_names.' + name))}"
+    "#{id}-#{PermalinkFu.escape(I18n.t(name))}"
   end
 
   def to_s

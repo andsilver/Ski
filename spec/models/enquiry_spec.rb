@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Enquiry do
   def valid_enquiry
     Enquiry.new(:name => "Alice", :email => "alice@myskichalet.co.uk",
-      :phone => "01234 567890", :postcode => "AB12 3CD")
+      :phone => "01234 567890")
   end
 
   it "validates presence of name" do
@@ -26,13 +26,6 @@ describe Enquiry do
     e = valid_enquiry
     e.should be_valid
     e.phone = ""
-    e.should_not be_valid
-  end
-
-  it "validates presence of postcode" do
-    e = valid_enquiry
-    e.should be_valid
-    e.postcode = ""
     e.should_not be_valid
   end
 end

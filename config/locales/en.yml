@@ -41,10 +41,12 @@ en:
     ski_hire: Ski hire
     takeaway: Takeaways
     taxi: Taxis
+  city: Town / city
   clicks: Clicks
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
   country: 'Country'
+  county: State / county
   date:
     formats:
       short: %d %b %Y

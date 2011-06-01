@@ -9,6 +9,6 @@ Feature: Sign Out
   Scenario: Sign out when signed in
     Given I am signed in
     And I am on the home page
-    When I follow "sign out"
+    When I follow "Sign Out"
     Then I should be on the home page
     And I should not see "Sign Out"

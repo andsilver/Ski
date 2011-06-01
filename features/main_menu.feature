@@ -5,7 +5,8 @@ Feature: Main Menu
 
   Scenario: Home page
     Given I am on the home page
-    Then I should see "Home"
+    Then I should see "Sign In"
+    And I should see "Register"
     And I should see "Advertise"
 
   Scenario: Sign out

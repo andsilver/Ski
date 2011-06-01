@@ -15,9 +15,7 @@ Feature: Advertise
     Then I should see the "Advertise" heading
     And I should see "My Details"
     And I should see "Receipts"
-    And I should see "Stats"
-    And I should see "My Feedback"
-    And I should see "My Enquiries"
+    And I should see "My Email Enquiries"
     But I should not see "Sign In"
 
   Scenario: Advertisers can go to the My Details page

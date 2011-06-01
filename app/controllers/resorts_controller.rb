@@ -1,5 +1,5 @@
 class ResortsController < ApplicationController
-  before_filter :admin_required, :except => [:show, :feature, :featured, :piste_map]
+  before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map]
   before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :directory, :feature, :piste_map]
   before_filter :no_browse_menu, :except => [:show, :feature]
 

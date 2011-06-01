@@ -29,18 +29,18 @@ Feature:
     | property owner |
 
   Scenario: I can get to the new developments page from the home page
-    Given I am on the home page
+    Given I am on the Chamonix resort info page
     When I follow "New Developments"
-    Then I should be on the new developments page
+    Then I should be on the Chamonix new developments page
     And I should see the "New Developments" heading
 
   Scenario: I can see new developments on the new developments page
     Given there are 3 new developments advertised
-    When I am on the new developments page
+    When I am on the Chamonix new developments page
     Then I should see 3 out of 3 new developments
 
   Scenario: When there are more than 10 new developments they are paginated
     Given there are 11 new developments advertised
-    When I am on the new developments page
+    When I am on the Chamonix new developments page
     Then I should see 10 out of 11 new developments
     And I should see "Next →"

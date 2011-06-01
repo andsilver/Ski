@@ -95,12 +95,14 @@ class Property < ActiveRecord::Base
 
   def features
     f = []
-    f << "Bedrooms: #{number_of_bedrooms} (sleeps #{sleeping_capacity})"
+    bedrooms = "Bedrooms: #{number_of_bedrooms}"
+    bedrooms += " (sleeps #{sleeping_capacity})" if for_rent?
+    f << bedrooms
     f << "Nearest lift: #{metres_from_lift}m"
-    f << "Pets allowed" if pets?
-    f << "Smoking allowed" if smoking?
-    f << tv_description
-    f << "WiFi" if wifi?
+    f << "Pets allowed" if pets? && for_rent?
+    f << "Smoking allowed" if smoking? && for_rent?
+    f << tv_description if for_rent?
+    f << "WiFi" if wifi? && for_rent?
     f << "Suitable for disabled people" if disabled?
     f << "Fully equipped kitchen" if fully_equipped_kitchen?
     f << "Cave" if cave?
