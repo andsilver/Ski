@@ -25,9 +25,13 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.new(params[:image])
+
     if session[:image_mode] == 'property'
       @image.property_id = session[:property_id]
+    elsif session[:image_mode] == 'banner_advert'
+      remove_previous_banner_image
     end
+
     @image.user_id = @current_user.id
 
     begin
@@ -106,7 +110,10 @@ class ImagesController < ApplicationController
   end
 
   def set_banner_advert_dimensions
-    @banner_advert = BannerAdvert.find(session[:banner_advert_id])
-    @banner_advert.record_dimensions(@image.dimensions)
+    @object.record_dimensions(@image.dimensions)
+  end
+
+  def remove_previous_banner_image
+    @object.image.destroy if @object.image
   end
 end
