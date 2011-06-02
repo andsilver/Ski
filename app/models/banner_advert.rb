@@ -37,7 +37,7 @@ class BannerAdvert < ActiveRecord::Base
 
     ad = nil
     uncached do
-      ad = BannerAdvert.all(:order => 'RAND()', :conditions => conditions).first
+      ad = BannerAdvert.all(:order => 'RAND()', :conditions => conditions, :limit => 1).first
     end
 
     ad.current_advert.record_view if ad
