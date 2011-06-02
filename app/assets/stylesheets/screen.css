@@ -174,13 +174,11 @@ textarea {
 }
 
 #flash_notice {
-  background: #e9edf0;
-  padding: 5px;
-  border: 1px solid #8ba4c3;
+  background: yellow;
+  padding: 6px;
+  border-bottom: 1px solid #68C8E7;
   font-size: 1.2em;
-  color: #543e38;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  color: #000;
 }
 
 .clear {
