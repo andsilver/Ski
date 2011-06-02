@@ -1,10 +1,26 @@
 <h1>Images for <%= @object.name %></h1>
 
+<% if @object.class == Property %>
 <p>
   Here you can upload photographs from your computer. The first photo you
   upload will be the main photo for your advert, but you can change this
   later if you want.
 </p>
+<% elsif @object.class == BannerAdvert %>
+<p>
+  Here you can upload the image for your banner advert. You can change
+  this at a later date.
+</p>
+<p>
+  The following banner dimensions are accepted:
+</p>
+<ul>
+  <li>300 x 250 pixels (medium rectangle)</li>
+  <li>180 x 150 pixels (rectangle)</li>
+  <li>728 x 90 pixels (leaderboard)</li>
+  <li>160 x 600 pixels (wide skyscraper)</li>
+</ul>
+<% end %>
 
 <% if @image.errors.any? %>
   <div id="error_explanation">

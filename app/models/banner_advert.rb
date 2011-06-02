@@ -29,6 +29,11 @@ class BannerAdvert < ActiveRecord::Base
     12
   end
 
+  def record_dimensions dimensions
+    self.width, self.height = dimensions
+    save
+  end
+
   def self.wide_skyscraper_for(resort)
     conditions = CURRENTLY_ADVERTISED.dup
     conditions[0] += " AND resort_id = ?"

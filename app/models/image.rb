@@ -20,6 +20,8 @@ class Image < ActiveRecord::Base
   def determine_filename
     if @file_data
       self.filename = "image.#{uploaded_extension}"
+    else
+      raise "No file data."
     end
   end
 
@@ -90,5 +92,11 @@ class Image < ActiveRecord::Base
     e = filename.split(".").last
     e = '' if e.nil?
     e
+  end
+
+  def dimensions
+    ImageScience.with_image("#{IMAGE_STORAGE_PATH}/#{id}/#{filename}") do |img|
+      [img.width, img.height]
+    end
   end
 end

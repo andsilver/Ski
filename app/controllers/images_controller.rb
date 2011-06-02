@@ -5,6 +5,13 @@ class ImagesController < ApplicationController
 
   before_filter :find_object, :only => [:new, :edit, :create]
 
+  VALID_BANNER_SIZES = [
+      [300, 250],
+      [180, 150],
+      [728, 90],
+      [160, 600]
+    ]
+
   def index
     @images = @current_user.images
   end
@@ -23,12 +30,23 @@ class ImagesController < ApplicationController
     end
     @image.user_id = @current_user.id
 
-    if @image.save
-      set_main_image_if_first
-      redirect_to new_image_path, :notice => 'Image uploaded.'
-    else
-      render 'new'
+    begin
+      if @image.save
+        if valid_size_if_banner_advert
+          set_main_image_if_first
+          if session[:image_mode] == 'banner_advert'
+            set_banner_advert_dimensions
+            redirect_to(basket_path, :notice => t('images_controller.image_uploaded')) and return
+          end
+          redirect_to(new_image_path, :notice => t('images_controller.image_uploaded')) and return
+        else
+          redirect_to(new_image_path, :notice => t('images_controller.invalid_dimensions')) and return
+        end
+      end
+    rescue
     end
+
+    render 'new'
   end
 
   def edit
@@ -74,5 +92,21 @@ class ImagesController < ApplicationController
 
   def object_id
     session[session[:image_mode] + '_id']
+  end
+
+  def valid_size_if_banner_advert
+    return true unless session[:image_mode] == 'banner_advert'
+
+    VALID_BANNER_SIZES.each do |dimensions|
+      return true if @image.dimensions == dimensions
+    end
+
+    @image.destroy
+    false
+  end
+
+  def set_banner_advert_dimensions
+    @banner_advert = BannerAdvert.find(session[:banner_advert_id])
+    @banner_advert.record_dimensions(@image.dimensions)
   end
 end

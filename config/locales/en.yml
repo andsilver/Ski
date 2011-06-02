@@ -73,6 +73,9 @@ en:
   for_rent: 'For Rent'
   for_sale: 'For Sale'
   garden: 'Garden'
+  images_controller:
+    image_uploaded: Image uploaded.
+    invalid_dimensions: This image was not accepted because it does not have valid dimensions.
   main_image: 'Main image'
   map: Map
   mobile: Mobile
