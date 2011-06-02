@@ -1,25 +1,6 @@
 <h1><%= I18n.t(:advertise) %></h1>
 
-<% if @current_user.role.advertises_generally? %>
-<a class="cms_box" href="<%= new_banner_advert_path %>">
-  <h2>New Banner Advert</h2>
-  <p>Advertise your business throughout a resort's pages.</p>
-</a>
-<a class="cms_box" href="<%= new_directory_advert_path %>" title="New Directory Advert">
-  <h2>New Directory Advert</h2>
-  <p>Advertise your business within a resort's directory.</p>
-</a>
-<% end %>
-<% if @current_user.role.advertises_properties? %>
-<a class="cms_box" href="<%= new_property_path %>" title="New Property for Rent">
-  <h2>Advertise a Property for Rent</h2>
-  <p>Advertise your property in a resort's property rentals area.</p>
-</a>
-<a class="cms_box" href="<%= new_property_path(:for_sale => true) %>">
-  <h2>Advertise a Property for Sale</h2>
-  <p>Advertise your property in a resort's property sales area.</p>
-</a>
-<% end %>
+<%= render 'advertising_options' %>
 <a class="cms_box" href="<%= my_adverts_path %>">
   <h2><%= I18n.t('my_adverts') %></h2>
   <p>

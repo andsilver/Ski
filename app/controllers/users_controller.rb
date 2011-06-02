@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
   before_filter :no_browse_menu
   before_filter :admin_required, :only => [:index]
-  before_filter :user_required, :only => [:show, :edit, :update]
+  before_filter :user_required, :only => [:first_advert, :show, :edit, :update]
   before_filter :find_user, :only => [:forgot_password_new, :forgot_password_change]
 
   def index
     @users = User.all(:order => :email)
+  end
+
+  def first_advert
   end
 
   def show
@@ -31,7 +34,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user] = @user.id
       UserNotifier.welcome(@user, request.host).deliver
-      redirect_to(advertise_path, :notice => 'Your account was successfully created.')
+      redirect_to(first_advert_path, :notice => 'Your account was successfully created.')
     else
       render :action => "new"
     end

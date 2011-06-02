@@ -20,6 +20,7 @@ MySkiChalet::Application.routes.draw do
   resources :sessions
 
   match "advertise" => "users#show"
+  match "first_advert" => "users#first_advert"
   match "my/details" => "users#edit", :as => :my_details
   resources :users do
     collection do

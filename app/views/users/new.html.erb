@@ -1,4 +1,4 @@
-<%= render :partial => 'shared/steps', :locals => { :step => @user.role ? 2 : 1 } %>
+<%= render :partial => 'shared/steps', :locals => { :step => 1 } %>
 
 <% if @user.role %>
 <p>Account type: <strong><%= @user.role.name %></strong> (<%= link_to 'change', sign_up_path %>)</p>
