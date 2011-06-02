@@ -1,0 +1,5 @@
+<% unless banner.nil? %>
+  <a href="<%= click_banner_advert_path(banner)  %>"><img
+    src="<%= banner.image.url %>" alt="<%= banner.user.business_name %>"
+    title="<%= banner.user.business_name %>"></a>
+<% end %>

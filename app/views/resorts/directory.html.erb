@@ -1,5 +1,11 @@
+<div id="medium_rectangle">
+    <%= render :partial => 'banner_adverts/banner', :object => BannerAdvert.medium_rectangle_for(@resort) %>
+</div>
+
 <ul>
   <% @categories.each do |category| %>
   <li><%= link_to t(category.name), category_path(category, :resort_id => @resort.id) %></li>
   <% end %>
 </ul>
+
+<%= clear %>

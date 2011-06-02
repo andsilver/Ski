@@ -1,6 +1,0 @@
-<% ad = BannerAdvert.wide_skyscraper_for @resort %>
-<% unless ad.nil? %>
-  <a href="<%= click_banner_advert_path(ad)  %>"><img
-    src="<%= ad.image.url %>" alt="<%= ad.user.business_name %>"
-    title="<%= ad.user.business_name %>"></a>
-<% end %>

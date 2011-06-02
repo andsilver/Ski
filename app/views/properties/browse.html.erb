@@ -70,5 +70,5 @@
 <% end %>
 </div>
 <div id="wide_skyscrapers">
-  <%= render 'banner_adverts/wide_skyscraper' %>
+  <%= render :partial => 'banner_adverts/banner', :object => BannerAdvert.wide_skyscraper_for(@resort) %>
 </div>

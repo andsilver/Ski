@@ -34,11 +34,13 @@ class BannerAdvert < ActiveRecord::Base
     save
   end
 
-  def self.wide_skyscraper_for(resort)
+  def self.advert_for(resort, dimensions)
     conditions = CURRENTLY_ADVERTISED.dup
-    conditions[0] += " AND resort_id = ?"
+    conditions[0] += " AND resort_id = ? AND width = ? AND height = ?"
     conditions[0] += " AND image_id IS NOT NULL"
     conditions << resort.id
+    conditions << dimensions[0]
+    conditions << dimensions[1]
 
     ad = nil
     uncached do
@@ -47,5 +49,21 @@ class BannerAdvert < ActiveRecord::Base
 
     ad.current_advert.record_view if ad
     ad
+  end
+
+  def self.medium_rectangle_for(resort)
+    self.advert_for(resort, [300, 250])
+  end
+
+  def self.rectangle_for(resort)
+    self.advert_for(resort, [180, 150])
+  end
+
+  def self.leaderboard_for(resort)
+    self.advert_for(resort, [728, 90])
+  end
+
+  def self.wide_skyscraper_for(resort)
+    self.advert_for(resort, [160, 600])
   end
 end

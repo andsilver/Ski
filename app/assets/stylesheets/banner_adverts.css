@@ -1,0 +1,11 @@
+#leaderboard img {
+  display: block;
+  width: 728px;
+  height: 90px;
+  margin: 10px auto;
+}
+
+#medium_rectangle {
+  float: right;
+  margin-left: 10px;
+}
