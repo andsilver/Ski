@@ -40,6 +40,7 @@
 </div>
 <% end %>
 
+<% if @current_user.role.flag_new_development? or @property.for_rent? %>
 <div class="group_panel">
 <% if @current_user.role.flag_new_development? %>
 <div class="field">
@@ -54,6 +55,7 @@
 </div>
 <% end %>
 </div>
+<% end %>
 
 <div class="group_panel">
 <div class="field">
