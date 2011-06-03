@@ -13,7 +13,6 @@ Feature: Sign Up
     Given I am on the sign up page
     And I select "Estate agent" from "Account type"
     And I press "Continue"
-    Then show me the page
     When I fill in the following:
       | Name                    | Carol                   |
       | Email                   | carol@myskichalet.co.uk |
@@ -30,7 +29,7 @@ Feature: Sign Up
     And I select "United Kingdom" from "Country"
     And I check "I accept the terms & conditions below"
     And I press "Register"
-    Then I should be on the advertise page
+    Then I should be on the first advert page
     And I have a new account set up
 
   Scenario: Password should be at least 5 characters long

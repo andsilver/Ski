@@ -74,9 +74,9 @@ describe UsersController do
         flash[:notice].should eq("Your account was successfully created.")
       end
 
-      it "redirects to the advertise page" do
+      it "redirects to the first advert page" do
         post :create, params
-        response.should redirect_to(advertise_path)
+        response.should redirect_to(first_advert_path)
       end
     end
 
