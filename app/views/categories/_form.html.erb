@@ -11,11 +11,11 @@
 <% end %>
 
 <%= form_for @category do |f| %>
-<p>
+<div class="field">
   <%= f.label :name, t('name') %><br>
   <%= f.text_field :name %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= f.submit t('save') %>
-</p>
+</div>
 <% end %>
