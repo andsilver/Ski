@@ -137,6 +137,8 @@ en:
       tv: TV
       wifi: WiFi
   resort: 'Resort'
+  resort_options:
+    new_developments: New Build
   sale_price: 'Sale price'
   save: 'Save'
   sign_in: 'Sign In'
