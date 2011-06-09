@@ -66,18 +66,20 @@ a img {
 }
 
 .browse_menu #content {
-  width: 554px;
+  width: 614px;
   float: left;
 }
 
 #content_with_wide_skyscrapers {
-  width: 330px;
+  width: 390px;
+  padding: 0 15px;
   float: left;
 }
 
 #wide_skyscrapers {
   float: right;
   padding-top: 8px;
+  width: 160px;
 }
 
 .field, li, p, td, th {
