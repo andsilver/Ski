@@ -1,3 +1,5 @@
+<h1><%= link_to 'CMS', cms_path %> &rarr; <%= link_to 'Currencies', currencies_path %> &rarr; Create/Edit Currency</h1>
+
 <% if @currency.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@currency.errors.count, "error") %> prohibited this currency from being saved:</h2>
