@@ -8,6 +8,7 @@ class Country < ActiveRecord::Base
 
   scope :with_resorts, where('id IN (SELECT DISTINCT(country_id) FROM resorts)').order('name')
   scope :with_visible_resorts, where('id IN (SELECT DISTINCT(country_id) FROM resorts WHERE visible=1)').order('name')
+  scope :popular_billing_countries, order('popular_billing_country DESC, name ASC')
 
   validates_uniqueness_of :name
   validates_uniqueness_of :iso_3166_1_alpha_2

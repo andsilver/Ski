@@ -116,7 +116,7 @@
 </div>
 <div class="field">
   <%= f.label :billing_country_id, I18n.t('country') %><br>
-  <%= select("user", "billing_country_id", Country.all.collect {|c| [ c.name, c.id ] }, {:prompt => 'Select Country'}) %>
+  <%= select("user", "billing_country_id", Country.popular_billing_countries.collect {|c| [ c.name, c.id ] }, {:prompt => 'Select Country'}) %>
   <%= required_field %>
 </div>
 </div>

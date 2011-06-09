@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110609124216) do
+ActiveRecord::Schema.define(:version => 20110609164409) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -54,11 +54,12 @@ ActiveRecord::Schema.define(:version => 20110609124216) do
   end
 
   create_table "countries", :force => true do |t|
-    t.string   "name",               :default => "", :null => false
-    t.string   "iso_3166_1_alpha_2", :default => "", :null => false
+    t.string   "name",                    :default => "",    :null => false
+    t.string   "iso_3166_1_alpha_2",      :default => "",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "info"
+    t.boolean  "popular_billing_country", :default => false, :null => false
   end
 
   create_table "coupons", :force => true do |t|
