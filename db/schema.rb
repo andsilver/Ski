@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110609095745) do
+ActiveRecord::Schema.define(:version => 20110609115644) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -316,7 +316,6 @@ ActiveRecord::Schema.define(:version => 20110609095745) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                  :default => "", :null => false
     t.string   "email",                 :default => "", :null => false
     t.string   "encrypted_password"
     t.string   "salt"
@@ -338,9 +337,12 @@ ActiveRecord::Schema.define(:version => 20110609095745) do
     t.integer  "role_id",                               :null => false
     t.integer  "coupon_id"
     t.string   "forgot_password_token", :default => "", :null => false
+    t.string   "first_name",            :default => "", :null => false
+    t.string   "last_name",             :default => "", :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["last_name"], :name => "index_users_on_last_name"
 
   create_table "websites", :force => true do |t|
     t.text     "terms"

@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
 
   def set_user
     session[:user] = @current_user.id
-    flash[:notice] = 'Welcome back, ' + @current_user.name
+    flash[:notice] = 'Welcome back, ' + @current_user.first_name
     if @current_user.role.admin?
       redirect_to cms_path
     else

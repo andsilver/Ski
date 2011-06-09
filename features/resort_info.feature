@@ -5,6 +5,6 @@ Feature: Resort Info
   I want to be to provide information about the resort to keep the user
   on the page long enough to view the adverts
 
-  Scenario: A tourist can see the main resort information text
+  Scenario: A tourist can see the resort introductory text
     Given I am on the Chamonix resort info page
     Then I should see "Chamonix, with a population of approximately 10,000"

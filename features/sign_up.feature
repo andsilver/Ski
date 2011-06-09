@@ -14,7 +14,8 @@ Feature: Sign Up
     And I select "Estate agent" from "Account type"
     And I press "Continue"
     When I fill in the following:
-      | Name                    | Carol                   |
+      | First name              | Carol                   |
+      | Last name               | Cooper                  |
       | Email                   | carol@myskichalet.co.uk |
       | Password                | secret                  |
       | Website                 | myskichalet.co.uk       |
@@ -36,7 +37,8 @@ Feature: Sign Up
     Given I am on the sign up page
     And I select "Estate agent" from "Account type"
     And I press "Continue"
-    When I fill in "Name" with "Carol"
+    When I fill in "First name" with "Carol"
+    And I fill in "Last name" with "Cooper"
     And I fill in "Email" with "carol@myskichalet.co.uk"
     And I fill in "Password" with "1234"
     And I press "Register"
@@ -47,7 +49,8 @@ Feature: Sign Up
     Given I am on the sign up page
     And I select "Estate agent" from "Account type"
     And I press "Continue"
-    When I fill in "Name" with "Bob"
+    When I fill in "First name" with "Bob"
+    And I fill in "Last name" with "Brown"
     And I fill in "Email" with "bob@myskichalet.co.uk"
     And I fill in "Password" with "secret"
     And I press "Register"

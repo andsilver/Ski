@@ -30,7 +30,7 @@ Feature:
 
   Scenario: I can get to the new developments page from the home page
     Given I am on the Chamonix resort info page
-    When I follow "New Developments"
+    When I follow "New Build"
     Then I should be on the Chamonix new developments page
     And I should see the "New Developments" heading
 

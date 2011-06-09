@@ -69,6 +69,7 @@ en:
     your_enquiry_has_been_sent: Your enquiry has been sent.
   featured_resorts: 'Featured Resorts'
   features: 'Features'
+  first_name: First name
   floor_area: 'Floor area'
   for_rent: 'For Rent'
   for_sale: 'For Sale'
@@ -76,6 +77,7 @@ en:
   images_controller:
     image_uploaded: Image uploaded.
     invalid_dimensions: This image was not accepted because it does not have valid dimensions.
+  last_name: Last name
   main_image: 'Main image'
   map: Map
   mobile: Mobile

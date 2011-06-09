@@ -1,6 +1,7 @@
 alice:
   id: 1
-  name: Alice
+  first_name: Alice
+  last_name: Adams
   email: alice@myskichalet.co.uk
   encrypted_password: 53a9042fc50d6abdf8f54930b6e76d0c3bb514f2 # =sesame
   salt: salt
@@ -14,7 +15,8 @@ alice:
 
 bob:
   id: 2
-  name: Bob
+  first_name: Bob
+  last_name: Brown
   email: bob@myskichalet.co.uk
   encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
   salt: salt
@@ -27,7 +29,8 @@ bob:
 
 dave:
   id: 3
-  name: Dave
+  first_name: Dave
+  last_name: Davies
   email: dave@myskichalet.co.uk
   encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
   salt: salt
@@ -40,7 +43,8 @@ dave:
 
 emily:
   id: 5
-  name: Emily
+  first_name: Emily
+  last_name: Evans
   email: emily@myskichalet.co.uk
   encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
   salt: salt
@@ -53,7 +57,8 @@ emily:
 
 tony:
   id: 4
-  name: Tony
+  first_name: Tony
+  last_name: Taccone
   email: tony@myskichalet.co.uk
   encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
   salt: salt

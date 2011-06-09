@@ -16,8 +16,12 @@
 <div class="group_panel">
 <h2>Your Details</h2>
 <div class="field">
-  <%= f.label :name %><br>
-  <%= f.text_field :name %> <%= required_field %>
+  <%= f.label :first_name, t('first_name') %><br>
+  <%= f.text_field :first_name %> <%= required_field %>
+</div>
+<div class="field">
+  <%= f.label :last_name, t('last_name') %><br>
+  <%= f.text_field :last_name %> <%= required_field %>
 </div>
 <div class="field">
   <%= f.label :email %><br>

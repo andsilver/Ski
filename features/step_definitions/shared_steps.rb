@@ -1,9 +1,9 @@
 def alice
-  @alice ||= User.find_by_name('Alice')
+  @alice ||= User.find_by_first_name('Alice')
 end
 
 def emily
-  @emily ||= User.find_by_name('Emily')
+  @emily ||= User.find_by_first_name('Emily')
 end
 
 def sign_in_with(email, password)
