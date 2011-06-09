@@ -41,6 +41,9 @@ module NavigationHelpers
     when /the Alpen Lounge page/
       property_path(properties(:alpen_lounge))
 
+    when /the Website CMS page/
+      edit_website_path(websites(:website_settings))
+
     else
       begin
         page_name =~ /^the (.*) page$/

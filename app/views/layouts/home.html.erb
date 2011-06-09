@@ -55,7 +55,7 @@ p {
   margin: 0;
 }
 
-p#intro {
+div#intro {
   position: absolute;
   top: 160px;
   left: 4px;
@@ -110,9 +110,9 @@ p#intro {
 <div id="wrapper">
   <%= render "shared/main_menu" %>
   <a href="/start" title="Home" id="logo"><img src="/images/my-ski-chalet-logo.png" alt="My Ski Chalet"></a>
-  <p id="intro">
-Welcome to MySkiChalet.co.uk, the holiday portal where you can rent or buy your holiday home either direct from the property owner or through one of our member companies, making choosing your ski holiday property simpler and faster, without having to waste your valuable time searching through dozens of websites.
-  </p>
+  <div id="intro">
+    <%= raw @w.home_content %>
+  </div>
   <a href="/start" id="start_here"><img src="/images/start-here.png" alt="[Start Here]" title="[Start Here]"></a>
   <div id="stage_1" class="stage">
     <h1>Stage 1:</h1>
