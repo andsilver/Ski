@@ -232,7 +232,7 @@ table.grid {
 
 #browse {
   float: left;
-  width: 440px;
+  width: 380px;
 }
 
 #browse ul {
@@ -247,7 +247,7 @@ ul#countries {
 }
 
 ul#resorts {
-  width: 195px;
+  width: 135px;
   background-image: url(/images/resorts-menu-bg.png);
 }
 
