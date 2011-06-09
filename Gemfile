@@ -10,6 +10,7 @@ gem 'RubyInline', '3.8.6'
 gem 'rdiscount', '1.6.8'
 gem 'spreadsheet', '0.6.5.4'
 gem 'sprockets', '2.0.0.beta.10'
+gem 'rdoc'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
