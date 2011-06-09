@@ -1,5 +1,8 @@
 <div id="content_with_wide_skyscrapers">
-<% unless @resort.info.blank? %>
-<%= md @resort.info %>
+<% unless @resort.introduction.blank? %>
+<%= raw @resort.introduction %>
 <% end %>
+<p>
+  <%= link_to "More detail on #{@resort.name}", detail_resort_path(@resort) %>
+</p>
 </div>

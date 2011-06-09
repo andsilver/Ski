@@ -1,6 +1,6 @@
 class ResortsController < ApplicationController
   before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map]
-  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :directory, :feature, :piste_map]
+  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :detail, :directory, :feature, :piste_map]
   before_filter :no_browse_menu, :except => [:show, :feature]
 
   def index
@@ -55,6 +55,9 @@ class ResortsController < ApplicationController
       format.html { redirect_to(resorts_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def detail
   end
 
   def directory
