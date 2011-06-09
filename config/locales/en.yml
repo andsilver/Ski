@@ -125,7 +125,7 @@ en:
       swimming_pool: Swimming pool
       wifi: WiFi
     filters:
-      disabled: Disabled access
+      disabled: Disabled
       garage: Garage
       garden: Garden
       long_term_lets_available: Long lets
