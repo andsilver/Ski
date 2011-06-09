@@ -433,6 +433,20 @@ div.field_with_errors {
   color: red;
 }
 
+p.image_right {
+  float: right;
+  margin: 0 0 10px 15px;
+}
+
+p.image_left {
+  float: left;
+  margin: 0 15px 10px 0;
+}
+
+p.image_centre, p.image_center {
+  text-align: center;
+}
+
 /**
  * Enquiry form
  */
