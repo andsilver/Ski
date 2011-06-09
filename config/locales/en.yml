@@ -94,6 +94,13 @@ en:
   for_rent: 'For Rent'
   for_sale: 'For Sale'
   garden: 'Garden'
+  home_page:
+    stage_1_heading: Stage 1
+    stage_2_heading: Stage 2
+    stage_3_heading: Stage 3
+    stage_1_content: 'Choose from our vast array of European countries and destinations'
+    stage_2_content: 'Details on properties for sale or rent, including key resort information and useful site directories'
+    stage_3_content: 'Simply find & select your chosen property and enquire for further details'
   images_controller:
     image_uploaded: Image uploaded.
     invalid_dimensions: This image was not accepted because it does not have valid dimensions.
