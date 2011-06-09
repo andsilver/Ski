@@ -263,8 +263,22 @@ ul#resort_options {
   width: 110px;
 }
 
+#resort_options div {
+  float: left;
+}
+
+div.resort_option {
+  width: 74px;
+}
+
+div.property_count {
+  width: 18px;
+  text-align: right;
+}
+
 #countries li, #resort_options li {
   border-bottom: 1px solid #68c8e7;
+  height: 22px;
 }
 
 #browse #countries a:hover, #browse #countries .selected a, #browse #resort_options a:hover {
@@ -288,7 +302,11 @@ ul#resort_options {
   background-image: url(/images/countries-menu-bg.png);
   background-position: right top;
   background-repeat: repeat-y;
-  padding: 4px 0px 4px 8px;
+  padding: 4px 8px;
+}
+
+#resort_options a {
+  height: 14px;
 }
 
 #resorts a {
