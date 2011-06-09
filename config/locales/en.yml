@@ -2,6 +2,25 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            billing_city:
+              blank: is required
+            billing_country_id:
+              blank: is required
+            billing_street:
+              blank: is required
+            first_name:
+              blank: is required
+            last_name:
+              blank: is required
+            password:
+              too_short: minimum length is 5 characters
+            email:
+              taken: ' address has already been taken by an existing customer, please choose another'
   address: 'Address'
   advert_start_date: Advert Start Date
   advert_end_date: Advert End Date
@@ -98,6 +117,7 @@ en:
   password: 'Password'
   phone: Phone
   piste_map: Piste Map
+  please_correct: Please correct the following errors
   plot_size: 'Plot size'
   postcode: 'ZIP / postcode'
   privacy: 'Privacy Policy'

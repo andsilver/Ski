@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
 
   validates_length_of :password, :within => 5..40, :if => :password_required?
 
-  validates_length_of :first_name, :within => 1..40
-  validates_length_of :last_name, :within => 1..40
+  validates_presence_of :first_name
+  validates_presence_of :last_name
 
   validates_uniqueness_of :email
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
