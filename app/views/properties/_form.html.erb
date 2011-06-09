@@ -1,3 +1,20 @@
+<script>
+$(document).ready(function() {
+  var $dialog = $('<div></div>')
+    .html('<%= t('properties.strapline_example_content') %>')
+    .dialog({
+      autoOpen: false,
+      title: '<%= t('properties.strapline_example') %>'
+    });
+
+  $('#strapline_example').click(function() {
+    $dialog.dialog('open');
+    // prevent the default action, e.g., following a link
+    return false;
+  });
+});
+</script>
+
 <% if @property.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
@@ -269,7 +286,7 @@
   <%= f.label :strapline, I18n.t('strapline') %><br>
   <%= f.text_area :strapline %>
   <div class="placeholder">
-    <%= I18n.t('strapline_placeholder') %>
+    <%= I18n.t('strapline_placeholder') %> <a href="#" id="strapline_example"><%= t('example') %></a>
   </div>
 </div>
 

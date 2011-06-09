@@ -86,6 +86,7 @@ en:
     number_of_infants: Number of infants (under 3)
     send_an_email: Send an Email
     your_enquiry_has_been_sent: Your enquiry has been sent.
+  example: Example
   featured_resorts: 'Featured Resorts'
   features: 'Features'
   first_name: First name
@@ -158,6 +159,8 @@ en:
       smoking: Smoking
       tv: TV
       wifi: WiFi
+    strapline_example: Strapline Example
+    strapline_example_content: 'A large, traditional alpine luxury ski chalet, sleeping 10. Full of charm and character.'
   resort: 'Resort'
   resort_options:
     new_developments: New Build
