@@ -3,13 +3,17 @@ class OrdersController < ApplicationController
   before_filter :no_browse_menu
   before_filter :require_order_from_session, :only => [:select_payment_method, :latest_receipt]
 
-  before_filter :admin_required, :only => [:index]
+  before_filter :admin_required, :only => [:index, :show]
 
   def index
     @orders = Order.all
   end
 
   def select_payment_method
+  end
+
+  def show
+    @order = Order.find(params[:id])
   end
 
   def receipt

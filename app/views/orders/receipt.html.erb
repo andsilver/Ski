@@ -1,6 +1,6 @@
 <%= render :partial => 'shared/steps', :locals => { :step => 7 } %>
 <p>
-  Go to <%= link_to 'receipts', receipts_orders_path %>
+  Go to <%= link_to t('receipts'), receipts_orders_path %>
 </p>
 <% if @order.payment_received? -%>
 <h1>Receipt</h1>
@@ -8,38 +8,4 @@
 <h1>Details of your order</h1>
 <% end -%>
 
-<p>Order number: <%= @order.order_number %></p>
-
-<p>Order placed: <%= @order.created_at %></p>
-
-<p>Order status: <%= @order.status_description %></p>
-
-<h2>Billing details</h2>
-
-<p>
-<%= @order.address %><br>
-<%= @order.postcode %><br>
-<%= @order.country %>
-</p>
- 
-<table id="receipt">
-
-  <tr>
-    <th>Product</th>
-    <th class="price numeric">Price</th>
-  </tr>
-
-  <% @order.order_lines.each do |line| -%>
-  <tr>
-    <td>
-      <%= line.description %>
-    </td>
-    <td class="price numeric"><%= euros_from_cents(line.amount)  %></td>
-  </tr>
-  <% end -%>
-  <tr>
-    <td id="order_total">Order total:</th>
-    <td class="price numeric total"><%= euros_from_cents(@order.total) %></td>
-  </tr>
-  
-</table>
+<%= render :partial => 'order_details' %>
