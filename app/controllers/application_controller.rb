@@ -3,13 +3,22 @@ class ApplicationController < ActionController::Base
 
   helper_method :admin?, :signed_in?
 
-  before_filter :initialize_website, :initialize_user, :page_defaults
+  before_filter :initialize_website, :set_locale, :initialize_user, :page_defaults
 
   protected
 
   def initialize_website
     @w = Website.first
     not_found if @w.nil?
+  end
+
+  def set_locale
+    I18n.locale = extract_locale_from_subdomain || I18n.default_locale
+  end
+
+  def extract_locale_from_subdomain
+    parsed_locale = request.subdomains.first
+    I18n.available_locales.include?(parsed_locale.to_sym) ? parsed_locale : nil
   end
 
   def initialize_user

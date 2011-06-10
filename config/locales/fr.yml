@@ -1,8 +1,5 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
-en:
-  account: Account
+fr:
+  account: Compte
   activerecord:
     errors:
       models:
@@ -33,16 +30,16 @@ en:
   advertise_action:
     expired: 'Readvertise'
     new: 'Advertise Now'
-  advertise: 'Advertise'
+  advertise: Annoncez
   adverts_controller:
-    basket_empty: Your basket is empty.
+    basket_empty: Votre panier est vide.
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
     place_order: Place Order
-  advert_details: Advert details
+  advert_details: Détail de l'annonce
   banner_adverts: Banner Adverts
-  basket: Basket
-  bathrooms: 'Bathrooms'
-  bedrooms: 'Bedrooms'
+  basket: Panier
+  bathrooms: Salles de bains
+  bedrooms: 'Chambres'
   business: Business
   business_details: Business Details
   category: 'Category'
@@ -51,28 +48,28 @@ en:
     architect: Architects
     babysitter: Babysitters
     bars: Bars
-    car_hire: Car hire
-    cleaners: Cleaners
+    car_hire: Location de voiture
+    cleaners: Nettoyeurs
     creche: Creches
     home_appliances: Home appliances
     home_insurance: Home insurance
     interior_design: Interior designers
-    internet_cafe: Internet cafés
+    internet_cafe: Cybercafés
     letting_agents: Letting agents
     mountain_guide: Mountain guides
     other: Other
     restaurants: Restaurants
     ski_hire: Ski hire
-    takeaway: Takeaways
+    takeaway: A emporter
     taxi: Taxis
-  checkout: Checkout
-  city: Town / city
+  checkout: Commander
+  city: Ville
   clicks: Clicks
-  continue: Continue
+  continue: Continuer
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
-  country: 'Country'
-  county: State / county
+  country: 'Pays'
+  county: Région
   date:
     formats:
       short: %d %b %Y
@@ -96,21 +93,21 @@ en:
     send_an_email: Send an Email
     your_enquiry_has_been_sent: Your enquiry has been sent.
   example: Example
-  featured_resorts: 'Featured Resorts'
+  featured_resorts: Stations en Vedette
   features: 'Features'
-  first_name: First name
+  first_name: Prénom
   floor_area: 'Floor area'
   for_rent: 'For Rent'
   for_sale: 'For Sale'
   garden: 'Garden'
-  home: Home
+  home: Accueil
   home_page:
-    stage_1_heading: Stage 1
-    stage_2_heading: Stage 2
-    stage_3_heading: Stage 3
-    stage_1_content: 'Choose from our vast array of European countries and destinations'
-    stage_2_content: 'Details on properties for sale or rent, including key resort information and useful site directories'
-    stage_3_content: 'Simply find & select your chosen property and enquire for further details'
+    stage_1_heading: Étape 1
+    stage_2_heading: Étape 2
+    stage_3_heading: Étape 3
+    stage_1_content: 'Choisissez parmi notre vaste gamme de pays européens et les destinations'
+    stage_2_content: 'Détails sur les propriétés à vendre ou à louer, y compris les Informations sur la station clés et répertoires de sites utiles'
+    stage_3_content: 'Il suffit de trouver et sélectionner votre bien choisi et se renseigner pour plus de détails'
   images_controller:
     image_uploaded: Image uploaded.
     invalid_dimensions: This image was not accepted because it does not have valid dimensions.
@@ -132,26 +129,26 @@ en:
     sign_in_required: Please sign in or sign up first.
   number_of_bathrooms: 'Number of bathrooms'
   number_of_bedrooms: 'Number of bedrooms'
-  password: 'Password'
+  password: 'Mot de passe'
   phone: Phone
   piste_map: Piste Map
   please_correct: Please correct the following errors
   plot_size: 'Plot size'
   postcode: 'ZIP / postcode'
   price: Price
-  privacy: 'Privacy Policy'
+  privacy: 'Politique de confidentialité'
   property_id: Property ID
   property_name: 'Property name'
   property_rentals: 'Property Rentals'
   property_sales: 'Property Sales'
   properties:
     features:
-      balcony: Balcony
-      cave: Cave
-      disabled: Disabled access
+      balcony: Balcon
+      cave: Grotte
+      disabled: Accès des personnes handicapées
       fully_equipped_kitchen: Fully equipped kitchen
       garage: Garage
-      garden: Garden
+      garden: Jardin
       hot_tub: Hot tub
       log_fire: Log fire
       long_term_lets_available: Long-term lets available
@@ -159,58 +156,58 @@ en:
       no_parking: No parking
       off_street_parking: Off-street parking
       on_street_parking: On-street parking
-      pets: Pets allowed
+      pets: Animaux acceptés
       sauna: Sauna
       ski_in_ski_out: Ski in/ski out
-      smoking: Smoking allowed
-      swimming_pool: Swimming pool
+      smoking: Permission de fumer
+      swimming_pool: Piscine
       wifi: WiFi
     filters:
-      disabled: Disabled
+      disabled: Handicapés
       garage: Garage
-      garden: Garden
+      garden: Jardin
       long_term_lets_available: Long lets
-      parking: Parking
-      pets: Pets
+      parking: Stationnement
+      pets: Animaux acceptés
       satellite: Satellite
       ski_in_ski_out: Ski in/ski out
-      smoking: Smoking
+      smoking: Fumer
       tv: TV
       wifi: WiFi
     strapline_example: Strapline Example
     strapline_example_content: 'A large, traditional alpine luxury ski chalet, sleeping 10. Full of charm and character.'
   receipts: Receipts
-  registration: Registration
+  registration: Enregistrement
   resort: 'Resort'
   resort_options:
     new_developments: New Build
   sale_price: 'Sale price'
-  save: 'Save'
-  sign_in: 'Sign In'
+  save: 'Enregistrer'
+  sign_in: Connexion
   sign_in_invalid: 'Your sign in attempt failed. No account was found with this email address and password.'
-  sign_out: Sign Out
-  sign_up: Register
+  sign_out: Fermer la Session
+  sign_up: Inscrivez-vous
   signed_out: 'You are now signed out.'
   sleeping_capacity: 'Sleeping capacity'
-  stage_1: <span>Stage 1<br><em>Choose your country and resort selection</em></span>
-  stage_1_inactive: <span class="inactive">Stage 1<br><em>Choose your country and resort selection</em></span>
-  stage_2: "<span>Stage 2<br><em>Select from property sales, rentals, directory or resort information</em></span>"
+  stage_1: <span>Étape 1<br><em>Choisissez votre pays et station de ski</em></span>
+  stage_1_inactive: <span class="inactive">Stage 1<br><em>Choisissez votre pays et station de ski</em></span>
+  stage_2: "<span>Étape 2<br><em>Select from property sales, rentals, directory or resort information</em></span>"
   strapline: 'Strapline'
   strapline_placeholder: "Summarise the property's key features (e.g., size, location) in under 255 characters."
-  terms: 'Terms and Conditions'
+  terms: 'Termes et Conditions'
   time:
     formats:
       short: %d %b %Y
-  update: Update
+  update: Enregistrer
   users:
-    account_type: Account type
-    forgot_password: Forgot Password
-    forgot_your_password: Forgot your password?
-    no_account_yet: "Don't have an account yet?"
-    or: Or
+    account_type: Type de compte
+    forgot_password: Mot de Passe Oublié
+    forgot_your_password: Mot de Passe Oublié
+    no_account_yet: "N'avez-vous pas un compte?"
+    or: Ou
     register_to_advertise: Register to advertise your property or business
-    select_account_type: Select account type
-    sign_in_to_access_your_account: Sign in to access your account
+    select_account_type: Sélectionnez le type de compte
+    sign_in_to_access_your_account: Inscrivez-vous pour accéder à votre compte
     your_position: Your position
   view: View
   views: 'Views'

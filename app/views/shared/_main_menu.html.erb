@@ -18,16 +18,16 @@ function closeMenu(menu) {
 </script>
 <nav id="main_menu">
   <ul>
-    <li><a href="/welcome/advertiser" onmouseover="openMenu(document.getElementById('welcome_advertisers'));" onmouseout="startCloseMenu(document.getElementById('welcome_advertisers'));">Advertise</a></li>
+    <li><a href="/welcome/advertiser" onmouseover="openMenu(document.getElementById('welcome_advertisers'));" onmouseout="startCloseMenu(document.getElementById('welcome_advertisers'));"><%= t('advertise') %></a></li>
     <li><a href="<%= featured_resorts_path %>" onmouseover="openMenu(document.getElementById('featured_resorts'));" onmouseout="startCloseMenu(document.getElementById('featured_resorts'));"><%= I18n.t('featured_resorts') %></a></li>
 <% if signed_in? %>
 <% if @current_user.has_adverts_in_basket? %>
     <li><a href="<%= basket_path %>"><%= t 'basket' %> <span class="count"><%= @current_user.adverts_in_basket.count %></span></a></li>
 <% end %>
 <% unless admin? %>
-    <li><%= link_to 'Account', advertise_path %>
+    <li><%= link_to t('account'), advertise_path %>
 <% end %>
-    <li><%= link_to 'Sign Out', sign_out_path %>
+    <li><%= link_to t('sign_out'), sign_out_path %>
 <% else %>
     <li><%= link_to t('sign_in'), sign_in_path %></li>
     <li><%= link_to t('sign_up'), sign_up_path %></li>
