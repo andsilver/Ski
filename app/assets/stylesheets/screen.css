@@ -45,6 +45,10 @@ a img {
   width: 440px;
 }
 
+#stage_headings span + span {
+  width: 500px;
+}
+
 #stage_headings span.inactive {
   color: #999;
 }
