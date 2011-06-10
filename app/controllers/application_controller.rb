@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = extract_locale_from_subdomain || I18n.default_locale
+    @lang = I18n.locale = extract_locale_from_subdomain || I18n.default_locale
   end
 
   def extract_locale_from_subdomain
