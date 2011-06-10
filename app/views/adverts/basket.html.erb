@@ -3,16 +3,16 @@
 <h1><%= t('basket') %></h1>
 
 <% if @lines.empty? %>
-  <p>Your basket is empty.</p>
+  <p><%= t 'adverts_controller.basket_empty' %></p>
 <% else %>
 <%= form_tag :action => 'update_basket_contents' do %>
   <table id="basket" class="grid">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Edit</th>
-        <th>Duration</th>
-        <th>Price</th>
+        <th><%= t 'name' %></th>
+        <th><%= t 'edit' %></th>
+        <th><%= t 'duration' %></th>
+        <th><%= t 'price' %></th>
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -20,7 +20,7 @@
     <% @lines.each do |line| %>
       <tr>
         <td><%= line.description %></td>
-        <td><% unless line.coupon %><%= link_to 'Edit', edit_advert_object_path(line.advert) %><% end %></td>
+        <td><% unless line.coupon %><%= link_to t('edit'), edit_advert_object_path(line.advert) %><% end %></td>
         <td class="numeric">
           <% unless line.coupon %>
           <select name="months[<%= line.advert.id %>]" onchange="this.form.submit()">
@@ -46,13 +46,13 @@
     </tbody>
   </table>
   <p class="basket_buttons">
-    <input type="submit" name="update_durations" value="Update">
+    <input type="submit" name="update_durations" value="<%= t 'update' %>">
   </p>
   <p>
     <%= t('adverts_controller.by_pressing_place_order_you_agree_to_the_terms_and_conditions') %>
     <%= link_to t('view'), terms_path %>
   <p>
-    <input type="submit" name="place_order" value="Place Order">
+    <input type="submit" name="place_order" value="<%= t 'adverts_controller.place_order' %>">
   </p>
 <% end %>
 <% end %>

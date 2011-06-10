@@ -34,11 +34,14 @@ en:
     new: 'Advertise Now'
   advertise: 'Advertise'
   adverts_controller:
+    basket_empty: Your basket is empty.
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
+    place_order: Place Order
   banner_adverts: Banner Adverts
   basket: Basket
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
+  business: Business
   business_details: Business Details
   category: 'Category'
   category_names:
@@ -62,6 +65,7 @@ en:
     taxi: Taxis
   city: Town / city
   clicks: Clicks
+  continue: Continue
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
   country: 'Country'
@@ -74,6 +78,8 @@ en:
   details: 'Details'
   directory_adverts: 'Directory Adverts'
   distance_from_lift: 'Distance from lift'
+  duration: Duration
+  edit: Edit
   email: 'Email'
   enquire: Enquire
   enquiries_controller:
@@ -128,6 +134,7 @@ en:
   please_correct: Please correct the following errors
   plot_size: 'Plot size'
   postcode: 'ZIP / postcode'
+  price: Price
   privacy: 'Privacy Policy'
   property_id: Property ID
   property_name: 'Property name'
@@ -188,10 +195,15 @@ en:
   time:
     formats:
       short: %d %b %Y
+  update: Update
   users:
+    account_type: Account type
+    forgot_password: Forgot Password
     forgot_your_password: Forgot your password?
+    no_account_yet: "Don't have an account yet?"
     or: Or
     register_to_advertise: Register to advertise your property or business
+    select_account_type: Select account type
     sign_in_to_access_your_account: Sign in to access your account
     your_position: Your position
   view: View

@@ -1,7 +1,7 @@
 <%= render :partial => 'shared/steps', :locals => { :step => 1 } %>
 
 <% if @user.role %>
-<p>Account type: <strong><%= @user.role.name %></strong> (<%= link_to 'change', sign_up_path %>)</p>
+<p><%= t 'users.account_type' %>: <strong><%= @user.role.name %></strong> (<%= link_to 'change', sign_up_path %>)</p>
 <%= raw '<p>You will be able to advertise properties for rent or sale.</p>' if @user.role.advertises_properties? %>
 <%= raw '<p>You will be able to create banner or directory adverts.</p>' if @user.role.advertises_generally? %>
 <%= render 'form', :submit_label => 'sign_up' %>
@@ -12,10 +12,10 @@
 <%= form_for @user do |f| %>
 <input type="hidden" name="stage" value="1">
 <p>
-  <%= f.label :role_id, 'Account type' %> <%= select("user", "role_id", Role.where(:select_on_signup => true).collect {|r| [ r.name, r.id ] }, {:prompt => 'Select account type'}) %>
+  <%= f.label :role_id, t('users.account_type') %> <%= select("user", "role_id", Role.where(:select_on_signup => true).collect {|r| [ r.name, r.id ] }, {:prompt => t('users.select_account_type')}) %>
 </p>
 <p>
-  <%= f.submit 'Continue' %>
+  <%= f.submit t('continue') %>
 </p>
 <% end %>
   </div>
