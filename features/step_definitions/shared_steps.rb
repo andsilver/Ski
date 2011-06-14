@@ -14,7 +14,7 @@ def sign_in_with(email, password)
 end
 
 Given /^I am signed in$/ do
-  sign_in_with('alice@myskichalet.co.uk', 'sesame')
+  sign_in_with('alice@mychaletfinder.com', 'sesame')
 end
 
 Given /^I am not signed in$/ do

@@ -312,7 +312,7 @@ other_business = Role.create(
 
 alice = User.create(
   :name => 'Alice',
-  :email => 'alice@myskichalet.co.uk',
+  :email => 'alice@mychaletfinder.com',
   :password => 'secret',
   :billing_street => '1, High St',
   :billing_city => 'Portsmouth',
@@ -321,7 +321,7 @@ alice = User.create(
   ) { |u| u.role_id = admin.id }
 bob = User.create(
   :name => 'Bob',
-  :email => 'bob@myskichalet.co.uk',
+  :email => 'bob@mychaletfider.com',
   :password => 'secret',
   :billing_street => '2, Main Rd',
   :billing_city => 'Newcastle',

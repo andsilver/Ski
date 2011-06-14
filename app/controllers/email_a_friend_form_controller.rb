@@ -8,7 +8,7 @@ class EmailAFriendFormController < ApplicationController
     @property = Property.find(params[:email_a_friend_form][:property_id])
     if @form.valid?
       EmailAFriendNotifier.notify(@form, @property).deliver
-      redirect_to @property, :notice => "We've sent your friend an email. Thanks for sharing My Ski Chalet."
+      redirect_to @property, :notice => "We've sent your friend an email. Thanks for sharing My Chalet Finder."
     else
       render "properties/email_a_friend"
     end

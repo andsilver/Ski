@@ -14,7 +14,7 @@ Feature: Sign In
   Scenario: My sign in details are correct
     Given I am not signed in
     And I am on the sign in page
-    When I fill in "Email" with "bob@myskichalet.co.uk"
+    When I fill in "Email" with "bob@mychaletfinder.com"
     And I fill in "Password" with "secret"
     And I press "Sign In"
     Then I should see "Welcome back, Bob"
@@ -30,7 +30,7 @@ Feature: Sign In
   Scenario: My email address is correct but my password is not
     Given I am not signed in
     And I am on the sign in page
-    When I fill in "Email" with "bob@myskichalet.co.uk"
+    When I fill in "Email" with "bob@mychaletfinder.com"
     And I fill in "Password" with "wrong"
     And I press "Sign In"
     Then I should see "failed"

@@ -2,7 +2,7 @@ alice:
   id: 1
   first_name: Alice
   last_name: Adams
-  email: alice@myskichalet.co.uk
+  email: alice@mychaletfinder.com
   encrypted_password: 53a9042fc50d6abdf8f54930b6e76d0c3bb514f2 # =sesame
   salt: salt
   description: An estate agent
@@ -17,7 +17,7 @@ bob:
   id: 2
   first_name: Bob
   last_name: Brown
-  email: bob@myskichalet.co.uk
+  email: bob@mychaletfinder.com
   encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
   salt: salt
   description: A property developer
@@ -31,7 +31,7 @@ dave:
   id: 3
   first_name: Dave
   last_name: Davies
-  email: dave@myskichalet.co.uk
+  email: dave@mychaletfinder.com
   encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
   salt: salt
   description: A property owner
@@ -45,7 +45,7 @@ emily:
   id: 5
   first_name: Emily
   last_name: Evans
-  email: emily@myskichalet.co.uk
+  email: emily@mychaletfinder.com
   encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
   salt: salt
   description: A bar owner
@@ -59,7 +59,7 @@ tony:
   id: 4
   first_name: Tony
   last_name: Taccone
-  email: tony@myskichalet.co.uk
+  email: tony@mychaletfinder.com
   encrypted_password: 18bb2281de1676b2a3b611e36243ff822c22146d # =secret
   salt: salt
   description: An administrator

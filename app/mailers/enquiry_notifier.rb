@@ -1,10 +1,10 @@
 class EnquiryNotifier < ActionMailer::Base
-  default :from => "notifier@myskichalet.co.uk"
+  default :from => "notifier@mychaletfinder.com"
 
   def notify enquiry, property
     @enquiry = enquiry
     @property = property
     mail(:to => enquiry.user.email,
-      :subject => "My Ski Chalet: Enquiry for property ##{property.id}")
+      :subject => "My Chalet Finder: Enquiry for property ##{property.id}")
   end
 end

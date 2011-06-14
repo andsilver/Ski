@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Enquiry do
   def valid_enquiry
-    Enquiry.new(:name => "Alice", :email => "alice@myskichalet.co.uk",
+    Enquiry.new(:name => "Alice", :email => "alice@mychaletfinder.com",
       :phone => "01234 567890")
   end
 

@@ -11,11 +11,11 @@ def valid_property attributes
 end
 
 Given /^I am signed in as an? ([^"]*)$/ do |role|
-  sign_in_with('alice@myskichalet.co.uk', 'sesame') if role == 'estate agent'
-  sign_in_with('bob@myskichalet.co.uk', 'secret') if role == 'property developer'
-  sign_in_with('dave@myskichalet.co.uk', 'secret') if role == 'property owner'
-  sign_in_with('emily@myskichalet.co.uk', 'secret') if role == 'other business'
-  sign_in_with('tony@myskichalet.co.uk', 'secret') if role == 'administrator'
+  sign_in_with('alice@mychaletfinder.com', 'sesame') if role == 'estate agent'
+  sign_in_with('bob@mychaletfinder.com', 'secret') if role == 'property developer'
+  sign_in_with('dave@mychaletfinder.com', 'secret') if role == 'property owner'
+  sign_in_with('emily@mychaletfinder.com', 'secret') if role == 'other business'
+  sign_in_with('tony@mychaletfinder.com', 'secret') if role == 'administrator'
 end
 
 Given /^there are (\d+) new developments advertised$/ do |how_many|
