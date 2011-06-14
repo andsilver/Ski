@@ -1,5 +1,4 @@
 <%= render 'spam/spam' %>
-<h1><%= link_to @property.name, @property %> &gt; <%= t('enquire') %></h1>
 
 <p>
   <%= t('enquiries_controller.enquiry_introduction') %>
@@ -28,7 +27,7 @@
 </span>
 
 <div class="field">
-  <%= f.label :name %><br>
+  <%= f.label :name, t('name') %><br>
   <%= f.text_field :name %>
 </div>
 
@@ -38,7 +37,7 @@
 </div>
 
 <div class="field">
-  <%= f.label :phone %><br>
+  <%= f.label :phone, t('phone') %><br>
   <%= f.text_field :phone %>
 </div>
 
@@ -88,7 +87,7 @@ $(function () {
 </div><!--#panel_1-->
 <div id="panel_2">
   <div class="group_panel">
-    <h2>Contact Details</h2>
+    <h2><%= t('contact_details') %></h2>
     <p><%= t('phone') %>: <%= @property.user.phone %></p>
     <p><%= t('mobile') %>: <%= @property.user.mobile %></p>
     <p><%= t('email') %>: <%= mail_to @property.user.email, @property.user.email, :encode => "javascript" %></p>

@@ -61,10 +61,10 @@ class Property < ActiveRecord::Base
 
   def self.tv_description tv_param
     {
-      TV_NO => 'No TV',
-      TV_YES => 'TV',
-      TV_FREEVIEW => 'Freeview',
-      TV_SATELLITE => 'Cable or Satellite'
+      TV_NO => I18n.t('properties.features.no_tv'),
+      TV_YES => I18n.t('properties.features.tv'),
+      TV_FREEVIEW => I18n.t('properties.features.freeview'),
+      TV_SATELLITE => I18n.t('properties.features.cable_or_satellite')
     }[tv_param]
   end
 
@@ -95,22 +95,22 @@ class Property < ActiveRecord::Base
 
   def features
     f = []
-    bedrooms = "Bedrooms: #{number_of_bedrooms}"
-    bedrooms += " (sleeps #{sleeping_capacity})" if for_rent?
+    bedrooms = "#{I18n.t('bedrooms')}: #{number_of_bedrooms}"
+    bedrooms += " (#{I18n.t('sleeps')} #{sleeping_capacity})" if for_rent?
     f << bedrooms
     f << "Nearest lift: #{metres_from_lift}m"
-    f << "Pets allowed" if pets? && for_rent?
-    f << "Smoking allowed" if smoking? && for_rent?
+    f << I18n.t('properties.features.pets') if pets? && for_rent?
+    f << I18n.t('properties.features.smoking') if smoking? && for_rent?
     f << tv_description if for_rent?
-    f << "WiFi" if wifi? && for_rent?
-    f << "Suitable for disabled people" if disabled?
-    f << "Fully equipped kitchen" if fully_equipped_kitchen?
-    f << "Cave" if cave?
-    f << "Garden" if garden?
-    f << "Indoor swimming pool" if indoor_swimming_pool?
-    f << "Outdoor swimming pool" if outdoor_swimming_pool?
-    f << "Sauna" if sauna?
-    f << "Hot tub" if hot_tub?
+    f << I18n.t('properties.features.wifi') if wifi? && for_rent?
+    f << I18n.t('properties.features.disabled') if disabled?
+    f << I18n.t('properties.features.fully_equipped_kitchen') if fully_equipped_kitchen?
+    f << I18n.t('properties.features.cave') if cave?
+    f << I18n.t('properties.features.garden') if garden?
+    f << I18n.t('properties.features.indoor_swimming_pool') if indoor_swimming_pool?
+    f << I18n.t('properties.features.outdoor_swimming_pool') if outdoor_swimming_pool?
+    f << I18n.t('properties.features.sauna') if sauna?
+    f << I18n.t('properties.features.hot_tub') if hot_tub?
     f << I18n.t('properties.filters.ski_in_ski_out') if ski_in_ski_out?
     f << I18n.t('properties.filters.long_term_lets_available') if long_term_lets_available?
     f << parking_description

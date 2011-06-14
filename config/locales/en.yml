@@ -65,9 +65,11 @@ en:
     ski_hire: Ski hire
     takeaway: Takeaways
     taxi: Taxis
+  change: Change
   checkout: Checkout
   city: Town / city
   clicks: Clicks
+  contact_details: Contact Details
   continue: Continue
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
@@ -79,6 +81,7 @@ en:
   delete: 'Delete'
   description: 'Description'
   details: 'Details'
+  directory: Directory
   directory_adverts: 'Directory Adverts'
   distance_from_lift: 'Distance from lift'
   duration: Duration
@@ -145,25 +148,35 @@ en:
   property_rentals: 'Property Rentals'
   property_sales: 'Property Sales'
   properties:
+    accommodation_type: Accommodation type
+    email_a_friend: Email a friend
     features:
       balcony: Balcony
+      cable_or_satellite: Cable or Satellite
       cave: Cave
       disabled: Disabled access
+      freeview: Freeview
       fully_equipped_kitchen: Fully equipped kitchen
       garage: Garage
       garden: Garden
       hot_tub: Hot tub
+      indoor_swimming_pool: Indoor swimming pool
       log_fire: Log fire
       long_term_lets_available: Long-term lets available
       mountain_views: Mountain views
+      new_development: New development
       no_parking: No parking
+      no_tv: No TV
       off_street_parking: Off-street parking
       on_street_parking: On-street parking
+      outdoor_swimming_pool: Outdoor swimming pool
+      parking: Parking
       pets: Pets allowed
       sauna: Sauna
       ski_in_ski_out: Ski in/ski out
       smoking: Smoking allowed
       swimming_pool: Swimming pool
+      tv: TV
       wifi: WiFi
     filters:
       disabled: Disabled
@@ -177,13 +190,22 @@ en:
       smoking: Smoking
       tv: TV
       wifi: WiFi
+    no_matching_properties: There are no properties advertised at this resort that match your search criteria.
+    select_resort: Select resort
     strapline_example: Strapline Example
     strapline_example_content: 'A large, traditional alpine luxury ski chalet, sleeping 10. Full of charm and character.'
+    titles:
+      browse_for_rent: "Properties for Rent in %{resort}"
+      browse_for_sale: "Properties for Sale in %{resort}"
+      new: New Property
+      new_developments: "New Property Developments in %{resort}"
+      show: "%{property_name} - Chalet / Apartment %{rent_or_sale} in %{resort}, %{country}"
   receipts: Receipts
   registration: Registration
   resort: 'Resort'
   resort_options:
     new_developments: New Build
+    resort_info: Resort Info
   sale_price: 'Sale price'
   save: 'Save'
   sign_in: 'Sign In'
@@ -192,9 +214,11 @@ en:
   sign_up: Register
   signed_out: 'You are now signed out.'
   sleeping_capacity: 'Sleeping capacity'
+  sleeps: sleeps
   stage_1: <span>Stage 1<br><em>Choose your country and resort selection</em></span>
   stage_1_inactive: <span class="inactive">Stage 1<br><em>Choose your country and resort selection</em></span>
   stage_2: "<span>Stage 2<br><em>Select from property sales, rentals, directory or resort information</em></span>"
+  start: Start
   strapline: 'Strapline'
   strapline_placeholder: "Summarise the property's key features (e.g., size, location) in under 255 characters."
   terms: 'Terms and Conditions'
@@ -204,7 +228,13 @@ en:
   update: Update
   users:
     account_type: Account type
+    choose_a_new_password: Choose a New Password
+    email_sent: Email Sent
+    first_advert: First Advert
     forgot_password: Forgot Password
+    forgot_password_email_sent:
+      heading: Email Sent
+      content: An email has been sent showing how to reset and change your password. Please check your inbox in a few minutes.
     forgot_your_password: Forgot your password?
     no_account_yet: "Don't have an account yet?"
     or: Or

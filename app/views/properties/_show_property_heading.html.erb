@@ -1,0 +1,9 @@
+<h1><%= link_to @property.resort.country.name, @property.resort.country %> &gt;
+<%= link_to @property.resort.name, @property.resort %> &gt; 
+<% if @property.for_sale? %>
+  <%= link_to t('for_sale'), resort_property_sale_path(@property.resort) %>
+<% else %>
+  <%= link_to t('for_rent'), resort_property_rent_path(@property.resort) %>
+<% end %>
+&gt;
+<%= @property.name %></h1>

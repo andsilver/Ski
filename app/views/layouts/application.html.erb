@@ -2,7 +2,7 @@
 <html class="no-js" lang="<%= @lang %>">
 <head>
   <meta charset="utf-8">
-  <title><%= @page_title ? @page_title + " - My Ski Chalet" : "My Ski Chalet" %></title>
+  <title><%= @page_title ? @page_title + " - My Chalet Finder" : "My Chalet Finder" %></title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -65,14 +65,14 @@
 <% if @resort %>
   <ul id="resort_options">
     <li <%= 'class="selected"'.html_safe if current_page?(resort_path(@resort)) %>><%=
-      link_to 'Resort Info', resort_path(@resort) %></li>
+      link_to t('resort_options.resort_info'), resort_path(@resort) %></li>
     <li <%= 'class="selected"'.html_safe if current_page?(resort_property_rent_path(@resort)) %>><a href="<%= resort_property_rent_path(@resort) %>"><div class="resort_option"><%=
       t('for_rent') %></div><div class="property_count"><%= count_properties_for_rent_in(@resort) %></div></a></li>
     <li <%= 'class="selected"'.html_safe if current_page?(resort_property_sale_path(@resort)) %>><a href="<%= resort_property_sale_path(@resort) %>"><div class="resort_option"><%=
       t('for_sale') %></div><div class="property_count"><%= count_properties_for_sale_in(@resort) %></div></a></li>
     <li <%= 'class="selected"'.html_safe if current_page?(resort_property_new_developments_path(@resort)) %>><a href="<%= resort_property_new_developments_path(@resort) %>"><div class="resort_option"><%=
       t('resort_options.new_developments') %></div><div class="property_count"><%= count_new_developments_in(@resort) %></div></a></li>
-    <li <%= 'class="selected"'.html_safe if current_page?(directory_resort_path(@resort)) %>><%= link_to 'Directory', directory_resort_path(@resort) %></li>
+    <li <%= 'class="selected"'.html_safe if current_page?(directory_resort_path(@resort)) %>><%= link_to t('directory'), directory_resort_path(@resort) %></li>
     <li <%= 'class="selected"'.html_safe if current_page?(piste_map_resort_path(@resort)) %>><%= link_to I18n.t('piste_map'), piste_map_resort_path(@resort) %></li>
   </ul>
 <% end %>

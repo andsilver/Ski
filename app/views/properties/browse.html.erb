@@ -28,8 +28,7 @@
 
 <% if @properties.empty? %>
 
-<p>There are no properties advertised for rent at this resort that match
-  your search criteria.</p>
+<p><%= t('properties.no_matching_properties') %></p>
 
 <% else %>
 
@@ -58,8 +57,8 @@
       Land <%= p.plot_size_metres_2 %> m<sup>2</sup>
       <% end %>
     </p>
-    <p class="contact_owner"><%= link_to 'Enquire', contact_property_path(p) %></p>
-    <p class="email_a_friend"><%= link_to 'Email a Friend', email_a_friend_property_path(p) %></p>
+    <p class="contact_owner"><%= link_to t('enquire'), contact_property_path(p) %></p>
+    <p class="email_a_friend"><%= link_to t('properties.email_a_friend'), email_a_friend_property_path(p) %></p>
   </div>
   <%= clear %>
 </div>

@@ -9,12 +9,16 @@ class UsersController < ApplicationController
   end
 
   def first_advert
+    default_page_title t('users.first_advert')
   end
 
   def show
+    default_page_title t('advertise')
+    @heading_a = t('advertise')
   end
 
   def new
+    default_page_title t('sign_up')
     @heading_a = t 'sign_up'
     @user = User.new
   end
@@ -63,9 +67,14 @@ class UsersController < ApplicationController
   end
 
   def forgot_password
+    default_page_title t('users.forgot_password')
+    @heading_a = t('users.forgot_password')
   end
   
   def forgot_password_send
+    default_page_title t('users.email_sent')
+    @heading_a = t('users.email_sent')
+
     @user = User.find_by_email(params[:email])
     if @user.nil?
       flash[:notice] = "There is no user registered with that email address"
@@ -78,6 +87,8 @@ class UsersController < ApplicationController
   end
 
   def forgot_password_new
+    default_page_title t('users.choose_a_new_password')
+    @heading_a = t('users.choose_a_new_password')
     forgot_password_params_ok?
   end
   

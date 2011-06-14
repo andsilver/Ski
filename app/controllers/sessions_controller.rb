@@ -2,7 +2,8 @@ class SessionsController < ApplicationController
   before_filter :no_browse_menu
 
   def new
-    @heading_a = I18n.t('sign_in')
+    default_page_title t('sign_in')
+    @heading_a = t('sign_in')
   end
 
   def create

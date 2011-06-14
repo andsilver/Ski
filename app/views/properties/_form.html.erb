@@ -62,13 +62,13 @@ $(document).ready(function() {
 <% if @current_user.role.flag_new_development? %>
 <div class="field">
   <%= f.check_box :new_development %>
-  <%= f.label :new_development %>
+  <%= f.label t('properties.features.new_development') %>
 </div>
 <% end %>
 <% if @property.for_rent? %>
 <div class="field">
   <%= f.check_box :long_term_lets_available %>
-  <%= f.label :long_term_lets_available %>
+  <%= f.label t('properties.features.long_term_lets_available') %>
 </div>
 <% end %>
 </div>
@@ -80,12 +80,12 @@ $(document).ready(function() {
     <%= f.label :resort_id, I18n.t('resort') %>
   </div>
   <div class="field_right">
-    <%= select("property", "resort_id", (Resort.where(:visible => true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
+    <%= select("property", "resort_id", (Resort.where(:visible => true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => t('properties.select_resort')}) %>
   </div>
 </div>
 <div class="field">
   <div class="field_left">
-    <%= f.label :accommodation_type, 'Accommodation type' %>
+    <%= f.label :accommodation_type, t('properties.accommodation_type') %>
   </div>
   <div class="field_right">
     <select id="property_accommodation_type" name="property[accommodation_type]">
@@ -164,7 +164,7 @@ $(document).ready(function() {
 <% if @property.for_rent? %>
 <div class="field">
   <div class="field_left">
-    <%= f.label :tv, 'TV' %>
+    <%= f.label :tv, t('properties.features.tv') %>
   </div>
   <div class="field_right">
     <select id="property_tv" name="property[tv]">
@@ -176,7 +176,7 @@ $(document).ready(function() {
 </div>
 <div class="field">
   <div class="field_left">
-    <%= f.label :parking, 'Parking' %>
+    <%= f.label :parking, t('properties.features.parking') %>
   </div>
   <div class="field_right">
     <select id="property_parking" name="property[parking]">
@@ -190,55 +190,55 @@ $(document).ready(function() {
 <table>
 <tr><td>
 <div class="field">
-  <%= f.check_box :balcony %> <%= f.label :balcony, 'Balcony' %>
+  <%= f.check_box :balcony %> <%= f.label :balcony, t('properties.features.balcony') %>
 </div>
 <div class="field">
-  <%= f.check_box :mountain_views %> <%= f.label :mountain_views, 'Mountain views' %>
+  <%= f.check_box :mountain_views %> <%= f.label :mountain_views, t('properties.features.mountain_views') %>
 </div>
 <% if @property.for_rent? %>
 <div class="field">
-  <%= f.check_box :wifi %> <%= f.label :wifi, 'WiFi' %>
+  <%= f.check_box :wifi %> <%= f.label :wifi, t('properties.features.wifi') %>
 </div>
 <% end %>
 <div class="field">
-  <%= f.check_box :log_fire %> <%= f.label :log_fire, 'Log fire' %>
+  <%= f.check_box :log_fire %> <%= f.label :log_fire, t('properties.features.log_fire') %>
 </div>
 <div class="field">
-  <%= f.check_box :fully_equipped_kitchen %> <%= f.label :fully_equipped_kitchen, 'Fully equipped kitchen' %>
+  <%= f.check_box :fully_equipped_kitchen %> <%= f.label :fully_equipped_kitchen, t('properties.features.fully_equipped_kitchen') %>
 </div>
 <div class="field">
-  <%= f.check_box :cave %> <%= f.label :cave, 'Cave' %>
+  <%= f.check_box :cave %> <%= f.label :cave, t('properties.features.cave') %>
 </div>
 <div class="field">
-  <%= f.check_box :ski_in_ski_out %> <%= f.label :ski_in_ski_out, 'Ski in / ski out' %>
+  <%= f.check_box :ski_in_ski_out %> <%= f.label :ski_in_ski_out, t('properties.features.ski_in_ski_out') %>
 </div>
 </td>
 <td>
 <% if @property.for_rent? %>
 <div class="field">
-  <%= f.check_box :pets %> <%= f.label :pets, 'Pets allowed' %>
+  <%= f.check_box :pets %> <%= f.label :pets, t('properties.features.pets') %>
 </div>
 <div class="field">
-  <%= f.check_box :smoking %> <%= f.label :smoking, 'Smoking allowed' %>
+  <%= f.check_box :smoking %> <%= f.label :smoking, t('properties.features.smoking') %>
 </div>
 <div class="field">
-  <%= f.check_box :disabled %> <%= f.label :disabled, 'Suitable for disabled people' %>
+  <%= f.check_box :disabled %> <%= f.label :disabled, t('properties.features.disabled') %>
 </div>
 <% end %>
 <div class="field">
-  <%= f.check_box :garden %> <%= f.label :garden, 'Garden' %>
+  <%= f.check_box :garden %> <%= f.label :garden, t('properties.features.garden') %>
 </div>
 <div class="field">
-  <%= f.check_box :hot_tub %> <%= f.label :hot_tub, 'Hot tub' %>
+  <%= f.check_box :hot_tub %> <%= f.label :hot_tub, t('properties.features.hot_tub') %>
 </div>
 <div class="field">
-  <%= f.check_box :indoor_swimming_pool %> <%= f.label :indoor_swimming_pool, 'Indoor swimming pool' %>
+  <%= f.check_box :indoor_swimming_pool %> <%= f.label :indoor_swimming_pool, t('properties.features.indoor_swimming_pool') %>
 </div>
 <div class="field">
-  <%= f.check_box :outdoor_swimming_pool %> <%= f.label :outdoor_swimming_pool, 'Outdoor swimming pool' %>
+  <%= f.check_box :outdoor_swimming_pool %> <%= f.label :outdoor_swimming_pool, t('properties.features.outdoor_swimming_pool') %>
 </div>
 <div class="field">
-  <%= f.check_box :sauna %> <%= f.label :sauna, 'Sauna' %>
+  <%= f.check_box :sauna %> <%= f.label :sauna, t('properties.features.sauna') %>
 </div>
 </td></tr>
 </table>

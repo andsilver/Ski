@@ -19,52 +19,54 @@ fr:
               too_short: minimum length is 5 characters
             email:
               taken: ' address has already been taken by an existing customer, please choose another'
-  address: 'Address'
+  address: 'Adresse'
   advert_start_date: Advert Start Date
   advert_end_date: Advert End Date
   advert_status: 'Advert Status'
   advert_statuses:
-    expired: Expired
-    live: Live
+    expired: Expiré
+    live: Démontrant
     new: Awaiting Checkout
   advertise_action:
-    expired: 'Readvertise'
-    new: 'Advertise Now'
+    expired: 'Annoncez Nouveau'
+    new: 'Annoncez Maintenant'
   advertise: Annoncez
   adverts_controller:
     basket_empty: Votre panier est vide.
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
-    place_order: Place Order
+    place_order: Commander
   advert_details: Détail de l'annonce
   banner_adverts: Banner Adverts
   basket: Panier
   bathrooms: Salles de bains
   bedrooms: 'Chambres'
-  business: Business
-  business_details: Business Details
-  category: 'Category'
+  business: Entreprise
+  business_details: Détails d'entreprise
+  category: 'Catégorie'
   category_names:
-    airport_transfer: Airport transfer
-    architect: Architects
+    airport_transfer: Transfert de l'aéroport
+    architect: Architectes
     babysitter: Babysitters
     bars: Bars
     car_hire: Location de voiture
     cleaners: Nettoyeurs
     creche: Creches
-    home_appliances: Home appliances
-    home_insurance: Home insurance
-    interior_design: Interior designers
+    home_appliances: Appareils électroménagers
+    home_insurance: Assurance habitation
+    interior_design: Architecte d'intérieur
     internet_cafe: Cybercafés
-    letting_agents: Letting agents
-    mountain_guide: Mountain guides
-    other: Other
+    letting_agents: Agence de location
+    mountain_guide: Guides de montagne
+    other: Divers
     restaurants: Restaurants
-    ski_hire: Ski hire
+    ski_hire: Location de ski
     takeaway: A emporter
     taxi: Taxis
+  change: Changer
   checkout: Commander
   city: Ville
   clicks: Clicks
+  contact_details: Coordonnées
   continue: Continuer
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
@@ -73,32 +75,33 @@ fr:
   date:
     formats:
       short: %d %b %Y
-  delete: 'Delete'
+  delete: 'Supprimer'
   description: 'Description'
-  details: 'Details'
+  details: 'Détails'
+  directory: Répertoire
   directory_adverts: 'Directory Adverts'
   distance_from_lift: 'Distance from lift'
-  duration: Duration
-  edit: Edit
+  duration: Durée
+  edit: Modifier
   email: 'Email'
-  enquire: Enquire
+  enquire: Contacter
   enquiries_controller:
-    comments: Comments
-    date_of_arrival: Date of arrival
-    date_of_departure: Date of departure
-    enquiry_introduction: 'To enquire about the availability and prices of your selected accommodation, you can either call the owner or agent directly on the number below or complete the details in the form and send an email.  We hope you have a great holiday.'
-    number_of_adults: Number of adults
-    number_of_children: Number of children (3 to 16)
-    number_of_infants: Number of infants (under 3)
-    send_an_email: Send an Email
-    your_enquiry_has_been_sent: Your enquiry has been sent.
-  example: Example
+    comments: Commentaires
+    date_of_arrival: "Date d'arrivée"
+    date_of_departure: Date de départ
+    enquiry_introduction: "Pour en savoir davantage sur la disponibilité et les prix de votre logement choisi, vous pouvez soit appeler le propriétaire ou l'agent directement sur le numéro ci-dessous ou compléter les détails dans le formulaire et envoyer un e-mail. Nous espérons que vous avez de bonnes vacances."
+    number_of_adults: "Nombre d'adultes"
+    number_of_children: "Nombre d'enfants (3 à 16)"
+    number_of_infants: Nombre de nourrissons (moins de 3 ans)
+    send_an_email: Envoyer un E-mail
+    your_enquiry_has_been_sent: Votre demande a été envoyée.
+  example: Exemple
   featured_resorts: Stations en Vedette
   features: 'Features'
   first_name: Prénom
   floor_area: 'Floor area'
-  for_rent: 'For Rent'
-  for_sale: 'For Sale'
+  for_rent: 'À Louer'
+  for_sale: 'À Vendre'
   garden: 'Garden'
   home: Accueil
   home_page:
@@ -111,14 +114,14 @@ fr:
   images_controller:
     image_uploaded: Image uploaded.
     invalid_dimensions: This image was not accepted because it does not have valid dimensions.
-  last_name: Last name
+  last_name: Nom de famille
   main_image: 'Main image'
-  map: Map
-  mobile: Mobile
+  map: Carte
+  mobile: Portable
   my_adverts: 'My Adverts'
   my_enquiries: My Email Enquiries
   my_details_saved: 'Your details have been saved.'
-  name: 'Name'
+  name: 'Nom'
   nearest_lift: 'Nearest lift'
   new_developments: 'New Developments'
   notices:
@@ -130,43 +133,53 @@ fr:
   number_of_bathrooms: 'Number of bathrooms'
   number_of_bedrooms: 'Number of bedrooms'
   password: 'Mot de passe'
-  phone: Phone
-  piste_map: Piste Map
+  phone: Téléphone
+  piste_map: Plan des Pistes
   please_correct: Please correct the following errors
   plot_size: 'Plot size'
   postcode: 'ZIP / postcode'
-  price: Price
+  price: Prix
   privacy: 'Politique de confidentialité'
-  property_id: Property ID
-  property_name: 'Property name'
-  property_rentals: 'Property Rentals'
-  property_sales: 'Property Sales'
+  property_id: ID de Propriété
+  property_name: 'Nom de la propriété'
+  property_rentals: 'Location de Biens'
+  property_sales: 'Propriétés à Vendre'
   properties:
+    accommodation_type: Type d'hébergement
+    email_a_friend: Envoyer à un ami
     features:
       balcony: Balcon
+      cable_or_satellite: TV par câble/satellite
       cave: Grotte
       disabled: Accès des personnes handicapées
-      fully_equipped_kitchen: Fully equipped kitchen
+      freeview: Freeview/TNT
+      fully_equipped_kitchen: Cuisine entièrement équipée
       garage: Garage
       garden: Jardin
-      hot_tub: Hot tub
-      log_fire: Log fire
-      long_term_lets_available: Long-term lets available
-      mountain_views: Mountain views
-      no_parking: No parking
-      off_street_parking: Off-street parking
-      on_street_parking: On-street parking
+      hot_tub: Bain à remous
+      indoor_swimming_pool: Piscine couverte
+      log_fire: Feu de bois
+      long_term_lets_available: Location à long terme disponibles
+      mountain_views: Vue sur la montagne
+      new_development: Nouvelle construction
+      no_parking: Pas de parking
+      no_tv: Pas de TV
+      off_street_parking: Stationnement hors-rue
+      on_street_parking: Stationnement sur-rue
+      outdoor_swimming_pool: Piscine extérieure
+      parking: Stationnement
       pets: Animaux acceptés
       sauna: Sauna
       ski_in_ski_out: Ski in/ski out
       smoking: Permission de fumer
       swimming_pool: Piscine
+      tv: TV
       wifi: WiFi
     filters:
       disabled: Handicapés
       garage: Garage
       garden: Jardin
-      long_term_lets_available: Long lets
+      long_term_lets_available: Long terme
       parking: Stationnement
       pets: Animaux acceptés
       satellite: Satellite
@@ -174,25 +187,36 @@ fr:
       smoking: Fumer
       tv: TV
       wifi: WiFi
-    strapline_example: Strapline Example
+    no_matching_resorts: "Il n'ya pas de propriétés annoncées à cette station de ski qui correspondent à vos critères de recherche."
+    select_resort: Sélectionnez une station
+    strapline_example: Slogan Par Exemple
     strapline_example_content: 'A large, traditional alpine luxury ski chalet, sleeping 10. Full of charm and character.'
-  receipts: Receipts
+    titles:
+      browse_for_sale: "Propriétés à Louer à %{resort}"
+      browse_for_sale: "Propriétés à Vendre à %{resort}"
+      new: Nouvelle Propriété
+      new_developments: "Développements Nouvelle Propriété à %{resort}"
+      show: "%{property_name} - Chalet / Appartement %{rent_or_sale} à %{resort}, %{country}"
+  receipts: Recettes
   registration: Enregistrement
-  resort: 'Resort'
+  resort: 'Station'
   resort_options:
-    new_developments: New Build
-  sale_price: 'Sale price'
+    new_developments: Nouvelle
+    resort_info: Infos Station
+  sale_price: 'Prix de vente'
   save: 'Enregistrer'
   sign_in: Connexion
   sign_in_invalid: 'Your sign in attempt failed. No account was found with this email address and password.'
   sign_out: Fermer la Session
   sign_up: Inscrivez-vous
   signed_out: 'You are now signed out.'
-  sleeping_capacity: 'Sleeping capacity'
+  sleeping_capacity: 'Capacité de couchage'
+  sleeps: peut accueillir
   stage_1: <span>Étape 1<br><em>Choisissez votre pays et station de ski</em></span>
-  stage_1_inactive: <span class="inactive">Stage 1<br><em>Choisissez votre pays et station de ski</em></span>
-  stage_2: "<span>Étape 2<br><em>Select from property sales, rentals, directory or resort information</em></span>"
-  strapline: 'Strapline'
+  stage_1_inactive: <span class="inactive">Étape 1<br><em>Choisissez votre pays et station de ski</em></span>
+  stage_2: "<span>Étape 2<br><em>Sélectionnez des ventes, locations, répertoire ou d'infos station</em></span>"
+  start: Commencer
+  strapline: 'Slogan'
   strapline_placeholder: "Summarise the property's key features (e.g., size, location) in under 255 characters."
   terms: 'Termes et Conditions'
   time:
@@ -201,7 +225,13 @@ fr:
   update: Enregistrer
   users:
     account_type: Type de compte
+    choose_a_new_password: Choisir un Nouveau Mot de Passe
+    email_sent: E-mail envoyé
+    first_advert: Première Annonce
     forgot_password: Mot de Passe Oublié
+    forgot_password_email_sent:
+      heading: E-mail Envoyé
+      content: "Un email a été envoyé montrant comment réinitialiser votre mot de passe et le changement. S'il vous plaît vérifier votre boîte de réception dans quelques minutes."
     forgot_your_password: Mot de Passe Oublié
     no_account_yet: "N'avez-vous pas un compte?"
     or: Ou
@@ -211,4 +241,4 @@ fr:
     your_position: Your position
   view: View
   views: 'Views'
-  weekly_rent_price: 'Weekly rent price'
+  weekly_rent_price: 'Prix de location hebdomadaire'

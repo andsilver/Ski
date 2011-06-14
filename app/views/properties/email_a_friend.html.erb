@@ -1,5 +1,4 @@
 <%= render 'spam/spam' %>
-<h1>Email a friend about <%= link_to @property.name, @property %> in <%= @property.resort.name %></h1>
 <% if @form.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@form.errors.count, "error") %> prohibited this referral from being sent:</h2>

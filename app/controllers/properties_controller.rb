@@ -15,6 +15,7 @@ class PropertiesController < ApplicationController
   before_filter :find_property, :only => [:show, :contact, :email_a_friend]
 
   def browse_for_rent
+    default_page_title t('properties.titles.browse_for_rent', :resort => @resort.name)
     @heading_a = render_to_string(:partial => 'browse_property_heading').html_safe
 
     order = selected_order([ "normalised_weekly_rent_price ASC", "normalised_weekly_rent_price DESC",
@@ -33,6 +34,7 @@ class PropertiesController < ApplicationController
 
   def browse_for_sale
     @for_sale = true
+    default_page_title t('properties.titles.browse_for_sale', :resort => @resort.name)
     @heading_a = render_to_string(:partial => 'browse_property_heading').html_safe
 
     order = for_sale_selected_order
@@ -49,6 +51,7 @@ class PropertiesController < ApplicationController
   end
 
   def new_developments
+    default_page_title t('properties.titles.new_developments', :resort => @resort.name)
     @heading_a = I18n.t(:new_developments)
     @conditions[0] += " AND new_development = 1"
 
@@ -64,6 +67,9 @@ class PropertiesController < ApplicationController
   end
 
   def new
+    default_page_title t('properties.titles.new')
+    @heading_a = render_to_string(:partial => 'new_property_heading').html_safe
+
     @property = Property.new
     @property.new_development = @current_user.role.new_development_by_default?
     if params[:for_sale]
@@ -73,16 +79,24 @@ class PropertiesController < ApplicationController
 
   def show
     @property.current_advert.record_view
-    rent_or_sale = @property.for_sale? ? "Sale" : "Rent"
-    default_page_title "#{@property.name} - Chalet / Apartment for #{rent_or_sale} in #{@property.resort}, #{@property.resort.country} - MySkiChalet"
+    rent_or_sale = @property.for_sale? ? t('for_sale') : t('for_rent')
+    default_page_title t('properties.titles.show',
+      :property_name => @property.name, :rent_or_sale => rent_or_sale,
+      :resort => @property.resort, :country => @property.resort.country)
+    @heading_a = render_to_string(:partial => 'show_property_heading').html_safe
   end
 
   def contact
+    @heading_a = render_to_string(:partial => 'contact_heading').html_safe
+
     @enquiry = Enquiry.new
     @enquiry.property_id = @property.id
   end
 
   def email_a_friend
+    default_page_title t('properties.email_a_friend')
+    @heading_a = render_to_string(:partial => 'email_a_friend_heading').html_safe
+
     @form = EmailAFriendForm.new
     @form.property_id = @property.id
   end
