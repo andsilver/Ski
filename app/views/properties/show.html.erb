@@ -1,6 +1,46 @@
 <script type="text/javascript" charset="utf-8">
+  var map;
+  var marker;
+
+  function showMap() {
+    <% unless @property.latitude.empty? %>
+    var latlng = new google.maps.LatLng(<%= @property.latitude %>, <%= @property.longitude %>);
+    var myOptions = {
+      zoom: 16,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"),
+      myOptions);
+    marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title:"<%= @property.name %>"
+    });
+    <% end %>
+  }
+
 	$(document).ready(function() {
 		$('#property_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
+
+    var $dialog = $('<div id="map_canvas"></div>')
+      .html('')
+      .dialog({
+        autoOpen: false,
+        title: 'Location',
+        width: 450,
+        height: 350
+      });
+
+    $('#location').click(function() {
+      $dialog.dialog('open');
+      // prevent the default action, e.g., following a link
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(marker.getPosition());
+      return false;
+    });
+
+    showMap();
 	});
 </script>
 <div id="property">
@@ -85,40 +125,8 @@
 
 <% unless @property.latitude.empty? %>
 <h2 id="map"><%= I18n.t('map') %></h2>
-<script>
-  function showMap() {
-    var latlng = new google.maps.LatLng(<%= @property.latitude %>, <%= @property.longitude %>);
-    var myOptions = {
-      zoom: 16,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var map = new google.maps.Map(document.getElementById("map_canvas"),
-      myOptions);
-    var marker = new google.maps.Marker({
-      position: latlng,
-      map: map,
-      title:"<%= @property.name %>"
-    });
-  }
-
-  function mapOnload() {
-    var oldOnload = window.onload;
-
-    if (typeof(window.onload) != "function") {
-      window.onload = showMap;
-    }
-    else {
-      window.onload = function() {
-        oldOnload();
-        showMap();
-      }
-    }
-  }
-
-  mapOnload();
-</script>
-<div id="map_canvas"></div>
+<div id="map_cavas"></div>
+<p><a href="#" id="location">Location</a></p>
 <% end %>
 
 <p><%= link_to t('enquire'), contact_property_path(@property) %></p>
