@@ -5,11 +5,14 @@
 <% if @countries.empty? %>
 <p>There are no countries set up yet.</p>
 <% else %>
-<table>
+<div class="group_panel">
+<table class="grid">
   <thead>
     <tr>
       <th>Name</th>
       <th>ISO 3166-1 Alpha 2</th>
+      <th>Popular Billing Country?</th>
+      <th>In the EU?</th>
       <th>Delete</th>
     </tr>
   </thead>
@@ -18,9 +21,12 @@
     <tr>
       <td><%= link_to country.name, edit_country_path(country) %></td>
       <td><%= country.iso_3166_1_alpha_2 %></td>
+      <td><%= tick country.popular_billing_country? %></td>
+      <td><%= tick country.in_eu? %></td>
       <td><%= link_to 'Delete', country, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 <% end %>
