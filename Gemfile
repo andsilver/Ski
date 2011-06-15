@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc3'
+gem 'rails', '3.1.0.rc4'
 gem 'rack', '1.3.0'
 gem 'mysql2', '0.3.2'
 #gem "will_paginate", "~> 3.0.pre2"
@@ -13,7 +13,7 @@ gem 'sprockets', '2.0.0.beta.10'
 gem 'rdoc'
 
 # Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
 

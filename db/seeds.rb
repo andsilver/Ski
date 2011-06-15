@@ -6,7 +6,7 @@
 # Examples:
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Mayor.create(:name => 'Daley', :city => cities.first)
+#   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
 countries = Country.create([
   { :name => 'Andorra',               :iso_3166_1_alpha_2 => 'AD' },
