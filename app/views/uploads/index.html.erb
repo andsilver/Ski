@@ -1,20 +1,36 @@
-<h1>Uploads</h1>
-
+<div class="group_panel">
 <%= form_tag({:action => :create}, :multipart => true) do %>
 <%= file_field_tag :file %>
 <%= submit_tag 'Upload' %>
 <% end %>
+</div>
 
 <% if @uploads.empty? %>
 <p>
   The uploads folder is empty.
 </p>
 <% else %>
+<p>
+  Click on a file to view/download it.
+</p>
 <ul>
 <% @uploads.each do |upload| %>
-  <li><%= upload %> (<%= link_to I18n.t(:delete), delete_uploaded_file_path(upload),
+  <li><a href="/uploads/<%= upload %>" target="_blank">/uploads/<%= upload %></a> (<%= link_to I18n.t(:delete), delete_uploaded_file_path(upload),
 	 						 :confirm => 'Are you sure?',
 							 :method => :delete %>)</li>
 <% end %>
 </ul>
 <% end %>
+<h2>HTML Help</h2>
+<p>
+  Use this code to link to a file above:
+</p>
+<pre>
+  View/download a PDF brochure about our featured <b>&lt;a href="/uploads/<u>chalet.pdf</u>"&gt;chalet&lt;/a&gt;</b>
+</pre>
+<p>
+  Use this code to display an image:
+</p>
+<pre>
+  <b>&lt;img src="/uploads/<u>chalet.jpg</u>" alt="a chalet"&gt;</b>
+</pre>

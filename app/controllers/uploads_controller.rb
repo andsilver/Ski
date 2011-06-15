@@ -1,9 +1,10 @@
 class UploadsController < ApplicationController
-  before_filter :admin_required
+  before_filter :admin_required, :no_browse_menu
 
   UPLOADS_DIRECTORY = "#{Rails.root.to_s}/public/uploads/"
 
   def index
+    @heading_a = '<a href="/cms">CMS</a> &rarr; Uploads'.html_safe
     @uploads = Dir.entries(UPLOADS_DIRECTORY).select {|e| e[0..0] != "."}
   end
 
