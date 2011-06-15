@@ -70,3 +70,23 @@ Left:
   &lt;img src="/uploads/chalet.jpg" alt="A chalet"&gt;
 &lt;/p&gt;
 </pre>
+
+Promotion Codes
+---------------
+
+Create a new promotion code in CMS > Promotion Codes
+
+Set the number of adverts to which the promotion code can apply (counted from
+the first advert placed, regardless of whether it was discounted at the
+time).
+
+Set a percentage off. 100% is free.
+
+Apply a promotion code by going to CMS > Users > Some User and changing the
+applied promotion code in the drop down menu and then press save.
+
+A promotion code will apply to any kind of advert and all promotion codes
+appear in the same area. Prefixing the promotion code with a 'B' for banner
+advert or a 'P' for property can aid in reminding what the promotion code
+was intended for and also makes it easier to locate alphabetically in the
+drop down list.
