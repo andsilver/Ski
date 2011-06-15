@@ -60,6 +60,10 @@ module ApplicationHelper
     end
   end
 
+  def tick_cross_unknown yes
+    yes.nil? ? '<span class="unknown">?</span>'.html_safe : tick_cross(yes)
+  end
+
   def tick yes
     tick_cross yes, false
   end

@@ -66,10 +66,6 @@
   <%= f.text_field :green %>
 </div>
 <div class="field">
-  <%= f.label :altitude_m %><br>
-  <%= f.text_field :altitude_m %>
-</div>
-<div class="field">
   <%= f.label :longest_run_km %><br>
   <%= f.text_field :longest_run_km %>
 </div>
@@ -142,7 +138,7 @@
     {:include_blank => true, :selected => @resort.creche.to_s}) %>
 </div>
 <div class="field">
-  <%= f.label :babysitting_services_ %><br>
+  <%= f.label :babysitting_services %><br>
   <%= f.select(:babysitting_services, [["Yes", true], ["No", false]],
     {:include_blank => true, :selected => @resort.babysitting_services.to_s}) %>
 </div>

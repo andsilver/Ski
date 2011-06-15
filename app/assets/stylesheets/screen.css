@@ -141,7 +141,7 @@ p, div.field {
 }
 
 footer {
-  clear: left;
+  clear: both;
   padding-top: 8px;
 }
 
@@ -449,6 +449,26 @@ p.image_left {
 
 p.image_centre, p.image_center {
   text-align: center;
+}
+
+table#resort_facts {
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+#resort_facts td, #resort_facts th {
+  border: 1px solid #68C8E7;
+  padding: 3px 6px;
+}
+
+.tick {
+  color: green;
+}
+
+.cross {
+  color: red;
 }
 
 /**

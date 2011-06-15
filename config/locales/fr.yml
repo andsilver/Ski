@@ -200,6 +200,33 @@ fr:
   receipts: Recettes
   registration: Enregistrement
   resort: 'Station'
+  resorts_controller:
+    facts:
+      altitude: Altitude
+      babysitting_services: Baby-sitters
+      black: Noir
+      blue: Bleu
+      cable_car: Téléphérique
+      chair: Télésiège
+      creche: Crèche
+      cross_country: Ski de fond
+      distance_from_airport: Distance de l'aéroport
+      drags: Glisser
+      funicular: Funiculaire
+      glacier_skiing: Ski sur glacier
+      gondola: Gondole
+      good_for_families: Bon pour les familles
+      green: Vert
+      lively_apres_ski: Animé l'après-ski
+      longest_run: Piste la plus longue
+      mountain_restaurants: Restaurants de montagne
+      nearest_airport: Aéroport le plus proche
+      railways: Chemins de fer
+      red: Rouge
+      ski_area: Domaine skiable
+      slope_direction: Direction de la pente
+      snowboard_parks: Parcs de planche à neige
+      top_lift: Plus haut téléphérique
   resort_options:
     new_developments: Nouvelle
     resort_info: Infos Station
