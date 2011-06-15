@@ -1,22 +1,24 @@
 <h1><%= link_to 'CMS', cms_path %> &rarr; <%= I18n.t(:coupons) %></h1>
 <p>
-  <%= link_to 'New Coupon', new_coupon_path %>
+  <%= link_to 'New Promotion Code', new_coupon_path %>
 </p>
 <% if @coupons.empty? %>
-<p>There are no coupons set up yet.</p>
+<p>There are no promotion codes set up yet.</p>
 <% else %>
-<table>
+<table class="grid">
   <thead>
     <tr>
       <th>Code</th>
-      <th># Free Adverts</th>
+      <th># Adverts</th>
+      <th>% Off</th>
     </tr>
   </thead>
   <tbody>
     <% @coupons.each do |coupon| %>
     <tr>
       <td><%= link_to coupon.code, edit_coupon_path(coupon) %></td>
-      <td class="numeric"><%= coupon.free_adverts %></td>
+      <td class="numeric"><%= coupon.number_of_adverts %></td>
+      <td class="numeric"><%= coupon.percentage_off %>%</td>
     </tr>
     <% end %>
   </tbody>

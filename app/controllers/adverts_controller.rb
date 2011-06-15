@@ -89,14 +89,14 @@ class AdvertsController < ApplicationController
       line.price = advert.price(advert_number[advert.type])
       @lines << line
       @total += line.price
-      if @current_user.coupon && @current_user.coupon.free_adverts >= total_adverts
+      if @current_user.coupon && @current_user.coupon.number_of_adverts >= total_adverts
         discount_line = BasketLine.new
         discount_line.advert = advert
         discount_line.coupon = @current_user.coupon
-        discount_line.price = -1 * line.price
+        discount_line.price = -(@current_user.coupon.percentage_off / 100.0) * line.price
         discount_line.description = @current_user.coupon.code + ' #' + total_adverts.to_s
         @lines << discount_line
-        @total -= line.price
+        @total += discount_line.price
       end
     end
   end
