@@ -1,7 +1,8 @@
 <h1><%= link_to 'CMS', cms_path %> &rarr; Users</h1>
 <p><%= link_to 'New user', :action => 'new' %></p>
 
-<table>
+<div class="group_panel">
+<table class="grid">
   <thead>
     <tr>
       <th>Name</th>
@@ -13,7 +14,7 @@
   <tbody>
   <% @users.each do |u| -%>
     <tr>
-      <td><%= link_to h(u.name), :controller => 'users', :action => 'show', :id => u %></td>
+      <td><%= link_to h(u.name), :controller => 'users', :action => 'edit', :id => u %></td>
       <td><%= mail_to u.email, u.email %>&nbsp;</td>
       <td><%= tick u.role.admin? %></td>
       <td><%= link_to 'Switch User', switch_user_path(u.id) %></td>
@@ -21,3 +22,4 @@
   <% end -%>
   </tbody>
 </table>
+</div>

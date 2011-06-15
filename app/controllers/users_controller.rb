@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :admin_required, :only => [:index]
   before_filter :user_required, :only => [:first_advert, :show, :edit, :update]
   before_filter :find_user, :only => [:forgot_password_new, :forgot_password_change]
+  before_filter :find_current_user_or_selected_user, :only => [:edit, :update]
 
   def index
     @users = User.all(:order => :email)
@@ -45,12 +46,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = @current_user
+    @heading_a = admin? ?
+      render_to_string(:partial => 'edit_admin_heading', :locals => {:user => @user}).html_safe :
+      render_to_string(:partial => 'edit_user_heading').html_safe
   end
 
   def update
-    @user = User.find(params[:id])
-
     if admin?
       @user.coupon_id = params[:user][:coupon_id]
     end
@@ -103,7 +104,7 @@ class UsersController < ApplicationController
   end
   
   private
-  
+
   def forgot_password_params_ok?
     if @user.forgot_password_token.blank?
       flash[:notice] = "Please enter your email address below"
@@ -120,5 +121,13 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def find_current_user_or_selected_user
+    if admin? && params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = @current_user
+    end
   end
 end
