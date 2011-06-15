@@ -18,7 +18,7 @@ class BannerAdvert < ActiveRecord::Base
   end
 
   def price(advert, banner_adverts_so_far)
-    Website.first.directory_advert_price * 100
+    Website.first.banner_advert_price * 100
   end
 
   def valid_months
