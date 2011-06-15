@@ -3,6 +3,7 @@ class CmsController < ApplicationController
   before_filter :no_browse_menu
 
   def index
+    @heading_a = 'CMS'
   end
 
   def management_information

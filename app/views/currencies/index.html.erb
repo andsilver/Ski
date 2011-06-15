@@ -1,4 +1,3 @@
-<h1><%= link_to 'CMS', cms_path %> &rarr; Currencies</h1>
 <p>
   <%= link_to 'New Currency', new_currency_path %>
 </p>
@@ -8,7 +7,7 @@
 <% if @currencies.empty? %>
 <p>There are no currencies set up yet.</p>
 <% else %>
-<table>
+<table class="grid">
   <thead>
     <tr>
       <th>Name</th>
