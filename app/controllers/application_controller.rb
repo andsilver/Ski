@@ -66,4 +66,10 @@ class ApplicationController < ActionController::Base
   def default_page_title suggested_title
     @page_title = suggested_title if @page_title.blank?
   end
+
+  def set_cache_buster
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
 end

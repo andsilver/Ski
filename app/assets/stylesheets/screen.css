@@ -471,6 +471,14 @@ table#resort_facts {
   color: red;
 }
 
+.warning {
+  width: 50%;
+  margin: 3em auto;
+  border: 1px solid #68C8E7;
+  background: #f3f7f8;
+  padding: 1em;
+}
+
 /**
  * Enquiry form
  */

@@ -2,6 +2,7 @@ class DirectoryAdvertsController < ApplicationController
   before_filter :no_browse_menu
   before_filter :user_required
   before_filter :find_directory_advert_for_current_user, :only => [:edit, :update, :advertise_now]
+  before_filter :set_cache_buster, :only => [:new, :create]
 
   def new
     @directory_advert = DirectoryAdvert.new
@@ -39,8 +40,12 @@ class DirectoryAdvertsController < ApplicationController
   def update
     update_user_details
     if @directory_advert.update_attributes(params[:directory_advert])
-      redirect_to my_adverts_path,
-        :notice => "Your directory advert was successfully updated."
+      flash[:notice] = "Your directory advert was successfully updated."
+      if @current_user.basket_contains? @directory_advert
+        redirect_to basket_path
+      else
+        redirect_to my_adverts_path
+      end
     else
       render "edit"
     end

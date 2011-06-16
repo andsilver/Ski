@@ -68,6 +68,13 @@ class User < ActiveRecord::Base
     adverts_in_basket.count > 0
   end
 
+  def directory_advert_in_basket
+    adverts_in_basket.each do |a|
+      return a.directory_advert if a.directory_advert
+    end
+    nil
+  end
+
   def banner_adverts_so_far
     Advert.count(
       :conditions => ['user_id = ? AND banner_advert_id IS NOT NULL AND starts_at IS NOT NULL',
@@ -88,6 +95,13 @@ class User < ActiveRecord::Base
 
   def adverts_so_far
     banner_adverts_so_far + directory_adverts_so_far + property_adverts_so_far
+  end
+
+  def basket_contains? advert_object
+    adverts_in_basket.each do |a|
+      return true if a.object == advert_object
+    end
+    false
   end
 
   def to_s
