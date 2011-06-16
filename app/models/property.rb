@@ -98,7 +98,7 @@ class Property < ActiveRecord::Base
     bedrooms = "#{I18n.t('bedrooms')}: #{number_of_bedrooms}"
     bedrooms += " (#{I18n.t('sleeps')} #{sleeping_capacity})" if for_rent?
     f << bedrooms
-    f << "Nearest lift: #{metres_from_lift}m"
+    f << "#{I18n.t('nearest_lift')}: #{metres_from_lift}m"
     f << I18n.t('properties.features.pets') if pets? && for_rent?
     f << I18n.t('properties.features.smoking') if smoking? && for_rent?
     f << tv_description if for_rent?

@@ -107,7 +107,7 @@ $(document).ready(function() {
 
 <div class="field">
   <div class="field_left">
-    <%= f.label :metres_from_lift, I18n.t('distance_from_lift') %>
+    <%= f.label :metres_from_lift, I18n.t('nearest_lift') %>
   </div>
   <div class="field_right">
     <%= f.number_field :metres_from_lift, :range => 50..5000, :step => 50 %> metres

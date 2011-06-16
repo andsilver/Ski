@@ -30,7 +30,7 @@ Feature: My Properties for Rent
       | Strapline          | Excellent facilities, sleeps 4 |
       | Address            | 74400                          |
       | Weekly rent price  | 1650                           |
-      | Distance from lift | 1200                           |
+      | Nearest lift       | 1200                           |
     And I select "France > Chamonix" from "Resort"
     And I select "4" from "Sleeping capacity"
     And I select "2" from "Number of bedrooms"
