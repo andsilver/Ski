@@ -1,4 +1,6 @@
-<% unless banner.nil? %>
+<% if banner.nil? or rand() > 0.9 %>
+<img src="/images/wide-skyscraper-advertise-here.jpg" alt="Advertise in this space">
+<% else %>
   <a href="<%= click_banner_advert_path(banner)  %>"><img
     src="<%= banner.image.url %>" alt="<%= banner.user.business_name %>"
     title="<%= banner.user.business_name %>"></a>
