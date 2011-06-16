@@ -39,7 +39,14 @@ class UsersController < ApplicationController
     if @user.save
       session[:user] = @user.id
       UserNotifier.welcome(@user, request.host).deliver
-      redirect_to(first_advert_path, :notice => 'Your account was successfully created.')
+      flash[:notice] = 'Your account was successfully created.'
+      if @user.role.only_advertises_properties_for_sale?
+        redirect_to new_property_path(:for_sale => true)
+      elsif @user.role.only_advertises_properties_for_rent?
+        redirect_to new_property_path
+      else
+        redirect_to(first_advert_path)
+      end
     else
       render :action => "new"
     end
