@@ -1,3 +1,4 @@
+<%= render :partial => 'shared/steps', :locals => { :step => 4 } %>
 <% if @directory_advert.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@directory_advert.errors.count, "error") %> prohibited this directory advert from being saved:</h2>
