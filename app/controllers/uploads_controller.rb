@@ -14,7 +14,7 @@ class UploadsController < ApplicationController
     if file_data.nil? or (file_data.kind_of? String and file_data.empty?)
       flash[:notice] = 'Sorry, your file was not uploaded properly.'
     else
-      path = UPLOADS_DIRECTORY + file_data.original_filename
+      path = UPLOADS_DIRECTORY + file_data.original_filename.gsub(' ', '-').downcase
       File.open(path, "wb") { |file| file.write(file_data.read) }
       flash[:notice] = 'New file uploaded.'
     end
