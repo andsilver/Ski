@@ -43,6 +43,7 @@
     showMap();
 	});
 </script>
+<div id="content_with_wide_skyscrapers">
 <div id="property">
 <h1 class="property_name"><span><%= I18n.t('property_name') %>:</span> <%= @property.name %></h1>
 <p class="property_id"><%= I18n.t('property_id') %>: <span><%= @property.id %></span></p>
@@ -132,3 +133,7 @@
 <p><%= link_to t('enquire'), contact_property_path(@property) %></p>
 
 </div><!--#property-->
+</div>
+<div id="wide_skyscrapers">
+  <%= render :partial => 'banner_adverts/banner', :object => BannerAdvert.wide_skyscraper_for(@property.resort) %>
+</div>
