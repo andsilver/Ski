@@ -14,7 +14,7 @@
   Click on a file to view/download it.
 </p>
 <ul>
-<% @uploads.each do |upload| %>
+<% @uploads.sort.each do |upload| %>
   <li><a href="/uploads/<%= upload %>" target="_blank">/uploads/<%= upload %></a> (<%= link_to I18n.t(:delete), delete_uploaded_file_path(upload),
 	 						 :confirm => 'Are you sure?',
 							 :method => :delete %>)</li>
