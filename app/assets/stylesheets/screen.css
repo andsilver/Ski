@@ -350,12 +350,23 @@ input[type=email] .LV_invalid_field {
 }
 
 textarea#description {
+  width: 20em;
   height: 10em;
 }
 
 textarea#directory_advert_business_address {
   height: 5em;
   width: 20em;
+}
+
+textarea#directory_advert_description {
+  height: 6em;
+  width: 20em;
+}
+
+textarea#directory_advert_opening_hours {
+  width: 20em;
+  height: 5em;
 }
 
 input#property_weekly_rent_price, input#property_sale_price {
