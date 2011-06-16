@@ -105,6 +105,8 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :websites
+  match "cms/prices" => "websites#edit_prices", :as => :banner_directory_advert_prices
+
   resources :pages
 
   match "cms" => "cms#index"
