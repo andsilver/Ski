@@ -246,7 +246,7 @@ en:
   stage_2: "<span>Stage 2<br><em>Select from property sales, rentals, directory or resort information</em></span>"
   start: Start
   strapline: 'Strapline'
-  strapline_placeholder: "Summarise the property's key features (e.g., size, location) in under 255 characters."
+  strapline_placeholder: "Summarise the property’s key features (e.g., size, location) in under 255 characters."
   terms: 'Terms and Conditions'
   time:
     formats:
@@ -254,6 +254,7 @@ en:
   update: Update
   users:
     account_type: Account type
+    advertiser_account: "%{name}’s Advertiser Account"
     choose_a_new_password: Choose a New Password
     email_sent: Email Sent
     first_advert: First Advert
@@ -262,7 +263,7 @@ en:
       heading: Email Sent
       content: An email has been sent showing how to reset and change your password. Please check your inbox in a few minutes.
     forgot_your_password: Forgot your password?
-    no_account_yet: "Don't have an account yet?"
+    no_account_yet: "Don’t have an account yet?"
     or: Or
     register_to_advertise: Register to advertise your property or business
     select_account_type: Select account type

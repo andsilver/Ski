@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def show
     default_page_title t('advertise')
-    @heading_a = t('advertise')
+    @heading_a = t('users.advertiser_account', :name => @current_user.name)
   end
 
   def new
