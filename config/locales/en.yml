@@ -96,7 +96,7 @@ en:
     number_of_children: Number of children (3 to 16)
     number_of_infants: Number of infants (under 3)
     send_an_email: Send an Email
-    your_enquiry_has_been_sent: Your enquiry has been sent.
+    your_enquiry_has_been_sent: "Thank you for enquiring about this property and the owner will contact you shortly. We hope you have a great holiday."
   example: Example
   featured_resorts: 'Featured Resorts'
   features: 'Features'
