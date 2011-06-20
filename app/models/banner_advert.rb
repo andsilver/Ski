@@ -51,19 +51,7 @@ class BannerAdvert < ActiveRecord::Base
     ad
   end
 
-  def self.medium_rectangle_for(resort)
-    self.advert_for(resort, [300, 250])
-  end
-
-  def self.rectangle_for(resort)
-    self.advert_for(resort, [180, 150])
-  end
-
-  def self.leaderboard_for(resort)
-    self.advert_for(resort, [728, 90])
-  end
-
-  def self.wide_skyscraper_for(resort)
-    self.advert_for(resort, [160, 600])
+  def self.small_banner_for(resort)
+    self.advert_for(resort, [160, 200])
   end
 end

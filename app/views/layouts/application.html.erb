@@ -26,11 +26,6 @@
   <script>try{Typekit.load();}catch(e){}</script>
 </head>
 <body class="<%= 'browse_menu ' if @browse_menu %><%= @body_classes %>">
-<% if @resort %>
-<div id="leaderboard">
-    <%= render :partial => 'banner_adverts/banner', :object => BannerAdvert.leaderboard_for(@resort) %>
-</div>
-<% end %>
 <div id="wrapper">
 <%= render "shared/main_menu" %>
 <a href="/" title="Home" id="logo"><img src="/images/my-ski-chalet-logo.png" alt="My Chalet Finder"></a>
