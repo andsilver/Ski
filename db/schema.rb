@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(:version => 20110620145807) do
   add_index "adverts", ["property_id"], :name => "index_adverts_on_property_id"
   add_index "adverts", ["user_id"], :name => "index_adverts_on_user_id"
 
+  create_table "airports", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.string   "code",       :default => "", :null => false
+    t.integer  "country_id",                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "banner_adverts", :force => true do |t|
     t.integer  "user_id",                   :null => false
     t.integer  "resort_id",                 :null => false

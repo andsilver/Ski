@@ -12,6 +12,7 @@ MySkiChalet::Application.routes.draw do
     get 'piste_map', :on => :member
   end
 
+  resources :airports
   resources :categories
 
   match "sign_in" => "sessions#new"
