@@ -32,9 +32,9 @@ Given /^there are (\d+) new developments advertised$/ do |how_many|
 end
 
 Then /^I should see (\d+) out of (\d+) new developments$/ do |how_many, total|
-  first = total.to_i - 1
-  last = total.to_i - how_many.to_i
-  Range.new(first, last) do |d|
+  first = total.to_i - how_many.to_i
+  last = total.to_i - 1
+  Range.new(first, last).each do |d|
     Then "I should see \"New development #{d}\""
   end
   But "I should not see \"New development #{total.to_i - how_many.to_i - 1}\""

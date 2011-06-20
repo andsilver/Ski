@@ -43,7 +43,7 @@ Feature: Sign Up
     And I fill in "Password" with "1234"
     And I press "Register"
     Then I should be on the users page
-    And I should see "Password is too short (minimum is 5 characters)"
+    And I should see "Password minimum length is 5 characters"
 
   Scenario: Email address should be unique
     Given I am on the sign up page
@@ -55,4 +55,4 @@ Feature: Sign Up
     And I fill in "Password" with "secret"
     And I press "Register"
     Then I should be on the users page
-    And I should see "Email has already been taken"
+    And I should see "Email address has already been taken by an existing customer, please choose another"

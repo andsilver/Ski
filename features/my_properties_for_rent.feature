@@ -40,7 +40,7 @@ Feature: My Properties for Rent
     And I check "Pets allowed"
     And I check "Smoking allowed"
     And I check "WiFi"
-    And I check "Suitable for disabled people"
+    And I check "Disabled access"
     And I check "Fully equipped kitchen"
     And I press "Save"
     Then my new property for rent has been saved

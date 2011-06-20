@@ -8,7 +8,7 @@ Feature: Contact Owner
   Scenario: Contact owner
     Given I am on the Chamonix Properties for Rent page
     And I follow "Alpen Lounge"
-    And I follow "Contact Owner"
+    And I follow "Enquire"
     When I fill in the following:
       | Name         | Natalie           |
       | Email        | nat@example.org   |

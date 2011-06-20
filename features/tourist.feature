@@ -56,7 +56,7 @@ Feature: Tourist
 
   Scenario: Be told when there are no properties for rent
     Given I am on the Italian Alps Properties for Rent page
-    Then I should see "There are no properties advertised for rent at this resort"
+    Then I should see "There are no properties advertised at this resort"
 
   Scenario: Browse the directory
     Given I am on the Chamonix directory page
