@@ -22,8 +22,8 @@ class PropertiesController < ApplicationController
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
     @conditions[0] += " AND for_sale = 0"
 
-    @search_filters = [:parking, :pets, :smoking, :tv, :satellite, :wifi,
-      :disabled, :long_term_lets_available, :ski_in_ski_out]
+    @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :satellite, :wifi,
+      :disabled, :long_term_lets_available, :short_stays, :ski_in_ski_out]
 
     filter_conditions
 

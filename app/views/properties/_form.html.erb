@@ -70,6 +70,10 @@ $(document).ready(function() {
   <%= f.check_box :long_term_lets_available %>
   <%= f.label t('properties.features.long_term_lets_available') %>
 </div>
+<div class="field">
+  <%= f.check_box :short_stays %>
+  <%= f.label t('properties.features.short_stays') %>
+</div>
 <% end %>
 </div>
 <% end %>
@@ -215,6 +219,9 @@ $(document).ready(function() {
 </td>
 <td>
 <% if @property.for_rent? %>
+<div class="field">
+  <%= f.check_box :children_welcome %> <%= f.label :children_welcome, t('properties.features.children_welcome') %>
+</div>
 <div class="field">
   <%= f.check_box :pets %> <%= f.label :pets, t('properties.features.pets') %>
 </div>

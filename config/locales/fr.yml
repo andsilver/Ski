@@ -150,6 +150,7 @@ fr:
       balcony: Balcon
       cable_or_satellite: TV par câble/satellite
       cave: Grotte
+      children_welcome: Enfants bienvenus
       disabled: Accès des personnes handicapées
       freeview: Freeview/TNT
       fully_equipped_kitchen: Cuisine entièrement équipée
@@ -169,12 +170,14 @@ fr:
       parking: Stationnement
       pets: Animaux acceptés
       sauna: Sauna
+      short_stays: Short stays
       ski_in_ski_out: Ski in/ski out
       smoking: Permission de fumer
       swimming_pool: Piscine
       tv: TV
       wifi: WiFi
     filters:
+      children_welcome: Enfants
       disabled: Handicapés
       garage: Garage
       garden: Jardin
@@ -182,6 +185,7 @@ fr:
       parking: Stationnement
       pets: Animaux acceptés
       satellite: Satellite
+      short_stays: Short stays
       ski_in_ski_out: Ski in/ski out
       smoking: Fumer
       tv: TV

@@ -85,6 +85,8 @@
       I18n.t('properties.features.mountain_views')) %><br>
     <%= feature_tick(@property.wifi?,
       I18n.t('properties.features.wifi')) %><br>
+    <%= feature_tick(@property.short_stays?,
+      I18n.t('properties.features.short_stays')) %><br>
   </div>
   <div class="column">
     <%= feature_tick(@property.log_fire?,
@@ -95,6 +97,8 @@
       I18n.t('properties.features.cave')) %><br>
     <%= feature_tick(@property.ski_in_ski_out?,
       I18n.t('properties.features.ski_in_ski_out')) %><br>
+    <%= feature_tick(@property.children_welcome?,
+      I18n.t('properties.features.children_welcome')) %><br>
   </div>
   <div class="column">
     <%= feature_tick(@property.pets?,

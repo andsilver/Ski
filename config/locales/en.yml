@@ -153,6 +153,7 @@ en:
       balcony: Balcony
       cable_or_satellite: Cable or Satellite
       cave: Cave
+      children_welcome: Children welcome
       disabled: Disabled access
       freeview: Freeview
       fully_equipped_kitchen: Fully equipped kitchen
@@ -172,12 +173,14 @@ en:
       parking: Parking
       pets: Pets allowed
       sauna: Sauna
+      short_stays: Short stays
       ski_in_ski_out: Ski in/ski out
       smoking: Smoking allowed
       swimming_pool: Swimming pool
       tv: TV
       wifi: WiFi
     filters:
+      children_welcome: Children
       disabled: Disabled
       garage: Garage
       garden: Garden
@@ -185,6 +188,7 @@ en:
       parking: Parking
       pets: Pets
       satellite: Satellite
+      short_stays: Short stays
       ski_in_ski_out: Ski in/ski out
       smoking: Smoking
       tv: TV
