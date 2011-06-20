@@ -16,6 +16,9 @@ class Property < ActiveRecord::Base
   validates_length_of :name, :within => 5..30
   validates_length_of :strapline, :within => 0..255
 
+  validates_inclusion_of :distance_from_town_centre_m, :in => [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
+  validates_inclusion_of :metres_from_lift,            :in => [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
+
   before_save :geocode, :normalise_prices
 
   cattr_reader :per_page

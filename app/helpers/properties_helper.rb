@@ -39,4 +39,20 @@ module PropertiesHelper
     @conditions[0] += " AND #{attribute.to_s} = #{value}"
     "(#{Property.where(@conditions).count})"
   end
+
+  def distance_options
+    [
+      ["< 100m", 100],
+      ["< 200m", 200],
+      ["< 300m", 300],
+      ["< 400m", 400],
+      ["< 500m", 500],
+      ["< 600m", 600],
+      ["< 700m", 700],
+      ["< 800m", 800],
+      ["< 900m", 900],
+      ["< 1,000m", 1000],
+      ["1,000m+", 1001]
+    ]
+  end
 end

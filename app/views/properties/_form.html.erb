@@ -101,7 +101,7 @@ $(document).ready(function() {
     <%= f.label :distance_from_town_centre_m, 'Distance from town centre' %>
   </div>
   <div class="field_right">
-    <%= f.number_field :distance_from_town_centre_m, :range => 50..5000, :step => 50 %> metres
+    <%= select 'property', 'distance_from_town_centre_m', distance_options, {:prompt => 'Choose'} %>
   </div>
 </div>
 
@@ -110,7 +110,7 @@ $(document).ready(function() {
     <%= f.label :metres_from_lift, I18n.t('nearest_lift') %>
   </div>
   <div class="field_right">
-    <%= f.number_field :metres_from_lift, :range => 50..5000, :step => 50 %> metres
+    <%= select 'property', 'metres_from_lift', distance_options, {:prompt => 'Choose'} %>
   </div>
 </div>
 <div class="field">
