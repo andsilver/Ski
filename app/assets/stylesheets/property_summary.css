@@ -55,7 +55,8 @@
 }
 
 .property_summary .contact_owner a,
-.property_summary .email_a_friend a {
+.property_summary .email_a_friend a,
+.more_detail a {
   text-decoration: none;
   color: #fff;
   background: #00b3f0;
@@ -74,6 +75,7 @@
 }
 
 .property_summary .contact_owner a:hover,
-.property_summary .email_a_friend a:hover {
+.property_summary .email_a_friend a:hover,
+.more_detail a:hover {
   background: #00529c;
 }

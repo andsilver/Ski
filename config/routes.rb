@@ -13,6 +13,7 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :airports
+  resources :airport_distances
   resources :categories
 
   match "sign_in" => "sessions#new"

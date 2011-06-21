@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110620145807) do
+ActiveRecord::Schema.define(:version => 20110621150412) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(:version => 20110620145807) do
   add_index "adverts", ["directory_advert_id"], :name => "index_adverts_on_directory_advert_id"
   add_index "adverts", ["property_id"], :name => "index_adverts_on_property_id"
   add_index "adverts", ["user_id"], :name => "index_adverts_on_user_id"
+
+  create_table "airport_distances", :force => true do |t|
+    t.integer  "resort_id",                   :null => false
+    t.integer  "airport_id",                  :null => false
+    t.integer  "distance_km", :default => 0,  :null => false
+    t.string   "comment",     :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "airport_distances", ["resort_id"], :name => "index_airport_distances_on_resort_id"
 
   create_table "airports", :force => true do |t|
     t.string   "name",       :default => "", :null => false
@@ -298,16 +309,28 @@ ActiveRecord::Schema.define(:version => 20110620145807) do
     t.integer  "cross_country_km"
     t.integer  "mountain_restaurants"
     t.boolean  "glacier_skiing"
-    t.string   "nearest_airport"
     t.integer  "distance_from_airport_km"
     t.boolean  "lively_apres_ski"
-    t.boolean  "good_for_families"
     t.boolean  "creche"
     t.boolean  "babysitting_services"
     t.boolean  "visible",                  :default => false, :null => false
     t.boolean  "featured",                 :default => false, :null => false
     t.text     "feature"
     t.text     "introduction"
+    t.string   "season",                   :default => "",    :null => false
+    t.integer  "beginner",                 :default => 0,     :null => false
+    t.integer  "intermediate",             :default => 0,     :null => false
+    t.integer  "off_piste",                :default => 0,     :null => false
+    t.integer  "expert",                   :default => 0,     :null => false
+    t.boolean  "heli_skiing"
+    t.boolean  "summer_skiing"
+    t.integer  "family",                   :default => 0,     :null => false
+    t.text     "how_to_get_to"
+    t.text     "visiting"
+    t.text     "owning_a_property_in"
+    t.text     "summer_holidays_in"
+    t.text     "living_in"
+    t.text     "insider_view"
   end
 
   add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"

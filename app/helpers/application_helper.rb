@@ -67,4 +67,16 @@ module ApplicationHelper
   def tick yes
     tick_cross yes, false
   end
+
+  def star_rating rating
+    (star * rating) + (empty_star * (5 - rating))
+  end
+
+  def star
+    '<img src="/images/star.png" alt="*">'.html_safe
+  end
+
+  def empty_star
+    '<img src="/images/empty-star.png" alt="">'.html_safe
+  end
 end

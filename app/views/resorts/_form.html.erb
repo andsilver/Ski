@@ -110,10 +110,6 @@
   <%= f.text_field :mountain_restaurants %>
 </div>
 <div class="field">
-  <%= f.label :nearest_airport %><br>
-  <%= f.text_field :nearest_airport %>
-</div>
-<div class="field">
   <%= f.label :distance_from_airport_km %><br>
   <%= f.text_field :distance_from_airport_km %>
 </div>
@@ -123,14 +119,25 @@
     {:include_blank => true, :selected => @resort.glacier_skiing.to_s}) %>
 </div>
 <div class="field">
+  <%= f.label :beginner %><br>
+  <%= f.select(:beginner, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
+</div>
+<div class="field">
+  <%= f.label :intermediate %><br>
+  <%= f.select(:intermediate, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
+</div>
+<div class="field">
+  <%= f.label :expert %><br>
+  <%= f.select(:expert, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
+</div>
+<div class="field">
   <%= f.label :lively_apres_ski %><br>
   <%= f.select(:lively_apres_ski, [["Yes", true], ["No", false]],
     {:include_blank => true, :selected => @resort.lively_apres_ski.to_s}) %>
 </div>
 <div class="field">
-  <%= f.label :good_for_families %><br>
-  <%= f.select(:good_for_families, [["Yes", true], ["No", false]],
-    {:include_blank => true, :selected => @resort.good_for_families.to_s}) %>
+  <%= f.label :family %><br>
+  <%= f.select(:family, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
 </div>
 <div class="field">
   <%= f.label :creche %><br>

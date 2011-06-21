@@ -1,8 +1,40 @@
 <div id="content_with_wide_skyscrapers">
+<table>
+  <tr>
+    <th><%= t('resorts_controller.facts.altitude') %></th>
+    <td><%= @resort.altitude_m %>m</td>
+  </tr>
+  <tr>
+    <th><%= t('resorts_controller.facts.top_lift') %></th>
+    <td><%= @resort.top_lift_m %>m</td>
+  </tr>
+  <tr>
+    <th><%= t('resorts_controller.facts.family') %></th>
+    <td><%= star_rating(@resort.family) %></td>
+  </tr>
+  <tr>
+    <th><%= t('resorts_controller.facts.beginner') %></th>
+    <td><%= star_rating(@resort.beginner) %></td>
+  </tr>
+  <tr>
+    <th><%= t('resorts_controller.facts.intermediate') %></th>
+    <td><%= star_rating(@resort.intermediate) %></td>
+  </tr>
+  <tr>
+    <th><%= t('resorts_controller.facts.expert') %></th>
+    <td><%= star_rating(@resort.expert) %></td>
+  </tr>
+  <tr>
+    <th><%= t('resorts_controller.facts.nearest_airport') %></th>
+    <td><% unless (ad = @resort.airport_distances.first).nil? %>
+      <%= ad.airport.name %> (<%= ad.distance_km %>km) <%= ad.comment %>
+    <% end %></td>
+  </tr>
+</table>
 <% unless @resort.introduction.blank? %>
 <%= raw @resort.introduction %>
 <% end %>
-<p>
+<p class="more_detail">
   <%= link_to "More detail on #{@resort.name}", detail_resort_path(@resort) %>
 </p>
 </div>

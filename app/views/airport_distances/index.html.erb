@@ -1,0 +1,30 @@
+<h1><%= link_to 'CMS', cms_path %> &rarr; Airport Distances</h1>
+<p>
+  <%= link_to 'New Airport Distance', new_airport_distance_path %>
+</p>
+<% if @airport_distances.empty? %>
+<p>There are no airport distances set up yet.</p>
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>Resort</th>
+      <th>Airport</th>
+      <th>Distance</th>
+      <th>Comment</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @airport_distances.each do |airport_distance| %>
+    <tr>
+      <td><%= airport_distance.resort.name %></td>
+      <td><%= link_to airport_distance.airport.name, edit_airport_distance_path(airport_distance) %></td>
+      <td><%= airport_distance.distance_km %>km</td>
+      <td><%= airport_distance.comment %></td>
+      <td><%= link_to 'Delete', airport_distance, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
