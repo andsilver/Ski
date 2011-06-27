@@ -16,6 +16,7 @@
       <th><%= t('enquiries_controller.number_of_children') %></th>
       <th><%= t('enquiries_controller.number_of_infants') %></th>
       <th><%= t('enquiries_controller.comments') %></th>
+      <th><%= t('enquiries_controller.permission_to_contact') %></th>
     </tr>
   </thead>
   <tbody>
@@ -30,6 +31,7 @@
       <td><%= enquiry.number_of_children %></td>
       <td><%= enquiry.number_of_infants %></td>
       <td><%= enquiry.comments %></td>
+      <td><%= tick_cross enquiry.permission_to_contact? %></td>
     </tr>
     <% end %>
   </tbody>

@@ -80,6 +80,11 @@ $(function () {
   <%= f.text_area :comments %>
 </div>
 
+<div class="field">
+  <%= f.check_box :permission_to_contact %>
+  <%= f.label :permission_to_contact, t('enquiries_controller.permission_to_contact') %>
+</div>
+
 <%= f.submit 'Send' %>
 <% end %>
 

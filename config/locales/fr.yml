@@ -92,6 +92,7 @@ fr:
     number_of_adults: "Nombre d'adultes"
     number_of_children: "Nombre d'enfants (3 à 16)"
     number_of_infants: Nombre de nourrissons (moins de 3 ans)
+    permission_to_contact: Please send me details of future offers
     send_an_email: Envoyer un E-mail
     your_enquiry_has_been_sent: Votre demande a été envoyée.
   example: Exemple
