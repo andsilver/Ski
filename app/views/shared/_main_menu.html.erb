@@ -47,6 +47,6 @@ function closeMenu(menu) {
 </div>
 <div class="drop" id="featured_resorts" onmouseover="openMenu(this);" onmouseout="startCloseMenu(this);">
   <% Resort.featured.each do |resort| %>
-  <%= link_to resort.name, feature_resort_path(resort) %>
+  <%= link_to resort.name, resort_path(resort) %>
   <% end %>
 </div>
