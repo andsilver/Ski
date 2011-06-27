@@ -1,14 +1,28 @@
+<% if @directory_adverts.empty? %>
+<p>No results for <%= t(@category.name) %> in <%= @resort.name %>.</p>
+<% else %>
 <table id="directory_adverts">
   <thead>
     <tr>
       <th><%= t 'business' %></th>
+      <th>Description</th>
+      <th>Opening Hours</th>
+      <th>Address</th>
+      <th><%= t 'phone' %></th>
+      <th>Website</th>
     </tr>
   </thead>
   <tbody>
     <% @directory_adverts.each do |da| %>
     <tr>
       <td><%= link_to da.user.business_name, da %></td>
+      <td><%= da.user.description %></td>
+      <td><%= da.opening_hours %></td>
+      <td><%= da.business_address %></td>
+      <td><%= da.phone %></td>
+      <td><%= link_to da.user.website, da.user.website %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
+<% end %>
