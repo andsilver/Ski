@@ -148,7 +148,8 @@ $(document).ready(function() {
     <%= f.label :floor_area_metres_2, I18n.t('floor_area') %>
   </div>
   <div class="field_right">
-    <%= f.number_field :floor_area_metres_2, :min => 10, :max => 2500, :step => 10 %> square metres
+    <%= select("property", "floor_area_metres_2", floor_area_options, {:prompt => 'Choose'}) %>
+    square metres
   </div>
 </div>
 <% if @property.for_sale? %>
@@ -157,7 +158,8 @@ $(document).ready(function() {
     <%= f.label :plot_size_metres_2, I18n.t('plot_size') %>
   </div>
   <div class="field_right">
-    <%= f.number_field :plot_size_metres_2, :min => 10, :max => 5000, :step => 10 %> square metres
+    <%= select("property", "plot_size_metres_2", plot_size_options, {:prompt => 'Choose'}) %>
+    square metres
   </div>
 </div>
 <% end %>
