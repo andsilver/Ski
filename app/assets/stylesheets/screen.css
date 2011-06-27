@@ -490,6 +490,30 @@ table#resort_facts {
   padding: 1em;
 }
 
+p.chunky_button {
+  float: left;
+  margin-right: 12px;
+}
+
+.chunky_button a {
+  text-decoration: none;
+  color: #fff;
+  background: #00b3f0;
+  background-image: url(/images/chunky-button-arrow.png);
+  background-repeat: no-repeat;
+  background-position: 6px 20px;
+  font-size: 1.6em;
+  border: 2px solid #00529c;
+  display: block;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  text-transform: lowercase;
+  text-align: right;
+  padding: 14px 5px 5px 7px;
+  width: 100px;
+}
+
 /**
  * Enquiry form
  */

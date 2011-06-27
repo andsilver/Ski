@@ -129,12 +129,13 @@
 <% end %>
 
 <% unless @property.latitude.empty? %>
-<h2 id="map"><%= I18n.t('map') %></h2>
 <div id="map_cavas"></div>
-<p><a href="#" id="location">Location</a></p>
+<p class="chunky_button"><a href="#" id="location">Location</a></p>
 <% end %>
 
-<p><%= link_to t('enquire'), contact_property_path(@property) %></p>
+<p class="chunky_button"><%= link_to t('enquire'), contact_property_path(@property) %></p>
+
+<%= clear %>
 
 </div><!--#property-->
 </div>
