@@ -1,5 +1,5 @@
 class ResortsController < ApplicationController
-  before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map]
+  before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map, :detail]
   before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :detail, :directory, :feature, :piste_map]
   before_filter :no_browse_menu, :except => [:show, :feature, :directory]
 
@@ -58,6 +58,7 @@ class ResortsController < ApplicationController
   end
 
   def detail
+    @heading_a = render_to_string(:partial => 'detail_heading').html_safe
   end
 
   def directory
