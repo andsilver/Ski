@@ -9,6 +9,14 @@ body {
   font-family: "anivers-1","anivers-2", 'Lucida Sans', Arial, Helvetica, sans-serif;
 }
 
+a {
+  color: #00b3f0;
+}
+
+a:hover {
+  color: #00529c;
+}
+
 a img {
   border: none;
 }

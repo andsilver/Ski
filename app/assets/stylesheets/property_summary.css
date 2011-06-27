@@ -78,5 +78,6 @@
 .property_summary .email_a_friend a:hover,
 .more_detail a:hover,
 .chunky_button a:hover {
+  color: #fff;
   background: #00529c;
 }
