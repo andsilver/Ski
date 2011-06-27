@@ -103,6 +103,9 @@ fr:
   for_rent: 'À Louer'
   for_sale: 'À Vendre'
   garden: 'Garden'
+  google:
+    site_verification: gNWIA7DUtZ0ow0E9m_4hHumjqit17_4LxY8bP2jMzeo
+    web_property_id: UA-22451896-3
   home: Accueil
   home_page:
     stage_1_heading: Étape 1
