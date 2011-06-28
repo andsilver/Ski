@@ -6,10 +6,7 @@ class ImagesController < ApplicationController
   before_filter :find_object, :only => [:new, :edit, :create]
 
   VALID_BANNER_SIZES = [
-      [300, 250],
-      [180, 150],
-      [728, 90],
-      [160, 600]
+      [160, 200]
     ]
 
   def index
