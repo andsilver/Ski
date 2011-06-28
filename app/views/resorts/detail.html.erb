@@ -1,3 +1,9 @@
+<div id="wide_content_with_wide_skyscrapers">
+<h2>An Introduction to <%= @resort.name %></h2>
+<% unless @resort.info.blank? %>
+<%= raw @resort.info %>
+<% end %>
+
 <h2>Key Information</h2>
 
 <table id="resort_facts">
@@ -79,6 +85,32 @@
   </tr>
 </table>
 
-<% unless @resort.info.blank? %>
-<%= raw @resort.info %>
+<% unless @resort.visiting.blank? %>
+<h2>Skiing in <%= @resort.name %></h2>
+<%= md @resort.visiting %>
 <% end %>
+
+<% unless @resort.owning_a_property_in.blank? %>
+<h2>Owning a Ski Chalet or an Apartment in <%= @resort.name %></h2>
+<%= md @resort.owning_a_property_in %>
+<% end %>
+
+<% unless @resort.summer_holidays_in.blank? %>
+<h2>Summer Holidays in <%= @resort.name %></h2>
+<%= md @resort.summer_holidays_in %>
+<% end %>
+
+<% unless @resort.living_in.blank? %>
+<h2>Living in <%= @resort.name %></h2>
+<%= md @resort.living_in %>
+<% end %>
+
+<% unless @resort.insider_view.blank? %>
+<h2><%= @resort.name %>: The MyChaletFinder.com Insider View</h2>
+<%= md @resort.insider_view %>
+<% end %>
+
+</div>
+<div id="wide_skyscrapers">
+  <%= render :partial => 'banner_adverts/banner', :object => BannerAdvert.small_banner_for(@resort) %>
+</div>
