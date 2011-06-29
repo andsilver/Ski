@@ -96,6 +96,12 @@ fr:
     send_an_email: Envoyer un E-mail
     your_enquiry_has_been_sent: Votre demande a été envoyée.
   example: Exemple
+  favourites:
+    add: Add to Favourites
+    added: Property has been added to your favourites.
+    favourites: Favourites
+    remove: Remove from Favourites
+    removed: Property has been removed from your favourites.
   featured_resorts: Stations en Vedette
   features: 'Features'
   first_name: Prénom

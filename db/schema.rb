@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110627124704) do
+ActiveRecord::Schema.define(:version => 20110628154802) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -131,6 +131,16 @@ ActiveRecord::Schema.define(:version => 20110627124704) do
     t.integer  "number_of_infants",     :default => 0,     :null => false
     t.boolean  "permission_to_contact", :default => false, :null => false
   end
+
+  create_table "favourites", :force => true do |t|
+    t.integer  "property_id",          :null => false
+    t.integer  "unregistered_user_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favourites", ["property_id"], :name => "index_favourites_on_property_id"
+  add_index "favourites", ["unregistered_user_id"], :name => "index_favourites_on_unregistered_user_id"
 
   create_table "images", :force => true do |t|
     t.integer  "user_id"
@@ -332,6 +342,7 @@ ActiveRecord::Schema.define(:version => 20110627124704) do
     t.text     "summer_holidays_in"
     t.text     "living_in"
     t.text     "insider_view"
+    t.integer  "image_id"
   end
 
   add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"
@@ -352,6 +363,11 @@ ActiveRecord::Schema.define(:version => 20110627124704) do
     t.boolean  "new_development_by_default",     :default => false, :null => false
     t.text     "sales_pitch"
     t.boolean  "advertises_properties_for_sale", :default => false, :null => false
+  end
+
+  create_table "unregistered_users", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

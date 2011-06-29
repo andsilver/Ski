@@ -48,6 +48,18 @@
 <h1 class="property_name"><span><%= I18n.t('property_name') %>:</span> <%= @property.name %></h1>
 <p class="property_id"><%= I18n.t('property_id') %>: <span><%= @property.id %></span></p>
 
+<% if fav = favourite_for_property(@property) %>
+<%= form_for(fav, :method => :delete) do |f| %>
+<p><%= f.submit t('favourites.remove') %></p>
+<% end %>
+<% else %>
+<% @favourite = Favourite.new(:property_id => @property.id) %>
+<%= form_for @favourite do |f| %>
+<%= f.hidden_field :property_id %>
+<p><%= f.submit t('favourites.add') %></p>
+<% end %>
+<% end %>
+
 <% unless @property.image.nil? %>
 <p class="thumbnails" id="property_thumbnails">
 <% @property.images.each do |i| %>

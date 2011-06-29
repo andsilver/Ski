@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
 
   def initialize_user
     @current_user = User.find_by_id(session[:user])
+    @unregistered_user = UnregisteredUser.find_by_id(session[:unregistered_user])
   end
 
   def page_defaults
@@ -41,6 +42,13 @@ class ApplicationController < ActionController::Base
     unless signed_in?
       flash[:notice] = t('notices.sign_in_required')
       redirect_to sign_in_path
+    end
+  end
+
+  def unregistered_user_required
+    if(!@unregistered_user)
+      @unregistered_user = UnregisteredUser.create!
+      session[:unregistered_user] = @unregistered_user.id
     end
   end
 

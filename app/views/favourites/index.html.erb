@@ -1,0 +1,9 @@
+<% if @properties.empty? %>
+<p>
+  You have not added any favourite properties yet.
+</p>
+<% else %>
+  <% @properties.each do |p| %>
+    <%= render :partial => 'properties/property_summary', :locals => {:p => p} %>
+  <% end %>
+<% end %>
