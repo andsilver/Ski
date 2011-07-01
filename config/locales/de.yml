@@ -40,6 +40,10 @@ en:
     place_order: Place Order
   advert_details: Advert details
   banner_adverts: Banner Adverts
+  banner_adverts_controller:
+    added_to_basket: 'Your banner advert has been added to your basket.'
+    created: "Your banner advert was successfully created. Now let's upload the banner image."
+    saved: "Your banner advert details have been saved."
   basket: Basket
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
@@ -48,6 +52,9 @@ en:
     blog_heading: My Chalet Finder Blog
   business: Business
   business_details: Business Details
+  categories_controller:
+    categories: 'Categories'
+    not_found: 'That category does not exist.'
   category: 'Category'
   category_names:
     airport_transfer: Airport transfer
@@ -72,12 +79,17 @@ en:
   checkout: Checkout
   city: Town / city
   clicks: Clicks
+  cms_controller:
+    cms: CMS
+    gross_sales_analysis: Gross Sales Analysis
   contact_details: Contact Details
   continue: Continue
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
   country: 'Country'
   county: State / county
+  currencies_controller:
+    exchange_rate_updated: 'Exchange rates updated.'
   date:
     formats:
       short: %d %b %Y
@@ -86,9 +98,15 @@ en:
   details: 'Details'
   directory: Directory
   directory_adverts: 'Directory Adverts'
+  directory_adverts_controller:
+    added_to_basket: 'Your directory advert has been added to your basket.'
+    created: "Your directory advert was successfully created. Now let's upload the your business photo or logo."
+    saved: "Your directory advert was successfully updated."
   duration: Duration
   edit: Edit
   email: 'Email'
+  email_a_friend_form_controller:
+    confirmation: "We've sent your friend an email. Thanks for sharing My Chalet Finder."
   enquire: Enquire
   enquiries_controller:
     comments: Comments
@@ -127,8 +145,11 @@ en:
     stage_2_content: 'Details on properties for sale or rent, including key resort information and useful site directories'
     stage_3_content: 'Simply find & select your chosen property and enquire for further details'
   images_controller:
+    deleted: 'Image deleted.'
     image_uploaded: Image uploaded.
     invalid_dimensions: This image was not accepted because it does not have valid dimensions.
+    problem_uploading: 'There was a problem uploading your image. Was it in the correct format?'
+    saved: 'Image saved.'
   last_name: Last name
   main_image: 'Main image'
   map: Map
@@ -143,11 +164,23 @@ en:
     admin_required: You need to be logged in as an administrator to do that.
     advert_removed: Advert removed.
     basket_updated: Basket updated.
+    created: Created.
+    deleted: Deleted.
     saved: Saved.
     sign_in_required: Please sign in or sign up first.
   number_of_bathrooms: 'Number of bathrooms'
   number_of_bedrooms: 'Number of bedrooms'
+  orders_controller:
+    no_order_found: "We couldn't find an order for you."
+    receipt_not_found: "We couldn't find that order."
   password: 'Password'
+  payments_controller:
+    failure_validating_payment: 'There has been a failure validating your payment'
+    no_payment_made: 'No payment was made'
+    payment_declined: 'Your payment was declined'
+    payment_received: 'Payment received'
+    processing_error: 'There was an error processing your payment'
+    unconfirmed: 'Your payment has not recorded by us as we could not confirm if it was successful'
   phone: Phone
   piste_map: Piste Map
   please_correct: Please correct the following errors
@@ -159,6 +192,10 @@ en:
   property_name: 'Property name'
   property_rentals: 'Property Rentals'
   property_sales: 'Property Sales'
+  properties_controller:
+    added_to_basket: 'Your property advert has been added to your basket.'
+    created: "Your property advert was successfully created. Now let's add some photos."
+    saved: "Your property advert details have been saved."
   properties:
     accommodation_type: Accommodation type
     email_a_friend: Email a friend
@@ -246,11 +283,15 @@ en:
       slope_direction: Slope direction
       snowboard_parks: Snowboard parks
       top_lift: Top lift
+    not_found: 'That resort does not exist.'
+    resort_information_heading: "{resort} Resort Information"
   resort_options:
     new_developments: New Build
     resort_info: Resort Info
   sale_price: 'Sale price'
   save: 'Save'
+  sessions_controller:
+    welcome_back: "Welcome back, {name}"
   sign_in: 'Sign In'
   sign_in_invalid: 'Your sign in attempt failed. No account was found with this email address and password.'
   sign_out: Sign Out
@@ -270,10 +311,12 @@ en:
       short: %d %b %Y
   update: Update
   users:
+    account_created: 'Your account was successfully created.'
     account_type: Account type
     advertiser_account: "%{name}’s Advertiser Account"
     choose_a_new_password: Choose a New Password
     email_sent: Email Sent
+    enter_your_email_address: "Please enter your email address below"
     first_advert: First Advert
     forgot_password: Forgot Password
     forgot_password_email_sent:
@@ -282,6 +325,7 @@ en:
     forgot_your_password: Forgot your password?
     no_account_yet: "Don’t have an account yet?"
     or: Or
+    password_changed: 'Your password has been changed'
     register_to_advertise: Register to advertise your property or business
     select_account_type: Select account type
     sign_in_to_access_your_account: Sign in to access your account

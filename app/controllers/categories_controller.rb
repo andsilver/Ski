@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]
 
   def index
-    @heading_a = "Categories"
+    @heading_a = t('categories_controller.categories')
     @categories = Category.order(:name).all
   end
 
@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to(categories_path, :notice => 'Category created.') }
+        format.html { redirect_to(categories_path, :notice => t('notices.created.')) }
         format.xml  { render :xml => @category, :status => :created, :location => @category }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class CategoriesController < ApplicationController
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to(resort_categories_path(@category.resort), :notice => 'Category deleted.') }
+      format.html { redirect_to(resort_categories_path(@category.resort), :notice => t('notices.deleted')) }
       format.xml  { head :ok }
     end
   end
@@ -73,6 +73,6 @@ class CategoriesController < ApplicationController
 
   def find_category
     @category = Category.find_by_id(params[:id])
-    redirect_to(:root, :notice => 'That category does not exist.') unless @category
+    redirect_to(:root, :notice => t('categories_controller.not_found')) unless @category
   end
 end

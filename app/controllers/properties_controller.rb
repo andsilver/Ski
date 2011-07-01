@@ -112,7 +112,7 @@ class PropertiesController < ApplicationController
     if @property.save
       Advert.create_for(@property)
       set_image_mode
-      redirect_to new_image_path, :notice => "Your property advert was successfully created. Now let's add some photos."
+      redirect_to new_image_path, :notice => t('properties_controller.created')
     else
       render :action => "new"
     end
@@ -120,8 +120,7 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update_attributes(params[:property])
-      flash[:notice] = "Your property advert details have been saved."
-      redirect_to my_adverts_path
+      redirect_to my_adverts_path, :notice => t('properties_controller.saved')
     else
       render "edit"
     end
@@ -129,7 +128,7 @@ class PropertiesController < ApplicationController
 
   def advertise_now
     Advert.create_for(@property)
-    redirect_to(basket_path, :notice => 'Your property advert has been added to your basket.')
+    redirect_to(basket_path, :notice => t('properties_controller.added_to_basket'))
   end
 
   protected

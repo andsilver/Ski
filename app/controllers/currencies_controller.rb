@@ -17,7 +17,7 @@ class CurrenciesController < ApplicationController
     @currency = Currency.new(params[:currency])
 
     if @currency.save
-      redirect_to(currencies_path, :notice => 'Currency created.')
+      redirect_to(currencies_path, :notice => t('notices.created'))
     else
       render "new"
     end
@@ -29,7 +29,7 @@ class CurrenciesController < ApplicationController
 
   def update
     if @currency.update_attributes(params[:currency])
-      redirect_to(currencies_path, :notice => 'Saved')
+      redirect_to(currencies_path, :notice => t('notices.saved'))
     else
       render "edit"
     end
@@ -38,7 +38,7 @@ class CurrenciesController < ApplicationController
   def update_exchange_rates
     Currency.update_exchange_rates
     Property.normalise_prices
-    redirect_to currencies_path, :notice => 'Exchange rates updated.'
+    redirect_to currencies_path, :notice => t('currencies_controller.exhange_rates_updated')
   end
 
   protected

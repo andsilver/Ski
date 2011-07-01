@@ -15,7 +15,7 @@ class CouponsController < ApplicationController
     @coupon = Coupon.new(params[:coupon])
 
     if @coupon.save
-      redirect_to(coupons_path, :notice => 'Coupon created.')
+      redirect_to(coupons_path, :notice => t('notices.created'))
     else
       render "new"
     end
@@ -26,7 +26,7 @@ class CouponsController < ApplicationController
 
   def update
     if @coupon.update_attributes(params[:coupon])
-      redirect_to(coupons_path, :notice => 'Saved')
+      redirect_to(coupons_path, :notice => t('notices.saved'))
     else
       render "edit"
     end

@@ -48,7 +48,7 @@ class ImagesController < ApplicationController
     end
 
     @image.destroy
-    redirect_to(new_image_path, :notice => 'There was a problem uploading your image. Was it in the correct format?')
+    redirect_to(new_image_path, :notice => t('images_controller.problem_uploading'))
   end
 
   def edit
@@ -59,7 +59,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
 
     if @image.update_attributes(params[:image])
-      flash[:notice] = 'Image saved.'
+      flash[:notice] = t('images_controller.saved')
       redirect_to :action => 'index'
     else
       render :action => 'edit'
@@ -69,7 +69,7 @@ class ImagesController < ApplicationController
   def destroy
     @image = Image.find(params[:id])
     @image.destroy
-    flash[:notice] = 'Image deleted.'
+    flash[:notice] = t('images_controller.deleted')
     redirect_to :action => 'index'
   end
 

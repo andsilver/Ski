@@ -15,7 +15,7 @@ class PagesController < ApplicationController
     @page = Page.new(params[:page])
 
     if @page.save
-      redirect_to(pages_path, :notice => 'Page created.')
+      redirect_to(pages_path, :notice => t('notices.created'))
     else
       render "new"
     end
@@ -26,7 +26,7 @@ class PagesController < ApplicationController
 
   def update
     if @page.update_attributes(params[:page])
-      redirect_to(pages_path, :notice => 'Saved')
+      redirect_to(pages_path, :notice => t('notices.saved'))
     else
       render "edit"
     end
@@ -34,7 +34,7 @@ class PagesController < ApplicationController
 
   def destroy
     @page.destroy
-    redirect_to pages_path, :notice => "Page deleted."
+    redirect_to pages_path, :notice => t('notices.deleted')
   end
 
   protected

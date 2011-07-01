@@ -21,7 +21,7 @@ class BannerAdvertsController < ApplicationController
     if @banner_advert.save
       Advert.create_for(@banner_advert)
       set_image_mode
-      redirect_to new_image_path, :notice => "Your banner advert was successfully created. Now let's upload the banner image."
+      redirect_to new_image_path, :notice => t('banner_adverts_controller.created')
     else
       render :action => "new"
     end
@@ -29,8 +29,7 @@ class BannerAdvertsController < ApplicationController
 
   def update
     if @banner_advert.update_attributes(params[:banner_advert])
-      flash[:notice] = "Your banner advert details have been saved."
-      redirect_to my_adverts_path
+      redirect_to my_adverts_path, :notice => t('banner_adverts_controller.saved')
     else
       render "edit"
     end
@@ -38,7 +37,7 @@ class BannerAdvertsController < ApplicationController
 
   def advertise_now
     Advert.create_for(@banner_advert)
-    redirect_to(basket_path, :notice => 'Your banner advert has been added to your basket.')
+    redirect_to(basket_path, :notice => t('banner_adverts_controller.added_to_basket'))
   end
 
   def click

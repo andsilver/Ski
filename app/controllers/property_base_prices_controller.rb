@@ -15,7 +15,7 @@ class PropertyBasePricesController < ApplicationController
     @property_base_price = PropertyBasePrice.new(params[:property_base_price])
 
     if @property_base_price.save
-      redirect_to(property_base_prices_path, :notice => 'Property base price created.')
+      redirect_to(property_base_prices_path, :notice => t('notices.created'))
     else
       render "new"
     end
@@ -26,7 +26,7 @@ class PropertyBasePricesController < ApplicationController
 
   def update
     if @propery_base_price.update_attributes(params[:property_base_price])
-      redirect_to(property_base_prices_path, :notice => 'Saved')
+      redirect_to(property_base_prices_path, :notice => t('notices.saved'))
     else
       render "edit"
     end
@@ -34,7 +34,7 @@ class PropertyBasePricesController < ApplicationController
 
   def destroy
     @property_base_price.destroy
-    redirect_to(property_base_prices_path, :notice => 'Property base price deleted.')
+    redirect_to(property_base_prices_path, :notice => t('notices.deleted'))
   end
 
   protected

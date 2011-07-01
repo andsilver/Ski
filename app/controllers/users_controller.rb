@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user] = @user.id
       UserNotifier.welcome(@user, request.host).deliver
-      flash[:notice] = 'Your account was successfully created.'
+      flash[:notice] = t('users.account_created')
       if @user.role.only_advertises_properties_for_sale?
         redirect_to new_property_path(:for_sale => true)
       elsif @user.role.only_advertises_properties_for_rent?
@@ -105,8 +105,7 @@ class UsersController < ApplicationController
       @user.password = params[:password]
       @user.forgot_password_token = ''
       @user.save
-      flash[:notice] = 'Your password has been changed'
-      redirect_to sign_in_path
+      redirect_to sign_in_path, :notice => t('users.password_changed')
     end
   end
   
@@ -114,8 +113,7 @@ class UsersController < ApplicationController
 
   def forgot_password_params_ok?
     if @user.forgot_password_token.blank?
-      flash[:notice] = "Please enter your email address below"
-      redirect_to :action => "forgot_password"
+      redirect_to :action => "forgot_password", notice => t('users.enter_your_email_address')
       return false
     elsif params[:t].nil? or @user.forgot_password_token != params[:t]
       flash[:notice] = "The link you entered was invalid. This can happen if you have re-requested " +

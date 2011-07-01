@@ -20,7 +20,7 @@ class BlogPostsController < ApplicationController
     @blog_post = BlogPost.new(params[:blog_post])
 
     if @blog_post.save
-      redirect_to(blog_posts_path, :notice => 'Blog post created.')
+      redirect_to(blog_posts_path, :notice => t('notices.created'))
     else
       render "new"
     end
@@ -31,7 +31,7 @@ class BlogPostsController < ApplicationController
 
   def update
     if @blog_post.update_attributes(params[:blog_post])
-      redirect_to(blog_posts_path, :notice => 'Saved')
+      redirect_to(blog_posts_path, :notice => t('notices.saved'))
     else
       render "edit"
     end

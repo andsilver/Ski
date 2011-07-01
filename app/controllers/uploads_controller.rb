@@ -26,6 +26,6 @@ class UploadsController < ApplicationController
     if File.exists? f
       File.unlink f
     end
-    redirect_to uploads_path, :notice => 'Deleted.'
+    redirect_to uploads_path, :notice => t('notices.deleted')
   end
 end

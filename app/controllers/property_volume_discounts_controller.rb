@@ -15,7 +15,7 @@ class PropertyVolumeDiscountsController < ApplicationController
     @property_volume_discount = PropertyVolumeDiscount.new(params[:property_volume_discount])
 
     if @property_volume_discount.save
-      redirect_to(property_volume_discounts_path, :notice => 'Property volume discount created.')
+      redirect_to(property_volume_discounts_path, :notice => t('notices.created'))
     else
       render "new"
     end
@@ -26,7 +26,7 @@ class PropertyVolumeDiscountsController < ApplicationController
 
   def update
     if @propery_volume_discount.update_attributes(params[:property_volume_discount])
-      redirect_to(property_volume_discounts_path, :notice => 'Saved')
+      redirect_to(property_volume_discounts_path, :notice => t('notices.saved'))
     else
       render "edit"
     end
@@ -34,7 +34,7 @@ class PropertyVolumeDiscountsController < ApplicationController
 
   def destroy
     @property_volume_discount.destroy
-    redirect_to(property_volume_discounts_path, :notice => 'Property volume discount deleted.')
+    redirect_to(property_volume_discounts_path, :notice => t('notices.deleted'))
   end
 
   protected

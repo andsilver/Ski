@@ -15,7 +15,7 @@ class RolesController < ApplicationController
     @role = Role.new(params[:role])
 
     if @role.save
-      redirect_to(roles_path, :notice => 'Role created.')
+      redirect_to(roles_path, :notice => t('notices.created'))
     else
       render "new"
     end
@@ -26,7 +26,7 @@ class RolesController < ApplicationController
 
   def update
     if @role.update_attributes(params[:role])
-      redirect_to(roles_path, :notice => 'Saved')
+      redirect_to(roles_path, :notice => t('notices.saved'))
     else
       render "edit"
     end

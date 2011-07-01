@@ -15,7 +15,7 @@ class AirportsController < ApplicationController
     @airport = Airport.new(params[:airport])
 
     if @airport.save
-      redirect_to(airports_path, :notice => 'Airport created.')
+      redirect_to(airports_path, :notice => t('notices.created'))
     else
       render "new"
     end
@@ -26,7 +26,7 @@ class AirportsController < ApplicationController
 
   def update
     if @airport.update_attributes(params[:airport])
-      redirect_to(airports_path, :notice => 'Saved')
+      redirect_to(airports_path, :notice => t('notices.saved'))
     else
       render "edit"
     end
@@ -34,7 +34,7 @@ class AirportsController < ApplicationController
 
   def destroy
     @airport.destroy
-    redirect_to airports_path, :notice => "Airport deleted."
+    redirect_to airports_path, :notice => t('notices.deleted')
   end
 
   protected

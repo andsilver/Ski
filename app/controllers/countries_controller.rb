@@ -15,7 +15,7 @@ class CountriesController < ApplicationController
     @country = Country.new(params[:country])
 
     if @country.save
-      redirect_to(countries_path, :notice => 'Country created.')
+      redirect_to(countries_path, :notice => t('notices.created'))
     else
       render "new"
     end
@@ -26,7 +26,7 @@ class CountriesController < ApplicationController
 
   def update
     if @country.update_attributes(params[:country])
-      redirect_to(countries_path, :notice => 'Saved')
+      redirect_to(countries_path, :notice => t('notices.saved'))
     else
       render "edit"
     end
@@ -45,7 +45,7 @@ class CountriesController < ApplicationController
     @errors << "This country has users associated with it. " unless @country.users.empty?
     if @errors.empty?
       #@country.destroy
-      redirect_to countries_path, :notice => "Country deleted."
+      redirect_to countries_path, :notice => t('notices.deleted')
     else
       redirect_to countries_path, :notice => "This country could not be deleted because: " +
         @errors.join

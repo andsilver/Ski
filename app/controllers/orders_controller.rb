@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
   def receipt
     @order = Order.find_by_id_and_user_id(params[:id], @current_user.id)
     if @order.nil?
-      redirect_to(receipts_orders_path, :notice => "We couldn't find that order.")
+      redirect_to(receipts_orders_path, :notice => t('orders_controller.receipt_not_found'))
     end
   end
 
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
   def require_order_from_session
     @order = Order.from_session session
     if @order.nil?
-      redirect_to(basket_path, :notice => "We couldn't find an order for you.")
+      redirect_to(basket_path, :notice => t('orders_controller.no_order_found'))
     end
   end
 end

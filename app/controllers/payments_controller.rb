@@ -25,7 +25,7 @@ class PaymentsController < ApplicationController
     @payment.save # this first save is for safety
 
     if params[:transStatus].nil? or params[:transStatus] != 'Y'
-      @message = 'No payment was made'
+      @message = t('payments_controller.no_payment_made')
     elsif !WORLDPAY_SIMULATE_PAYMENT and (params[:callbackPW].nil? or params[:callbackPW] != WORLDPAY_PAYMENT_RESPONSE_PASSWORD)
       @message = FAILURE_MESSAGE
     elsif params[:cartId].nil?
@@ -33,7 +33,7 @@ class PaymentsController < ApplicationController
     elsif params[:testMode] and !WORLDPAY_TEST_MODE and params[:testMode] != '0'
       @message = FAILURE_MESSAGE      
     else
-      @message = 'Payment received'
+      @message = t('payments_controller.payment_received')
       @payment.accepted = true
       complete_order
     end
@@ -55,16 +55,18 @@ class PaymentsController < ApplicationController
 
     if cardsave_hash_matches?
       if params[:StatusCode]=='0'
+        @message = t('payments_controller.payment_received')
+        @payment.accepted = true
         complete_order
       elsif params[:StatusCode]=='5'
-        @message = 'Your payment was declined'
+        @message = t('payments_controller.payment_declined')
       elsif params[:StatusCode]=='30'
-        @message = 'There was an error processing your payment'
+        @message = t('payments_controller.processing_error')
       else
-        @message = 'Your payment has not recorded by us as we could not confirm if it was successful'
+        @message = t('payments_controller.unconfirmed')
       end
     else
-      @message = 'There has been a failure validating your payment'
+      @message = t('payments_controller.failure_validating_payment')
     end
   end
 

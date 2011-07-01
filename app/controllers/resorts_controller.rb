@@ -19,7 +19,7 @@ class ResortsController < ApplicationController
       if @resort.save
         session[:last_country_id] = @resort.country_id
         set_image_mode
-        format.html { redirect_to(new_image_path, :notice => 'Resort created.') }
+        format.html { redirect_to(new_image_path, :notice => t('notices.created')) }
         format.xml  { render :xml => @resort, :status => :created, :location => @resort }
       else
         format.html { render :action => "new" }
@@ -35,7 +35,7 @@ class ResortsController < ApplicationController
   def update
     respond_to do |format|
       if @resort.update_attributes(params[:resort])
-        format.html { redirect_to(edit_resort_path(@resort), :notice => 'Saved') }
+        format.html { redirect_to(edit_resort_path(@resort), :notice => t('notices.saved')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -47,7 +47,7 @@ class ResortsController < ApplicationController
   def show
     @stage_heading_a = I18n.t('stage_1_inactive')
     @stage_heading_b = I18n.t('stage_2')
-    @heading_a = @resort.name + ' Resort Information'
+    @heading_a = t('resorts_controller.resort_information_heading', :resort => @resort.name)
   end
 
   def destroy
@@ -83,7 +83,7 @@ class ResortsController < ApplicationController
 
   def find_resort
     @resort = Resort.find_by_id(params[:id])
-    redirect_to(resorts_path, :notice => 'That resort does not exist.') unless @resort
+    redirect_to(resorts_path, :notice => t('resorts_controller.not_found')) unless @resort
   end
 
   def set_image_mode

@@ -29,7 +29,7 @@ class DirectoryAdvertsController < ApplicationController
       advert.months = 3
       advert.save!
       set_image_mode
-      redirect_to new_image_path, :notice => "Your directory advert was successfully created. Now let's upload the your business photo or logo."
+      redirect_to new_image_path, :notice => t('directory_adverts_controller.created')
     else
       render "new"
     end
@@ -42,7 +42,7 @@ class DirectoryAdvertsController < ApplicationController
   def update
     update_user_details
     if @directory_advert.update_attributes(params[:directory_advert])
-      flash[:notice] = "Your directory advert was successfully updated."
+      flash[:notice] = t('directory_adverts_controller.saved')
       if @current_user.basket_contains? @directory_advert
         redirect_to basket_path
       else
@@ -55,7 +55,7 @@ class DirectoryAdvertsController < ApplicationController
 
   def advertise_now
     create_advert
-    redirect_to(basket_path, :notice => 'Your directory advert has been added to your basket.')
+    redirect_to(basket_path, :notice => t('directory_adverts_controller.added_to_basket'))
   end
 
   protected

@@ -3,13 +3,13 @@ class CmsController < ApplicationController
   before_filter :no_browse_menu
 
   def index
-    @heading_a = 'CMS'
+    @heading_a = t('cms_controller.cms')
   end
 
   def management_information
   end
 
   def gross_sales_analysis
-    @heading_a = "Gross Sales Analysis"
+    @heading_a = t('cms_controller.gross_sales_analysis')
   end
 end
