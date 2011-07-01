@@ -25,8 +25,8 @@ class ImagesController < ApplicationController
 
     if session[:image_mode] == 'property'
       @image.property_id = session[:property_id]
-    elsif session[:image_mode] == 'banner_advert'
-      remove_previous_banner_image
+    elsif session[:image_mode] == 'banner_advert' || session[:image_mode] == 'resort'
+      remove_previous_image
     end
 
     @image.user_id = @current_user.id
@@ -110,7 +110,7 @@ class ImagesController < ApplicationController
     @object.record_dimensions(@image.dimensions)
   end
 
-  def remove_previous_banner_image
+  def remove_previous_image
     @object.image.destroy if @object.image
   end
 end

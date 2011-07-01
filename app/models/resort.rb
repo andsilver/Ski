@@ -1,5 +1,7 @@
 class Resort < ActiveRecord::Base
   belongs_to :country
+  belongs_to :image, :dependent => :destroy
+
   has_many :properties, :dependent => :nullify
   has_many :order_lines
   has_many :airport_distances, :dependent => :delete_all, :order => 'distance_km DESC'

@@ -11,6 +11,13 @@
   <%= render "shared/google" %>
   <script src="http://use.typekit.com/lxc8myw.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
+<% if @resort && @resort.image %>
+<style>
+#wrapper {
+  background-image: url('<%= @resort.image.url %>');
+}
+</style>
+<% end %>
 </head>
 <body class="<%= 'browse_menu ' if @browse_menu %><%= @body_classes %>">
 <div id="wrapper">
