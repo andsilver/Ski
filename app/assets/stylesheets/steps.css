@@ -1,5 +1,5 @@
 ol#steps {
-  width: 520px;
+  width: 600px;
   margin: 10px auto;
   list-style: none;
   padding: 0;
@@ -7,7 +7,7 @@ ol#steps {
 
 #steps li {
   color: #fff;
-  width: 96px;
+  width: 116px;
   height: 41px;
   background-image: url(/images/steps.png);
   line-height: 19px;
