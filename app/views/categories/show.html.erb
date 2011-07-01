@@ -1,3 +1,4 @@
+<div id="content_with_wide_skyscrapers">
 <% if @directory_adverts.empty? %>
 <p>No results for <%= t(@category.name) %> in <%= @resort.name %>.</p>
 <% else %>
@@ -26,3 +27,7 @@
   </tbody>
 </table>
 <% end %>
+</div>
+<div id="wide_skyscrapers">
+  <%= render :partial => 'banner_adverts/banner', :object => BannerAdvert.small_banner_for(@resort) %>
+</div>
