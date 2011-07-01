@@ -6,6 +6,7 @@
 *.psd
 *.pxm
 *.svg
+*.zip
 config/database.yml
 coverage/*
 db/*.sqlite3
