@@ -47,7 +47,8 @@ class ImagesController < ApplicationController
     rescue
     end
 
-    render 'new'
+    @image.destroy
+    redirect_to(new_image_path, :notice => 'There was a problem uploading your image. Was it in the correct format?')
   end
 
   def edit
