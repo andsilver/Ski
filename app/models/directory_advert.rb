@@ -4,6 +4,7 @@ class DirectoryAdvert < ActiveRecord::Base
   belongs_to :category
   belongs_to :resort
   belongs_to :user
+  belongs_to :image, :dependent => :destroy
 
   has_many :adverts
 

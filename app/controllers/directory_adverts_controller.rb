@@ -28,13 +28,15 @@ class DirectoryAdvertsController < ApplicationController
       advert = Advert.new_for(@directory_advert)
       advert.months = 3
       advert.save!
-      redirect_to(basket_path, :notice => 'Your directory advert was successfully created.')
+      set_image_mode
+      redirect_to new_image_path, :notice => "Your directory advert was successfully created. Now let's upload the your business photo or logo."
     else
       render "new"
     end
   end
 
   def edit
+    set_image_mode
   end
 
   def update
@@ -73,5 +75,10 @@ class DirectoryAdvertsController < ApplicationController
     advert = Advert.new_for(@directory_advert)
     advert.months = 3
     advert.save!
+  end
+
+  def set_image_mode
+    session[:image_mode] = 'directory_advert'
+    session[:directory_advert_id] = @directory_advert.id
   end
 end
