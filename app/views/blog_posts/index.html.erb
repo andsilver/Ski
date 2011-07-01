@@ -1,0 +1,9 @@
+<h1><%= link_to 'CMS', cms_path %> &rarr; Blog</h1>
+<p>
+  <%= link_to 'Write new post', new_blog_post_path %>
+</p>
+<ul>
+<% @blog_posts.each do |post| %>
+  <li><%= link_to post.headline, edit_blog_post_path(post) %></li>
+<% end %>
+</ul>

@@ -4,7 +4,6 @@ nav {
 
 #main_menu {
   background-color: #72c9e4;
-  background-image: url(/images/menu-bg.jpg);
   background-position: right top;
   background-repeat: no-repeat;
   height: 24px;
@@ -27,12 +26,18 @@ nav {
 #main_menu a {
   display: block;
   line-height: 18px;
-  padding: 0;
-  width: 140px;
   text-align: center;
   color: #fff;
   text-decoration: none;
   border-left: 1px solid #fff;
+  padding: 0 20px;
+  width: auto;
+}
+
+#main_menu #featured_resorts_link,
+#main_menu #advertise_link {
+  padding: 0;
+  width: 140px;
 }
 
 #main_menu a:hover {

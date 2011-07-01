@@ -18,8 +18,9 @@ function closeMenu(menu) {
 </script>
 <nav id="main_menu">
   <ul>
-    <li><a href="/welcome/advertiser" onmouseover="openMenu(document.getElementById('welcome_advertisers'));" onmouseout="startCloseMenu(document.getElementById('welcome_advertisers'));"><%= t('advertise') %></a></li>
-    <li><a href="<%= featured_resorts_path %>" onmouseover="openMenu(document.getElementById('featured_resorts'));" onmouseout="startCloseMenu(document.getElementById('featured_resorts'));"><%= I18n.t('featured_resorts') %></a></li>
+    <li><a id="advertise_link" href="/welcome/advertiser" onmouseover="openMenu(document.getElementById('welcome_advertisers'));" onmouseout="startCloseMenu(document.getElementById('welcome_advertisers'));"><%= t('advertise') %></a></li>
+    <li><a id="featured_resorts_link" href="<%= featured_resorts_path %>" onmouseover="openMenu(document.getElementById('featured_resorts'));" onmouseout="startCloseMenu(document.getElementById('featured_resorts'));"><%= I18n.t('featured_resorts') %></a></li>
+    <li><%= link_to t('blog_posts_controller.blog'), blog_path %></li>
 <% if signed_in? %>
 <% if @current_user.has_adverts_in_basket? %>
     <li><a href="<%= basket_path %>"><%= t 'basket' %> <span class="count"><%= @current_user.adverts_in_basket.count %></span></a></li>
