@@ -23,8 +23,8 @@ a img {
 
 #wrapper {
   background: #fff;
-  background-image: url(/images/ski-group-mountain.jpg);
-  background-position: right top;
+  background-image: url(/images/ski-group-mountain-264.jpg);
+  background-position: right 24px;
   background-repeat: no-repeat;
   width: 996px;
   margin-left: auto;
@@ -36,7 +36,7 @@ a img {
 #logo {
   margin-left: 4px;
   margin-top: 35px;
-  margin-bottom: 177px;
+  margin-bottom: 120px;
   display: block;
 }
 
