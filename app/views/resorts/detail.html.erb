@@ -1,7 +1,7 @@
 <div id="wide_content_with_wide_skyscrapers">
 <h2>An Introduction to <%= @resort.name %></h2>
 <% unless @resort.info.blank? %>
-<%= raw @resort.info %>
+<%= md @resort.info %>
 <% end %>
 
 <h2>Key Information</h2>
