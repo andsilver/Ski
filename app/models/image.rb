@@ -81,7 +81,7 @@ class Image < ActiveRecord::Base
 
   # deletes the file(s) by removing the whole dir
   def delete_files
-    FileUtils.rm_rf("#{IMAGE_STORAGE_PATH}/#{id}")
+    FileUtils.rm_rf("#{IMAGE_STORAGE_PATH}/#{id}") unless id.nil?
   end
 
   def uploaded_extension
