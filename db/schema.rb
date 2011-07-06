@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110701114341) do
+ActiveRecord::Schema.define(:version => 20110705162738) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -351,6 +351,7 @@ ActiveRecord::Schema.define(:version => 20110701114341) do
     t.text     "living_in"
     t.text     "insider_view"
     t.integer  "image_id"
+    t.text     "weather_code"
   end
 
   add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"

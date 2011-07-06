@@ -32,9 +32,15 @@
   </tr>
 </table>
 <% unless @resort.introduction.blank? %>
-<%= raw @resort.introduction %>
+<%= md @resort.introduction %>
+<% end %>
+<% unless @resort.weather_code.blank? %>
+<%= raw @resort.weather_code %>
 <% end %>
 <p class="more_detail">
   <%= link_to "More detail on #{@resort.name}", detail_resort_path(@resort) %>
 </p>
+</div>
+<div id="wide_skyscrapers">
+  <%= render :partial => 'banner_adverts/banner', :object => BannerAdvert.small_banner_for(@resort) %>
 </div>
