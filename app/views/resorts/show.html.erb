@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <th><%= t('resorts_controller.facts.nearest_airport') %></th>
-    <td><% unless (ad = @resort.airport_distances.first).nil? %>
+    <td><% unless (ad = @resort.airport_distances.sort{|a,b| a.distance_km <=> b.distance_km}.first).nil? %>
       <%= ad.airport.name %> (<%= ad.distance_km %>km) <%= ad.comment %>
     <% end %></td>
   </tr>
