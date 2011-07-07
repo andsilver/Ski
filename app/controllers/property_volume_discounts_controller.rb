@@ -25,7 +25,7 @@ class PropertyVolumeDiscountsController < ApplicationController
   end
 
   def update
-    if @propery_volume_discount.update_attributes(params[:property_volume_discount])
+    if @property_volume_discount.update_attributes(params[:property_volume_discount])
       redirect_to(property_volume_discounts_path, :notice => t('notices.saved'))
     else
       render "edit"
