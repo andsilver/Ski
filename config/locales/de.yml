@@ -284,14 +284,14 @@ en:
       snowboard_parks: Snowboard parks
       top_lift: Top lift
     not_found: 'That resort does not exist.'
-    resort_information_heading: "{resort} Resort Information"
+    resort_information_heading: "%{resort} Resort Information"
   resort_options:
     new_developments: New Build
     resort_info: Resort Info
   sale_price: 'Sale price'
   save: 'Save'
   sessions_controller:
-    welcome_back: "Welcome back, {name}"
+    welcome_back: "Welcome back, %{name}"
   sign_in: 'Sign In'
   sign_in_invalid: 'Your sign in attempt failed. No account was found with this email address and password.'
   sign_out: Sign Out

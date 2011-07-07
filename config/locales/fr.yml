@@ -281,14 +281,14 @@ fr:
       snowboard_parks: Parcs de planche à neige
       top_lift: Plus haut téléphérique
     not_found: 'That resort does not exist.'
-    resort_information_heading: "{resort} Resort Information"
+    resort_information_heading: "%{resort} Resort Information"
   resort_options:
     new_developments: Nouvelle
     resort_info: Infos Station
   sale_price: 'Prix de vente'
   save: 'Enregistrer'
   sessions_controller:
-    welcome_back: "Welcome back, {name}"
+    welcome_back: "Welcome back, %{name}"
   sign_in: Connexion
   sign_in_invalid: 'Your sign in attempt failed. No account was found with this email address and password.'
   sign_out: Fermer la Session
