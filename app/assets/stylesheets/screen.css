@@ -557,3 +557,11 @@ textarea#enquiry_comments {
   margin: 0;
   color: #00aeef;
 }
+
+iframe {
+  border: none;
+}
+
+#weather_code {
+  margin-top: 20px;
+}

@@ -1,4 +1,7 @@
 <div id="content_with_wide_skyscrapers">
+  <p class="more_detail" style="width: 30%; float: right;">
+    <%= link_to "More detail on #{@resort.name}", detail_resort_path(@resort) %>
+  </p>
 <table>
   <tr>
     <th><%= t('resorts_controller.facts.altitude') %></th>
@@ -35,11 +38,10 @@
 <%= md @resort.introduction %>
 <% end %>
 <% unless @resort.weather_code.blank? %>
+<div id="weather_code">
 <%= raw @resort.weather_code %>
+</div>
 <% end %>
-<p class="more_detail">
-  <%= link_to "More detail on #{@resort.name}", detail_resort_path(@resort) %>
-</p>
 </div>
 <div id="wide_skyscrapers">
   <%= render :partial => 'banner_adverts/banner', :object => BannerAdvert.small_banner_for(@resort) %>
