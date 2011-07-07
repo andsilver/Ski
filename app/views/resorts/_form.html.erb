@@ -141,10 +141,6 @@
   <%= f.text_field :mountain_restaurants %>
 </div>
 <div class="field">
-  <%= f.label :distance_from_airport_km %><br>
-  <%= f.text_field :distance_from_airport_km %>
-</div>
-<div class="field">
   <%= f.label :glacier_skiing %><br>
   <%= f.select(:glacier_skiing, [["Yes", true], ["No", false]],
     {:include_blank => true, :selected => @resort.glacier_skiing.to_s}) %>
