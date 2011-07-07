@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110705162738) do
+ActiveRecord::Schema.define(:version => 20110707100306) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20110705162738) do
   end
 
   add_index "directory_adverts", ["resort_id"], :name => "index_directory_adverts_on_resort_id"
+  add_index "directory_adverts", ["user_id"], :name => "index_directory_adverts_on_user_id"
 
   create_table "enquiries", :force => true do |t|
     t.integer  "user_id",                                  :null => false
