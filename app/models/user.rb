@@ -77,19 +77,19 @@ class User < ActiveRecord::Base
 
   def banner_adverts_so_far
     Advert.count(
-      :conditions => ['user_id = ? AND banner_advert_id IS NOT NULL AND starts_at IS NOT NULL',
+      :conditions => ['user_id = ? AND banner_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
       id])
   end
 
   def directory_adverts_so_far
     Advert.count(
-      :conditions => ['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL',
+      :conditions => ['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
       id])
   end
 
   def property_adverts_so_far
     Advert.count(
-      :conditions => ['user_id = ? AND property_id IS NOT NULL AND starts_at IS NOT NULL',
+      :conditions => ['user_id = ? AND property_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
       id])
   end
 
