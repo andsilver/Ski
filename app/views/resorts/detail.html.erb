@@ -96,6 +96,12 @@
   <% end %>
 </table>
 
+<% unless @resort.how_to_get_to.blank? %>
+<div id="how_to_get_to">
+<%= md @resort.how_to_get_to %>
+</div>
+<% end %>
+
 <% unless @resort.visiting.blank? %>
 <h2>Skiing in <%= @resort.name %></h2>
 <%= md @resort.visiting %>
