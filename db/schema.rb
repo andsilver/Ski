@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110707100306) do
+ActiveRecord::Schema.define(:version => 20110707110122) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -305,8 +305,8 @@ ActiveRecord::Schema.define(:version => 20110707100306) do
   end
 
   create_table "resorts", :force => true do |t|
-    t.integer  "country_id",               :default => 0,     :null => false
-    t.string   "name",                     :default => "",    :null => false
+    t.integer  "country_id",           :default => 0,     :null => false
+    t.string   "name",                 :default => "",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "info"
@@ -329,22 +329,21 @@ ActiveRecord::Schema.define(:version => 20110707100306) do
     t.integer  "cross_country_km"
     t.integer  "mountain_restaurants"
     t.boolean  "glacier_skiing"
-    t.integer  "distance_from_airport_km"
     t.boolean  "lively_apres_ski"
     t.boolean  "creche"
     t.boolean  "babysitting_services"
-    t.boolean  "visible",                  :default => false, :null => false
-    t.boolean  "featured",                 :default => false, :null => false
+    t.boolean  "visible",              :default => false, :null => false
+    t.boolean  "featured",             :default => false, :null => false
     t.text     "feature"
     t.text     "introduction"
-    t.string   "season",                   :default => "",    :null => false
-    t.integer  "beginner",                 :default => 0,     :null => false
-    t.integer  "intermediate",             :default => 0,     :null => false
-    t.integer  "off_piste",                :default => 0,     :null => false
-    t.integer  "expert",                   :default => 0,     :null => false
+    t.string   "season",               :default => "",    :null => false
+    t.integer  "beginner",             :default => 0,     :null => false
+    t.integer  "intermediate",         :default => 0,     :null => false
+    t.integer  "off_piste",            :default => 0,     :null => false
+    t.integer  "expert",               :default => 0,     :null => false
     t.boolean  "heli_skiing"
     t.boolean  "summer_skiing"
-    t.integer  "family",                   :default => 0,     :null => false
+    t.integer  "family",               :default => 0,     :null => false
     t.text     "how_to_get_to"
     t.text     "visiting"
     t.text     "owning_a_property_in"
