@@ -87,6 +87,7 @@ class PropertiesController < ApplicationController
   end
 
   def contact
+    default_page_title "Enquire About #{@property.name} in #{@property.resort}, #{@property.resort.country}"
     @heading_a = render_to_string(:partial => 'contact_heading').html_safe
 
     @enquiry = Enquiry.new
