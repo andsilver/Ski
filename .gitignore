@@ -1,6 +1,7 @@
 .bundle
 *.gif
 *.jpg
+*.JPG
 *.png
 !public/images/flags/*.png
 *.psd
