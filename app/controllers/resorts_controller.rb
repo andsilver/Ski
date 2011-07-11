@@ -1,7 +1,9 @@
 class ResortsController < ApplicationController
-  before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map, :detail]
-  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :detail, :directory, :feature, :piste_map]
+  before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map, :detail, :gallery]
+  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :detail, :directory, :feature, :piste_map, :gallery]
   before_filter :no_browse_menu, :except => [:show, :feature, :directory]
+
+  RESORTS_DIRECTORY = "#{Rails.root.to_s}/public/resorts/"
 
   def index
     @countries = Country.with_resorts
@@ -67,6 +69,7 @@ class ResortsController < ApplicationController
 
   def directory
     @heading_a = "Directory for #{@resort.name}, #{@resort.country.name}"
+    default_page_title @heading_a
     @categories = Category.order(:name).all
   end
 
@@ -76,6 +79,16 @@ class ResortsController < ApplicationController
 
   def piste_map
     @heading_a = I18n.t('piste_map')
+  end
+
+  def gallery
+    @heading_a = I18n.t('gallery')
+    gallery_dir = "#{RESORTS_DIRECTORY}#{PermalinkFu.escape(@resort.name)}/gallery"
+    begin
+      @images = Dir.entries(gallery_dir).select {|e| e[0..0] != "." && e.include?(".")}
+    rescue
+      @images = []
+    end
   end
 
   def feature

@@ -9,6 +9,7 @@ MySkiChalet::Application.routes.draw do
     get 'directory', :on => :member
     get 'featured',  :on => :collection
     get 'feature',   :on => :member
+    get 'gallery',   :on => :member
     get 'piste_map', :on => :member
   end
 

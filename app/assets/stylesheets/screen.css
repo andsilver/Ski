@@ -565,3 +565,19 @@ iframe {
 #weather_code {
   margin-top: 20px;
 }
+
+#gallery_thumbnails a {
+  float: left;
+  padding: 2px;
+  height: 160px;
+  width: 160px;
+  margin: 4px;
+  border: 1px solid #ccc;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#gallery_thumbnails img {
+  display: block;
+  margin: auto;
+}
