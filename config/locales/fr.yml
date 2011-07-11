@@ -135,13 +135,6 @@ fr:
     site_verification: gNWIA7DUtZ0ow0E9m_4hHumjqit17_4LxY8bP2jMzeo
     web_property_id: UA-22451896-3
   home: Accueil
-  home_page:
-    stage_1_heading: Étape 1
-    stage_2_heading: Étape 2
-    stage_3_heading: Étape 3
-    stage_1_content: 'Choisissez parmi notre vaste gamme de pays européens et les destinations'
-    stage_2_content: 'Détails sur les propriétés à vendre ou à louer, y compris les Informations sur la station clés et répertoires de sites utiles'
-    stage_3_content: 'Il suffit de trouver et sélectionner votre bien choisi et se renseigner pour plus de détails'
   images_controller:
     deleted: 'Image deleted.'
     image_uploaded: Image uploaded.
@@ -297,10 +290,6 @@ fr:
   signed_out: 'You are now signed out.'
   sleeping_capacity: 'Capacité de couchage'
   sleeps: peut accueillir
-  stage_1: <span>Étape 1<br><em>Choisissez votre pays et station de ski</em></span>
-  stage_1_inactive: <span class="inactive">Étape 1<br><em>Choisissez votre pays et station de ski</em></span>
-  stage_2: "<span>Étape 2<br><em>Sélectionnez des ventes, locations, répertoire ou d'infos station</em></span>"
-  start: Commencer
   strapline: 'Slogan'
   strapline_placeholder: "Summarise the property's key features (e.g., size, location) in under 255 characters."
   terms: 'Termes et Conditions'

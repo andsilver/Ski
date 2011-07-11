@@ -9,6 +9,7 @@
   <script>try{Typekit.load();}catch(e){}</script>
   <!-- TradeDoubler site verification 1980597 -->
 <link rel="stylesheet" href="/assets/main_menu.css">
+<link rel="stylesheet" href="/assets/browse_menu.css">
 <style>
 #main_menu {
   background-image: url(/images/home-menu-bg.jpg);
@@ -42,7 +43,7 @@ a img {
 #logo {
   margin-left: 4px;
   margin-top: 35px;
-  margin-bottom: 197px;
+  margin-bottom: 192px;
   display: block;
 }
 
@@ -66,46 +67,6 @@ div#intro {
   line-height: 1.4em;
 }
 
-.stage p {
-  font-size: 2em;
-  color: #00aeef;
-  text-transform: uppercase;
-}
-
-.stage {
-  position: absolute;
-  height: 150px;
-  padding-top: 200px;
-  bottom: 10px;
-  z-index: 0;
-}
-
-#stage_1 {
-  width: 270px;
-  border-right: 1px solid #918f90;
-  padding-left: 10px;
-  padding-right: 20px;
-}
-
-#stage_2 {
-  left: 320px;
-  width: 320px;
-  border-right: 1px solid #918f90;
-  padding-right: 20px;
-}
-
-#stage_3 {
-  left: 680px;
-  width: 270px;
-}
-
-#start_here {
-  position: absolute;
-  z-index: 1;
-  top: 340px;
-  left: 8px;
-}
-
 footer {
   padding-top: 8px;
   width: 996px;
@@ -125,23 +86,13 @@ footer a {
 <body>
 <div id="wrapper">
   <%= render "shared/main_menu" %>
-  <a href="/start" title="Home" id="logo"><img src="/images/my-chalet-finder-logo.png" alt="My Chalet Finder"></a>
+  <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo.png" alt="My Chalet Finder"></a>
   <div id="intro">
     <%= raw @w.home_content %>
   </div>
-  <a href="/start" id="start_here"><img src="/images/start-here.png" alt="[Start Here]" title="[Start Here]"></a>
-  <div id="stage_1" class="stage">
-    <h1><%= t('home_page.stage_1_heading') %>:</h1>
-    <p><%= t('home_page.stage_1_content') %></p>
-  </div>
-  <div id="stage_2" class="stage">
-    <h1><%= t('home_page.stage_2_heading') %>:</h1>
-    <p><%= t('home_page.stage_2_content') %></p>
-  </div>
-  <div id="stage_3" class="stage">
-    <h1><%= t('home_page.stage_3_heading') %>:</h1>
-    <p><%= t('home_page.stage_3_content') %></p>
-  </div>
+  <nav id="browse">
+    <%= render "shared/countries_menu" %>
+  </nav>
 </div>
 <footer role="contentinfo">
   <p>

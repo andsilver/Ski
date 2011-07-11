@@ -5,7 +5,7 @@ Feature: Tourist
   I want to search through properties to rent
 
   Scenario: Browse a list of countries
-    Given I am on the start page
+    Given I am on the home page
     Then I should see "France"
     And I should see "Italy"
     And I should see "Austria"
@@ -13,12 +13,12 @@ Feature: Tourist
     But I should not see "United Kingdom"
 
   Scenario: Select a country to see a list of resorts
-    Given I am on the start page
+    Given I am on the home page
     When I follow "France"
     Then I should see "Chamonix"
 
   Scenario: Select a resort to see a list of browse options
-    Given I am on the start page
+    Given I am on the home page
     When I follow "France"
     And I follow "Chamonix"
     Then I should see "For Rent"
@@ -27,7 +27,7 @@ Feature: Tourist
     And I should see "Resort Info"
 
   Scenario: Get to and browse a list of properties for rent in a resort
-    Given I am on the start page
+    Given I am on the home page
     When I follow "France"
     And I follow "Chamonix"
     And I follow "For Rent"

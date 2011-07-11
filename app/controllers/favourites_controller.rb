@@ -21,7 +21,7 @@ class FavouritesController < ApplicationController
       end
       redirect_to(@favourite.property, :notice => t('favourites.removed'))
     else
-      redirect_to start_path
+      redirect_to home_path
     end
   end
 end

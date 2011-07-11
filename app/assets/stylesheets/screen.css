@@ -36,39 +36,13 @@ a img {
 #logo {
   margin-left: 4px;
   margin-top: 35px;
-  margin-bottom: 120px;
+  margin-bottom: 160px;
   display: block;
-}
-
-#stage_headings {
-  height: 40px;
-  border-bottom: 1px solid #68c8e7;
-  line-height: 16px;
-}
-
-#stage_headings span {
-  font-size: 2em;
-  display: block;
-  float: left;
-  width: 440px;
-}
-
-#stage_headings span + span {
-  width: 500px;
-}
-
-#stage_headings span.inactive {
-  color: #999;
-}
-
-#stage_headings span em {
-  font-size: 0.55em;
-  text-transform: uppercase;
-  font-style: normal;
 }
 
 #column_headings {
   height: 30px;
+  border-top: 1px solid #68c8e7;
   border-bottom: 1px solid #68c8e7;
 }
 
@@ -242,94 +216,6 @@ table.grid {
   margin: 3px;
   display: block;
   float: left;
-}
-
-#browse {
-  float: left;
-  width: 380px;
-}
-
-#browse ul {
-  float: left;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul#countries {
-  width: 135px;
-}
-
-ul#resorts {
-  width: 135px;
-  background-image: url(/images/resorts-menu-bg.png);
-}
-
-#browse #resorts a:hover, #browse #resorts .selected a {
-  color: #2ab8e3;
-}
-
-ul#countries, ul#resort_options {
-  text-transform: uppercase;
-}
-
-ul#resort_options {
-  width: 110px;
-}
-
-#resort_options div {
-  float: left;
-}
-
-div.resort_option {
-  width: 74px;
-}
-
-div.property_count {
-  width: 18px;
-  text-align: right;
-}
-
-#countries li, #resort_options li {
-  border-bottom: 1px solid #68c8e7;
-  height: 22px;
-}
-
-#browse #countries a:hover, #browse #countries .selected a, #browse #resort_options a:hover {
-  color: #043d7c;
-}
-
-#browse li {
-  font-size: 1.2em;
-  margin: 0;
-  padding: 0;
-}
-
-#browse a {
-  display: block;
-  text-decoration: none;
-  color: #333;
-}
-
-#countries a, #resort_options a {
-  background-color: #fff;
-  background-image: url(/images/countries-menu-bg.png);
-  background-position: right top;
-  background-repeat: repeat-y;
-  padding: 4px 8px;
-}
-
-#resort_options a {
-  height: 14px;
-}
-
-#resorts a {
-  padding: 2px 0px 2px 12px;
-}
-
-#browse a:hover, #browse .selected a {
-  background-position: right bottom;
-  color: #111;
 }
 
 input[type=text] .LV_invalid_field,

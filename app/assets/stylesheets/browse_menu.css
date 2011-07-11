@@ -1,0 +1,93 @@
+#browse {
+  float: left;
+  width: 380px;
+}
+
+#browse ul, ul#categories {
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul#countries {
+  width: 135px;
+}
+
+ul#resorts, ul#categories {
+  width: 135px;
+  background-image: url(/images/resorts-menu-bg.png);
+}
+
+#browse #resorts a:hover, #browse #resorts .selected a {
+  color: #2ab8e3;
+}
+
+ul#countries, ul#resort_options {
+  text-transform: uppercase;
+}
+
+ul#resort_options {
+  width: 110px;
+}
+
+#resort_options div {
+  float: left;
+}
+
+div.resort_option {
+  width: 74px;
+}
+
+div.property_count {
+  width: 18px;
+  text-align: right;
+}
+
+#countries li, #resort_options li {
+  border-bottom: 1px solid #68c8e7;
+  height: 22px;
+}
+
+#browse #countries a:hover, #browse #countries .selected a, #browse #resort_options a:hover,
+#browse #resort_options .selected a {
+  color: #043d7c;
+}
+
+#browse li {
+  font-size: 1.2em;
+  margin: 0;
+  padding: 0;
+}
+
+#browse a, #categories a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+}
+
+#countries a, #resort_options a {
+  background-color: #fff;
+  background-image: url(/images/countries-menu-bg.png);
+  background-position: right top;
+  background-repeat: repeat-y;
+  padding: 4px 8px;
+}
+
+#resort_options a {
+  height: 14px;
+}
+
+#resorts a, #categories a {
+  padding: 2px 0px 2px 12px;
+}
+
+#browse a:hover, #browse .selected a {
+  background-position: right bottom;
+  color: #111;
+}
+
+#browse #resort_options .selected a,
+#browse #resort_options a:hover {
+  background-position: 14px bottom;
+}
