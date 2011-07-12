@@ -1,3 +1,21 @@
+<div id="wide_content_with_wide_skyscrapers">
 <p>
   <%= link_to @resort.name, @resort %>
 </p>
+
+<% if @images.empty? %>
+  <p>
+    There are no piste maps for this resort yet.
+  </p>
+<% else %>
+  <% @images.each do |i| %>
+    <% t = piste_map(@resort, i) %>
+    <a href="/resorts/<%= PermalinkFu.escape(@resort.name) %>/piste-maps/<%= i %>"><img src="<%= t %>" alt="Piste map for <%= @resort %>"></a>
+  <% end %>
+  <%= clear %>
+<% end %>
+
+</div>
+<div id="wide_skyscrapers">
+  <%= render :partial => 'banner_adverts/banners', :object => BannerAdvert.small_banners_for(@resort) %>
+</div>

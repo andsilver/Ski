@@ -79,16 +79,12 @@ class ResortsController < ApplicationController
 
   def piste_map
     @heading_a = I18n.t('piste_map')
+    find_images 'piste-maps'
   end
 
   def gallery
     @heading_a = I18n.t('gallery')
-    gallery_dir = "#{RESORTS_DIRECTORY}#{PermalinkFu.escape(@resort.name)}/gallery"
-    begin
-      @images = Dir.entries(gallery_dir).select {|e| e[0..0] != "." && e.include?(".")}
-    rescue
-      @images = []
-    end
+    find_images 'gallery'
   end
 
   def feature
@@ -104,5 +100,14 @@ class ResortsController < ApplicationController
   def set_image_mode
     session[:image_mode] = 'resort'
     session[:resort_id] = @resort.id
+  end
+
+  def find_images sub_dir
+    dir = "#{RESORTS_DIRECTORY}#{PermalinkFu.escape(@resort.name)}/#{sub_dir}"
+    begin
+      @images = Dir.entries(dir).select {|e| e[0..0] != "." && e.include?(".")}
+    rescue
+      @images = []
+    end
   end
 end
