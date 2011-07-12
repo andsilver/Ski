@@ -1,15 +1,17 @@
 <div id="wide_content_with_wide_skyscrapers">
+<h1><%= @directory_advert.user.business_name %></h1>
 <% unless @directory_advert.user.website.blank? %>
 <p>
-  Website: <%= link_to @directory_advert.user.website, @directory_advert.user.website, :target => "_blank" %>
+  <%= t('users.website') %>: <%= link_to @directory_advert.user.website, @directory_advert.user.website, :target => "_blank" %>
 </p>
 <% end %>
 <p>
   <%= @directory_advert.business_address %><br>
   <%= @directory_advert.postcode %>
 </p>
+<h2><%= t('description') %></h2>
 <p>
-  <%= @directory_advert.user.description %>
+  <%= md @directory_advert.user.description %>
 </p>
 
 </div>
