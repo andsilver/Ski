@@ -12,6 +12,14 @@
 <% end %>
 
 <%= form_for @directory_advert do |f| %>
+
+<% unless @directory_advert.new_record? %>
+<div class="group_panel">
+<h2>Images</h2>
+<p><%= link_to 'Add or change your directory advert image', new_image_path %> (changes made on this page will not be saved)</p>
+</div>
+<% end %>
+
 <div class="group_panel">
 <table>
   <tr>

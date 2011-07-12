@@ -25,7 +25,7 @@ class ImagesController < ApplicationController
 
     if session[:image_mode] == 'property'
       @image.property_id = session[:property_id]
-    elsif session[:image_mode] == 'banner_advert' || session[:image_mode] == 'resort'
+    elsif session[:image_mode] == 'banner_advert' || session[:image_mode] == 'directory_advert' || session[:image_mode] == 'resort'
       remove_previous_image
     end
 
@@ -35,9 +35,14 @@ class ImagesController < ApplicationController
       if @image.save
         if valid_size_if_banner_advert
           set_main_image_if_first
-          if session[:image_mode] == 'banner_advert'
-            set_banner_advert_dimensions
-            redirect_to(basket_path, :notice => t('images_controller.image_uploaded')) and return
+          if session[:image_mode] == 'banner_advert' || session[:image_mode] == 'directory_advert'
+            set_banner_advert_dimensions if session[:image_mode] == 'banner_advert'
+            if session[:edit_mode] == 'edit'
+              redirect_to(edit_polymorphic_path(@object), :notice => t('images_controller.image_uploaded'))
+            else
+              redirect_to(basket_path, :notice => t('images_controller.image_uploaded'))
+            end
+            return
           end
           redirect_to(new_image_path, :notice => t('images_controller.image_uploaded')) and return
         else

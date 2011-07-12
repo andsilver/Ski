@@ -28,7 +28,7 @@ class DirectoryAdvertsController < ApplicationController
       advert = Advert.new_for(@directory_advert)
       advert.months = 3
       advert.save!
-      set_image_mode
+      set_image_mode 'new'
       redirect_to new_image_path, :notice => t('directory_adverts_controller.created')
     else
       render "new"
@@ -36,7 +36,7 @@ class DirectoryAdvertsController < ApplicationController
   end
 
   def edit
-    set_image_mode
+    set_image_mode 'edit'
   end
 
   def update
@@ -77,8 +77,9 @@ class DirectoryAdvertsController < ApplicationController
     advert.save!
   end
 
-  def set_image_mode
+  def set_image_mode edit_mode
     session[:image_mode] = 'directory_advert'
     session[:directory_advert_id] = @directory_advert.id
+    session[:edit_mode] = edit_mode
   end
 end

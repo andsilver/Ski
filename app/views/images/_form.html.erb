@@ -74,3 +74,7 @@
 <% if @object.class == Resort %>
 <p><%= link_to 'Edit this resort', edit_resort_path(@object) %></p>
 <% end %>
+
+<% if @object.class == DirectoryAdvert %>
+<p><%= link_to 'Edit your directory advert', edit_directory_advert_path(@object) %></p>
+<% end %>
