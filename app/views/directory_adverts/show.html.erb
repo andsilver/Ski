@@ -1,3 +1,4 @@
+<div id="wide_content_with_wide_skyscrapers">
 <% unless @directory_advert.user.website.blank? %>
 <p>
   Website: <%= link_to @directory_advert.user.website, @directory_advert.user.website, :target => "_blank" %>
@@ -10,3 +11,8 @@
 <p>
   <%= @directory_advert.user.description %>
 </p>
+
+</div>
+<div id="wide_skyscrapers">
+  <%= render :partial => 'banner_adverts/banners', :object => BannerAdvert.small_banners_for(@directory_advert.resort) %>
+</div>
