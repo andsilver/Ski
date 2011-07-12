@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
   validates_presence_of :billing_country_id
   validates_presence_of :role_id
 
+  validates_format_of :website, :with => /^(#{URI::regexp(%w(http https))})$/, :allow_blank => true
+
   validates_acceptance_of :terms_and_conditions, :on => :create, :accept => true
 
   before_save :encrypt_password
