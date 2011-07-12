@@ -1,7 +1,3 @@
-<h1><%= @directory_advert.user.business_name %></h1>
-<p>
-  Browse more <%= link_to "#{t(@directory_advert.category.name)} in #{@directory_advert.resort.name}", category_path(@directory_advert.category, :resort_id => @directory_advert.resort.id) %>
-</p>
 <p>
   Website: <%= @directory_advert.user.website %>
 </p>

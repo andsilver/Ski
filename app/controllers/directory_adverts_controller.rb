@@ -13,6 +13,7 @@ class DirectoryAdvertsController < ApplicationController
     if @directory_advert.current_advert.nil?
       not_found
     else
+      @heading_a = render_to_string(:partial => 'show_directory_advert_heading').html_safe
       @directory_advert.current_advert.record_view
     end
   end
