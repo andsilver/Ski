@@ -1,6 +1,8 @@
+<% unless @directory_advert.user.website.blank? %>
 <p>
-  Website: <%= @directory_advert.user.website %>
+  Website: <%= link_to @directory_advert.user.website, @directory_advert.user.website, :target => "_blank" %>
 </p>
+<% end %>
 <p>
   <%= @directory_advert.business_address %><br>
   <%= @directory_advert.postcode %>
