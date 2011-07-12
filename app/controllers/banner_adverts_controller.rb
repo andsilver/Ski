@@ -11,7 +11,7 @@ class BannerAdvertsController < ApplicationController
   end
 
   def edit
-    set_image_mode
+    set_image_mode('edit')
   end
 
   def create
@@ -20,7 +20,7 @@ class BannerAdvertsController < ApplicationController
 
     if @banner_advert.save
       Advert.create_for(@banner_advert)
-      set_image_mode
+      set_image_mode('new')
       redirect_to new_image_path, :notice => t('banner_adverts_controller.created')
     else
       render :action => "new"
@@ -54,8 +54,9 @@ class BannerAdvertsController < ApplicationController
     not_found unless @banner_advert
   end
 
-  def set_image_mode
+  def set_image_mode edit_mode
     session[:image_mode] = 'banner_advert'
     session[:banner_advert_id] = @banner_advert.id
+    session[:edit_mode] = edit_mode
   end
 end
