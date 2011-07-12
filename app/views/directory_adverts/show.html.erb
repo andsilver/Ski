@@ -1,4 +1,9 @@
 <div id="wide_content_with_wide_skyscrapers">
+<% if @directory_advert.image %>
+<p style="float:right; margin-left: 1em; margin-bottom: 1em;">
+  <img src="<%= @directory_advert.image.url(400) %>">
+</p>
+<% end %>
 <h1><%= @directory_advert.user.business_name %></h1>
 <% unless @directory_advert.user.website.blank? %>
 <p>
