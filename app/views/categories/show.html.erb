@@ -7,21 +7,19 @@
     <tr>
       <th><%= t 'business' %></th>
       <th>Description</th>
-      <th>Opening Hours</th>
-      <th>Address</th>
-      <th><%= t 'phone' %></th>
-      <th>Website</th>
+      <th>Contact Details</th>
     </tr>
   </thead>
   <tbody>
     <% @directory_adverts.each do |da| %>
     <tr>
       <td><%= link_to da.user.business_name, da %></td>
-      <td><%= da.user.description %></td>
-      <td><%= da.opening_hours %></td>
-      <td><%= da.business_address %></td>
-      <td><%= da.phone %></td>
-      <td><%= link_to da.user.website, da.user.website %></td>
+      <td><%= da.summary %></td>
+      <td>
+        <%= da.business_address %><br>
+        <%= da.phone %><br>
+        <%= link_to da.user.website, da.user.website %>
+      </td>
     </tr>
     <% end %>
   </tbody>
@@ -29,5 +27,5 @@
 <% end %>
 </div>
 <div id="wide_skyscrapers">
-  <%= render :partial => 'banner_adverts/banner', :object => BannerAdvert.small_banner_for(@resort) %>
+  <%= render :partial => 'banner_adverts/banners', :object => BannerAdvert.small_banners_for(@resort) %>
 </div>

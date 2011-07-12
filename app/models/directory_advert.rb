@@ -21,6 +21,10 @@ class DirectoryAdvert < ActiveRecord::Base
     Website.first.directory_advert_price * 100
   end
 
+  def summary
+    (user.description.length < 100) ? user.description : user.description[0..120] + '...'
+  end
+
   def valid_months
     [default_months]
   end

@@ -1,0 +1,10 @@
+#directory_adverts {
+  background-image: url(/images/property-summary-bg.png);
+  background-position: right top;
+  background-repeat: repeat-y;
+  width: 390px;
+}
+
+#directory_adverts td {
+  padding: 4px;
+}
