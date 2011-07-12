@@ -7,7 +7,9 @@
 <% else %>
   <% @images.each do |i| %>
     <% t = piste_map(@resort, i) %>
-    <a href="/resorts/<%= PermalinkFu.escape(@resort.name) %>/piste-maps/<%= i %>"><img src="<%= t %>" alt="Piste map for <%= @resort %>"></a>
+    <p>
+      <a href="/resorts/<%= PermalinkFu.escape(@resort.name) %>/piste-maps/<%= i %>"><img src="<%= t %>" alt="Piste map for <%= @resort %>"></a>
+    </p>
   <% end %>
   <%= clear %>
 <% end %>
