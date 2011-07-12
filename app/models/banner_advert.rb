@@ -34,7 +34,9 @@ class BannerAdvert < ActiveRecord::Base
     save
   end
 
-  def self.advert_for(resort, dimensions)
+  def self.adverts_for(resort, dimensions, qty)
+    return [] if(rand > 0.7)
+
     conditions = CURRENTLY_ADVERTISED.dup
     conditions[0] += " AND resort_id = ? AND width = ? AND height = ?"
     conditions[0] += " AND image_id IS NOT NULL"
@@ -42,16 +44,16 @@ class BannerAdvert < ActiveRecord::Base
     conditions << dimensions[0]
     conditions << dimensions[1]
 
-    ad = nil
+    ads = []
     uncached do
-      ad = BannerAdvert.all(:order => 'RAND()', :conditions => conditions, :limit => 1).first
+      ads = BannerAdvert.all(:order => 'RAND()', :conditions => conditions, :limit => qty)
     end
 
-    ad.current_advert.record_view if ad
-    ad
+    ads.each {|ad| ad.current_advert.record_view}
+    ads
   end
 
-  def self.small_banner_for(resort)
-    self.advert_for(resort, [160, 200])
+  def self.small_banners_for(resort, qty = 3)
+    self.adverts_for(resort, [160, 200], qty)
   end
 end
