@@ -56,24 +56,6 @@ a img {
   float: left;
 }
 
-#wide_content_with_wide_skyscrapers {
-  width: 821px;
-  padding: 0 15px 0 0;
-  float: left;
-}
-
-#content_with_wide_skyscrapers {
-  width: 390px;
-  padding: 0 15px;
-  float: left;
-}
-
-#wide_skyscrapers {
-  float: right;
-  padding-top: 8px;
-  width: 160px;
-}
-
 .field, li, p, td, th {
   font-size: 1.3em;
 }

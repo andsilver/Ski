@@ -9,3 +9,26 @@
   float: right;
   margin-left: 10px;
 }
+
+#wide_content_with_wide_skyscrapers {
+  width: 821px;
+  padding: 0 15px 0 0;
+  float: left;
+}
+
+#content_with_wide_skyscrapers {
+  width: 390px;
+  padding: 0 15px;
+  float: left;
+}
+
+#wide_skyscrapers {
+  float: right;
+  padding-top: 13px;
+  width: 160px;
+}
+
+#wide_skyscrapers a {
+  margin-bottom: 13px;
+  display: block;
+}
