@@ -78,12 +78,12 @@ class ResortsController < ApplicationController
   end
 
   def piste_map
-    @heading_a = I18n.t('piste_map')
+    @heading_a = render_to_string(:partial => 'piste_map_heading').html_safe
     find_images 'piste-maps'
   end
 
   def gallery
-    @heading_a = I18n.t('gallery')
+    @heading_a = render_to_string(:partial => 'gallery_heading').html_safe
     find_images 'gallery'
   end
 
