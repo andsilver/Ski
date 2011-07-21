@@ -1,3 +1,9 @@
+<script>
+$(document).ready(function() {
+  $('.view_image a').fancyZoom({scaleImg: true, closeOnClick: true});
+});
+</script>
+
 <div class="group_panel">
 <h2><%= t title %></h2>
 
@@ -7,6 +13,9 @@
       <th class="numeric">ID</th>
       <th><%= t 'resort' %></th>
       <th><%= t 'name' %></th>
+      <% if adverts.first.respond_to? :image %>
+      <th>Image</th>
+      <% end %>
       <th class="numeric"><%= t 'views' %></th>
       <% if adverts.first.respond_to? :clicks %>
       <th class="numeric"><%= t 'clicks' %></th>
@@ -23,6 +32,9 @@
       <td class="numeric"><%= a.id %></td>
       <td><%= a.resort.name %></td>
       <td><%= link_to a.name, edit_polymorphic_path(a) %></td>
+      <% if a.respond_to? :image %>
+      <td class="view_image"><% if a.image %><a href="#<%= "#{a.class}_img_#{a.id}" %>">Image</a><div id="<%= "#{a.class}_img_#{a.id}" %>"><img src="<%= a.image.url %>"></div><% end %></td>
+      <% end %>
       <td class="numeric"><%= a.views %></td>
       <% if a.respond_to? :clicks %>
       <td class="numeric"><%= a.clicks %></td>
