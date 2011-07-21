@@ -78,7 +78,7 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property.current_advert.record_view
+    @property.current_advert.record_view if @property.current_advert
     rent_or_sale = @property.for_sale? ? t('for_sale') : t('for_rent')
     default_page_title t('properties.titles.show',
       :property_name => @property.name, :rent_or_sale => rent_or_sale,
