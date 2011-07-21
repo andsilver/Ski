@@ -415,9 +415,10 @@ ActiveRecord::Schema.define(:version => 20110711175630) do
     t.datetime "updated_at"
     t.text     "privacy_policy"
     t.text     "home_content"
-    t.integer  "directory_advert_price", :default => 0, :null => false
+    t.integer  "directory_advert_price",   :default => 0,  :null => false
     t.text     "start_page_content"
-    t.integer  "banner_advert_price",    :default => 0, :null => false
+    t.integer  "banner_advert_price",      :default => 0,  :null => false
+    t.string   "worldpay_installation_id", :default => "", :null => false
   end
 
 end

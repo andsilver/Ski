@@ -14,6 +14,10 @@
 
 <%= form_for @website do |f| %>
 <div class="field">
+  <%= f.label :worldpay_installation_id, 'WorldPay Installation ID' %><br>
+  <%= f.text_field :worldpay_installation_id %>
+</div>
+<div class="field">
   <%= f.label :home_content %><br>
   <%= f.text_area :home_content, :class => 'ckeditor' %>
 </div>
