@@ -3,7 +3,7 @@ class BannerAdvertsController < ApplicationController
 
   before_filter :no_browse_menu
   before_filter :user_required
-  before_filter :find_banner_advert_for_user, :only => [:edit, :update, :advertise_now]
+  before_filter :find_banner_advert_for_user, :only => [:edit, :show, :update, :advertise_now]
 
   def new
     @banner_advert = BannerAdvert.new
@@ -12,6 +12,10 @@ class BannerAdvertsController < ApplicationController
 
   def edit
     set_image_mode('edit')
+  end
+
+  def show
+    redirect_to edit_banner_advert_path(@banner_advert)
   end
 
   def create
