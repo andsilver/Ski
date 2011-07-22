@@ -47,7 +47,8 @@ class AdvertsController < ApplicationController
         :amount => line.price,
         :coupon_id => coupon_id,
         :country_id => country_id,
-        :resort_id => resort_id
+        :resort_id => resort_id,
+        :windows => line.windows
       )
     end
 
@@ -68,11 +69,30 @@ class AdvertsController < ApplicationController
     redirect_to basket_path, :notice => notice
   end
 
+  def buy_windows
+    @heading_a = render_to_string(:partial => 'buy_windows_heading').html_safe
+    @window_base_prices = WindowBasePrice.all(:order => :quantity)
+  end
+
+  def add_windows_to_basket
+    session[:windows_in_basket] = params[:quantity]
+    redirect_to basket_path
+  end
+
   protected
 
   def prepare_basket
     @lines = Array.new
     @total = 0
+
+    if session[:windows_in_basket]
+      line = BasketLine.new
+      line.description = "#{session[:windows_in_basket]} property windows"
+      line.price = WindowBasePrice.find_by_quantity(session[:windows_in_basket]).price * 100
+      line.windows = session[:windows_in_basket]
+      @lines << line
+      @total += line.price
+    end
 
     total_adverts = @current_user.adverts_so_far
     advert_number = Hash.new
@@ -116,7 +136,11 @@ class AdvertsController < ApplicationController
 
   def remove_advert
     params[:remove_advert].each_key do |id|
-      Advert.destroy_all(:id => id, :user_id => @current_user.id)
+      if id=='windows'
+        session[:windows_in_basket] = nil
+      else
+        Advert.destroy_all(:id => id, :user_id => @current_user.id)
+      end
     end
   end
 

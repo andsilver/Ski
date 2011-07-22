@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711175630) do
+ActiveRecord::Schema.define(:version => 20110721180838) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20110711175630) do
     t.integer  "property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "window",              :default => false, :null => false
   end
 
   add_index "adverts", ["banner_advert_id"], :name => "index_adverts_on_banner_advert_id"
@@ -163,15 +164,16 @@ ActiveRecord::Schema.define(:version => 20110711175630) do
   add_index "images", ["property_id"], :name => "index_images_on_property_id"
 
   create_table "order_lines", :force => true do |t|
-    t.integer  "order_id",    :null => false
-    t.string   "description", :null => false
-    t.integer  "amount",      :null => false
-    t.integer  "advert_id",   :null => false
+    t.integer  "order_id",                   :null => false
+    t.string   "description",                :null => false
+    t.integer  "amount",                     :null => false
+    t.integer  "advert_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "coupon_id"
     t.integer  "country_id"
     t.integer  "resort_id"
+    t.integer  "windows",     :default => 0, :null => false
   end
 
   add_index "order_lines", ["advert_id"], :name => "index_order_lines_on_advert_id"
@@ -373,6 +375,7 @@ ActiveRecord::Schema.define(:version => 20110711175630) do
     t.boolean  "new_development_by_default",     :default => false, :null => false
     t.text     "sales_pitch"
     t.boolean  "advertises_properties_for_sale", :default => false, :null => false
+    t.boolean  "advertises_through_windows",     :default => false, :null => false
   end
 
   create_table "unregistered_users", :force => true do |t|
@@ -419,6 +422,13 @@ ActiveRecord::Schema.define(:version => 20110711175630) do
     t.text     "start_page_content"
     t.integer  "banner_advert_price",      :default => 0,  :null => false
     t.string   "worldpay_installation_id", :default => "", :null => false
+  end
+
+  create_table "window_base_prices", :force => true do |t|
+    t.integer  "quantity",   :default => 0, :null => false
+    t.integer  "price",      :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

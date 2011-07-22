@@ -2,6 +2,8 @@ module AdvertBehaviours
   def advert_status
     if currently_advertised?
       :live
+    elsif user.role.advertises_through_windows? && self.class == Property
+      :dormant
     elsif latest_expired_advert
       :expired
     else

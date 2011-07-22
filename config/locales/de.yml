@@ -27,15 +27,20 @@ en:
   advert_end_date: Advert End Date
   advert_status: 'Advert Status'
   advert_statuses:
+    dormant: Dormant
     expired: Expired
     live: Live
     new: Awaiting Checkout
   advertise_action:
+    dormant: 'Place In Window'
     expired: 'Readvertise'
     new: 'Advertise Now'
+    remove_from_window: 'Remove From Window'
   advertise: 'Advertise'
   adverts_controller:
+    add_to_basket: Add to Basket
     basket_empty: Your basket is empty.
+    buy_advertising_windows: Buy Advertising Windows
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
     place_order: Place Order
   advert_details: Advert details
@@ -189,9 +194,12 @@ en:
   properties_controller:
     added_to_basket: 'Your property advert has been added to your basket.'
     created: "Your property advert was successfully created. Now let's add some photos."
+    placed_in_window: "Your property advert has been placed in a window."
+    removed_from_window: "Your property advert has been removed from its window."
     saved: "Your property advert details have been saved."
   properties:
     accommodation_type: Accommodation type
+    choose_a_window: Choose a Window
     email_a_friend: Email a friend
     features:
       balcony: Balcony
@@ -238,6 +246,7 @@ en:
       tv: TV
       wifi: WiFi
     no_matching_properties: There are no properties advertised at this resort that match your search criteria.
+    place_in_window: 'Place in Window'
     select_resort: Select resort
     strapline_example: Strapline Example
     strapline_example_content: 'A large, traditional alpine luxury ski chalet, sleeping 10. Full of charm and character.'

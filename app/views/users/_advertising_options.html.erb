@@ -1,3 +1,9 @@
+<% if @current_user.role.advertises_through_windows? %>
+<a class="cms_box" href="<%= buy_windows_adverts_path %>">
+  <h2><%= t('adverts_controller.buy_advertising_windows') %></h2>
+  <p>Windows allow you to swap in and out properties for sale or rent.</p>
+</a>
+<% end %>
 <% if @current_user.role.advertises_generally? %>
 <a class="cms_box" href="<%= new_banner_advert_path %>">
   <h2>New Banner Advert</h2>

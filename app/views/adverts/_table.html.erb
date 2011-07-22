@@ -11,6 +11,7 @@ $(document).ready(function() {
   <thead>
     <tr>
       <th class="numeric">ID</th>
+      <th><%= t 'edit' %></th>
       <th><%= t 'resort' %></th>
       <th><%= t 'name' %></th>
       <% if adverts.first.respond_to? :image %>
@@ -30,8 +31,9 @@ $(document).ready(function() {
 <% adverts.each do |a| %>
     <tr>
       <td class="numeric"><%= a.id %></td>
+      <td><%= link_to t('edit'), edit_polymorphic_path(a) %></td>
       <td><%= a.resort.name %></td>
-      <td><%= link_to a.name, edit_polymorphic_path(a) %></td>
+      <td><%= link_to a.name, polymorphic_path(a) %></td>
       <% if a.respond_to? :image %>
       <td class="view_image"><% if a.image %><a href="#<%= "#{a.class}_img_#{a.id}" %>">Image</a><div id="<%= "#{a.class}_img_#{a.id}" %>"><img src="<%= a.image.url %>"></div><% end %></td>
       <% end %>
@@ -59,9 +61,16 @@ $(document).ready(function() {
       </td>
       <td class="numeric">
         <% if a.currently_advertised? %>
-        &nbsp;
+          <% if a.current_advert.window? %>
+            <%= form_tag :controller => :properties, :action => "remove_from_window", :id => a.id do %>
+              <%= submit_tag t('advertise_action.remove_from_window') %>
+            <% end %>
+          <% else %>
+          &nbsp;
+          <% end %>
         <% else %>
-        <%= form_tag :controller => a.class.table_name, :action => "advertise_now", :id => a.id do %>
+        <% action = a.advert_status == :dormant ? "choose_window" : "advertise_now" %>
+        <%= form_tag :controller => a.class.table_name, :action => action, :id => a.id do %>
         <%= submit_tag t('advertise_action.' + a.advert_status.to_s) %>
         <% end %>
         <% end %>

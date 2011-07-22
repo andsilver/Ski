@@ -36,22 +36,28 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :adverts do
-    post 'update_basket_contents', :on => :collection
-    get 'place_order', :on => :collection
+    post 'update_basket_contents',  :on => :collection
+    get  'place_order',             :on => :collection
+    post 'add_windows_to_basket',   :on => :collection
+    get  'buy_windows',             :on => :collection
   end
   match "my/adverts" => "adverts#my", :as => :my_adverts
 
   resources :properties do
-    post 'advertise_now',  :on => :member
-    get  'contact',        :on => :member
-    get  'email_a_friend', :on => :member
-    get  'rent',           :on => :collection
-    get  'sale',           :on => :collection
-    get  'current_time',   :on => :collection
+    post 'advertise_now',       :on => :member
+    post 'choose_window',       :on => :member
+    get  'contact',             :on => :member
+    get  'email_a_friend',      :on => :member
+    post 'place_in_window',     :on => :member
+    get  'rent',                :on => :collection
+    post 'remove_from_window',  :on => :member
+    get  'sale',                :on => :collection
+    get  'current_time',        :on => :collection
   end
 
   resources :property_base_prices
   resources :property_volume_discounts
+  resources :window_base_prices
 
   resources :banner_adverts do
     get  'click',         :on => :member

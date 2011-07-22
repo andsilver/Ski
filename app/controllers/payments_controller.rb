@@ -91,6 +91,9 @@ class PaymentsController < ApplicationController
       if line.advert
         line.advert.start_and_save!
       end
+      if line.windows > 0
+        Advert.activate_windows_for_user(line.windows, @payment.order.user)
+      end
     end
   end
 end

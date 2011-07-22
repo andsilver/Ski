@@ -24,15 +24,20 @@ fr:
   advert_end_date: Advert End Date
   advert_status: 'Advert Status'
   advert_statuses:
+    dormant: Dormant
     expired: Expiré
     live: Démontrant
     new: Awaiting Checkout
   advertise_action:
+    dormant: 'Place In Window'
     expired: 'Annoncez Nouveau'
     new: 'Annoncez Maintenant'
+    remove_from_window: 'Remove From Window'
   advertise: Annoncez
   adverts_controller:
+    add_to_basket: Add to Basket
     basket_empty: Votre panier est vide.
+    buy_advertising_windows: Buy Advertising Windows
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
     place_order: Commander
   advert_details: Détail de l'annonce
@@ -186,9 +191,12 @@ fr:
   properties_controller:
     added_to_basket: 'Your property advert has been added to your basket.'
     created: "Your property advert was successfully created. Now let's add some photos."
+    placed_in_window: "Your property advert has been placed in a window."
+    removed_from_window: "Your property advert has been removed from its window."
     saved: "Your property advert details have been saved."
   properties:
     accommodation_type: Type d'hébergement
+    choose_a_window: Choose a Window
     email_a_friend: Envoyer à un ami
     features:
       balcony: Balcon
@@ -235,6 +243,7 @@ fr:
       tv: TV
       wifi: WiFi
     no_matching_resorts: "Il n'ya pas de propriétés annoncées à cette station de ski qui correspondent à vos critères de recherche."
+    place_in_window: 'Place in Window'
     select_resort: Sélectionnez une station
     strapline_example: Slogan Par Exemple
     strapline_example_content: 'A large, traditional alpine luxury ski chalet, sleeping 10. Full of charm and character.'

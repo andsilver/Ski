@@ -20,9 +20,9 @@
     <% @lines.each do |line| %>
       <tr>
         <td><%= line.description %></td>
-        <td><% unless line.coupon %><%= link_to t('edit'), edit_advert_object_path(line.advert) %><% end %></td>
+        <td><% unless line.coupon || line.advert.nil? %><%= link_to t('edit'), edit_advert_object_path(line.advert) %><% end %></td>
         <td class="numeric">
-          <% unless line.coupon %>
+          <% unless line.coupon || line.advert.nil? %>
           <select name="months[<%= line.advert.id %>]" onchange="this.form.submit()">
             <% line.advert.object.valid_months.each do |months| %>
             <option value="<%= months %>"<%= " selected" if line.advert.months==months %>><%= pluralize(months, 'month') %></option>
@@ -32,8 +32,11 @@
         </td>
         <td class="numeric"><%= euros_from_cents line.price %></td>
         <td>
-          <% unless line.coupon %>
+          <% unless line.coupon || line.advert.nil? %>
           <input type="submit" value="Remove" name="remove_advert[<%= line.advert.id %>]">
+          <% end %>
+          <% if line.windows %>
+          <input type="submit" value="Remove" name="remove_advert[windows]">
           <% end %>
         </td>
       </tr>

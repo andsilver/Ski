@@ -1,5 +1,5 @@
 class BasketLine
-  attr_accessor :advert, :coupon, :description, :price
+  attr_accessor :advert, :coupon, :description, :price, :windows
 
   def order_description
     if @advert

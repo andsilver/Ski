@@ -32,6 +32,27 @@ class Advert < ActiveRecord::Base
     advert
   end
 
+  def self.assign_window_for(property)
+    window = property.user.empty_windows.first
+    if window.nil?
+      false
+    else
+      window.property_id = property.id
+      window.save
+      true
+    end
+  end
+
+  def self.activate_windows_for_user(how_many, user)
+    how_many.times do
+      advert = Advert.new
+      advert.user_id = user.id
+      advert.window = true
+      advert.months = 12
+      advert.start_and_save!
+    end
+  end
+
   def type
     [:banner_advert_id, :directory_advert_id, :property_id].each do |sym|
       return sym.to_s.gsub('_id', '').to_sym unless send(sym).nil?

@@ -7,7 +7,7 @@ class PropertiesController < ApplicationController
 
   before_filter :user_required, :except => [:browse_for_rent, :browse_for_sale,
     :new_developments, :contact, :email_a_friend, :current_time, :show]
-  before_filter :find_property_for_user, :only => [:edit, :update, :advertise_now]
+  before_filter :find_property_for_user, :only => [:edit, :update, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
   before_filter :resort_conditions, :only => [:browse_for_rent, :browse_for_sale, :new_developments]
   before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale, :new_developments]
@@ -111,9 +111,18 @@ class PropertiesController < ApplicationController
     @property.user_id = @current_user.id
 
     if @property.save
-      Advert.create_for(@property)
       set_image_mode
-      redirect_to new_image_path, :notice => t('properties_controller.created')
+      if @current_user.role.advertises_through_windows?
+        if Advert.assign_window_for(@property)
+          notice = t('properties_controller.created_and_assigned_to_window')
+        else
+          notice = t('properties_controller.created_but_no_empty_windows_left')
+        end
+      else
+        Advert.create_for(@property)
+        notice = t('properties_controller.created')
+      end
+      redirect_to new_image_path, :notice => notice
     else
       render :action => "new"
     end
@@ -130,6 +139,28 @@ class PropertiesController < ApplicationController
   def advertise_now
     Advert.create_for(@property)
     redirect_to(basket_path, :notice => t('properties_controller.added_to_basket'))
+  end
+
+  def choose_window
+    @heading_a = render_to_string(:partial => 'choose_window_heading').html_safe
+  end
+
+  def place_in_window
+    advert = Advert.find_by_id_and_user_id(params[:advert_id], @current_user.id)
+    if advert && advert.window?
+      advert.property_id = @property.id
+      advert.save
+      redirect_to my_adverts_path, :notice => t('properties_controller.placed_in_window')
+    else
+      redirect_to :action => 'choose_window'
+    end
+  end
+
+  def remove_from_window
+    advert = @property.current_advert
+    advert.property_id = nil
+    advert.save!
+    redirect_to my_adverts_path, :notice => t('properties_controller.removed_from_window')
   end
 
   protected
