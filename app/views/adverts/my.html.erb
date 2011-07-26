@@ -1,6 +1,32 @@
 <h1><%= link_to I18n.t('advertise'), advertise_path %> &rarr;
   <%= I18n.t('my_adverts') %></h1>
 
+<% if @current_user.role.advertises_through_windows? %>
+<div class="group_panel">
+  <h2><%= t('my_windows') %></h2>
+  <table class="grid">
+    <tr>
+      <th>Purchased On</th>
+      <th>Expires On</th>
+      <th>Days Remaining</th>
+      <th>Total</th>
+      <th>Number in Use</th>
+      <th>Number Free</th>
+    </tr>
+  <% @window_groups.each do |group| %>
+    <tr>
+      <td><%= l group.starts_at, :format => :short %></td>
+      <td><%= l group.expires_at, :format => :short %></td>
+      <td><%= group.days_remaining %></td>
+      <td><%= group.total %></td>
+      <td><%= group.number_in_use %></td>
+      <td><%= group.number_free %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+<% end %>
+
 <% unless @rentals.empty? %>
 <%= render 'table', :title => 'property_rentals', :adverts => @rentals %>
 <% end %>

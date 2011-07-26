@@ -4,6 +4,8 @@ class AdvertsController < ApplicationController
   before_filter :prepare_basket, :only => [:basket, :place_order]
 
   def my
+    @window_groups = WindowGroups.new
+    @current_user.windows.each {|w| @window_groups << w}
     @rentals = @current_user.properties_for_rent
     @sales = @current_user.properties_for_sale
     @banner_adverts = @current_user.banner_adverts
