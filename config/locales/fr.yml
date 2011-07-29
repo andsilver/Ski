@@ -309,6 +309,15 @@ fr:
   users:
     account_created: 'Your account was successfully created.'
     account_type: Type de compte
+    advertise_a_property_for_rent:
+      advertise_a_property_for_rent: Advertise a Property for Rent
+      description: "Advertise your property in a resort's property rentals area."
+    advertise_a_property_for_sale:
+      advertise_a_property_for_sale: Advertise a Property for Sale
+      description: "Advertise your property in a resort's property sales area."
+    advertiser_account: "%{name}’s Advertiser Account"
+    buy_advertising_windows:
+      description: "Windows allow you to swap in and out properties for sale or rent."
     choose_a_new_password: Choisir un Nouveau Mot de Passe
     email_sent: E-mail envoyé
     enter_your_email_address: "Please enter your email address below"
@@ -318,9 +327,24 @@ fr:
       heading: E-mail Envoyé
       content: "Un email a été envoyé montrant comment réinitialiser votre mot de passe et le changement. S'il vous plaît vérifier votre boîte de réception dans quelques minutes."
     forgot_your_password: Mot de Passe Oublié
+    my_adverts:
+      description: 'View and update your past and current adverts. See your advert stats.'
+    my_details:
+      description: 'Update your name, contact and billing details.'
+      my_details: My Details
+    my_enquiries:
+      description: 'View enquiries that have been emailed to you through your enquiry forms.'
+    new_banner_advert:
+      description: "Advertise your business throughout a resort's pages."
+      new_banner_advert: New Banner Advert
+    new_directory_advert:
+      description: "Advertise your business within a resort's directory."
+      new_directory_advert: New Directory Advert
     no_account_yet: "N'avez-vous pas un compte?"
     or: Ou
     password_changed: 'Your password has been changed'
+    receipts:
+      description: 'View and print off receipts for orders that you have placed here.'
     register_to_advertise: Register to advertise your property or business
     select_account_type: Sélectionnez le type de compte
     sign_in_to_access_your_account: Inscrivez-vous pour accéder à votre compte

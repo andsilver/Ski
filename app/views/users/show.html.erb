@@ -1,25 +1,19 @@
 <%= render 'advertising_options' %>
 <a class="cms_box" href="<%= my_adverts_path %>">
-  <h2><%= I18n.t('my_adverts') %></h2>
-  <p>
-    View and update your past and current adverts.
-    See your advert stats.
-  </p>
+  <h2><%= t('my_adverts') %></h2>
+  <p><%= t('users.my_adverts.description') %></p>
 </a>
 <a class="cms_box" href="<%= my_details_path %>">
-  <h2>My Details</h2>
-  <p>Update your name, contact and billing details.</p>
+  <h2><%= t('users.my_details.my_details') %></h2>
+  <p><%= t('users.my_details.description') %></p>
 </a>
 <a class="cms_box" href="<%= receipts_orders_path %>">
-  <h2>Receipts</h2>
-  <p>View and print off receipts for orders that you have
-    placed here.</p>
+  <h2><%= t('receipts') %></h2>
+  <p><%= t('users.receipts.description') %></p>
 </a>
 <a class="cms_box" href="<%= my_enquiries_path %>">
-  <h2><%= I18n.t('my_enquiries') %></h2>
-  <p>
-    View enquiries that have been emailed to you through your enquiry forms.
-  </p>
+  <h2><%= t('my_enquiries') %></h2>
+  <p><%= t('users.my_enquiries.description') %></p>
 </a>
 
 <%= clear %>
