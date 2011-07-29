@@ -75,8 +75,8 @@ class UsersController < ApplicationController
   end
 
   def forgot_password
-    default_page_title t('users.forgot_password')
-    @heading_a = t('users.forgot_password')
+    default_page_title t('users.forgot_password.forgot_password')
+    @heading_a = t('users.forgot_password.forgot_password')
   end
   
   def forgot_password_send

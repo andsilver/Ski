@@ -329,7 +329,10 @@ fr:
     email_sent: E-mail envoyé
     enter_your_email_address: "Please enter your email address below"
     first_advert: Première Annonce
-    forgot_password: Mot de Passe Oublié
+    forgot_password:
+      forgot_password: Mot de Passe Oublié
+      instructions: "Enter your email address below and press Send for further instructions showing how to reset and change your password."
+      send: Send
     forgot_password_email_sent:
       heading: E-mail Envoyé
       content: "Un email a été envoyé montrant comment réinitialiser votre mot de passe et le changement. S'il vous plaît vérifier votre boîte de réception dans quelques minutes."

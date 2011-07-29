@@ -332,7 +332,10 @@ en:
     email_sent: Email Sent
     enter_your_email_address: "Please enter your email address below"
     first_advert: First Advert
-    forgot_password: Forgot Password
+    forgot_password:
+      forgot_password: Forgot Password
+      instructions: "Enter your email address below and press Send for further instructions showing how to reset and change your password."
+      send: Send
     forgot_password_email_sent:
       heading: Email Sent
       content: An email has been sent showing how to reset and change your password. Please check your inbox in a few minutes.
