@@ -293,7 +293,11 @@ it:
       slope_direction: Slope direction
       snowboard_parks: Snowboard parks
       top_lift: Top lift
+    gallery:
+      no_photos: "There are no photographs of this resort yet."
     not_found: 'That resort does not exist.'
+    piste_map:
+      no_piste_maps: "There are no piste maps for this resort yet."
     resort_information_heading: "%{resort} Resort Information"
   resort_options:
     new_developments: New Build

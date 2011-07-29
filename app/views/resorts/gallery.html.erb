@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 <% if @images.empty? %>
   <p>
-    There are no photographs of this resort yet.
+    <%= t('resorts_controller.gallery.no_photos') %>
   </p>
 <% else %>
   <div id="gallery_thumbnails" class="thumbnails">

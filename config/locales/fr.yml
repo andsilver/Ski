@@ -293,7 +293,11 @@ fr:
       slope_direction: Direction de la pente
       snowboard_parks: Parcs de planche à neige
       top_lift: Plus haut téléphérique
+    gallery:
+      no_photos: "There are no photographs of this resort yet."
     not_found: 'That resort does not exist.'
+    piste_map:
+      no_piste_maps: "There are no piste maps for this resort yet."
     resort_information_heading: "%{resort} Resort Information"
   resort_options:
     new_developments: Nouvelle

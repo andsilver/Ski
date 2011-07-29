@@ -2,7 +2,7 @@
 
 <% if @images.empty? %>
   <p>
-    There are no piste maps for this resort yet.
+    <%= t('resorts_controller.piste_map.no_piste_maps') %>
   </p>
 <% else %>
   <% @images.each do |i| %>
