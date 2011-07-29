@@ -14,7 +14,7 @@
 <%= f.hidden_field :role_id %>
 <div id="panel_1">
 <div class="group_panel">
-<h2>Your Details</h2>
+<h2><%= t('users.your_details') %></h2>
 <div class="field">
   <%= f.label :first_name, t('first_name') %><br>
   <%= f.text_field :first_name %> <%= required_field %>
@@ -28,15 +28,15 @@
   <%= f.text_field :email %> <%= required_field %>
 </div>
 <div class="field">
-  <%= f.label :password %><br>
+  <%= f.label :password, t('password') %><br>
   <%= f.password_field :password %> <%= required_field if @user.new_record? %>
 </div>
 <div class="field">
-  <%= f.label :phone %><br>
+  <%= f.label :phone, t('phone') %><br>
   <%= f.text_field :phone %>
 </div>
 <div class="field">
-  <%= f.label :mobile %><br>
+  <%= f.label :mobile, t('mobile') %><br>
   <%= f.text_field :mobile %>
 </div>
 </div>
@@ -58,7 +58,7 @@
 <div class="group_panel">
 <h2><%= t('business_details') %></h2>
 <div class="field">
-  <%= f.label :business_name %><br>
+  <%= f.label :business_name, t('users.business_name') %><br>
   <%= f.text_field :business_name %>
 </div>
 <div class="field">
@@ -71,7 +71,7 @@
 <% if @user.role.has_a_website? %>
 <div class="group_panel">
 <div class="field">
-  <%= f.label :website %><br>
+  <%= f.label :website, t('users.website') %><br>
   <%= f.text_field :website %>
 </div>
 <p>
@@ -85,7 +85,7 @@
 <h2><%= t 'terms' %></h2>
 <div class="field">
   <%= f.check_box :terms_and_conditions %>
-  <%= f.label :terms_and_conditions, 'I accept the terms & conditions below' %>  <%= required_field %>
+  <%= f.label :terms_and_conditions, t('users.i_accept_terms') %>  <%= required_field %>
 </div>
 <% end %>
 
@@ -97,9 +97,9 @@
 </div><!--#panel_1-->
 <div id="panel_2">
 <div class="group_panel">
-<h2>Card/Billing Details</h2>
+<h2><%= t('users.billing_details') %></h2>
 <div class="field">
-  <%= f.label :billing_street, 'House number and street' %><br>
+  <%= f.label :billing_street, t('users.billing_street') %><br>
   <%= f.text_field :billing_street %> <%= required_field %>
 </div>
 <div class="field">
@@ -118,17 +118,17 @@
   <%= f.text_field :billing_postcode %>
 </div>
 <div class="field">
-  <%= f.label :billing_country_id, I18n.t('country') %><br>
-  <%= select("user", "billing_country_id", Country.popular_billing_countries.collect {|c| [ c.name, c.id ] }, {:prompt => 'Select Country'}) %>
+  <%= f.label :billing_country_id, t('countries.country') %><br>
+  <%= select("user", "billing_country_id", Country.popular_billing_countries.collect {|c| [ c.name, c.id ] }, {:prompt => t('countries.select_country')}) %>
   <%= required_field %>
 </div>
 </div>
 
 <% if @user.role.advertises_generally? %>
 <div class="group_panel">
-<h2>Describe <%= @user.role.has_business_details? ? 'Your Business' : 'Yourself' %></h2>
+<h2><%= @user.role.has_business_details? ? t('users.describe_your_business') : t('users.describe_yourself') %></h2>
 <div class="field">
-  <%= f.label :description %><br>
+  <%= f.label :description, t('description') %><br>
   <%= f.text_area :description %>
 </div>
 </div>

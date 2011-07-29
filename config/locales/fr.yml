@@ -88,7 +88,9 @@ fr:
   continue: Continuer
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
-  country: 'Pays'
+  countries:
+    country: 'Pays'
+    select_country: 'Select Country'
   county: Région
   currencies_controller:
     exchange_rate_updated: 'Exchange rates updated.'
@@ -316,9 +318,14 @@ fr:
       advertise_a_property_for_sale: Advertise a Property for Sale
       description: "Advertise your property in a resort's property sales area."
     advertiser_account: "%{name}’s Advertiser Account"
+    billing_details: "Card/Billing Details"
+    billing_street: 'House number and street'
+    business_name: Business name
     buy_advertising_windows:
       description: "Windows allow you to swap in and out properties for sale or rent."
     choose_a_new_password: Choisir un Nouveau Mot de Passe
+    describe_your_business: 'Describe Your Business'
+    describe_yourself: 'Describe Yourself'
     email_sent: E-mail envoyé
     enter_your_email_address: "Please enter your email address below"
     first_advert: Première Annonce
@@ -327,6 +334,7 @@ fr:
       heading: E-mail Envoyé
       content: "Un email a été envoyé montrant comment réinitialiser votre mot de passe et le changement. S'il vous plaît vérifier votre boîte de réception dans quelques minutes."
     forgot_your_password: Mot de Passe Oublié
+    i_accept_terms: 'I accept the terms & conditions below'
     my_adverts:
       description: 'View and update your past and current adverts. See your advert stats.'
     my_details:
@@ -350,6 +358,7 @@ fr:
     sign_in_to_access_your_account: Inscrivez-vous pour accéder à votre compte
     website: Website
     website_format_tip: 'Please start with either http:// or https://'
+    your_details: Your Details
     your_position: Your position
   view: View
   views: 'Views'
