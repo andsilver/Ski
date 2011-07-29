@@ -1,4 +1,4 @@
-de:
+it:
   account: Account
   activerecord:
     errors:
@@ -147,7 +147,7 @@ de:
   garden: 'Garden'
   google:
     site_verification: lqULaLa4Fubz6zh09WjcMwZHUGPb7SnTz38rxtkcRHY
-    web_property_id: UA-22451896-4
+    web_property_id: UA-22451896-5
   home: Home
   images_controller:
     deleted: 'Image deleted.'
