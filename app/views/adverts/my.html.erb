@@ -6,12 +6,12 @@
   <h2><%= t('my_windows') %></h2>
   <table class="grid">
     <tr>
-      <th>Purchased On</th>
-      <th>Expires On</th>
-      <th>Days Remaining</th>
-      <th>Total</th>
-      <th>Number in Use</th>
-      <th>Number Free</th>
+      <th><%= t('adverts_controller.purchased_on') %></th>
+      <th><%= t('adverts_controller.expires_on') %></th>
+      <th><%= t('adverts_controller.days_remaining') %></th>
+      <th><%= t('adverts_controller.total') %></th>
+      <th><%= t('adverts_controller.number_in_use')%></th>
+      <th><%= t('adverts_controller.number_free') %></th>
     </tr>
   <% @window_groups.each do |group| %>
     <tr>

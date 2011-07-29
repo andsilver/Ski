@@ -1,7 +1,7 @@
 <%= form_tag :action => 'add_windows_to_basket' do %>
   <select name="quantity">
     <% @window_base_prices.each do |wbp| %>
-    <option value="<%= wbp.quantity %>"><%= wbp.quantity %> windows @ <%= euros(wbp.price) %></option>
+    <option value="<%= wbp.quantity %>"><%= wbp.quantity %> <%= t('adverts_controller.windows') %> @ <%= euros(wbp.price) %></option>
     <% end %>
   </select>
 <%= submit_tag t('adverts_controller.add_to_basket') %>

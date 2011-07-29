@@ -42,7 +42,14 @@ en:
     basket_empty: Your basket is empty.
     buy_advertising_windows: Buy Advertising Windows
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
+    days_remaining: Days Remaining
+    expires_on: Expires On
+    number_free: Number Free
+    number_in_use: Number in Use
     place_order: Place Order
+    purchased_on: Purchased On
+    total: Total
+    windows: Windows
   advert_details: Advert details
   banner_adverts: Banner Adverts
   banner_adverts_controller:
@@ -147,6 +154,7 @@ en:
   home: Home
   images_controller:
     deleted: 'Image deleted.'
+    image: 'Image'
     image_uploaded: Image uploaded.
     invalid_dimensions: This image was not accepted because it does not have valid dimensions.
     problem_uploading: 'There was a problem uploading your image. Was it in the correct format?'
