@@ -267,6 +267,16 @@ it:
   registration: Registration
   resort: 'Resort'
   resorts_controller:
+    detail:
+      an_introduction_to: "An Introduction to %{resort}"
+      how_to_get_there: "How to Get There"
+      insider_view: "%{resort}: The MyChaletFinder.com Insider View"
+      key_information: "Key Information"
+      living_in: "Living in %{resort}"
+      more_detail: "More Detail"
+      owning_a_property_in: "Owning a Ski Chalet or an Apartment in %{resort}"
+      summer_holidays_in: "Summer Holidays in %{resort}"
+      visiting: "Skiing in %{resort}"
     facts:
       altitude: Altitude
       babysitting_services: Babysitting services

@@ -1,10 +1,10 @@
 <div id="wide_content_with_wide_skyscrapers">
-<h2>An Introduction to <%= @resort.name %></h2>
+<h2><%= t('resorts_controller.detail.an_introduction_to', :resort => @resort) %></h2>
 <% unless @resort.info.blank? %>
 <%= md @resort.info %>
 <% end %>
 
-<h2>Key Information</h2>
+<h2><%= t('resorts_controller.detail.key_information') %></h2>
 
 <table id="resort_facts">
   <tr>
@@ -85,7 +85,7 @@
   </tr>
 </table>
 
-<h2>How to Get There</h2>
+<h2><%= t('resorts_controller.detail.how_to_get_there') %></h2>
 <table>
   <% @resort.airport_distances.each do |ad| %>
   <tr>
@@ -103,27 +103,27 @@
 <% end %>
 
 <% unless @resort.visiting.blank? %>
-<h2>Skiing in <%= @resort.name %></h2>
+<h2><%= t('resorts_controller.detail.visiting', :resort => @resort) %></h2>
 <%= md @resort.visiting %>
 <% end %>
 
 <% unless @resort.owning_a_property_in.blank? %>
-<h2>Owning a Ski Chalet or an Apartment in <%= @resort.name %></h2>
+<h2><%= t('resorts_controller.detail.owning_a_property_in', :resort => @resort) %></h2>
 <%= md @resort.owning_a_property_in %>
 <% end %>
 
 <% unless @resort.summer_holidays_in.blank? %>
-<h2>Summer Holidays in <%= @resort.name %></h2>
+<h2><%= t('resorts_controller.detail.summer_holidays_in', :resort => @resort) %></h2>
 <%= md @resort.summer_holidays_in %>
 <% end %>
 
 <% unless @resort.living_in.blank? %>
-<h2>Living in <%= @resort.name %></h2>
+<h2><%= t('resorts_controller.detail.living_in', :resort => @resort) %></h2>
 <%= md @resort.living_in %>
 <% end %>
 
 <% unless @resort.insider_view.blank? %>
-<h2><%= @resort.name %>: The MyChaletFinder.com Insider View</h2>
+<h2><%= t('resorts_controller.detail.insider_view', :resort => @resort) %></h2>
 <%= md @resort.insider_view %>
 <% end %>
 
