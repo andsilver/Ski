@@ -12,4 +12,8 @@ class Role < ActiveRecord::Base
       !advertises_properties_for_rent &&
       !advertises_generally
   end
+
+  def localisation_key
+    "roles.#{name.downcase.gsub(' ', '_')}"
+  end
 end

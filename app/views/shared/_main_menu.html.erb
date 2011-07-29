@@ -41,11 +41,11 @@ function closeMenu(menu) {
   </ul>
 </nav>
 <div class="drop" id="welcome_advertisers" onmouseover="openMenu(this);" onmouseout="startCloseMenu(this);">
-  <a href="/welcome/property-owner">Property owners</a>
-  <a href="/welcome/letting-agent">Letting agents</a>
-  <a href="/welcome/property-developer">Property developers</a>
-  <a href="/welcome/estate-agent">Estate agents</a>
-  <a href="/welcome/other-business">Other business</a>
+  <a href="/welcome/property-owner"><%= t('roles.property_owners') %></a>
+  <a href="/welcome/letting-agent"><%= t('roles.letting_agents') %></a>
+  <a href="/welcome/property-developer"><%= t('roles.property_developers') %></a>
+  <a href="/welcome/estate-agent"><%= t('roles.estate_agents') %></a>
+  <a href="/welcome/other-business"><%= t('roles.other_business') %></a>
 </div>
 <div class="drop" id="featured_resorts" onmouseover="openMenu(this);" onmouseout="startCloseMenu(this);">
   <% Resort.featured.each do |resort| %>

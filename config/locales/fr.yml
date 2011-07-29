@@ -290,6 +290,18 @@ fr:
   resort_options:
     new_developments: Nouvelle
     resort_info: Infos Station
+  roles:
+    administrator: Administrator
+    advertiser: Advertiser
+    estate_agent: Estate agent
+    estate_agents: Estate agents
+    letting_agent: Letting agent
+    letting_agents: Letting agents
+    other_business: Other business
+    property_developer: Property developer
+    property_developers: Property developers
+    property_owner: Property owner
+    property_owners: Property owners
   sale_price: 'Prix de vente'
   save: 'Enregistrer'
   sessions_controller:
@@ -323,7 +335,12 @@ fr:
     business_name: Business name
     buy_advertising_windows:
       description: "Windows allow you to swap in and out properties for sale or rent."
+    can_advertise_generally: '<p>You will be able to create banner or directory adverts.</p>'
+    can_advertise_properties_for_rent: '<p>You will be able to advertise properties for rent.</p>'
+    can_advertise_properties_for_sale: '<p>You will be able to advertise properties for sale.</p>'
+    can_advertise_through_windows: '<p>You will be able to buy advertising windows and swap properties in and out of the windows.</p>'
     choose_a_new_password: Choisir un Nouveau Mot de Passe
+    choose_an_account_type: "Please choose an account type that best matches you or your business."
     describe_your_business: 'Describe Your Business'
     describe_yourself: 'Describe Yourself'
     email_sent: E-mail envoyé
