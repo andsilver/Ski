@@ -45,6 +45,7 @@
 </script>
 <div id="content_with_wide_skyscrapers">
 <div id="property">
+<%= render :partial => 'user_logo', :locals => { :property => @property } %>
 <h1 class="property_name"><span><%= I18n.t('property_name') %>:</span> <%= @property.name %></h1>
 <p class="property_id"><%= I18n.t('property_id') %>: <span><%= @property.id %></span></p>
 

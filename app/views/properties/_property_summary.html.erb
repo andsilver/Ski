@@ -1,4 +1,5 @@
 <div class="property_summary">
+  <%= render :partial => 'user_logo', :locals => { :property => p } %>
   <h3><%= link_to p.name, p %></h3>
   <p class="strapline"><%= p.strapline %></p>
   <p class="thumbnail">

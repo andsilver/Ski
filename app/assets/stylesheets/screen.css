@@ -396,6 +396,18 @@ p.chunky_button {
   width: 100px;
 }
 
+.user_logo {
+  float: right;
+  padding: 3px;
+  background: #fff;
+  border: 1px solid #eee;
+  margin-left: 6px;
+}
+
+.user_logo img {
+  display: block;
+}
+
 /**
  * Enquiry form
  */

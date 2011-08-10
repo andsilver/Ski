@@ -1,9 +1,10 @@
 <%= render 'spam/spam' %>
+<%= render :partial => 'user_logo', :locals => { :property => @property } %>
 
 <p>
   <%= t('enquiries_controller.enquiry_introduction') %>
 </p>
-
+<%= clear %>
 <% if @enquiry.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@enquiry.errors.count, "error") %> prohibited this enquiry from being sent:</h2>
