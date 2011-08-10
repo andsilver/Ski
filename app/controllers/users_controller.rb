@@ -40,13 +40,7 @@ class UsersController < ApplicationController
       session[:user] = @user.id
       UserNotifier.welcome(@user, request.host).deliver
       flash[:notice] = t('users.account_created')
-      if @user.role.only_advertises_properties_for_sale?
-        redirect_to new_property_path(:for_sale => true)
-      elsif @user.role.only_advertises_properties_for_rent?
-        redirect_to new_property_path
-      else
-        redirect_to(first_advert_path)
-      end
+      redirect_to after_create_path(@user)
     else
       render :action => "new"
     end
@@ -110,6 +104,16 @@ class UsersController < ApplicationController
   end
   
   private
+
+  def after_create_path(user)
+    if user.role.only_advertises_properties_for_sale?
+      new_property_path(:for_sale => true)
+    elsif user.role.only_advertises_properties_for_rent?
+      new_property_path
+    else
+      first_advert_path
+    end
+  end
 
   def forgot_password_params_ok?
     if @user.forgot_password_token.blank?
