@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => { :multipart => true } do |f| %>
 <%= f.hidden_field :role_id %>
 <div id="panel_1">
 <div class="group_panel">
@@ -77,6 +77,14 @@
 <p>
   <%= t('users.website_format_tip') %>
 </p>
+</div>
+
+<div class="group_panel">
+  <h2>Logo or Photo of Business</h2>
+  <div class="field">
+  	<label for="image">Image (.jpeg, .jpg, .gif, .png)</label><br>
+  	<input id="image" name="image" type="file" />
+  </div>
 </div>
 <% end %>
 

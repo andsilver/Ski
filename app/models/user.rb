@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :role
   belongs_to :billing_country, :class_name => 'Country'
   belongs_to :coupon
+  belongs_to :image
 
   has_many :banner_adverts
   has_many :directory_adverts
