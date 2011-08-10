@@ -40,6 +40,7 @@ class UsersController < ApplicationController
       session[:user] = @user.id
       UserNotifier.welcome(@user, request.host).deliver
       flash[:notice] = t('users.account_created')
+      update_logo
       redirect_to after_create_path(@user)
     else
       render :action => "new"
@@ -59,6 +60,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        update_logo
         format.html { redirect_to(my_details_path, :notice => I18n.t('my_details_saved')) }
         format.xml  { head :ok }
       else
@@ -112,6 +114,22 @@ class UsersController < ApplicationController
       new_property_path
     else
       first_advert_path
+    end
+  end
+
+  def update_logo
+    return if params[:image].nil?
+
+    @image = Image.new
+    @image.user_id = @user.id
+    @image.image = params[:image]
+
+    begin
+      if @image.save
+        @user.image_id = @image.id
+        @user.save
+      end
+    rescue
     end
   end
 
