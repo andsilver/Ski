@@ -14,19 +14,19 @@ Feature: Sign Up
     And I select "Estate agent" from "Account type"
     And I press "Continue"
     When I fill in the following:
-      | First name              | Carol                    |
-      | Last name               | Cooper                   |
-      | Email                   | carol@mychaletfinder.com |
-      | Password                | secret                   |
-      | Website                 | myskichalet.co.uk        |
-      | House number and street | 1 Main Road              |
-      | Town / city             | Hailsham                 |
-      | State / county          | East Sussex              |
-      | ZIP / postcode          | BN12 12Z                 |
-      | Phone                   | +44.1323123456           |
-      | Mobile                  | +44.7777123456           |
-      | Business name           | Carol's Holidays Ltd     |
-      | Your position           | Managing director        |
+      | First name              | Carol                     |
+      | Last name               | Cooper                    |
+      | Email                   | carol@mychaletfinder.com  |
+      | Password                | secret                    |
+      | Website                 | http://mychaletfinder.com |
+      | House number and street | 1 Main Road               |
+      | Town / city             | Hailsham                  |
+      | State / county          | East Sussex               |
+      | ZIP / postcode          | BN12 12Z                  |
+      | Phone                   | +44.1323123456            |
+      | Mobile                  | +44.7777123456            |
+      | Business name           | Carol's Holidays Ltd      |
+      | Your position           | Managing director         |
     And I select "United Kingdom" from "Country"
     And I check "I accept the terms & conditions below"
     And I press "Register"

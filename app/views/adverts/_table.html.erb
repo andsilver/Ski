@@ -31,7 +31,7 @@ $(document).ready(function() {
 <% adverts.each do |a| %>
     <tr>
       <td class="numeric"><%= a.id %></td>
-      <td><%= link_to t('edit'), edit_polymorphic_path(a) %></td>
+      <td><%= link_to t('edit'), edit_polymorphic_path(a), :title => "Edit #{a.to_s}" %></td>
       <td><%= a.resort.name %></td>
       <td><%= link_to a.name, polymorphic_path(a) %></td>
       <% if a.respond_to? :image %>

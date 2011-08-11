@@ -29,9 +29,9 @@ Feature: My Properties for Rent
       | Property name             | Chalet Des Sapins              |
       | Strapline                 | Excellent facilities, sleeps 4 |
       | Address                   | 74400                          |
-      | Weekly rent price         | 1650                           |
-      | Distance from town centre | 800                            |
-      | Nearest lift              | 500                            |
+      | Weekly rental price from  | 1650                           |
+    And I select "800" from "Distance from town centre"
+    And I select "500" from "Nearest lift"
     And I select "France > Chamonix" from "Resort"
     And I select "4" from "Sleeping capacity"
     And I select "2" from "Number of bedrooms"
@@ -57,7 +57,7 @@ Feature: My Properties for Rent
     Given I am signed in
     And I have properties for rent
     When I am on the my adverts page
-    And I follow "Chalet Maya"
+    And I follow "Edit Chalet Maya"
     Then I should see the "Edit Property" heading
     When I press "Save"
     Then I should see "Your property advert details have been saved."

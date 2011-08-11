@@ -15,4 +15,4 @@ Feature: Contact Owner
       | Phone        | +44.7777123456    |
       | Comments     | Are pets welcome? |
     And I press "Send"
-    Then I should see "Your enquiry has been sent."
+    Then I should see "Thank you for enquiring about this property"

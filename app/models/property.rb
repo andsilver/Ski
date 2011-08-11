@@ -171,4 +171,8 @@ class Property < ActiveRecord::Base
   def default_months
     3
   end
+
+  def to_s
+    name
+  end
 end

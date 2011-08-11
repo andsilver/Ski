@@ -17,7 +17,7 @@ Feature: Categories Admin
     And I am on the new category page
     When I fill in "Name" with "Restaurants"
     And I press "Save"
-    Then I should see "Category created."
+    Then I should see "Created."
 
   Scenario: Attempt to create an invalid category
     Given I am signed in as an administrator
