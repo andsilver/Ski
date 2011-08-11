@@ -44,24 +44,20 @@ nav {
   text-decoration: underline;
 }
 
-.drop {
+#main_menu .drop {
   visibility: hidden;
   position: absolute;
   width: 140px;
   text-align: center;
-  font-size: 1.1em;
+  font-size: 1em;
+  text-transform: none;
+  margin-left: 2px;
+  margin-top: 3px;
+}
+
+#main_menu .drop a {
   line-height: 24px;
-}
-
-#welcome_advertisers {
-  right: 0;
-}
-
-#featured_resorts {
-  right: 142px;
-}
-
-.drop a {
+  border: none;
   background: #444;
   opacity: 0.9;
   color: #fff;
@@ -69,7 +65,7 @@ nav {
   display: block;
 }
 
-.drop a:hover {
+#main_menu .drop a:hover {
   background: #222;
   opacity: 1;
   color: #fff;

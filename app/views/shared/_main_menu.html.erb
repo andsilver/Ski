@@ -18,8 +18,11 @@ function closeMenu(menu) {
 </script>
 <nav id="main_menu">
   <ul>
-    <li><a id="advertise_link" href="/welcome/advertiser" onmouseover="openMenu(document.getElementById('welcome_advertisers'));" onmouseout="startCloseMenu(document.getElementById('welcome_advertisers'));"><%= t('advertise') %></a></li>
-    <li><a id="featured_resorts_link" href="<%= featured_resorts_path %>" onmouseover="openMenu(document.getElementById('featured_resorts'));" onmouseout="startCloseMenu(document.getElementById('featured_resorts'));"><%= I18n.t('featured_resorts') %></a></li>
+    <li><a id="featured_resorts_link" href="<%= featured_resorts_path %>" onmouseover="openMenu(document.getElementById('featured_resorts'));" onmouseout="startCloseMenu(document.getElementById('featured_resorts'));"><%= I18n.t('featured_resorts') %></a><div class="drop" id="featured_resorts" onmouseover="openMenu(this);" onmouseout="startCloseMenu(this);">
+      <% Resort.featured.each do |resort| %>
+      <%= link_to resort.name, resort_path(resort) %>
+      <% end %>
+    </div></li>
     <li><%= link_to t('blog_posts_controller.blog'), blog_path %></li>
 <% if signed_in? %>
 <% if @current_user.has_adverts_in_basket? %>
@@ -37,18 +40,13 @@ function closeMenu(menu) {
     <li><%= link_to 'CMS', cms_path %></li>
 <% end %>
     <li><%= link_to t('favourites.favourites'), favourites_path %></li>
+    <li><a id="advertise_link" href="/welcome/advertiser" onmouseover="openMenu(document.getElementById('welcome_advertisers'));" onmouseout="startCloseMenu(document.getElementById('welcome_advertisers'));"><%= t('advertise') %></a><div class="drop" id="welcome_advertisers" onmouseover="openMenu(this);" onmouseout="startCloseMenu(this);">
+      <a href="/welcome/property-owner"><%= t('roles.property_owners') %></a>
+      <a href="/welcome/letting-agent"><%= t('roles.letting_agents') %></a>
+      <a href="/welcome/property-developer"><%= t('roles.property_developers') %></a>
+      <a href="/welcome/estate-agent"><%= t('roles.estate_agents') %></a>
+      <a href="/welcome/other-business"><%= t('roles.other_business') %></a>
+    </div></li>
     <li><%= link_to t('home'), root_path %></li>
   </ul>
 </nav>
-<div class="drop" id="welcome_advertisers" onmouseover="openMenu(this);" onmouseout="startCloseMenu(this);">
-  <a href="/welcome/property-owner"><%= t('roles.property_owners') %></a>
-  <a href="/welcome/letting-agent"><%= t('roles.letting_agents') %></a>
-  <a href="/welcome/property-developer"><%= t('roles.property_developers') %></a>
-  <a href="/welcome/estate-agent"><%= t('roles.estate_agents') %></a>
-  <a href="/welcome/other-business"><%= t('roles.other_business') %></a>
-</div>
-<div class="drop" id="featured_resorts" onmouseover="openMenu(this);" onmouseout="startCloseMenu(this);">
-  <% Resort.featured.each do |resort| %>
-  <%= link_to resort.name, resort_path(resort) %>
-  <% end %>
-</div>
