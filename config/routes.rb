@@ -5,12 +5,15 @@ MySkiChalet::Application.routes.draw do
   match "resorts/:resort_id/properties/new-developments" => "properties#new_developments",
     :as => :resort_property_new_developments
   resources :resorts do
-    get 'detail',    :on => :member
-    get 'directory', :on => :member
     get 'featured',  :on => :collection
-    get 'feature',   :on => :member
-    get 'gallery',   :on => :member
-    get 'piste_map', :on => :member
+    member do
+      get 'detail'
+      get 'directory'
+      get 'feature'
+      get 'gallery'
+      get 'piste_map'
+      get 'piste_map_full_size'
+    end
   end
 
   resources :airports

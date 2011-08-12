@@ -1,6 +1,6 @@
 class ResortsController < ApplicationController
-  before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map, :detail, :gallery]
-  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :detail, :directory, :feature, :piste_map, :gallery]
+  before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map, :piste_map_full_size, :detail, :gallery]
+  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :detail, :directory, :feature, :piste_map, :piste_map_full_size, :gallery]
   before_filter :no_browse_menu, :except => [:show, :feature, :directory]
 
   RESORTS_DIRECTORY = "#{Rails.root.to_s}/public/resorts/"
@@ -80,6 +80,12 @@ class ResortsController < ApplicationController
   def piste_map
     @heading_a = render_to_string(:partial => 'piste_map_heading').html_safe
     find_images 'piste-maps'
+  end
+
+  def piste_map_full_size
+    @heading_a = render_to_string(:partial => 'piste_map_heading').html_safe
+    @map = params[:map]
+    render :layout => nil
   end
 
   def gallery

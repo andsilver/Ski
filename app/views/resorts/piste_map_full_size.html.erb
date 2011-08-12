@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Full Size Piste Map For <%= @resort %></title>
+</head>
+<body>
+<%= link_to 'Back', piste_map_resort_path(@resort) %>
+<img src="/resorts/<%= PermalinkFu.escape(@resort.name) %>/piste-maps/<%= @map %>"
+style="width:100%;height:auto;">
+</body>
+</html>
