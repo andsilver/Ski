@@ -1,9 +1,18 @@
 <% if banners.empty? %>
-  <% if rand() > 0.3 %>
+  <% if rand() > 0.666 %>
     <a href='http://scripts.affiliatefuture.com/AFClick.asp?affiliateID=252735&amp;merchantID=3287&amp;programmeID=8586&amp;mediaID=114123&amp;tracking=&amp;url='><img border=0 src='http://banners.affiliatefuture.com/3287/114123.gif'></a>
-  <% else %>
+  <% elsif rand() > 0.5 %>
     <a href="/welcome/other-business"><img
 src="/images/small-banner-advertise-here.png" alt="Advertise in this space"></a>
+  <% else %>
+  <script>
+  google_ad_client = "ca-pub-7770897489479846";
+  /* Wide Skyscraper */
+  google_ad_slot = "8093572877";
+  google_ad_width = 160;
+  google_ad_height = 600;
+  </script>
+  <script src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
   <% end %>
 <% else %>
   <% banners.each do |banner| %>
