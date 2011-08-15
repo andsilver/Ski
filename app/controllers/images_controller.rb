@@ -25,7 +25,7 @@ class ImagesController < ApplicationController
 
     if session[:image_mode] == 'property'
       @image.property_id = session[:property_id]
-    elsif session[:image_mode] == 'banner_advert' || session[:image_mode] == 'directory_advert' || session[:image_mode] == 'resort'
+    elsif ['banner_advert', 'directory_advert', 'resort'].include? session[:image_mode]
       remove_previous_image
     end
 
