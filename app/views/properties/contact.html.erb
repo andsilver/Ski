@@ -45,8 +45,8 @@
 <% if @property.for_rent? %>
 <script>
 $(function () {
-  $('#enquiry_date_of_arrival').datepicker({dateFormat: 'D, d M yy'});
-  $('#enquiry_date_of_departure').datepicker({dateFormat: 'D, d M yy'});
+  $('#enquiry_date_of_arrival').datepicker({dateFormat: 'D, d M yy', showOn: 'both', buttonImage: '/images/calendar.png'});
+  $('#enquiry_date_of_departure').datepicker({dateFormat: 'D, d M yy', showOn: 'both', buttonImage: '/images/calendar.png'});
 });
 </script>
 
