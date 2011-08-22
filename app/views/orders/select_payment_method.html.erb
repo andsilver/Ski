@@ -2,6 +2,8 @@
 
 <h1>Choose How You Would Like to Pay</h1>
 
+<% if @w.worldpay_active? -%>
+<% if @w.skip_payment? -%>
 <h2>Simulating payment for WorldPay</h2>
 <p>The correct values are entered below and can be changed for testing.
   <code>callbackPW</code> is neither displayed nor verified in this test mode.</p>
@@ -27,7 +29,7 @@
   </p>
   <p>
     <label>currency</label>:<br>
-    <input type="text" name="currency" value="GBP">
+    <input type="text" name="currency" value="EUR">
   </p>
   <p>
     <label>testMode</label>:<br>
@@ -81,3 +83,24 @@
     <input type="submit" value="Simulate WorldPay payment">
   </p>
 </form>
+<% else -%>
+<form action="https://select<%= (@w.worldpay_test_mode? ? '-test' : '') %>.worldpay.com/wcc/purchase" method="post">
+<input type="hidden" name="cartId" value="<%= @order.order_number %>">
+<input type="hidden" value="<%= @w.worldpay_installation_id %>" name="instId">
+<input type="hidden" value="<%= @order.total / 100.0 %>" name="amount">
+<input type="hidden" value="Web purchase" name="desc">
+<input type="hidden" value="EUR" name="currency">
+<% if @w.worldpay_test_mode? -%>
+<input type="hidden" value="100" name="testMode">
+<% end -%>
+<input type="hidden" value="<%= @order.name %>" name="name">
+<input type="hidden" value="<%= raw address_for_worldpay(@order) %>" name="address">
+<input type="hidden" value="<%= @order.postcode %>" name="postcode">
+<input type="hidden" value="<%= @order.country.iso_3166_1_alpha_2 %>" name="country">
+<input type="hidden" name="tel" value="">
+<input type="hidden" value="<%= @order.email %>" name="email">
+
+<input name="submit" type="submit" class="button" value="Proceed to WorldPay">
+</form>
+<% end -%>
+<% end -%>

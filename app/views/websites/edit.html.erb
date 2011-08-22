@@ -14,21 +14,56 @@
 
 <%= form_for @website do |f| %>
 <div class="field">
-  <%= f.label :worldpay_installation_id, 'WorldPay Installation ID' %><br>
-  <%= f.text_field :worldpay_installation_id %>
-</div>
-<div class="field">
   <%= f.label :home_content %><br>
-  <%= f.text_area :home_content, :class => 'ckeditor' %>
+  <%= f.text_area :home_content %>
 </div>
+
 <div class="field">
   <%= f.label :terms %><br>
-  <%= f.text_area :terms, :class => 'ckeditor' %>
+  <%= f.text_area :terms %>
 </div>
+
 <div class="field">
   <%= f.label :privacy_policy %><br>
-  <%= f.text_area :privacy_policy, :class => 'ckeditor' %>
+  <%= f.text_area :privacy_policy %>
 </div>
+
+<div class="field">
+	<label for="website_skip_payment_true">Skip payment?:</label>
+	<%= f.radio_button :skip_payment, true, :class => "radio" %>
+	<label for="website_skip_payment_true">Yes</label>
+	<%= f.radio_button :skip_payment, false, :class => "radio" %>
+	<label for="website_skip_payment">No</label>
+</div>
+
+<h2>WorldPay Settings</h2>
+
+<div class="field">
+	<label for="website_worldpay_active_true">Active?:</label>
+	<%= f.radio_button :worldpay_active, true, :class => "radio" %>
+	<label for="website_worldpay_active_true">Yes</label>
+	<%= f.radio_button :worldpay_active, false, :class => "radio" %>
+	<label for="website_worldpay_active">No</label>
+</div>
+
+<div class="field">
+	<label for="website_worldpay_test_mode">Mode?:</label>
+	<%= f.radio_button :worldpay_test_mode, false, :class => "radio" %>
+	<label for="website_worldpay_test_mode">Production</label>
+	<%= f.radio_button :worldpay_test_mode, true, :class => "radio" %>
+	<label for="website_worldpay_test_mode_true">Test</label>
+</div>
+
+<div class="field">
+	<%= f.label :worldpay_installation_id, 'Installation ID' %>:<br>
+	<%= f.text_field :worldpay_installation_id, :class => "text" %>
+</div>
+
+<div class="field">
+	<%= f.label :worldpay_payment_response_password, 'Payment response password' %>:<br>
+	<%= f.text_field :worldpay_payment_response_password, :class => "text" %>
+</div>
+
 <div class="field">
   <%= f.submit %>
 </div>

@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:worldpay_callback]
+  FAILURE_MESSAGE = 'Some information was incorrect and your payment may not have gone through properly. Please contact us.'
 
   def worldpay_callback
     @payment = Payment.new
@@ -26,11 +27,11 @@ class PaymentsController < ApplicationController
 
     if params[:transStatus].nil? or params[:transStatus] != 'Y'
       @message = t('payments_controller.no_payment_made')
-    elsif !WORLDPAY_SIMULATE_PAYMENT and (params[:callbackPW].nil? or params[:callbackPW] != WORLDPAY_PAYMENT_RESPONSE_PASSWORD)
+    elsif !@w.skip_payment? and (params[:callbackPW].nil? or params[:callbackPW] != @w.worldpay_payment_response_password)
       @message = FAILURE_MESSAGE
     elsif params[:cartId].nil?
       @message = FAILURE_MESSAGE
-    elsif params[:testMode] and !WORLDPAY_TEST_MODE and params[:testMode] != '0'
+    elsif params[:testMode] and !@w.worldpay_test_mode and params[:testMode] != '0'
       @message = FAILURE_MESSAGE      
     else
       @message = t('payments_controller.payment_received')
