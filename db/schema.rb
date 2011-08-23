@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822112408) do
+ActiveRecord::Schema.define(:version => 20110823140905) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -427,6 +427,7 @@ ActiveRecord::Schema.define(:version => 20110822112408) do
     t.boolean  "worldpay_test_mode",                 :default => false, :null => false
     t.boolean  "skip_payment",                       :default => false, :null => false
     t.string   "worldpay_payment_response_password", :default => "",    :null => false
+    t.boolean  "blog_visible",                       :default => false, :null => false
   end
 
   create_table "window_base_prices", :force => true do |t|

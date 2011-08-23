@@ -29,6 +29,14 @@
 </div>
 
 <div class="field">
+	<label for="website_blog_visible_true">Blog visible?:</label>
+	<%= f.radio_button :blog_visible, true, :class => "radio" %>
+	<label for="website_blog_visible_true">Yes</label>
+	<%= f.radio_button :blog_visible, false, :class => "radio" %>
+	<label for="website_blog_visible">No</label>
+</div>
+
+<div class="field">
 	<label for="website_skip_payment_true">Skip payment?:</label>
 	<%= f.radio_button :skip_payment, true, :class => "radio" %>
 	<label for="website_skip_payment_true">Yes</label>
