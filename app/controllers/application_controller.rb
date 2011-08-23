@@ -31,6 +31,8 @@ class ApplicationController < ActionController::Base
     page = Page.find_by_path(request.path)
     if page
       @page_title = page.title
+      @meta_description = page.description
+      @meta_keywords = page.keywords
     end
   end
 

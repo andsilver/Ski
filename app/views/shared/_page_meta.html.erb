@@ -1,0 +1,7 @@
+  <title><%= @page_title ? @page_title + " - My Chalet Finder" : "My Chalet Finder" %></title>
+<% unless @meta_description.blank? -%>
+  <meta name="description" content="<%= @meta_description %>">
+<% end -%>
+<% unless @meta_keywords.blank? -%>
+  <meta name="keywords" content="<%= @meta_keywords %>">
+<% end -%>

@@ -2,7 +2,7 @@
 <html lang="<%= @lang %>">
 <head>
   <meta charset="utf-8">
-  <title><%= @page_title ? @page_title + " - My Chalet Finder" : "My Chalet Finder" %></title>
+  <%= render "shared/page_meta" %>
   <%= javascript_include_tag 'application' %>
   <%= render "shared/google" %>
   <script src="http://use.typekit.com/lxc8myw.js"></script>
