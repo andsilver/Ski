@@ -1,0 +1,44 @@
+<div class="group_panel">
+  <h1><%= link_to 'CMS', cms_path %> &rarr; Payments</h1>
+
+<table class="grid">
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Amount</th>
+      <th>Accepted</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @payments.each do |p| %>
+    <tr>
+      <td>
+        <% if p.order -%>
+        <%= link_to p.order.order_number, :controller => 'orders', :action => 'show', :id => p.order.id %>
+        <% else -%>
+        -
+        <% end -%>
+      </td>
+      <td>
+        <%= euros_from_cents p.amount.to_f * 100 %>
+      </th>
+      <td>
+        <%= tick_cross p.accepted %>
+      </td>
+      <td>
+        <%= p.name %>
+      </td>
+      <td>
+        <%= mail_to p.email, p.email %>
+      </td>
+      <td>
+        <%= link_to 'Full detail', :controller => 'payments', :action => 'show', :id => p.id %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
