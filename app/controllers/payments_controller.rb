@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:worldpay_callback]
+  skip_before_filter :verify_authenticity_token, :only => [:worldpay_callback, :cardsave_callback]
+
   before_filter :admin_required, :only => [:index, :show]
 
   before_filter :no_browse_menu
