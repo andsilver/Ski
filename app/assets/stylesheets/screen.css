@@ -60,6 +60,10 @@ a img {
   font-size: 1.3em;
 }
 
+li p {
+  font-size: 1em;
+}
+
 td .field {
   font-size: 1em;
 }
