@@ -120,6 +120,8 @@
       I18n.t('properties.features.smoking')) %><br>
     <%= feature_tick(@property.disabled?,
       I18n.t('properties.features.disabled')) %><br>
+    <%= feature_tick(@property.terrace?,
+      I18n.t('properties.features.terrace')) %><br>
     <%= feature_tick(@property.garden?,
       I18n.t('properties.features.garden')) %><br>
   </div>

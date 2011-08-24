@@ -199,6 +199,9 @@ $(document).ready(function() {
   <%= f.check_box :balcony %> <%= f.label :balcony, t('properties.features.balcony') %>
 </div>
 <div class="field">
+  <%= f.check_box :terrace %> <%= f.label :terrace, t('properties.features.terrace') %>
+</div>
+<div class="field">
   <%= f.check_box :mountain_views %> <%= f.label :mountain_views, t('properties.features.mountain_views') %>
 </div>
 <% if @property.for_rent? %>
