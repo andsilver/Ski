@@ -145,6 +145,10 @@
   <%= f.text_field :mountain_restaurants %>
 </div>
 <div class="field">
+  <%= f.label :season %><br>
+  <%= f.text_field :season %>
+</div>
+<div class="field">
   <%= f.label :glacier_skiing %><br>
   <%= f.select(:glacier_skiing, [["Yes", true], ["No", false]],
     {:include_blank => true, :selected => @resort.glacier_skiing.to_s}) %>
@@ -160,6 +164,10 @@
 <div class="field">
   <%= f.label :expert %><br>
   <%= f.select(:expert, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
+</div>
+<div class="field">
+  <%= f.label :off_piste %><br>
+  <%= f.select(:off_piste, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
 </div>
 <div class="field">
   <%= f.label :lively_apres_ski %><br>
@@ -179,6 +187,16 @@
   <%= f.label :babysitting_services %><br>
   <%= f.select(:babysitting_services, [["Yes", true], ["No", false]],
     {:include_blank => true, :selected => @resort.babysitting_services.to_s}) %>
+</div>
+<div class="field">
+  <%= f.label :summer_skiing %><br>
+  <%= f.select(:summer_skiing, [["Yes", true], ["No", false]],
+    {:include_blank => true, :selected => @resort.summer_skiing.to_s}) %>
+</div>
+<div class="field">
+  <%= f.label :heli_skiing %><br>
+  <%= f.select(:heli_skiing, [["Yes", true], ["No", false]],
+    {:include_blank => true, :selected => @resort.heli_skiing.to_s}) %>
 </div>
 <div class="field">
   <%= f.submit I18n.t('save') %>
