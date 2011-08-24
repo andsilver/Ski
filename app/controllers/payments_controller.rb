@@ -103,7 +103,7 @@ class PaymentsController < ApplicationController
   def make_adverts_live
     @payment.order.order_lines.each do |line|
       if line.advert
-        line.advert.start_and_save!
+        line.advert.start_and_save! unless line.coupon
       end
       if line.windows > 0
         Advert.activate_windows_for_user(line.windows, @payment.order.user)
