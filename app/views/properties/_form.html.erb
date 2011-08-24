@@ -62,17 +62,17 @@ $(document).ready(function() {
 <% if @current_user.role.flag_new_development? %>
 <div class="field">
   <%= f.check_box :new_development %>
-  <%= f.label t('properties.features.new_development') %>
+  <%= f.label :new_development, t('properties.features.new_development') %>
 </div>
 <% end %>
 <% if @property.for_rent? %>
 <div class="field">
   <%= f.check_box :long_term_lets_available %>
-  <%= f.label t('properties.features.long_term_lets_available') %>
+  <%= f.label :long_term_lets_available, t('properties.features.long_term_lets_available') %>
 </div>
 <div class="field">
   <%= f.check_box :short_stays %>
-  <%= f.label t('properties.features.short_stays') %>
+  <%= f.label :short_stays, t('properties.features.short_stays') %>
 </div>
 <% end %>
 </div>
