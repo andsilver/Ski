@@ -349,14 +349,17 @@ p.image_centre, p.image_center {
 }
 
 table#resort_facts {
-  float: right;
-  margin-left: 20px;
-  margin-bottom: 20px;
+  margin: 20px auto;
   border-collapse: collapse;
+  border-top: 1px solid #00aeef;
+  border-bottom: 1px solid #00aeef;
+  background-image: url(/images/features-bg.png);
+  background-position: right 0;
+  background-repeat: repeat-y;
 }
 
 #resort_facts td, #resort_facts th {
-  border: 1px solid #68C8E7;
+  width: 12.5%;
   padding: 3px 6px;
 }
 
