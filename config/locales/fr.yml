@@ -33,6 +33,7 @@ fr:
     expired: 'Annoncez Nouveau'
     new: 'Annoncez Maintenant'
     remove_from_window: 'Remove From Window'
+    renew: 'Renew'
   advertise: Annoncez
   adverts_controller:
     add_to_basket: Add to Basket

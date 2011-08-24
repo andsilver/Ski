@@ -33,6 +33,7 @@ it:
     expired: 'Readvertise'
     new: 'Advertise Now'
     remove_from_window: 'Remove From Window'
+    renew: 'Renew'
   advertise: 'Advertise'
   adverts_controller:
     add_to_basket: Add to Basket

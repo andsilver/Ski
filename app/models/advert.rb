@@ -74,7 +74,13 @@ class Advert < ActiveRecord::Base
 
   def start_and_save!
     self.starts_at = Time.now
-    self.expires_at = Time.now + months.months
+
+    if object.current_advert
+      self.expires_at = object.current_advert.expires_at + months.months
+    else
+      self.expires_at = self.starts_at + months.months
+    end
+
     save
   end
 

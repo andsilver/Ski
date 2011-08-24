@@ -16,7 +16,7 @@ module AdvertBehaviours
   end
 
   def current_advert
-    Advert.where("#{self.class.to_s.foreign_key} = ? AND expires_at > ?", id, Time.now).first
+    Advert.order('expires_at DESC').where("#{self.class.to_s.foreign_key} = ? AND expires_at > ?", id, Time.now).first
   end
 
   def latest_expired_advert
