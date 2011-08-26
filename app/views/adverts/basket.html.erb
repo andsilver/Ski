@@ -35,7 +35,7 @@
           <% unless line.coupon || line.advert.nil? %>
           <input type="submit" value="Remove" name="remove_advert[<%= line.advert.id %>]">
           <% end %>
-          <% if line.windows %>
+          <% if line.windows > 0 %>
           <input type="submit" value="Remove" name="remove_advert[windows]">
           <% end %>
         </td>
