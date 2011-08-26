@@ -1,0 +1,10 @@
+<p>Hello <%= @form.friends_name %></p>
+
+<p><%= @form.your_name %> visited My Chalet Finder and found
+a property they wanted to share with you.</p>
+
+<p><%= @property.name %> is in <%= @property.resort.name %>, <%= @property.resort.country.name %></p>
+
+<p>You can find more details by visiting:
+<a href="http://en.mychaletfinder.com/properties/<%= @property.to_param %>"><%= @property.name %></a>
+</p>

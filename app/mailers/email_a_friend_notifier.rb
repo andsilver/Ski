@@ -1,4 +1,6 @@
 class EmailAFriendNotifier < ActionMailer::Base
+  layout 'email'
+
   def notify form, property
     @form = form
     @property = property

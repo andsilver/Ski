@@ -1,5 +1,6 @@
 class UserNotifier < ActionMailer::Base
   default :from => 'notifier@mychaletfinder.com'
+  layout 'email'
 
   def token user, domain
     @id = user.id

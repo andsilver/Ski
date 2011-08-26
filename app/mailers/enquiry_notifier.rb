@@ -1,5 +1,6 @@
 class EnquiryNotifier < ActionMailer::Base
   default :from => "notifier@mychaletfinder.com"
+  layout 'email'
 
   def notify enquiry, property
     @enquiry = enquiry

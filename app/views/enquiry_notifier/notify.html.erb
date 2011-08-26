@@ -1,42 +1,59 @@
-Hello <%= @enquiry.user.name %>
+<p>Hello <%= @enquiry.user.name %></p>
 
-You have a new enquiry from My Chalet Finder!
+<p>You have a new enquiry from My Chalet Finder!</p>
 
-Property ID: <%= @property.id %>
+<p>
+Property ID: <%= @property.id %><br>
 Property Name: <%= @property.name %>
+</p>
 
 <% unless @enquiry.date_of_arrival.blank? -%>
+<p>
 Date of arrival:
 <%= l @enquiry.date_of_arrival, :format => :short %>
+</p>
 <% end -%>
 
 <% unless @enquiry.date_of_departure.blank? -%>
+<p>
 Date of departure:
-<%= l @enquiry.date_of_departure, :format => :short %>
+<%= l @enquiry.date_of_departure, :format => :short %><br>
+</p>
 <% end -%>
 
+<p>
 Name:
 <%= @enquiry.name %>
+</p>
 
+<p>
 Email:
 <%= @enquiry.email %>
+</p>
 
+<p>
 Phone:
 <%= @enquiry.phone %>
+</p>
 
 <% if @property.for_rent? -%>
+<p>
 Number of adults:
 <%= @enquiry.number_of_adults %>
+</p>
 
+<p>
 Number of children:
 <%= @enquiry.number_of_children %>
+</p>
 
+<p>
 Number of infants:
 <%= @enquiry.number_of_infants %>
+</p>
 <% end -%>
 
-Comments:
+<p>
+Comments:<br>
 <%= @enquiry.comments %>
-
-Best wishes,
-The My Chalet Finder Team
+</p>

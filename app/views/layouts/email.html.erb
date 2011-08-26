@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" style="background: #eee; height: 100%; margin: 0; padding: 0;">
+<head>
+  <meta charset="utf-8">
+  <title>My Chalet Finder</title>
+  <style>
+  a {
+    color: #00B3F0;
+  }
+
+  a img {
+    border: none;
+  }
+
+  p {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #444;
+    line-height: 23px;
+  }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; background: #eee; height: 100%; color: #444; font-size: 13px; line-height: 23px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+<div style="display: block; position: absolute; width: 1px; height: 100%; top: 0; left: 0;"></div>
+<div id="container" style="background:#eee; padding:20px 0;">
+  <div id="wrapper"
+  style="background: #fff; width: 378px; padding: 20px 30px; margin: 0 auto; border-radius: 20px; -moz-border-radius: 20px; -webkit-border-radius: 20px;">
+    <p>
+      <a href="http://en.mychaletfinder.com/"><img
+        src="http://en.mychaletfinder.com/images/my-chalet-finder-logo.png"
+        style="border: none; width: 378px; height: 66px;"
+        alt="My Chalet Finder" title="MyChaletFinder.com"></a>
+    </p>
+
+<%= yield %>
+
+    <p>
+      Best wishes,<br>
+      The My Chalet Finder Team
+    </p>
+    <p id="footer" style="font-size: 11px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd;">
+      This email was sent via <a style="color: #00B3F0;" href="http://en.mychaletfinder.com/">http://en.mychaletfinder.com/</a>
+    </p>
+  </div>
+</div>
+</body>
+</html>
