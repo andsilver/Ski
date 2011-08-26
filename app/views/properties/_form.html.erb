@@ -38,7 +38,7 @@ $(document).ready(function() {
     <%= f.label :name, I18n.t('property_name') %>
   </div>
   <div class="field_right">
-    <%= f.text_field :name %>
+    <%= f.text_field :name %> <%= required_field %>
   </div>
 </div>
 <%= clear %>
@@ -84,7 +84,7 @@ $(document).ready(function() {
     <%= f.label :resort_id, I18n.t('resort') %>
   </div>
   <div class="field_right">
-    <%= select("property", "resort_id", (Resort.where(:visible => true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => t('properties.select_resort')}) %>
+    <%= select("property", "resort_id", (Resort.where(:visible => true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => t('properties.select_resort')}) %> <%= required_field %>
   </div>
 </div>
 <div class="field">
@@ -284,7 +284,7 @@ $(document).ready(function() {
 
 <div class="group_panel">
 <div class="field">
-  <%= f.label :address, I18n.t('address') %><br>
+  <%= f.label :address, I18n.t('address') %> <%= required_field %><br>
   <%= f.text_area :address %>
 </div>
 <div class="field">
