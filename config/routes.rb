@@ -47,15 +47,18 @@ MySkiChalet::Application.routes.draw do
   match "my/adverts" => "adverts#my", :as => :my_adverts
 
   resources :properties do
-    post 'advertise_now',       :on => :member
-    post 'choose_window',       :on => :member
-    get  'contact',             :on => :member
-    get  'email_a_friend',      :on => :member
-    post 'place_in_window',     :on => :member
-    get  'rent',                :on => :collection
-    post 'remove_from_window',  :on => :member
-    get  'sale',                :on => :collection
-    get  'current_time',        :on => :collection
+    post 'advertise_now',        :on => :member
+    post 'choose_window',        :on => :member
+    get  'contact',              :on => :member
+    get  'email_a_friend',       :on => :member
+    post 'place_in_window',      :on => :member
+    get  'rent',                 :on => :collection
+    post 'remove_from_window',   :on => :member
+    get  'sale',                 :on => :collection
+    get  'current_time',         :on => :collection
+    get  'import_documentation', :on => :collection
+    get  'new_import',           :on => :collection
+    post 'import',               :on => :collection
   end
 
   resources :property_base_prices

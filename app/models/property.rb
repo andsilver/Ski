@@ -16,9 +16,12 @@ class Property < ActiveRecord::Base
   validates_length_of :name, :within => 5..30
   validates_length_of :strapline, :within => 0..255
 
-  validates_inclusion_of :distance_from_town_centre_m, :in => [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
-  validates_inclusion_of :metres_from_lift,            :in => [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
+  VALID_DISTANCES = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
 
+  validates_inclusion_of :distance_from_town_centre_m, :in => VALID_DISTANCES
+  validates_inclusion_of :metres_from_lift,            :in => VALID_DISTANCES
+
+  before_validation :adjust_distances_if_needed
   before_save :geocode, :normalise_prices
 
   cattr_reader :per_page
@@ -83,6 +86,17 @@ class Property < ActiveRecord::Base
     @@perform_geocode = PERFORM_GEOCODE
   end
 
+  def self.importable_attributes
+    %w(address balcony cave children_welcome currency_id description
+      disabled floor_area_metres_2 for_sale fully_equipped_kitchen garden
+      hot_tub images indoor_swimming_pool log_fire long_term_lets_available
+      metres_from_lift mountain_views name new_development
+      number_of_bathrooms number_of_bedrooms outdoor_swimming_pool parking
+      pets plot_size_metres_2 postcode resort_id sale_price sauna short_stays
+      ski_in_ski_out sleeping_capacity smoking strapline tv weekly_rent_price
+      wifi)
+  end
+
   def to_param
     "#{id}-#{PermalinkFu.escape(name)}-#{PermalinkFu.escape(resort.name)}-#{PermalinkFu.escape(resort.country.name)}"
   end
@@ -127,6 +141,15 @@ class Property < ActiveRecord::Base
       wordcount = 25
       description.split[0..(wordcount-1)].join(" ") + (description.split.size > wordcount ? "…" : "")
     end
+  end
+
+  def adjust_distances_if_needed
+    self.distance_from_town_centre_m = closest_distance(distance_from_town_centre_m)
+    self.metres_from_lift = closest_distance(metres_from_lift)
+  end
+
+  def closest_distance d
+    VALID_DISTANCES.min { |a,b| (a-d).abs <=> (b-d).abs }
   end
 
   def geocode

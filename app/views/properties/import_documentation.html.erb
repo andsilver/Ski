@@ -1,0 +1,348 @@
+<h1>Importing Properties</h1>
+
+<p>
+  Properties can be imported into My Adverts by including a properties.csv CSV file
+  and associated JPEG images in a ZIP file. The ZIP file can then be uploaded to
+  My Chalet Finder.
+</p>
+
+<p>
+  Here are the rules for the CSV file:
+</p>
+
+<ul>
+  <li>The file must be named <kbd>properties.csv</kbd>.</li>
+  <li>The file name and all fields are case-sensitive.</li>
+  <li>The first line of the CSV file is the header and contains the field names. These can be in any order.</li>
+  <li>Each field must be separated by a comma.</li>
+  <li>String fields must be enclosed in double quote marks.</li>
+  <li>Files should be encoded as UTF-8.</li>
+  <li>Boolean fields must use 1 for yes/true and 0 for no/false.</li>
+  <li>The name field uniquely identifies your property. An unrecognised name field causes a new property to be created. If the name field matches an existing property then that property's details are overwritten and updated.</li>
+</ul>
+
+<h2>Required Fields</h2>
+
+<p>Required fields are: resort_id, name, for_sale, weekly_rent_price <em>or</em> sale_price, description, address</p>
+
+<h2>Field Details</h2>
+
+<table class="grid">
+  <tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Default</th>
+    <th>Comments</th>
+  </tr>
+  <tr>
+    <td><a href="#resort_ids">resort_id</a></td>
+    <td>integer</td>
+    <td>yes</td>
+    <td>N/A</td>
+    <td>The resort where the property is located; see below for a list of resort IDs</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>string [5..30]</td>
+    <td>yes</td>
+    <td>N/A</td>
+    <td>Name, title or first line of the address of the property</td>
+  </tr>
+  <tr>
+    <td>strapline</td>
+    <td>string [0..255]</td>
+    <td>no</td>
+    <td>&nbsp;</td>
+    <td>Brief overview of the property; shown on the search result listing page</td>
+  </tr>
+  <tr>
+    <td>metres_from_lift</td>
+    <td>integer [100, 200, 300.. 1000, 1001]</td>
+    <td>no</td>
+    <td>1001 (representing &gt;1,000m)</td>
+    <td>Metres from nearest lift in steps of 100</td>
+  </tr>
+  <tr>
+    <td>sleeping_capacity</td>
+    <td>integer</td>
+    <td>no</td>
+    <td>1</td>
+    <td>Number of people that the property can sleep</td>
+  </tr>
+  <tr>
+    <td>number_of_bedrooms</td>
+    <td>integer</td>
+    <td>no</td>
+    <td>1</td>
+    <td>Number of bedrooms</td>
+  </tr>
+  <tr>
+    <td>new_development</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether this property is a new development / new build</td>
+  </tr>
+  <tr>
+    <td>for_sale</td>
+    <td>boolean</td>
+    <td>yes</td>
+    <td>N/A</td>
+    <td>Whether this property is for sale or for rent; 0 = for rent; 1 = for sale</td>
+  </tr>
+  <tr>
+    <td>weekly_rent_price</td>
+    <td>integer</td>
+    <td>yes, if for_sale = 0</td>
+    <td>0</td>
+    <td>Lowest weekly rent price, in whole units of currency</td>
+  </tr>
+  <tr>
+    <td>fully_equipped_kitchen</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property has a fully-equipped kitchen</td>
+  </tr>
+  <tr>
+    <td>tv</td>
+    <td>integer [0, 1, 2, 3]</td>
+    <td>no</td>
+    <td>0 (no TV)</td>
+    <td>0 = no TV; 1 = TV (e.g., terrestrial); 2 = Freeview or similar; 3 = Satellite or Cable</td>
+  </tr>
+  <tr>
+    <td>wifi</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property provides WiFi internet</td>
+  </tr>
+  <tr>
+    <td>disabled</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property provides facilities for disabled access</td>
+  </tr>
+  <tr>
+    <td>parking</td>
+    <td>integer [0, 1, 2, 3]</td>
+    <td>no</td>
+    <td>0 (no parking)</td>
+    <td>0 = no parking; 1 = on-street parking; 2 = off-street parking; 3 = garage</td>
+  </tr>
+  <tr>
+    <td>pets</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether pets are permitted to stay in the property</td>
+  </tr>
+  <tr>
+    <td>smoking</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether smoking is permitted in the property</td>
+  </tr>
+  <tr>
+    <td>sale_price</td>
+    <td>integer</td>
+    <td>yes, if for_sale = 1</td>
+    <td>0</td>
+    <td>Sale price, in whole units of currency</td>
+  </tr>
+  <tr>
+    <td>garden</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property has a garden</td>
+  </tr>
+  <tr>
+    <td>floor_area_metres_2</td>
+    <td>integer</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Floor area of the property in square metres</td>
+  </tr>
+  <tr>
+    <td>plot_size_metres_2</td>
+    <td>integer</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Plot size in square metres</td>
+  </tr>
+  <tr>
+    <td>description</td>
+    <td>string</td>
+    <td>yes</td>
+    <td>N/A</td>
+    <td>More detailed description of the property; may contain HTML and Markdown syntax</td>
+  </tr>
+  <tr>
+    <td>number_of_bathrooms</td>
+    <td>integer</td>
+    <td>no</td>
+    <td>1</td>
+    <td>Number of bathrooms</td>
+  </tr>
+  <tr>
+    <td>address</td>
+    <td>string</td>
+    <td>yes</td>
+    <td>N/A</td>
+    <td>The property's address</td>
+  </tr>
+  <tr>
+    <td>postcode</td>
+    <td>string</td>
+    <td>no</td>
+    <td>&nbsp;</td>
+    <td>The property's postcode or ZIP code</td>
+  </tr>
+  <tr>
+    <td>long_term_lets_available</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property is available for long term lets</td>
+  </tr>
+  <tr>
+    <td>balcony</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property has a balcony</td>
+  </tr>
+  <tr>
+    <td>mountain_views</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property has mountain views</td>
+  </tr>
+  <tr>
+    <td>log_fire</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property has a log fire</td>
+  </tr>
+  <tr>
+    <td>cave</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property has a cave</td>
+  </tr>
+  <tr>
+    <td>ski_in_ski_out</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property has a ski in / ski out facility</td>
+  </tr>
+  <tr>
+    <td>hot_tub</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property has a hot tub</td>
+  </tr>
+  <tr>
+    <td>indoor_swimming_pool</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property has an indoor swimming pool</td>
+  </tr>
+  <tr>
+    <td>outdoor_swimming_pool</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property has an outdoor swimming pool</td>
+  </tr>
+  <tr>
+    <td>sauna</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether the property has a sauna</td>
+  </tr>
+  <tr>
+    <td>distance_from_town_centre_m</td>
+    <td>integer [100, 200, 300.. 1000, 1001]</td>
+    <td>no</td>
+    <td>1001 (representing &gt;1,000m)</td>
+    <td>Metres from town in steps of 100</td>
+  </tr>
+  <tr>
+    <td>accommodation_type</td>
+    <td>integer [0, 1]</td>
+    <td>no</td>
+    <td>0 (chalet)</td>
+    <td>0 = chalet; 1 = apartment</td>
+  </tr>
+  <tr>
+    <td><a href="#currency_ids">currency_id</a></td>
+    <td>integer</td>
+    <td>no</td>
+    <td>1 (Euros)</td>
+    <td>The currency for the sale / rental price; see below for a list of currency IDs</td>
+  </tr>
+  <tr>
+    <td>children_welcome</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether children are welcome or not</td>
+  </tr>
+  <tr>
+    <td>short_stays</td>
+    <td>boolean</td>
+    <td>no</td>
+    <td>0</td>
+    <td>Whether this property can be let for a short stay</td>
+  </tr>
+  <tr>
+    <td>images</td>
+    <td>string</td>
+    <td>no</td>
+    <td>&nbsp;</td>
+    <td>A pipe | separated list of filenames of images to use for this property; images should be included in the ZIP file</td>
+  </tr>
+</table>
+
+<h2>Resort IDs</h2>
+
+<table id="resort_ids">
+  <tr>
+    <th>resort_id</th>
+    <th>Name</th>
+  </tr>
+<% Resort.visible.each do |resort| %>
+  <tr>
+    <td><%= resort.id %></td>
+    <td><%= resort.name %></td>
+  </tr>
+<% end %>
+</table>
+
+<h2>Currency IDs</h2>
+
+<table id="currency_ids">
+  <tr>
+    <th>currency_id</th>
+    <th>Name</th>
+  </tr>
+<% Currency.all.each do |currency| %>
+  <tr>
+    <td><%= currency.id %></td>
+    <td><%= currency.name %></td>
+  </tr>
+<% end %>
+</table>

@@ -85,7 +85,11 @@ class Image < ActiveRecord::Base
   end
 
   def uploaded_extension
-    @file_data.original_filename.split(".").last.downcase
+    if @file_date.respond_to? 'original_filename'
+      @file_data.original_filename.split(".").last.downcase
+    else
+      'jpg'
+    end
   end
 
   def extension

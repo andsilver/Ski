@@ -163,7 +163,138 @@ class PropertiesController < ApplicationController
     redirect_to my_adverts_path, :notice => t('properties_controller.removed_from_window')
   end
 
+  def new_import
+  end
+
+  def import
+    cleanup_import 'No file uploaded' and return if params[:file].nil?
+
+    @file = params[:file]
+    @path = "#{Rails.root.to_s}/public/up/users/#{@current_user.id}/properties_upload"
+    FileUtils.makedirs(@path)
+    zip_filename = "#{@path}/properties.zip"
+    File.open(zip_filename, "wb") { |file| file.write(@file.read) }
+    zip_result = system("unzip -jo #{zip_filename} -d #{@path}")
+    cleanup_import "Error extracting ZIP file" and return unless zip_result
+
+    csv_filename = "#{@path}/properties.csv"
+    cleanup_import "Could not find properties.csv in ZIP file" and return unless File.exists?(csv_filename)
+
+    require 'csv'
+
+    @total_read = @newly_imported = @updated = @failed = 0
+    flash[:errors] = []
+
+    csv = File.open(csv_filename, 'rb')
+    @parsed_file = defined?(CSV::Reader) ? CSV::Reader.parse(csv) : CSV.parse(csv)
+
+    @parsed_file.each do |row|
+      begin
+        process_row(row)
+      rescue RuntimeError => e
+        cleanup_import(e) and return
+      end
+    end
+
+    cleanup_import "Total read: #{@total_read}, Newly imported: #{@newly_imported}, Updated: #{@updated}, Failed: #{@failed}"
+  end
+
   protected
+
+  def process_row(row)
+    if @mapping.nil?
+      @mapping = csv_mapping_from_header(row)
+      %w(resort_id name address strapline description for_sale).each do |required|
+        raise "CSV missing required field: #{required}" if @mapping[required].nil?
+      end
+      return
+    end
+
+    @total_read += 1
+
+    property = Property.find_by_user_id_and_name(@current_user.id, row[@mapping['name']])
+    new_record = false
+    unless property
+      property = Property.new
+      property.user_id = @current_user.id
+      property.distance_from_town_centre_m = property.metres_from_lift = 1001
+      new_record = true
+    end
+
+    Property.importable_attributes.each do |attribute|
+      unless @mapping[attribute].nil? || attribute == 'images'
+        unless row[@mapping[attribute]].blank?
+          property[attribute] = row[@mapping[attribute]]
+          puts "#{attribute} = #{property[attribute]}"
+        end
+      end
+    end
+
+    if property.strapline.length > 255
+      property.strapline = property.strapline[0..254]
+    end
+
+    if property.save
+      GC.start if property.id % 50 == 0
+      if new_record
+        @newly_imported += 1
+      else
+        @updated +=1
+      end
+    else
+      error = "Problem with property in row #{@total_read + 1}:"
+      property.errors.full_messages.each do |msg|
+        error += " [#{msg}]"
+      end
+      flash[:errors] << error
+      @failed += 1
+    end
+
+    if new_record and @mapping['images']
+      process_imported_images(property, row[@mapping['images']])
+    end
+  end
+
+  def process_imported_images(property, images)
+    return if images.nil?
+
+    image_filenames = images.split('|')
+    first = true
+    image_filenames.each do |filename|
+      puts "processing image: #{filename}"
+      filename = File.basename(filename.strip)
+      path = "#{@path}/#{filename}"
+      if File.exists? path
+        file = File.open(path)
+        image = Image.new
+        image.image = file
+        image.user_id = property.user_id
+        image.property_id = property.id
+        image.save
+        if first
+          property.image_id = image.id
+          property.save
+          first = false
+        end
+        file.close
+      end
+    end
+  end
+
+  def cleanup_import notice
+    FileUtils.rm_rf(@path) unless @path.nil?
+    redirect_to new_import_properties_path, :notice => notice
+  end
+
+  def csv_mapping_from_header(row)
+    mapping = Hash.new
+    row.each_with_index do |header, pos|
+      puts "looking at: #{header}"
+      mapping[header] = pos if Property.importable_attributes.include? header
+    end
+    puts mapping
+    mapping
+  end
 
   def find_property
     @property = Property.find_by_id(params[:id])
