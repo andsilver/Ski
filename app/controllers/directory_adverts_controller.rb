@@ -1,6 +1,6 @@
 class DirectoryAdvertsController < ApplicationController
   before_filter :no_browse_menu
-  before_filter :user_required
+  before_filter :user_required, :except => [:show]
   before_filter :find_directory_advert_for_current_user, :only => [:edit, :update, :advertise_now]
   before_filter :set_cache_buster, :only => [:new, :create]
 
