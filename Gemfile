@@ -1,15 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc4'
-gem 'rack', '1.3.0'
-gem 'mysql2', '0.3.2'
+gem 'rails', '3.1.0.rc8'
+gem 'rack', '1.3.2'
+gem 'mysql2', '0.3.6'
 #gem "will_paginate", "~> 3.0.pre2"
 gem 'will_paginate', :git => 'git@github.com:bridgeutopia/will_paginate.git', :branch => 'rails3'
 gem 'image_science', '1.2.1'
 gem 'RubyInline', '3.8.6'
 gem 'rdiscount', '1.6.8'
 gem 'spreadsheet', '0.6.5.4'
-gem 'sprockets', '2.0.0.beta.10'
+gem 'sprockets', '2.0.0'
 gem 'rdoc'
 
 # Bundle edge Rails instead:
@@ -17,11 +17,15 @@ gem 'rdoc'
 
 gem 'sqlite3'
 
-# Asset template engines
 gem 'json'
-gem 'sass-rails', "~> 3.1.0.rc"
-gem 'coffee-script'
-gem 'uglifier'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails', "~> 3.1.0.rc7"
+  gem 'coffee-rails', "~> 3.1.0.rc"
+  gem 'uglifier'
+end
 
 gem 'jquery-rails'
 
