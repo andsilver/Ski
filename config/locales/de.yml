@@ -202,6 +202,7 @@ de:
   properties_controller:
     added_to_basket: 'Your property advert has been added to your basket.'
     created: "Your property advert was successfully created. Now let's add some photos."
+    created_and_assigned_to_window: "Your property advert was successfully created. We've automatically placed it in one of your free windows. Now let's add some photos."
     placed_in_window: "Your property advert has been placed in a window."
     removed_from_window: "Your property advert has been removed from its window."
     saved: "Your property advert details have been saved."
