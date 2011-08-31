@@ -335,6 +335,8 @@ class PropertiesController < ApplicationController
   def filter_column filter
     if filter == :satellite
       'tv'
+    elsif filter == :garage
+      'parking'
     else
       filter.to_s
     end
@@ -343,6 +345,8 @@ class PropertiesController < ApplicationController
   def filter_threshold filter
     if filter == :satellite
       Property::TV_SATELLITE
+    elsif filter == :garage
+      Property::PARKING_GARAGE
     else
       1
     end

@@ -4,5 +4,4 @@ Expiry warning emails
 Terms to be included near / on signup
 Put up estate agent chat, with my edits
 Put up chat on buy windows page
-Fix garage filter on sale listings
 Move Long Lets to after Short Stays, move TV before Satellite on same line
