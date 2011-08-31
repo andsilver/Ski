@@ -1,7 +1,7 @@
 class Country < ActiveRecord::Base
   require File.expand_path('../../../lib/ruby_19', __FILE__)
   has_many :resorts, :order => 'name'
-  has_many :visible_resorts, :class_name => 'Resort', :conditions => 'visible = 1'
+  has_many :visible_resorts, :class_name => 'Resort', :conditions => 'visible = 1', :order => 'name'
   has_many :orders
   has_many :order_lines, :include => :order
   has_many :users, :foreign_key => 'billing_country_id'
