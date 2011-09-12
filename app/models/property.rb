@@ -175,10 +175,8 @@ class Property < ActiveRecord::Base
     if 'OK' == json['status']
       self.latitude = json['results'][0]['geometry']['location']['lat']
       self.longitude = json['results'][0]['geometry']['location']['lng']
-      true
     else
       Rails.logger.info "geocode for #{a} failed; url=#{url}; data=#{data}"
-      false
     end
   end
 
