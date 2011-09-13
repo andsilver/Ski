@@ -77,63 +77,75 @@
 
 <div id="features">
   <div class="column">
-    <%= @property.number_of_bedrooms %> <%= I18n.t('bedrooms') %>
+    <%= I18n.t('bedrooms') %>: <%= @property.number_of_bedrooms %>
   </div>
   <div class="column">
-    <%= @property.number_of_bathrooms %> <%= I18n.t('bathrooms') %>
+    <%= I18n.t('bathrooms') %>: <%= @property.number_of_bathrooms %>
   </div>
   <div class="column">
-    <%= @property.sleeping_capacity %> <%= I18n.t('sleeping_capacity') %>
+    <%= I18n.t('sleeping_capacity') %>: <%= @property.sleeping_capacity %>
+  </div>
+  <div class="column">
+    &nbsp;
+  </div>
+  <p class="divider">&nbsp;</p>
+<% if @property.for_rent? -%>
+  <div class="column">
+    <%= feature_tick(true, @property.tv_description) %><br>
+    <%= feature_tick(@property.wifi?,
+      I18n.t('properties.features.wifi')) %>
   </div>
   <div class="column">
     <%= feature_tick(@property.long_term_lets_available?,
-      I18n.t('properties.features.long_term_lets_available')) %>
-  </div>
-  <p class="divider">&nbsp;</p>
-  <div class="column">
-    <%= feature_tick(true, @property.tv_description) %><br>
-    <%= feature_tick(@property.balcony?,
-      I18n.t('properties.features.balcony')) %><br>
-    <%= feature_tick(@property.mountain_views?,
-      I18n.t('properties.features.mountain_views')) %><br>
-    <%= feature_tick(@property.wifi?,
-      I18n.t('properties.features.wifi')) %><br>
+      I18n.t('properties.features.long_term_lets_available')) %><br>
     <%= feature_tick(@property.short_stays?,
-      I18n.t('properties.features.short_stays')) %><br>
+      I18n.t('properties.features.short_stays')) %>
   </div>
   <div class="column">
-    <%= feature_tick(@property.log_fire?,
-      I18n.t('properties.features.log_fire')) %><br>
-    <%= feature_tick(@property.fully_equipped_kitchen?,
-      I18n.t('properties.features.fully_equipped_kitchen')) %><br>
-    <%= feature_tick(@property.cave?,
-      I18n.t('properties.features.cave')) %><br>
-    <%= feature_tick(@property.ski_in_ski_out?,
-      I18n.t('properties.features.ski_in_ski_out')) %><br>
-    <%= feature_tick(@property.children_welcome?,
-      I18n.t('properties.features.children_welcome')) %><br>
+    <%= feature_tick(@property.smoking?,
+      I18n.t('properties.features.smoking')) %><br>
+    <%= feature_tick(@property.disabled?,
+      I18n.t('properties.features.disabled')) %>
   </div>
   <div class="column">
     <%= feature_tick(@property.pets?,
       I18n.t('properties.features.pets')) %><br>
-    <%= feature_tick(@property.smoking?,
-      I18n.t('properties.features.smoking')) %><br>
-    <%= feature_tick(@property.disabled?,
-      I18n.t('properties.features.disabled')) %><br>
+    <%= feature_tick(@property.children_welcome?,
+      I18n.t('properties.features.children_welcome')) %>
+  </div>
+  <p class="divider">&nbsp;</p>
+<% end -%>
+  <div class="column">
+    <%= feature_tick(@property.balcony?,
+      I18n.t('properties.features.balcony')) %><br>
     <%= feature_tick(@property.terrace?,
       I18n.t('properties.features.terrace')) %><br>
+    <%= feature_tick(@property.mountain_views?,
+      I18n.t('properties.features.mountain_views')) %>
+  </div>
+  <div class="column">
     <%= feature_tick(@property.garden?,
       I18n.t('properties.features.garden')) %><br>
+    <%= feature_tick(true, @property.parking_description) %><br>
+    <%= feature_tick(@property.fully_equipped_kitchen?,
+      I18n.t('properties.features.fully_equipped_kitchen')) %>
+  </div>
+  <div class="column">
+    <%= feature_tick(@property.ski_in_ski_out?,
+      I18n.t('properties.features.ski_in_ski_out')) %><br>
+    <%= feature_tick(@property.cave?,
+      I18n.t('properties.features.cave')) %><br>
+    <%= feature_tick(@property.log_fire?,
+      I18n.t('properties.features.log_fire')) %>
   </div>
   <div class="column">
     <%= feature_tick(@property.hot_tub?,
       I18n.t('properties.features.hot_tub')) %><br>
-    <%= feature_tick(@property.indoor_swimming_pool? ||
-      @property.outdoor_swimming_pool?,
-      I18n.t('properties.features.swimming_pool')) %><br>
     <%= feature_tick(@property.sauna?,
       I18n.t('properties.features.sauna')) %><br>
-    <%= feature_tick(true, @property.parking_description) %><br>
+    <%= feature_tick(@property.indoor_swimming_pool? ||
+      @property.outdoor_swimming_pool?,
+      I18n.t('properties.features.swimming_pool')) %>
   </div>
   <%= clear %>
 </div>
