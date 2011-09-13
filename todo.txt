@@ -11,4 +11,3 @@ Pericles: living_area --> property size
 Pericles: surface terrain --> plot size
 Show nearest lift 1,001m as >1km
 Label window start date instead of advert start date for estate agents
-For rent property can never be a new build

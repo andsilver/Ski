@@ -7,7 +7,7 @@ class Property < ActiveRecord::Base
   belongs_to :currency
 
   has_many :images, :dependent => :destroy
-  has_many :adverts
+  has_many :adverts, :dependent => :restrict
 
   validates_presence_of :resort_id
   validates_associated :resort
@@ -24,7 +24,7 @@ class Property < ActiveRecord::Base
   validates_uniqueness_of :pericles_id, :allow_nil => true, :scope => :user_id
 
   before_validation :adjust_distances_if_needed
-  before_save :geocode, :normalise_prices
+  before_save :geocode, :normalise_prices, :properties_for_rent_cannot_be_new_developments
 
   cattr_reader :per_page
   @@per_page = 10
@@ -185,6 +185,10 @@ class Property < ActiveRecord::Base
   def normalise_prices
     self.normalised_sale_price = sale_price * currency.in_euros
     self.normalised_weekly_rent_price = weekly_rent_price * currency.in_euros
+  end
+
+  def properties_for_rent_cannot_be_new_developments
+    self.new_development = false if for_rent?
   end
 
   def valid_months
