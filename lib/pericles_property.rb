@@ -51,29 +51,40 @@ class PericlesProperty
       @number_of_shower_rooms = @balconies = @terraces = @caves = 0
     @lift = @swimming_pool = @disabled_access = false
 
-    @company_code       = val(xml['CODE_SOCIETE'])
-    @offer_type         = val(xml['TYPE_OFFRE']).to_i
-    @site_code          = val(xml['CODE_SITE'])
-    @pericles_id        = val(xml['NO_ASP']).to_i
-    @price              = val(xml['PRIX']).to_i
-    @fees               = val(xml['HONORAIRES']).to_i
-    @local_rates        = val(xml['TAXE_HABITATION']).to_i
-    @address_1          = val(xml['ADRESSE1_OFFRE'])
-    @address_2          = val(xml['ADRESSE2_OFFRE'])
-    @postcode           = val(xml['CP_OFFRE'])
-    @town               = val(xml['TOWN'])
-    @category           = val(xml['CATEGORIE'])
-    @number_of_rooms    = val(xml['NB_PIECES']).to_i
-    @number_of_bedrooms = val(xml['NB_CHAMBRES']).to_i
-    @floor              = val(xml['ETAGE']).to_i
-    @text_de            = val(xml['TEXTE_GER'])
-    @text_en            = val(xml['TEXTE_UK'])
-    @text_es            = val(xml['TEXTE_SP'])
-    @text_fr            = val(xml['TEXTE_FR'])
-    @text_it            = val(xml['TEXTE_IT'])
+    @company_code         = val(xml['CODE_SOCIETE'])
+    @offer_type           = val(xml['TYPE_OFFRE']).to_i
+    @site_code            = val(xml['CODE_SITE'])
+    @pericles_id          = val(xml['NO_ASP']).to_i
+    @price                = val(xml['PRIX']).to_i
+    @fees                 = val(xml['HONORAIRES']).to_i
+    @local_rates          = val(xml['TAXE_HABITATION']).to_i
+    @address_1            = val(xml['ADRESSE1_OFFRE'])
+    @address_2            = val(xml['ADRESSE2_OFFRE'])
+    @postcode             = val(xml['CP_OFFRE'])
+    @town                 = val(xml['TOWN'])
+    @category             = val(xml['CATEGORIE'])
+    @number_of_rooms      = val(xml['NB_PIECES']).to_i
+    @number_of_bedrooms   = val(xml['NB_CHAMBRES']).to_i
     @living_area          = val(xml['SURF_HAB']).to_i
     @plot_size            = val(xml['SURF_TERRAIN']).to_i
+    @floor                = val(xml['ETAGE']).to_i
+    @number_of_floors     = val(xml['NB_ETAGES']).to_i
+    @year_of_construction = val(xml['ANNEE_CONS']).to_i
+    @kitchen              = val(xml['KITCHEN'])
+    @number_of_toilets    = val(xml['NB_WC']).to_i
+    @number_of_bathrooms  = val(xml['NB_SDB']).to_i
+    @number_of_shower_rooms = val(xml['NB_SE']).to_i
     @number_of_garages    = val(xml['GARAGE_BOX']).to_i
+    @lift                 = val(xml['ASCENSEUR']) == 'Oui'
+    @balconies            = val(xml['BALCON']).to_i
+    @terraces             = val(xml['TERRASSE']).to_i
+    @swimming_pool        = val(xml['PISCINE']) == 'Oui'
+    @disabled_access      = val(xml['ACCES_HANDI']) == 'Oui'
+    @text_de              = val(xml['TEXTE_GER'])
+    @text_en              = val(xml['TEXTE_UK'])
+    @text_es              = val(xml['TEXTE_SP'])
+    @text_fr              = val(xml['TEXTE_FR'])
+    @text_it              = val(xml['TEXTE_IT'])
 
     unless VALID_OFFER_TYPES.include? @offer_type
       raise "Unsupported offer type (TYPE_OFFRE)"
