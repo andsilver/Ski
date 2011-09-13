@@ -199,6 +199,74 @@ class PropertiesController < ApplicationController
     cleanup_import "Total read: #{@total_read}, Newly imported: #{@newly_imported}, Updated: #{@updated}, Failed: #{@failed}"
   end
 
+  def pericles_import
+    default_resort = Resort.find_by_id(params[:resort_id])
+    unless default_resort
+      redirect_to new_pericles_import_properties_path, :notice => "Please select a default resort."
+      return
+    end
+
+    @path = "#{Rails.root.to_s}/public/up/users/#{@current_user.id}/properties_upload"
+    xml_filename = "#{@path}/mbiarve.XML"
+
+    require 'xmlsimple'
+
+    @total_read = @newly_imported = @updated = @failed = 0
+    flash[:errors] = []
+
+    xml_file = File.open(xml_filename, 'rb')
+    xml = XmlSimple.xml_in(xml_file)
+    xml_file.close
+    xml['BIEN'].each do |property_xml|
+      @total_read += 1
+      begin
+        p_p = PericlesProperty.new(property_xml)
+      rescue RuntimeError => e
+        @failed += 1
+        flash[:errors] << "Property with NO_ASP=#{property_xml['NO_ASP'][0]} failed: #{e}"
+        next
+      end
+      puts p_p
+      puts '-------'
+      property = Property.find_by_user_id_and_pericles_id(@current_user.id, p_p.pericles_id)
+      property ||= new_import_property
+
+      new_record = property.new_record?
+      p_p.prepare_property(property)
+      property.trim_name_and_strapline
+      property.resort_id = default_resort.id
+
+      p(property)
+      puts '-------'
+
+      if property.save
+        GC.start if property.id % 50 == 0
+        if new_record
+          @newly_imported += 1
+        else
+          @updated += 1
+        end
+      else
+        if @failed < 5
+          error = "Problem with property in with NO_ASP=#{p_p.pericles_id}:"
+          property.errors.full_messages.each do |msg|
+            error += " [#{msg}]"
+          end
+          flash[:errors] << error
+        else
+          flash[:errors] << "Also NO_ASP=#{p_p.pericles_id}"
+        end
+        @failed += 1
+      end
+
+      process_imported_pericles_images(p_p, property) if new_record
+
+    end
+
+    redirect_to new_pericles_import_properties_path,
+      :notice => "Total read: #{@total_read}, Newly imported: #{@newly_imported}, Updated: #{@updated}, Failed: #{@failed}"
+  end
+
   protected
 
   def process_row(row)
@@ -213,13 +281,9 @@ class PropertiesController < ApplicationController
     @total_read += 1
 
     property = Property.find_by_user_id_and_name(@current_user.id, row[@mapping['name']])
-    new_record = false
-    unless property
-      property = Property.new
-      property.user_id = @current_user.id
-      property.distance_from_town_centre_m = property.metres_from_lift = 1001
-      new_record = true
-    end
+    property ||= new_import_property
+
+    new_record = property.new_record?
 
     Property.importable_attributes.each do |attribute|
       unless @mapping[attribute].nil? || attribute == 'images'
@@ -230,9 +294,7 @@ class PropertiesController < ApplicationController
       end
     end
 
-    if property.strapline.length > 255
-      property.strapline = property.strapline[0..254]
-    end
+    property.trim_name_and_strapline
 
     if property.save
       GC.start if property.id % 50 == 0
@@ -255,6 +317,13 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def new_import_property
+    property = Property.new
+    property.user_id = @current_user.id
+    property.distance_from_town_centre_m = property.metres_from_lift = 1001
+    property
+  end
+
   def process_imported_images(property, images)
     return if images.nil?
 
@@ -263,6 +332,29 @@ class PropertiesController < ApplicationController
     image_filenames.each do |filename|
       puts "processing image: #{filename}"
       filename = File.basename(filename.strip)
+      path = "#{@path}/#{filename}"
+      if File.exists? path
+        file = File.open(path)
+        image = Image.new
+        image.image = file
+        image.user_id = property.user_id
+        image.property_id = property.id
+        image.save
+        if first
+          property.image_id = image.id
+          property.save
+          first = false
+        end
+        file.close
+      end
+    end
+  end
+
+  def process_imported_pericles_images(pericles_property, property)
+    first = true
+    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'].each do |letter|
+      filename = "#{pericles_property.company_code}-#{pericles_property.site_code}-#{pericles_property.pericles_id}-#{letter}.jpg"
+      puts "processing image: #{filename}"
       path = "#{@path}/#{filename}"
       if File.exists? path
         file = File.open(path)

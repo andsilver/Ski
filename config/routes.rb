@@ -59,6 +59,8 @@ MySkiChalet::Application.routes.draw do
     get  'import_documentation', :on => :collection
     get  'new_import',           :on => :collection
     post 'import',               :on => :collection
+    get  'new_pericles_import',  :on => :collection
+    post 'pericles_import',      :on => :collection
   end
 
   resources :property_base_prices

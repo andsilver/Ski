@@ -21,6 +21,8 @@ class Property < ActiveRecord::Base
   validates_inclusion_of :distance_from_town_centre_m, :in => VALID_DISTANCES
   validates_inclusion_of :metres_from_lift,            :in => VALID_DISTANCES
 
+  validates_uniqueness_of :pericles_id, :allow_nil => true, :scope => :user_id
+
   before_validation :adjust_distances_if_needed
   before_save :geocode, :normalise_prices
 
@@ -191,6 +193,15 @@ class Property < ActiveRecord::Base
 
   def default_months
     3
+  end
+
+  def trim_name_and_strapline
+    if strapline.length > 255
+      self.strapline = strapline[0..254]
+    end
+    if name.length > 30
+      self.name = name[0..29]
+    end
   end
 
   def to_s
