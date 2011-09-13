@@ -95,6 +95,7 @@ class PericlesProperty
     end
     property.address = "#{@address_1}\n#{@address_2}\n#{@town}"
     property.postcode = @postcode
+    property.strapline = @text_en
     property.number_of_bathrooms = @number_of_bathrooms + @number_of_shower_rooms
     property.number_of_bedrooms = @number_of_bedrooms
     property.balcony = @balconies > 0
