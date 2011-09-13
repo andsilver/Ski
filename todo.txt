@@ -5,3 +5,12 @@ Terms to be included near / on signup
 Put up estate agent chat, with my edits
 Put up chat on buy windows page
 Move Long Lets to after Short Stays, move TV before Satellite on same line
+Remove test properties
+Pericles: garage box > 0 --- set as garage
+Pericles: make off-road parking default
+Pericles: allow nearest lift to be a nil property and hence not displayed
+Pericles: living_area --> property size
+Pericles: surface terrain --> plot size
+Show nearest lift 1,001m as >1km
+Label window start date instead of advert start date for estate agents
+For rent property can never be a new build
