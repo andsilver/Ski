@@ -20,6 +20,7 @@ class PericlesProperty
   attr_accessor :number_of_rooms      # NB_PIECES
   attr_accessor :number_of_bedrooms   # NB_CHAMBRES
   attr_accessor :living_area          # SURF_HAB
+  attr_accessor :plot_size            # SURF_TERRAIN
   attr_accessor :floor                # ETAGE
   attr_accessor :number_of_floors     # NB_ETAGES
   attr_accessor :year_of_construction # ANNEE_CONS
@@ -64,13 +65,14 @@ class PericlesProperty
     @category           = val(xml['CATEGORIE'])
     @number_of_rooms    = val(xml['NB_PIECES']).to_i
     @number_of_bedrooms = val(xml['NB_CHAMBRES']).to_i
-    @living_area        = val(xml['SURF_HAB']).to_i
     @floor              = val(xml['ETAGE']).to_i
     @text_de            = val(xml['TEXTE_GER'])
     @text_en            = val(xml['TEXTE_UK'])
     @text_es            = val(xml['TEXTE_SP'])
     @text_fr            = val(xml['TEXTE_FR'])
     @text_it            = val(xml['TEXTE_IT'])
+    @living_area          = val(xml['SURF_HAB']).to_i
+    @plot_size            = val(xml['SURF_TERRAIN']).to_i
     @number_of_garages    = val(xml['GARAGE_BOX']).to_i
 
     unless VALID_OFFER_TYPES.include? @offer_type
@@ -100,6 +102,8 @@ class PericlesProperty
     property.strapline = @text_en
     property.number_of_bathrooms = @number_of_bathrooms + @number_of_shower_rooms
     property.number_of_bedrooms = @number_of_bedrooms
+    property.floor_area_metres_2 = @living_area
+    property.plot_size_metres_2 = @plot_size
     property.parking = (@number_of_garages > 0) ? Property::PARKING_GARAGE : Property::PARKING_ON_STREET
     property.balcony = @balconies > 0
     property.terrace = @terraces > 0
@@ -131,6 +135,7 @@ class PericlesProperty
     property.description += "<tr><td>Local rates</td><td>#{@local_rates} EUR</td></tr>\n"
     property.description += "<tr><td>Number of rooms</td><td>#{@number_of_rooms}</td></tr>\n"
     property.description += "<tr><td>Living area</td><td>#{@living_area} m²</td></tr>\n" unless @living_area == 0
+    property.description += "<tr><td>Plot size</td><td>#{@plot_size} m²</td></tr>\n" unless @plot_size == 0
     property.description += "<tr><td>Floor</td><td>#{@floor}</td></tr>\n" unless @floor == 0
     property.description += "<tr><td>Number of floors</td><td>#{@number_of_floors}</td></tr>\n" unless @number_of_floors == 0
     property.description += "<tr><td>Year of construction</td><td>#{@year_of_construction}</td></tr>\n" unless @year_of_construction = 0
@@ -138,7 +143,7 @@ class PericlesProperty
     property.description += "<tr><td>Number of bathrooms</td><td>#{@number_of_bathrooms}</td></tr>\n" unless @number_of_bathrooms == 0
     property.description += "<tr><td>Number of shower rooms</td><td>#{@number_of_shower_rooms}</td></tr>\n" unless @number_of_shower_rooms == 0
     property.description += "<tr><td>Kitchen</td><td>#{@kitchen}</td></tr>\n" unless @kichen.blank?
-    property.description += "<tr><td>Garages</td><td>#{@garages}</td></tr>\n" unless @number_of_garages == 0
+    property.description += "<tr><td>Garages</td><td>#{@number_of_garages}</td></tr>\n" unless @number_of_garages == 0
     property.description += "<tr><td>Lift</td><td>Yes</td></tr>\n" if @lift
     property.description += "<tr><td>Balconies</td><td>#{@balconies}</td></tr>\n" unless @balconies == 0
     property.description += "<tr><td>Terraces</td><td>#{@terraces}</td></tr>\n" unless @terraces == 0
@@ -167,6 +172,7 @@ class PericlesProperty
     "Number of rooms      #{@number_of_rooms}\n" +
     "Number of bedrooms   #{@number_of_bedrooms}\n" +
     "Living area          #{@living_area}\n" +
+    "Plot size            #{@plot_size}\n" +
     "Floor                #{@floor}\n" +
     "Number of garages    #{@number_of_garages}\n"
   end
