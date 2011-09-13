@@ -4,16 +4,6 @@
   <p><%= t('users.buy_advertising_windows.description') %></p>
 </a>
 <% end %>
-<% if @current_user.role.advertises_generally? %>
-<a class="cms_box" href="<%= new_banner_advert_path %>">
-  <h2><%= t('users.new_banner_advert.new_banner_advert') %></h2>
-  <p><%= t('users.new_banner_advert.description') %></p>
-</a>
-<a class="cms_box" href="<%= new_directory_advert_path %>" title="New Directory Advert">
-  <h2><%= t('users.new_directory_advert.new_directory_advert') %></h2>
-  <p><%= t('users.new_directory_advert.description') %></p>
-</a>
-<% end %>
 <% if @current_user.role.advertises_properties_for_rent? %>
 <a class="cms_box" href="<%= new_property_path %>" title="New Property for Rent">
   <h2><%= t('users.advertise_a_property_for_rent.advertise_a_property_for_rent') %></h2>
@@ -24,5 +14,15 @@
 <a class="cms_box" href="<%= new_property_path(:for_sale => true) %>">
   <h2><%= t('users.advertise_a_property_for_sale.advertise_a_property_for_sale') %></h2>
   <p><%= t('users.advertise_a_property_for_sale.description') %></p>
+</a>
+<% end %>
+<% if @current_user.role.advertises_generally? %>
+<a class="cms_box" href="<%= new_banner_advert_path %>">
+  <h2><%= t('users.new_banner_advert.new_banner_advert') %></h2>
+  <p><%= t('users.new_banner_advert.description') %></p>
+</a>
+<a class="cms_box" href="<%= new_directory_advert_path %>" title="New Directory Advert">
+  <h2><%= t('users.new_directory_advert.new_directory_advert') %></h2>
+  <p><%= t('users.new_directory_advert.description') %></p>
 </a>
 <% end %>
