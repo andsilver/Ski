@@ -30,7 +30,7 @@ class PericlesProperty
   attr_accessor :lift                 # ASCENSEUR
   attr_accessor :balconies            # BALCON
   attr_accessor :terraces             # TERRASSE
-  attr_accessor :swimming_pool        # SWIMMING_POOL
+  attr_accessor :swimming_pool        # PISCINE
   attr_accessor :disabled_access      # ACCES_HANDI
   attr_accessor :caves                # CAVES
   attr_accessor :text_de              # TEXTE_GER
