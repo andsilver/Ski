@@ -27,6 +27,7 @@ class PericlesProperty
   attr_accessor :number_of_toilets    # NB_WC
   attr_accessor :number_of_bathrooms  # NB_SDB
   attr_accessor :number_of_shower_rooms # NB_SE
+  attr_accessor :number_of_garages    # GARAGE_BOX
   attr_accessor :lift                 # ASCENSEUR
   attr_accessor :balconies            # BALCON
   attr_accessor :terraces             # TERRASSE
@@ -70,6 +71,7 @@ class PericlesProperty
     @text_es            = val(xml['TEXTE_SP'])
     @text_fr            = val(xml['TEXTE_FR'])
     @text_it            = val(xml['TEXTE_IT'])
+    @number_of_garages    = val(xml['GARAGE_BOX']).to_i
 
     unless VALID_OFFER_TYPES.include? @offer_type
       raise "Unsupported offer type (TYPE_OFFRE)"
@@ -98,7 +100,7 @@ class PericlesProperty
     property.strapline = @text_en
     property.number_of_bathrooms = @number_of_bathrooms + @number_of_shower_rooms
     property.number_of_bedrooms = @number_of_bedrooms
-    property.parking = Property::PARKING_ON_STREET
+    property.parking = (@number_of_garages > 0) ? Property::PARKING_GARAGE : Property::PARKING_ON_STREET
     property.balcony = @balconies > 0
     property.terrace = @terraces > 0
     property.disabled = @disabled_access
@@ -136,6 +138,7 @@ class PericlesProperty
     property.description += "<tr><td>Number of bathrooms</td><td>#{@number_of_bathrooms}</td></tr>\n" unless @number_of_bathrooms == 0
     property.description += "<tr><td>Number of shower rooms</td><td>#{@number_of_shower_rooms}</td></tr>\n" unless @number_of_shower_rooms == 0
     property.description += "<tr><td>Kitchen</td><td>#{@kitchen}</td></tr>\n" unless @kichen.blank?
+    property.description += "<tr><td>Garages</td><td>#{@garages}</td></tr>\n" unless @number_of_garages == 0
     property.description += "<tr><td>Lift</td><td>Yes</td></tr>\n" if @lift
     property.description += "<tr><td>Balconies</td><td>#{@balconies}</td></tr>\n" unless @balconies == 0
     property.description += "<tr><td>Terraces</td><td>#{@terraces}</td></tr>\n" unless @terraces == 0
@@ -164,6 +167,7 @@ class PericlesProperty
     "Number of rooms      #{@number_of_rooms}\n" +
     "Number of bedrooms   #{@number_of_bedrooms}\n" +
     "Living area          #{@living_area}\n" +
-    "Floor                #{@floor}\n"
+    "Floor                #{@floor}\n" +
+    "Number of garages    #{@number_of_garages}\n"
   end
 end
