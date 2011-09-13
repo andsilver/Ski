@@ -16,7 +16,7 @@ class Property < ActiveRecord::Base
   validates_length_of :name, :within => 5..30
   validates_length_of :strapline, :within => 0..255
 
-  VALID_DISTANCES = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
+  VALID_DISTANCES = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
 
   validates_inclusion_of :distance_from_town_centre_m, :in => VALID_DISTANCES
   validates_inclusion_of :metres_from_lift,            :in => VALID_DISTANCES
@@ -117,7 +117,7 @@ class Property < ActiveRecord::Base
     bedrooms = "#{I18n.t('bedrooms')}: #{number_of_bedrooms}"
     bedrooms += " (#{I18n.t('sleeps')} #{sleeping_capacity})" if for_rent?
     f << bedrooms
-    f << "#{I18n.t('nearest_lift')}: #{metres_from_lift}m"
+    f << "#{I18n.t('nearest_lift')}: #{metres_from_lift}m" unless metres_from_lift == 0
     f << I18n.t('properties.features.pets') if pets? && for_rent?
     f << I18n.t('properties.features.smoking') if smoking? && for_rent?
     f << tv_description if for_rent?
