@@ -98,6 +98,7 @@ class PericlesProperty
     property.strapline = @text_en
     property.number_of_bathrooms = @number_of_bathrooms + @number_of_shower_rooms
     property.number_of_bedrooms = @number_of_bedrooms
+    property.parking = Property::PARKING_ON_STREET
     property.balcony = @balconies > 0
     property.terrace = @terraces > 0
     property.disabled = @disabled_access
