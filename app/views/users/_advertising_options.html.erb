@@ -22,7 +22,7 @@
 <% end %>
 <% if @current_user.role.advertises_properties_for_sale? %>
 <a class="cms_box" href="<%= new_property_path(:for_sale => true) %>">
-  <h2><%= t('users.advertise_a_property_for_sale.advertise_a_property_for_rent') %></h2>
+  <h2><%= t('users.advertise_a_property_for_sale.advertise_a_property_for_sale') %></h2>
   <p><%= t('users.advertise_a_property_for_sale.description') %></p>
 </a>
 <% end %>
