@@ -7,6 +7,7 @@ nav {
   background-position: right top;
   background-repeat: no-repeat;
   height: 24px;
+  border-bottom: 1px solid #fff;
 }
 
 #main_menu ul {

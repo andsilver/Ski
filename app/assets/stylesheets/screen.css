@@ -33,11 +33,18 @@ a img {
   position: relative;
 }
 
+#shade {
+  opacity: 0.6;
+  background: #000;
+  height: 56px;
+  margin-bottom: 207px;
+}
+
 #logo {
-  margin-left: 4px;
-  margin-top: 35px;
-  margin-bottom: 160px;
   display: block;
+  position: absolute;
+  left: 19px;
+  top: 40px;
 }
 
 #column_headings {
