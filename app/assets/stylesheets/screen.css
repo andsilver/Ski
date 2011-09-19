@@ -67,7 +67,7 @@ a img {
   font-size: 1.3em;
 }
 
-li p {
+li p, td li {
   font-size: 1em;
 }
 
@@ -355,7 +355,8 @@ p.image_centre, p.image_center {
   text-align: center;
 }
 
-table#resort_facts {
+table#resort_facts, table.chat {
+  clear: both;
   margin: 20px auto;
   border-collapse: collapse;
   border-top: 1px solid #00aeef;
@@ -365,8 +366,15 @@ table#resort_facts {
   background-repeat: repeat-y;
 }
 
+table.chat {
+  width: 600px;;
+}
+
 #resort_facts td, #resort_facts th {
   width: 12.5%;
+}
+
+#resort_facts td, #resort_facts th, .chat td, .chat th {
   padding: 3px 6px;
 }
 
@@ -389,6 +397,10 @@ table#resort_facts {
 p.chunky_button {
   float: left;
   margin-right: 12px;
+}
+
+p.advertise_now {
+  float: right;
 }
 
 .chunky_button a {
