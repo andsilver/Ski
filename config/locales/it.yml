@@ -92,6 +92,7 @@ it:
   cms_controller:
     cms: CMS
     gross_sales_analysis: Gross Sales Analysis
+    management_information: Management Information
   contact_details: Contact Details
   continue: Continue
   coupon: 'Promotion code'
