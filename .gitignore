@@ -13,6 +13,7 @@ coverage/*
 db/*.sqlite3
 doc/features.html
 log/*.log
+public/up
 tmp/
 webrat.log
 .sass-cache/
