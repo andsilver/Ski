@@ -35,6 +35,7 @@ class RolesController < ApplicationController
   def sales_pitch
     @role = Role.find_by_name(params[:role].gsub('-', ' '))
     not_found unless @role
+    @page_title = @heading_a = "#{@role.name} - Advertiser Welcome"
   end
 
   protected
