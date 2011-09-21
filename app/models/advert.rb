@@ -61,7 +61,7 @@ class Advert < ActiveRecord::Base
   end
 
   def object
-    send(type)
+    type ? send(type) : nil
   end
 
   def to_s
@@ -75,7 +75,7 @@ class Advert < ActiveRecord::Base
   def start_and_save!
     self.starts_at = Time.now
 
-    if object.current_advert
+    if object && object.current_advert
       self.expires_at = object.current_advert.expires_at + months.months
     else
       self.expires_at = self.starts_at + months.months
