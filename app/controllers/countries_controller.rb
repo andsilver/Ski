@@ -34,7 +34,7 @@ class CountriesController < ApplicationController
 
   def show
     @stage_heading_a = I18n.t('stage_1')
-    @heading_a = @country.name
+    @page_title = @heading_a = @country.name
   end
 
   def destroy
