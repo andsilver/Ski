@@ -86,6 +86,7 @@ class Property < ActiveRecord::Base
       p.save
     end
     @@perform_geocode = PERFORM_GEOCODE
+    nil # don't fail before_save callback
   end
 
   def self.importable_attributes
@@ -189,6 +190,7 @@ class Property < ActiveRecord::Base
 
   def properties_for_rent_cannot_be_new_developments
     self.new_development = false if for_rent?
+    nil # don't fail before_save callback
   end
 
   def valid_months
