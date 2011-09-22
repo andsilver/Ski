@@ -1,7 +1,5 @@
 <%= render :partial => 'shared/steps', :locals => { :step => 6 } %>
 
-<h1><%= t('basket') %></h1>
-
 <% if @lines.empty? %>
   <p><%= t 'adverts_controller.basket_empty' %></p>
 <% else %>
