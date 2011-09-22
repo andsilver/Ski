@@ -54,9 +54,9 @@ describe DirectoryAdvertsController do
         flash[:notice].should eq("Your directory advert was successfully created. Now let's upload your business photo or logo.")
       end
 
-      it "redirects to my directory adverts" do
+      it "redirects to the new image page" do
         post_valid
-        response.should redirect_to(basket_path)
+        response.should redirect_to(new_image_path)
       end
     end
 
