@@ -67,6 +67,7 @@ describe UsersController do
     context "when the user saves successfully" do
       before do
         user.stub(:save).and_return(true)
+        user.stub(:role).and_return(role)
       end
 
       it "sets a flash[:notice] message" do
@@ -74,9 +75,40 @@ describe UsersController do
         flash[:notice].should eq("Your account was successfully created.")
       end
 
-      it "redirects to the first advert page" do
-        post :create, params
-        response.should redirect_to(first_advert_path)
+      context "when the user's role only advertises for sale" do
+        before do
+          role.stub(:only_advertises_properties_for_sale?).and_return(true)
+          role.stub(:only_advertises_properties_for_rent?).and_return(false)
+        end
+
+        it "redirects to the new property for sale page" do
+          post :create, params
+          response.should redirect_to(new_property_path(:for_sale => true))
+        end
+      end
+
+      context "when the user's role only advertises for rent" do
+        before do
+          role.stub(:only_advertises_properties_for_sale?).and_return(false)
+          role.stub(:only_advertises_properties_for_rent?).and_return(true)
+        end
+
+        it "redirects to the new property for rent page" do
+          post :create, params
+          response.should redirect_to(new_property_path)
+        end
+      end
+
+      context "when the user's role does multiple advertising" do
+        before do
+          role.stub(:only_advertises_properties_for_sale?).and_return(false)
+          role.stub(:only_advertises_properties_for_rent?).and_return(false)
+        end
+
+        it "redirects to the first advert page" do
+          post :create, params
+          response.should redirect_to(first_advert_path)
+        end
       end
     end
 
