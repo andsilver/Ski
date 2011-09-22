@@ -64,23 +64,42 @@ describe PropertiesController do
 
   describe "POST create" do
     let(:current_user) { mock_model(User).as_null_object }
+    let(:role) { mock_model(Role).as_null_object }
 
     before do
       session[:user] = 1
       Advert.stub(:create_for)
       User.stub(:find_by_id).and_return(current_user)
+      current_user.stub(:role).and_return(role)
       Property.stub(:new).and_return(property)
       property.stub(:user_id).and_return(1)
     end
 
-    it "creates a corresponding advert" do
-      Advert.should_receive(:create_for).with(property)
-      post :create
-    end
+    context "when the property saves successfully" do
+      before do
+        property.stub(:save).and_return(true)
+      end
 
-    it "redirects to image uploading form" do
-      post :create
-      response.should redirect_to(new_image_path)
+      context "when advertising through windows" do
+        pending
+      end
+
+      context "when not advertising through windows" do
+        before do
+          role.stub(:advertises_through_windows?).and_return(false)
+          current_user.role = role
+        end
+
+        it "creates a corresponding advert" do
+          Advert.should_receive(:create_for).with(property)
+          post :create
+        end
+      end
+
+      it "redirects to image uploading form" do
+        post :create
+        response.should redirect_to(new_image_path)
+      end
     end
   end
 
