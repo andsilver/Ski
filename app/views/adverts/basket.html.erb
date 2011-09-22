@@ -60,6 +60,10 @@
 <% end %>
 <% end %>
 
+<% if @current_user.role.advertises_through_windows? %>
+<p>Would you like to <%= link_to 'buy more advertising windows', buy_windows_adverts_path %>?</p>
+<% end %>
+
 <script>
 $('.basket_buttons').hide()
 </script>

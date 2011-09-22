@@ -8,6 +8,7 @@ estate_agent:
   flag_new_development: true
   has_business_details: true
   has_a_website: true
+  advertises_through_windows: true
 
 property_developer:
   id: 2
@@ -17,6 +18,7 @@ property_developer:
   advertises_properties_for_rent: false
   advertises_properties_for_sale: true
   flag_new_development: true
+  advertises_through_windows: true
 
 property_owner:
   id: 3
@@ -27,6 +29,7 @@ property_owner:
   advertises_properties_for_rent: true
   advertises_properties_for_sale: true
   flag_new_development: false
+  advertises_through_windows: false
 
 other_business:
   id: 5
@@ -37,6 +40,7 @@ other_business:
   advertises_properties_for_rent: false
   advertises_properties_for_sale: false
   flag_new_development: false
+  advertises_through_windows: false
 
 administrator:
   id: 4
@@ -46,3 +50,4 @@ administrator:
   advertises_properties_for_rent: true
   advertises_properties_for_sale: true
   flag_new_development: true
+  advertises_through_windows: true
