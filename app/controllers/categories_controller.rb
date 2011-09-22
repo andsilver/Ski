@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to(categories_path, :notice => t('notices.created.')) }
+        format.html { redirect_to(categories_path, :notice => t('notices.created')) }
         format.xml  { render :xml => @category, :status => :created, :location => @category }
       else
         format.html { render :action => "new" }

@@ -39,7 +39,7 @@ describe CategoriesController do
 
       it "sets a flash[:notice] message" do
         post :create, params
-        flash[:notice].should eq("Category created.")
+        flash[:notice].should eq("Created.")
       end
 
       it "redirects to the categories page" do
