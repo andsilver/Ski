@@ -401,6 +401,8 @@ p.chunky_button {
 
 p.advertise_now {
   float: right;
+  margin-right: 0;
+  margin-left: 12px;
 }
 
 .chunky_button a {
