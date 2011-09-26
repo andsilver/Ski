@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Role</th>
       <th>Email</th>
       <th>Admin</th>
       <th>Switch User</th>
@@ -15,6 +16,7 @@
   <% @users.each do |u| -%>
     <tr>
       <td><%= link_to h(u.name), :controller => 'users', :action => 'edit', :id => u %></td>
+      <td><%= u.role.name %></td>
       <td><%= mail_to u.email, u.email %>&nbsp;</td>
       <td><%= tick u.role.admin? %></td>
       <td><%= link_to 'Switch User', switch_user_path(u.id) %></td>
