@@ -10,6 +10,13 @@
   </div>
 <% end %>
 
+<% unless @country.new_record? %>
+<div class="group_panel">
+<h2>Image</h2>
+<p><%= link_to 'Change image for this country', new_image_path %> (changes made on this page will not be saved)</p>
+</div>
+<% end %>
+
 <%= form_for @country do |f| %>
 <div class="field">
   <%= f.label :name %><br>

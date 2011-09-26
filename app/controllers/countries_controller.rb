@@ -15,13 +15,15 @@ class CountriesController < ApplicationController
     @country = Country.new(params[:country])
 
     if @country.save
-      redirect_to(countries_path, :notice => t('notices.created'))
+      set_image_mode
+      redirect_to(new_image_path, :notice => t('notices.created'))
     else
       render "new"
     end
   end
 
   def edit
+    set_image_mode
   end
 
   def update
@@ -56,5 +58,10 @@ class CountriesController < ApplicationController
 
   def find_country
     @country = Country.find(params[:id])
+  end
+
+  def set_image_mode
+    session[:image_mode] = 'country'
+    session[:country_id] = @country.id
   end
 end
