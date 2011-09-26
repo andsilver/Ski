@@ -43,13 +43,22 @@ class Advert < ActiveRecord::Base
     end
   end
 
-  def self.activate_windows_for_user(how_many, user)
-    how_many.times do
-      advert = Advert.new
-      advert.user_id = user.id
-      advert.window = true
-      advert.months = 12
-      advert.start_and_save!
+  def self.activate_windows_for_user(how_many, order)
+    windows = Advert.where(:order_id => order.id, :window => true)
+    if windows.empty?
+      how_many.times do
+        advert = Advert.new
+        advert.order_id = order.id
+        advert.user_id = order.user.id
+        advert.window = true
+        advert.months = 1
+        advert.start_and_save!
+      end
+    else
+      windows.each do |w|
+        w.expires_at = Time.now + 31.days
+        w.save
+      end
     end
   end
 

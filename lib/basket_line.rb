@@ -16,4 +16,16 @@ class BasketLine
       @description
     end
   end
+
+  def pay_monthly?
+    windows.to_i > 0
+  end
+
+  def first_payment
+    price - 11 * (price / 12)
+  end
+
+  def subsequent_payments
+    price / 12
+  end
 end

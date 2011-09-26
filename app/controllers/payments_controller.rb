@@ -36,6 +36,9 @@ class PaymentsController < ApplicationController
     @payment.transaction_time = params[:transTime]
     @payment.raw_auth_message = params[:rawAuthMessage]
     @payment.accepted = false # for now
+
+    @payment.futurepay_id = params[:futurePayId] unless params[:futurePayId].nil?
+
     @payment.save # this first save is for safety
 
     if params[:transStatus].nil? or params[:transStatus] != 'Y'
@@ -106,7 +109,7 @@ class PaymentsController < ApplicationController
         line.advert.start_and_save! unless line.coupon
       end
       if line.windows > 0
-        Advert.activate_windows_for_user(line.windows, @payment.order.user)
+        Advert.activate_windows_for_user(line.windows, @payment.order)
       end
     end
   end

@@ -53,6 +53,12 @@ class AdvertsController < ApplicationController
         :resort_id => resort_id,
         :windows => line.windows
       )
+
+      if line.pay_monthly?
+        @order.pay_monthly = true
+        @order.first_payment = line.first_payment
+        @order.subsequent_payments = line.subsequent_payments
+      end
     end
 
     @order.total = @total

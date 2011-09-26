@@ -28,7 +28,15 @@
           </select>
           <% end %>
         </td>
-        <td class="numeric"><%= euros_from_cents line.price %></td>
+        <td class="numeric">
+          <%= euros_from_cents line.price %>
+          <% if line.pay_monthly? %>
+          <br>
+          12 monthly payments<br>
+          1st payment: <%= euros_from_cents(line.first_payment) %><br>
+          Followed by 11 payments of: <%= euros_from_cents(line.subsequent_payments) %>
+          <% end %>
+        </td>
         <td>
           <% unless line.coupon || line.advert.nil? %>
           <input type="submit" value="Remove" name="remove_advert[<%= line.advert.id %>]">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110907175228) do
+ActiveRecord::Schema.define(:version => 20110922150933) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -26,10 +26,12 @@ ActiveRecord::Schema.define(:version => 20110907175228) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "window",              :default => false, :null => false
+    t.integer  "order_id"
   end
 
   add_index "adverts", ["banner_advert_id"], :name => "index_adverts_on_banner_advert_id"
   add_index "adverts", ["directory_advert_id"], :name => "index_adverts_on_directory_advert_id"
+  add_index "adverts", ["order_id"], :name => "index_adverts_on_order_id"
   add_index "adverts", ["property_id"], :name => "index_adverts_on_property_id"
   add_index "adverts", ["user_id"], :name => "index_adverts_on_user_id"
 
@@ -184,17 +186,20 @@ ActiveRecord::Schema.define(:version => 20110907175228) do
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
-    t.string   "order_number",                 :null => false
-    t.string   "email",                        :null => false
-    t.integer  "status",                       :null => false
-    t.string   "name",                         :null => false
-    t.string   "address",                      :null => false
-    t.integer  "country_id",                   :null => false
-    t.string   "phone",                        :null => false
-    t.integer  "total",                        :null => false
+    t.string   "order_number",                           :null => false
+    t.string   "email",                                  :null => false
+    t.integer  "status",                                 :null => false
+    t.string   "name",                                   :null => false
+    t.string   "address",                                :null => false
+    t.integer  "country_id",                             :null => false
+    t.string   "phone",                                  :null => false
+    t.integer  "total",                                  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "postcode",     :default => "", :null => false
+    t.string   "postcode",            :default => "",    :null => false
+    t.boolean  "pay_monthly",         :default => false
+    t.integer  "first_payment",       :default => 0
+    t.integer  "subsequent_payments", :default => 0
   end
 
   add_index "orders", ["email"], :name => "index_orders_on_email"
@@ -235,6 +240,7 @@ ActiveRecord::Schema.define(:version => 20110907175228) do
     t.boolean  "accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "futurepay_id",       :default => "", :null => false
   end
 
   add_index "payments", ["created_at"], :name => "index_payments_on_created_at"
@@ -386,30 +392,31 @@ ActiveRecord::Schema.define(:version => 20110907175228) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                 :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password"
     t.string   "salt"
-    t.string   "website",               :default => "", :null => false
-    t.text     "description",                           :null => false
-    t.string   "billing_street",                        :null => false
-    t.string   "billing_locality",      :default => "", :null => false
-    t.string   "billing_city",                          :null => false
-    t.string   "billing_county",        :default => "", :null => false
-    t.string   "billing_postcode",      :default => "", :null => false
+    t.string   "website",                :default => "", :null => false
+    t.text     "description",                            :null => false
+    t.string   "billing_street",                         :null => false
+    t.string   "billing_locality",       :default => "", :null => false
+    t.string   "billing_city",                           :null => false
+    t.string   "billing_county",         :default => "", :null => false
+    t.string   "billing_postcode",       :default => "", :null => false
     t.integer  "billing_country_id"
-    t.string   "phone",                 :default => "", :null => false
-    t.string   "mobile",                :default => "", :null => false
-    t.string   "business_name",         :default => "", :null => false
-    t.string   "position",              :default => "", :null => false
-    t.boolean  "terms_and_conditions",                  :null => false
+    t.string   "phone",                  :default => "", :null => false
+    t.string   "mobile",                 :default => "", :null => false
+    t.string   "business_name",          :default => "", :null => false
+    t.string   "position",               :default => "", :null => false
+    t.boolean  "terms_and_conditions",                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "role_id",                               :null => false
+    t.integer  "role_id",                                :null => false
     t.integer  "coupon_id"
-    t.string   "forgot_password_token", :default => "", :null => false
-    t.string   "first_name",            :default => "", :null => false
-    t.string   "last_name",             :default => "", :null => false
+    t.string   "forgot_password_token",  :default => "", :null => false
+    t.string   "first_name",             :default => "", :null => false
+    t.string   "last_name",              :default => "", :null => false
     t.integer  "image_id"
+    t.string   "google_web_property_id", :default => "", :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

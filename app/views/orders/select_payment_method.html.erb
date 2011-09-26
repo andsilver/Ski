@@ -23,10 +23,49 @@
     <label>desc</label>:<br>
     <input type="text" name="desc" value="Web purchase">
   </p>
+<% if @order.pay_monthly? -%>
+  <p>
+    <label>futurePayType</label><br>
+    <input type="text" name="futurePayType" value="regular">
+  </p>
+  <p>
+    <label>noOfPayments</label><br>
+    <input type="text" name="noOfPayments" value="11">
+  </p>
+  <p>
+    <label>amount</label><br>
+    <input type="text" name="amount" value="<%= @order.first_payment / 100.0 %>">
+  </p>
+  <p>
+    <label>normalAmount</label><br>
+    <input type="text" name="normalAmount" value="<%= @order.subsequent_payments / 100.0 %>">
+  </p>
+  <p>
+    <label>intervalUnit</label><br>
+    <input type="text" name="intervalUnit" value="3">
+  </p>
+  <p>
+    <label>intervalMult</label><br>
+    <input type="text" name="intervalMult" value="1">
+  </p>
+  <p>
+    <label>startDelayUnit</label><br>
+    <input type="text" name="startDelayUnit" value="3">
+  </p>
+  <p>
+    <label>startDelayMult</label><br>
+    <input type="text" name="startDelayMult" value="1">
+  </p>
+  <p>
+    <label>option</label><br>
+    <input type="text" name="option" value="1">
+  </p>
+<% else -%>
   <p>
     <label>amount</label>:<br>
     <input type="text" name="amount" value="<%= @order.total / 100.0 %>">
   </p>
+<% end -%>
   <p>
     <label>currency</label>:<br>
     <input type="text" name="currency" value="EUR">
@@ -87,7 +126,19 @@
 <form action="https://select<%= (@w.worldpay_test_mode? ? '-test' : '') %>.worldpay.com/wcc/purchase" method="post">
 <input type="hidden" name="cartId" value="<%= @order.order_number %>">
 <input type="hidden" value="<%= @w.worldpay_installation_id %>" name="instId">
+<% if @order.pay_monthly? -%>
+<input type="hidden" name="futurePayType" value="regular">
+<input type="hidden" name="noOfPayments" value="11">
+<input type="hidden" name="amount" value="<%= @order.first_payment / 100.0 %>">
+<input type="hidden" name="normalAmount" value="<%= @order.subsequent_payments / 100.0 %>">
+<input type="hidden" name="intervalUnit" value="3">
+<input type="hidden" name="intervalMult" value="1">
+<input type="hidden" name="startDelayUnit" value="3">
+<input type="hidden" name="startDelayMult" value="1">
+<input type="hidden" name="option" value="1">
+<% else -%>
 <input type="hidden" value="<%= @order.total / 100.0 %>" name="amount">
+<% end -%>
 <input type="hidden" value="Web purchase" name="desc">
 <input type="hidden" value="EUR" name="currency">
 <% if @w.worldpay_test_mode? -%>
