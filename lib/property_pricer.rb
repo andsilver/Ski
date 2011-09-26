@@ -11,10 +11,11 @@ class PropertyPricer
   end
 
   def price_in_cents
-    PropertyBasePrice.find_by_number_of_months(@months).price * (100 - volume_discount)
+    pbb = PropertyBasePrice.find_by_number_of_months(@months)
+    pbb.price * (100 - volume_discount_percentage) - (volume_discount_amount * 100)
   end
 
-  def volume_discount
+  def volume_discount_percentage
     percentage_off = 0
 
     PropertyVolumeDiscount.order(:current_property_number).all.each do |pvd|
@@ -22,5 +23,15 @@ class PropertyPricer
     end
 
     percentage_off
+  end
+
+  def volume_discount_amount
+    discount_amount = 0
+
+    PropertyVolumeDiscount.order(:current_property_number).all.each do |pvd|
+      discount_amount = pvd.discount_amount if @property_number >= pvd.current_property_number
+    end
+
+    discount_amount
   end
 end
