@@ -7,7 +7,7 @@ class PropertiesController < ApplicationController
 
   before_filter :user_required, :except => [:browse_for_rent, :browse_for_sale,
     :new_developments, :contact, :email_a_friend, :current_time, :show]
-  before_filter :find_property_for_user, :only => [:edit, :update, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
+  before_filter :find_property_for_user, :only => [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
   before_filter :resort_conditions, :only => [:browse_for_rent, :browse_for_sale, :new_developments]
   before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale, :new_developments]
@@ -134,6 +134,11 @@ class PropertiesController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def destroy
+    @property.destroy
+    redirect_to my_adverts_path(:user_id => @property.user_id), :notice => I18n.t('notices.deleted')
   end
 
   def advertise_now
@@ -394,7 +399,11 @@ class PropertiesController < ApplicationController
   end
 
   def find_property_for_user
-    @property = Property.find_by_id_and_user_id(params[:id], @current_user.id)
+    if admin?
+      @property = Property.find(params[:id])
+    else
+      @property = Property.find_by_id_and_user_id(params[:id], @current_user.id)
+    end
     not_found unless @property
   end
 

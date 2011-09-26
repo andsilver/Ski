@@ -7,7 +7,7 @@ class Property < ActiveRecord::Base
   belongs_to :currency
 
   has_many :images, :dependent => :destroy
-  has_many :adverts, :dependent => :restrict
+  has_many :adverts, :dependent => :nullify
 
   validates_presence_of :resort_id
   validates_associated :resort

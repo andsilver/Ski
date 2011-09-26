@@ -5,11 +5,16 @@ class AdvertsController < ApplicationController
 
   def my
     @window_groups = WindowGroups.new
-    @current_user.windows.each {|w| @window_groups << w}
-    @rentals = @current_user.properties_for_rent
-    @sales = @current_user.properties_for_sale
-    @banner_adverts = @current_user.banner_adverts
-    @directory_adverts = @current_user.directory_adverts
+    if params[:user_id] && admin?
+      user = User.find(params[:user_id])
+    else
+      user = @current_user
+    end
+    user.windows.each {|w| @window_groups << w}
+    @rentals = user.properties_for_rent
+    @sales = user.properties_for_sale
+    @banner_adverts = user.banner_adverts
+    @directory_adverts = user.directory_adverts
   end
 
   def basket
