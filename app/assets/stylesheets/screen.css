@@ -495,3 +495,45 @@ iframe {
   display: block;
   margin: auto;
 }
+
+.featured_property {
+  width: 160px;
+  background-image: url(/images/property-summary-bg.png);
+  background-position: right top;
+  background-repeat: repeat-y;
+  border-bottom: 1px solid #68c8e7;
+  padding: 6px 8px 0 8px;
+  text-align: center;
+  margin: 8px 16px 8px 0;
+  float: left;
+}
+
+.featured_property h2 {
+  margin: 0.2em 0;
+}
+
+.featured_property h3 {
+  margin: 0.2em 0;
+  font-weight: normal;
+  font-size: 1.5em;
+}
+
+.featured_property h3 a {
+  color: #00aeef;
+  text-decoration: none;
+}
+
+.featured_property .thumbnail {
+  margin-top: 0;
+  height: 90px;
+  overflow: hidden;
+}
+
+.featured_property .price {
+  margin-top: 0;
+  font-size: 1.1em;
+}
+
+.featured_property .price span {
+  font-size: 1.4em;
+}

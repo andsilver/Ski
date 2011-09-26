@@ -37,6 +37,10 @@ class CountriesController < ApplicationController
   def show
     @stage_heading_a = I18n.t('stage_1')
     @page_title = @heading_a = @country.name
+
+    conditions = PropertiesController::CURRENTLY_ADVERTISED.dup
+    conditions[0] += " AND resort_id IN(SELECT id FROM resorts WHERE country_id=#{@country.id})"
+    @featured_properties = Property.order('RAND()').limit(6).where(conditions)
   end
 
   def destroy
