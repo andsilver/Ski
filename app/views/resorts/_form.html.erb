@@ -170,9 +170,8 @@
   <%= f.select(:off_piste, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
 </div>
 <div class="field">
-  <%= f.label :lively_apres_ski %><br>
-  <%= f.select(:lively_apres_ski, [["Yes", true], ["No", false]],
-    {:include_blank => true, :selected => @resort.lively_apres_ski.to_s}) %>
+  <%= f.label :apres_ski %><br>
+  <%= f.text_field :apres_ski %>
 </div>
 <div class="field">
   <%= f.label :family %><br>

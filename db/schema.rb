@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926161441) do
+ActiveRecord::Schema.define(:version => 20110927093849) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -342,7 +342,6 @@ ActiveRecord::Schema.define(:version => 20110926161441) do
     t.integer  "cross_country_km"
     t.integer  "mountain_restaurants"
     t.boolean  "glacier_skiing"
-    t.boolean  "lively_apres_ski"
     t.boolean  "creche"
     t.boolean  "babysitting_services"
     t.boolean  "visible",              :default => false, :null => false
@@ -365,6 +364,7 @@ ActiveRecord::Schema.define(:version => 20110926161441) do
     t.text     "insider_view"
     t.integer  "image_id"
     t.text     "weather_code"
+    t.string   "apres_ski",            :default => "",    :null => false
   end
 
   add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"

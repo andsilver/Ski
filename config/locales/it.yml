@@ -284,6 +284,7 @@ it:
       visiting: "Skiing in %{resort}"
     facts:
       altitude: Altitude
+      apres_ski: Apres ski
       babysitting_services: Babysitting services
       black: Black
       blue: Blue
@@ -298,7 +299,6 @@ it:
       glacier_skiing: Glacier skiing
       gondola: Gondola
       green: Green
-      lively_apres_ski: Lively apres ski
       longest_run: Longest run
       mountain_restaurants: Mountain restaurants
       nearest_airport: Nearest airport

@@ -284,6 +284,7 @@ fr:
       visiting: "Skiing in %{resort}"
     facts:
       altitude: Altitude
+      apres_ski: Apres ski
       babysitting_services: Baby-sitters
       black: Noir
       blue: Bleu
@@ -298,7 +299,6 @@ fr:
       glacier_skiing: Ski sur glacier
       gondola: Gondole
       green: Vert
-      lively_apres_ski: Animé l'après-ski
       longest_run: Piste la plus longue
       mountain_restaurants: Restaurants de montagne
       nearest_airport: Aéroport le plus proche
