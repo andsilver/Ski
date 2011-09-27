@@ -12,6 +12,7 @@ class PropertyPricer
 
   def price_in_cents
     pbb = PropertyBasePrice.find_by_number_of_months(@months)
+    raise "No matching PropertyBasePrice for months=#{@months}" if pbb.nil?
     pbb.price * (100 - volume_discount_percentage) - (volume_discount_amount * 100)
   end
 

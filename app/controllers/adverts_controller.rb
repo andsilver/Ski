@@ -120,7 +120,12 @@ class AdvertsController < ApplicationController
       total_adverts += 1
       line = BasketLine.new
       line.description = line.advert = advert
-      line.price = advert.price(advert_number[advert.type])
+      begin
+        line.price = advert.price(advert_number[advert.type])
+      rescue
+        advert.destroy
+        next
+      end
       @lines << line
       @total += line.price
       if @current_user.coupon && @current_user.coupon.number_of_adverts >= total_adverts
