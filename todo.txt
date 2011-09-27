@@ -7,7 +7,6 @@ Put up chat on buy windows page
 Move Long Lets to after Short Stays, move TV before Satellite on same line
 Show nearest lift 1,001m as >1km
 Label window start date instead of advert start date for estate agents
-HTML/FileZilla instructions to do general images
 Class = standout for subheading (e.g. blue subheadings)
 Show Basket in menu when windows in basket
 Don't allow windows to be added to the basket with anything else
