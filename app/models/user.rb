@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
+  validates_format_of :vat_number, :with => /[a-z][a-z].*/i, :allow_blank => true
+
   validates_presence_of :billing_street
   validates_presence_of :billing_city
   validates_presence_of :billing_country_id

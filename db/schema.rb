@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110927105835) do
+ActiveRecord::Schema.define(:version => 20110927125501) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -419,6 +419,7 @@ ActiveRecord::Schema.define(:version => 20110927105835) do
     t.string   "last_name",              :default => "", :null => false
     t.integer  "image_id"
     t.string   "google_web_property_id", :default => "", :null => false
+    t.string   "vat_number",             :default => "", :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
