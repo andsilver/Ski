@@ -4,6 +4,11 @@
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '<%= t('google.web_property_id') %>']);
   _gaq.push(['_trackPageview']);
+<% unless @advertiser_web_property_id.blank? -%>
+  _gaq.push(['_setAccount', '<%= @advertiser_web_property_id %>']);
+  _gaq.push(['_setDomainName', 'mychaletfinder.com']);
+  _gaq.push(['_trackPageview']);
+<% end -%>
 
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

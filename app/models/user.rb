@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   validates_length_of :password, :within => 5..40, :if => :password_required?
+  validates_format_of :google_web_property_id, :with => /\AUA-\d\d\d\d\d\d(\d)?(\d)?(\d)?-\d(\d)?\Z/, :allow_blank => true
 
   validates_presence_of :first_name
   validates_presence_of :last_name
