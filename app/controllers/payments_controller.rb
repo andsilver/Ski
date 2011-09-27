@@ -100,6 +100,7 @@ class PaymentsController < ApplicationController
     order.save
     @payment.order_id = order.id
     make_adverts_live
+    session[:windows_in_basket] = nil
     #OrderNotifier.deliver_notification @w, order
   end
 
