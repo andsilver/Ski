@@ -5,6 +5,10 @@ class HomeController < ApplicationController
     render :layout => "home"
   end
 
+  def contact
+    default_page_title t('contact')
+  end
+
   def privacy
     default_page_title t('privacy')
   end
