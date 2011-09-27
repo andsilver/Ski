@@ -27,9 +27,11 @@ function closeMenu(menu) {
     <li><%= link_to t('blog_posts_controller.blog'), blog_path %></li>
 <% end -%>
 <% if signed_in? %>
-<% if @current_user.has_adverts_in_basket? %>
+<% if @current_user.has_adverts_in_basket? -%>
     <li><a href="<%= basket_path %>"><%= t 'basket' %> <span class="count"><%= @current_user.adverts_in_basket.count %></span></a></li>
-<% end %>
+<% elsif session[:windows_in_basket] -%>
+<li><a href="<%= basket_path %>"><%= t 'basket' %> <span class="count">1</span></a></li>
+<% end -%>
 <% unless admin? %>
     <li><%= link_to t('account'), advertise_path %>
 <% end %>
