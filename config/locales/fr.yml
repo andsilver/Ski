@@ -382,7 +382,7 @@ fr:
       heading: E-mail Envoyé
       content: "Un email a été envoyé montrant comment réinitialiser votre mot de passe et le changement. S'il vous plaît vérifier votre boîte de réception dans quelques minutes."
     forgot_your_password: Mot de Passe Oublié
-    i_accept_terms: 'I accept the terms & conditions below'
+    i_accept_terms: 'I have read, understood and agree to be bound by the terms and conditions.'
     my_adverts:
       description: 'View and update your past and current adverts. See your advert stats.'
     my_details:

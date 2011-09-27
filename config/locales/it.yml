@@ -382,7 +382,7 @@ it:
       heading: Email Sent
       content: An email has been sent showing how to reset and change your password. Please check your inbox in a few minutes.
     forgot_your_password: Forgot your password?
-    i_accept_terms: 'I accept the terms & conditions below'
+    i_accept_terms: 'I have read, understood and agree to be bound by the terms and conditions.'
     my_adverts:
       description: 'View and update your past and current adverts. See your advert stats.'
     my_details:

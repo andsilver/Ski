@@ -93,7 +93,9 @@
 <h2><%= t 'terms' %></h2>
 <div class="field">
   <%= f.check_box :terms_and_conditions %>
-  <%= f.label :terms_and_conditions, t('users.i_accept_terms') %>  <%= required_field %>
+  <%= f.label :terms_and_conditions, t('users.i_accept_terms') %>
+  <%= link_to t('view'), terms_path %>
+  <%= required_field %>
 </div>
 <% end %>
 
