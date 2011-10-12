@@ -17,7 +17,6 @@ Feature: Advertising Windows
     When I am on the advertise page
     Then I should not see "Buy Advertising Windows"
 
-  @wip
   Scenario: I should be able to buy more properties windows from the basket
     Given I am signed in as an estate agent
     And I am on the basket page
