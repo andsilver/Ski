@@ -3,6 +3,11 @@ html, body {
   padding: 0;
 }
 
+article, aside, footer,
+header, hgroup, nav, section {
+  display: block;
+}
+
 body {
   background-color: #fff;
   font-size: 62.5%;
