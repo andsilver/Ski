@@ -372,6 +372,7 @@ table#resort_facts, table.chat {
 }
 
 table.chat {
+  margin: 20px 0;
   width: 600px;;
 }
 
