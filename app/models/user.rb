@@ -115,6 +115,10 @@ class User < ActiveRecord::Base
     false
   end
 
+  def pays_vat?
+    vat_number.blank? && billing_country.in_eu?
+  end
+
   def to_s
     name
   end

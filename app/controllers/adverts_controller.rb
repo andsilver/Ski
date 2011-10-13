@@ -63,10 +63,15 @@ class AdvertsController < ApplicationController
         @order.pay_monthly = true
         @order.first_payment = line.first_payment
         @order.subsequent_payments = line.subsequent_payments
+        if @current_user.pays_vat?
+          @order.first_payment += @w.vat_for(line.first_payment)
+          @order.subsequent_payments += @w.vat_for(line.subsequent_payments)
+        end
       end
     end
 
     @order.total = @total
+    @order.tax_amount = @tax_amount
     @order.status = Order::WAITING_FOR_PAYMENT
     @order.save!
 
@@ -138,6 +143,15 @@ class AdvertsController < ApplicationController
         @total += discount_line.price
       end
     end
+
+    @subtotal = @total
+
+    if @current_user.pays_vat?
+      @tax_amount = @w.vat_for(@subtotal)
+      @total += @tax_amount
+    else
+      @tax_amount = 0
+    end
   end
 
   def update_durations
@@ -174,5 +188,6 @@ class AdvertsController < ApplicationController
     @order.phone = @current_user.phone
     @order.email = @current_user.email
     @order.name = @current_user.name
+    @order.customer_vat_number = @current_user.vat_number
   end
 end

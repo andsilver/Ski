@@ -10,6 +10,10 @@
 <%= @order.address %><br>
 <%= @order.postcode %><br>
 <%= @order.country %>
+<% unless @order.customer_vat_number.empty? -%>
+<br>
+<%= t('users.vat_number') %>: <%= @order.customer_vat_number %>
+<% end -%>
 </p>
  
 <table id="receipt">
@@ -27,6 +31,10 @@
     <td class="price numeric"><%= euros_from_cents(line.amount)  %></td>
   </tr>
   <% end -%>
+  <tr>
+    <td><%= t('adverts_controller.tax_amount') %></th>
+    <td class="price numeric"><%= euros_from_cents @order.tax_amount %></td>
+  </tr>
   <tr>
     <td id="order_total">Order total:</th>
     <td class="price numeric total"><%= euros_from_cents(@order.total) %></td>

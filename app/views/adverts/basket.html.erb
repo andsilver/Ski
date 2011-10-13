@@ -33,8 +33,8 @@
           <% if line.pay_monthly? %>
           <br>
           12 monthly payments<br>
-          1st payment: <%= euros_from_cents(line.first_payment) %><br>
-          Followed by 11 payments of: <%= euros_from_cents(line.subsequent_payments) %>
+          1st payment: <%= euros_from_cents(line.first_payment) %> +<%= t('adverts_controller.tax_amount') %><br>
+          Followed by 11 payments of: <%= euros_from_cents(line.subsequent_payments) %> +<%= t('adverts_controller.tax_amount') %>
           <% end %>
         </td>
         <td>
@@ -47,6 +47,16 @@
         </td>
       </tr>
     <% end %>
+      <tr>
+        <th colspan="3"><%= t('adverts_controller.subtotal') %></th>
+        <td class="numeric"><%= euros_from_cents @subtotal %></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <th colspan="3"><%= t('adverts_controller.tax_amount') %></th>
+        <td class="numeric"><%= euros_from_cents @tax_amount %></td>
+        <td>&nbsp;</td>
+      </tr>
       <tr>
         <th colspan="3"><%= t('adverts_controller.total') %></th>
         <td class="numeric"><%= euros_from_cents @total %></td>

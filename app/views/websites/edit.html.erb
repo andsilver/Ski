@@ -42,6 +42,11 @@
 </div>
 
 <div class="field">
+	<%= f.label :vat_rate, 'VAT rate' %>:<br>
+	<%= f.text_field :vat_rate, :class => "text" %> %
+</div>
+
+<div class="field">
 	<label for="website_skip_payment_true">Skip payment?:</label>
 	<%= f.radio_button :skip_payment, true, :class => "radio" %>
 	<label for="website_skip_payment_true">Yes</label>

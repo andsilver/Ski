@@ -46,6 +46,8 @@ it:
     number_in_use: Number in Use
     place_order: Place Order
     purchased_on: Purchased On
+    subtotal: Subtotal
+    tax_amount: VAT
     total: Total
     windows: Windows
   advert_details: Advert details
