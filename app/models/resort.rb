@@ -16,6 +16,10 @@ class Resort < ActiveRecord::Base
     "#{id}-#{PermalinkFu.escape(name)}"
   end
 
+  def area_type
+    local_area? ? I18n.t('resorts_controller.detail.local_area') : I18n.t('resorts_controller.detail.whole_area')
+  end
+
   def to_s
     name
   end

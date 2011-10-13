@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110927144122) do
+ActiveRecord::Schema.define(:version => 20111013065953) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -367,6 +367,7 @@ ActiveRecord::Schema.define(:version => 20110927144122) do
     t.integer  "image_id"
     t.text     "weather_code"
     t.string   "apres_ski",            :default => "",    :null => false
+    t.boolean  "local_area",           :default => false, :null => false
   end
 
   add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"

@@ -33,6 +33,11 @@
   <%= f.check_box :featured %> <%= f.label :featured %>
 </div>
 <div class="field">
+  <%= f.label :local_area, 'Applies to' %><br>
+  <%= f.select(:local_area, [["Local area", true], ["Whole area", false]],
+    {:selected => @resort.local_area}) %>
+</div>
+<div class="field">
   <%= f.label :introduction %><br>
   <%= f.text_area :introduction %>
 </div>
