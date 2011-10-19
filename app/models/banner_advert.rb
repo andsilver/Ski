@@ -7,7 +7,7 @@ class BannerAdvert < ActiveRecord::Base
   belongs_to :user
   belongs_to :image
 
-  has_many :adverts
+  has_many :adverts, :dependent => :delete_all
 
   validates_presence_of :resort
   validates_presence_of :user

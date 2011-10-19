@@ -6,7 +6,7 @@ class DirectoryAdvert < ActiveRecord::Base
   belongs_to :user
   belongs_to :image, :dependent => :destroy
 
-  has_many :adverts
+  has_many :adverts, :dependent => :delete_all
 
   validates_presence_of :category
   validates_presence_of :resort

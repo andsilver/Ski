@@ -4,21 +4,21 @@ class User < ActiveRecord::Base
   belongs_to :coupon
   belongs_to :image
 
-  has_many :banner_adverts
-  has_many :directory_adverts
+  has_many :banner_adverts, :dependent => :destroy
+  has_many :directory_adverts, :dependent => :destroy
   has_many :enquiries, :dependent => :delete_all, :order => "created_at DESC"
-  has_many :adverts
+  has_many :adverts, :dependent => :delete_all
   has_many :adverts_in_basket, :class_name => 'Advert', :conditions => {:starts_at => nil}
 
   # TODO: these should probably exclude expired windows
   has_many :windows, :class_name => 'Advert', :conditions => {:window => true}, :order => "expires_at DESC"
   has_many :empty_windows, :class_name => 'Advert', :conditions => {:property_id => nil, :window => true}, :order => "expires_at DESC"
 
-  has_many :properties
+  has_many :properties, :dependent => :destroy
   has_many :properties_for_rent, :class_name => 'Property', :conditions => {:for_sale => false}
   has_many :properties_for_sale, :class_name => 'Property', :conditions => {:for_sale => true}
   has_many :images, :dependent => :destroy
-  has_many :orders
+  has_many :orders, :dependent => :destroy
   has_many :orders_with_receipts, :class_name => 'Order', :conditions => "status NOT IN (#{Order::WAITING_FOR_PAYMENT})",
     :order => 'created_at DESC'
 

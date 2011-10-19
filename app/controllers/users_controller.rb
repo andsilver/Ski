@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_filter :no_browse_menu
-  before_filter :admin_required, :only => [:index]
+  before_filter :admin_required, :only => [:index, :destroy]
   before_filter :user_required, :only => [:first_advert, :show, :edit, :update]
-  before_filter :find_user, :only => [:forgot_password_new, :forgot_password_change]
+  before_filter :find_user, :only => [:forgot_password_new, :forgot_password_change, :destroy]
   before_filter :find_current_user_or_selected_user, :only => [:edit, :update]
 
   def index
@@ -68,6 +68,11 @@ class UsersController < ApplicationController
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to users_path, :notice => t('notices.deleted')
   end
 
   def forgot_password
