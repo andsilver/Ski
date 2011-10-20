@@ -72,11 +72,20 @@ class AdvertsController < ApplicationController
 
     @order.total = @total
     @order.tax_amount = @tax_amount
-    @order.status = Order::WAITING_FOR_PAYMENT
+    if @order.total == 0
+      @order.status = Order::PAYMENT_NOT_REQUIRED
+    else
+      @order.status = Order::WAITING_FOR_PAYMENT
+    end
     @order.save!
 
     session[:order_id] = @order.id
-    redirect_to :controller => 'orders', :action => 'select_payment_method'
+
+    if @order.total == 0
+      redirect_to :controller => 'payments', :action => 'complete_payment_not_required'
+    else
+      redirect_to :controller => 'orders', :action => 'select_payment_method'
+    end
   end
 
   def destroy

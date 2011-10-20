@@ -87,6 +87,14 @@ class PaymentsController < ApplicationController
     end
   end
 
+  def complete_payment_not_required
+    order = Order.find(session[:order_id])
+    if order.payment_received?
+      make_adverts_live(order)
+    end
+    redirect_to :controller => 'orders', :action => 'latest_receipt'
+  end
+
   protected
 
   def complete_order
@@ -99,19 +107,19 @@ class PaymentsController < ApplicationController
     order.status = Order::PAYMENT_RECEIVED
     order.save
     @payment.order_id = order.id
-    make_adverts_live
-    session[:windows_in_basket] = nil
+    make_adverts_live(order)
     #OrderNotifier.deliver_notification @w, order
   end
 
-  def make_adverts_live
-    @payment.order.order_lines.each do |line|
+  def make_adverts_live(order)
+    order.order_lines.each do |line|
       if line.advert
         line.advert.start_and_save! unless line.coupon
       end
       if line.windows > 0
-        Advert.activate_windows_for_user(line.windows, @payment.order)
+        Advert.activate_windows_for_user(line.windows, order)
       end
     end
+    session[:windows_in_basket] = nil
   end
 end

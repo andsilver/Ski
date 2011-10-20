@@ -102,6 +102,7 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :payments do
+    get  'complete_payment_not_required', :on => :collection
     post 'worldpay_callback', :on => :collection
   end
 

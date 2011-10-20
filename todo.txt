@@ -7,4 +7,3 @@ Show nearest lift 1,001m as >1km
 Label window start date instead of advert start date for estate agents
 Class = standout for subheading (e.g. blue subheadings)
 Don't allow windows to be added to the basket with anything else
-Skip for WorldPay for zero value payments
