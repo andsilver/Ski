@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc8'
+gem 'rails', '3.1.0'
 gem 'rack', '1.3.2'
 gem 'mysql2', '0.3.6'
 #gem "will_paginate", "~> 3.0.pre2"
@@ -23,8 +23,8 @@ gem 'json'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "~> 3.1.0.rc7"
-  gem 'coffee-rails', "~> 3.1.0.rc"
+  gem 'sass-rails', "~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
 end
 
@@ -45,7 +45,7 @@ end
 
 group :test, :development do
   gem "autotest", "4.4.6"
-  gem "rspec-rails", ">= 2.6.1.beta1"
+  gem "rspec-rails", ">= 2.6.1"
   gem "cucumber-rails", ">= 0.5"
   gem 'database_cleaner'
   gem "capybara"
