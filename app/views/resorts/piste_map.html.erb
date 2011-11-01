@@ -1,6 +1,7 @@
 <div id="wide_content_with_wide_skyscrapers">
 
-<% if @images.empty? %>
+<% resort_images(@resort, 'piste-maps')
+if @images.empty? %>
   <p>
     <%= t('resorts_controller.piste_map.no_piste_maps') %>
   </p>

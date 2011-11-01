@@ -83,6 +83,7 @@ class PropertiesController < ApplicationController
     default_page_title t('properties.titles.show',
       :property_name => @property.name, :rent_or_sale => rent_or_sale,
       :resort => @property.resort, :country => @property.resort.country)
+    @resort = @property.resort
     @heading_a = render_to_string(:partial => 'show_property_heading').html_safe
     @advertiser_web_property_id = @property.user.google_web_property_id unless @property.user.google_web_property_id.blank?
   end

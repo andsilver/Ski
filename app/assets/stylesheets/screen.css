@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  background: #fff;
 }
 
 article, aside, footer,
@@ -27,10 +28,6 @@ a img {
 }
 
 #wrapper {
-  background: #fff;
-  background-image: url(/images/chamonix.jpg);
-  background-position: right 24px;
-  background-repeat: no-repeat;
   width: 996px;
   margin-left: auto;
   margin-right: auto;
@@ -38,21 +35,40 @@ a img {
   position: relative;
 }
 
+#header_images {
+  z-index: 1;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  width: 996px;
+  height: 264px;
+  overflow: hidden;
+}
+
+#header_images img {
+  width: 996px;
+  height: 264px;
+}
+
 #shade {
+  position: absolute;
+  z-index: 2;
   opacity: 0.6;
   background: #000;
+  width: 996px;
   height: 56px;
-  margin-bottom: 207px;
 }
 
 #logo {
   display: block;
   position: absolute;
+  z-index: 3;
   left: 19px;
   top: 40px;
 }
 
 #column_headings {
+  margin-top: 264px;
   height: 30px;
   border-top: 1px solid #68c8e7;
   border-bottom: 1px solid #68c8e7;

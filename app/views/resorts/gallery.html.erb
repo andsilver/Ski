@@ -4,7 +4,8 @@ $(document).ready(function() {
 });
 </script>
 
-<% if @images.empty? %>
+<% resort_images(@resort, 'gallery')
+if @images.empty? %>
   <p>
     <%= t('resorts_controller.gallery.no_photos') %>
   </p>

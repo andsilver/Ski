@@ -2,6 +2,7 @@ module ResortsHelper
   THUMBNAIL_SIZE = 160
   PHOTO_SIZE = 500
   PISTE_MAP_SIZE = 821
+  RESORTS_DIRECTORY = "#{Rails.root.to_s}/public/resorts/"
 
   def gallery_thumbnail(resort, filename)
     resort_image(resort, filename, THUMBNAIL_SIZE, 'gallery')
@@ -37,5 +38,39 @@ module ResortsHelper
       end
     end
     url
+  end
+
+  def header_image_urls
+    urls = []
+
+    if @resort && @resort.image
+      urls << @resort.image.url
+    end
+
+    if @resort
+      resort_images(@resort, 'headers')
+      @images.each do |img|
+        urls << "/resorts/#{PermalinkFu.escape(@resort.name)}/headers/#{img}"
+      end
+    end
+
+    if urls.empty? && @country && @country.image
+      urls << @country.image.url
+    end
+
+    if urls.empty?
+      urls << '/images/chamonix.jpg'
+    end
+
+    urls
+  end
+
+  def resort_images(resort, sub_dir)
+    dir = "#{RESORTS_DIRECTORY}#{PermalinkFu.escape(resort.name)}/#{sub_dir}"
+    begin
+      @images = Dir.entries(dir).select {|e| e[0..0] != "." && e.include?(".")}
+    rescue
+      @images = []
+    end
   end
 end

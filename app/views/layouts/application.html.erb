@@ -10,22 +10,25 @@
   <%= render "shared/google" %>
   <script src="http://use.typekit.com/lxc8myw.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
-  <style>
-<% if @resort && @resort.image -%>
-  #wrapper {
-    background-image: url('<%= @resort.image.url %>');
-  }
-<% elsif @country && @country.image -%>
-  #wrapper {
-    background-image: url('<%= @country.image.url %>');
-  }
-<% end -%>
-  </style>
+  <script>
+  $(document).ready(function() {
+    $('#header_images').cycle({
+      fx: 'fade',
+      speed: 1500,
+      timeout: 3000
+    });
+  });
+  </script>
 </head>
 <body class="<%= 'browse_menu ' if @browse_menu %><%= @body_classes %>">
 <div id="wrapper">
 <%= render "shared/main_menu" %>
 <div id="shade">&nbsp;</div>
+<div id="header_images">
+  <% header_image_urls.each do |url| -%>
+  <img src="<%= url %>" alt="My Chalet Finder">
+  <% end %>
+</div>
 <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="My Chalet Finder"></a>
 
 <div id="column_headings">

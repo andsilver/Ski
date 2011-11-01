@@ -3,8 +3,6 @@ class ResortsController < ApplicationController
   before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :detail, :directory, :feature, :piste_map, :piste_map_full_size, :gallery]
   before_filter :no_browse_menu, :except => [:show, :feature, :directory]
 
-  RESORTS_DIRECTORY = "#{Rails.root.to_s}/public/resorts/"
-
   def index
     @countries = Country.with_resorts
   end
@@ -79,7 +77,6 @@ class ResortsController < ApplicationController
 
   def piste_map
     @heading_a = render_to_string(:partial => 'piste_map_heading').html_safe
-    find_images 'piste-maps'
   end
 
   def piste_map_full_size
@@ -90,7 +87,6 @@ class ResortsController < ApplicationController
 
   def gallery
     @heading_a = render_to_string(:partial => 'gallery_heading').html_safe
-    find_images 'gallery'
   end
 
   def feature
@@ -106,14 +102,5 @@ class ResortsController < ApplicationController
   def set_image_mode
     session[:image_mode] = 'resort'
     session[:resort_id] = @resort.id
-  end
-
-  def find_images sub_dir
-    dir = "#{RESORTS_DIRECTORY}#{PermalinkFu.escape(@resort.name)}/#{sub_dir}"
-    begin
-      @images = Dir.entries(dir).select {|e| e[0..0] != "." && e.include?(".")}
-    rescue
-      @images = []
-    end
   end
 end
