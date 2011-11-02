@@ -30,6 +30,7 @@ class SessionsController < ApplicationController
   protected
 
   def set_user
+    reset_session
     session[:user] = @current_user.id
     flash[:notice] = t('sessions_controller.welcome_back', :name => @current_user.first_name)
     if @current_user.role.admin?
