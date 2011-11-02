@@ -80,6 +80,22 @@
 <p>Would you like to <%= link_to 'buy more advertising windows', buy_windows_adverts_path %>?</p>
 <% end %>
 
+<h2><%= t('coupon') %></h2>
+<% if @current_user.coupon %>
+<p>
+  <%= t('adverts_controller.coupon_code_applied') %>: <strong><%= @current_user.coupon.code %></strong>
+</p>
+<% else %>
+<p>
+  <%= t('adverts_controller.no_coupon_code_applied') %>
+</p>
+<% end %>
+<%= form_tag :controller => 'coupons', :action => 'apply_code' do %>
+<%= text_field_tag 'code' %>
+<%= submit_tag 'Apply Code' %>
+<% end %>
+
+
 <script>
 $('.basket_buttons').hide()
 </script>

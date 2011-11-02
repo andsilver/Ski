@@ -40,8 +40,10 @@ en:
     basket_empty: Your basket is empty.
     buy_advertising_windows: Buy Advertising Windows
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
+    coupon_code_applied: 'You have the following promotion code applied'
     days_remaining: Days Remaining
     expires_on: Expires On
+    no_coupon_code_applied: 'You have no promotion code applied.'
     number_free: Number Free
     number_in_use: Number in Use
     place_order: Place Order
@@ -100,6 +102,10 @@ en:
   continue: Continue
   coupon: 'Promotion code'
   coupons: 'Promotion Codes'
+  coupons_controller:
+    coupon_code_applied: 'Promotion code has been applied'
+    coupon_code_not_recognised: 'That promotion code was not recognised'
+    enter_a_coupon_code: 'Please enter a promotion code'
   countries:
     country: 'Country'
     select_country: 'Select Country'
