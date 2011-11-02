@@ -1,3 +1,4 @@
+Put a link to MyChaletFinder on our portfolio
 write a keyword rich link-to-us html snippet
 Expiry warning emails
 Put up estate agent chat, with my edits
@@ -7,3 +8,11 @@ Show nearest lift 1,001m as >1km
 Label window start date instead of advert start date for estate agents
 Class = standout for subheading (e.g. blue subheadings)
 Don't allow windows to be added to the basket with anything else
+Promotion code
+Cache property counts at resort level
+Featured properties under resort mini description 2 across 4 down
+Additional service -- banner creation -- charge xxx
+Allow advertisers to select multiple resorts to place their banner in
+Allow administrator to fix a banner on the top position of a specific single page at which point the banner is taken out of the usual rotation
+Make Advertise Now buttons smaller
+Allow banner adverts to not have target website addresses
