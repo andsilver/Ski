@@ -112,6 +112,7 @@ class AdvertsController < ApplicationController
   def prepare_basket
     @lines = Array.new
     @total = 0
+    remove_expired_coupons
 
     if session[:windows_in_basket]
       line = BasketLine.new
@@ -160,6 +161,13 @@ class AdvertsController < ApplicationController
       @total += @tax_amount
     else
       @tax_amount = 0
+    end
+  end
+
+  def remove_expired_coupons
+    if @current_user.coupon && @current_user.coupon.expired?
+      @current_user.coupon = nil
+      @current_user.save
     end
   end
 

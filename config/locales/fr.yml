@@ -104,6 +104,7 @@ fr:
   coupons: 'Promotion Codes'
   coupons_controller:
     coupon_code_applied: 'Promotion code has been applied'
+    coupon_code_expired: 'That promotion code has expired'
     coupon_code_not_recognised: 'That promotion code was not recognised'
     enter_a_coupon_code: 'Please enter a promotion code'
   countries:

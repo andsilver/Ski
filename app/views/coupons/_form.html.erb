@@ -24,6 +24,10 @@
   <%= f.text_field :percentage_off %> %
 </p>
 <p>
+  <%= f.label :expires_on %><br>
+  <%= f.date_select :expires_on, :include_blank => true, :order => [:day, :month, :year] %>
+</p>
+<p>
   <%= f.submit %>
 </p>
 <% end %>

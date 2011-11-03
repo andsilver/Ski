@@ -11,6 +11,7 @@
       <th>Code</th>
       <th># Adverts</th>
       <th>% Off</th>
+      <th>Expires On</th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,7 @@
       <td><%= link_to coupon.code, edit_coupon_path(coupon) %></td>
       <td class="numeric"><%= coupon.number_of_adverts %></td>
       <td class="numeric"><%= coupon.percentage_off %>%</td>
+      <td><%= coupon.expires_on %></td>
     </tr>
     <% end %>
   </tbody>

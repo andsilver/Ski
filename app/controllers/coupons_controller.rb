@@ -39,9 +39,13 @@ class CouponsController < ApplicationController
     else
       coupon = Coupon.find_by_code(params[:code])
       if coupon
-        @current_user.coupon = coupon
-        @current_user.save
-        notice = I18n.t('coupons_controller.coupon_code_applied')
+        if coupon.expired?
+          notice = I18n.t('coupons_controller.coupon_code_expired')
+        else
+          @current_user.coupon = coupon
+          @current_user.save
+          notice = I18n.t('coupons_controller.coupon_code_applied')
+        end
       else
         notice = I18n.t('coupons_controller.coupon_code_not_recognised')
       end

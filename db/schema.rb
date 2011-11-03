@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013065953) do
+ActiveRecord::Schema.define(:version => 20111103090749) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20111013065953) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "percentage_off",    :default => 100, :null => false
+    t.date     "expires_on"
   end
 
   create_table "currencies", :force => true do |t|
