@@ -43,7 +43,9 @@
 <% if @country %>
   <ul id="resorts">
 <% @country.visible_resorts.each do |r| %>
-    <li <%= 'class="selected"'.html_safe if @resort && r.id == @resort.id %>><%= link_to r.name, r %></li>
+    <li <%= 'class="selected"'.html_safe if @resort && r.id == @resort.id %>><a href="<%= resort_path(r) %>"><div
+    class="resort_option"><%= r %></div><div
+    class="property_count"><%= count_properties_in(r) %></div></a></li>
 <% end %>
   </ul>
 <% end %>

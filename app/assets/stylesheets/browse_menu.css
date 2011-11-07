@@ -31,12 +31,16 @@ ul#resort_options {
   width: 110px;
 }
 
-#resort_options div {
+#resort_options div, #resorts div {
   float: left;
 }
 
 div.resort_option {
   width: 74px;
+}
+
+#resorts div.resort_option {
+  width: 95px;
 }
 
 div.property_count {

@@ -33,10 +33,10 @@ module PropertiesHelper
     count_properties_in resort, :new_development, 1
   end
 
-  def count_properties_in resort, attribute, value
+  def count_properties_in resort, attribute = nil, value = nil
     @conditions = PropertiesController::CURRENTLY_ADVERTISED.dup
     @conditions[0] += " AND resort_id = #{resort.id}"
-    @conditions[0] += " AND #{attribute.to_s} = #{value}"
+    @conditions[0] += " AND #{attribute.to_s} = #{value}" unless attribute.nil?
     "(#{Property.where(@conditions).count})"
   end
 
