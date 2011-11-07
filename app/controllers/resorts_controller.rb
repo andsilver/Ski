@@ -46,8 +46,6 @@ class ResortsController < ApplicationController
 
   def show
     default_page_title "Summary and Snow/Weather Forecast for #{@resort} Ski Resort, #{@resort.country}"
-    @stage_heading_a = I18n.t('stage_1_inactive')
-    @stage_heading_b = I18n.t('stage_2')
     @heading_a = t('resorts_controller.resort_information_heading', :resort => @resort.name)
   end
 

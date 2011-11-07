@@ -35,7 +35,6 @@ class CountriesController < ApplicationController
   end
 
   def show
-    @stage_heading_a = I18n.t('stage_1')
     @page_title = @heading_a = @country.name
 
     conditions = PropertiesController::CURRENTLY_ADVERTISED.dup
