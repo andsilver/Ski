@@ -35,7 +35,8 @@ class CountriesController < ApplicationController
   end
 
   def show
-    @page_title = @heading_a = @country.name
+    @heading_a = @country.name
+    default_page_title(@heading_a)
 
     conditions = PropertiesController::CURRENTLY_ADVERTISED.dup
     conditions[0] += " AND resort_id IN(SELECT id FROM resorts WHERE country_id=#{@country.id})"

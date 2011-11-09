@@ -18,7 +18,8 @@ class AdvertsController < ApplicationController
   end
 
   def basket
-    @page_title = @heading_a = I18n.t('basket')
+    @heading_a = I18n.t('basket')
+    default_page_title(@heading_a)
   end
 
   def update_basket_contents
