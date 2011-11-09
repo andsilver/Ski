@@ -33,6 +33,8 @@ class ApplicationController < ActionController::Base
       @page_title = page.title
       @meta_description = page.description
       @meta_keywords = page.keywords
+      @fixed_banner_image_path = "/fixed-banners/" + page.fixed_banner_image_filename
+      @fixed_banner_target_url = page.fixed_banner_target_url
     end
   end
 
