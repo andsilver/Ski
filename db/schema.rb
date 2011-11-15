@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111109173703) do
+ActiveRecord::Schema.define(:version => 20111115134727) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -448,6 +448,7 @@ ActiveRecord::Schema.define(:version => 20111109173703) do
     t.boolean  "blog_visible",                                                     :default => false, :null => false
     t.text     "contact_details"
     t.decimal  "vat_rate",                           :precision => 4, :scale => 2, :default => 20.0,  :null => false
+    t.text     "links_content"
   end
 
   create_table "window_base_prices", :force => true do |t|

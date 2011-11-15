@@ -169,6 +169,7 @@ en:
     problem_uploading: 'There was a problem uploading your image. Was it in the correct format?'
     saved: 'Image saved.'
   last_name: Last name
+  links: Links
   main_image: 'Main image'
   map: Map
   mobile: Mobile

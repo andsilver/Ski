@@ -169,6 +169,7 @@ fr:
     problem_uploading: 'There was a problem uploading your image. Was it in the correct format?'
     saved: 'Image saved.'
   last_name: Nom de famille
+  links: Links
   main_image: 'Main image'
   map: Carte
   mobile: Portable

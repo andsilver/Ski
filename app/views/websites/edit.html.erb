@@ -34,6 +34,11 @@
 </div>
 
 <div class="field">
+  <%= f.label :links_content %><br>
+  <%= f.text_area :links_content %>
+</div>
+
+<div class="field">
 	<label for="website_blog_visible_true">Blog visible?:</label>
 	<%= f.radio_button :blog_visible, true, :class => "radio" %>
 	<label for="website_blog_visible_true">Yes</label>
