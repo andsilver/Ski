@@ -69,6 +69,7 @@ module ResortsHelper
     dir = "#{RESORTS_DIRECTORY}#{PermalinkFu.escape(resort.name)}/#{sub_dir}"
     begin
       @images = Dir.entries(dir).select {|e| e[0..0] != "." && e.include?(".")}
+      @images.sort!
     rescue
       @images = []
     end
