@@ -94,7 +94,11 @@ class ResortsController < ApplicationController
 
   def find_resort
     @resort = Resort.find_by_id(params[:id])
-    redirect_to(resorts_path, :notice => t('resorts_controller.not_found')) unless @resort
+    if admin?
+      redirect_to(resorts_path, :notice => t('resorts_controller.not_found')) unless @resort
+    else
+      not_found if !@resort || !@resort.visible?
+    end
   end
 
   def set_image_mode
