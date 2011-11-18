@@ -1,5 +1,5 @@
 class CouponsController < ApplicationController
-  before_filter :admin_required
+  before_filter :admin_required, :except => [:apply_code]
   before_filter :no_browse_menu
   before_filter :find_coupon, :only => [:edit, :update]
   before_filter :user_required, :only => [:apply_code]
