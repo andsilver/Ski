@@ -16,7 +16,6 @@ Make it more clear what the target website is (placeholder)
 404 hidden country and resort pages
 Order pages in Page CMS by url
 Catering options
-Filters!!!! (it's the header)
 Also, check all sales & rentals filters are working
 Don't need garage as a search filter -- double check with Tony first (he will check with Christian)
 Sort out Google Maps (still only showing Chamonix centre...)

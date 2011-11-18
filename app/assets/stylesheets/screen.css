@@ -221,6 +221,7 @@ table.grid {
 }
 
 #search_options {
+  z-index: 1;
   position: absolute;
   left: 4px;
   top: 160px;
