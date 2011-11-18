@@ -14,7 +14,6 @@ Make Advertise Now buttons smaller
 Allow banner adverts to not have target website addresses
 Make it more clear what the target website is (placeholder)
 404 hidden country and resort pages
-Don't show fixed banners when filename is empty
 Order pages in Page CMS by url
 Catering options
 Filters!!!! (it's the header)
