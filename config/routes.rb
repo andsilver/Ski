@@ -97,6 +97,7 @@ MySkiChalet::Application.routes.draw do
       get 'select_payment_method'
     end
     member do
+      get 'invoice'
       get 'receipt'
     end
   end

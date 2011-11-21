@@ -2,10 +2,11 @@
 <% if @orders.empty? %>
 <p>You have no receipts.</p>
 <% else %>
-<table id="receipts">
+<table id="receipts" class="grid">
   <thead>
     <tr>
       <th>Order number</th>
+      <th>Invoice (PDF)</th>
       <th>When placed</th>
       <th>Amount</th>
     </tr>
@@ -14,7 +15,8 @@
   <% @orders.each do |order| %>
     <tr>
       <td><%= link_to order.order_number, receipt_order_path(order.id) %></td>
-      <td><%= order.created_at %></td>
+      <td><%= link_to 'Invoice (PDF)', invoice_order_path(order.id) %></td>
+      <td><%= l(order.created_at, :format => :short) %></td>
       <td><%= euros_from_cents(order.total) %></td>
     </tr>
   <% end %>

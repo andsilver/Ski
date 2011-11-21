@@ -12,6 +12,7 @@ gem 'spreadsheet', '0.6.5.4'
 gem 'sprockets', '2.0.0'
 gem 'rdoc'
 gem 'xml-simple'
+gem 'prawn', '0.11.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
