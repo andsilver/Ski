@@ -10,8 +10,10 @@ class UserNotifier < ActionMailer::Base
     mail(:to => user.email, :subject => 'My Chalet Finder: how to change your password')
   end
 
-  def welcome user, domain
+  def welcome user, password, domain
     @name = user.name
+    @email = user.email
+    @password = password
     @domain = domain
     mail(:to => user.email, :subject => 'Welcome to My Chalet Finder')
   end

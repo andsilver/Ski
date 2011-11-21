@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user] = @user.id
-      UserNotifier.welcome(@user, request.host).deliver
+      UserNotifier.welcome(@user, params[:user][:password], request.host).deliver
       flash[:notice] = t('users.account_created')
       update_logo
       redirect_to after_create_path(@user)
