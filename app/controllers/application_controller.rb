@@ -5,6 +5,41 @@ class ApplicationController < ActionController::Base
 
   before_filter :initialize_website, :set_locale, :initialize_user, :page_defaults
 
+  def sitemap
+    domain = "#{request.subdomains.first}.#{request.domain}"
+    @urls = [
+      '/contact',
+      '/enquiries/new',
+      '/links',
+      '/privacy',
+      '/resorts/featured',
+      '/sign_in',
+      '/sign_up',
+      '/terms',
+      '/users/forgot_password',
+      '/welcome/advertiser',
+      '/welcome/estate-agent',
+      '/welcome/letting-agent',
+      '/welcome/other-business',
+      '/welcome/property-owner',
+    ].collect{|x| 'http://' + domain + x}
+    Country.with_visible_resorts.each do |country|
+      @urls << country_url(country)
+      country.visible_resorts.each do |resort|
+        @urls << resort_url(resort)
+        @urls << detail_resort_url(resort)
+        @urls << gallery_resort_url(resort)
+        @urls << piste_map_resort_url(resort)
+        @urls << resort_property_rent_url(resort)
+        @urls << resort_property_sale_url(resort)
+        @urls << resort_property_new_developments_url(resort)
+      end
+    end
+    Property.all(:conditions => PropertiesController::CURRENTLY_ADVERTISED).each do |property|
+      @urls << property_url(property)
+    end
+  end
+
   protected
 
   def initialize_website
