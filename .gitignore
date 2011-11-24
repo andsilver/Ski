@@ -2,11 +2,13 @@
 *.gif
 *.jpg
 *.JPG
+*.pdf
 *.png
 !public/images/flags/*.png
 *.psd
 *.pxm
 *.svg
+*.ttf
 *.zip
 config/database.yml
 coverage/*
