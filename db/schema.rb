@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20111115134727) do
     t.integer  "resort_id"
     t.string   "phone",            :default => "", :null => false
     t.integer  "image_id"
+    t.string   "strapline",        :default => "", :null => false
   end
 
   add_index "directory_adverts", ["resort_id"], :name => "index_directory_adverts_on_resort_id"

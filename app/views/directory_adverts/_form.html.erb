@@ -104,13 +104,24 @@ Please include the country calling code.
   </tr>
   <tr>
     <td>
+      <div class="field">
+        <%= f.label :strapline %><br>
+        <%= f.text_area :strapline %>
+      </div>
+    </td>
+    <td><br><br>
+      A short description of your business (maximum of 255 characters)
+    </td>
+  </tr>
+  <tr>
+    <td>
 <div class="field">
   <%= label_tag 'description' %><br>
   <%= text_area_tag 'description', @current_user.description %>
 </div>
     </td>
     <td><br><br>
-      Example
+      A more detailed description of your business
     </td>
   </tr>
   <tr>

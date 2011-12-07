@@ -12,6 +12,7 @@ class DirectoryAdvert < ActiveRecord::Base
   validates_presence_of :resort
   validates_presence_of :user
   validates_presence_of :business_address
+  validates_presence_of :strapline
 
   def name
     user.business_name
@@ -19,10 +20,6 @@ class DirectoryAdvert < ActiveRecord::Base
 
   def price(advert, directory_adverts_so_far)
     Website.first.directory_advert_price * 100
-  end
-
-  def summary
-    (user.description.length < 100) ? user.description : user.description[0..120] + '...'
   end
 
   def valid_months

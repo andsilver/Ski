@@ -274,8 +274,13 @@ textarea#directory_advert_business_address {
   width: 20em;
 }
 
+textarea#directory_advert_strapline {
+  width: 20em;
+  height: 4em;
+}
+
 textarea#directory_advert_description {
-  height: 6em;
+  height: 8em;
   width: 20em;
 }
 
