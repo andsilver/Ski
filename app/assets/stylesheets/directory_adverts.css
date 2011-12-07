@@ -2,9 +2,10 @@
   background-image: url(/images/property-summary-bg.png);
   background-position: right top;
   background-repeat: repeat-y;
-  width: 390px;
+  width: 616px;
 }
 
-#directory_adverts td {
-  padding: 4px;
+#directory_adverts td,
+#directory_adverts th {
+  padding: 4px 8px;
 }
