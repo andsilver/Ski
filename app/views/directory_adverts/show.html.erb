@@ -19,6 +19,12 @@
 <p>
   <%= md @directory_advert.user.description %>
 </p>
+<% unless @directory_advert.opening_hours.blank? %>
+<h2>Opening Hours</h2>
+<p>
+  <%= md @directory_advert.opening_hours %>
+</p>
+<% end %>
 
 </div>
 <div id="wide_skyscrapers">
