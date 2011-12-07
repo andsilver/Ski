@@ -94,8 +94,8 @@ Please include the country calling code.
   </tr>
     <td>
 <div class="field">
-  <%= label_tag 'website' %><br>
-  <%= text_field_tag 'website', @current_user.website %>
+  <%= f.label :url, 'Website address (URL)' %><br>
+  <%= f.text_field :url %>
 </div>
     </td>
     <td><br><br>

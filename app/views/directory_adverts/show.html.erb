@@ -5,9 +5,9 @@
 </p>
 <% end %>
 <h1><%= @directory_advert.user.business_name %></h1>
-<% unless @directory_advert.user.website.blank? %>
+<% unless @directory_advert.url.blank? %>
 <p>
-  <%= t('users.website') %>: <%= link_to @directory_advert.user.website, @directory_advert.user.website, :target => "_blank" %>
+  <%= t('users.website') %>: <%= link_to @directory_advert.url, @directory_advert.url, :target => "_blank" %>
 </p>
 <% end %>
 <p>

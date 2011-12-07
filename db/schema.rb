@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115134727) do
+ActiveRecord::Schema.define(:version => 20111207084935) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20111115134727) do
     t.integer  "resort_id"
     t.string   "phone",            :default => "", :null => false
     t.integer  "image_id"
+    t.string   "url",              :default => "", :null => false
     t.string   "strapline",        :default => "", :null => false
   end
 

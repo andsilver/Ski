@@ -6,6 +6,7 @@ class DirectoryAdvertsController < ApplicationController
 
   def new
     @directory_advert = DirectoryAdvert.new
+    @directory_advert.url = @current_user.website
   end
 
   def show
@@ -67,7 +68,6 @@ class DirectoryAdvertsController < ApplicationController
 
   def update_user_details
     @current_user.business_name = params[:business_name]
-    @current_user.website = params[:website]
     @current_user.description = params[:description]
     @current_user.save
   end
