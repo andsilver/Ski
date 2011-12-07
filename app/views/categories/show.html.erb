@@ -16,13 +16,11 @@
       <td>
       <% if da.image %>
       <div class="user_logo">
-        <%= link_to da do %>
-        <img src="<%= da.image.url(85) %>">
-        <% end %>
+        <%= link_to_unless(da.user.description.blank?, "<img src=\"#{h(da.image.url(85))}\">".html_safe, da) %>
       </div>
       <% end %>
       </td>
-      <td><%= link_to da.user.business_name, da %></td>
+      <td><%= link_to_unless(da.user.description.blank?, da.user.business_name, da) %></td>
       <td><%= da.strapline %></td>
       <td>
         <%= da.business_address %><br>
