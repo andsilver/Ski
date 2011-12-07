@@ -4,6 +4,7 @@
 <table id="directory_adverts">
   <thead>
     <tr>
+      <th>&nbsp;</th>
       <th><%= t 'business' %></th>
       <th><%= t 'description' %></th>
       <th><%= t 'contact_details' %></th>
@@ -12,6 +13,15 @@
   <tbody>
     <% @directory_adverts.each do |da| %>
     <tr>
+      <td>
+      <% if da.image %>
+      <div class="user_logo">
+        <%= link_to da do %>
+        <img src="<%= da.image.url(85) %>">
+        <% end %>
+      </div>
+      <% end %>
+      </td>
       <td><%= link_to da.user.business_name, da %></td>
       <td><%= da.summary %></td>
       <td>
