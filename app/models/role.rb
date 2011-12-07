@@ -1,6 +1,10 @@
 class Role < ActiveRecord::Base
   has_many :users
 
+  def advertises_properties?
+    advertises_properties_for_rent || advertises_properties_for_sale
+  end
+
   def only_advertises_properties_for_rent?
     advertises_properties_for_rent &&
       !advertises_properties_for_sale &&

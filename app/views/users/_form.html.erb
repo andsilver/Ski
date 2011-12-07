@@ -147,6 +147,24 @@
 </div>
 </div>
 <% end %>
+
+<% if @user.role.advertises_properties? -%>
+<div class="group_panel">
+  <h2>Google Analytics</h2>
+  <p>
+    We can embed Google Analytics tracking code on your property detail pages
+    for improved reporting of your property advertisement's performance. To
+    do this, go to <a href="http://www.google.com/analytics/">www.google.com/analytics/</a>,
+    create a new profile for <%= request.domain %>, and enter your Google Web
+    Property ID (which looks like UA-00000000-1) below.
+  </p>
+  <div class="field">
+    <%= f.label :google_web_property_id, 'Google Web Property ID' %><br>
+    <%= f.text_field :google_web_property_id, :placeholder => 'UA-00000000-1' %>
+  </div>
+</div>
+<% end -%>
+
 </div><!--#panel_2-->
 <% end %>
 
