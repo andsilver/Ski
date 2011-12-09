@@ -123,7 +123,7 @@
   </p>
 </form>
 <% else -%>
-<form action="https://select<%= (@w.worldpay_test_mode? ? '-test' : '') %>.worldpay.com/wcc/purchase" method="post">
+<form action="https://secure<%= (@w.worldpay_test_mode? ? '-test' : '') %>.worldpay.com/wcc/purchase" method="post">
 <input type="hidden" name="cartId" value="<%= @order.order_number %>">
 <input type="hidden" value="<%= @w.worldpay_installation_id %>" name="instId">
 <% if @order.pay_monthly? -%>
