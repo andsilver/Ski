@@ -131,6 +131,7 @@ class UsersController < ApplicationController
 
     begin
       if @image.save
+        @user.image.destroy unless @user.image.nil?
         @user.image_id = @image.id
         @user.save
       end
