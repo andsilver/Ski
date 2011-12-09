@@ -225,14 +225,18 @@ fr:
     email_a_friend: Envoyer à un ami
     features:
       balcony: Balcon
+      bed_and_breakfast: 'Bed & breakfast'
+      board_basis: Board basis
       cable_or_satellite: TV par câble/satellite
       cave: Grotte
       children_welcome: Enfants bienvenus
       disabled: Accès des personnes handicapées
       freeview: Freeview/TNT
+      full_board: Full board
       fully_equipped_kitchen: Cuisine entièrement équipée
       garage: Garage
       garden: Jardin
+      half_board: Half board
       hot_tub: Bain à remous
       indoor_swimming_pool: Piscine couverte
       log_fire: Feu de bois
@@ -247,6 +251,7 @@ fr:
       parking: Stationnement
       pets: Animaux acceptés
       sauna: Sauna
+      self_catering: Self catering
       short_stays: Short stays
       ski_in_ski_out: Ski in/ski out
       smoking: Permission de fumer

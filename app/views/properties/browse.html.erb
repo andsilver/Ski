@@ -20,6 +20,15 @@
 <% end %>
     <option<%= ' selected' if params[:sort_method]=='number_of_bedrooms ASC' %> value="number_of_bedrooms ASC">Number of bedrooms</option>
   </select>
+<% unless @for_sale -%>
+  <label for="board_basis"><%= t('properties.features.board_basis') %>:</label>
+  <select id="board_basis" name="board_basis" onchange="this.form.submit()">
+    <option value="-1">Any</option>
+    <% [Property::BOARD_BASIS_SELF_CATERING, Property::BOARD_BASIS_BED_AND_BREAKFAST, Property::BOARD_BASIS_HALF_BOARD, Property::BOARD_BASIS_FULL_BOARD].each do |value| %>
+    <option value="<%= value %>"<%= ' selected="selected"' if params[:board_basis]==value.to_s %>><%= Property.board_basis_description(value) %></option>
+    <% end %>
+  </select>
+<% end -%>
   <br>
   <%= raw property_search_filters @search_filters %>
 </p>

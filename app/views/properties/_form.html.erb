@@ -180,6 +180,18 @@ $(document).ready(function() {
     </select>
   </div>
 </div>
+<div class="field">
+  <div class="field_left">
+    <%= f.label :board_basis, t('properties.features.board_basis') %>
+  </div>
+  <div class="field_right">
+    <select id="property_board_basis" name="property[board_basis]">
+      <% [Property::BOARD_BASIS_SELF_CATERING, Property::BOARD_BASIS_BED_AND_BREAKFAST, Property::BOARD_BASIS_HALF_BOARD, Property::BOARD_BASIS_FULL_BOARD].each do |value| %>
+      <option value="<%= value %>"<%= ' selected="selected"' if @property.board_basis==value %>><%= Property.board_basis_description(value) %></option>
+      <% end %>
+    </select>
+  </div>
+</div>
 <% end %>
 <div class="field">
   <div class="field_left">

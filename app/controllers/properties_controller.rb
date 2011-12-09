@@ -27,6 +27,11 @@ class PropertiesController < ApplicationController
 
     filter_conditions
 
+    unless params[:board_basis].nil? or params[:board_basis]=="-1"
+      @conditions[0] += " AND board_basis = ?"
+      @conditions << params[:board_basis]
+    end
+
     @properties = Property.paginate :page => params[:page], :order => order,
       :conditions => @conditions
     render "browse"

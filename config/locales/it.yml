@@ -225,14 +225,18 @@ it:
     email_a_friend: Email a friend
     features:
       balcony: Balcony
+      bed_and_breakfast: 'Bed & breakfast'
+      board_basis: Board basis
       cable_or_satellite: Cable or Satellite
       cave: Cave
       children_welcome: Children welcome
       disabled: Disabled access
       freeview: Freeview
+      full_board: Full board
       fully_equipped_kitchen: Fully equipped kitchen
       garage: Garage
       garden: Garden
+      half_board: Half board
       hot_tub: Hot tub
       indoor_swimming_pool: Indoor swimming pool
       log_fire: Log fire
@@ -247,6 +251,7 @@ it:
       parking: Parking
       pets: Pets allowed
       sauna: Sauna
+      self_catering: Self catering
       short_stays: Short stays
       ski_in_ski_out: Ski in/ski out
       smoking: Smoking allowed

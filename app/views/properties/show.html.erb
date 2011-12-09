@@ -86,7 +86,11 @@
     <%= I18n.t('sleeping_capacity') %>: <%= @property.sleeping_capacity %>
   </div>
   <div class="column">
+<% if @property.for_rent? -%>
+    <%= @property.board_basis_description %>
+<% else -%>
     &nbsp;
+<% end -%>
   </div>
   <p class="divider">&nbsp;</p>
 <% if @property.for_rent? -%>

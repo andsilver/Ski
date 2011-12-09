@@ -80,6 +80,24 @@ class Property < ActiveRecord::Base
     Property.tv_description tv
   end
 
+  BOARD_BASIS_SELF_CATERING = 0
+  BOARD_BASIS_BED_AND_BREAKFAST = 1
+  BOARD_BASIS_HALF_BOARD = 2
+  BOARD_BASIS_FULL_BOARD = 3
+
+  def self.board_basis_description board_basis_param
+    {
+      BOARD_BASIS_SELF_CATERING => I18n.t('properties.features.self_catering'),
+      BOARD_BASIS_BED_AND_BREAKFAST => I18n.t('properties.features.bed_and_breakfast'),
+      BOARD_BASIS_HALF_BOARD => I18n.t('properties.features.half_board'),
+      BOARD_BASIS_FULL_BOARD => I18n.t('properties.features.full_board')
+    }[board_basis_param]
+  end
+
+  def board_basis_description
+    Property.board_basis_description board_basis
+  end
+
   def self.normalise_prices
     @@perform_geocode = false
     Property.all.each do |p|
@@ -117,6 +135,7 @@ class Property < ActiveRecord::Base
     f = []
     bedrooms = "#{I18n.t('bedrooms')}: #{number_of_bedrooms}"
     bedrooms += " (#{I18n.t('sleeps')} #{sleeping_capacity})" if for_rent?
+    f << board_basis_description if for_rent?
     f << bedrooms
     f << "#{I18n.t('nearest_lift')}: #{metres_from_lift}m" unless metres_from_lift == 0
     f << I18n.t('properties.features.pets') if pets? && for_rent?
