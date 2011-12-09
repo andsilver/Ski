@@ -74,7 +74,7 @@ class Advert < ActiveRecord::Base
   end
 
   def to_s
-    object.name
+    object.name + " (" + object.resort.name + " " + object.class.to_s.underscore.gsub('_', ' ').titleize + ")"
   end
 
   def price(advert_number)
