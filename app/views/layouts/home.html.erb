@@ -8,6 +8,12 @@
   <script src="http://use.typekit.com/lxc8myw.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
   <!-- TradeDoubler site verification 1980597 -->
+  <script src="https://apis.google.com/js/plusone.js"></script>
+  <script>
+  $(document).ready(function() {
+    gapi.plusone.render("plusone", {"size": "standard", "count": "true"});
+  });
+  </script>
 <link rel="stylesheet" href="/assets/main_menu.css">
 <link rel="stylesheet" href="/assets/browse_menu.css">
 <style>
@@ -105,6 +111,9 @@ footer a {
   </nav>
 </div>
 <footer role="contentinfo">
+  <p style="float:left;">
+    <%= render "shared/google_plus_one" %>
+  </p>
   <p>
     <a href="http://en.mychaletfinder.com">English</a>
     |

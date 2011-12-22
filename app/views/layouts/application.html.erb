@@ -10,6 +10,7 @@
   <%= render "shared/google" %>
   <script src="http://use.typekit.com/lxc8myw.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
+  <script src="https://apis.google.com/js/plusone.js"></script>
   <script>
   $(document).ready(function() {
     $('#header_images').cycle({
@@ -17,6 +18,8 @@
       speed: 1500,
       timeout: 3000
     });
+
+    gapi.plusone.render("plusone", {"size": "standard", "count": "true"});
   });
   </script>
 </head>
@@ -73,6 +76,9 @@
 </div>
 
 <footer role="contentinfo">
+  <p style="float:right;">
+    <%= render "shared/google_plus_one" %>
+  </p>
   <p>
     &copy;2011 My Holiday Home Ventures Limited
     |
