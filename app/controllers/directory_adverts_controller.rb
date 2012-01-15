@@ -33,8 +33,6 @@ class DirectoryAdvertsController < ApplicationController
 
     @directory_advert.user_id = @current_user.id
 
-    update_user_details
-
     if @directory_advert.save
       update_images
       create_advert
@@ -48,7 +46,6 @@ class DirectoryAdvertsController < ApplicationController
   end
 
   def update
-    update_user_details
     if @directory_advert.update_attributes(params[:directory_advert])
       flash[:notice] = t('directory_adverts_controller.saved')
 
@@ -114,12 +111,7 @@ class DirectoryAdvertsController < ApplicationController
 
   def find_directory_advert_for_current_user
     @directory_advert = DirectoryAdvert.find_by_id_and_user_id(params[:id], @current_user.id)
-  end
-
-  def update_user_details
-    @current_user.business_name = params[:business_name]
-    @current_user.description = params[:description]
-    @current_user.save
+    not_found unless @directory_advert
   end
 
   def create_advert
