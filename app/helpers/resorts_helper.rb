@@ -2,6 +2,7 @@ module ResortsHelper
   THUMBNAIL_SIZE = 160
   PHOTO_SIZE = 500
   PISTE_MAP_SIZE = 821
+  COUNTRIES_DIRECTORY = "#{Rails.root.to_s}/public/countries/"
   RESORTS_DIRECTORY = "#{Rails.root.to_s}/public/resorts/"
 
   def gallery_thumbnail(resort, filename)
@@ -54,8 +55,14 @@ module ResortsHelper
       end
     end
 
-    if urls.empty? && @country && @country.image
-      urls << @country.image.url
+    if urls.empty? && @country
+      if @country.image
+        urls << @country.image.url
+      end
+      country_images(@country, 'headers')
+      @images.each do |img|
+        urls << "/countries/#{PermalinkFu.escape(@country.name)}/headers/#{img}"
+      end
     end
 
     if urls.empty?
@@ -67,6 +74,15 @@ module ResortsHelper
 
   def resort_images(resort, sub_dir)
     dir = "#{RESORTS_DIRECTORY}#{PermalinkFu.escape(resort.name)}/#{sub_dir}"
+    images_in_directory(dir)
+  end
+
+  def country_images(country, sub_dir)
+    dir = "#{COUNTRIES_DIRECTORY}#{PermalinkFu.escape(country.name)}/#{sub_dir}"
+    images_in_directory(dir)
+  end
+
+  def images_in_directory(dir)
     begin
       @images = Dir.entries(dir).select {|e| e[0..0] != "." && e.include?(".")}
       @images.sort!
