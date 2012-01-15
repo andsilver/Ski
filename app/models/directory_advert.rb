@@ -22,7 +22,11 @@ class DirectoryAdvert < ActiveRecord::Base
   end
 
   def price(advert, directory_adverts_so_far)
-    Website.first.directory_advert_price * 100
+    if is_banner_advert?
+      Website.first.banner_advert_price * 100
+    else
+      Website.first.directory_advert_price * 100
+    end
   end
 
   def valid_months
@@ -31,5 +35,34 @@ class DirectoryAdvert < ActiveRecord::Base
 
   def default_months
     12
+  end
+
+  def record_dimensions dimensions
+    self.width, self.height = dimensions
+    save
+  end
+
+  def self.banner_adverts_for(resort, dimensions, qty)
+    return [] if(rand > 0.7)
+
+    conditions = CURRENTLY_ADVERTISED.dup
+    conditions[0] += " AND resort_id = ? AND width = ? AND height = ?"
+    conditions[0] += " AND banner_image_id IS NOT NULL"
+    conditions[0] += " AND is_banner_advert = 1"
+    conditions << resort.id
+    conditions << dimensions[0]
+    conditions << dimensions[1]
+
+    ads = []
+    uncached do
+      ads = DirectoryAdvert.all(:order => 'RAND()', :conditions => conditions, :limit => qty)
+    end
+
+    ads.each {|ad| ad.current_advert.record_view}
+    ads
+  end
+
+  def self.small_banners_for(resort, qty = 3)
+    self.banner_adverts_for(resort, [160, 200], qty)
   end
 end
