@@ -7,6 +7,7 @@ class DirectoryAdvert < ActiveRecord::Base
   belongs_to :resort
   belongs_to :user
   belongs_to :image, :dependent => :destroy
+  belongs_to :banner_image, :class_name => "Image", :dependent => :destroy
 
   has_many :adverts, :dependent => :delete_all
 
