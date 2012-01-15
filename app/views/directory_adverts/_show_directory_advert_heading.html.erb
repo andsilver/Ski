@@ -2,4 +2,4 @@
 <%= link_to @directory_advert.resort, resort_path(@directory_advert.resort) %> &gt;
 <%= link_to t('directory'), directory_resort_path(@directory_advert.resort) %> &gt;
 <%= link_to t(@directory_advert.category.name), category_path(@directory_advert.category, :resort_id => @directory_advert.resort.id) %> &gt;
-<%= @directory_advert.user.business_name %>
+<%= @directory_advert.business_name %>

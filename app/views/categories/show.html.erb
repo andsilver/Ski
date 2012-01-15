@@ -20,7 +20,7 @@
       </div>
       <% end %>
       </td>
-      <td><%= link_to_unless(da.user.description.blank?, da.user.business_name, da) %></td>
+      <td><%= link_to_unless(da.description.blank?, da.business_name, da) %></td>
       <td><%= da.strapline %></td>
       <td>
         <%= da.business_address %><br>
