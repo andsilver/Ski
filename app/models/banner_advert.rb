@@ -11,10 +11,6 @@ class BannerAdvert < ActiveRecord::Base
   validates_presence_of :user
   validates_presence_of :url
 
-  def name
-    user.business_name
-  end
-
   def price(advert, banner_adverts_so_far)
     Website.first.banner_advert_price * 100
   end

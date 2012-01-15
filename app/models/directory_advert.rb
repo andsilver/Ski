@@ -18,7 +18,7 @@ class DirectoryAdvert < ActiveRecord::Base
   validates_format_of :url, :with => /^(#{URI::regexp(%w(http https))})$/, :allow_blank => true
 
   def name
-    user.business_name
+    business_name
   end
 
   def price(advert, directory_adverts_so_far)
