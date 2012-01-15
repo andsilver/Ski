@@ -23,7 +23,7 @@ Feature: My Properties for Rent
     Then I should be on the new property page
 
   Scenario: Advertisers can create a new property for rent
-    Given I am signed in
+    Given I am signed in as a property owner
     And I am on the new property page
     When I fill in the following:
       | Property name             | Chalet Des Sapins              |
