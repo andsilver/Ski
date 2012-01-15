@@ -60,6 +60,13 @@ class DirectoryAdvertsController < ApplicationController
     redirect_to(basket_path, :notice => t('directory_adverts_controller.added_to_basket'))
   end
 
+  def click
+    @directory_advert = DirectoryAdvert.find(params[:id])
+    @directory_advert.clicks += 1
+    @directory_advert.save
+    redirect_to @directory_advert.url
+  end
+
   protected
 
   def find_directory_advert_for_current_user

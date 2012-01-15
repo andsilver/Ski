@@ -44,13 +44,6 @@ class BannerAdvertsController < ApplicationController
     redirect_to(basket_path, :notice => t('banner_adverts_controller.added_to_basket'))
   end
 
-  def click
-    @banner_advert = BannerAdvert.find(params[:id])
-    @banner_advert.clicks += 1
-    @banner_advert.save
-    redirect_to @banner_advert.url
-  end
-
   protected
 
   def find_banner_advert_for_user
