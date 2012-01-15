@@ -16,6 +16,7 @@ class DirectoryAdvertsController < ApplicationController
     if @directory_advert.current_advert.nil?
       not_found
     else
+      default_page_title("#{@directory_advert.business_name}, #{t(@directory_advert.category.name)} in #{@directory_advert.resort.name}, #{@directory_advert.resort.country.name}")
       @heading_a = render_to_string(:partial => 'show_directory_advert_heading').html_safe
       @directory_advert.current_advert.record_view
     end
