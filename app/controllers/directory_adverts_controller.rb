@@ -116,7 +116,7 @@ class DirectoryAdvertsController < ApplicationController
 
   def create_advert
     advert = Advert.new_for(@directory_advert)
-    advert.months = 3
+    advert.months = @directory_advert.default_months
     advert.save!
   end
 end
