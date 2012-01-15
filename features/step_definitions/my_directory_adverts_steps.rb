@@ -4,7 +4,13 @@ Given /^my business is called "([^"]*)"$/ do |arg1|
 end
 
 Given /^I have directory adverts$/ do
-  DirectoryAdvert.create!(:user_id => emily.id, :category_id => categories(:bars).id, :business_address => '123 av', :resort_id => 1)
+  DirectoryAdvert.create!(
+    :user_id => emily.id,
+    :category_id => categories(:bars).id,
+    :business_name => 'Chambre Dix',
+    :business_address => '123 av',
+    :resort_id => 1,
+    :strapline => 'A favourite meeting place for locals and visitors alike')
 end
 
 Given /^I have no directory adverts$/ do

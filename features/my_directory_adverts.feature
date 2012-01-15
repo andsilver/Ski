@@ -29,7 +29,9 @@ Feature: My Directory Adverts
     And I am on the new directory advert page
     When I select "Bars" from "Category"
     And I select "France > Chamonix" from "Resort"
+    And I fill in "Business name" with "Chambre Dix"
     And I fill in "Business address" with "272, av Michel Croz"
     And I fill in "ZIP / postcode" with "74400"
+    And I fill in "Strapline" with "A favourite meeting place for locals and visitors alike"
     And I press "Save"
     Then I should see "Your directory advert was successfully created."

@@ -5,14 +5,16 @@ Given /^I have adverts in my basket$/ do
   d = DirectoryAdvert.create!(
     :user_id => users(:alice).id,
     :category_id => categories(:bars).id,
+    :business_name => 'Chambre Dix',
     :business_address => '123 av',
-    :resort_id => 1)
+    :resort_id => 1,
+    :strapline => 'A favourite meeting place for locals and visitors alike')
   a = Advert.new_for(d)
   a.save!
 end
 
 Then /^I should see my adverts$/ do
-  Then 'I should see "Alice Properties"'
+  Then 'I should see "Chambre Dix"'
 end
 
 Then /^I should see a drop down box to change advert duration$/ do
