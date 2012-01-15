@@ -67,10 +67,6 @@ MySkiChalet::Application.routes.draw do
   resources :property_volume_discounts
   resources :window_base_prices
 
-  resources :banner_adverts do
-    post 'advertise_now', :on => :member
-  end
-
   resources :directory_adverts do
     post 'advertise_now', :on => :member
     get  'click',         :on => :member
