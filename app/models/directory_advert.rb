@@ -1,6 +1,8 @@
 class DirectoryAdvert < ActiveRecord::Base
   include AdvertBehaviours
 
+  CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]
+
   belongs_to :category
   belongs_to :resort
   belongs_to :user

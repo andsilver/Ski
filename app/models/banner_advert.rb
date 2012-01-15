@@ -1,8 +1,6 @@
 class BannerAdvert < ActiveRecord::Base
   include AdvertBehaviours
 
-  CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.banner_advert_id FROM adverts WHERE adverts.banner_advert_id=banner_adverts.id AND adverts.expires_at > NOW())"]
-
   belongs_to :resort
   belongs_to :user
   belongs_to :image
