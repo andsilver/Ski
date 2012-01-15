@@ -2,7 +2,6 @@ class BannerAdvertsController < ApplicationController
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.banner_advert_id FROM adverts WHERE adverts.banner_advert_id=banner_adverts.id AND adverts.expires_at > NOW())"]
 
   before_filter :no_browse_menu
-  before_filter :user_required, :except => [:click]
   before_filter :find_banner_advert_for_user, :only => [:edit, :show, :update, :advertise_now]
 
   def new
