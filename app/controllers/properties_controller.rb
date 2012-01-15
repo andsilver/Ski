@@ -56,6 +56,7 @@ class PropertiesController < ApplicationController
   end
 
   def new_developments
+    @for_sale = true
     default_page_title t('properties.titles.new_developments', :resort => @resort.name)
     @heading_a = I18n.t(:new_developments)
     @conditions[0] += " AND new_development = 1"
