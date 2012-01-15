@@ -16,7 +16,7 @@
       <td>
       <% if da.image %>
       <div class="user_logo">
-        <%= link_to_unless(da.user.description.blank?, "<img src=\"#{h(da.image.url(85))}\">".html_safe, da) %>
+        <%= link_to_unless(da.description.blank?, "<img src=\"#{h(da.image.url(85))}\">".html_safe, da) %>
       </div>
       <% end %>
       </td>
@@ -25,7 +25,7 @@
       <td>
         <%= da.business_address %><br>
         <%= da.phone %><br>
-        <%= link_to da.user.website, da.user.website %>
+        <%= link_to da.url, da.url %>
       </td>
     </tr>
     <% end %>
