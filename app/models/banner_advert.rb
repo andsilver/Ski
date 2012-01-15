@@ -21,14 +21,6 @@ class BannerAdvert < ActiveRecord::Base
     Website.first.banner_advert_price * 100
   end
 
-  def valid_months
-    [default_months]
-  end
-
-  def default_months
-    12
-  end
-
   def record_dimensions dimensions
     self.width, self.height = dimensions
     save
