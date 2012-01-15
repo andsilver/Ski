@@ -17,10 +17,6 @@
 </a>
 <% end %>
 <% if @current_user.role.advertises_generally? %>
-<a class="cms_box" href="<%= new_banner_advert_path %>">
-  <h2><%= t('users.new_banner_advert.new_banner_advert') %></h2>
-  <p><%= t('users.new_banner_advert.description') %></p>
-</a>
 <a class="cms_box" href="<%= new_directory_advert_path %>" title="New Directory Advert">
   <h2><%= t('users.new_directory_advert.new_directory_advert') %></h2>
   <p><%= t('users.new_directory_advert.description') %></p>
