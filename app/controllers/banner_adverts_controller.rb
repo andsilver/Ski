@@ -29,11 +29,6 @@ class BannerAdvertsController < ApplicationController
     end
   end
 
-  def advertise_now
-    Advert.create_for(@banner_advert)
-    redirect_to(basket_path, :notice => t('banner_adverts_controller.added_to_basket'))
-  end
-
   protected
 
   def find_banner_advert_for_user
