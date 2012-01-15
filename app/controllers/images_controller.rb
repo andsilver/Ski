@@ -5,10 +5,6 @@ class ImagesController < ApplicationController
 
   before_filter :find_object, :only => [:new, :edit, :create]
 
-  VALID_BANNER_SIZES = [
-      [160, 200]
-    ]
-
   def index
     @images = @current_user.images
   end
@@ -25,7 +21,7 @@ class ImagesController < ApplicationController
 
     if session[:image_mode] == 'property'
       @image.property_id = session[:property_id]
-    elsif ['banner_advert', 'directory_advert', 'country', 'resort'].include? session[:image_mode]
+    elsif ['country', 'resort'].include? session[:image_mode]
       remove_previous_image
     end
 
@@ -33,21 +29,8 @@ class ImagesController < ApplicationController
 
     begin
       if @image.save
-        if valid_size_if_banner_advert
-          set_main_image_if_first
-          if session[:image_mode] == 'banner_advert' || session[:image_mode] == 'directory_advert'
-            set_banner_advert_dimensions if session[:image_mode] == 'banner_advert'
-            if session[:edit_mode] == 'edit'
-              redirect_to(edit_polymorphic_path(@object), :notice => t('images_controller.image_uploaded'))
-            else
-              redirect_to(basket_path, :notice => t('images_controller.image_uploaded'))
-            end
-            return
-          end
-          redirect_to(new_image_path, :notice => t('images_controller.image_uploaded')) and return
-        else
-          redirect_to(new_image_path, :notice => t('images_controller.invalid_dimensions')) and return
-        end
+        set_main_image_if_first
+        redirect_to(new_image_path, :notice => t('images_controller.image_uploaded')) and return
       end
     rescue
     end
@@ -99,21 +82,6 @@ class ImagesController < ApplicationController
 
   def object_id
     session[session[:image_mode] + '_id']
-  end
-
-  def valid_size_if_banner_advert
-    return true unless session[:image_mode] == 'banner_advert'
-
-    VALID_BANNER_SIZES.each do |dimensions|
-      return true if @image.dimensions == dimensions
-    end
-
-    @image.destroy
-    false
-  end
-
-  def set_banner_advert_dimensions
-    @object.record_dimensions(@image.dimensions)
   end
 
   def remove_previous_image

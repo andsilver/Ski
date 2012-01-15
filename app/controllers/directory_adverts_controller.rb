@@ -1,4 +1,10 @@
+# coding: utf-8
+
 class DirectoryAdvertsController < ApplicationController
+  VALID_BANNER_SIZES = [
+    [160, 200]
+  ]
+
   before_filter :no_browse_menu
   before_filter :user_required, :except => [:show, :click]
   before_filter :find_directory_advert_for_current_user, :only => [:edit, :update, :advertise_now]
@@ -30,22 +36,24 @@ class DirectoryAdvertsController < ApplicationController
     update_user_details
 
     if @directory_advert.save
-      set_image_mode 'new'
-      redirect_to new_image_path, :notice => t('directory_adverts_controller.created')
+      update_images
       create_advert
+      redirect_to basket_path, :notice => t('directory_adverts_controller.created')
     else
       render "new"
     end
   end
 
   def edit
-    set_image_mode 'edit'
   end
 
   def update
     update_user_details
     if @directory_advert.update_attributes(params[:directory_advert])
       flash[:notice] = t('directory_adverts_controller.saved')
+
+      update_images
+
       if @current_user.basket_contains? @directory_advert
         redirect_to basket_path
       else
@@ -70,6 +78,40 @@ class DirectoryAdvertsController < ApplicationController
 
   protected
 
+  def update_images
+    begin
+      banner_image = Image.new(params[:banner_image])
+
+      if banner_image.save
+        if valid_banner_size?(banner_image)
+          @directory_advert.banner_image.destroy unless @directory_advert.banner_image.nil?
+          @directory_advert.banner_image_id = banner_image.id
+          @directory_advert.record_dimensions(banner_image.dimensions)
+          @directory_advert.save
+        else
+          banner_image.destroy
+          flash[:notice] = t('images_controller.invalid_dimensions')
+        end
+      end
+    rescue
+    end
+
+    begin
+      directory_image = Image.new(params[:image])
+
+      if image.save
+        @directory_advert.image.destroy unless @directory_advert.image.nil?
+        @directory_advert.image_id = directory_image.id
+        @directory_advert.save
+      end
+    rescue
+    end
+  end
+
+  def valid_banner_size?(image)
+    VALID_BANNER_SIZES.include? image.dimensions
+  end
+
   def find_directory_advert_for_current_user
     @directory_advert = DirectoryAdvert.find_by_id_and_user_id(params[:id], @current_user.id)
   end
@@ -84,11 +126,5 @@ class DirectoryAdvertsController < ApplicationController
     advert = Advert.new_for(@directory_advert)
     advert.months = 3
     advert.save!
-  end
-
-  def set_image_mode edit_mode
-    session[:image_mode] = 'directory_advert'
-    session[:directory_advert_id] = @directory_advert.id
-    session[:edit_mode] = edit_mode
   end
 end

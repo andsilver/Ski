@@ -4,17 +4,12 @@ class BannerAdvertsController < ApplicationController
   before_filter :no_browse_menu
   before_filter :find_banner_advert_for_user, :only => [:edit, :show, :update, :advertise_now]
 
-  def edit
-    set_image_mode('edit')
-  end
-
   def create
     @banner_advert = BannerAdvert.new(params[:banner_advert])
     @banner_advert.user_id = @current_user.id
 
     if @banner_advert.save
       Advert.create_for(@banner_advert)
-      set_image_mode('new')
       redirect_to new_image_path, :notice => t('banner_adverts_controller.created')
     else
       render :action => "new"
@@ -34,11 +29,5 @@ class BannerAdvertsController < ApplicationController
   def find_banner_advert_for_user
     @banner_advert = BannerAdvert.find_by_id_and_user_id(params[:id], @current_user.id)
     not_found unless @banner_advert
-  end
-
-  def set_image_mode edit_mode
-    session[:image_mode] = 'banner_advert'
-    session[:banner_advert_id] = @banner_advert.id
-    session[:edit_mode] = edit_mode
   end
 end
