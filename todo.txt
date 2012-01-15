@@ -1,3 +1,4 @@
+Correctly count directory and banner adverts in User
 write a keyword rich link-to-us html snippet
 Expiry warning emails
 Put up estate agent chat, with my edits

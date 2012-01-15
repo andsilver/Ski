@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   belongs_to :coupon
   belongs_to :image
 
-  has_many :banner_adverts, :dependent => :destroy
   has_many :directory_adverts, :dependent => :destroy
   has_many :enquiries, :dependent => :delete_all, :order => "created_at DESC"
   has_many :adverts, :dependent => :delete_all
@@ -88,7 +87,7 @@ class User < ActiveRecord::Base
 
   def banner_adverts_so_far
     Advert.count(
-      :conditions => ['user_id = ? AND banner_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
+      :conditions => ['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
       id])
   end
 

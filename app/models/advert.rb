@@ -1,7 +1,6 @@
 class Advert < ActiveRecord::Base
   belongs_to :user
   belongs_to :property
-  belongs_to :banner_advert
   belongs_to :directory_advert
 
   has_one :order_line
@@ -63,7 +62,7 @@ class Advert < ActiveRecord::Base
   end
 
   def type
-    [:banner_advert_id, :directory_advert_id, :property_id].each do |sym|
+    [:directory_advert_id, :property_id].each do |sym|
       return sym.to_s.gsub('_id', '').to_sym unless send(sym).nil?
     end
     nil
