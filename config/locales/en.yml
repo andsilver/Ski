@@ -53,11 +53,6 @@ en:
     total: Total
     windows: Windows
   advert_details: Advert details
-  banner_adverts: Banner Adverts
-  banner_adverts_controller:
-    added_to_basket: 'Your banner advert has been added to your basket.'
-    created: "Your banner advert was successfully created. Now let's upload the banner image."
-    saved: "Your banner advert details have been saved."
   basket: Basket
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
@@ -407,12 +402,9 @@ en:
       my_details: My Details
     my_enquiries:
       description: 'View enquiries that have been emailed to you through your enquiry forms.'
-    new_banner_advert:
-      description: "Advertise your business throughout a resort's pages."
-      new_banner_advert: New Banner Advert
     new_directory_advert:
-      description: "Advertise your business within a resort's directory."
-      new_directory_advert: New Directory Advert
+      description: "Advertise your business within our resort pages."
+      new_directory_advert: New Directory/Banner Advert
     no_account_yet: "Don’t have an account yet?"
     or: Or
     password_changed: 'Your password has been changed'
