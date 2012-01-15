@@ -11,14 +11,39 @@
   </div>
 <% end %>
 
-<%= form_for @directory_advert do |f| %>
+<%= form_for(@directory_advert, :html => {:multipart => true}) do |f| %>
 
-<% unless @directory_advert.new_record? %>
+<% unless @directory_advert.currently_advertised? -%>
 <div class="group_panel">
-<h2>Images</h2>
-<p><%= link_to 'Add or change your directory advert image', new_image_path %> (changes made on this page will not be saved)</p>
+  <h2>Type of Advert</h2>
+  <p>
+    You can have either a directory listing on its own or
+    a banner advert which includes a free directory listing.
+  </p>
+  <div class="field">
+  	<%= f.radio_button :is_banner_advert, false, :class => "radio" %>
+  	<label for="directory_advert_is_banner_advert_false">Directory advert only</label><br>
+  	<%= f.radio_button :is_banner_advert, true, :class => "radio" %>
+  	<label for="directory_advert_is_banner_advert_true">Banner advert with free directory advert</label>
+  </div>
 </div>
-<% end %>
+<% end -%>
+
+<div class="group_panel">
+  <h2>Images</h2>
+  <p>
+    Your directory image can be a logo or a photograph that represents your business. It can be any size.<br>
+    Your banner image must be sized to 160 pixels wide and 200 pixels tall.
+  </p>
+  <div class="field">
+  	<%= f.label :image, "Directory image (.jpeg, .jpg, .gif, .png)" %><br>
+  	<%= f.file_field :image %>
+  </div>
+  <div class="field">
+  	<%= f.label :banner_image, "Banner image (.jpeg, .jpg, .gif, .png)" %><br>
+  	<%= f.file_field :banner_image %>
+  </div>
+</div>
 
 <div class="group_panel">
 <table>
@@ -98,8 +123,9 @@ Please include the country calling code.
   <%= f.text_field :url %>
 </div>
     </td>
-    <td><br><br>
-      www.example.org
+    <td><br>
+      http://www.example.org<br>
+      If you have a banner advert, this is also where the visitor will be sent when they click your banner
     </td>
   </tr>
   <tr>
@@ -116,8 +142,8 @@ Please include the country calling code.
   <tr>
     <td>
 <div class="field">
-  <%= label_tag 'description' %><br>
-  <%= text_area_tag 'description', @current_user.description %>
+  <%= f.label :description %><br>
+  <%= f.text_area :description %>
 </div>
     </td>
     <td><br><br>
