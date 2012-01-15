@@ -7,6 +7,8 @@ class DirectoryAdvertsController < ApplicationController
   def new
     @directory_advert = DirectoryAdvert.new
     @directory_advert.url = @current_user.website
+    @directory_advert.description = @current_user.description
+    @directory_advert.business_name = @current_user.business_name
   end
 
   def show

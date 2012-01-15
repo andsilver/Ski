@@ -4,11 +4,6 @@ class BannerAdvertsController < ApplicationController
   before_filter :no_browse_menu
   before_filter :find_banner_advert_for_user, :only => [:edit, :show, :update, :advertise_now]
 
-  def new
-    @banner_advert = BannerAdvert.new
-    @banner_advert.url = @current_user.website
-  end
-
   def edit
     set_image_mode('edit')
   end
