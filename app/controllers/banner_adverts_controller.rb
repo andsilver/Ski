@@ -8,10 +8,6 @@ class BannerAdvertsController < ApplicationController
     set_image_mode('edit')
   end
 
-  def show
-    redirect_to edit_banner_advert_path(@banner_advert)
-  end
-
   def create
     @banner_advert = BannerAdvert.new(params[:banner_advert])
     @banner_advert.user_id = @current_user.id
