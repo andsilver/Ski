@@ -29,11 +29,9 @@ class DirectoryAdvertsController < ApplicationController
     update_user_details
 
     if @directory_advert.save
-      advert = Advert.new_for(@directory_advert)
-      advert.months = 3
-      advert.save!
       set_image_mode 'new'
       redirect_to new_image_path, :notice => t('directory_adverts_controller.created')
+      create_advert
     else
       render "new"
     end
