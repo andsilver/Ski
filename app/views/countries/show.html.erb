@@ -1,3 +1,5 @@
+<div id="content_with_wide_skyscrapers">
+
 <%= raw @country.info %>
 
 <% unless @featured_properties.empty? -%>
@@ -19,3 +21,7 @@
 
 <% end -%>
 <% end -%>
+</div>
+<div id="wide_skyscrapers">
+  <%= render :partial => 'directory_adverts/banners', :object => [] %>
+</div>

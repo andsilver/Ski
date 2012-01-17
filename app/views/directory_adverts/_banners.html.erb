@@ -1,6 +1,8 @@
-<% if @fixed_banner_image_path -%>
+<% if !@banner_advert_html.blank? -%>
+<%= raw @banner_advert_html  %>
+<% elsif @fixed_banner_image_path -%>
 <% if @fixed_banner_target_url %><a href="<%= @fixed_banner_target_url %>"><% end %><img src="<%= @fixed_banner_image_path %>" alt=""><% if @fixed_banner_target_url %></a><% end %>
-<% end -%>
+<% else -%>
 <% if banners.empty? %>
   <% if rand() > 0.666 %>
     <a href='http://scripts.affiliatefuture.com/AFClick.asp?affiliateID=252735&amp;merchantID=3287&amp;programmeID=8586&amp;mediaID=114123&amp;tracking=&amp;url='><img border=0 src='http://banners.affiliatefuture.com/3287/114123.gif'></a>
@@ -24,3 +26,4 @@ src="/images/small-banner-advertise-here.png" alt="Advertise in this space"></a>
       title="<%= banner.business_name %>"></a>
   <% end %>
 <% end %>
+<% end -%>
