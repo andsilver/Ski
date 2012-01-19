@@ -6,17 +6,6 @@
   upload will be the main photo for your advert, but you can change this
   later if you want.
 </p>
-<% elsif @object.class == BannerAdvert %>
-<p>
-  Here you can upload the image for your banner advert. You can change
-  this at a later date.
-</p>
-<p>
-  The following banner dimensions are accepted:
-</p>
-<ul>
-  <li>160 pixels wide &times; 200 pixels tall</li>
-</ul>
 <% end %>
 
 <% if @image.errors.any? %>
