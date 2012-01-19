@@ -39,12 +39,12 @@
     Your banner image must be sized to 160 pixels wide and 200 pixels tall.
   </p>
   <div class="field">
-  	<%= f.label :image, "Directory image (.jpeg, .jpg, .gif, .png)" %><br>
-  	<%= f.file_field :image %>
+  	<label for="image">Directory image (.jpeg, .jpg, .gif, .png)</label><br>
+  	<%= file_field_tag 'image' %>
   </div>
   <div class="field">
-  	<%= f.label :banner_image, "Banner image (.jpeg, .jpg, .gif, .png)" %><br>
-  	<%= f.file_field :banner_image %>
+  	<label for="banner_image">Banner image (.jpeg, .jpg, .gif, .png)</label><br>
+  	<%= file_field_tag 'banner_image' %>
   </div>
 </div>
 

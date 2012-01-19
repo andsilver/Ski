@@ -118,7 +118,7 @@ en:
   directory_adverts: 'Directory Adverts'
   directory_adverts_controller:
     added_to_basket: 'Your directory advert has been added to your basket.'
-    created: "Your directory advert was successfully created. Now let's upload your business photo or logo."
+    created: "Your directory advert was successfully created."
     saved: "Your directory advert was successfully updated."
   duration: Duration
   edit: Edit
