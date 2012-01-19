@@ -67,6 +67,11 @@ a img {
   top: 40px;
 }
 
+/* Display zoomed images above the header */
+#zoom {
+  z-index: 4;
+}
+
 #column_headings {
   margin-top: 264px;
   height: 30px;
