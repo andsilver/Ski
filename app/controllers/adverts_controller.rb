@@ -22,6 +22,8 @@ class AdvertsController < ApplicationController
   end
 
   def update_basket_contents
+    apply_coupon_code and return unless params[:code].blank?
+
     update_durations unless params[:months].nil?
     remove_advert if params[:remove_advert]
     redirect_to :action => 'place_order' and return if params[:place_order]
@@ -169,6 +171,22 @@ class AdvertsController < ApplicationController
       @current_user.coupon = nil
       @current_user.save
     end
+  end
+
+  def apply_coupon_code
+    coupon = Coupon.find_by_code(params[:code])
+    if coupon
+      if coupon.expired?
+        notice = I18n.t('coupons_controller.coupon_code_expired')
+      else
+        @current_user.coupon = coupon
+        @current_user.save
+        notice = I18n.t('coupons_controller.coupon_code_applied')
+      end
+    else
+      notice = I18n.t('coupons_controller.coupon_code_not_recognised')
+    end
+    redirect_to basket_path, :notice => notice
   end
 
   def update_durations

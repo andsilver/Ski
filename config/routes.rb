@@ -103,9 +103,7 @@ MySkiChalet::Application.routes.draw do
     post 'worldpay_callback', :on => :collection
   end
 
-  resources :coupons do
-    post 'apply_code', :on => :collection
-  end
+  resources :coupons
 
   resources :currencies do
     get 'update_exchange_rates', :on => :collection
