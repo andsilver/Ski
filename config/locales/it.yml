@@ -335,6 +335,8 @@ it:
     advertiser: Advertiser
     estate_agent: Estate agent
     estate_agents: Estate agents
+    hotelier: Hotelier
+    hoteliers: Hoteliers
     letting_agent: Letting agent
     letting_agents: Letting agents
     other_business: Other business
