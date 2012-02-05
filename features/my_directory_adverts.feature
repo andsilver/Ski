@@ -12,17 +12,15 @@ Feature: My Directory Adverts
 
   Scenario: I can see a list of my directory adverts in My Directory Adverts
     Given I am signed in as an other business
-    And I have directory adverts
-    And my business is called "Chambre Neuf"
+    And I have directory adverts for a business called "Chambre Dix"
     When I am on the my adverts page
-    Then I should see "Chambre Neuf"
+    Then I should see "Chambre Dix"
 
   Scenario: I see no directory adverts
     Given I am signed in as an other business
     And I have no directory adverts
-    And my business is called "Chambre Neuf"
     When I am on the my adverts page
-    Then I should not see "Chambre Neuf"
+    Then I should not see "Chambre Dix"
 
   Scenario: Create a new directory advert
     Given I am signed in as an other business

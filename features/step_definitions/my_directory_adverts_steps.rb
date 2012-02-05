@@ -1,13 +1,8 @@
-Given /^my business is called "([^"]*)"$/ do |arg1|
-  emily.business_name = arg1
-  emily.save
-end
-
-Given /^I have directory adverts$/ do
+Given /^I have directory adverts for a business called "([^"]*)"$/ do |arg1|
   DirectoryAdvert.create!(
     :user_id => emily.id,
     :category_id => categories(:bars).id,
-    :business_name => 'Chambre Dix',
+    :business_name => arg1,
     :business_address => '123 av',
     :resort_id => 1,
     :strapline => 'A favourite meeting place for locals and visitors alike')
