@@ -28,7 +28,7 @@ Feature: Sign Up
       | Business name           | Carol's Holidays Ltd      |
       | Your position           | Managing director         |
     And I select "United Kingdom" from "Country"
-    And I check "I accept the terms & conditions below"
+    And I check "I have read, understood and agree to be bound by the terms and conditions."
     And I press "Register"
     Then I should be on the first advert page
     And I have a new account set up
