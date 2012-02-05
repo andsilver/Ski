@@ -44,6 +44,10 @@ class DirectoryAdvert < ActiveRecord::Base
     save
   end
 
+  def basket_advert_type_description
+    is_banner_advert? ? 'Banner Advert + Free Directory Advert' : 'Directory Advert'
+  end
+
   def self.banner_adverts_for(resort, dimensions, qty)
     return [] if(rand > 0.7)
 

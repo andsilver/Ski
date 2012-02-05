@@ -21,3 +21,9 @@ Feature: Basket
     And I should see a drop down box to change advert duration
     And I should see a remove button
     And I should see a place order button
+
+  Scenario: I have a banner advert (with free directory ad) in my basket
+    Given I am signed in
+    And I have a banner advert in my basket
+    When I am on the basket page
+    Then I should see "Banner Advert + Free Directory Advert"

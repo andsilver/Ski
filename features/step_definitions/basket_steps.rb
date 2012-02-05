@@ -2,15 +2,25 @@ Given /^I have no adverts in my basket$/ do
 end
 
 Given /^I have adverts in my basket$/ do
-  d = DirectoryAdvert.create!(
+  d = a_directory_advert
+  a = Advert.new_for(d)
+  a.save!
+end
+
+Given /^I have a banner advert in my basket$/ do
+  d = a_directory_advert(:is_banner_advert => true)
+  a = Advert.new_for(d)
+  a.save!
+end
+
+def a_directory_advert(opts = {})
+  DirectoryAdvert.create!({
     :user_id => users(:alice).id,
     :category_id => categories(:bars).id,
     :business_name => 'Chambre Dix',
     :business_address => '123 av',
     :resort_id => 1,
-    :strapline => 'A favourite meeting place for locals and visitors alike')
-  a = Advert.new_for(d)
-  a.save!
+    :strapline => 'A favourite meeting place for locals and visitors alike'}.merge(opts))
 end
 
 Then /^I should see my adverts$/ do

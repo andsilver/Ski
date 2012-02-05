@@ -229,6 +229,10 @@ class Property < ActiveRecord::Base
     end
   end
 
+  def basket_advert_type_description
+    'Property'
+  end
+
   def to_s
     name
   end
