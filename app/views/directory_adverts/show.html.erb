@@ -1,4 +1,3 @@
-<div id="wide_content_with_wide_skyscrapers">
 <% if @directory_advert.image %>
 <p style="float:right; margin-left: 1em; margin-bottom: 1em;">
   <img src="<%= @directory_advert.image.url(400) %>">
@@ -25,8 +24,3 @@
   <%= md @directory_advert.opening_hours %>
 </p>
 <% end %>
-
-</div>
-<div id="wide_skyscrapers">
-  <%= render :partial => 'directory_adverts/banners', :object => DirectoryAdvert.small_banners_for(@directory_advert.resort) %>
-</div>
