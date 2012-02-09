@@ -1,6 +1,7 @@
 class CountriesController < ApplicationController
   before_filter :admin_required, :except => [:show]
   before_filter :find_country, :only => [:edit, :update, :show, :destroy]
+  before_filter :protect_country, :only => [:show]
   before_filter :no_browse_menu, :except => [:show]
 
   def index
@@ -63,6 +64,10 @@ class CountriesController < ApplicationController
 
   def find_country
     @country = Country.find(params[:id])
+  end
+
+  def protect_country
+    not_found if @country.visible_resorts.empty? and !admin?
   end
 
   def set_image_mode

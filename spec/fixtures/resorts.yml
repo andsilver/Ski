@@ -22,3 +22,9 @@ davos:
   country_id: 4 # Switzerland
   name: Davos
   visible: 1
+
+an_invisible_resort:
+  id: 5
+  country_id: 6 # A Country Without Visible Resorts
+  name: An Invisible Resort
+  visible: 0

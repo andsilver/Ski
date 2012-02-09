@@ -22,3 +22,9 @@ united_kingdom:
   id: 5
   name: United Kingdom
   iso_3166_1_alpha_2: GB
+
+a_country_without_visible_resorts:
+  id: 6
+  name: A Country Without Visible Resorts
+  iso_3166_1_alpha_2: XA
+
