@@ -59,7 +59,6 @@ $(function () {
   <%= f.label :date_of_departure, t('enquiries_controller.date_of_departure') %><br>
   <%= f.text_field :date_of_departure %>
 </div>
-<% end %>
 
 <div class="field">
   <%= f.label :number_of_adults, t('enquiries_controller.number_of_adults') %><br>
@@ -75,6 +74,7 @@ $(function () {
   <%= f.label :number_of_infants, t('enquiries_controller.number_of_infants') %><br>
   <%= select("enquiry", "number_of_infants", (0..10).collect {|n| [ n, n ] }, {:prompt => 'Select'}) %>
 </div>
+<% end %>
 
 <div class="field">
   <%= f.label :comments, t('enquiries_controller.comments') %><br>
