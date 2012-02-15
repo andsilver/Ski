@@ -32,9 +32,7 @@ function closeMenu(menu) {
 <% elsif session[:windows_in_basket] -%>
 <li><a href="<%= basket_path %>"><%= t 'basket' %> <span class="count">1</span></a></li>
 <% end -%>
-<% unless admin? %>
     <li><%= link_to t('account'), advertise_path %>
-<% end %>
     <li><%= link_to t('sign_out'), sign_out_path %>
 <% else %>
     <li><%= link_to t('sign_in'), sign_in_path %></li>
