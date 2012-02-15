@@ -11,6 +11,12 @@ describe DirectoryAdvertsController do
   end
 
   describe "GET new" do
+    let(:directory_advert) { mock_model(DirectoryAdvert).as_null_object }
+
+    before do
+      DirectoryAdvert.stub(:new).and_return(directory_advert)
+    end
+
     it "instantiates a new directory advert" do
       DirectoryAdvert.should_receive(:new)
       get "new"
@@ -27,6 +33,7 @@ describe DirectoryAdvertsController do
 
     before do
       DirectoryAdvert.stub(:new).and_return(directory_advert)
+      directory_advert.stub(:default_months).and_return(12)
       directory_advert.stub(:user_id).and_return(1)
     end
 
@@ -35,8 +42,8 @@ describe DirectoryAdvertsController do
     end
 
     it "instantiates a new directory advert" do
-      DirectoryAdvert.should_receive(:new).with("category_id" => "1").and_return(directory_advert)
-      post "create", :directory_advert => { :category_id => "1" }
+      DirectoryAdvert.should_receive(:new).with({"category_id" => "1", "business_address" => "123 av"}).and_return(directory_advert)
+      post_valid
     end
 
     it "associates the advert with the current user" do
@@ -51,12 +58,12 @@ describe DirectoryAdvertsController do
 
       it "sets a flash[:notice] message" do
         post_valid
-        flash[:notice].should eq("Your directory advert was successfully created. Now let's upload your business photo or logo.")
+        flash[:notice].should eq("Your directory advert was successfully created.")
       end
 
-      it "redirects to the new image page" do
+      it "redirects to the basket" do
         post_valid
-        response.should redirect_to(new_image_path)
+        response.should redirect_to(basket_path)
       end
     end
 
