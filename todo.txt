@@ -1,3 +1,4 @@
+Resize large property images if too large, not just the thumbnails
 Correctly count directory and banner adverts in User
 write a keyword rich link-to-us html snippet
 Expiry warning emails
@@ -14,7 +15,6 @@ Allow advertisers to select multiple resorts to place their banner in***
 Make Advertise Now buttons smaller
 Allow banner adverts to not have target website addresses
 Make it more clear what the target website is (placeholder)
-Order pages in Page CMS by url
 Catering options
 Also, check all sales & rentals filters are working
 Don't need garage as a search filter -- double check with Tony first (he will check with Christian)
@@ -23,7 +23,6 @@ Separate address lines?
 Show address of property on full detail page.
 Where is the location?
 Proper invoice***
-Move promotion code basket box to right of basket
 Ability for users to enter their Google Analytics*** instructions
 Welcome email***
 Tidy terms & conditions***
