@@ -4,10 +4,12 @@ describe PropertiesController do
   let(:property) { mock_model(Property).as_null_object }
   let(:website) { mock_model(Website).as_null_object }
   let(:resort) { mock_model(Resort).as_null_object }
+  let(:non_admin_role) { mock_model(Role).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
     Resort.stub(:find).and_return(resort)
+    non_admin_role.stub(:admin?).and_return(false)
   end
 
   describe "GET new_developments" do
@@ -143,6 +145,8 @@ describe PropertiesController do
   def signed_in_user
     session[:user] = 1
     User.stub(:find_by_id).and_return(current_user)
+
+    current_user.stub(:role).and_return(non_admin_role)
   end
 
   describe "GET edit" do
