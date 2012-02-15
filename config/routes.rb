@@ -129,6 +129,7 @@ MySkiChalet::Application.routes.draw do
   resources :favourites
 
   match "cms" => "cms#index"
+  match "guide" => "cms#guide"
   match "management_information" => "cms#management_information"
   match "gross_sales_analysis" => "cms#gross_sales_analysis"
 

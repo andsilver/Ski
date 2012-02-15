@@ -7,6 +7,11 @@ class CmsController < ApplicationController
     default_page_title(@heading_a)
   end
 
+  def guide
+    @heading_a = t('cms_controller.guide')
+    default_page_title(@heading_a)
+  end
+
   def management_information
     @heading_a = t('cms_controller.management_information')
     default_page_title(@heading_a)

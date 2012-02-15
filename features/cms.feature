@@ -9,3 +9,8 @@ Feature: CMS
   Scenario: Administrators get sent the the CMS home page on signing in
     Given I am signed in as an administrator
     Then I should be on the cms page
+
+  Scenario: Administrators should be able to access a how-to guide
+    Given I am signed in as an administrator
+    When I follow "Guide"
+    Then I should be on the guide page

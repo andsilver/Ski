@@ -91,6 +91,7 @@ de:
   cms_controller:
     cms: CMS
     gross_sales_analysis: Gross Sales Analysis
+    guide: Guide
     management_information: Management Information
   contact: Contact
   contact_details: Contact Details
