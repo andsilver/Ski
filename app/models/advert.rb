@@ -77,7 +77,7 @@ class Advert < ActiveRecord::Base
   end
 
   def price(advert_number)
-    object.price(self, advert_number)
+    object ? object.price(self, advert_number) : 0
   end
 
   def start_and_save!
