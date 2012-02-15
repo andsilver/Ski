@@ -30,6 +30,7 @@ describe AdvertsController do
   describe "GET basket" do
     before do
       current_user.stub(:adverts_in_basket).and_return []
+      website.stub(:vat_for).and_return 0
     end
 
     it "finds the adverts in the user's basket" do
