@@ -28,6 +28,20 @@ describe Advert do
     end
   end
 
+  describe "#record_view" do
+    it "increases the number of views by one" do
+      a = valid_advert
+      a.record_view
+      a.views.should equal(1)
+    end
+
+    it "saves itself" do
+      a = valid_advert
+      a.should_receive(:save)
+      a.record_view
+    end
+  end
+
   def valid_advert
     Advert.new(:user_id => 1)
   end
