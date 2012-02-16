@@ -157,6 +157,8 @@ it:
     site_verification: lqULaLa4Fubz6zh09WjcMwZHUGPb7SnTz38rxtkcRHY
     web_property_id: UA-22451896-5
   home: Home
+  home_page:
+    introduction: "Benvenuti a MyChaletFinder.com, estate leader in Europa e sci vacanze invernali home del sito di ricerca. Noi lista chalet e appartamenti in affitto per breve e lungo termine consente, proprietà in vendita da sci e sviluppi nuova proprietà."
   images_controller:
     deleted: 'Image deleted.'
     image: 'Image'
