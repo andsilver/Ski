@@ -9,7 +9,7 @@ class DirectoryAdvert < ActiveRecord::Base
   belongs_to :image, :dependent => :destroy
   belongs_to :banner_image, :class_name => "Image", :dependent => :destroy
 
-  has_many :adverts, :dependent => :delete_all
+  has_many :adverts, :dependent => :nullify
 
   validates_presence_of :category
   validates_presence_of :resort

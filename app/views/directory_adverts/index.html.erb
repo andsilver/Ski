@@ -1,0 +1,24 @@
+<div class="group_panel">
+  <table class="grid">
+    <thead>
+      <tr>
+        <th class="numeric">ID</th>
+        <th>User</th>
+        <th>Business Name</th>
+        <th>Strapline</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @directory_adverts.each do |da| -%>
+      <tr>
+        <td class="numeric"><%= da.id %></td>
+        <td><%= da.user.name %></td>
+        <td><%= da.business_name %></td>
+        <td><%= da.strapline %></td>
+        <td><%= form_tag directory_advert_path(da), :method => :delete do %><input type="submit" value="Delete"><% end %></td>
+      </tr>
+<% end -%>
+    </tbody>
+  </table>
+</div><!--.group_panel-->

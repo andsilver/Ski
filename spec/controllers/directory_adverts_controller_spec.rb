@@ -10,6 +10,22 @@ describe DirectoryAdvertsController do
     User.stub(:find_by_id).and_return(current_user)
   end
 
+  describe "GET index" do
+    before do
+      controller.stub(:admin?).and_return(true)
+    end
+
+    it "finds all directory adverts" do
+      DirectoryAdvert.should_receive(:all)
+      get "index"
+    end
+
+    it "assigns @directory_adverts" do
+      get "index"
+      assigns(:directory_adverts).should_not be_nil
+    end
+  end
+
   describe "GET new" do
     let(:directory_advert) { mock_model(DirectoryAdvert).as_null_object }
 
@@ -81,6 +97,29 @@ describe DirectoryAdvertsController do
         post :create
         response.should render_template("new")
       end
+    end
+  end
+
+  describe "DELETE destroy" do
+    let(:directory_advert) { mock_model(DirectoryAdvert).as_null_object }
+
+    before do
+      DirectoryAdvert.stub(:find).and_return(directory_advert)
+    end
+
+    it "finds a directory advert specified by param[:id]" do
+      DirectoryAdvert.should_receive(:find).with("1")
+      delete :destroy, :id => "1"
+    end
+
+    it "destroys a directory advert" do
+      directory_advert.should_receive(:destroy)
+      delete :destroy, :id => "1"
+    end
+
+    it "redirects to directory adverts page" do
+      delete :destroy, :id => "1"
+      response.should redirect_to(directory_adverts_path)
     end
   end
 end

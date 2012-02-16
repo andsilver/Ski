@@ -7,8 +7,13 @@ class DirectoryAdvertsController < ApplicationController
 
   before_filter :no_browse_menu
   before_filter :user_required, :except => [:show, :click]
+  before_filter :admin_required, :only => [:index]
   before_filter :find_directory_advert_for_current_user, :only => [:edit, :update, :advertise_now]
   before_filter :set_cache_buster, :only => [:new, :create]
+
+  def index
+    @directory_adverts = DirectoryAdvert.all
+  end
 
   def new
     @directory_advert = DirectoryAdvert.new
@@ -59,6 +64,12 @@ class DirectoryAdvertsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def destroy
+    @directory_advert = DirectoryAdvert.find(params[:id])
+    @directory_advert.destroy
+    redirect_to(directory_adverts_path, :notice => t('notices.deleted'))
   end
 
   def advertise_now
