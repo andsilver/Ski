@@ -44,6 +44,60 @@ describe DirectoryAdvertsController do
     end
   end
 
+  describe "GET show" do
+    let(:directory_advert) { mock_model(DirectoryAdvert).as_null_object }
+
+    it "finds a directory advert specified by param[:id]" do
+      DirectoryAdvert.should_receive(:find_by_id).with("1")
+      get "show", :id => "1"
+    end
+
+    context "when the advert is found" do
+      let(:advert) { mock_model(Advert).as_null_object }
+      let(:category) { mock_model(Category).as_null_object }
+      let(:resort) { mock_model(Resort).as_null_object }
+      let(:country) { mock_model(Country).as_null_object }
+
+      before do
+        DirectoryAdvert.stub(:find_by_id).and_return(directory_advert)
+        directory_advert.stub(:current_advert).and_return(advert)
+        directory_advert.stub(:category).and_return(category)
+        directory_advert.stub(:resort).and_return(resort)
+        resort.stub(:country).and_return(country)
+      end
+
+      it "assigns @directory_advert" do
+        get "show", { :id => "1" }
+        assigns[:directory_advert].should equal(directory_advert)
+      end
+
+      it "sets the default page title" do
+        directory_advert.stub(:business_name).and_return("Monkey Bar")
+        category.stub(:name).and_return("bars")
+        resort.stub(:name).and_return("Chamonix")
+        country.stub(:name).and_return("France")
+        controller.should_receive(:default_page_title).with(anything())
+        get "show", { :id => 1 }
+      end
+
+      it "records a view" do
+        advert.should_receive(:record_view)
+        get "show", { :id => 1 }
+      end
+    end
+
+    context "when the advert is not found" do
+      before do
+        DirectoryAdvert.stub(:find_by_id).and_return(nil)
+      end
+
+      it "renders not found" do
+        get "show", { :id => 1 }
+        response.status.should eql 404
+      end
+    end
+  end
+
   describe "POST create" do
     let(:directory_advert) { mock_model(DirectoryAdvert).as_null_object }
 

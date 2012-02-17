@@ -23,8 +23,8 @@ class DirectoryAdvertsController < ApplicationController
   end
 
   def show
-    @directory_advert = DirectoryAdvert.find(params[:id])
-    if @directory_advert.current_advert.nil?
+    @directory_advert = DirectoryAdvert.find_by_id(params[:id])
+    if @directory_advert.nil? || @directory_advert.current_advert.nil?
       not_found
     else
       default_page_title("#{@directory_advert.business_name}, #{t(@directory_advert.category.name)} in #{@directory_advert.resort.name}, #{@directory_advert.resort.country.name}")
