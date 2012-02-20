@@ -1,9 +1,25 @@
+<%
+# Banner advert HTML from Countries are shown if they exist
+
+# Fixed banners from Pages are shown if they exist, next
+
+# There's no reason to have both Country and Page banners on the same page
+# but showing both regardless avoids confusion
+
+# Users banners are always shown if they exist, beneath all other banners
+
+# If no other banners have been displayed then show Google Ads or randoms
+# or 'Advertise in this space'
+%>
 <% if !@banner_advert_html.blank? -%>
-<%= raw @banner_advert_html  %>
-<% elsif @fixed_banner_image_path -%>
+<%= raw @banner_advert_html %>
+<% end -%>
+
+<% if @fixed_banner_image_path -%>
 <% if @fixed_banner_target_url %><a href="<%= @fixed_banner_target_url %>"><% end %><img src="<%= @fixed_banner_image_path %>" alt=""><% if @fixed_banner_target_url %></a><% end %>
-<% else -%>
-<% if banners.empty? %>
+<% end -%>
+
+<% if banners.empty? and @banner_advert_html.blank? and !@fixed_banner_image_path %>
   <% if rand() > 0.666 %>
     <a href='http://scripts.affiliatefuture.com/AFClick.asp?affiliateID=252735&amp;merchantID=3287&amp;programmeID=8586&amp;mediaID=114123&amp;tracking=&amp;url='><img border=0 src='http://banners.affiliatefuture.com/3287/114123.gif'></a>
   <% elsif rand() > 0.5 %>
@@ -25,5 +41,4 @@ src="/images/small-banner-advertise-here.png" alt="Advertise in this space"></a>
       src="<%= banner.banner_image.url %>" alt="<%= banner.business_name %>"
       title="<%= banner.business_name %>"></a>
   <% end %>
-<% end %>
 <% end -%>
