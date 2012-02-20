@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe UnregisteredUser do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should have_many(:favourites) }
+  it { should have_many(:favourite_properties).through(:favourites) }
 end
