@@ -171,6 +171,7 @@ GEM
       ffi (>= 1.0.7)
       json_pure
       rubyzip
+    shoulda-matchers (1.0.0)
     spreadsheet (0.6.5.4)
       ruby-ole (>= 1.0)
     sprockets (2.0.0)
@@ -218,6 +219,7 @@ DEPENDENCIES
   rdoc
   rspec-rails (>= 2.6.1)
   sass-rails (~> 3.1.0)
+  shoulda-matchers
   spreadsheet (= 0.6.5.4)
   sprockets (= 2.0.0)
   sqlite3

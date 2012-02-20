@@ -47,6 +47,7 @@ end
 group :test, :development do
   gem "autotest", "4.4.6"
   gem "rspec-rails", ">= 2.6.1"
+  gem "shoulda-matchers"
   gem "cucumber-rails", ">= 0.5"
   gem 'database_cleaner'
   gem "capybara"
