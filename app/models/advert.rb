@@ -73,7 +73,7 @@ class Advert < ActiveRecord::Base
   end
 
   def to_s
-    object.name + " (" + object.resort.name + " " + object.basket_advert_type_description + ")"
+    object ? "#{object.name} (#{object.resort.name} #{object.basket_advert_type_description})" : super
   end
 
   def price(advert_number)

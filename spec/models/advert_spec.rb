@@ -7,6 +7,30 @@ describe Advert do
     end
   end
 
+  describe "#to_s" do
+    context "when it has an object" do
+      let(:property) { mock_model(Property).as_null_object }
+      let(:resort) { mock_model(Resort).as_null_object }
+
+      it "returns a string containing the object's name, resort and type description" do
+        a = valid_advert
+        a.stub(:object).and_return(property)
+        property.stub(:name).and_return('My Chalet')
+        property.stub(:resort).and_return(resort)
+        resort.stub(:name).and_return('Chamonix')
+        property.stub(:basket_advert_type_description).and_return('Property')
+        a.to_s.should == "My Chalet (Chamonix Property)"
+      end
+    end
+
+    context "when it has no object" do
+      it "returns to_s from its superclass" do
+        a = valid_advert
+        a.to_s[0..8].should == '#<Advert:'
+      end
+    end
+  end
+
   describe "#price" do
     context "when it has an object" do
       let(:property) { mock_model(Property).as_null_object }
