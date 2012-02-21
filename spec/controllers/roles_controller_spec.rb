@@ -1,4 +1,59 @@
 require 'spec_helper'
 
 describe RolesController do
+  let(:website) { mock_model(Website).as_null_object }
+
+  before do
+    Website.stub(:first).and_return(website)
+  end
+
+  describe "PUT update" do
+    let(:role) { mock_model(Role).as_null_object }
+
+    context "when signed in as admin" do
+      before do
+        controller.stub(:admin?).and_return(true)
+        Role.stub(:find).and_return(role)
+      end
+
+      it "finds the role" do
+        Role.should_receive(:find).with("1")
+        put 'update', :id => "1"
+      end
+
+      it "assigns @role" do
+        put 'update', :id => "1"
+        assigns(:role).should eq(role)
+      end
+
+      it "updates the role" do
+        role.should_receive(:update_attributes)
+        put 'update', :id => "1"
+      end
+
+      context "when the role updates successfully" do
+        it "redirects to the edit role page" do
+          role.stub(:update_attributes).and_return(true)
+          put 'update', :id => "1"
+          response.should redirect_to(edit_role_path(role))
+        end
+      end
+
+      context "when the role doesn't update successfully" do
+        it "renders the edit role page" do
+          role.stub(:update_attributes).and_return(false)
+          put 'update', :id => "1"
+          response.should render_template('edit')
+        end
+      end
+    end
+
+    context "when not signed in as admin" do
+      it "redirects to the sign in page" do
+        controller.stub(:admin?).and_return(false)
+        put 'update', :id => "1"
+        response.should redirect_to(sign_in_path)
+      end
+    end
+  end
 end

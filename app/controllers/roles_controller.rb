@@ -26,7 +26,7 @@ class RolesController < ApplicationController
 
   def update
     if @role.update_attributes(params[:role])
-      redirect_to(roles_path, :notice => t('notices.saved'))
+      redirect_to(edit_role_path(@role), :notice => t('notices.saved'))
     else
       render "edit"
     end
