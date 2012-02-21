@@ -1,0 +1,115 @@
+#advertiser_page h2, .advertiser_info {
+  background: #0075be; /* Old browsers */
+  background: -moz-linear-gradient(left,  #0075be 0%, #00acee 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0075be), color-stop(100%,#00acee)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #0075be 0%,#00acee 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #0075be 0%,#00acee 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #0075be 0%,#00acee 100%); /* IE10+ */
+  background: linear-gradient(left,  #0075be 0%,#00acee 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0075be', endColorstr='#00acee',GradientType=1 ); /* IE6-9 */
+
+  color: #fff;
+}
+
+#advertiser_page h2 {
+  padding: 6px 12px;
+
+  -webkit-border-top-left-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+  -moz-border-radius-topleft: 6px;
+  -moz-border-radius-topright: 6px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+
+  margin-bottom: 0;
+}
+
+.advertiser_info .column {
+  float: left;
+  width: 48%;
+  margin: 0 1%;
+
+  position: relative;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  height: 550px;
+  margin-bottom: 18px;
+
+  -webkit-box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.4);
+}
+
+.advertiser_info {
+  border-top: 1px solid #fff;
+  padding: 12px 12px;
+  -webkit-box-shadow: inset 0px 6px 6px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: inset 0px 6px 6px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0px 6px 6px 0px rgba(0, 0, 0, 0.4);
+}
+
+.advertiser_info p:first-child {
+  margin-top: 0;
+}
+
+.advertiser_info .column a {
+  color: #fff;
+}
+
+.advertiser_info .column {
+  background: #20419b; /* Old browsers */
+  background: -moz-linear-gradient(top,  #20419b 0%, #005cab 10%, #00aeef 35%, #00aeef 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#20419b), color-stop(10%,#005cab), color-stop(35%,#00aeef), color-stop(100%,#00aeef)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #20419b 0%,#005cab 10%,#00aeef 35%,#00aeef 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #20419b 0%,#005cab 10%,#00aeef 35%,#00aeef 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #20419b 0%,#005cab 10%,#00aeef 35%,#00aeef 100%); /* IE10+ */
+  background: linear-gradient(top,  #20419b 0%,#005cab 10%,#00aeef 35%,#00aeef 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#20419b', endColorstr='#00aeef',GradientType=0 ); /* IE6-9 */
+}
+
+.advertiser_info .column span {
+  display: block;
+  width: 466px;
+  height: 181px;
+}
+
+.advertiser_info .column table {
+  padding: 0 12px;
+}
+
+.advertiser_info h3 {
+  margin: 0;
+}
+
+.advertiser_info h3 {
+  padding: 6px 12px;
+}
+
+.advertiser_info p {
+  padding: 0 12px;
+}
+
+.advertiser_info a.advertise_now {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+  position: absolute;
+  left: 12px;
+  top: 171px;
+  width: 130px;
+  height: 32px;
+  line-height: 32px;
+
+  background: #005bab; /* Old browsers */
+  background: -moz-linear-gradient(top, #005bab 0%, #005bab 50%, #004b90 51%, #004b90 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#005bab), color-stop(50%,#005bab), color-stop(51%,#004b90), color-stop(100%,#004b90)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #005bab 0%,#005bab 50%,#004b90 51%,#004b90 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #005bab 0%,#005bab 50%,#004b90 51%,#004b90 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #005bab 0%,#005bab 50%,#004b90 51%,#004b90 100%); /* IE10+ */
+  background: linear-gradient(top, #005bab 0%,#005bab 50%,#004b90 51%,#004b90 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#005bab', endColorstr='#004b90',GradientType=0 ); /* IE6-9 */
+}
