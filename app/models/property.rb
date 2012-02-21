@@ -217,7 +217,7 @@ class Property < ActiveRecord::Base
   end
 
   def default_months
-    12
+    for_sale? ? 3 : 12
   end
 
   def trim_name_and_strapline
