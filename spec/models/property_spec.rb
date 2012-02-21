@@ -2,6 +2,19 @@ require 'spec_helper'
 
 describe Property do
 
+  describe '#valid_months' do
+    let(:property) { Property.new }
+
+    it "returns a sorted array of months from Property Base Prices" do
+      PropertyBasePrice.create!([
+        {:number_of_months => 3,  :price => 55},
+        {:number_of_months => 12, :price => 149},
+        {:number_of_months => 6,  :price => 89}
+      ])
+      property.valid_months.should == [3, 6, 12]
+    end
+  end
+
   describe '#default_months' do
     let(:property) { Property.new }
 
