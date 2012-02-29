@@ -90,6 +90,9 @@ class PropertiesController < ApplicationController
   end
 
   def show
+    not_found and return unless @property.currently_advertised? or admin? or
+      (@current_user && @current_user.id == @property.user_id)
+
     @property.current_advert.record_view if @property.current_advert
     rent_or_sale = @property.for_sale? ? t('for_sale') : t('for_rent')
     default_page_title t('properties.titles.show',

@@ -158,6 +158,44 @@ describe PropertiesController do
         get :show, :id => "1"
         assigns[:property].should equal(property)
       end
+
+      context "when the property is not being advertised" do
+        before do
+          property.stub(:currently_advertised?).and_return(false)
+        end
+
+        context "when not signed in as admin" do
+          before do
+            controller.stub(:admin?).and_return(false)
+          end
+
+          context "but signed is as the owner" do
+            let(:current_user) { mock_model(User).as_null_object }
+
+            it "shows the property" do
+              signed_in_user
+              property.stub(:user_id).and_return(current_user.id)
+              get :show, { :id => 1 }
+              response.should render_template('show')
+            end
+          end
+
+          context "when not the owner either" do
+            it "renders not found" do
+              get :show, { :id => 1 }
+              response.status.should eql 404
+            end
+          end
+        end
+
+        context "when signed in as admin" do
+          it "shows the property" do
+            controller.stub(:admin?).and_return(true)
+            get :show, { :id => 1 }
+            response.should render_template('show')
+          end
+        end
+      end
     end
 
     context "when a property is not found" do
