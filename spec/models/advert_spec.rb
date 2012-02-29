@@ -1,7 +1,41 @@
 require 'spec_helper'
 
 describe Advert do
-  describe "#new_for" do
+  describe ".create_for" do
+    let(:property) { Property.new }
+
+    context 'when the basket contains the object' do
+      it 'does not create a new advert' do
+        Advert.stub(:basket_contains?).and_return(true)
+        Advert.should_not_receive(:new_for)
+        Advert.create_for(property)
+      end
+    end
+
+    context 'when the basket does not contain the object' do
+      let(:advert) { mock_model(Advert).as_null_object }
+
+      before do
+        Advert.stub(:basket_contains?).and_return(false)
+      end
+
+      it 'creates a new advert' do
+        Advert.should_receive(:new_for).with(property).and_return(advert)
+        Advert.create_for(property)
+      end
+
+      it "sets the advert's duration to the default months of the object" do
+        Advert.stub(:new_for).and_return(advert)
+        advert.stub(:save!).and_return(true)
+
+        property.stub(:default_months).and_return(24)
+        advert.should_receive(:months=).with(24)
+        Advert.create_for(property)
+      end
+    end
+  end
+
+  describe ".new_for" do
     it "returns an Advert" do
       Advert.new_for(Property.new({:user_id => 1})).is_a?(Advert).should be_true
     end
