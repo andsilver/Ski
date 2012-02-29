@@ -1,0 +1,24 @@
+<table class="grid">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>User</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @properties.each do |property| -%>
+    <tr>
+      <td><%= property.id %></td>
+      <td><%= property.name %></td>
+      <td><%= property.user.name %></td>
+      <td>
+        <%= link_to 'Edit', edit_property_path(property) %>
+        <%= link_to 'View', property_path(property) %>
+        <%= link_to 'Delete', property_path(property), :method => :delete, :confirm => 'Are you sure?' %>
+      </td>
+    </tr>
+<% end -%>
+  </tbody>
+</table>

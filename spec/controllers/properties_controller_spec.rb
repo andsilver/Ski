@@ -12,6 +12,35 @@ describe PropertiesController do
     non_admin_role.stub(:admin?).and_return(false)
   end
 
+  describe "GET index" do
+    context "when signed in as admin" do
+      before do
+        controller.stub(:admin?).and_return(true)
+      end
+
+      it "finds all properties" do
+        Property.should_receive(:all)
+        get :index
+      end
+
+      it "assigns @properties" do
+        properties = [Property.new]
+        Property.stub(:all).and_return(properties)
+        get :index
+        assigns(:properties).should eq(properties)
+      end
+    end
+
+    context "when not signed in as admin" do
+      it "redirects to the sign in page" do
+        controller.stub(:signed_in?).and_return(true)
+        controller.stub(:admin?).and_return(false)
+        get :index
+        response.should redirect_to(sign_in_path)
+      end
+    end
+  end
+
   describe "GET new_developments" do
     let(:properties) { mock(ActiveRecord::Relation).as_null_object }
 

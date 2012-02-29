@@ -5,7 +5,7 @@ class PropertiesController < ApplicationController
 
   before_filter :no_browse_menu, :except => [:browse_for_rent, :browse_for_sale, :new_developments]
 
-  before_filter :user_required, :except => [:browse_for_rent, :browse_for_sale,
+  before_filter :user_required, :except => [:index, :browse_for_rent, :browse_for_sale,
     :new_developments, :contact, :email_a_friend, :current_time, :show, :import_documentation]
   before_filter :find_property_for_user, :only => [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
@@ -13,6 +13,12 @@ class PropertiesController < ApplicationController
   before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale, :new_developments]
 
   before_filter :find_property, :only => [:show, :contact, :email_a_friend]
+
+  before_filter :admin_required, :only => [:index]
+
+  def index
+    @properties = Property.all
+  end
 
   def browse_for_rent
     default_page_title t('properties.titles.browse_for_rent', :resort => @resort.name)
