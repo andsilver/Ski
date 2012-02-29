@@ -214,10 +214,8 @@ class AdvertsController < ApplicationController
 
   def copy_user_details_to_order
     @order.user_id = @current_user.id
-    @order.address = @current_user.billing_street + "\n" +
-      @current_user.billing_locality + "\n" +
-      @current_user.billing_city + "\n" +
-      @current_user.billing_county + "\n"
+    @order.address = "#{@current_user.billing_street}\n#{@current_user.billing_locality}\n" +
+      "#{@current_user.billing_city}\n#{@current_user.billing_county}\n"
     @order.postcode = @current_user.billing_postcode
     @order.country_id = @current_user.billing_country_id
     @order.phone = @current_user.phone

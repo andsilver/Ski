@@ -11,6 +11,14 @@ describe AdvertsController do
   end
 
   describe "GET my" do
+    before do
+      current_user.stub(:windows).and_return([])
+    end
+
+    it "collects windows into groups" do
+      pending
+    end
+
     it "finds directory adverts belonging to the current user" do
       current_user.should_receive(:directory_adverts)
       get "my"
@@ -57,6 +65,46 @@ describe AdvertsController do
         controller.should_receive(:remove_advert)
         post :update_basket_contents, :remove_advert => {"1" => "1"}
       end
+    end
+  end
+
+  describe "POST place order" do
+    let(:order) { mock_model(Order).as_null_object }
+
+    before do
+      website.stub(:vat_for).and_return 0
+      current_user.stub(:adverts_in_basket).and_return([])
+    end
+
+    context "with adverts in the basket" do
+      pending
+    end
+
+    it "deletes a previous unpaid order, if any" do
+      session[:order_id] = 1
+      Order.stub(:find_by_id).and_return(order)
+      order.stub(:status).and_return(Order::WAITING_FOR_PAYMENT)
+      order.should_receive(:destroy)
+
+      # ignore order creation
+      Order.stub(:new).and_return(order)
+      order.stub(:save!).and_return(order)
+
+      post :place_order
+    end
+
+    it "creates a new order" do
+      Order.stub(:new).and_return(order)
+      Order.should_receive(:new)
+
+      # ignore saving of the order
+      order.stub(:save!).and_return(order)
+
+      post :place_order
+    end
+
+    it "copies the user's details to the order" do
+      pending
     end
   end
 end

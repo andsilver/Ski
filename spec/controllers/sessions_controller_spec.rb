@@ -14,6 +14,11 @@ describe SessionsController do
 
   describe "POST create" do
     let(:user) { mock_model(User).as_null_object }
+    let(:role) { mock_model(Role).as_null_object }
+
+    before do
+      user.stub(:role).and_return(role)
+    end
 
     it "authenticates the user" do
       User.should_receive(:authenticate).with("email", "password")
@@ -38,7 +43,7 @@ describe SessionsController do
 
       context "when user is an admin" do
         it "redirects to the cms page" do
-          user.stub(:admin?).and_return(true)
+          role.stub(:admin?).and_return(true)
           post :create
           response.should redirect_to cms_path
         end
@@ -46,7 +51,7 @@ describe SessionsController do
 
       context "when user is not an admin" do
         it "redirects to the advertise page" do
-          user.stub(:admin?).and_return(false)
+          role.stub(:admin?).and_return(false)
           post :create
           response.should redirect_to advertise_path
         end

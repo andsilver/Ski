@@ -10,7 +10,7 @@ alice:
   billing_city: Winchester
   billing_country_id: 5
   terms_and_conditions: true
-  role_id: 1
+  role_id: 1 # Estate agent
   business_name: 'Alice Properties'
 
 bob:

@@ -41,6 +41,7 @@ describe PropertiesController do
     before do
       session[:user] = 1
       User.stub(:find_by_id).and_return(current_user)
+      current_user.stub(:role).and_return(non_admin_role)
       Property.stub(:new).and_return(property)
     end
 
@@ -93,7 +94,7 @@ describe PropertiesController do
         end
 
         it "creates a corresponding advert" do
-          Advert.should_receive(:create_for).with(property)
+          Advert.should_receive(:create_for)
           post :create
         end
       end
@@ -113,11 +114,15 @@ describe PropertiesController do
 
     context "when a property is found" do
       let(:property) { mock_model(Property).as_null_object }
+      let(:resort) { mock_model(Resort).as_null_object }
       let(:enquiry) { mock_model(Enquiry).as_null_object }
+      let(:property_owner) { mock_model(User).as_null_object }
 
       before do
         Property.stub(:find_by_id).and_return(property)
         Enquiry.stub(:new).and_return(enquiry)
+        property.stub(:resort).and_return(resort)
+        property.stub(:user).and_return(property_owner)
       end
 
       it "assigns @property" do

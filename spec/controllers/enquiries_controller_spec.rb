@@ -22,8 +22,10 @@ describe EnquiriesController do
       end
 
       it "assigns @enquiries" do
+        enquiries = [Enquiry.new]
+        current_user.stub(:enquiries).and_return(enquiries)
         get :my
-        assigns[:enquiries].should_not be_nil
+        assigns(:enquiries).should eq(enquiries)
       end
     end
 

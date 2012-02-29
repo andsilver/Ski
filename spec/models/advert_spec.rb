@@ -35,10 +35,30 @@ describe Advert do
     end
   end
 
+  describe ".basket_contains?" do
+    pending
+  end
+
   describe ".new_for" do
     it "returns an Advert" do
       Advert.new_for(Property.new({:user_id => 1})).is_a?(Advert).should be_true
     end
+  end
+
+  describe ".assign_window_for" do
+    pending
+  end
+
+  describe ".activate_windows_for_user" do
+    pending
+  end
+
+  describe ".type" do
+    pending
+  end
+
+  describe "#object" do
+    pending
   end
 
   describe "#to_s" do
@@ -84,6 +104,10 @@ describe Advert do
         a.price(1).should equal(0)
       end
     end
+  end
+
+  describe "#start_and_save!" do
+    pending
   end
 
   describe "#record_view" do
