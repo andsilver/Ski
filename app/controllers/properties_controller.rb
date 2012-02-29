@@ -18,7 +18,7 @@ class PropertiesController < ApplicationController
     default_page_title t('properties.titles.browse_for_rent', :resort => @resort.name)
     @heading_a = render_to_string(:partial => 'browse_property_heading').html_safe
 
-    order = selected_order([ "normalised_weekly_rent_price ASC", "normalised_weekly_rent_price DESC",
+    order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
     @conditions[0] += " AND for_sale = 0"
 
@@ -424,7 +424,7 @@ class PropertiesController < ApplicationController
   end
 
   def for_sale_selected_order
-    selected_order([ 'normalised_sale_price ASC', 'normalised_sale_price DESC',
+    selected_order([ 'normalised_sale_price DESC', 'normalised_sale_price ASC',
       'metres_from_lift ASC', 'number_of_bathrooms ASC',
       'number_of_bedrooms ASC' ])
   end
