@@ -7,6 +7,9 @@ describe Property do
 
   # ActiveModel
   it { should validate_presence_of(:resort_id) }
+  it { should ensure_inclusion_of(:star_rating).in_range(1..5).with_message("is not in the range 1-5") }
+
+  it { should respond_to(:star_rating) }
 
   describe '.accommodation_type_description' do
     pending

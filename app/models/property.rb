@@ -21,6 +21,8 @@ class Property < ActiveRecord::Base
   validates_inclusion_of :distance_from_town_centre_m, :in => VALID_DISTANCES
   validates_inclusion_of :metres_from_lift,            :in => VALID_DISTANCES
 
+  validates_inclusion_of :star_rating, :in => 1..5, :message => "is not in the range 1-5"
+
   validates_uniqueness_of :pericles_id, :allow_nil => true, :scope => :user_id
 
   before_validation :adjust_distances_if_needed
