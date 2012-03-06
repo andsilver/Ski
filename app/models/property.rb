@@ -10,7 +10,7 @@ class Property < ActiveRecord::Base
   has_many :adverts, :dependent => :nullify
 
   validates_presence_of :resort_id
-  validates_associated :resort
+  validates :resort, :presence => true
   validates_presence_of :address
 
   validates_length_of :name, :within => 5..30
