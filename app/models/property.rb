@@ -222,13 +222,9 @@ class Property < ActiveRecord::Base
     for_sale? ? 3 : 12
   end
 
-  def trim_name_and_strapline
-    if strapline.length > 255
-      self.strapline = strapline[0..254]
-    end
-    if name.length > 30
-      self.name = name[0..29]
-    end
+  def tidy_name_and_strapline
+    self.strapline = strapline.blank? ? description[0..254] : strapline[0..254]
+    self.name = name[0..29]
   end
 
   def basket_advert_type_description

@@ -255,7 +255,7 @@ class PropertiesController < ApplicationController
 
       new_record = property.new_record?
       p_p.prepare_property(property)
-      property.trim_name_and_strapline
+      property.tidy_name_and_strapline
       property.resort_id = default_resort.id
 
       p(property)
@@ -316,7 +316,7 @@ class PropertiesController < ApplicationController
       end
     end
 
-    property.trim_name_and_strapline
+    property.tidy_name_and_strapline
 
     if property.save
       GC.start if property.id % 50 == 0
