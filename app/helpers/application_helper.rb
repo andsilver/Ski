@@ -69,7 +69,7 @@ module ApplicationHelper
   end
 
   def star_rating rating
-    (star * rating) + (empty_star * (5 - rating))
+    ((star * rating) + (empty_star * (5 - rating))).html_safe
   end
 
   def star
