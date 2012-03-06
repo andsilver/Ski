@@ -326,11 +326,15 @@ class PropertiesController < ApplicationController
         @updated +=1
       end
     else
-      error = "Problem with property in row #{@total_read + 1}:"
-      property.errors.full_messages.each do |msg|
-        error += " [#{msg}]"
+      if @failed < 5
+        error = "Problem with property in row #{@total_read + 1}:"
+        property.errors.full_messages.each do |msg|
+          error += " [#{msg}]"
+        end
+        flash[:errors] << error
+      else
+        flash[:errors] << "Also row #{@total_read + 1}"
       end
-      flash[:errors] << error
       @failed += 1
     end
 
