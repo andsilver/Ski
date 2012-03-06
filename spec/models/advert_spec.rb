@@ -53,8 +53,33 @@ describe Advert do
     pending
   end
 
-  describe ".type" do
+  describe "#type" do
     pending
+  end
+
+  describe "#virtual_type" do
+    it "returns :property when the object is a Property" do
+      a = valid_advert
+      a.property = Property.new
+      a.virtual_type.should eq(:property)
+    end
+
+    it "returns :directory_advert when the object is a DirectoryAdvert but not a banner advert" do
+      a = valid_advert
+      a.directory_advert = DirectoryAdvert.new(:is_banner_advert => false)
+      a.virtual_type.should eq(:directory_advert)
+    end
+
+    it "returns :banner_advert when the object is a DirectoryAdvert and a banner advert" do
+      a = valid_advert
+      a.directory_advert = DirectoryAdvert.new(:is_banner_advert => true)
+      a.virtual_type.should eq(:banner_advert)
+    end
+
+    it "returns nil when none of the above apply" do
+      a = valid_advert
+      a.virtual_type.should be_nil
+    end
   end
 
   describe "#object" do

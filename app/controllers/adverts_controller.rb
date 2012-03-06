@@ -133,12 +133,19 @@ class AdvertsController < ApplicationController
       :property => @current_user.property_adverts_so_far
     }
     @current_user.adverts_in_basket.each do |advert|
-      advert_number[advert.type] += 1
+
+      # Remove advert types that are no longer valid from the basket
+      if advert.virtual_type.nil?
+        advert.destroy
+        next
+      end
+
+      advert_number[advert.virtual_type] += 1
       total_adverts += 1
       line = BasketLine.new
       line.description = line.advert = advert
       begin
-        line.price = advert.price(advert_number[advert.type])
+        line.price = advert.price(advert_number[advert.virtual_type])
       rescue
         advert.destroy
         next

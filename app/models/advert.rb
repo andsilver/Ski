@@ -68,6 +68,18 @@ class Advert < ActiveRecord::Base
     nil
   end
 
+  def virtual_type
+    if property
+      :property
+    elsif directory_advert
+      if directory_advert.is_banner_advert?
+        :banner_advert
+      else
+        :directory_advert
+      end
+    end
+  end
+
   def object
     type ? send(type) : nil
   end
