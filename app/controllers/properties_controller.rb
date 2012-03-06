@@ -294,7 +294,7 @@ class PropertiesController < ApplicationController
   def process_row(row)
     if @mapping.nil?
       @mapping = csv_mapping_from_header(row)
-      %w(resort_id name address strapline description for_sale).each do |required|
+      %w(resort_id name address description for_sale).each do |required|
         raise "CSV missing required field: #{required}" if @mapping[required].nil?
       end
       return
