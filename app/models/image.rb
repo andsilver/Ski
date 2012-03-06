@@ -20,6 +20,8 @@ class Image < ActiveRecord::Base
   def determine_filename
     if @file_data
       self.filename = "image.#{uploaded_extension}"
+    elsif !source_url.blank?
+      self.filename = 'image.jpg'
     else
       raise "No file data."
     end
@@ -35,12 +37,13 @@ class Image < ActiveRecord::Base
       delete_files
       path = "#{IMAGE_STORAGE_PATH}/#{id}"
       FileUtils.makedirs(path)
-      File.open(path + '/' + filename, "wb") { |file| file.write(@file_data.read) }
+      File.open(original_path, "wb") { |file| file.write(@file_data.read) }
     end
   end
 
   def url(size=nil)
     if size.nil?
+      download_from_source_if_needed
       url_for_filename(filename)
     else
       sized_url(size, :longest_side)
@@ -51,17 +54,23 @@ class Image < ActiveRecord::Base
     "#{IMAGE_STORAGE_URL}/#{id}/#{fn}"
   end
 
+  def original_path
+    "#{IMAGE_STORAGE_PATH}/#{id}/#{filename}"
+  end
+
   def sized_url(size, method)
     if method != :longest_side && method != :height
       raise ArgumentError.new("method must be :longest_side or :height")
     end
+
+    download_from_source_if_needed
 
     f = method.to_s + '_' + size.to_s + '.' + extension
     path = "#{IMAGE_STORAGE_PATH}/#{id}/#{f}"
     # create a new image of the required size if it doesn't exist
     unless FileTest.exists?(path)
       begin
-        ImageScience.with_image("#{IMAGE_STORAGE_PATH}/#{id}/#{filename}") do |img|
+        ImageScience.with_image(original_path) do |img|
           if(method == :longest_side)
             img.thumbnail(size) do |thumb|
               thumb.save path
@@ -79,13 +88,30 @@ class Image < ActiveRecord::Base
     url_for_filename(f)
   end
 
+  def download_from_source_if_needed
+    download_from_source unless FileTest.exists?(original_path) or source_url.blank?
+  end
+
+  def download_from_source
+    FileUtils.makedirs("#{IMAGE_STORAGE_PATH}/#{id}")
+
+    require 'net/http'
+    uri = URI.parse(source_url)
+    Net::HTTP.start(uri.host, uri.port) do |http|
+      resp = http.get(uri.path)
+      open(original_path, "wb") do |file|
+        file.write(resp.body)
+      end
+    end
+  end
+
   # deletes the file(s) by removing the whole dir
   def delete_files
     FileUtils.rm_rf("#{IMAGE_STORAGE_PATH}/#{id}") unless id.nil?
   end
 
   def uploaded_extension
-    if @file_date.respond_to? 'original_filename'
+    if @file_data.respond_to? 'original_filename'
       @file_data.original_filename.split(".").last.downcase
     else
       'jpg'
@@ -99,7 +125,7 @@ class Image < ActiveRecord::Base
   end
 
   def dimensions
-    ImageScience.with_image("#{IMAGE_STORAGE_PATH}/#{id}/#{filename}") do |img|
+    ImageScience.with_image(original_path) do |img|
       [img.width, img.height]
     end
   end

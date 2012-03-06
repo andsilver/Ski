@@ -352,13 +352,24 @@ class PropertiesController < ApplicationController
     image_filenames = images.split('|')
     first = true
     image_filenames.each do |filename|
+      filename.strip!
       puts "processing image: #{filename}"
-      filename = File.basename(filename.strip)
-      path = "#{@path}/#{filename}"
-      if File.exists? path
-        file = File.open(path)
-        image = Image.new
-        image.image = file
+
+      image = nil
+      if filename[0..3]=="http"
+        image = Image.new(:source_url => filename)
+      else
+        filename = File.basename(filename)
+        path = "#{@path}/#{filename}"
+        if File.exists? path
+          file = File.open(path)
+          image = Image.new
+          image.image = file
+          file.close
+        end
+      end
+
+      unless image.nil?
         image.user_id = property.user_id
         image.property_id = property.id
         image.save
@@ -367,7 +378,6 @@ class PropertiesController < ApplicationController
           property.save
           first = false
         end
-        file.close
       end
     end
   end
