@@ -222,9 +222,16 @@ class Property < ActiveRecord::Base
     for_sale? ? 3 : 12
   end
 
+  # Truncates the property name to 50 characters and the strapline to 255
+  # characters. If the strapline is blank then the first 255 characters
+  # of the description are used as the strapline.
   def tidy_name_and_strapline
-    self.strapline = strapline.blank? ? description[0..254] : strapline[0..254]
-    self.name = name[0..29]
+    if strapline.blank?
+      self.strapline = description.blank? ? '' : description[0..254]
+    else
+      self.strapline = strapline[0..254]
+    end
+    self.name = name[0..49]
   end
 
   def basket_advert_type_description

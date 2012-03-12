@@ -127,4 +127,39 @@ describe Property do
       end
     end
   end
+
+  describe "#tidy_name_and_strapline" do
+    let(:property) { Property.new }
+
+    context "when the strapline is blank" do
+      context "when the description is blank" do
+        it "leaves the strapline blank" do
+          property.tidy_name_and_strapline
+          property.strapline.should eq('')
+        end
+      end
+
+      context "when the description is not blank" do
+        it "leaves sets the strapline to the first 255 chars of description" do
+          property.description = 'x' * 256
+          property.tidy_name_and_strapline
+          property.strapline.should eq('x' * 255)
+        end
+      end
+    end
+
+    context "when the strapline is not blank" do
+      it "truncates strapline to 255 chars" do
+        property.strapline = 'x' * 256
+        property.tidy_name_and_strapline
+        property.strapline.should eq('x' * 255)
+      end
+    end
+
+    it "truncates name to 50 chars" do
+      property.name = 'x' * 51
+      property.tidy_name_and_strapline
+      property.name.should eq('x' * 50)
+    end
+  end
 end
