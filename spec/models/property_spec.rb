@@ -6,6 +6,7 @@ describe Property do
   it { should have_many(:adverts) }
 
   # ActiveModel
+  it { should ensure_length_of(:name).is_at_least(5).is_at_most(50) }
   it { should validate_presence_of(:resort_id) }
   it { should ensure_inclusion_of(:star_rating).in_range(1..5).with_message("is not in the range 1-5") }
 
