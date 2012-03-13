@@ -104,6 +104,7 @@ class Advert < ActiveRecord::Base
     save
   end
 
+  # Records a view or impression of this advert and saves the model.
   def record_view
     self.views += 1
     save

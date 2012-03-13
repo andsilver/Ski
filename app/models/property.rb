@@ -51,6 +51,11 @@ class Property < ActiveRecord::Base
   PARKING_OFF_STREET = 2
   PARKING_GARAGE = 3
 
+  # Returns an internationalised description of the given parking attribute's
+  # value.
+  #
+  # :call-seq:
+  #   Property.parking_description(parking_param) -> string
   def self.parking_description parking_param
     {
       PARKING_NO => I18n.t('properties.features.no_parking'),
@@ -60,6 +65,11 @@ class Property < ActiveRecord::Base
     }[parking_param]
   end
 
+  # Returns an internationalised description of this property's parking
+  # attribute.
+  #
+  # :call-seq:
+  #   parking_description -> string
   def parking_description
     Property.parking_description parking
   end
@@ -100,6 +110,8 @@ class Property < ActiveRecord::Base
     Property.board_basis_description board_basis
   end
 
+  # Loads all properties and saves them to trigger their #normalise_prices
+  # callback. Geocoding is temporarily disabled during this process.
   def self.normalise_prices
     @@perform_geocode = false
     Property.all.each do |p|
@@ -109,6 +121,11 @@ class Property < ActiveRecord::Base
     nil # don't fail before_save callback
   end
 
+  # Returns an array of attributes that can be imported by simple assignment
+  # from another source, such as a CSV or XML file.
+  #
+  # :call-seq:
+  #   Property.importable_attributes -> array
   def self.importable_attributes
     %w(address balcony cave children_welcome currency_id description
       disabled floor_area_metres_2 for_sale fully_equipped_kitchen garden
@@ -158,6 +175,8 @@ class Property < ActiveRecord::Base
     f
   end
 
+  # Snaps distances (from town centre and from lift) to the closest
+  # VALID_DISTANCE.
   def adjust_distances_if_needed
     self.distance_from_town_centre_m = closest_distance(distance_from_town_centre_m)
     self.metres_from_lift = closest_distance(metres_from_lift)
@@ -209,6 +228,15 @@ class Property < ActiveRecord::Base
     PropertyBasePrice.order('number_of_months').all.collect {|pbp| pbp.number_of_months}
   end
 
+  # Returns the default number of months that a property advert should be
+  # advertised for, depending on its attributes.
+  #
+  # This is used as a sensible default for adding an advert to the basket.
+  # For example, an advertiser of a property for sale will want a shorter
+  # duration advert than an advertiser of a property rental.
+  #
+  # :call-seq:
+  #   default_months -> int
   def default_months
     for_sale? ? 3 : 12
   end

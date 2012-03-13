@@ -105,7 +105,7 @@ class Image < ActiveRecord::Base
     end
   end
 
-  # deletes the file(s) by removing the whole dir
+  # Deletes the file(s) by removing the whole directory.
   def delete_files
     FileUtils.rm_rf("#{IMAGE_STORAGE_PATH}/#{id}") unless id.nil?
   end
