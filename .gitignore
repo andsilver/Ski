@@ -23,3 +23,6 @@ public/up
 /tmp
 webrat.log
 .sass-cache/
+
+# Ignore generated RDOC
+/doc/app/*
