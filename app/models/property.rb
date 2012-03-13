@@ -158,15 +158,6 @@ class Property < ActiveRecord::Base
     f
   end
 
-  def short_description
-    if description.nil?
-      ""
-    else
-      wordcount = 25
-      description.split[0..(wordcount-1)].join(" ") + (description.split.size > wordcount ? "…" : "")
-    end
-  end
-
   def adjust_distances_if_needed
     self.distance_from_town_centre_m = closest_distance(distance_from_town_centre_m)
     self.metres_from_lift = closest_distance(metres_from_lift)

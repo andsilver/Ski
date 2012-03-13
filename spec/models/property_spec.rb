@@ -68,10 +68,6 @@ describe Property do
     pending
   end
 
-  describe '#short_description' do
-    pending
-  end
-
   describe '#adjust_distances_if_needed' do
     pending
   end
