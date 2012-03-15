@@ -25,7 +25,7 @@ class DirectoryAdvert < ActiveRecord::Base
 
   def price(advert, directory_adverts_so_far)
     if is_banner_advert?
-      Website.first.banner_advert_price * 100
+      BannerPrice.price_for_advert_number(directory_adverts_so_far) * 100
     else
       Website.first.directory_advert_price * 100
     end
