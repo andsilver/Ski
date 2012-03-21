@@ -85,16 +85,16 @@
     <td>Whether this property is a new development / new build</td>
   </tr>
   <tr>
-    <td>for_sale</td>
-    <td>boolean</td>
+    <td>listing_type</td>
+    <td>integer</td>
     <td>yes</td>
     <td>N/A</td>
-    <td>Whether this property is for sale or for rent; 0 = for rent; 1 = for sale</td>
+    <td>Type of property listing; 0 = for rent; 1 = for sale; 2 = hotel</td>
   </tr>
   <tr>
     <td>weekly_rent_price</td>
     <td>integer</td>
-    <td>yes, if for_sale = 0</td>
+    <td>yes, if listing_type = 0 or 2 (for rent, or hotel)</td>
     <td>0</td>
     <td>Lowest weekly rent price, in whole units of currency</td>
   </tr>
@@ -150,7 +150,7 @@
   <tr>
     <td>sale_price</td>
     <td>integer</td>
-    <td>yes, if for_sale = 1</td>
+    <td>yes, if listing_type = 1 (for sale)</td>
     <td>0</td>
     <td>Sale price, in whole units of currency</td>
   </tr>

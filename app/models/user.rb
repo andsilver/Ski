@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   has_many :empty_windows, :class_name => 'Advert', :conditions => {:property_id => nil, :window => true}, :order => "expires_at DESC"
 
   has_many :properties, :dependent => :destroy
-  has_many :properties_for_rent, :class_name => 'Property', :conditions => {:for_sale => false}
-  has_many :properties_for_sale, :class_name => 'Property', :conditions => {:for_sale => true}
+  has_many :properties_for_rent, :class_name => 'Property', :conditions => {:listing_type => Property::LISTING_TYPE_FOR_RENT}
+  has_many :properties_for_sale, :class_name => 'Property', :conditions => {:listing_type => Property::LISTING_TYPE_FOR_SALE}
   has_many :images, :dependent => :destroy
   has_many :orders, :dependent => :destroy
   has_many :orders_with_receipts, :class_name => 'Order', :conditions => "status NOT IN (#{Order::WAITING_FOR_PAYMENT})",

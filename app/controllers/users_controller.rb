@@ -114,9 +114,9 @@ class UsersController < ApplicationController
 
   def after_create_path(user)
     if user.role.only_advertises_properties_for_sale?
-      new_property_path(:for_sale => true)
+      new_property_path(:listing_type => Property::LISTING_TYPE_FOR_SALE)
     elsif user.role.only_advertises_properties_for_rent?
-      new_property_path
+      new_property_path(:listing_type => Property::LISTING_TYPE_FOR_RENT)
     else
       first_advert_path
     end

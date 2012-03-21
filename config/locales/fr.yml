@@ -279,6 +279,7 @@ fr:
     titles:
       browse_for_sale: "Propriétés à Louer à %{resort}"
       browse_for_sale: "Propriétés à Vendre à %{resort}"
+      hotels: "Hotels in %{resort}"
       new: Nouvelle Propriété
       new_developments: "Développements Nouvelle Propriété à %{resort}"
       show: "%{property_name} - Chalet / Appartement %{rent_or_sale} à %{resort}, %{country}"
@@ -331,6 +332,7 @@ fr:
       no_piste_maps: "There are no piste maps for this resort yet."
     resort_information_heading: "%{resort} Resort Information"
   resort_options:
+    hotels: Hotels
     new_developments: Nouvelle
     resort_info: Infos Station
   roles:

@@ -15,9 +15,9 @@
   </ul>
   <% end %>
   <div class="actions">
-    <p class="price"><%= p.for_sale ? "Sale price" : "Weekly price from" %><br>
-      <span><%= p.for_sale ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
-      <% if p.for_sale %>
+    <p class="price"><%= p.for_sale? ? "Sale price" : "Weekly price from" %><br>
+      <span><%= p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
+      <% if p.for_sale? %>
       <br>
       Property <%= p.floor_area_metres_2 %> m<sup>2</sup><br>
       Land <%= p.plot_size_metres_2 %> m<sup>2</sup>

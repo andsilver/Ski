@@ -13,8 +13,8 @@
     <%= link_to(image_tag(p.image.url(144)), p) %>
     <% end %>
   </p>
-  <p class="price"><%= p.for_sale ? "Sale price" : "Weekly price from" %><br>
-    <span><%= p.for_sale ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
+  <p class="price"><%= p.for_sale? ? "Sale price" : "Weekly price from" %><br>
+    <span><%= p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
   </p>
 </div>
 

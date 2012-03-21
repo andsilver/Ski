@@ -83,7 +83,7 @@ describe UsersController do
 
         it "redirects to the new property for sale page" do
           post :create, params
-          response.should redirect_to(new_property_path(:for_sale => true))
+          response.should redirect_to(new_property_path(:listing_type => Property::LISTING_TYPE_FOR_SALE))
         end
       end
 
@@ -95,7 +95,7 @@ describe UsersController do
 
         it "redirects to the new property for rent page" do
           post :create, params
-          response.should redirect_to(new_property_path)
+          response.should redirect_to(new_property_path(:listing_type => Property::LISTING_TYPE_FOR_RENT))
         end
       end
 

@@ -33,6 +33,13 @@ Feature: Tourist
     And I follow "For Rent"
     Then I should see "Alpen Lounge"
 
+  Scenario: Get to and browse a list of hotels in a resort
+    Given I am on the home page
+    When I follow "France"
+    And I follow "Chamonix"
+    And I follow "Hotels"
+    Then I should see "Hotel Le Chamonix"
+
   Scenario: See rental details
     Given I am on the Chamonix Properties for Rent page
     Then I should see "Weekly price"

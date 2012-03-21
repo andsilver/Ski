@@ -279,6 +279,7 @@ de:
     titles:
       browse_for_rent: "Properties for Rent in %{resort}"
       browse_for_sale: "Properties for Sale in %{resort}"
+      hotels: "Hotels in %{resort}"
       new: New Property
       new_developments: "New Property Developments in %{resort}"
       show: "%{property_name} - Chalet / Apartment %{rent_or_sale} in %{resort}, %{country}"
@@ -331,6 +332,7 @@ de:
       no_piste_maps: "There are no piste maps for this resort yet."
     resort_information_heading: "%{resort} Resort Information"
   resort_options:
+    hotels: Hotels
     new_developments: New Build
     resort_info: Resort Info
   roles:

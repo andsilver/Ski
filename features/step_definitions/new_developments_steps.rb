@@ -4,7 +4,7 @@ def valid_property attributes
     :resort_id => resorts(:chamonix).id,
     :name => 'Property',
     :address => '74400',
-    :for_sale => true,
+    :listing_type => Property::LISTING_TYPE_FOR_SALE,
     :distance_from_town_centre_m => 100,
     :metres_from_lift => 100
   }

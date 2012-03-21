@@ -57,7 +57,31 @@ describe Property do
   end
 
   describe '#for_rent?' do
-    pending
+    it 'returns true when listing_type is LISTING_TYPE_FOR_RENT' do
+      property = Property.new(:listing_type => Property::LISTING_TYPE_FOR_RENT)
+      property.for_rent?.should be_true
+    end
+
+    it 'returns false when listing_type is anything else' do
+      property = Property.new(:listing_type => Property::LISTING_TYPE_FOR_SALE)
+      property.for_rent?.should be_false
+      property = Property.new(:listing_type => Property::LISTING_TYPE_HOTEL)
+      property.for_rent?.should be_false
+    end
+  end
+
+  describe '#for_sale?' do
+    it 'returns true when listing_type is LISTING_TYPE_FOR_SALE' do
+      property = Property.new(:listing_type => Property::LISTING_TYPE_FOR_SALE)
+      property.for_sale?.should be_true
+    end
+  end
+
+  describe '#hotel?' do
+    it 'returns true when listing_type is LISTING_TYPE_HOTEL' do
+      property = Property.new(:listing_type => Property::LISTING_TYPE_HOTEL)
+      property.hotel?.should be_true
+    end
   end
 
   describe '#price' do
@@ -111,14 +135,14 @@ describe Property do
 
     context "when property is for sale" do
       it "returns 3" do
-        property.for_sale = true
+        property.listing_type = Property::LISTING_TYPE_FOR_SALE
         property.default_months.should == 3
       end
     end
 
     context "when property is for rent" do
       it "returns 12" do
-        property.for_sale = false
+        property.listing_type = Property::LISTING_TYPE_FOR_RENT
         property.default_months.should == 12
       end
     end

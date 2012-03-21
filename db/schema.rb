@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120315083444) do
+ActiveRecord::Schema.define(:version => 20120315194141) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -279,7 +279,7 @@ ActiveRecord::Schema.define(:version => 20120315083444) do
     t.integer  "sleeping_capacity",            :default => 0,     :null => false
     t.integer  "number_of_bedrooms",           :default => 0,     :null => false
     t.boolean  "new_development",              :default => false, :null => false
-    t.boolean  "for_sale",                     :default => false, :null => false
+    t.integer  "listing_type",                 :default => 0,     :null => false
     t.integer  "image_id"
     t.integer  "weekly_rent_price",            :default => 0,     :null => false
     t.boolean  "fully_equipped_kitchen",       :default => false, :null => false
@@ -412,6 +412,7 @@ ActiveRecord::Schema.define(:version => 20120315083444) do
     t.text     "sales_pitch"
     t.boolean  "advertises_properties_for_sale", :default => false, :null => false
     t.boolean  "advertises_through_windows",     :default => false, :null => false
+    t.boolean  "advertises_hotels",              :default => false, :null => false
   end
 
   create_table "unregistered_users", :force => true do |t|

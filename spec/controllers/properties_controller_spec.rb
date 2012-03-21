@@ -79,16 +79,16 @@ describe PropertiesController do
       get :new
     end
 
-    context "with params[:for_sale] set" do
-      it "sets property.for_sale to true" do
-        property.should_receive(:for_sale=).with(true)
-        get :new, :for_sale => ""
+    context "with params[:listing_type] set" do
+      it "sets property.listing_type to the given param" do
+        property.should_receive(:listing_type=).with('1')
+        get :new, :listing_type => '1'
       end
     end
 
-    context "with params[:for_sale] not set" do
-      it "doesn't set property.for_sale" do
-        property.should_not_receive(:for_sale=)
+    context "with params[:listing_type] not set" do
+      it "doesn't set property.listing_type" do
+        property.should_not_receive(:listing_type=)
         get :new
       end
     end

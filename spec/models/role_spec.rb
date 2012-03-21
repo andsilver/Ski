@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Role do
+  it { should respond_to(:advertises_hotels?) }
+
   describe "#only_advertises_properties_for_rent?" do
     it "only returns true when there are no other advertising options" do
       role = Role.new

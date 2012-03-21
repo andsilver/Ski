@@ -22,15 +22,19 @@ module PropertiesHelper
   end
 
   def count_properties_for_rent_in resort
-    count_properties_in resort, :for_sale, 0
+    count_properties_in resort, :listing_type, Property::LISTING_TYPE_FOR_RENT
   end
 
   def count_properties_for_sale_in resort
-    count_properties_in resort, :for_sale, 1
+    count_properties_in resort, :listing_type, Property::LISTING_TYPE_FOR_SALE
   end
 
   def count_new_developments_in resort
     count_properties_in resort, :new_development, 1
+  end
+
+  def count_hotels_in resort
+    count_properties_in resort, :listing_type, Property::LISTING_TYPE_HOTEL
   end
 
   def count_properties_in resort, attribute = nil, value = nil

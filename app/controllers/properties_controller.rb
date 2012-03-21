@@ -3,14 +3,14 @@ class PropertiesController < ApplicationController
 
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.property_id FROM adverts WHERE adverts.property_id=properties.id AND adverts.expires_at > NOW())"]
 
-  before_filter :no_browse_menu, :except => [:browse_for_rent, :browse_for_sale, :new_developments]
+  before_filter :no_browse_menu, :except => [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
   before_filter :user_required, :except => [:index, :browse_for_rent, :browse_for_sale,
-    :new_developments, :contact, :email_a_friend, :current_time, :show, :import_documentation]
+    :new_developments, :browse_hotels, :contact, :email_a_friend, :current_time, :show, :import_documentation]
   before_filter :find_property_for_user, :only => [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
-  before_filter :resort_conditions, :only => [:browse_for_rent, :browse_for_sale, :new_developments]
-  before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale, :new_developments]
+  before_filter :resort_conditions, :only => [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
   before_filter :find_property, :only => [:show, :contact, :email_a_friend]
 
@@ -26,7 +26,7 @@ class PropertiesController < ApplicationController
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
-    @conditions[0] += " AND for_sale = 0"
+    @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_FOR_RENT}"
 
     @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :satellite, :wifi,
       :disabled, :long_term_lets_available, :short_stays, :ski_in_ski_out]
@@ -50,7 +50,7 @@ class PropertiesController < ApplicationController
 
     order = for_sale_selected_order
 
-    @conditions[0] += " AND for_sale = 1"
+    @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_FOR_SALE}"
 
     @search_filters = [:garage, :parking, :garden]
 
@@ -78,14 +78,33 @@ class PropertiesController < ApplicationController
     render "browse"
   end
 
+  def browse_hotels
+    @for_sale = false
+    default_page_title t('properties.titles.hotels', :resort => @resort.name)
+    @heading_a = t('resort_options.hotels')
+
+    order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
+      "metres_from_lift ASC", "sleeping_capacity ASC" ])
+
+    @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_HOTEL}"
+
+    @search_filters = []
+
+    filter_conditions
+
+    @properties = Property.paginate :page => params[:oage], :order => order,
+      :conditions => @conditions
+    render "browse"
+  end
+
   def new
     default_page_title t('properties.titles.new')
     @heading_a = render_to_string(:partial => 'new_property_heading').html_safe
 
     @property = Property.new
     @property.new_development = @current_user.role.new_development_by_default?
-    if params[:for_sale]
-      @property.for_sale = true
+    if params[:listing_type]
+      @property.listing_type = params[:listing_type]
     end
   end
 

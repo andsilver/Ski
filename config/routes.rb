@@ -4,6 +4,7 @@ MySkiChalet::Application.routes.draw do
   match "resorts/:resort_id/properties/sale" => "properties#browse_for_sale", :as => :resort_property_sale
   match "resorts/:resort_id/properties/new-developments" => "properties#new_developments",
     :as => :resort_property_new_developments
+  match "resorts/:resort_id/properties/hotels" => "properties#browse_hotels", :as => :resort_property_hotels
   resources :resorts do
     get 'featured',  :on => :collection
     member do

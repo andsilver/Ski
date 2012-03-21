@@ -7,3 +7,8 @@ advert_for_chalet_alaska:
   id: 2
   property_id: 2
   expires_at: 2030-01-01 00:00:00
+
+advert_for_hotel_le_chamonix:
+  id: 3
+  property_id: 3
+  expires_at: 2030-01-01 00:00:00

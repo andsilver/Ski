@@ -62,6 +62,8 @@
       t('for_sale') %></div><div class="property_count"><%= count_properties_for_sale_in(@resort) %></div></a></li>
     <li <%= 'class="selected"'.html_safe if current_page?(resort_property_new_developments_path(@resort)) %>><a href="<%= resort_property_new_developments_path(@resort) %>"><div class="resort_option"><%=
       t('resort_options.new_developments') %></div><div class="property_count"><%= count_new_developments_in(@resort) %></div></a></li>
+    <li <%= 'class="selected"'.html_safe if current_page?(resort_property_hotels_path(@resort)) %>><a href="<%= resort_property_hotels_path(@resort) %>"><div class="resort_option"><%=
+      t('resort_options.hotels') %></div><div class="property_count"><%= count_hotels_in(@resort) %></div></a></li>
     <li <%= 'class="selected"'.html_safe if current_page?(directory_resort_path(@resort)) %>><%= link_to t('directory'), directory_resort_path(@resort) %></li>
     <li <%= 'class="selected"'.html_safe if current_page?(piste_map_resort_path(@resort)) %>><%= link_to I18n.t('piste_map'), piste_map_resort_path(@resort) %></li>
     <li <%= 'class="selected"'.html_safe if current_page?(gallery_resort_path(@resort)) %>><%= link_to t('gallery'), gallery_resort_path(@resort) %></li>

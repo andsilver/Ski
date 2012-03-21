@@ -32,6 +32,10 @@ class Property < ActiveRecord::Base
   @@per_page = 10
   @@perform_geocode = PERFORM_GEOCODE
 
+  LISTING_TYPE_FOR_RENT = 0
+  LISTING_TYPE_FOR_SALE = 1
+  LISTING_TYPE_HOTEL = 2
+
   ACCOMMODATION_TYPE_CHALET = 0
   ACCOMMODATION_TYPE_APARTMENT = 1
 
@@ -142,7 +146,15 @@ class Property < ActiveRecord::Base
   end
 
   def for_rent?
-    !for_sale?
+    listing_type == LISTING_TYPE_FOR_RENT
+  end
+
+  def for_sale?
+    listing_type == LISTING_TYPE_FOR_SALE
+  end
+
+  def hotel?
+    listing_type == LISTING_TYPE_HOTEL
   end
 
   def price(advert, property_number)
