@@ -7,7 +7,7 @@ def emily
 end
 
 def sign_in_with(email, password)
-  Given "I am on the sign in page"
+  step "I am on the sign in page"
   fill_in("Email", :with => email)
   fill_in("Password", :with => password)
   click_button('Sign In')

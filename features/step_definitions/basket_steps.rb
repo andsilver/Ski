@@ -24,7 +24,7 @@ def a_directory_advert(opts = {})
 end
 
 Then /^I should see my adverts$/ do
-  Then 'I should see "Chambre Dix"'
+  step 'I should see "Chambre Dix"'
 end
 
 Then /^I should see a drop down box to change advert duration$/ do
