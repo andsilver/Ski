@@ -1,5 +1,6 @@
 # Ignore bundler config
 /.bundle
+
 *.gif
 *.jpg
 *.JPG
@@ -19,8 +20,9 @@ doc/features.html
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-public/up
 /tmp
+
+/public/up
 webrat.log
 .sass-cache/
 
