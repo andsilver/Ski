@@ -32,8 +32,8 @@ describe UsersController do
       Role.stub(:find_by_id).and_return(role)
     end
 
-    it "instantiates a new user with the given params" do
-      User.should_receive(:new).with(params[:user])
+    it "instantiates a new user with the given cleansed params" do
+      User.should_receive(:new).with(params[:user].slice(:name))
       post :create, params
     end
 

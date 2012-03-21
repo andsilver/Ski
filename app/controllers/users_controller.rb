@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def create
     @heading_a = t 'sign_up'
-    @user = User.new(params[:user])
+    @user = User.new(post_params)
     @role = Role.find_by_id(params[:user][:role_id])
     if @role && @role.select_on_signup?
       @user.role_id = @role.id
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
     end
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(post_params)
         update_logo
         format.html { redirect_to(my_details_path, :notice => I18n.t('my_details_saved')) }
         format.xml  { head :ok }
@@ -162,5 +162,12 @@ class UsersController < ApplicationController
     else
       @user = @current_user
     end
+  end
+
+  def post_params
+    params[:user].slice(:email, :website, :description, :billing_street, :billing_location,
+      :billing_city, :billing_postcode, :billing_country_id, :phone, :mobile, :business_name,
+      :position, :terms_and_conditions, :first_name, :last_name, :google_web_property_id,
+      :vat_number, :password)
   end
 end

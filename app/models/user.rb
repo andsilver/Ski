@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
 
   attr_protected :role_id
   attr_protected :coupon_id
+  attr_protected :forgot_password_token
+  attr_protected :image_id
 
   attr_accessor :password
 
