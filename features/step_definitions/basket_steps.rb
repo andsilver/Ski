@@ -8,6 +8,9 @@ Given /^I have adverts in my basket$/ do
 end
 
 Given /^I have a banner advert in my basket$/ do
+  # Make a valid banner price
+  BannerPrice.create!(:current_banner_number => 1, :price => 10)
+
   d = a_directory_advert(:is_banner_advert => true)
   a = Advert.new_for(d)
   a.save!
