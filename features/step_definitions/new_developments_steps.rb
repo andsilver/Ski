@@ -24,7 +24,7 @@ Given /^there are (\d+) new developments advertised$/ do |how_many|
   how_many.to_i.times do |d|
     # make each new property cheaper than the last
     # as default sort order is "Price low to high"
-    p = valid_property :name => "New development #{d}",
+    p = valid_property :name => "New development #{d+1}",
       :new_development => true, :sale_price => (100 - d.to_i)
     p.save
     Advert.create(:user_id => p.user_id, :property_id => p.id, :expires_at => Time.now + 1.days)
@@ -32,10 +32,9 @@ Given /^there are (\d+) new developments advertised$/ do |how_many|
 end
 
 Then /^I should see (\d+) out of (\d+) new developments$/ do |how_many, total|
-  first = total.to_i - how_many.to_i
-  last = total.to_i - 1
-  Range.new(first, last).each do |d|
+  last = how_many.to_i
+  Range.new(1, last).each do |d|
     step "I should see \"New development #{d}\""
   end
-  step "I should not see \"New development #{total.to_i - how_many.to_i - 1}\""
+  step "I should not see \"New development #{last + 1}\""
 end
