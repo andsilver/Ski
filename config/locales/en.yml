@@ -374,6 +374,9 @@ en:
     account_created: 'Your account was successfully created.'
     account_type: Account type
     advertiser_account: "%{name}’s Advertiser Account"
+    advertise_a_hotel:
+      advertise_a_hotel: Advertise a Hotel
+      description: "Advertise your hotel in a resort's hotels area."
     advertise_a_property_for_rent:
       advertise_a_property_for_rent: Advertise a Property for Rent
       description: "Advertise your property in a resort's property rentals area."
