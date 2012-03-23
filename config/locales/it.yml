@@ -160,6 +160,7 @@ it:
   home: Home
   home_page:
     introduction: "Benvenuti a MyChaletFinder.com, estate leader in Europa e sci vacanze invernali home del sito di ricerca. Noi lista chalet e appartamenti in affitto per breve e lungo termine consente, proprietà in vendita da sci e sviluppi nuova proprietà."
+  hotels: Hotels
   images_controller:
     deleted: 'Image deleted.'
     image: 'Image'

@@ -160,6 +160,7 @@ en:
   home: Home
   home_page:
     introduction: "Welcome to MyChaletFinder.com, Europe's leading summer and winter ski holiday home search website. We list chalets and apartments to rent for short and long term lets, ski property sales and new property developments."
+  hotels: Hotels
   images_controller:
     deleted: 'Image deleted.'
     image: 'Image'

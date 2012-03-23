@@ -13,6 +13,7 @@ class AdvertsController < ApplicationController
     user.windows.each {|w| @window_groups << w}
     @rentals = user.properties_for_rent
     @sales = user.properties_for_sale
+    @hotels = user.hotels
     @directory_adverts = user.directory_adverts
   end
 
