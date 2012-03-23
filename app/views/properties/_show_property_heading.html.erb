@@ -2,8 +2,10 @@
 <%= link_to @property.resort.name, @property.resort %> &gt; 
 <% if @property.for_sale? %>
   <%= link_to t('for_sale'), resort_property_sale_path(@property.resort) %>
-<% else %>
+<% elsif @property.for_rent? %>
   <%= link_to t('for_rent'), resort_property_rent_path(@property.resort) %>
+<% elsif @property.hotel? %>
+  <%= link_to t('hotels'), resort_property_hotels_path(@property.resort) %>
 <% end %>
 &gt;
 <%= @property.name %>
