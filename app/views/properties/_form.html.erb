@@ -87,6 +87,17 @@ $(document).ready(function() {
     <%= select("property", "resort_id", (Resort.where(:visible => true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => t('properties.select_resort')}) %> <%= required_field %>
   </div>
 </div>
+<% if @property.hotel? -%>
+<div class="field">
+  <div class="field_left">
+    <%= f.label :star_rating, t('properties.star_rating') %>
+  </div>
+  <div class="field_right">
+    <%= select("property", "star_rating", Range.new(1, 5).collect {|sr| [pluralize(sr, 'star'), sr]}, {:prompt => 'Choose'}) %>
+  </div>
+</div>
+<% end -%>
+<% if @property.for_sale? or @property.for_rent? -%>
 <div class="field">
   <div class="field_left">
     <%= f.label :accommodation_type, t('properties.accommodation_type') %>
@@ -99,7 +110,11 @@ $(document).ready(function() {
     </select>
   </div>
 </div>
-
+<% else -%>
+<!-- not relevant -->
+<input id="property_accommodation_type" name="property[accommodation_type]"
+type="hidden" value="<%= Property::ACCOMMODATION_TYPE_CHALET %>">
+<% end -%>
 <div class="field">
   <div class="field_left">
     <%= f.label :distance_from_town_centre_m, 'Distance from town centre' %>
@@ -143,6 +158,7 @@ $(document).ready(function() {
     <%= select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
   </div>
 </div>
+<% if @property.for_rent? or @property.for_sale? -%>
 <div class="field">
   <div class="field_left">
     <%= f.label :floor_area_metres_2, I18n.t('floor_area') %>
@@ -152,6 +168,7 @@ $(document).ready(function() {
     square metres
   </div>
 </div>
+<% end -%>
 <% if @property.for_sale? %>
 <div class="field">
   <div class="field_left">
