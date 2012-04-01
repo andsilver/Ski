@@ -38,9 +38,10 @@ class InterhomePlaceImporter
   def import_place(p, name, code)
     place_name = p['name'][0]
     name = "#{name} > #{place_name}"
+    subcode = "#{code}_XXXX"
     code = "#{code}_#{p['code'][0]}"
     InterhomePlace.create!(:code => code, :name => place_name, :full_name => name)
-    p['subplaces'][0]['subplace'].each {|s| import_subplace(s, name, code)} unless p['subplaces'].nil?
+    p['subplaces'][0]['subplace'].each {|s| import_subplace(s, name, subcode)} unless p['subplaces'].nil?
   end
 
   def import_subplace(s, name, code)
