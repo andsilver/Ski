@@ -1,3 +1,32 @@
 <h1><%= link_to 'Resorts', resorts_path %> &rarr; Edit Resort</h1>
 
+<div class="group_panel">
+  <h2>Interhome Places</h2>
+  <%= form_for(@interhome_place_resort) do |f| %>
+  <div class="field">
+    <%= f.hidden_field :resort_id %>
+    <%= f.label :interhome_place_code, 'Interhome place' %><br>
+    <%= select("interhome_place_resort", "interhome_place_code",
+    InterhomePlace.all(:order => 'full_name').collect {|ip| [ ip.full_name, ip.code ] },
+    {:prompt => 'Select Interhome place'}) %>
+  </div>
+  <div class="field">
+    <%= f.submit 'Link Interhome place to this resort' %>
+  </div>
+  <% end %>
+  <% if @resort.interhome_place_resorts.empty? %>
+  <p>
+    There are no Interhome places represented by this resort.
+  </p>
+  <% else %>
+  <ul>
+    <% @resort.interhome_place_resorts.each do |ipr| %>
+    <li>
+      <%= ipr.name %>
+      <%= link_to 'Unlink', ipr, :confirm => 'Are you sure?', :method => :delete %>
+    </li>
+    <% end %>
+  <% end %>
+</div>
+
 <%= render 'form' %>

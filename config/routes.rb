@@ -84,6 +84,8 @@ MySkiChalet::Application.routes.draw do
   end
   match "email_a_friend_form/1" => "email_a_friend_form#create"
 
+  resources :interhome_place_resorts
+
   resources :images
 
   match "basket" => "adverts#basket"
