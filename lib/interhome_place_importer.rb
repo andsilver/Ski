@@ -30,9 +30,13 @@ class InterhomePlaceImporter
 
   def import_region(r, name, code)
     region_name = r['name'][0]
-    code = "#{code}_#{r['code'][0]}"
     name = "#{name} > #{region_name}"
-    r['places'][0]['place'].each {|p| import_place(p, name, code)} unless r['places'].nil?
+    if r['subregions']
+      r['subregions'][0]['subregion'].each {|sr| import_region(sr, name, code)}
+    else
+      code = "#{code}_#{r['code'][0]}"
+      r['places'][0]['place'].each {|p| import_place(p, name, code)} unless r['places'].nil?
+    end
   end
 
   def import_place(p, name, code)
