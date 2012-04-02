@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120401161428) do
+ActiveRecord::Schema.define(:version => 20120402155718) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -184,6 +184,15 @@ ActiveRecord::Schema.define(:version => 20120401161428) do
   end
 
   add_index "images", ["property_id"], :name => "index_images_on_property_id"
+
+  create_table "interhome_inside_descriptions", :force => true do |t|
+    t.string   "accommodation_code", :null => false
+    t.text     "description"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "interhome_inside_descriptions", ["accommodation_code"], :name => "index_interhome_inside_descriptions_on_accommodation_code"
 
   create_table "interhome_place_resorts", :force => true do |t|
     t.integer  "resort_id",            :null => false
