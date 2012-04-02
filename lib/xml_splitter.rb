@@ -79,6 +79,7 @@ class XMLSplitter
   def start_file(chunk, filenames)
     filenames << xml_output_filename(chunk)
     dst = File.open(xml_output_filename(chunk), 'w')
+    dst.puts XML_HEADER
     dst.puts "<#{@root_element}>"
     dst
   end
