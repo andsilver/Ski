@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120401110536) do
+ActiveRecord::Schema.define(:version => 20120401161428) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -203,6 +203,22 @@ ActiveRecord::Schema.define(:version => 20120401110536) do
   end
 
   add_index "interhome_places", ["code"], :name => "index_interhome_places_on_code"
+
+  create_table "interhome_prices", :force => true do |t|
+    t.string   "accommodation_code",  :null => false
+    t.integer  "days",                :null => false
+    t.date     "start_date",          :null => false
+    t.date     "end_date",            :null => false
+    t.integer  "rental_price",        :null => false
+    t.integer  "min_rental_price",    :null => false
+    t.integer  "max_rental_price",    :null => false
+    t.string   "special_offer_code"
+    t.integer  "special_offer_price"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "interhome_prices", ["accommodation_code"], :name => "index_interhome_prices_on_accommodation_code"
 
   create_table "order_lines", :force => true do |t|
     t.integer  "order_id",                   :null => false
