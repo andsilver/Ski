@@ -73,6 +73,6 @@ class XMLSplitter
   protected
 
   def xml_output_filename(chunk)
-    @xml_filename.gsub('.xml', "#{chunk}.xml")
+    @xml_filename.gsub('.xml', ".#{chunk}.xml")
   end
 end
