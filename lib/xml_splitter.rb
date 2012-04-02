@@ -68,6 +68,7 @@ class XMLSplitter
 
     dst.puts "</#{@root_element}>"
     dst.close
+    filenames
   end
 
   protected
