@@ -28,18 +28,18 @@ describe InterhomeFTP do
     end
 
     it 'gets the ZIP file corresponding to the file requested' do
-      ftp.should_receive(:getbinaryfile).with('file.xml.zip', 'path/to/file.xml.zip')
-      InterhomeFTP.get('path/to/file.xml')
+      ftp.should_receive(:getbinaryfile).with('file.xml.zip', 'interhome/file.xml.zip')
+      InterhomeFTP.get('file.xml')
     end
 
     it 'unzips the file' do
-      InterhomeFTP.should_receive(:unzip).with('path/to/file.xml.zip')
-      InterhomeFTP.get('path/to/file.xml')
+      InterhomeFTP.should_receive(:unzip).with('interhome/file.xml.zip')
+      InterhomeFTP.get('file.xml')
     end
 
     it 'deletes the ZIP file' do
-      File.should_receive(:unlink).with('path/to/file.xml.zip')
-      InterhomeFTP.get('path/to/file.xml')
+      File.should_receive(:unlink).with('interhome/file.xml.zip')
+      InterhomeFTP.get('file.xml')
     end
 
     it 'closes the connection' do

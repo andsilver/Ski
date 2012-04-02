@@ -4,17 +4,18 @@ require 'zlib'
 class InterhomeFTP
   # Gets a ZIP file from the Interhome FTP server corresponding to the given
   # XML file and unzips it.
-  def self.get(local_path)
+  def self.get(xml_file)
     ftp = Net::FTP.new
     ftp.connect('ftp.interhome.com')
     ftp.login('ihxmlpartner', 'S13oPjEu')
     ftp.passive = true
-    zip_file = local_path + '.zip'
-    ftp.getbinaryfile(File.basename(zip_file), zip_file)
+    zip_file = xml_file + '.zip'
+    local_zip_file = 'interhome/' + zip_file
+    ftp.getbinaryfile(zip_file, local_zip_file)
     ftp.close
-    unzip(zip_file)
+    unzip(local_zip_file)
     begin
-      File.unlink(zip_file)
+      File.unlink(local_zip_file)
     rescue
     end
   end
@@ -22,6 +23,6 @@ class InterhomeFTP
   protected
 
   def self.unzip(zip_file)
-    `unzip -o #{zip_file}` # -o = overwrite existing files without prompting
+    `unzip -o #{zip_file} -d interhome` # -o = overwrite existing files without prompting
   end
 end

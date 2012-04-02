@@ -1,21 +1,17 @@
 require 'xmlsimple'
 
 class InterhomePlaceImporter
-  attr_accessor :xml_filename
-
-  def initialize(xml_filename)
-    @xml_filename = xml_filename
-  end
+  XML_FILENAME = 'countryregionplace_en.xml'
 
   def ftp_get
-    InterhomeFTP.get(@xml_filename)
+    InterhomeFTP.get(XML_FILENAME)
   end
 
   # Deletes all existing Interhome places from the database and imports
   # places and subplaces (as places) from the XML file.
   def import
     InterhomePlace.delete_all
-    xml_file = File.open(@xml_filename, 'rb')
+    xml_file = File.open(xml_filename, 'rb')
     xml = XmlSimple.xml_in(xml_file)
     xml_file.close
 
@@ -53,5 +49,9 @@ class InterhomePlaceImporter
     name = "#{name} > #{subplace_name}"
     code = "#{code}_#{s['code'][0]}"
     InterhomePlace.create!(:code => code, :name => subplace_name, :full_name => name)
+  end
+
+  def xml_filename
+    "interhome/#{XML_FILENAME}"
   end
 end
