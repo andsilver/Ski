@@ -27,6 +27,7 @@ class XMLSplitter
     chunk = 0
     started = false
     current = 0
+    filenames = []
 
     src = File.open(@xml_filename, 'r')
 
@@ -49,14 +50,12 @@ class XMLSplitter
             dst.puts "</#{@root_element}>"
             dst.close
 
-            dst = File.open(xml_output_filename(chunk), 'w')
-            dst.puts "<#{@root_element}>"
+            dst = start_file(chunk, filenames)
           end
         end
         if tag == open_tag && !started
           dst.close
-          dst = File.open(xml_output_filename(chunk), 'w')
-          dst.puts "<#{@root_element}>"
+          dst = start_file(chunk, filenames)
           dst.puts(tag)
           started = true
         end
@@ -68,11 +67,19 @@ class XMLSplitter
     end
 
     dst.puts "</#{@root_element}>"
+    dst.close
   end
 
   protected
 
   def xml_output_filename(chunk)
     @xml_filename.gsub('.xml', ".#{chunk}.xml")
+  end
+
+  def start_file(chunk, filenames)
+    filenames << xml_output_filename(chunk)
+    dst = File.open(xml_output_filename(chunk), 'w')
+    dst.puts "<#{@root_element}>"
+    dst
   end
 end
