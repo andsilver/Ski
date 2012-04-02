@@ -28,3 +28,6 @@ webrat.log
 
 # Ignore generated RDOC
 /doc/app/*
+
+# Ignore Interhome data files
+/interhome
