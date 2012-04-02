@@ -11,12 +11,15 @@ class XMLSplitter
   attr_accessor :xml_filename
   # Number of main child elements to place into each smaller document
   attr_accessor :elements_per_file
+  # Maximum number of XML files to create. Extra data is ignored.
+  attr_accessor :max_files
 
   def initialize(opts)
     @root_element = opts[:root_element] if opts[:root_element]
     @child_element = opts[:child_element] if opts[:child_element]
     @xml_filename = opts[:xml_filename] if opts[:xml_filename]
     @elements_per_file = opts[:elements_per_file] if opts[:elements_per_file]
+    @max_files = opts[:max_files]
   end
 
   def split
@@ -47,6 +50,7 @@ class XMLSplitter
           if current == @elements_per_file
             current = 0
             chunk += 1
+            break if @max_files && chunk >= @max_files
             dst.puts "</#{@root_element}>"
             dst.close
 
