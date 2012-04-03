@@ -47,7 +47,7 @@ class PaymentsController < ApplicationController
       @message = FAILURE_MESSAGE
     elsif params[:cartId].nil?
       @message = FAILURE_MESSAGE
-    elsif params[:testMode] and !@w.worldpay_test_mode and params[:testMode] != '0'
+    elsif params[:testMode] and !@w.worldpay_test_mode and params[:testMode] != '0' and params[:futurePayId].nil?
       @message = FAILURE_MESSAGE      
     else
       @message = t('payments_controller.payment_received')
