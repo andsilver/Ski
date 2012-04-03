@@ -8,7 +8,8 @@ class WindowGroups
   def <<(advert)
     return unless advert.window?
 
-    group = @groups.find {|group| group.starts_at == advert.starts_at}
+    # Compare date instead of time for less granular grouping
+    group = @groups.find {|group| group.starts_at.to_date == advert.starts_at.to_date}
     if group
       @groups.delete(group)
     else
