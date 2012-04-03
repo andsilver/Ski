@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402175229) do
+ActiveRecord::Schema.define(:version => 20120403082439) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -184,6 +184,34 @@ ActiveRecord::Schema.define(:version => 20120402175229) do
   end
 
   add_index "images", ["property_id"], :name => "index_images_on_property_id"
+
+  create_table "interhome_accommodations", :force => true do |t|
+    t.string   "code",               :null => false
+    t.string   "name",               :null => false
+    t.string   "country",            :null => false
+    t.string   "region",             :null => false
+    t.string   "place",              :null => false
+    t.string   "zip",                :null => false
+    t.string   "accommodation_type", :null => false
+    t.string   "details",            :null => false
+    t.integer  "quality",            :null => false
+    t.integer  "brand",              :null => false
+    t.integer  "pax",                :null => false
+    t.integer  "sqm",                :null => false
+    t.integer  "floor",              :null => false
+    t.integer  "rooms",              :null => false
+    t.integer  "bedrooms",           :null => false
+    t.integer  "toilets",            :null => false
+    t.integer  "bathrooms",          :null => false
+    t.string   "geodata_lat",        :null => false
+    t.string   "geodata_lng",        :null => false
+    t.text     "features"
+    t.string   "themes",             :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "interhome_accommodations", ["code"], :name => "index_interhome_accommodations_on_code"
 
   create_table "interhome_inside_descriptions", :force => true do |t|
     t.string   "accommodation_code", :null => false
