@@ -10,6 +10,7 @@ gem 'spreadsheet', '0.6.5.4'
 gem 'rdoc'
 gem 'xml-simple'
 gem 'prawn', '0.11.1'
+gem 'permalink_fu'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
