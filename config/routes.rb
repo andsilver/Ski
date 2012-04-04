@@ -64,6 +64,8 @@ MySkiChalet::Application.routes.draw do
     post 'pericles_import',      :on => :collection
   end
 
+  match 'accommodation/:permalink' => 'properties#show_interhome'
+
   resources :banner_prices
   resources :property_base_prices
   resources :property_volume_discounts

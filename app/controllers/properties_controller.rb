@@ -122,6 +122,12 @@ class PropertiesController < ApplicationController
     @advertiser_web_property_id = @property.user.google_web_property_id unless @property.user.google_web_property_id.blank?
   end
 
+  def show_interhome
+    @accommodation = InterhomeAccommodation.find_by_permalink(params[:permalink])
+    not_found and return if @accommodation.nil?
+    @property = @accommodation.property
+  end
+
   def contact
     default_page_title "Enquire About #{@property.name} in #{@property.resort}, #{@property.resort.country}"
     @heading_a = render_to_string(:partial => 'contact_heading').html_safe

@@ -1,0 +1,122 @@
+<script type="text/javascript" charset="utf-8">
+  var map;
+  var marker;
+
+  function showMap() {
+    <% unless @accommodation.geodata_lat.empty? %>
+    var latlng = new google.maps.LatLng(<%= @accommodation.geodata_lat %>, <%= @accommodation.geodata_lng %>);
+    var myOptions = {
+      zoom: 16,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"),
+      myOptions);
+    marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title:"<%= @property.name %>"
+    });
+    <% end %>
+  }
+
+	$(document).ready(function() {
+		$('#property_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
+
+    var $dialog = $('<div id="map_canvas"></div>')
+      .html('')
+      .dialog({
+        autoOpen: false,
+        title: 'Location',
+        width: 450,
+        height: 350
+      });
+
+    $('#location').click(function() {
+      $dialog.dialog('open');
+      // prevent the default action, e.g., following a link
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(marker.getPosition());
+      return false;
+    });
+
+    showMap();
+	});
+</script>
+<div id="content_with_wide_skyscrapers">
+<div id="property">
+<%= render :partial => 'user_logo', :locals => { :property => @property } %>
+<h1 class="property_name"><span><%= I18n.t('property_name') %>:</span> <%= @property.name %></h1>
+<p class="property_id"><%= I18n.t('property_id') %>: <span><%= @property.id %></span></p>
+
+<% if fav = favourite_for_property(@property) %>
+<%= form_for(fav, :method => :delete) do |f| %>
+<p><%= f.submit t('favourites.remove') %></p>
+<% end %>
+<% else %>
+<% @favourite = Favourite.new(:property_id => @property.id) %>
+<%= form_for @favourite do |f| %>
+<%= f.hidden_field :property_id %>
+<p><%= f.submit t('favourites.add') %></p>
+<% end %>
+<% end %>
+
+<% unless @property.image.nil? %>
+<p class="thumbnails" id="property_thumbnails">
+<% @property.images.each do |i| %>
+  <a href="#pic_<%= i.id %>"><%= image_tag(i.sized_url(135, :height)) %></a>
+<% end %>
+</p>
+<% @property.images.each do |i| %>
+<div id="pic_<%= i.id %>"><img src="<%= i.url %>"></div>
+<% end %>
+<%= clear %>
+<% end %>
+
+<h2><%= I18n.t('features') %></h2>
+<div id="features">
+  <div class="column">
+    <%= I18n.t('bedrooms') %>: <%= @accommodation.bedrooms %>
+  </div>
+  <div class="column">
+    <%= I18n.t('bathrooms') %>: <%= @accommodation.bathrooms %>
+  </div>
+  <div class="column">
+    <%= I18n.t('sleeping_capacity') %>: <%= @accommodation.pax %>
+  </div>
+  <p class="divider">&nbsp;</p>
+<%
+features = @accommodation.features.split(',')
+%>
+<% features.each do |feature| %>
+  <div class="column">
+    <%= feature_tick(true, t("interhome.features.#{feature}")) %><br>
+  </div>
+<% end %>
+  <%= clear %>
+</div>
+
+<h2><%= I18n.t('description') %></h2>
+<h3>Inside</h3>
+<p>
+  <%= @accommodation.inside_description %>
+</p>
+<h3>Outside</h3>
+<p>
+  <%= @accommodation.outside_description %>
+</p>
+
+<% unless @accommodation.geodata_lat.empty? %>
+<div id="map_cavas"></div>
+<p class="chunky_button"><a href="#" id="location">Location</a></p>
+<% end %>
+
+<p class="chunky_button"><%= link_to t('enquire'), contact_property_path(@property) %></p>
+
+<%= clear %>
+
+</div><!--#property-->
+</div>
+<div id="wide_skyscrapers">
+  <%= render :partial => 'directory_adverts/banners', :object => DirectoryAdvert.small_banners_for(@property.resort) %>
+</div>

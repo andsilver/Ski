@@ -1,10 +1,13 @@
 <div class="property_summary">
   <%= render :partial => 'user_logo', :locals => { :property => p } %>
-  <h3><%= link_to p.name, p %></h3>
+  <%
+  link = p.interhome_accommodation_id ? "/accommodation/#{p.interhome_accommodation.permalink}" : p
+  %>
+  <h3><%= link_to p.name, link %></h3>
   <p class="strapline"><%= p.strapline %></p>
   <p class="thumbnail">
     <% unless p.image.nil? %>
-    <%= link_to(image_tag(p.image.url(90)), p) %>
+    <%= link_to(image_tag(p.image.url(90)), link) %>
     <% end %>
   </p>
   <% unless p.features.empty? %>

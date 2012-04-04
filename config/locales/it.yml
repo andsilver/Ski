@@ -168,6 +168,74 @@ it:
     invalid_dimensions: This image was not accepted because it does not have valid dimensions.
     problem_uploading: 'There was a problem uploading your image. Was it in the correct format?'
     saved: 'Image saved.'
+  interhome:
+    features:
+      airconditionning: Air conditioning
+      babycot: Baby cot
+      balcony: Balcony
+      bath: Bath
+      bbq: BBQ
+      bikingplains: Biking plains
+      breakfast: Breakfast
+      changelinien: Linen changing
+      childrenplayground: Childrens playground
+      cleaning: Cleaning
+      cook: Cook
+      crosscountryski: Cross-country ski
+      dishwasher: Dishwasher
+      dsl: DSL
+      dvdplayer: DVD player
+      elevator: Elevator
+      extrabed: Extra bed possible
+      fenced: Fenced
+      fireplace: Fireplace
+      fitness: Fitness
+      garden: Garden
+      golfing: Golfing
+      halfboard: Halfboard
+      hikingmountains: Hiking mountains
+      hikingplains: Hiking plains
+      icerink: Ice rink
+      internet: Internet
+      isdn: ISDN
+      massage: Massage
+      microwave: Microwave
+      mountainbike: Mountain biking
+      nonsmoking: Non-smoking
+      nordicwalking: Nordic walking
+      oven: Oven
+      parking: Parking
+      parkingcovered: Covered parking
+      parkingprivate: Private parking
+      petsallowed: Pets allowed
+      pool: Pool
+      poolheated: Heated pool
+      poolindor: Indoor pool
+      poolprivat: Private pool
+      reception: Reception
+      restaurant: Restaurant
+      riding: Riding
+      sailing: Sailing
+      sauna: Sauna
+      seaview: Sea view
+      shower: Shower
+      skiarea: Ski area
+      snowboard: Snowboarding
+      solarium: Solarium
+      surfing: Surfing
+      tabletennis: Table tennis
+      telephone: Telephone
+      tennis: Tennis
+      terrace: Terrace
+      thalasso: Thalasso
+      themepark: Theme park
+      toboggan: Toboggan
+      tumbler: Tumbler
+      tv: TV
+      washingmachine: Washing machine
+      whirlpool: Whirlpool
+      winterwalkingpath: Winter walking path
+      wlan: WLAN
   last_name: Last name
   links: Links
   main_image: 'Main image'
