@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120403082439) do
+ActiveRecord::Schema.define(:version => 20120403173015) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -209,9 +209,11 @@ ActiveRecord::Schema.define(:version => 20120403082439) do
     t.string   "themes",             :null => false
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "permalink"
   end
 
   add_index "interhome_accommodations", ["code"], :name => "index_interhome_accommodations_on_code"
+  add_index "interhome_accommodations", ["permalink"], :name => "index_interhome_accommodations_on_permalink"
 
   create_table "interhome_inside_descriptions", :force => true do |t|
     t.string   "accommodation_code", :null => false
@@ -414,8 +416,10 @@ ActiveRecord::Schema.define(:version => 20120403082439) do
     t.integer  "pericles_id"
     t.integer  "board_basis",                  :default => 0,     :null => false
     t.integer  "star_rating",                  :default => 1,     :null => false
+    t.integer  "interhome_accommodation_id"
   end
 
+  add_index "properties", ["interhome_accommodation_id"], :name => "index_properties_on_interhome_accommodation_id"
   add_index "properties", ["resort_id"], :name => "index_properties_on_resort_id"
   add_index "properties", ["user_id"], :name => "index_properties_on_user_id"
 

@@ -5,6 +5,7 @@ class Property < ActiveRecord::Base
   belongs_to :resort
   belongs_to :image
   belongs_to :currency
+  belongs_to :interhome_accommodation
 
   has_many :images, :dependent => :destroy
   has_many :adverts, :dependent => :nullify
