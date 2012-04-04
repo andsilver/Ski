@@ -13,7 +13,7 @@ class Property < ActiveRecord::Base
   validates :resort, :presence => true
   validates_presence_of :address
 
-  validates_length_of :name, :within => 5..50
+  validates_length_of :name, :within => 4..50
   validates_length_of :strapline, :within => 0..255
 
   VALID_DISTANCES = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
