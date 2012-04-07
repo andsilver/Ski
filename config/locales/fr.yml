@@ -74,6 +74,7 @@ fr:
     cleaners: Nettoyeurs
     creche: Creches
     estate_agents: Agents immobiliers
+    heliskiing: Heliskiing
     home_appliances: Appareils électroménagers
     home_insurance: Assurance habitation
     interior_design: Architecte d'intérieur
@@ -81,8 +82,10 @@ fr:
     letting_agents: Agence de location
     mountain_guide: Guides de montagne
     other: Divers
+    outdoor_adventures: Outdoor adventures
     restaurants: Restaurants
     ski_hire: Location de ski
+    ski_school: Ski school
     takeaway: A emporter
     taxi: Taxis
   change: Changer
