@@ -378,6 +378,7 @@ it:
       altitude: Altitude
       apres_ski: Apres ski
       babysitting_services: Babysitting services
+      beginner: Beginner
       black: Black
       blue: Blue
       cable_car: Cable car
@@ -386,11 +387,13 @@ it:
       cross_country: Cross country
       distance_from_airport: Distance from airport
       drags: Drags
+      expert: Expert
       family: Family
       funicular: Funicular
       glacier_skiing: Glacier skiing
       gondola: Gondola
       green: Beginner areas
+      intermediate: Intermediate
       longest_run: Longest run
       mountain_restaurants: Mountain restaurants
       nearest_airport: Nearest airport

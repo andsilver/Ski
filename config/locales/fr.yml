@@ -378,6 +378,7 @@ fr:
       altitude: Altitude
       apres_ski: Apres ski
       babysitting_services: Baby-sitters
+      beginner: Beginner
       black: Noir
       blue: Bleu
       cable_car: Téléphérique
@@ -386,11 +387,13 @@ fr:
       cross_country: Ski de fond
       distance_from_airport: Distance de l'aéroport
       drags: Glisser
+      expert: Expert
       family: Family
       funicular: Funiculaire
       glacier_skiing: Ski sur glacier
       gondola: Gondole
       green: Beginner areas
+      intermediate: Intermediate
       longest_run: Piste la plus longue
       mountain_restaurants: Restaurants de montagne
       nearest_airport: Aéroport le plus proche
