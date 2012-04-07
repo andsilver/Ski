@@ -38,7 +38,7 @@ module ResortsHelper
         return ''
       end
     end
-    url
+    url.gsub(' ', '%20')
   end
 
   def header_image_urls
