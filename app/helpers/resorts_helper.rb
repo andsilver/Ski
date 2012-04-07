@@ -69,6 +69,7 @@ module ResortsHelper
       urls << '/images/chamonix.jpg'
     end
 
+    urls.map! {|u| u.gsub(' ', '%20')}
     urls
   end
 
@@ -85,7 +86,6 @@ module ResortsHelper
   def images_in_directory(dir)
     begin
       @images = Dir.entries(dir).select {|e| e[0..0] != "." && e.include?(".")}
-      @images.map! {|i| i.gsub(' ', '%20')}
       @images.sort!
     rescue
       @images = []
