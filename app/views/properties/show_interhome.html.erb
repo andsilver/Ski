@@ -1,4 +1,4 @@
-<script type="text/javascript" charset="utf-8">
+<script>
   var map;
   var marker;
 
@@ -64,11 +64,11 @@
 <% unless @property.image.nil? %>
 <p class="thumbnails" id="property_thumbnails">
 <% @property.images.each do |i| %>
-  <a href="#pic_<%= i.id %>"><%= image_tag(i.sized_url(135, :height)) %></a>
+  <a href="#pic_<%= i.id %>"><%= image_tag(i.sized_url(135, :height), :alt => "Photo of #{@property.name}") %></a>
 <% end %>
 </p>
 <% @property.images.each do |i| %>
-<div id="pic_<%= i.id %>"><img src="<%= i.url %>"></div>
+<div id="pic_<%= i.id %>"><img src="<%= i.url %>" alt="Larger photo of <%= @property.name %>"></div>
 <% end %>
 <%= clear %>
 <% end %>
