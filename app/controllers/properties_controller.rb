@@ -5,8 +5,12 @@ class PropertiesController < ApplicationController
 
   before_filter :no_browse_menu, :except => [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
-  before_filter :user_required, :except => [:index, :browse_for_rent, :browse_for_sale,
-    :new_developments, :browse_hotels, :contact, :email_a_friend, :current_time, :show, :import_documentation]
+  before_filter :user_required, :except => [
+    :index, :browse_for_rent, :browse_for_sale,
+    :new_developments, :browse_hotels, :contact,
+    :email_a_friend, :current_time, :show, :show_interhome,
+    :import_documentation]
+
   before_filter :find_property_for_user, :only => [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
   before_filter :resort_conditions, :only => [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
