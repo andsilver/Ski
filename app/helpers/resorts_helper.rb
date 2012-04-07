@@ -85,6 +85,7 @@ module ResortsHelper
   def images_in_directory(dir)
     begin
       @images = Dir.entries(dir).select {|e| e[0..0] != "." && e.include?(".")}
+      @images.map! {|i| i.gsub(' ', '%20')}
       @images.sort!
     rescue
       @images = []
