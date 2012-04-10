@@ -101,7 +101,8 @@ class InterhomeAccommodationImporter
     property.name = accommodation.name.blank? ? accommodation.code : accommodation.name
     property.strapline = accommodation.inside_description[0..254]
     property.address = place.name
-    property.weekly_rent_price = 1000
+    property.weekly_rent_price = accommodation.current_price
+    return if property.weekly_rent_price.nil?
     property.currency_id = @euro.id
     return unless property.save
 
