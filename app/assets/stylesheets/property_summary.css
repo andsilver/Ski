@@ -23,7 +23,7 @@
 }
 
 .property_summary .features li {
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .property_summary .thumbnail,
@@ -42,7 +42,7 @@
 .property_summary .price {
   text-align: right;
   margin-top: 0;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .property_summary .price span {
