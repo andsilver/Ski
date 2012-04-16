@@ -104,6 +104,8 @@ class InterhomeAccommodationImporter
     property.weekly_rent_price = accommodation.current_price
     return if property.weekly_rent_price.nil?
     property.currency_id = @euro.id
+    property.sleeping_capacity = accommodation.pax
+    property.number_of_bedrooms = accommodation.bedrooms
     return unless property.save
 
     accommodation.interhome_pictures.each do |picture|
