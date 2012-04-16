@@ -20,6 +20,7 @@ class XMLSplitter
     @xml_filename = opts[:xml_filename] if opts[:xml_filename]
     @elements_per_file = opts[:elements_per_file] if opts[:elements_per_file]
     @max_files = opts[:max_files]
+    @max_files = nil if @max_files == 0
   end
 
   def split
