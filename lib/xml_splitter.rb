@@ -51,8 +51,8 @@ class XMLSplitter
           if current == @elements_per_file
             current = 0
             chunk += 1
-            break if @max_files && chunk >= @max_files
             dst.puts "</#{@root_element}>"
+            break if @max_files && chunk >= @max_files
             dst.close
 
             dst = start_file(chunk, filenames)
@@ -71,7 +71,6 @@ class XMLSplitter
       tag += c.chr if in_tag
     end
 
-    dst.puts "</#{@root_element}>"
     dst.close
     filenames
   end
