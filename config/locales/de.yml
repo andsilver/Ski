@@ -362,6 +362,7 @@ de:
   receipts: Receipts
   registration: Registration
   resort: 'Resort'
+  resorts: 'Resorts'
   resorts_controller:
     detail:
       an_introduction_to: "An Introduction to %{resort}"

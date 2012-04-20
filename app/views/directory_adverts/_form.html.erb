@@ -53,13 +53,25 @@
   <tr>
     <td width="40%">
 <div class="field">
-  <%= f.label :resort_id, I18n.t('resort') %><br>
-  <%= select("directory_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => 'Select Resort'}) %>
+<% if @directory_advert.new_record? -%>
+  <%= f.label :resort_id, t('resorts') %><br>
+  <%= select("directory_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort,
+  {}, {:multiple => true, :size => 10}) %>
+<% else -%>
+  <%= f.label :resort_id, t('resort') %><br>
+  <%= select("directory_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort,
+  {:prompt => 'Select Resort'}) %>
+<% end -%>
 </div>
     </td>
     <td width="60%"><br>
       <b>Example</b><br>
       France &gt; Chamonix
+<% if @directory_advert.new_record? -%>
+      <br><br>Tip:<br>
+      On Windows hold down Ctrl to select multiple resorts<br>
+      On Mac hold down Cmd
+<% end -%>
     </td>
   </tr>
   <tr>

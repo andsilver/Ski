@@ -362,6 +362,7 @@ fr:
   receipts: Recettes
   registration: Enregistrement
   resort: 'Station'
+  resorts: 'Resorts'
   resorts_controller:
     detail:
       an_introduction_to: "An Introduction to %{resort}"

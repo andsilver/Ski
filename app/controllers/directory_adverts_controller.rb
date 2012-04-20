@@ -34,17 +34,23 @@ class DirectoryAdvertsController < ApplicationController
   end
 
   def create
-    @directory_advert = DirectoryAdvert.new(params[:directory_advert])
+    resort_ids = params[:directory_advert][:resort_id]
+    resort_ids.each do |resort_id|
+      next if resort_id == ''
 
-    @directory_advert.user_id = @current_user.id
+      @directory_advert = DirectoryAdvert.new(params[:directory_advert])
+      @directory_advert.resort_id = resort_id
 
-    if @directory_advert.save
-      update_images
-      create_advert
-      redirect_to basket_path, :notice => t('directory_adverts_controller.created')
-    else
-      render "new"
+      @directory_advert.user_id = @current_user.id
+
+      if @directory_advert.save
+        update_images
+        create_advert
+      else
+        render "new" and return
+      end
     end
+    redirect_to basket_path, :notice => t('directory_adverts_controller.created')
   end
 
   def edit
