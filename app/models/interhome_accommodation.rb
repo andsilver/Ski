@@ -12,9 +12,12 @@ class InterhomeAccommodation < ActiveRecord::Base
     desc ? desc.description : ''
   end
 
+  # Returns the rental price for today's date. If there are no prices for
+  # today then returns the earliest price in the table. If no prices are
+  # found then nil is returned.
   def current_price
-    prices = InterhomePrice.where(:accommodation_code => code)
+    prices = InterhomePrice.where(:accommodation_code => code).order('start_date')
     prices.each {|p| return p.rental_price if p.start_date <= Date.today && p.end_date >= Date.today}
-    nil
+    prices.first ? prices.first.rental_price : nil
   end
 end
