@@ -1,3 +1,5 @@
+# coding: utf-8
+
 require 'xmlsimple'
 
 class InterhomeAccommodationImporter
@@ -41,7 +43,7 @@ class InterhomeAccommodationImporter
   end
 
   def import_accommodation(a)
-    return if a['details'][0] != 'C' # only import chalets
+    return unless import_details?(a['details'][0])
     return if a['brand'][0] != 'I' # only import Interhome products
 
     accommodation = InterhomeAccommodation.new
@@ -142,6 +144,19 @@ class InterhomeAccommodationImporter
     features = []
     a['attributes'][0]['attribute'].each {|f| features << f}
     features.join(',')
+  end
+
+  def import_details?(d)
+    'BCDFHRSV'.include?(d)
+    # B: bungalow
+    # C: chalet
+    # D: divers
+    # F: maison de champagne
+    # H: village de vacances
+    # R: residence
+    # S: château/manoir
+    # V: villa
+    # Y: yacht
   end
 
   def xml_filename
