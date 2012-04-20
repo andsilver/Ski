@@ -27,7 +27,7 @@ class InterhomeAccommodationImporter
     @euro = Currency.find_by_code('EUR')
     raise 'A currency with code EUR is required' unless @euro
 
-    @interhome.adverts.delete_all
+    Advert.delete_all(['user_id = ?', @interhome.id])
     InterhomeAccommodation.destroy_all
     filenames.each {|f| import_file(f)}
   end
