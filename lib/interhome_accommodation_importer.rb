@@ -48,7 +48,7 @@ class InterhomeAccommodationImporter
 
   def import_accommodation(a)
     return unless import_details?(a['details'][0])
-    return if a['brand'][0] != 'I' # only import Interhome products
+    return if a['brand'][0] != 'I' && a['brand'][0] != 'M' # only import Interhome products
 
     accommodation = InterhomeAccommodation.new
     accommodation.code = a['code'][0]
