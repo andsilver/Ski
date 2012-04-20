@@ -65,7 +65,7 @@
   <tr>
     <td>
 <div class="field">
-  <%= f.label :category_id, I18n.t('category') %><br>
+  <%= f.label :category_id, I18n.t('category') %> <span class="required">*</span><br>
   <%= select("directory_advert", "category_id", (Category.all.collect {|c| [ t(c.name), c.id ] }).sort, {:prompt => 'Select Category'}) %>
 </div>
     </td>
@@ -87,7 +87,7 @@
   <tr>
     <td>
 <div class="field">
-  <%= f.label :business_address %><br>
+  <%= f.label :business_address %> <span class="required">*</span><br>
   <%= f.text_area :business_address %>
 </div>
     </td>
@@ -134,7 +134,7 @@ Please include the country calling code.
   <tr>
     <td>
       <div class="field">
-        <%= f.label :strapline %><br>
+        <%= f.label :strapline %> <span class="required">*</span><br>
         <%= f.text_area :strapline %>
       </div>
     </td>
