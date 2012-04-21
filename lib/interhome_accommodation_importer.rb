@@ -60,7 +60,7 @@ class InterhomeAccommodationImporter
     accommodation.country = a['country'][0]
     accommodation.region = a['region'][0]
     accommodation.place = a['place'][0]
-    accommodation.zip = a['zip'][0]
+    accommodation.zip = a['zip'] ? a['zip'][0] : '' # some countries (e.g. RoI) don't use postal codes
     accommodation.accommodation_type = a['type'][0]
     accommodation.details = a['details'][0]
     accommodation.quality = a['quality'][0]
