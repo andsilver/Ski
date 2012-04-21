@@ -21,8 +21,7 @@ class InterhomeAccommodationImporter
   # accommodations from the XML file.
   def import(filenames)
     setup
-
-    Advert.delete_all(['user_id = ?', @interhome.id])
+    delete_all_adverts
     InterhomeAccommodation.destroy_all
     filenames.each {|f| import_file(f)}
   end
@@ -36,6 +35,10 @@ class InterhomeAccommodationImporter
 
     @euro = Currency.find_by_code('EUR')
     raise 'A currency with code EUR is required' unless @euro
+  end
+
+  def delete_all_adverts
+    Advert.delete_all(['user_id = ?', @interhome.id])
   end
 
   def import_file(filename)
