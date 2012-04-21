@@ -151,6 +151,7 @@ class InterhomeAccommodationImporter
   end
 
   def import_details?(d)
+    return true if d.kind_of?(Hash) # Details unspecified
     'BCDFHRSV'.include?(d)
     # B: bungalow
     # C: chalet
