@@ -18,3 +18,15 @@
 .bubblelink:hover {
   background: #005CAB;
 }
+
+.ski-levels .beginner h3 {
+  color: green;
+}
+
+.ski-levels .intermediate h3 {
+  color: red;
+}
+
+.ski-levels .advanced h3 {
+  color: black;
+}
