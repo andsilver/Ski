@@ -353,8 +353,8 @@ en:
     strapline_example: Strapline Example
     strapline_example_content: 'A large, traditional alpine luxury ski chalet, sleeping 10. Full of charm and character.'
     titles:
-      browse_for_rent: "Properties for Rent in %{resort}"
-      browse_for_sale: "Properties for Sale in %{resort}"
+      browse_for_rent: "Chalets and Apartments for Rent in %{resort}"
+      browse_for_sale: "Chalets and Apartments for Sale in %{resort}"
       hotels: "Hotels in %{resort}"
       new: New Property
       new_developments: "New Property Developments in %{resort}"
