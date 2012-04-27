@@ -41,7 +41,7 @@ class CountriesController < ApplicationController
     @banner_advert_html = @country.banner_advert_html
 
     conditions = PropertiesController::CURRENTLY_ADVERTISED.dup
-    conditions[0] += " AND resort_id IN(SELECT id FROM resorts WHERE country_id=#{@country.id})"
+    conditions[0] += " AND resort_id IN(SELECT id FROM resorts WHERE country_id=#{@country.id} AND visible=1)"
     @featured_properties = Property.order('RAND()').limit(6).where(conditions)
   end
 
