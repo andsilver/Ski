@@ -48,10 +48,6 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
-group :development do
-  gem "mongrel"
-end
-
 group :test, :development do
   gem "autotest", "4.4.6"
   gem "rspec-rails", ">= 2.6.1"
@@ -62,6 +58,5 @@ group :test, :development do
   gem 'database_cleaner'
   gem "capybara"
   gem "launchy", ">= 0.3.7"
-  gem "rcov"
   gem "railroad", "0.5.0"
 end
