@@ -17,7 +17,7 @@ class Country < ActiveRecord::Base
   validates_uniqueness_of :iso_3166_1_alpha_2
 
   def to_param
-    "#{id}-#{PermalinkFu.escape(name)}"
+    "#{id}-#{name.parameterize}"
   end
 
   def to_s

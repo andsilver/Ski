@@ -143,7 +143,7 @@ class Property < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{PermalinkFu.escape(name)}-#{PermalinkFu.escape(resort.name)}-#{PermalinkFu.escape(resort.country.name)}"
+    "#{id}-#{name.parameterize}-#{resort.name.parameterize}-#{resort.country.name.parameterize}"
   end
 
   def for_rent?

@@ -18,9 +18,9 @@ module ResortsHelper
   end
 
   def resort_image(resort, filename, size, sub_dir)
-    thumbnails_url = "/resorts/#{PermalinkFu.escape(@resort.name)}/#{sub_dir}/#{size}"
+    thumbnails_url = "/resorts/#{@resort.name.parameterize}/#{sub_dir}/#{size}"
     url = "#{thumbnails_url}/#{filename}"
-    original_path = "#{Rails.root.to_s}/public/resorts/#{PermalinkFu.escape(@resort.name)}/#{sub_dir}/#{filename}"
+    original_path = "#{Rails.root.to_s}/public/resorts/#{@resort.name.parameterize}/#{sub_dir}/#{filename}"
     path = "#{Rails.root.to_s}/public/#{url}"
     thumbnails_path = "#{Rails.root.to_s}/public/#{thumbnails_url}"
 
@@ -51,7 +51,7 @@ module ResortsHelper
     if @resort
       resort_images(@resort, 'headers')
       @images.each do |img|
-        urls << "/resorts/#{PermalinkFu.escape(@resort.name)}/headers/#{img}"
+        urls << "/resorts/#{@resort.name.parameterize}/headers/#{img}"
       end
     end
 
@@ -61,7 +61,7 @@ module ResortsHelper
       end
       country_images(@country, 'headers')
       @images.each do |img|
-        urls << "/countries/#{PermalinkFu.escape(@country.name)}/headers/#{img}"
+        urls << "/countries/#{@country.name.parameterize}/headers/#{img}"
       end
     end
 
@@ -74,12 +74,12 @@ module ResortsHelper
   end
 
   def resort_images(resort, sub_dir)
-    dir = "#{RESORTS_DIRECTORY}#{PermalinkFu.escape(resort.name)}/#{sub_dir}"
+    dir = "#{RESORTS_DIRECTORY}#{resort.name.parameterize}/#{sub_dir}"
     images_in_directory(dir)
   end
 
   def country_images(country, sub_dir)
-    dir = "#{COUNTRIES_DIRECTORY}#{PermalinkFu.escape(country.name)}/#{sub_dir}"
+    dir = "#{COUNTRIES_DIRECTORY}#{country.name.parameterize}/#{sub_dir}"
     images_in_directory(dir)
   end
 

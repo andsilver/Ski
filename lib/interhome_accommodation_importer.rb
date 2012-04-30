@@ -80,7 +80,7 @@ class InterhomeAccommodationImporter
       accommodation.geodata_lat = accommodation.geodata_lng = ''
     end
     accommodation.themes = themes(a)
-    accommodation.permalink = PermalinkFu.escape(accommodation.code)
+    accommodation.permalink = accommodation.code.parameterize
     accommodation.save
 
     import_pictures(accommodation, a)

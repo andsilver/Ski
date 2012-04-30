@@ -14,7 +14,7 @@ class Resort < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :country_id
 
   def to_param
-    "#{id}-#{PermalinkFu.escape(name)}"
+    "#{id}-#{name.parameterize}"
   end
 
   def area_type
