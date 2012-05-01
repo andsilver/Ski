@@ -115,7 +115,7 @@ en:
     exchange_rate_updated: 'Exchange rates updated.'
   date:
     formats:
-      short: %d %b %Y
+      short: "%d %b %Y"
   delete: 'Delete'
   description: 'Description'
   details: 'Details'
@@ -445,7 +445,7 @@ en:
   terms: 'Terms and Conditions'
   time:
     formats:
-      short: %d %b %Y
+      short: "%d %b %Y"
   update: Update
   users:
     account_created: 'Your account was successfully created.'
