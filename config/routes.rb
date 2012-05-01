@@ -1,4 +1,6 @@
 MySkiChalet::Application.routes.draw do
+  resources :buying_guides
+
   resources :countries
   match "resorts/:resort_id/properties/rent" => "properties#browse_for_rent", :as => :resort_property_rent
   match "resorts/:resort_id/properties/sale" => "properties#browse_for_sale", :as => :resort_property_sale

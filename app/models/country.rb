@@ -8,6 +8,7 @@ class Country < ActiveRecord::Base
   has_many :orders
   has_many :order_lines, :include => :order
   has_many :users, :foreign_key => 'billing_country_id'
+  has_one :buying_guide, dependent: :delete
 
   scope :with_resorts, where('id IN (SELECT DISTINCT(country_id) FROM resorts)').order('name')
   scope :with_visible_resorts, where('id IN (SELECT DISTINCT(country_id) FROM resorts WHERE visible=1)').order('name')
