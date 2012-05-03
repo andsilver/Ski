@@ -1,0 +1,52 @@
+<div class="resource_page">
+  <h2>Resources</h2>
+  <div class="content">
+
+    <div class="side_bar">
+      <p>
+        A paragraph of text.
+      </p>
+      <ul>
+        <li><a href="#">A link</a></li>
+        <li><a href="#">A link</a></li>
+        <li><a href="#">A link</a></li>
+        <li><a href="#">A link</a></li>
+      </ul>
+
+      <%= raw @w.resources_banner_html %>
+    </div>
+
+    <div class="boxes">
+      <div class="box">
+        <h3>Buying Guides</h3>
+        <ul>
+<% @buying_guides.each do |buying_guide| -%>
+          <li><%= link_to buying_guide.country, buying_guide %></li>
+<% end -%>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Hello</h3>
+        <img src="http://placehold.it/223x89">
+        <p>If you own a chalet or apartment and are looking to rent it out or even sell it</p>
+        <a href="#" class="button">More</a>
+      </div>
+
+      <div class="box">
+        <h3>Hello</h3>
+        <img src="http://placehold.it/223x89">
+        <p>If you own a chalet or apartment and are looking to rent it out or even sell it</p>
+        <a href="#" class="button">More</a>
+      </div>
+
+      <div class="box">
+        <h3>Hello</h3>
+        <img src="http://placehold.it/223x89">
+        <p>If you own a chalet or apartment and are looking to rent it out or even sell it</p>
+        <a href="#" class="button">More</a>
+      </div>
+    </div>
+
+  </div>
+</div>

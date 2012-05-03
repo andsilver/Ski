@@ -40,9 +40,7 @@ class CountriesController < ApplicationController
     default_page_title(@heading_a)
     @banner_advert_html = @country.banner_advert_html
 
-    conditions = PropertiesController::CURRENTLY_ADVERTISED.dup
-    conditions[0] += " AND resort_id IN(SELECT id FROM resorts WHERE country_id=#{@country.id} AND visible=1)"
-    @featured_properties = Property.order('RAND()').limit(6).where(conditions)
+    @featured_properties = @country.featured_properties(6)
   end
 
   def destroy

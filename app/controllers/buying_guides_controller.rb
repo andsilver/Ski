@@ -35,6 +35,7 @@ class BuyingGuidesController < ApplicationController
   def show
     @heading_a = "Buying Guide for #{@buying_guide.country}"
     default_page_title(@heading_a)
+    @featured_properties = @buying_guide.country.featured_properties(5)
   end
 
   def destroy

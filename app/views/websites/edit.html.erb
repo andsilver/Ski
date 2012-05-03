@@ -39,6 +39,11 @@
 </div>
 
 <div class="field">
+  <%= f.label :resources_banner_html %><br>
+  <%= f.text_area :resources_banner_html %>
+</div>
+
+<div class="field">
 	<label for="website_blog_visible_true">Blog visible?:</label>
 	<%= f.radio_button :blog_visible, true, :class => "radio" %>
 	<label for="website_blog_visible_true">Yes</label>

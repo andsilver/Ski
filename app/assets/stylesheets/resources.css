@@ -57,7 +57,7 @@
   float: left;
 }
 
-.side_bar a {
+.resource_page .side_bar a, .resource_page .box a {
   color: #fff;
 }
 

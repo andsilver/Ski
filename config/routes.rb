@@ -131,7 +131,10 @@ MySkiChalet::Application.routes.draw do
   resources :websites
   match "cms/prices" => "websites#edit_prices", :as => :banner_directory_advert_prices
 
-  resources :pages
+  resources :pages do
+    get 'resources', on: :collection
+  end
+
   resources :blog_posts
   match "blog" => "blog_posts#blog"
   resources :favourites

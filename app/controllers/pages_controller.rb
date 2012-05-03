@@ -37,6 +37,10 @@ class PagesController < ApplicationController
     redirect_to pages_path, :notice => t('notices.deleted')
   end
 
+  def resources
+    @buying_guides = BuyingGuide.all
+  end
+
   protected
 
   def find_page
