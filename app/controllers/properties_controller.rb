@@ -132,6 +132,7 @@ class PropertiesController < ApplicationController
     @accommodation = InterhomeAccommodation.find_by_permalink(params[:permalink])
     not_found and return if @accommodation.nil?
     @property = @accommodation.property
+    @resort = @property.resort
   end
 
   def contact
