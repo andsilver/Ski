@@ -122,10 +122,8 @@ MySkiChalet::Application.routes.draw do
   end
   match "welcome/:role" => "roles#sales_pitch", :as => :sales_pitch
 
-  match "uploads/:filename/delete_file" => "uploads#delete_file", :as => :delete_uploaded_file,
-    :constraints => { :filename => /[^\/]+/ }
   resources :uploads do
-    delete 'delete_file', :on => :member
+    delete 'delete_file', :on => :collection
   end
 
   resources :websites
