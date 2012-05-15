@@ -2,8 +2,27 @@
 <p>
   <%= link_to 'Write new post', new_blog_post_path %>
 </p>
-<ul>
+<table class="grid">
+  <tr>
+    <th>Headline</th>
+    <th>Path (for linking)</th>
+    <th>View</th>
+    <th>Edit</th>
+  </tr>
 <% @blog_posts.each do |post| %>
-  <li><%= link_to post.headline, edit_blog_post_path(post) %></li>
+  <tr>
+    <td>
+      <%= post.headline %>
+    </td>
+    <td>
+      <code><%= blog_post_path(post) %></code>
+    </td>
+    <td>
+      <%= link_to 'View', post %>
+    </td>
+    <td>
+      <%= link_to 'Edit', edit_blog_post_path(post) %>
+    </td>
+  </tr>
 <% end %>
-</ul>
+</table>
