@@ -5,4 +5,8 @@ class BlogPost < ActiveRecord::Base
   def summary
     (content.length < 500) ? content : content[0..400] + '...'
   end
+
+  def to_param
+    "#{id}-#{headline.parameterize}"
+  end
 end
