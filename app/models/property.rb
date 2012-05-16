@@ -172,7 +172,7 @@ class Property < ActiveRecord::Base
     f << "#{I18n.t('nearest_lift')}: #{metres_from_lift}m" unless metres_from_lift == 0
     f << I18n.t('properties.features.pets') if pets? && for_rent?
     f << I18n.t('properties.features.smoking') if smoking? && for_rent?
-    f << tv_description if for_rent?
+    f << tv_description if for_rent? && tv != TV_NO
     f << I18n.t('properties.features.wifi') if wifi? && for_rent?
     f << I18n.t('properties.features.disabled') if disabled?
     f << I18n.t('properties.features.fully_equipped_kitchen') if fully_equipped_kitchen?
@@ -184,7 +184,7 @@ class Property < ActiveRecord::Base
     f << I18n.t('properties.features.hot_tub') if hot_tub?
     f << I18n.t('properties.filters.ski_in_ski_out') if ski_in_ski_out?
     f << I18n.t('properties.filters.long_term_lets_available') if long_term_lets_available?
-    f << parking_description
+    f << parking_description unless parking == PARKING_NO
     f
   end
 
