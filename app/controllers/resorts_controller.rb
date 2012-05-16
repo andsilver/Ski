@@ -1,6 +1,6 @@
 class ResortsController < ApplicationController
-  before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map, :piste_map_full_size, :detail, :gallery]
-  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :detail, :directory, :feature, :piste_map, :piste_map_full_size, :gallery]
+  before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map, :piste_map_full_size, :resort_guide, :gallery]
+  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :resort_guide, :directory, :feature, :piste_map, :piste_map_full_size, :gallery]
   before_filter :no_browse_menu, :except => [:show, :feature, :directory]
 
   def index
@@ -60,9 +60,9 @@ class ResortsController < ApplicationController
     end
   end
 
-  def detail
+  def resort_guide
     default_page_title "Detailed Information for #{@resort} Ski Resort, #{@resort.country}"
-    @heading_a = render_to_string(:partial => 'detail_heading').html_safe
+    @heading_a = render_to_string(partial: 'detail_heading').html_safe
   end
 
   def directory

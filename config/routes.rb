@@ -7,10 +7,11 @@ MySkiChalet::Application.routes.draw do
   match "resorts/:resort_id/properties/new-developments" => "properties#new_developments",
     :as => :resort_property_new_developments
   match "resorts/:resort_id/properties/hotels" => "properties#browse_hotels", :as => :resort_property_hotels
+  match "resorts/:id/resort-guide" => "resorts#resort_guide", as: :resort_guide
   resources :resorts do
     get 'featured',  :on => :collection
     member do
-      get 'detail'
+      get 'resort-guide', action: 'resort_guide'
       get 'directory'
       get 'feature'
       get 'gallery'
