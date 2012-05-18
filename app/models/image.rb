@@ -35,8 +35,7 @@ class Image < ActiveRecord::Base
     if @file_data
       # remove any existing images (which may have different extensions)
       delete_files
-      path = "#{IMAGE_STORAGE_PATH}/#{id}"
-      FileUtils.makedirs(path)
+      FileUtils.makedirs(directory_path)
       File.open(original_path, "wb") { |file| file.write(@file_data.read) }
     end
   end
@@ -51,11 +50,24 @@ class Image < ActiveRecord::Base
   end
 
   def url_for_filename(fn)
-    "#{IMAGE_STORAGE_URL}/#{id}/#{fn}"
+    "#{directory_url}/#{fn}"
   end
 
   def original_path
-    "#{IMAGE_STORAGE_PATH}/#{id}/#{filename}"
+    "#{directory_path}/#{filename}"
+  end
+
+  def directory_path
+    "#{IMAGE_STORAGE_PATH}/#{sub_path}"
+  end
+
+  def directory_url
+    "#{IMAGE_STORAGE_URL}/#{sub_path}"
+  end
+
+  # creates a partitioned sub-path based on the ID like ff/1023
+  def sub_path
+    "#{"%02x" % (id.to_i % 256)}/#{id}"
   end
 
   def sized_url(size, method)
@@ -66,7 +78,7 @@ class Image < ActiveRecord::Base
     download_from_source_if_needed
 
     f = method.to_s + '_' + size.to_s + '.' + extension
-    path = "#{IMAGE_STORAGE_PATH}/#{id}/#{f}"
+    path = "#{directory_path}/#{f}"
     # create a new image of the required size if it doesn't exist
     unless FileTest.exists?(path)
       begin
@@ -93,7 +105,11 @@ class Image < ActiveRecord::Base
   end
 
   def download_from_source
-    FileUtils.makedirs("#{IMAGE_STORAGE_PATH}/#{id}")
+    begin
+      FileUtils.makedirs(directory_path)
+    rescue
+      return
+    end
 
     require 'net/http'
     uri = URI.parse(source_url)
@@ -107,7 +123,7 @@ class Image < ActiveRecord::Base
 
   # Deletes the file(s) by removing the whole directory.
   def delete_files
-    FileUtils.rm_rf("#{IMAGE_STORAGE_PATH}/#{id}") unless id.nil?
+    FileUtils.rm_rf(directory_path) unless id.nil?
   end
 
   def uploaded_extension
