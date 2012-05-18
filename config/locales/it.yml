@@ -53,8 +53,8 @@ it:
     total: Total
     windows: Windows
   advert_details: Advert details
-  basket: Basket
   are_you_sure: 'Sei sicuro?'
+  basket: Cestino
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
   blog_posts_controller:
