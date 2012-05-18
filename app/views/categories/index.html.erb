@@ -7,7 +7,7 @@
   <tr>
     <td><%= category.name %></td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Delete', category, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', category, confirm: t('are_you_sure'), method: :delete %></td>
   </tr>
 <% end %>
 </table>

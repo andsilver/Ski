@@ -17,7 +17,7 @@
       <td><%= bp.current_banner_number %></td>
       <td><%= bp.price %></td>
       <td><%= link_to 'Edit', edit_banner_price_path(bp) %></td>
-      <td><%= link_to 'Delete', bp, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Delete', bp, confirm: t('are_you_sure'), method: :delete %></td>
     </tr>
 <% end -%>
   </tbody>

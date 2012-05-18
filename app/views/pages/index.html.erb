@@ -24,7 +24,7 @@
       <td><%= page.description %></td>
       <td><%= page.keywords %></td>
       <td><% if page.fixed_banner_image_filename.empty? %>&nbsp;<% else %><%= page.fixed_banner_image_filename %> &rarr; <%= page.fixed_banner_target_url %><% end %></td>
-      <td><%= link_to 'Delete', page, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Delete', page, confirm: t('are_you_sure'), method: :delete %></td>
     </tr>
     <% end %>
   </tbody>

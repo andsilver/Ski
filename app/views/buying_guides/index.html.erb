@@ -8,7 +8,7 @@
   <li>
     <%= link_to buying_guide.country.name, edit_buying_guide_path(buying_guide) %>
     (<%= link_to 'Show', buying_guide %>
-    / <%= link_to 'Delete', buying_guide, confirm: 'Are you sure?', method: :delete %>)
+    / <%= link_to 'Delete', buying_guide, confirm: t('are_you_sure'), method: :delete %>)
   </li>
 <% end %>
 </ul>

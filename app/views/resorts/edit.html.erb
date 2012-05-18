@@ -23,7 +23,7 @@
     <% @resort.interhome_place_resorts.each do |ipr| %>
     <li>
       <%= ipr.name %>
-      <%= link_to 'Unlink', ipr, :confirm => 'Are you sure?', :method => :delete %>
+      <%= link_to 'Unlink', ipr, confirm: t('are_you_sure'), method: :delete %>
     </li>
     <% end %>
   <% end %>

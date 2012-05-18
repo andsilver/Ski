@@ -22,7 +22,7 @@
       <td><%= link_to airport_distance.airport.name, edit_airport_distance_path(airport_distance) %></td>
       <td><%= airport_distance.distance_km %>km</td>
       <td><%= airport_distance.comment %></td>
-      <td><%= link_to 'Delete', airport_distance, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Delete', airport_distance, confirm: t('are_you_sure'), method: :delete %></td>
     </tr>
     <% end %>
   </tbody>

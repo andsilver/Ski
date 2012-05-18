@@ -35,7 +35,7 @@ $(document).ready(function() {
         <%= link_to t('edit'), edit_polymorphic_path(a), :title => "Edit #{a.to_s}" %>
 <% if admin? -%>
         |
-        <%= link_to 'Destroy', a, :confirm => 'Are you sure?', :method => :delete %>
+        <%= link_to 'Destroy', a, confirm: t('are_you_sure'), method: :delete %>
 <% end -%>
       </td>
       <td><%= a.resort.name %></td>

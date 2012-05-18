@@ -15,9 +15,10 @@
 </p>
 <ul>
 <% @uploads.sort.each do |upload| %>
-<li><a href="/uploads/<%= upload %>" target="_blank">/uploads/<%= upload %></a> (<%= link_to I18n.t(:delete), delete_file_uploads_path(filename: upload),
-	 						 :confirm => 'Are you sure?',
-							 :method => :delete %>)</li>
+<li><a href="/uploads/<%= upload %>" target="_blank">/uploads/<%= upload %></a>
+  (<%= link_to I18n.t(:delete), delete_file_uploads_path(filename: upload),
+  confirm: t('are_you_sure'),
+  method: :delete %>)</li>
 <% end %>
 </ul>
 <% end %>

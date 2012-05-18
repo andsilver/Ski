@@ -54,6 +54,7 @@ de:
     windows: Windows
   advert_details: Advert details
   basket: Basket
+  are_you_sure: 'Sind Sie sicher?'
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
   blog_posts_controller:

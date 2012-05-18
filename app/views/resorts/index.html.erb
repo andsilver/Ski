@@ -6,7 +6,7 @@
 <h2><%= country.name %></h2>
 <ul>
 <% country.resorts.each do |resort| %>
-  <li><%= link_to resort.name, edit_resort_path(resort) %> (<%= link_to 'Delete', resort, :confirm => 'Are you sure?', :method => :delete %>)
+  <li><%= link_to resort.name, edit_resort_path(resort) %> (<%= link_to 'Delete', resort, confirm: t('are_you_sure'), method: :delete %>)
   </li>
 <% end %>
 </ul>

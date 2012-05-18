@@ -23,7 +23,7 @@
       <td><%= country.iso_3166_1_alpha_2 %></td>
       <td><%= tick country.popular_billing_country? %></td>
       <td><%= tick country.in_eu? %></td>
-      <td><%= link_to 'Delete', country, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Delete', country, confirm: t('are_you_sure'), method: :delete %></td>
     </tr>
     <% end %>
   </tbody>

@@ -18,7 +18,7 @@
     <tr>
       <td class="numeric"><%= link_to window_base_price.quantity, edit_window_base_price_path(window_base_price) %></td>
       <td class="numeric price"><%= window_base_price.price %> EUR</td>
-      <td><%= link_to 'Delete', window_base_price, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Delete', window_base_price, confirm: t('are_you_sure'), method: :delete %></td>
     </tr>
     <% end %>
   </tbody>
