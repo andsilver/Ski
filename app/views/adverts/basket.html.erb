@@ -32,17 +32,17 @@
           <%= euros_from_cents line.price %>
           <% if line.pay_monthly? %>
           <br>
-          12 monthly payments<br>
-          1st payment: <%= euros_from_cents(line.first_payment) %> +<%= t('adverts_controller.tax_amount') %><br>
-          Followed by 11 payments of: <%= euros_from_cents(line.subsequent_payments) %> +<%= t('adverts_controller.tax_amount') %>
+          <%= t('adverts_controller.basket.twelve_monthly_payments') %><br>
+          <%= t('adverts_controller.basket.first_payment') %>: <%= euros_from_cents(line.first_payment) %> +<%= t('adverts_controller.tax_amount') %><br>
+          <%= t('adverts_controller.basket.followed_by_11_payments_of') %>: <%= euros_from_cents(line.subsequent_payments) %> +<%= t('adverts_controller.tax_amount') %>
           <% end %>
         </td>
         <td>
           <% unless line.coupon || line.advert.nil? %>
-          <input type="submit" value="Remove" name="remove_advert[<%= line.advert.id %>]">
+          <input type="submit" value="<%= t('adverts_controller.basket.remove') %>" name="remove_advert[<%= line.advert.id %>]">
           <% end %>
           <% if line.windows.to_i > 0 %>
-          <input type="submit" value="Remove" name="remove_advert[windows]">
+          <input type="submit" value="<%= t('adverts_controller.basket.remove') %>" name="remove_advert[windows]">
           <% end %>
         </td>
       </tr>
@@ -58,7 +58,7 @@
   <% end -%>
           </small><br>
           <%= text_field_tag 'code' %>
-          <%= submit_tag 'Apply Code' %>
+          <%= submit_tag t('adverts_controller.basket.apply_code') %>
         </th>
       </tr>
       <tr>

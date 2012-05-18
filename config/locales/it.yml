@@ -36,7 +36,13 @@ it:
     renew: 'Renew'
   advertise: 'Advertise'
   adverts_controller:
-    add_to_basket: Add to Basket
+    add_to_basket: Añadir a la Cesta
+    basket:
+      apply_code: 'Applicare un Codice'
+      first_payment: 'Primo pagamento'
+      followed_by_11_payments_of: 'Seguito da 11 pagamenti di'
+      remove: 'Rimuovere'
+      twelve_monthly_payments: 'Dodici pagamenti mensili'
     basket_empty: Your basket is empty.
     buy_advertising_windows: Buy Advertising Windows
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
@@ -54,7 +60,7 @@ it:
     windows: Windows
   advert_details: Advert details
   are_you_sure: 'Sei sicuro?'
-  basket: Cestino
+  basket: Cesta
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
   blog_posts_controller:

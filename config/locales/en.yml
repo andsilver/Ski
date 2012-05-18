@@ -37,6 +37,12 @@ en:
   advertise: 'Advertise'
   adverts_controller:
     add_to_basket: Add to Basket
+    basket:
+      apply_code: 'Apply Code'
+      first_payment: '1st payment'
+      followed_by_11_payments_of: 'Followed by 11 payments of'
+      remove: 'Remove'
+      twelve_monthly_payments: '12 monthly payments'
     basket_empty: Your basket is empty.
     buy_advertising_windows: Buy Advertising Windows
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'

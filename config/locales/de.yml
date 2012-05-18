@@ -36,7 +36,13 @@ de:
     renew: 'Renew'
   advertise: 'Advertise'
   adverts_controller:
-    add_to_basket: Add to Basket
+    add_to_basket: In den Einkaufswagen
+    basket:
+      apply_code: 'Code Vorlegen'
+      first_payment: 'Erste Zahlung'
+      followed_by_11_payments_of: 'Gefolgt von 11 in Höhe von'
+      remove: 'Löschen'
+      twelve_monthly_payments: 'Zwölf monatliche Zahlungen'
     basket_empty: Your basket is empty.
     buy_advertising_windows: Buy Advertising Windows
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
