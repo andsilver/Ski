@@ -36,6 +36,9 @@ class InterhomePlaceImporter
   end
 
   def import_place(p, name, code)
+    # Interhome sometimes has unnamed places (maybe newly added & incomplete?)
+    return if p['name'].nil?
+
     place_name = p['name'][0]
     name = "#{name} > #{place_name}"
     subcode = "#{code}_XXXX"
