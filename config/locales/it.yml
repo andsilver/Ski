@@ -149,6 +149,7 @@ it:
     favourites: Favourites
     remove: Remove from Favourites
     removed: Property has been removed from your favourites.
+  featured_accommodation: 'Alloggio Speciale'
   featured_resorts: 'Featured Resorts'
   features: 'Features'
   first_name: First name

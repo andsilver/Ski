@@ -3,7 +3,7 @@
 <%= raw @country.info %>
 
 <% unless @featured_properties.empty? -%>
-<h2>Featured Properties</h2>
+<h2><%= t('featured_accommodation') %></h2>
 <% @featured_properties.each do |p| -%>
 
 <div class="featured_property">
