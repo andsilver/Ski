@@ -73,14 +73,14 @@ class ImagesController < ApplicationController
   end
 
   def find_object
-    @object = object_class.find(object_id)
+    @object = object_class.find(the_object_id)
   end
 
   def object_class
     Kernel.const_get(session[:image_mode].classify)
   end
 
-  def object_id
+  def the_object_id
     session[session[:image_mode] + '_id']
   end
 
