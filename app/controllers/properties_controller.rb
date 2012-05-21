@@ -119,12 +119,8 @@ class PropertiesController < ApplicationController
     redirect_to "/accommodation/#{@property.interhome_accommodation.permalink}" and return if @property.interhome_accommodation
 
     @property.current_advert.record_view if @property.current_advert
-    rent_or_sale = @property.for_sale? ? t('for_sale') : t('for_rent')
-    default_page_title t('properties.titles.show',
-      :property_name => @property.name, :rent_or_sale => rent_or_sale,
-      :resort => @property.resort, :country => @property.resort.country)
-    @resort = @property.resort
-    @heading_a = render_to_string(:partial => 'show_property_heading').html_safe
+
+    show_shared
     @advertiser_web_property_id = @property.user.google_web_property_id unless @property.user.google_web_property_id.blank?
   end
 
@@ -132,7 +128,8 @@ class PropertiesController < ApplicationController
     @accommodation = InterhomeAccommodation.find_by_permalink(params[:permalink])
     not_found and return if @accommodation.nil?
     @property = @accommodation.property
-    @resort = @property.resort
+
+    show_shared
   end
 
   def contact
@@ -322,6 +319,18 @@ class PropertiesController < ApplicationController
   end
 
   protected
+
+  def show_shared
+    rent_or_sale = @property.for_sale? ? t('for_sale') : t('for_rent')
+    default_page_title t('properties.titles.show',
+      property_name: @property.name, rent_or_sale: rent_or_sale,
+      resort: @property.resort, country: @property.resort.country)
+    @resort = @property.resort
+    @heading_a = render_to_string(partial: 'show_property_heading').html_safe
+    if @meta_description.blank?
+      @meta_description = "#{@resort} Accommodation - #{@property.strapline[0..130]}"
+    end
+  end
 
   def process_row(row)
     if @mapping.nil?
