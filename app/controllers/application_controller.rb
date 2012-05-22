@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
       @urls << country_url(country)
       country.visible_resorts.each do |resort|
         @urls << resort_url(resort)
-        @urls << detail_resort_url(resort)
+        @urls << resort_guide_url(resort)
         @urls << gallery_resort_url(resort)
         @urls << piste_map_resort_url(resort)
         @urls << resort_property_rent_url(resort)
