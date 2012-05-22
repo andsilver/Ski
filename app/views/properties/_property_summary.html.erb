@@ -1,5 +1,5 @@
 <div class="property_summary">
-  <%= render :partial => 'user_logo', :locals => { :property => p } %>
+  <%= render partial: 'properties/user_logo', locals: { property: p } %>
   <%
   link = p.interhome_accommodation_id ? "/accommodation/#{p.interhome_accommodation.permalink}" : p
   %>
