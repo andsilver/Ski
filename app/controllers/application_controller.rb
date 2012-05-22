@@ -36,7 +36,11 @@ class ApplicationController < ActionController::Base
       end
     end
     Property.all(:conditions => PropertiesController::CURRENTLY_ADVERTISED).each do |property|
-      @urls << property_url(property)
+      if property.interhome_accommodation_id
+        @urls << interhome_property_url(property.interhome_accommodation.permalink)
+      else
+        @urls << property_url(property)
+      end
     end
   end
 
