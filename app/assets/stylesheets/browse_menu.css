@@ -39,11 +39,11 @@ div.resort_option {
 }
 
 #resorts div.resort_option {
-  width: 140px;
+  width: 135px;
 }
 
 div.property_count {
-  width: 30px;
+  width: 35px;
   text-align: right;
   clear: left;
 }
