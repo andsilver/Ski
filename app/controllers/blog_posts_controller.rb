@@ -36,7 +36,7 @@ class BlogPostsController < ApplicationController
 
   def update
     if @blog_post.update_attributes(params[:blog_post])
-      redirect_to(blog_posts_path, :notice => t('notices.saved'))
+      redirect_to(edit_blog_post_path(@blog_post), notice: t('notices.saved'))
     else
       render "edit"
     end
