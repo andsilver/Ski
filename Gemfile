@@ -10,6 +10,7 @@ gem 'spreadsheet', '0.6.5.4'
 gem 'rdoc'
 gem 'xml-simple'
 gem 'prawn', '0.11.1'
+gem 'newrelic_rpm'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -47,7 +48,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
-group :test, :development do
+group :test do
   gem "autotest", "4.4.6"
   gem "rspec-rails", ">= 2.6.1"
   gem 'watchr'
