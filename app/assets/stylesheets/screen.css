@@ -12,7 +12,7 @@ header, hgroup, nav, section {
 body {
   background-color: #fff;
   font-size: 62.5%;
-  font-family: "anivers-1","anivers-2", 'Lucida Sans', Arial, Helvetica, sans-serif;
+  font-family: "ff-basic-gothic-web-pro-1","ff-basic-gothic-web-pro-2", 'Lucida Sans', Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -85,12 +85,13 @@ a img {
 }
 
 .browse_menu #content {
-  width: 614px;
+  width: 754px;
   float: left;
 }
 
 .field, li, p, td, th {
-  font-size: 1.4em;
+  font-size: 1.6em;
+  line-height: 1.4em;
 }
 
 li p, td li {
@@ -127,7 +128,7 @@ th {
 }
 
 h1 {
-  font-size: 1.4em;
+  font-size: 1.6em;
   text-transform: uppercase;
 }
 
@@ -168,7 +169,7 @@ input[type=text],
 textarea {
   border: 1px solid #0f113e;
   padding: 2px;
-  font-family: 'Lucida Sans', Arial, Helvetica, sans-serif;
+  font-family: "ff-basic-gothic-web-pro-1","ff-basic-gothic-web-pro-2", 'Lucida Sans', Arial, Helvetica, sans-serif;
   font-size: 1em;
   width: 18em;
 }
@@ -229,7 +230,7 @@ table.grid {
   z-index: 1;
   position: absolute;
   left: 4px;
-  top: 160px;
+  top: 140px;
   width: 400px;
 }
 
@@ -445,7 +446,7 @@ p.advertise_now {
   background-image: url(/images/chunky-button-arrow.png);
   background-repeat: no-repeat;
   background-position: 6px 20px;
-  font-size: 1.6em;
+  font-size: 1em;
   border: 2px solid #00529c;
   display: block;
   border-radius: 6px;
@@ -564,7 +565,7 @@ iframe {
 
 .featured_property .price {
   margin-top: 0;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .featured_property .price span {

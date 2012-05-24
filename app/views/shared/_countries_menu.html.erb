@@ -1,7 +1,42 @@
+<% if @browse_menu
+  @country = @resort.country unless @resort.nil?
+%>
+<nav id="browse">
   <ul id="countries">
 <% Country.with_visible_resorts.each do |c| %>
     <li <%= 'class="selected"'.html_safe if @country && c.id == @country.id %>><a href="<%= country_path(c) %>">
-       <span style="background-image: url(/images/flags/<%= c.iso_3166_1_alpha_2.downcase %>.png); width:16px;height:11px; display:block;float:left;margin-right:4px;">&nbsp;</span>
-       <%= c.name %></a></li>
+       <span style="background-image: url(/images/flags/<%= c.iso_3166_1_alpha_2.downcase %>.png); width:16px;height:11px; display:block;float:left; margin: 2px 4px 0 0;">&nbsp;</span>
+       <%= c.name %></a>
+<% if @country == c %>
+  <ul id="resorts">
+<% @country.visible_resorts.each do |r| %>
+    <li <%= 'class="selected"'.html_safe if @resort && r.id == @resort.id %>><a href="<%= resort_path(r) %>"><div
+    class="resort_option"><%= r %></div><div
+    class="property_count"><%= count_properties_in(r) %></div></a>
+<% if @resort == r %>
+  <ul id="resort_options">
+    <li <%= 'class="selected"'.html_safe if current_page?(resort_path(@resort)) %>><%=
+      link_to t('resort_options.resort_info'), resort_path(@resort) %></li>
+    <li <%= 'class="selected"'.html_safe if current_page?(resort_property_rent_path(@resort)) %>><a href="<%= resort_property_rent_path(@resort) %>"><div class="resort_option"><%=
+      t('for_rent') %></div><div class="property_count"><%= count_properties_for_rent_in(@resort) %></div></a></li>
+    <li <%= 'class="selected"'.html_safe if current_page?(resort_property_sale_path(@resort)) %>><a href="<%= resort_property_sale_path(@resort) %>"><div class="resort_option"><%=
+      t('for_sale') %></div><div class="property_count"><%= count_properties_for_sale_in(@resort) %></div></a></li>
+    <li <%= 'class="selected"'.html_safe if current_page?(resort_property_new_developments_path(@resort)) %>><a href="<%= resort_property_new_developments_path(@resort) %>"><div class="resort_option"><%=
+      t('resort_options.new_developments') %></div><div class="property_count"><%= count_new_developments_in(@resort) %></div></a></li>
+    <li <%= 'class="selected"'.html_safe if current_page?(resort_property_hotels_path(@resort)) %>><a href="<%= resort_property_hotels_path(@resort) %>"><div class="resort_option"><%=
+      t('resort_options.hotels') %></div><div class="property_count"><%= count_hotels_in(@resort) %></div></a></li>
+    <li <%= 'class="selected"'.html_safe if current_page?(directory_resort_path(@resort)) %>><%= link_to t('directory'), directory_resort_path(@resort) %></li>
+    <li <%= 'class="selected"'.html_safe if current_page?(piste_map_resort_path(@resort)) %>><%= link_to I18n.t('piste_map'), piste_map_resort_path(@resort) %></li>
+    <li <%= 'class="selected"'.html_safe if current_page?(gallery_resort_path(@resort)) %>><%= link_to t('gallery'), gallery_resort_path(@resort) %></li>
+  </ul>
+<% end %>
+
+  </li>
 <% end %>
   </ul>
+<% end %>
+  </li>
+<% end %>
+  </ul>
+</nav>
+<% end %>

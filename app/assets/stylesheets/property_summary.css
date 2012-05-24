@@ -1,5 +1,5 @@
 .property_summary {
-  width: 367px;
+  width: 507px;
   background-image: url(/images/property-summary-bg.png);
   background-position: right top;
   background-repeat: repeat-y;
@@ -10,7 +10,7 @@
 .property_summary h3 {
   margin: 0;
   font-weight: normal;
-  font-size: 1.5em;
+  font-size: 1.6em;
 }
 
 .property_summary h3 a {
@@ -23,7 +23,7 @@
 }
 
 .property_summary .features li {
-  font-size: 1.2em;
+  font-size: 1.3em;
 }
 
 .property_summary .thumbnail,
@@ -35,18 +35,22 @@
   padding: 0 8px 0 0;
 }
 
+.property_summary .features {
+  width: 240px;
+}
+
 .property_summary .actions {
-  width: 100px;
+  width: 120px;
 }
 
 .property_summary .price {
   text-align: right;
   margin-top: 0;
-  font-size: 1.2em;
+  font-size: 1.3em;
 }
 
 .property_summary .price span {
-  font-size: 1.4em;
+  font-size: 1.6em;
 }
 
 .property_summary p.contact_owner,
@@ -80,4 +84,8 @@
 .chunky_button a:hover {
   color: #fff;
   background: #00529c;
+}
+
+.property_summary .user_logo {
+  margin-right: 8px;
 }

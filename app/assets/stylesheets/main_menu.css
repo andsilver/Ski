@@ -18,8 +18,7 @@ nav {
 }
 
 #main_menu li {
-  font-size: 1.2em;
-  text-transform: uppercase;
+  font-size: 1.4em;
   float: right;
   margin-right: 1px;
 }
@@ -49,11 +48,11 @@ nav {
   border-top: 1px solid #fff;
   visibility: hidden;
   position: absolute;
-  width: 140px;
+  width: 180px;
   text-align: center;
   font-size: 1em;
   text-transform: none;
-  margin-left: 2px;
+  margin-left: -20px;
   margin-top: 3px;
   z-index: 10;
 }
@@ -83,7 +82,7 @@ nav {
   -webkit-border-radius: 20px;
   padding: 3px 6px;
   height: 18px;
-  font-size: 11px;
+  font-size: 12px;
   position: relative;
   vertical-align: baseline;
   top: -2px;

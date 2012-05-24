@@ -1,21 +1,20 @@
 #browse {
   float: left;
-  width: 380px;
+  width: 240px;
 }
 
 #browse ul, ul#categories {
-  float: left;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 ul#countries {
-  width: 135px;
+  width: 200px;
 }
 
 ul#resorts, ul#categories {
-  width: 135px;
+  width: 200px;
   background-image: url(/images/resorts-menu-bg.png);
 }
 
@@ -23,16 +22,16 @@ ul#resorts, ul#categories {
   color: #2ab8e3;
 }
 
-ul#countries, ul#resort_options {
-  text-transform: uppercase;
+ul#resort_options {
+  width: 200px;
 }
 
-ul#resort_options {
-  width: 110px;
+#countries #resort_options a {
+  background: #fff;
 }
 
 #resort_options div, #resorts div {
-  float: left;
+  display: inline-block;
 }
 
 div.resort_option {
@@ -40,17 +39,13 @@ div.resort_option {
 }
 
 #resorts div.resort_option {
-  width: 95px;
+  width: 140px;
 }
 
 div.property_count {
-  width: 18px;
+  width: 30px;
   text-align: right;
-}
-
-#countries li, #resort_options li {
-  border-bottom: 1px solid #68c8e7;
-  height: 22px;
+  clear: left;
 }
 
 #browse #countries a:hover, #browse #countries .selected a, #browse #resort_options a:hover,
@@ -58,10 +53,18 @@ div.property_count {
   color: #043d7c;
 }
 
+#resort_options li {
+  border-bottom: 1px solid #68c8e7;
+}
+
 #browse li {
-  font-size: 1.2em;
+  font-size: 1.4em;
   margin: 0;
   padding: 0;
+}
+
+#browse li li {
+  font-size: 1em;
 }
 
 #browse a, #categories a {
@@ -72,18 +75,20 @@ div.property_count {
 
 #countries a, #resort_options a {
   background-color: #fff;
-  background-image: url(/images/countries-menu-bg.png);
-  background-position: right top;
-  background-repeat: repeat-y;
   padding: 4px 8px;
 }
 
+#countries a {
+  background-image: url(/images/countries-menu-bg.png);
+  background-position: right top;
+  background-repeat: repeat-y;
+}
+
 #resort_options a {
-  height: 14px;
 }
 
 #resorts a, #categories a {
-  padding: 2px 0px 2px 12px;
+  padding: 2px 0px 2px 28px;
 }
 
 #browse a:hover, #browse .selected a {
