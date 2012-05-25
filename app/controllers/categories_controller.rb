@@ -46,6 +46,7 @@ class CategoriesController < ApplicationController
 
   def show
     @heading_a = "#{t(@category.name)} in #{@resort.name}, #{@resort.country.name}"
+    default_page_title(@heading_a)
 
     @conditions = CURRENTLY_ADVERTISED.dup
     @conditions[0] += " AND category_id = ? AND resort_id = ?"
