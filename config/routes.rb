@@ -22,6 +22,8 @@ MySkiChalet::Application.routes.draw do
 
   resources :airports
   resources :airport_distances
+
+  match "categories/:id/:resort_id" => "categories#show", as: :category
   resources :categories
 
   match "sign_in" => "sessions#new"
@@ -100,6 +102,7 @@ MySkiChalet::Application.routes.draw do
       get 'latest_receipt'
       get 'receipts'
       get 'select_payment_method'
+      get 'resources'
     end
     member do
       get 'invoice'
