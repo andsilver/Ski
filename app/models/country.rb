@@ -26,9 +26,7 @@ class Country < ActiveRecord::Base
   end
 
   def featured_properties(limit)
-    conditions = PropertiesController::CURRENTLY_ADVERTISED.dup
-    conditions[0] += " AND resort_id IN(SELECT id FROM resorts WHERE country_id=#{id} AND visible=1)"
-    Property.order('RAND()').limit(limit).where(conditions)
+    Property.order('RAND()').limit(limit).where(country_id: id, publicly_visible: true)
   end
 
   def gross_revenue_rentals_ytd
