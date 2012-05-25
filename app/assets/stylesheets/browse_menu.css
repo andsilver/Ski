@@ -34,8 +34,12 @@ ul#resort_options {
   display: inline-block;
 }
 
-div.resort_option {
-  width: 74px;
+#countries div {
+  display: inline-block;
+}
+
+#countries div.resort_option {
+  width: 155px;
 }
 
 #resorts div.resort_option {
@@ -75,7 +79,7 @@ div.property_count {
 
 #countries a, #resort_options a {
   background-color: #fff;
-  padding: 4px 8px;
+  padding: 4px 0 4px 8px;
 }
 
 #countries a {
