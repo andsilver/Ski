@@ -1,7 +1,7 @@
 class PropertiesController < ApplicationController
   include SpamProtection
 
-  CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.property_id FROM adverts WHERE adverts.property_id=properties.id AND adverts.expires_at > NOW())"]
+  CURRENTLY_ADVERTISED = ["properties.id IN (SELECT adverts.property_id FROM adverts WHERE adverts.expires_at > NOW())"]
 
   before_filter :no_browse_menu, :except => [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
