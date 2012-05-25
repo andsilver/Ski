@@ -45,6 +45,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    not_found unless @resort.visible? or admin?
+
     @heading_a = "#{t(@category.name)} in #{@resort.name}, #{@resort.country.name}"
     default_page_title(@heading_a)
 
