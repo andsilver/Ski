@@ -1,4 +1,5 @@
-<div class="group_panel">
+<%= render 'cms/menu' %>
+<div class="cms">
   <table class="grid">
     <thead>
       <tr>
@@ -16,9 +17,9 @@
         <td><%= da.user.name %></td>
         <td><%= da.business_name %></td>
         <td><%= da.strapline %></td>
-        <td><%= form_tag directory_advert_path(da), :method => :delete do %><input type="submit" value="Delete"><% end %></td>
+        <td><%= form_tag directory_advert_path(da), :method => :delete do %><input type="submit" value="Delete" class="btn btn-danger"><% end %></td>
       </tr>
 <% end -%>
     </tbody>
   </table>
-</div><!--.group_panel-->
+</div>

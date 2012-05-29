@@ -5,7 +5,7 @@
   %>
   <h3><%= link_to p.name, link %></h3>
   <p class="strapline"><%= p.strapline %></p>
-  <p class="thumbnail">
+  <p class="property_thumbnail">
     <% unless p.image.nil? %>
     <%= link_to(image_tag(p.image.url(120)), link) %>
     <% end %>

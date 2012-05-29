@@ -36,12 +36,79 @@
   <% end %>
 </div>
 <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="My Chalet Finder"></a>
-
+<style>
+label.filter input {
+  display: inline;
+}
+#column_headings nav {
+  padding-top: 10px;
+}
+#column_headings .btn-group {
+  float: left;
+}
+#column_headings h1, .nav-pills {
+  clear: left;
+}
+.nav-pills li {
+  font-size: 1.4em;
+}
+</style>
 <div id="column_headings">
+
+
+<% if @browse_menu
+  @country = @resort.country unless @resort.nil?
+%>
+<nav>
+  <div class="btn-group">
+    <button class="btn"><%= @country ? link_to(@country.name, @country) : 'Choose Country' %></button>
+    <button class="btn dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <% Country.with_visible_resorts.each do |c| %>
+      <li><a href="<%= country_path(c) %>"><%= c.name %> (<%= c.property_count %>)</a></li>
+      <% end %>
+    </ul>
+  </div>
+<% if @country %>
+  <div class="btn-group">
+    <button class="btn"><%= @resort ? @resort.name : 'Choose Resort' %></button>
+    <button class="btn dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <% @country.visible_resorts.each do |r| %>
+      <li><a href="<%= resort_path(r) %>"><%= r.name %> (<%= r.property_count %>)</a></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if @resort %>
+  <ul class="nav nav-pills">
+    <li <%= 'class="active"'.html_safe if current_page?(resort_path(@resort)) %>><%=
+      link_to t('resort_options.resort_info'), resort_path(@resort) %></li>
+    <li <%= 'class="active"'.html_safe if current_page?(resort_property_rent_path(@resort)) %>><a href="<%= resort_property_rent_path(@resort) %>"><%=
+      t('for_rent') %> (<%= @resort.for_rent_count %>)</a></li>
+    <li <%= 'class="active"'.html_safe if current_page?(resort_property_sale_path(@resort)) %>><a href="<%= resort_property_sale_path(@resort) %>"><%=
+      t('for_sale') %> (<%= @resort.for_sale_count %>)</a></li>
+    <li <%= 'class="active"'.html_safe if current_page?(resort_property_new_developments_path(@resort)) %>><a href="<%= resort_property_new_developments_path(@resort) %>"><%=
+      t('resort_options.new_developments') %> (<%= @resort.new_development_count %>)</a></li>
+    <li <%= 'class="active"'.html_safe if current_page?(resort_property_hotels_path(@resort)) %>><a href="<%= resort_property_hotels_path(@resort) %>"><%=
+      t('resort_options.hotels') %> (<%= @resort.hotel_count %>)</a></li>
+    <li <%= 'class="active"'.html_safe if current_page?(directory_resort_path(@resort)) %>><%= link_to t('directory'), directory_resort_path(@resort) %></li>
+    <li <%= 'class="active"'.html_safe if current_page?(piste_map_resort_path(@resort)) %>><%= link_to I18n.t('piste_map'), piste_map_resort_path(@resort) %></li>
+    <li <%= 'class="active"'.html_safe if current_page?(gallery_resort_path(@resort)) %>><%= link_to t('gallery'), gallery_resort_path(@resort) %></li>
+  </ul>
+<% end %>
+</nav>
+<% end %>
+
+
+
+
   <h1><%= @heading_a %></h1>
 </div>
-
-<%= render "shared/countries_menu" %>
 
 <div id="content" role="main">
 <%= flash_notice %>

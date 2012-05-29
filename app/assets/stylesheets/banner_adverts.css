@@ -12,12 +12,13 @@
 }
 
 #content_with_wide_skyscrapers {
-  width: 580px;
+  width: 821px;
+  padding: 0 15px 0 0;
   float: left;
 }
 
 #wide_skyscrapers {
-  float: right;
+  float: left;
   padding-top: 13px;
   width: 160px;
 }

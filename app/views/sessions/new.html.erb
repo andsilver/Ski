@@ -2,17 +2,17 @@
   <div class="group_panel">
     <h2><%= t 'users.sign_in_to_access_your_account' %></h2>
   <%= form_tag :action => 'create' do -%>
-    <div class="field">
-      <label for="email"><%= I18n.t('email') %></label><br>
-      <%= text_field_tag :email, params[:email] %>
-    </div>
-    <div class="field">
-      <label for="password"><%= I18n.t('password') %></label><br>
-      <%= password_field_tag :password, params[:password] %>
-    </div>
-    <%= submit_tag I18n.t('sign_in') %>
+    <label for="email"><%= I18n.t('email') %></label>
+    <%= text_field_tag :email, params[:email] %>
+
+    <label for="password"><%= I18n.t('password') %></label>
+    <%= password_field_tag :password, params[:password] %>
+
+    <p>
+      <%= submit_tag I18n.t('sign_in'), class: 'btn btn-primary' %>
+    </p>
     <p id="forgot_your_password">
-      <%= link_to t('users.forgot_your_password'), :controller => 'users', :action => 'forgot_password' %>
+      <%= link_to t('users.forgot_your_password'), {:controller => 'users', :action => 'forgot_password'}, class: 'btn btn-small' %>
     </p>
   <% end -%>
   </div>

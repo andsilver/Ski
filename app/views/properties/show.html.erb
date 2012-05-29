@@ -57,7 +57,7 @@
 <% @favourite = Favourite.new(:property_id => @property.id) %>
 <%= form_for @favourite do |f| %>
 <%= f.hidden_field :property_id %>
-<p><%= f.submit t('favourites.add') %></p>
+<p><%= f.submit(t('favourites.add'), class: 'btn btn-primary btn-large') %></p>
 <% end %>
 <% end %>
 
@@ -164,7 +164,9 @@
 <p class="chunky_button"><a href="#" id="location">Location</a></p>
 <% end %>
 
-<p class="chunky_button"><%= link_to t('enquire'), contact_property_path(@property) %></p>
+<p>
+  <%= link_to t('enquire'), contact_property_path(@property), class: 'btn btn-large btn-primary' %>
+</p>
 
 <%= clear %>
 

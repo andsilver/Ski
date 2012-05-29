@@ -1,0 +1,95 @@
+<div style="width: 240px; float: left; margin-right: 20px;">
+  <h2>General</h2>
+  <ul class="nav nav-pills nav-stacked">
+    <li<%= ' class="active"'.html_safe if current_page? guide_path %>>
+      <%= link_to 'Guide', guide_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? export_path %>>
+      <%= link_to 'Export Data', export_path %>
+    </li>
+  </ul>
+  <h2>Financial &amp; Analysis</h2>
+  <ul class="nav nav-pills nav-stacked">
+    <li<%= ' class="active"'.html_safe if current_page? management_information_path %>>
+      <%= link_to 'Management Information', management_information_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? orders_path %>>
+      <%= link_to 'Orders', orders_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? payments_path %>>
+      <%= link_to 'Payments', payments_path %>
+    </li>
+  </ul>
+  <h2>Pricing</h2>
+  <ul class="nav nav-pills nav-stacked">
+    <li<%= ' class="active"'.html_safe if current_page? banner_directory_advert_prices_path %>>
+      <%= link_to 'Banner & Directory Prices', banner_directory_advert_prices_path %> 
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? banner_prices_path %>>
+      <%= link_to 'Banner Prices', banner_prices_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? property_base_prices_path %>>
+      <%= link_to 'Property Base Prices', property_base_prices_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? property_volume_discounts_path %>>
+      <%= link_to 'Property Volume Discounts', property_volume_discounts_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? window_base_prices_path %>>
+      <%= link_to 'Window Base Prices', window_base_prices_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? coupons_path %>>
+      <%= link_to 'Promotion Codes', coupons_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? currencies_path %>>
+      <%= link_to 'Currencies', currencies_path %>
+    </li>
+  </ul>
+  <h2>User Management</h2>
+  <ul class="nav nav-pills nav-stacked">
+    <li<%= ' class="active"'.html_safe if current_page? users_path %>>
+      <%= link_to 'Users', users_path %> 
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? roles_path %>>
+      <%= link_to 'Roles', roles_path %>
+    </li>
+  </ul>
+  <h2>Content</h2>
+  <ul class="nav nav-pills nav-stacked">
+    <li<%= ' class="active"'.html_safe if current_page? countries_path %>>
+      <%= link_to 'Countries', countries_path %> 
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? buying_guides_path %>>
+      <%= link_to 'Buying Guides', buying_guides_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? airports_path %>>
+      <%= link_to 'Airports', airports_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? airport_distances_path %>>
+      <%= link_to 'Airport Distances', airport_distances_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? resorts_path %>>
+      <%= link_to 'Resorts', resorts_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? categories_path %>>
+      <%= link_to 'Categories', categories_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? uploads_path %>>
+      <%= link_to 'Uploads', uploads_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? blog_posts_path %>>
+      <%= link_to 'Blog', blog_posts_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? pages_path %>>
+      <%= link_to 'Page Meta Data', pages_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? edit_website_path(@w) %>>
+      <%= link_to 'Website Misc', edit_website_path(@w) %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? directory_adverts_path %>>
+      <%= link_to 'Directory Adverts', directory_adverts_path %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current_page? properties_path %>>
+      <%= link_to 'Properties', properties_path %>
+    </li>
+  </ul>
+</div>
