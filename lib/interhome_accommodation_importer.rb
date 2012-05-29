@@ -115,6 +115,13 @@ class InterhomeAccommodationImporter
     property.currency_id = @euro.id
     property.sleeping_capacity = accommodation.pax
     property.number_of_bedrooms = accommodation.bedrooms
+
+    if accommodation.features.include? 'parking'
+      property.parking = Property::PARKING_OFF_STREET
+    else
+      property.parking = Property::PARKING_ON_STREET
+    end
+
     return unless property.save
 
     accommodation.interhome_pictures.each do |picture|
