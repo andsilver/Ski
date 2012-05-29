@@ -26,7 +26,10 @@
       Land <%= p.plot_size_metres_2 %> m<sup>2</sup>
       <% end %>
     </p>
-    <p class="contact_owner"><%= link_to t('enquire'), contact_property_path(p) %></p>
+    <%
+    link = p.interhome_accommodation_id ? p.interhome_accommodation.partner_link : contact_property_path(p)
+    %>
+    <p class="contact_owner"><%= link_to t('enquire'), link %></p>
     <p class="email_a_friend"><%= link_to t('properties.email_a_friend'), email_a_friend_property_path(p) %></p>
   </div>
   <%= clear %>

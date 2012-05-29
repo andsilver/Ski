@@ -12,6 +12,10 @@ class InterhomeAccommodation < ActiveRecord::Base
     desc ? desc.description : ''
   end
 
+  def partner_link
+    "http://www.interhome.co.uk/Forward.aspx?navigationid=10&partnerid=CH1000651&aCode=#{code}"
+  end
+
   # Returns the rental price for today's date. If there are no prices for
   # today then returns the earliest price in the table. If no prices are
   # found then nil is returned.

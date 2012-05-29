@@ -111,7 +111,7 @@ features = @accommodation.features.split(',')
 <p class="chunky_button"><a href="#" id="location">Location</a></p>
 <% end %>
 
-<p class="chunky_button"><%= link_to t('enquire'), contact_property_path(@property) %></p>
+<p class="chunky_button"><%= link_to t('enquire'), @property.interhome_accommodation.partner_link %></p>
 
 <%= clear %>
 
