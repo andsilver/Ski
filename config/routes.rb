@@ -23,7 +23,7 @@ MySkiChalet::Application.routes.draw do
   resources :airports
   resources :airport_distances
 
-  match "categories/:id/:resort_id" => "categories#show", as: :category
+  match "categories/:id/:resort_id" => "categories#show", as: :show_category
   resources :categories
 
   match "sign_in" => "sessions#new"
