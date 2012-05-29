@@ -1,5 +1,4 @@
 .property_summary {
-  width: 507px;
   background-image: url(/images/property-summary-bg.png);
   background-position: right top;
   background-repeat: repeat-y;
@@ -33,6 +32,10 @@
   float: left;
   width: 120px;
   padding: 0 8px 0 0;
+}
+
+.property_summary .thumbnail {
+  width: 173px;
 }
 
 .property_summary .features {
