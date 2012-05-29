@@ -7,7 +7,7 @@
   <p class="strapline"><%= p.strapline %></p>
   <p class="thumbnail">
     <% unless p.image.nil? %>
-    <%= link_to(image_tag(p.image.url(90)), link) %>
+    <%= link_to(image_tag(p.image.url(120)), link) %>
     <% end %>
   </p>
   <% unless p.features.empty? %>
