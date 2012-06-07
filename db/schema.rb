@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525110913) do
+ActiveRecord::Schema.define(:version => 20120607095750) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -186,6 +186,15 @@ ActiveRecord::Schema.define(:version => 20120525110913) do
   add_index "favourites", ["property_id"], :name => "index_favourites_on_property_id"
   add_index "favourites", ["unregistered_user_id"], :name => "index_favourites_on_unregistered_user_id"
 
+  create_table "footers", :force => true do |t|
+    t.string   "name",       :null => false
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "footers", ["name"], :name => "index_footers_on_name"
+
   create_table "images", :force => true do |t|
     t.integer  "user_id"
     t.string   "filename",    :null => false
@@ -343,6 +352,7 @@ ActiveRecord::Schema.define(:version => 20120525110913) do
     t.datetime "updated_at"
     t.string   "fixed_banner_image_filename", :default => "", :null => false
     t.string   "fixed_banner_target_url",     :default => "", :null => false
+    t.integer  "footer_id"
   end
 
   add_index "pages", ["path"], :name => "index_pages_on_path"

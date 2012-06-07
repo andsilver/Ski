@@ -1,0 +1,30 @@
+<%= render 'cms/menu' %>
+<div class="cms">
+<h1><%= link_to 'CMS', cms_path %> &rarr; Footers</h1>
+<p>
+  <%= link_to 'New Footer', new_footer_path %>
+</p>
+<% if @footers.empty? %>
+<p>There are no footers set up yet.</p>
+<% else %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @footers.each do |footer| %>
+    <tr>
+      <td><%= footer.name %></td>
+      <td>
+        <%= link_to 'Edit', edit_footer_path(footer) %>
+        <%= link_to 'Delete', footer, confirm: t('are_you_sure'), method: :delete %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+</div>

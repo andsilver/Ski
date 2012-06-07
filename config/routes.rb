@@ -137,6 +137,8 @@ MySkiChalet::Application.routes.draw do
     get 'resources', on: :collection
   end
 
+  resources :footers
+
   resources :blog_posts
   match "blog" => "blog_posts#blog"
   resources :favourites

@@ -27,6 +27,10 @@
   <%= f.label :keywords %><br>
   <%= f.text_area :keywords %>
 </div>
+<div class="field">
+  <%= f.label :footer %><br>
+  <%= select("page", "footer_id", (Footer.all.collect {|f| [ f.name, f.id ] }).sort, {prompt: 'Choose footer'}) %>
+</div>
 <div class="group_panel">
   <h2>Fixed Banner</h2>
   <div class="field">

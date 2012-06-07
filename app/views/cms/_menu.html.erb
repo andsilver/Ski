@@ -82,6 +82,9 @@
     <li<%= ' class="active"'.html_safe if current_page? pages_path %>>
       <%= link_to 'Page Meta Data', pages_path %>
     </li>
+    <li<%= ' class="active"'.html_safe if current_page? footers_path %>>
+      <%= link_to 'Footers', footers_path %>
+    </li>
     <li<%= ' class="active"'.html_safe if current_page? edit_website_path(@w) %>>
       <%= link_to 'Website Misc', edit_website_path(@w) %>
     </li>
