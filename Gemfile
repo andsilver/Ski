@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.5'
 gem 'mysql2', '0.3.11'
 gem 'will_paginate', :git => 'git@github.com:bridgeutopia/will_paginate.git', :branch => 'rails3'
 gem 'image_science', '1.2.2'
@@ -17,7 +17,6 @@ gem 'newrelic_rpm'
 
 gem 'sqlite3'
 
-gem 'json'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,7 +25,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platform => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -46,7 +45,7 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
+# gem 'debugger'
 
 group :test do
   gem "autotest", "4.4.6"
