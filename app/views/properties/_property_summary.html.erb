@@ -29,8 +29,8 @@
     <%
     link = p.interhome_accommodation_id ? p.interhome_accommodation.partner_link : contact_property_path(p)
     %>
-    <p class="contact_owner"><%= link_to t('enquire'), link %></p>
-    <p class="email_a_friend"><%= link_to t('properties.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow' %></p>
+    <p class="contact_owner"><%= link_to t('enquire'), link, title: "Enquire about #{p.name}" %></p>
+    <p class="email_a_friend"><%= link_to t('properties.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}" %></p>
   </div>
   <%= clear %>
   <% if fav = favourite_for_property(p) %>

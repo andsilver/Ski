@@ -88,27 +88,35 @@ label.filter input {
 <% if @resort %>
   <ul class="nav nav-pills" id="resort-nav">
     <li <%= 'class="active"'.html_safe if current_page?(resort_path(@resort)) %>><%=
-      link_to t('resort_options.resort_info'), resort_path(@resort) %></li>
+      link_to t('resort_options.resort_info'), resort_path(@resort), title: "#{@resort.name} resort information" %></li>
 <% unless @resort.for_rent_count == 0 -%>
-    <li <%= 'class="active"'.html_safe if current_page?(resort_property_rent_path(@resort)) %>><a href="<%= resort_property_rent_path(@resort) %>"><%=
+    <li <%= 'class="active"'.html_safe if current_page?(resort_property_rent_path(@resort)) %>><a
+      title="Property for rent in <%= @resort.name %>"
+      href="<%= resort_property_rent_path(@resort) %>"><%=
       t('for_rent') %> (<%= @resort.for_rent_count %>)</a></li>
 <% end -%>
 <% unless @resort.for_sale_count == 0 -%>
-    <li <%= 'class="active"'.html_safe if current_page?(resort_property_sale_path(@resort)) %>><a href="<%= resort_property_sale_path(@resort) %>"><%=
+    <li <%= 'class="active"'.html_safe if current_page?(resort_property_sale_path(@resort)) %>><a
+      title="Property for sale in <%= @resort.name %>"
+      href="<%= resort_property_sale_path(@resort) %>"><%=
       t('for_sale') %> (<%= @resort.for_sale_count %>)</a></li>
 <% end -%>
 <% unless @resort.new_development_count == 0 -%>
-    <li <%= 'class="active"'.html_safe if current_page?(resort_property_new_developments_path(@resort)) %>><a href="<%= resort_property_new_developments_path(@resort) %>"><%=
+    <li <%= 'class="active"'.html_safe if current_page?(resort_property_new_developments_path(@resort)) %>><a
+      title="New property developments in <%= @resort.name %>"
+      href="<%= resort_property_new_developments_path(@resort) %>"><%=
       t('resort_options.new_developments') %> (<%= @resort.new_development_count %>)</a></li>
 <% end -%>
 <% unless @resort.hotel_count == 0 -%>
-    <li <%= 'class="active"'.html_safe if current_page?(resort_property_hotels_path(@resort)) %>><a href="<%= resort_property_hotels_path(@resort) %>"><%=
+    <li <%= 'class="active"'.html_safe if current_page?(resort_property_hotels_path(@resort)) %>><a
+      title="Hotels in <%= @resort.name %>"
+      href="<%= resort_property_hotels_path(@resort) %>"><%=
       t('resort_options.hotels') %> (<%= @resort.hotel_count %>)</a></li>
 <% end -%>
-    <li <%= 'class="active"'.html_safe if current_page?(directory_resort_path(@resort)) %>><%= link_to t('directory'), directory_resort_path(@resort) %></li>
-    <li <%= 'class="active"'.html_safe if current_page?(piste_map_resort_path(@resort)) %>><%= link_to I18n.t('piste_map'), piste_map_resort_path(@resort) %></li>
-    <li <%= 'class="active"'.html_safe if current_page?(gallery_resort_path(@resort)) %>><%= link_to t('gallery'), gallery_resort_path(@resort) %></li>
-    <li <%= 'class="active"'.html_safe if current_page?(summer_holidays_path(@resort)) %>><%= link_to t('resorts_controller.summer_holidays'), summer_holidays_path(@resort) %></li>
+    <li <%= 'class="active"'.html_safe if current_page?(directory_resort_path(@resort)) %>><%= link_to t('directory'), directory_resort_path(@resort), title: "#{@resort.name} directory" %></li>
+    <li <%= 'class="active"'.html_safe if current_page?(piste_map_resort_path(@resort)) %>><%= link_to I18n.t('piste_map'), piste_map_resort_path(@resort), title: "#{@resort.name} piste maps" %></li>
+    <li <%= 'class="active"'.html_safe if current_page?(gallery_resort_path(@resort)) %>><%= link_to t('gallery'), gallery_resort_path(@resort), title: "Photos of #{@resort.name}" %></li>
+    <li <%= 'class="active"'.html_safe if current_page?(summer_holidays_path(@resort)) %>><%= link_to t('resorts_controller.summer_holidays'), summer_holidays_path(@resort), title: "Summer holidays in #{@resort.name}" %></li>
   </ul>
 <% end %>
 </nav>
