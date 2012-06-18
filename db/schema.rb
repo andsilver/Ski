@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120618120217) do
+ActiveRecord::Schema.define(:version => 20120618162908) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -595,7 +595,6 @@ ActiveRecord::Schema.define(:version => 20120618120217) do
     t.boolean  "blog_visible",                                                     :default => false, :null => false
     t.text     "contact_details"
     t.decimal  "vat_rate",                           :precision => 4, :scale => 2, :default => 20.0,  :null => false
-    t.text     "links_content"
     t.text     "resources_banner_html"
   end
 

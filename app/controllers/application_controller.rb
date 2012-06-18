@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
     @urls = [
       '/contact',
       '/enquiries/new',
-      '/links',
       '/privacy',
       '/resorts/featured',
       '/sign_in',

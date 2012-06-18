@@ -154,7 +154,6 @@ MySkiChalet::Application.routes.draw do
   match "export/spreadsheet/:class_name" => "export#spreadsheet", :as => :export_spreadsheet
 
   match "contact" => "home#contact"
-  match "links" => "home#links"
   match "privacy" => "home#privacy"
   match "terms" => "home#terms"
   match 'sitemap.xml' => 'application#sitemap', :as => 'sitemap', :format => 'xml'

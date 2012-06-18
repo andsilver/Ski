@@ -10,10 +10,6 @@ class HomeController < ApplicationController
     default_page_title t('contact')
   end
 
-  def links
-    default_page_title t('links')
-  end
-
   def privacy
     default_page_title t('privacy')
   end
