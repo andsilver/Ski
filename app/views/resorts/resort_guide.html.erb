@@ -90,31 +90,25 @@
 </table>
 
 <h2><%= t('resorts_controller.detail.how_to_get_there') %></h2>
-<div class="row">
-  <div class="span6">
 
-    <% unless @resort.how_to_get_to.blank? %>
-    <div id="how_to_get_to">
-      <%= md @resort.how_to_get_to %>
-    </div>
-    <% end %>
+<table class="table table-bordered table-striped" id="airport-distances">
+  <tr>
+    <th>Airport</th>
+    <th>Distance</th>
+  </tr>
+  <% @resort.airport_distances.each do |ad| %>
+  <tr>
+    <td><%= ad.airport.name %></td>
+    <td><%= ad.distance_km %>km</td>
+  </tr>
+  <% end %>
+</table>
 
-  </div>
-  <div class="span4">
-    <table class="table table-bordered table-striped">
-      <tr>
-        <th>Airport</th>
-        <th>Distance</th>
-      </tr>
-      <% @resort.airport_distances.each do |ad| %>
-      <tr>
-        <td><%= ad.airport.name %></td>
-        <td><%= ad.distance_km %>km</td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
+<% unless @resort.how_to_get_to.blank? %>
+<div id="how_to_get_to">
+  <%= md @resort.how_to_get_to %>
 </div>
+<% end %>
 
 <% unless @resort.visiting.blank? %>
 <h2><%= t('resorts_controller.detail.visiting', :resort => @resort) %></h2>
