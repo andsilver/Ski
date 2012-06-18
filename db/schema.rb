@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120607095750) do
+ActiveRecord::Schema.define(:version => 20120618120217) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -37,10 +37,9 @@ ActiveRecord::Schema.define(:version => 20120607095750) do
   add_index "adverts", ["user_id"], :name => "index_adverts_on_user_id"
 
   create_table "airport_distances", :force => true do |t|
-    t.integer  "resort_id",                   :null => false
-    t.integer  "airport_id",                  :null => false
-    t.integer  "distance_km", :default => 0,  :null => false
-    t.string   "comment",     :default => "", :null => false
+    t.integer  "resort_id",                  :null => false
+    t.integer  "airport_id",                 :null => false
+    t.integer  "distance_km", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
