@@ -21,6 +21,16 @@ module PropertiesHelper
     (html + ' ' + label + '</div>').html_safe
   end
 
+  def featured_properties(properties)
+    html = ''
+    unless properties.nil?
+      properties.each do |p|
+        html += render partial: 'properties/featured', locals: {p: p}
+      end
+    end
+    raw html
+  end
+
   def distance_options
     [
       ["< 100m", 100],

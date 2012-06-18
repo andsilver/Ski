@@ -1,0 +1,13 @@
+          <li>
+            <a href="<%= property_path(p) %>" class="thumbnail">
+              <div>
+                <% unless p.image.nil? %>
+                <%= image_tag(p.image.url(144)) %>
+                <% end %>
+              </div>
+              <h4><%= p.resort %></h4>
+              <p class="price"><%= p.for_sale? ? "Sale price" : "Weekly price from" %><br>
+                <span><%= p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
+              </p>
+            </a>
+          </li>

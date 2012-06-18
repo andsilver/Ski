@@ -2,7 +2,8 @@ class HomeController < ApplicationController
   layout 'application', :except => [:index]
 
   def index
-    render :layout => "home"
+    @featured_properties = Property.order('RAND()').limit(15).where(publicly_visible: true)
+    render layout: "home"
   end
 
   def contact

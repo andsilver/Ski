@@ -34,6 +34,35 @@
     <% end %></td>
   </tr>
 </table>
+
+  <script>
+  $(document).ready(function() {
+    $('.carousel').carousel();
+  });
+  </script>
+  <div id="featured_properties" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="item active">
+        <ul class="thumbnails">
+          <%= featured_properties(@featured_properties[0..3]) %>
+        </ul>
+      </div>
+      <div class="item">
+        <ul class="thumbnails">
+          <%= featured_properties(@featured_properties[4..7]) %>
+        </ul>
+      </div>
+      <div class="item">
+        <ul class="thumbnails">
+          <%= featured_properties(@featured_properties[8..11]) %>
+        </ul>
+      </div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#featured_properties" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#featured_properties" data-slide="next">&rsaquo;</a>
+  </div>
+
 <% unless @resort.introduction.blank? %>
 <%= md @resort.introduction %>
 <% end %>

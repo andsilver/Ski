@@ -11,5 +11,6 @@
  *= require_self
  *= require_tree ./home
  *= require_tree ./menus
+ *= require ./main/featured_properties
  *= require ./main/footer
 */

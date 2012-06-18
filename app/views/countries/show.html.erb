@@ -4,22 +4,35 @@
 
 <% unless @featured_properties.empty? -%>
 <h2><%= t('featured_accommodation') %></h2>
-<% @featured_properties.each do |p| -%>
 
-<div class="featured_property">
-  <h2><%= p.resort %></h2>
-  <p class="thumbnail">
-    <% unless p.image.nil? %>
-    <%= link_to(image_tag(p.image.url(144)), p) %>
-    <% end %>
-  </p>
-  <p class="price"><%= p.for_sale? ? "Sale price" : "Weekly price from" %><br>
-    <span><%= p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
-  </p>
-</div>
+  <script>
+  $(document).ready(function() {
+    $('.carousel').carousel();
+  });
+  </script>
+  <div id="featured_properties" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="item active">
+        <ul class="thumbnails">
+          <%= featured_properties(@featured_properties[0..3]) %>
+        </ul>
+      </div>
+      <div class="item">
+        <ul class="thumbnails">
+          <%= featured_properties(@featured_properties[4..7]) %>
+        </ul>
+      </div>
+      <div class="item">
+        <ul class="thumbnails">
+          <%= featured_properties(@featured_properties[8..11]) %>
+        </ul>
+      </div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#featured_properties" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#featured_properties" data-slide="next">&rsaquo;</a>
+  </div>
 
-
-<% end -%>
 <% end -%>
 </div>
 <div id="wide_skyscrapers">

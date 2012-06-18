@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <%= render "shared/page_meta" %>
   <%= javascript_include_tag 'application' %>
+  <script src="/bootstrap/js/bootstrap.min.js"></script>
   <%= render "shared/google" %>
   <script src="http://use.typekit.com/lxc8myw.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
@@ -12,8 +13,10 @@
   <script>
   $(document).ready(function() {
     gapi.plusone.render("plusone", {"size": "standard", "count": "true"});
+    $('.carousel').carousel();
   });
   </script>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
   <%= stylesheet_link_tag    "application-home", media: 'screen' %>
   <%= stylesheet_link_tag    "application-print", media: 'print' %>
 </head>
@@ -26,6 +29,29 @@
   <div id="intro">
     <%= t('home_page.introduction') %>
   </div>
+  <div id="featured_properties" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="item active">
+        <ul class="thumbnails">
+          <%= featured_properties(@featured_properties[0..4]) %>
+        </ul>
+      </div>
+      <div class="item">
+        <ul class="thumbnails">
+          <%= featured_properties(@featured_properties[5..9]) %>
+        </ul>
+      </div>
+      <div class="item">
+        <ul class="thumbnails">
+          <%= featured_properties(@featured_properties[10..14]) %>
+        </ul>
+      </div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#featured_properties" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#featured_properties" data-slide="next">&rsaquo;</a>
+  </div>
+
   <%= render "shared/countries_menu" %>
 </div>
 <footer role="contentinfo">

@@ -1,0 +1,57 @@
+#featured_properties {
+  .thumbnail {
+    background: #fff;
+    text-align: center;
+  }
+
+  ul {
+    padding-left: 73px;
+  }
+
+  .thumbnail div {
+    height: 120px;
+    width: 144px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .thumbnails > li {
+    width: 154px;
+    overflow: hidden;
+  }
+
+  .thumbnail {
+    height: 192px;
+  }
+
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #005580;
+    text-decoration: underline;
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 18px;
+    margin: 0;
+  }
+
+  h4 {
+    line-height: 18px;
+    margin: 0;
+  }
+
+  .carousel-control {
+    color: #fff;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+
+  .carousel-control:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
