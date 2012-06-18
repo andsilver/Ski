@@ -104,3 +104,8 @@ div.property_count {
 #browse #resort_options a:hover {
   background-position: 14px bottom;
 }
+
+#resort-nav {
+  margin-top: 32px;
+  margin-bottom: 8px;
+}

@@ -86,7 +86,7 @@ label.filter input {
   </div>
 <% end %>
 <% if @resort %>
-  <ul class="nav nav-pills">
+  <ul class="nav nav-pills" id="resort-nav">
     <li <%= 'class="active"'.html_safe if current_page?(resort_path(@resort)) %>><%=
       link_to t('resort_options.resort_info'), resort_path(@resort) %></li>
     <li <%= 'class="active"'.html_safe if current_page?(resort_property_rent_path(@resort)) %>><a href="<%= resort_property_rent_path(@resort) %>"><%=
