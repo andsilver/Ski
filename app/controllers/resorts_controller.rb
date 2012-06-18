@@ -47,7 +47,7 @@ class ResortsController < ApplicationController
   end
 
   def show
-    default_page_title "Summary and Snow/Weather Forecast for #{@resort} Ski Resort, #{@resort.country}"
+    default_page_title "#{@resort} | Ski Holiday Accommodation | Chalets & Apartments for Rent & Sale"
     @heading_a = t('resorts_controller.resort_information_heading', :resort => @resort.name)
     @featured_properties = Property.order('RAND()').limit(12).where(publicly_visible: true, resort_id: @resort.id)
   end
