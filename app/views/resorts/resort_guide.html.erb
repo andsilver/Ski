@@ -126,11 +126,6 @@
 <%= md @resort.owning_a_property_in %>
 <% end %>
 
-<% unless @resort.summer_holidays_in.blank? %>
-<h2><%= t('resorts_controller.detail.summer_holidays_in', :resort => @resort) %></h2>
-<%= md @resort.summer_holidays_in %>
-<% end %>
-
 <% unless @resort.living_in.blank? %>
 <h2><%= t('resorts_controller.detail.living_in', :resort => @resort) %></h2>
 <%= md @resort.living_in %>

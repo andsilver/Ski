@@ -419,6 +419,7 @@ fr:
     piste_map:
       no_piste_maps: "There are no piste maps for this resort yet."
     resort_information_heading: "%{resort} Resort Information"
+    summer_holidays: 'Grandes Vacances'
   resort_options:
     hotels: Hotels
     new_developments: Nouvelle

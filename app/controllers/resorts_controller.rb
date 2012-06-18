@@ -1,7 +1,7 @@
 class ResortsController < ApplicationController
-  before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map, :piste_map_full_size, :resort_guide, :gallery]
-  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :resort_guide, :directory, :feature, :piste_map, :piste_map_full_size, :gallery]
-  before_filter :no_browse_menu, :except => [:show, :feature, :directory]
+  before_filter :admin_required, :except => [:show, :directory, :feature, :featured, :piste_map, :piste_map_full_size, :resort_guide, :gallery, :summer_holidays]
+  before_filter :find_resort, :only => [:edit, :update, :show, :destroy, :resort_guide, :directory, :feature, :piste_map, :piste_map_full_size, :gallery, :summer_holidays]
+  before_filter :no_browse_menu, :except => [:show, :feature, :directory, :resort_guide, :summer_holidays]
 
   def index
     @countries = Country.with_resorts
@@ -91,6 +91,11 @@ class ResortsController < ApplicationController
   end
 
   def feature
+  end
+
+  def summer_holidays
+    @heading_a = t('resorts_controller.detail.summer_holidays_in', resort: @resort)
+    default_page_title @heading_a
   end
 
   protected

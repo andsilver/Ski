@@ -8,6 +8,7 @@ MySkiChalet::Application.routes.draw do
     :as => :resort_property_new_developments
   match "resorts/:resort_id/properties/hotels" => "properties#browse_hotels", :as => :resort_property_hotels
   match "resorts/:id/resort-guide" => "resorts#resort_guide", as: :resort_guide
+  match "resorts/:id/summer-holidays" => "resorts#summer_holidays", as: :summer_holidays
   resources :resorts do
     get 'featured',  :on => :collection
     member do

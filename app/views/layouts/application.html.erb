@@ -100,6 +100,7 @@ label.filter input {
     <li <%= 'class="active"'.html_safe if current_page?(directory_resort_path(@resort)) %>><%= link_to t('directory'), directory_resort_path(@resort) %></li>
     <li <%= 'class="active"'.html_safe if current_page?(piste_map_resort_path(@resort)) %>><%= link_to I18n.t('piste_map'), piste_map_resort_path(@resort) %></li>
     <li <%= 'class="active"'.html_safe if current_page?(gallery_resort_path(@resort)) %>><%= link_to t('gallery'), gallery_resort_path(@resort) %></li>
+    <li <%= 'class="active"'.html_safe if current_page?(summer_holidays_path(@resort)) %>><%= link_to t('resorts_controller.summer_holidays'), summer_holidays_path(@resort) %></li>
   </ul>
 <% end %>
 </nav>

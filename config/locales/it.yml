@@ -419,6 +419,7 @@ it:
     piste_map:
       no_piste_maps: "There are no piste maps for this resort yet."
     resort_information_heading: "%{resort} Resort Information"
+    summer_holidays: 'Vacanze Estive'
   resort_options:
     hotels: Hotels
     new_developments: New Build
