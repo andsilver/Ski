@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
       '/users/forgot_password',
       '/welcome/advertiser',
       '/welcome/estate-agent',
+      '/welcome/hotelier',
       '/welcome/letting-agent',
       '/welcome/other-business',
       '/welcome/property-owner',
