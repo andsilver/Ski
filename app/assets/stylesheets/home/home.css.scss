@@ -19,19 +19,20 @@ a img {
 
 #wrapper {
   width: 996px;
-  height: 700px;
-  background-image: url(/images/chalet.jpg);
+  height: 1420px;
+  background-image: url(/images/chalet-2.jpg);
   background-repeat: no-repeat;
+  background-position: top left;
   margin: 0 auto;
   position: relative;
   border-bottom: 1px solid #00aeef;
 }
 
 #shade {
-  opacity: 0.6;
+  opacity: 0.8;
   background: #000;
   height: 56px;
-  margin-bottom: 207px;
+  margin-bottom: 130px;
 }
 
 #logo {
@@ -54,13 +55,25 @@ p {
 
 div#intro {
   position: absolute;
-  top: 100px;
+  top: 90px;
   left: 0;
   padding: 16px;
-  width: 330px;
+  width: 500px;
   font-size: 1.5em;
   line-height: 1.4em;
   font-weight: bold;
+}
+
+#begin {
+  position: absolute;
+  right: 16px;
+  top: 114px;
+  font-size: 14px;
+}
+
+#begin p {
+  padding-left: 10px;
+  margin-bottom: 4px;
 }
 
 footer {
@@ -78,6 +91,35 @@ footer p {
 footer a {
   color: #000;
 }
+
+.country {
+  float: left;
+  width: 293px;
+  height: 300px;
+  background: #fff;
+  margin: 16px 0 0 16px;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+}
+
+.country p {
+  font-size: 12px;
+}
+
+.resort {
+  border-top: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+
+#browse {
+  display: none;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
 #featured_properties {
   margin-bottom: 320px;
 }

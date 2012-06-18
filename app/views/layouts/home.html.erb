@@ -29,6 +29,24 @@
   <div id="intro">
     <%= t('home_page.introduction') %>
   </div>
+
+  <div id="begin">
+    <p>
+      Begin your search
+    </p>
+    <div class="btn-group">
+      <button class="btn"><%= @country ? link_to(@country.name, @country) : 'Choose Country' %></button>
+      <button class="btn dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <% Country.with_visible_resorts.each do |c| %>
+        <li><a href="<%= country_path(c) %>"><%= c.name %> (<%= c.property_count %>)</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
   <div id="featured_properties" class="carousel slide">
     <div class="carousel-inner">
       <div class="item active">
@@ -53,6 +71,21 @@
   </div>
 
   <%= render "shared/countries_menu" %>
+  <% Country.all(limit: 6, order: 'property_count DESC').each do |country| %>
+  <div class="country">
+    <h2><%= country %></h2>
+    <% Resort.all(limit: 3, order: 'property_count DESC', conditions: { country_id: country.id }).each do |resort| %>
+    <div class="resort">
+      <h3><%= link_to resort, resort %></h3>
+      <p>
+        <%= link_to "Accommodation to rent in #{resort}", resort_property_rent_path(resort) %><br>
+        <%= link_to "Accommodation for sale in #{resort}", resort_property_sale_path(resort) %><br>
+        <%= link_to "Hotels in #{resort}", resort_property_hotels_path(resort) %>
+      </p>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
 </div>
 <footer role="contentinfo">
   <p style="float:left;">
