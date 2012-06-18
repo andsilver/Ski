@@ -42,6 +42,7 @@ MySkiChalet::Application.routes.draw do
       post 'forgot_password_change'
       get 'forgot_password_new'
       post 'forgot_password_send'
+      get 'select_role'
     end
   end
 

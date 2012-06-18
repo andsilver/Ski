@@ -24,13 +24,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def select_role
+    stage_one
+    render 'new'
+  end
+
   def create
-    @heading_a = t 'sign_up'
-    @user = User.new(post_params)
-    @role = Role.find_by_id(params[:user][:role_id])
-    if @role && @role.select_on_signup?
-      @user.role_id = @role.id
-    end
+    stage_one
 
     if params[:stage] && params[:stage]=="1"
       render "new" and return
@@ -111,6 +111,15 @@ class UsersController < ApplicationController
   end
   
   private
+
+  def stage_one
+    @heading_a = t 'sign_up'
+    @user = User.new(post_params)
+    @role = Role.find_by_id(params[:user][:role_id])
+    if @role && @role.select_on_signup?
+      @user.role_id = @role.id
+    end
+  end
 
   def after_create_path(user)
     if user.role.only_advertises_properties_for_sale?
