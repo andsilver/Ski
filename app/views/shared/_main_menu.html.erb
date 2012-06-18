@@ -41,7 +41,7 @@ function closeMenu(menu) {
 <% if admin? %>
     <li><%= link_to 'CMS', cms_path %></li>
 <% end %>
-    <li><%= link_to t('favourites.favourites'), favourites_path %></li>
+    <li><%= link_to t('favourites.favourites'), favourites_path, rel: 'nofollow' %></li>
     <li><a id="advertise_link" href="/welcome/advertiser" onmouseover="openMenu(document.getElementById('welcome_advertisers'));" onmouseout="startCloseMenu(document.getElementById('welcome_advertisers'));"><%= t('advertise') %></a><div class="drop" id="welcome_advertisers" onmouseover="openMenu(this);" onmouseout="startCloseMenu(this);">
       <a href="/welcome/property-owner"><%= t('roles.property_owners') %></a>
       <a href="/welcome/letting-agent"><%= t('roles.letting_agents') %></a>
