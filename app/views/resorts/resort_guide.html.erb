@@ -14,8 +14,6 @@
     <td><%= @resort.black %></td>
     <th><%= t('resorts_controller.facts.drags') %></th>
     <td><%= @resort.drags %></td>
-    <th><%= t('resorts_controller.facts.heli_skiing') %></th>
-    <td><%= tick_cross_unknown @resort.heli_skiing %></td>
   </tr>
   <tr>
     <th><%= t('resorts_controller.facts.top_lift') %></th>
@@ -24,8 +22,6 @@
     <td><%= @resort.red %></td>
     <th><%= t('resorts_controller.facts.chair') %></th>
     <td><%= @resort.chair %></td>
-    <th><%= t('resorts_controller.facts.summer_skiing') %></th>
-    <td><%= tick_cross_unknown(@resort.summer_skiing) %></td>
   </tr>
   <tr>
     <th><%= t('resorts_controller.facts.family') %></th>
@@ -34,8 +30,6 @@
     <td><%= @resort.blue %></td>
     <th><%= t('resorts_controller.facts.gondola') %></th>
     <td><%= @resort.gondola %></td>
-    <th><%= t('resorts_controller.facts.glacier_skiing') %></th>
-    <td><%= tick_cross_unknown(@resort.glacier_skiing) %></td>
   </tr>
   <tr>
     <th><%= t('resorts_controller.facts.beginner') %></th>
@@ -44,8 +38,6 @@
     <td><%= @resort.green %></td>
     <th><%= t('resorts_controller.facts.cable_car') %></th>
     <td><%= @resort.cable_car %></td>
-    <th><%= t('resorts_controller.facts.babysitting_services') %></th>
-    <td><%= tick_cross_unknown(@resort.babysitting_services) %></td>
   </tr>
   <tr>
     <th><%= t('resorts_controller.facts.intermediate') %></th>
@@ -54,8 +46,6 @@
     <td><%= @resort.ski_area_km %>km<sup>2</sup></td>
     <th><%= t('resorts_controller.facts.funicular') %></th>
     <td><%= @resort.funicular %></td>
-    <th><%= t('resorts_controller.facts.creche') %></th>
-    <td><%= tick_cross_unknown(@resort.creche) %></td>
   </tr>
   <tr>
     <th><%= t('resorts_controller.facts.expert') %></th>
@@ -64,8 +54,6 @@
     <td><%= @resort.longest_run_km %>km</td>
     <th><%= t('resorts_controller.facts.railways') %></th>
     <td><%= @resort.railways %></td>
-    <th><%= t('resorts_controller.facts.apres_ski') %></th>
-    <td><%= @resort.apres_ski %></td>
   </tr>
   <tr>
     <th><%= t('resorts_controller.facts.off_piste') %></th>
@@ -74,8 +62,6 @@
     <td><%= @resort.cross_country_km %>km</td>
     <th><%= t('resorts_controller.facts.slope_direction') %></th>
     <td><%= @resort.slope_direction %></td>
-    <th>&nbsp;</th>
-    <td>&nbsp;</td>
   </tr>
   <tr>
     <th><%= t('resorts_controller.facts.season') %></th>
@@ -84,8 +70,22 @@
     <td><%= @resort.snowboard_parks %></td>
     <th><%= t('resorts_controller.facts.mountain_restaurants') %></th>
     <td><%= @resort.mountain_restaurants %></td>
-    <th>&nbsp;</th>
-    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th><%= t('resorts_controller.facts.heli_skiing') %></th>
+    <td><%= tick_cross_unknown @resort.heli_skiing %></td>
+    <th><%= t('resorts_controller.facts.summer_skiing') %></th>
+    <td><%= tick_cross_unknown(@resort.summer_skiing) %></td>
+    <th><%= t('resorts_controller.facts.glacier_skiing') %></th>
+    <td><%= tick_cross_unknown(@resort.glacier_skiing) %></td>
+  </tr>
+  <tr>
+    <th><%= t('resorts_controller.facts.babysitting_services') %></th>
+    <td><%= tick_cross_unknown(@resort.babysitting_services) %></td>
+    <th><%= t('resorts_controller.facts.creche') %></th>
+    <td><%= tick_cross_unknown(@resort.creche) %></td>
+    <th><%= t('resorts_controller.facts.apres_ski') %></th>
+    <td><%= @resort.apres_ski %></td>
   </tr>
 </table>
 

@@ -387,8 +387,14 @@ table.chat {
   width: 600px;;
 }
 
-#resort_facts td, #resort_facts th {
-  width: 12.5%;
+#resort_facts {
+  td {
+    width: 15.666%;
+  }
+
+  th {
+    width: 17.666%;
+  }
 }
 
 #resort_facts td, #resort_facts th, .chat td, .chat th {
