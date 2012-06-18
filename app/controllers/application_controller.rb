@@ -29,9 +29,10 @@ class ApplicationController < ActionController::Base
         @urls << resort_guide_url(resort)
         @urls << gallery_resort_url(resort)
         @urls << piste_map_resort_url(resort)
-        @urls << resort_property_rent_url(resort)
-        @urls << resort_property_sale_url(resort)
-        @urls << resort_property_new_developments_url(resort)
+        @urls << resort_property_hotels_path(resort) unless resort.hotel_count == 0
+        @urls << resort_property_rent_url(resort) unless resort.for_rent_count == 0
+        @urls << resort_property_sale_url(resort) unless resort.for_sale_count == 0
+        @urls << resort_property_new_developments_url(resort) unless resort.new_development_count == 0
       end
     end
     Property.find_each(batch_size: 500, conditions: {publicly_visible: true}, include: :interhome_accommodation) do |property|
