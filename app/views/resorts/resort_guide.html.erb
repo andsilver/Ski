@@ -89,8 +89,7 @@
   </tr>
 </table>
 
-<h2><%= t('resorts_controller.detail.how_to_get_there') %></h2>
-
+<% unless @resort.airport_distances.empty? -%>
 <table class="table table-bordered table-striped" id="airport-distances">
   <tr>
     <th>Airport</th>
@@ -103,6 +102,9 @@
   </tr>
   <% end %>
 </table>
+<% end -%>
+
+<h2><%= t('resorts_controller.detail.how_to_get_there') %></h2>
 
 <% unless @resort.how_to_get_to.blank? %>
 <div id="how_to_get_to">
