@@ -572,3 +572,25 @@ iframe {
   margin-bottom: 15px;
   width: 40%;
 }
+
+label.filter input {
+  display: inline;
+}
+
+#column_headings {
+  nav {
+    padding-top: 10px;
+  }
+
+  .btn-group {
+    float: left;
+  }
+}
+
+#column_headings h1, .nav-pills {
+  clear: left;
+}
+
+.nav-pills li {
+  font-size: 1.4em;
+}
