@@ -49,9 +49,15 @@ module ResortsHelper
     end
 
     if @resort
-      resort_images(@resort, 'headers')
+      if controller.action_name == 'summer_holidays'
+        sub_dir = 'summer-headers'
+      else
+        sub_dir = 'headers'
+      end
+      resort_images(@resort, sub_dir)
+
       @images.each do |img|
-        urls << "/resorts/#{@resort.name.parameterize}/headers/#{img}"
+        urls << "/resorts/#{@resort.name.parameterize}/#{sub_dir}/#{img}"
       end
     end
 
