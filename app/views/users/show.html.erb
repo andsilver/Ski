@@ -1,19 +1,15 @@
+<style scoped>
+a[rel=popover] {
+  width: 200px;
+}
+</style>
 <%= render 'advertising_options' %>
-<a class="cms_box" href="<%= my_adverts_path %>">
-  <h2><%= t('my_adverts') %></h2>
-  <p><%= t('users.my_adverts.description') %></p>
-</a>
-<a class="cms_box" href="<%= my_details_path %>">
-  <h2><%= t('users.my_details.my_details') %></h2>
-  <p><%= t('users.my_details.description') %></p>
-</a>
-<a class="cms_box" href="<%= receipts_orders_path %>">
-  <h2><%= t('receipts') %></h2>
-  <p><%= t('users.receipts.description') %></p>
-</a>
-<a class="cms_box" href="<%= my_enquiries_path %>">
-  <h2><%= t('my_enquiries') %></h2>
-  <p><%= t('users.my_enquiries.description') %></p>
-</a>
+<%= user_action(my_adverts_path, t('my_adverts'), t('users.my_adverts.description')) %>
+<%= user_action(my_details_path, t('users.my_details.my_details'), t('users.my_details.description')) %>
+<%= user_action(receipts_orders_path, t('receipts'), t('users.receipts.description')) %>
+<%= user_action(my_enquiries_path, t('my_enquiries'), t('users.my_enquiries.description')) %>
+<script>
+$('a[rel=popover]').popover();
+</script>
 
 <%= clear %>

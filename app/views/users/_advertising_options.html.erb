@@ -1,30 +1,25 @@
 <% if @current_user.role.advertises_through_windows? %>
-<a class="cms_box" href="<%= buy_windows_adverts_path %>">
-  <h2><%= t('adverts_controller.buy_advertising_windows') %></h2>
-  <p><%= t('users.buy_advertising_windows.description') %></p>
-</a>
+<%= user_action(buy_windows_adverts_path,
+  t('adverts_controller.buy_advertising_windows'),
+  t('users.buy_advertising_windows.description')) %>
 <% end %>
 <% if @current_user.role.advertises_properties_for_rent? %>
-<a class="cms_box" href="<%= new_property_path(:listing_tyoe => Property::LISTING_TYPE_FOR_RENT) %>" title="New Property for Rent">
-  <h2><%= t('users.advertise_a_property_for_rent.advertise_a_property_for_rent') %></h2>
-  <p><%= t('users.advertise_a_property_for_rent.description') %></p>
-</a>
+<%= user_action(new_property_path(listing_tyoe: Property::LISTING_TYPE_FOR_RENT),
+  t('users.advertise_a_property_for_rent.advertise_a_property_for_rent'), 
+  t('users.advertise_a_property_for_rent.description')) %>
 <% end %>
 <% if @current_user.role.advertises_properties_for_sale? %>
-<a class="cms_box" href="<%= new_property_path(:listing_type => Property::LISTING_TYPE_FOR_SALE) %>">
-  <h2><%= t('users.advertise_a_property_for_sale.advertise_a_property_for_sale') %></h2>
-  <p><%= t('users.advertise_a_property_for_sale.description') %></p>
-</a>
+<%= user_action(new_property_path(listing_type: Property::LISTING_TYPE_FOR_SALE),
+  t('users.advertise_a_property_for_sale.advertise_a_property_for_sale'),
+  t('users.advertise_a_property_for_sale.description')) %>
 <% end %>
 <% if @current_user.role.advertises_hotels? %>
-<a class="cms_box" href="<%= new_property_path(:listing_type => Property::LISTING_TYPE_HOTEL) %>">
-  <h2><%= t('users.advertise_a_hotel.advertise_a_hotel') %></h2>
-  <p><%= t('users.advertise_a_hotel.description') %></p>
-</a>
+<%= user_action(new_property_path(listing_type: Property::LISTING_TYPE_HOTEL),
+  t('users.advertise_a_hotel.advertise_a_hotel'),
+  t('users.advertise_a_hotel.description')) %>
 <% end %>
 <% if @current_user.role.advertises_generally? %>
-<a class="cms_box" href="<%= new_directory_advert_path %>" title="New Directory Advert">
-  <h2><%= t('users.new_directory_advert.new_directory_advert') %></h2>
-  <p><%= t('users.new_directory_advert.description') %></p>
-</a>
+<%= user_action(new_directory_advert_path,
+  t('users.new_directory_advert.new_directory_advert'),
+  t('users.new_directory_advert.description')) %>
 <% end %>
