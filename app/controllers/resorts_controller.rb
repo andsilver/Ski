@@ -18,8 +18,7 @@ class ResortsController < ApplicationController
     respond_to do |format|
       if @resort.save
         session[:last_country_id] = @resort.country_id
-        set_image_mode
-        format.html { redirect_to(new_image_path, :notice => t('notices.created')) }
+        format.html { redirect_to(resorts_path, notice: t('notices.created')) }
         format.xml  { render :xml => @resort, :status => :created, :location => @resort }
       else
         format.html { render :action => "new" }
