@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120618162908) do
+ActiveRecord::Schema.define(:version => 20120619125500) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -45,6 +45,19 @@ ActiveRecord::Schema.define(:version => 20120618162908) do
   end
 
   add_index "airport_distances", ["resort_id"], :name => "index_airport_distances_on_resort_id"
+
+  create_table "airport_transfers", :force => true do |t|
+    t.integer  "airport_id",                         :null => false
+    t.integer  "resort_id",                          :null => false
+    t.integer  "user_id",                            :null => false
+    t.boolean  "publicly_visible", :default => true, :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  add_index "airport_transfers", ["airport_id"], :name => "index_airport_transfers_on_airport_id"
+  add_index "airport_transfers", ["resort_id"], :name => "index_airport_transfers_on_resort_id"
+  add_index "airport_transfers", ["user_id"], :name => "index_airport_transfers_on_user_id"
 
   create_table "airports", :force => true do |t|
     t.string   "name",       :default => "", :null => false

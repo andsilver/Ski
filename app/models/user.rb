@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   has_many :orders_with_receipts, :class_name => 'Order', :conditions => "status NOT IN (#{Order::WAITING_FOR_PAYMENT})",
     :order => 'created_at DESC'
 
+  has_many :airport_transfers, dependent: :delete_all
+
   attr_protected :role_id
   attr_protected :coupon_id
   attr_protected :forgot_password_token
@@ -133,6 +135,13 @@ class User < ActiveRecord::Base
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def airport_transfer_company?
+    directory_adverts.each do |a|
+      return true if a.is_banner_advert? && a.currently_advertised? && a.category.name == 'category_names.airport_transfer'
+    end
+    false
   end
 
   protected

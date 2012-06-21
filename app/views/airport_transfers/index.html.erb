@@ -1,0 +1,48 @@
+<style scoped>
+select.wide {
+  width: 520px;
+}
+</style>
+<h2>Set up a new connection</h2>
+<p>
+  Select an airport then select a number of connections with resorts
+  from that airport. Press Add Connection(s) and then repeat for
+  additional airports. Tip: Press <kbd>Ctrl</kbd> while clicking to select
+  multiple resorts on a Windows computer. On a Mac, press <kbd>Cmd</kbd>.
+</p>
+<div class="well">
+  <%= form_tag(action: :create) do %>
+  <div class="row">
+    <div class="span5">
+      <h3>Airport</h3>
+      <%= select("transfers", "airport_id", (Airport.all.collect {|a| [ a.name, a.id ] }).sort) %>
+    </div>
+    <div class="span7">
+      <h3>Resort(s)</h3>
+      <%= select("transfers", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort,
+{}, {:multiple => true, :size => 10, class: 'wide'}) %>
+    </div>
+  </div>
+  <%= submit_tag 'Add Connection(s)', class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+<% if @airport_transfers.empty? -%>
+<p>You have no transfers set up yet.</p>
+<% else -%>
+<div class="span9">
+  <table class="table table-bordered">
+    <tr>
+      <th>Airport</th>
+      <th>Resort</th>
+    </tr>
+  <% @airport_transfers.each do |at| -%>
+    <tr>
+      <td><%= at.airport %></td>
+      <td><%= at.resort %></td>
+      <td><%= link_to 'Delete', at, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger btn-mini' %></td>
+    </tr>
+  <% end -%>
+  </table>
+</div>
+<% end -%>

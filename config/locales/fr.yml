@@ -59,6 +59,9 @@ fr:
     total: Total
     windows: Windows
   advert_details: Détail de l'annonce
+  airport_transfers_controller:
+    titles:
+      index: 'Manage your airport transfers list'
   are_you_sure: 'Etes-vous sûr?'
   basket: Panier
   bathrooms: Salles de bains
@@ -260,6 +263,7 @@ fr:
   nearest_lift: 'Nearest lift'
   new_developments: 'New Developments'
   notices:
+    added: Added.
     admin_required: You need to be logged in as an administrator to do that.
     advert_removed: Advert removed.
     basket_updated: Basket updated.
@@ -493,6 +497,9 @@ fr:
       content: "Un email a été envoyé montrant comment réinitialiser votre mot de passe et le changement. S'il vous plaît vérifier votre boîte de réception dans quelques minutes."
     forgot_your_password: Mot de Passe Oublié
     i_accept_terms: 'I have read, understood and agree to be bound by the terms and conditions.'
+    manage_airport_transfers:
+      description: 'Set up your list of airport-resort connections and be found in our airport transfer tool'
+      manage_airport_transfers: 'Manage Airport Transfers'
     my_adverts:
       description: 'View and update your past and current adverts. See your advert stats.'
     my_details:

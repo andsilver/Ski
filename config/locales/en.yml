@@ -59,6 +59,9 @@ en:
     total: Total
     windows: Windows
   advert_details: Advert details
+  airport_transfers_controller:
+    titles:
+      index: 'Manage your airport transfers list'
   are_you_sure: 'Are you sure?'
   basket: Basket
   bathrooms: 'Bathrooms'
@@ -260,6 +263,7 @@ en:
   nearest_lift: 'Nearest lift'
   new_developments: 'New Developments'
   notices:
+    added: Added.
     admin_required: You need to be logged in as an administrator to do that.
     advert_removed: Advert removed.
     basket_updated: Basket updated.
@@ -493,6 +497,9 @@ en:
       content: An email has been sent showing how to reset and change your password. Please check your inbox in a few minutes.
     forgot_your_password: Forgot your password?
     i_accept_terms: 'I have read, understood and agree to be bound by the terms and conditions.'
+    manage_airport_transfers:
+      description: 'Set up your list of airport-resort connections and be found in our airport transfer tool'
+      manage_airport_transfers: 'Manage Airport Transfers'
     my_adverts:
       description: 'View and update your past and current adverts. See your advert stats.'
     my_details:
