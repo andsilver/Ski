@@ -1,4 +1,5 @@
 class AirportTransfersController < ApplicationController
+  before_filter :no_browse_menu
   before_filter :user_required
 
   def index
