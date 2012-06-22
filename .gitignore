@@ -23,7 +23,6 @@ doc/features.html
 /tmp
 
 /public/up
-webrat.log
 .sass-cache/
 
 # Ignore generated RDOC
