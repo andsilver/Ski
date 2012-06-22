@@ -1,6 +1,4 @@
 class Country < ActiveRecord::Base
-  require File.expand_path('../../../lib/ruby_19', __FILE__)
-
   belongs_to :image, :dependent => :destroy
 
   has_many :resorts, :order => 'name'
