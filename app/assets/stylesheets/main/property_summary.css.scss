@@ -1,3 +1,5 @@
+$shade: #8ed8f8;
+
 #property_summaries {
   float: left;
   width: 581px;
@@ -7,6 +9,20 @@
   background-image: url(/images/property-summary-bg.png);
   background-position: right top;
   background-repeat: repeat-y;
+
+  background-image: linear-gradient(left , rgb(255,255,255) 20%, $shade 100%);
+  background-image: -o-linear-gradient(left , rgb(255,255,255) 20%, $shade 100%);
+  background-image: -moz-linear-gradient(left , rgb(255,255,255) 20%, $shade 100%);
+  background-image: -webkit-linear-gradient(left , rgb(255,255,255) 20%, $shade 100%);
+  background-image: -ms-linear-gradient(left , rgb(255,255,255) 20%, $shade 100%);
+
+  background-image: -webkit-gradient(
+  	linear,
+  	left bottom,
+  	right bottom,
+  	color-stop(0.2, rgb(255,255,255)),
+  	color-stop(1, $shade)
+  );
   border-bottom: 1px solid #68c8e7;
   padding: 6px 8px 0 12px;
 }

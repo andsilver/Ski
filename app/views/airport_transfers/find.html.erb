@@ -1,0 +1,36 @@
+<div id="search_options">
+  <%= form_tag action: 'results' do %>
+  <p>
+    Choose which airport and resort you want to travel between and we'll
+    find you the airport transfer companies with those connections.
+  </p>
+  <label>To/from airport</label>
+  <%= select("airport_transfer_search", "airport_id", (Airport.all.collect {|a| [ a.name, a.id ] }).sort, prompt: 'Choose Airport') %>
+  <label>To/from resort</label>
+  <%= select("airport_transfer_search", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, prompt: 'Choose Resort') %>
+  <br><%= submit_tag 'Find Transfers', class: 'btn btn-primary' %>
+  <% end %>
+</div>
+<div id="airport_transfers">
+  <% if defined? @results %>
+  <% if @results.empty? %>
+  <p>
+    There are no airport transfers between <%= @airport %> and <%= @resort %>.
+  </p>
+  <% else %>
+  <% @results.each do |r| %>
+  <div class="property_summary airport_transfer">
+    <p class="airport_thumbnail"><%= image_tag(r.image.url, alt: r.business_name) unless r.image.nil? %></p>
+    <h3><a href="<%= r.url %>"><%= r.business_name %> #<%= r.id %></a></h3>
+    <p class="strapline">
+      <%= r.strapline %>
+    </p>
+    <div class="actions">
+      <p class="contact_owner"><%= link_to 'Visit website', r.url %></p>
+    </div>
+    <%= clear %>
+  </div>
+  <% end %>
+  <% end %>
+  <% end %>
+</div><!--#airport_transfers-->

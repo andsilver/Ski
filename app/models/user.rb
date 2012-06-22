@@ -138,10 +138,14 @@ class User < ActiveRecord::Base
   end
 
   def airport_transfer_company?
+    airport_transfer_banner_advert
+  end
+
+  def airport_transfer_banner_advert
     directory_adverts.each do |a|
-      return true if a.is_banner_advert? && a.currently_advertised? && a.category.name == 'category_names.airport_transfer'
+      return a if a.is_banner_advert? && a.currently_advertised? && a.category.name == 'category_names.airport_transfer'
     end
-    false
+    nil
   end
 
   protected
