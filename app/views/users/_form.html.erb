@@ -16,27 +16,27 @@
 <div class="group_panel">
 <h2><%= t('users.your_details') %></h2>
 <div class="field">
-  <%= f.label :first_name, t('first_name') %><br>
+  <%= f.label :first_name, t('first_name') %>
   <%= f.text_field :first_name %> <%= required_field %>
 </div>
 <div class="field">
-  <%= f.label :last_name, t('last_name') %><br>
+  <%= f.label :last_name, t('last_name') %>
   <%= f.text_field :last_name %> <%= required_field %>
 </div>
 <div class="field">
-  <%= f.label :email %><br>
+  <%= f.label :email %>
   <%= f.text_field :email %> <%= required_field %>
 </div>
 <div class="field">
-  <%= f.label :password, t('password') %><br>
+  <%= f.label :password, t('password') %>
   <%= f.password_field :password %> <%= required_field if @user.new_record? %>
 </div>
 <div class="field">
-  <%= f.label :phone, t('phone') %><br>
+  <%= f.label :phone, t('phone') %>
   <%= f.text_field :phone %>
 </div>
 <div class="field">
-  <%= f.label :mobile, t('mobile') %><br>
+  <%= f.label :mobile, t('mobile') %>
   <%= f.text_field :mobile %>
 </div>
 </div>
@@ -48,7 +48,7 @@
   Apply the following coupon code to this user's purchases:
 </p>
 <div class="field">
-  <%= f.label :coupon_id, I18n.t('coupon') %><br>
+  <%= f.label :coupon_id, I18n.t('coupon') %>
   <%= select("user", "coupon_id", Coupon.all.collect {|c| [ c.code, c.id ] }, {:prompt => 'Select Coupon'}) %>
 </div>
 </div>
@@ -58,15 +58,15 @@
 <div class="group_panel">
 <h2><%= t('business_details') %></h2>
 <div class="field">
-  <%= f.label :business_name, t('users.business_name') %><br>
+  <%= f.label :business_name, t('users.business_name') %>
   <%= f.text_field :business_name %>
 </div>
 <div class="field">
-  <%= f.label :position, t('users.your_position') %><br>
+  <%= f.label :position, t('users.your_position') %>
   <%= f.text_field :position %>
 </div>
 <div class="field">
-  <%= f.label :vat_number, t('users.vat_number') %><br>
+  <%= f.label :vat_number, t('users.vat_number') %>
   <%= f.text_field :vat_number, :placeholder => 'GB123456789' %>
 </div>
 </div>
@@ -75,7 +75,7 @@
 <% if @user.role.has_a_website? %>
 <div class="group_panel">
 <div class="field">
-  <%= f.label :website, t('users.website') %><br>
+  <%= f.label :website, t('users.website') %>
   <%= f.text_field :website %>
 </div>
 <p>
@@ -86,7 +86,7 @@
 <div class="group_panel">
   <h2>Logo or Photo of Business</h2>
   <div class="field">
-  	<label for="image">Image (.jpeg, .jpg, .gif, .png)</label><br>
+  	<label for="image">Image (.jpeg, .jpg, .gif, .png)</label>
   	<input id="image" name="image" type="file" />
   </div>
 </div>
@@ -96,15 +96,17 @@
 <% if @user.new_record? %>
 <h2><%= t 'terms' %></h2>
 <div class="field">
-  <%= f.check_box :terms_and_conditions %>
-  <%= f.label :terms_and_conditions, t('users.i_accept_terms') %>
-  <%= link_to t('view'), terms_path %>
+  <label class="checkbox">
+    <%= f.check_box :terms_and_conditions %>
+    <%= t('users.i_accept_terms') %>
+    <%= link_to t('view'), terms_path %>
   <%= required_field %>
+  </label>
 </div>
 <% end %>
 
 <div class="field">
-  <%= f.submit I18n.t(submit_label) %>
+  <%= f.submit I18n.t(submit_label), class: 'btn btn-primary btn-large' %>
 </div>
 </div>
 
@@ -113,26 +115,26 @@
 <div class="group_panel">
 <h2><%= t('users.billing_details') %></h2>
 <div class="field">
-  <%= f.label :billing_street, t('users.billing_street') %><br>
+  <%= f.label :billing_street, t('users.billing_street') %>
   <%= f.text_field :billing_street %> <%= required_field %>
 </div>
 <div class="field">
   <%= f.text_field :billing_locality %>
 </div>
 <div class="field">
-  <%= f.label :billing_city, t('city') %><br>
+  <%= f.label :billing_city, t('city') %>
   <%= f.text_field :billing_city %> <%= required_field %>
 </div>
 <div class="field">
-  <%= f.label :billing_county, t('county') %><br>
+  <%= f.label :billing_county, t('county') %>
   <%= f.text_field :billing_county %>
 </div>
 <div class="field">
-  <%= f.label :billing_postcode, t('postcode') %><br>
+  <%= f.label :billing_postcode, t('postcode') %>
   <%= f.text_field :billing_postcode %>
 </div>
 <div class="field">
-  <%= f.label :billing_country_id, t('countries.country') %><br>
+  <%= f.label :billing_country_id, t('countries.country') %>
   <%= select("user", "billing_country_id", Country.popular_billing_countries.collect {|c| [ c.name, c.id ] }, {:prompt => t('countries.select_country')}) %>
   <%= required_field %>
 </div>
@@ -142,8 +144,8 @@
 <div class="group_panel">
 <h2><%= @user.role.has_business_details? ? t('users.describe_your_business') : t('users.describe_yourself') %></h2>
 <div class="field">
-  <%= f.label :description, t('description') %><br>
-  <%= f.text_area :description %>
+  <%= f.label :description, t('description') %>
+  <%= f.text_area :description, class: 'span6' %>
 </div>
 </div>
 <% end %>
@@ -159,7 +161,7 @@
     Property ID (which looks like UA-00000000-1) below.
   </p>
   <div class="field">
-    <%= f.label :google_web_property_id, 'Google Web Property ID' %><br>
+    <%= f.label :google_web_property_id, 'Google Web Property ID' %>
     <%= f.text_field :google_web_property_id, :placeholder => 'UA-00000000-1' %>
   </div>
 </div>
