@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.5'
+gem 'rails', '3.2.6'
 gem 'mysql2', '0.3.11'
 gem 'will_paginate', :git => 'git@github.com:bridgeutopia/will_paginate.git', :branch => 'rails3'
 gem 'image_science', '1.2.2'
