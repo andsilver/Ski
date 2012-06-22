@@ -21,10 +21,14 @@
     a banner advert which includes a free directory listing.
   </p>
   <div class="field">
-  	<%= f.radio_button :is_banner_advert, false, :class => "radio" %>
-  	<label for="directory_advert_is_banner_advert_false">Directory advert only</label><br>
-  	<%= f.radio_button :is_banner_advert, true, :class => "radio" %>
-  	<label for="directory_advert_is_banner_advert_true">Banner advert with free directory advert</label>
+    <label class="radio">
+      <%= f.radio_button :is_banner_advert, false, :class => "radio" %>
+  	  Directory advert only
+    </label>
+    <label class="radio">
+      <%= f.radio_button :is_banner_advert, true, :class => "radio" %>
+  	  Banner advert with free directory advert
+    </label>
   </div>
 </div>
 <% end -%>
@@ -39,12 +43,12 @@
     Your banner image must be sized to 160 pixels wide and 200 pixels tall.
   </p>
   <div class="field">
-  	<label for="image">Directory image (.jpeg, .jpg, .gif, .png)</label><br>
-  	<%= file_field_tag 'image' %>
+    <label for="image">Directory image (.jpeg, .jpg, .gif, .png)</label>
+    <%= file_field_tag 'image' %>
   </div>
   <div class="field">
-  	<label for="banner_image">Banner image (.jpeg, .jpg, .gif, .png)</label><br>
-  	<%= file_field_tag 'banner_image' %>
+    <label for="banner_image">Banner image (.jpeg, .jpg, .gif, .png)</label>
+    <%= file_field_tag 'banner_image' %>
   </div>
 </div>
 
@@ -54,11 +58,11 @@
     <td width="40%">
 <div class="field">
 <% if @directory_advert.new_record? -%>
-  <%= f.label :resort_id, t('resorts') %><br>
+  <%= f.label :resort_id, t('resorts') %>
   <%= select("directory_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort,
   {}, {:multiple => true, :size => 10}) %>
 <% else -%>
-  <%= f.label :resort_id, t('resort') %><br>
+  <%= f.label :resort_id, t('resort') %>
   <%= select("directory_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort,
   {:prompt => 'Select Resort'}) %>
 <% end -%>
@@ -77,8 +81,8 @@
   <tr>
     <td>
 <div class="field">
-  <%= f.label :category_id, I18n.t('category') %> <span class="required">*</span><br>
-  <%= select("directory_advert", "category_id", (Category.all.collect {|c| [ t(c.name), c.id ] }).sort, {:prompt => 'Select Category'}) %>
+  <%= f.label :category_id, I18n.t('category') %>
+  <%= select("directory_advert", "category_id", (Category.all.collect {|c| [ t(c.name), c.id ] }).sort, {prompt: 'Select Category'}) %> <%= required_field %>
 </div>
     </td>
     <td><br><br>
@@ -88,7 +92,7 @@
   <tr>
     <td>
 <div class="field">
-  <%= f.label :business_name %><br>
+  <%= f.label :business_name %>
   <%= f.text_field :business_name %>
 </div>
     </td>
@@ -99,8 +103,8 @@
   <tr>
     <td>
 <div class="field">
-  <%= f.label :business_address %> <span class="required">*</span><br>
-  <%= f.text_area :business_address %>
+  <%= f.label :business_address %>
+  <%= f.text_area :business_address %> <%= required_field %>
 </div>
     </td>
     <td><br><br>
@@ -111,7 +115,7 @@
   <tr>
     <td>
 <div class="field">
-  <%= f.label :postcode, t('postcode') %><br>
+  <%= f.label :postcode, t('postcode') %>
   <%= f.text_field :postcode %>
 </div>
     </td>
@@ -124,7 +128,7 @@
 Please include the country calling code.
 
 <div class="field">
-  <%= f.label :phone, t('phone') %><br>
+  <%= f.label :phone, t('phone') %>
   <%= f.text_field :phone %>
 </div>
     </td>
@@ -134,7 +138,7 @@ Please include the country calling code.
   </tr>
     <td>
 <div class="field">
-  <%= f.label :url, 'Website address (URL)' %><br>
+  <%= f.label :url, 'Website address (URL)' %>
   <%= f.text_field :url %>
 </div>
     </td>
@@ -146,8 +150,8 @@ Please include the country calling code.
   <tr>
     <td>
       <div class="field">
-        <%= f.label :strapline %> <span class="required">*</span><br>
-        <%= f.text_area :strapline %>
+        <%= f.label :strapline %>
+        <%= f.text_area :strapline %> <%= required_field %>
       </div>
     </td>
     <td><br><br>
@@ -157,7 +161,7 @@ Please include the country calling code.
   <tr>
     <td>
 <div class="field">
-  <%= f.label :description %><br>
+  <%= f.label :description %>
   <%= f.text_area :description %>
 </div>
     </td>
@@ -168,7 +172,7 @@ Please include the country calling code.
   <tr>
     <td>
 <div class="field">
-  <%= f.label :opening_hours %><br>
+  <%= f.label :opening_hours %>
   <%= f.text_area :opening_hours %>
 </div>
     </td>
@@ -180,7 +184,7 @@ Please include the country calling code.
   <tr>
     <td>
 <div class="field">
-  <%= f.submit(I18n.t(:save)) %>
+  <%= f.submit(I18n.t(:save), class: 'btn btn-large btn-primary') %>
 </div>
     </td>
     <td>&nbsp;</td>

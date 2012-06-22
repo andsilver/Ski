@@ -2,12 +2,12 @@
 <div class="cms">
 <h1><%= link_to 'CMS', cms_path %> &rarr; Airports</h1>
 <p>
-  <%= link_to 'New Airport', new_airport_path %>
+  <%= link_to 'New Airport', new_airport_path, class: 'btn' %>
 </p>
 <% if @airports.empty? %>
 <p>There are no airports set up yet.</p>
 <% else %>
-<table>
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th>Name</th>

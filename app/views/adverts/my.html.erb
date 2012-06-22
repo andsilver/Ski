@@ -2,9 +2,8 @@
   <%= I18n.t('my_adverts') %></h1>
 
 <% if @current_user.role.advertises_through_windows? %>
-<div class="group_panel">
   <h2><%= t('my_windows') %></h2>
-  <table class="grid">
+  <table class="table table-bordered table-striped">
     <tr>
       <th><%= t('adverts_controller.purchased_on') %></th>
       <th><%= t('adverts_controller.expires_on') %></th>
@@ -24,7 +23,6 @@
     </tr>
   <% end %>
   </table>
-</div>
 <% end %>
 
 <% unless @rentals.empty? %>

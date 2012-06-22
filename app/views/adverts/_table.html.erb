@@ -4,10 +4,9 @@ $(document).ready(function() {
 });
 </script>
 
-<div class="group_panel">
 <h2><%= t title %></h2>
 
-<table class="grid">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th class="numeric">ID</th>
@@ -32,10 +31,9 @@ $(document).ready(function() {
     <tr>
       <td class="numeric"><%= a.id %></td>
       <td>
-        <%= link_to t('edit'), edit_polymorphic_path(a), :title => "Edit #{a.to_s}" %>
+        <%= link_to t('edit'), edit_polymorphic_path(a), title: "Edit #{a.to_s}", class: 'btn' %>
 <% if admin? -%>
-        |
-        <%= link_to 'Destroy', a, confirm: t('are_you_sure'), method: :delete %>
+        <%= link_to 'Destroy', a, confirm: t('are_you_sure'), method: :delete, class: 'btn btn-danger' %>
 <% end -%>
       </td>
       <td><%= a.resort.name %></td>
@@ -69,17 +67,17 @@ $(document).ready(function() {
         <% if a.currently_advertised? %>
           <% if a.current_advert.window? %>
             <%= form_tag :controller => :properties, :action => "remove_from_window", :id => a.id do %>
-              <%= submit_tag t('advertise_action.remove_from_window') %>
+            <%= submit_tag t('advertise_action.remove_from_window'), class: 'btn' %>
             <% end %>
           <% else %>
             <%= form_tag :controller => a.class.table_name, :action => "advertise_now", :id => a.id do %>
-            <%= submit_tag t('advertise_action.renew') %>
+            <%= submit_tag t('advertise_action.renew'), class: 'btn' %>
             <% end %>
           <% end %>
         <% else %>
         <% action = a.advert_status == :dormant ? "choose_window" : "advertise_now" %>
         <%= form_tag :controller => a.class.table_name, :action => action, :id => a.id do %>
-        <%= submit_tag t('advertise_action.' + a.advert_status.to_s) %>
+        <%= submit_tag t('advertise_action.' + a.advert_status.to_s), class: 'btn' %>
         <% end %>
         <% end %>
       </td>
@@ -87,4 +85,3 @@ $(document).ready(function() {
 <% end %>
   </tbody>
 </table>
-</div>

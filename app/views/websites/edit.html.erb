@@ -15,79 +15,71 @@
 <% end %>
 
 <%= form_for @website do |f| %>
-<div class="field">
-  <%= f.label :home_content %><br>
+  <%= f.label :home_content %>
   <%= f.text_area :home_content %>
-</div>
 
-<div class="field">
-  <%= f.label :contact_details %><br>
+  <%= f.label :contact_details %>
   <%= f.text_area :contact_details %>
-</div>
 
-<div class="field">
-  <%= f.label :terms %><br>
+  <%= f.label :terms %>
   <%= f.text_area :terms %>
-</div>
 
-<div class="field">
-  <%= f.label :privacy_policy %><br>
+  <%= f.label :privacy_policy %>
   <%= f.text_area :privacy_policy %>
-</div>
 
-<div class="field">
-  <%= f.label :resources_banner_html %><br>
+  <%= f.label :resources_banner_html %>
   <%= f.text_area :resources_banner_html %>
-</div>
 
-<div class="field">
-	<label for="website_blog_visible_true">Blog visible?:</label>
-	<%= f.radio_button :blog_visible, true, :class => "radio" %>
-	<label for="website_blog_visible_true">Yes</label>
-	<%= f.radio_button :blog_visible, false, :class => "radio" %>
-	<label for="website_blog_visible">No</label>
-</div>
+	<label for="website_blog_visible_true">Blog visible?</label>
+	<label class="radio">
+    <%= f.radio_button :blog_visible, true %>
+	  Yes
+  </label>
+  <label class="radio">
+    <%= f.radio_button :blog_visible, false %>
+    No
+  </label>
 
-<div class="field">
-	<%= f.label :vat_rate, 'VAT rate' %>:<br>
+	<%= f.label :vat_rate, 'VAT rate' %>
 	<%= f.text_field :vat_rate, :class => "text" %> %
-</div>
 
-<div class="field">
-	<label for="website_skip_payment_true">Skip payment?:</label>
-	<%= f.radio_button :skip_payment, true, :class => "radio" %>
-	<label for="website_skip_payment_true">Yes</label>
-	<%= f.radio_button :skip_payment, false, :class => "radio" %>
-	<label for="website_skip_payment">No</label>
-</div>
+	<label for="website_skip_payment_true">Skip payment?</label>
+	<label class="radio">
+    <%= f.radio_button :skip_payment, true %>
+    Yes
+  </label>
+	<label class="radio">
+    <%= f.radio_button :skip_payment, false %>
+    No
+	</label>
 
 <h2>WorldPay Settings</h2>
 
-<div class="field">
-	<label for="website_worldpay_active_true">Active?:</label>
-	<%= f.radio_button :worldpay_active, true, :class => "radio" %>
-	<label for="website_worldpay_active_true">Yes</label>
-	<%= f.radio_button :worldpay_active, false, :class => "radio" %>
-	<label for="website_worldpay_active">No</label>
-</div>
+	<label for="website_worldpay_active_true">Active?</label>
+	<label class="radio">
+    <%= f.radio_button :worldpay_active, true %>
+    Yes
+  </label>
+  <label class="radio">
+	  <%= f.radio_button :worldpay_active, false %>
+    No
+  </label>
 
-<div class="field">
-	<label for="website_worldpay_test_mode">Mode?:</label>
-	<%= f.radio_button :worldpay_test_mode, false, :class => "radio" %>
-	<label for="website_worldpay_test_mode">Production</label>
-	<%= f.radio_button :worldpay_test_mode, true, :class => "radio" %>
-	<label for="website_worldpay_test_mode_true">Test</label>
-</div>
+	<label for="website_worldpay_test_mode">Mode?</label>
+	<label class="radio">
+    <%= f.radio_button :worldpay_test_mode, false %>
+    Production
+  </label>
+	<label class="radio">
+    <%= f.radio_button :worldpay_test_mode, true %>
+    Test
+  </label>
 
-<div class="field">
-	<%= f.label :worldpay_installation_id, 'Installation ID' %>:<br>
-	<%= f.text_field :worldpay_installation_id, :class => "text" %>
-</div>
+	<%= f.label :worldpay_installation_id, 'Installation ID' %>
+	<%= f.text_field :worldpay_installation_id %>
 
-<div class="field">
-	<%= f.label :worldpay_payment_response_password, 'Payment response password' %>:<br>
-	<%= f.text_field :worldpay_payment_response_password, :class => "text" %>
-</div>
+	<%= f.label :worldpay_payment_response_password, 'Payment response password' %>
+	<%= f.text_field :worldpay_payment_response_password %>
 
 <div class="field">
   <%= f.submit class: 'btn btn-primary' %>

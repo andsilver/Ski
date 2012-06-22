@@ -1,8 +1,10 @@
+<%= render 'cms/menu' %>
+<div class="cms">
 <h1>Banner Prices</h1>
 
 <p><%= link_to 'New', new_banner_price_path %></p>
 
-<table class="grid">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th>Current Banner Number</th>
@@ -22,3 +24,4 @@
 <% end -%>
   </tbody>
 </table>
+</div>

@@ -200,6 +200,10 @@ textarea {
   clear: both;
 }
 
+.table td, .table th {
+  font-size: 14px;
+}
+
 td.numeric, th.numeric {
   text-align: right;
 }
