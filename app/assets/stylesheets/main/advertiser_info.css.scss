@@ -68,6 +68,20 @@
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#005bab', endColorstr='#004b90',GradientType=0 ); /* IE6-9 */
     }
 
+    li {
+      position: relative;
+      list-style: none;
+      padding-left: 24px;
+
+      i {
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-style: normal;
+        color: #005cab;
+      }
+    }
+
     span {
       display: block;
       width: 466px;
