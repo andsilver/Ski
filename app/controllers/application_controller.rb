@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :initialize_website, :set_locale, :initialize_user, :page_defaults
 
+  def restart
+    admin_required
+    `touch tmp/restart.txt` # assumes Phusion Passenger
+    redirect_to cms_path, notice: 'Application restarted.'
+  end
+
   def sitemap
     domain = "#{request.subdomains.first}.#{request.domain}"
     @urls = [

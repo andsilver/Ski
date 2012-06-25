@@ -164,6 +164,7 @@ MySkiChalet::Application.routes.draw do
   match "privacy" => "home#privacy"
   match "terms" => "home#terms"
   match 'sitemap.xml' => 'application#sitemap', :as => 'sitemap', :format => 'xml'
+  match 'restart' => 'application#restart', as: 'restart'
   root :to => "home#index"
 
   # The priority is based upon order of creation:
