@@ -11,38 +11,33 @@
 <% end %>
 
 <%= form_for @page do |f| %>
-<div class="field">
-  <%= f.label :path %><br>
+  <%= f.label :path %>
   <%= f.text_field :path %>
-</div>
-<div class="field">
-  <%= f.label :title %><br>
+
+  <%= f.label :title %>
   <%= f.text_field :title %>
-</div>
-<div class="field">
-  <%= f.label :description %><br>
+
+  <%= f.label :description %>
   <%= f.text_area :description %>
-</div>
-<div class="field">
-  <%= f.label :keywords %><br>
+
+  <%= f.label :keywords %>
   <%= f.text_area :keywords %>
-</div>
-<div class="field">
-  <%= f.label :footer %><br>
+
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+
+  <%= f.label :footer %>
   <%= select("page", "footer_id", (Footer.all.collect {|f| [ f.name, f.id ] }).sort, {prompt: 'Choose footer'}) %>
-</div>
+
 <div class="group_panel">
   <h2>Fixed Banner</h2>
-  <div class="field">
-    <%= f.label :fixed_banner_image_filename %><br>
+    <%= f.label :fixed_banner_image_filename %>
     /public/fixed-banners/ <%= f.text_field :fixed_banner_image_filename %>
-  </div>
-  <div class="field">
-    <%= f.label :fixed_banner_target_url %><br>
+
+    <%= f.label :fixed_banner_target_url %>
     <%= f.text_field :fixed_banner_target_url %>
-  </div>
 </div>
 <div class="field">
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 </div>
 <% end %>

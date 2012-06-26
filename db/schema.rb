@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120619125500) do
+ActiveRecord::Schema.define(:version => 20120625203321) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -365,6 +365,7 @@ ActiveRecord::Schema.define(:version => 20120619125500) do
     t.string   "fixed_banner_image_filename", :default => "", :null => false
     t.string   "fixed_banner_target_url",     :default => "", :null => false
     t.integer  "footer_id"
+    t.text     "content"
   end
 
   add_index "pages", ["path"], :name => "index_pages_on_path"

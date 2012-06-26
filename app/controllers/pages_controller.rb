@@ -41,6 +41,11 @@ class PagesController < ApplicationController
     @buying_guides = BuyingGuide.all
   end
 
+  def show
+    @page = Page.find_by_path("/pages/#{params[:id]}")
+    not_found unless @page
+  end
+
   protected
 
   def find_page
