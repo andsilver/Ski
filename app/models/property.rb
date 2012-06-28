@@ -206,12 +206,14 @@ class Property < ActiveRecord::Base
   end
 
   def attempt_geocode a
-    a = "#{a},#{resort.country.name}".gsub("\n", ' ').gsub(' ', '+')
-    Rails.logger.info('attempting geocode: ' + a)
-    url = '/maps/api/geocode/json?address=' + a + '&sensor=false'
+    q = CGI.escape("#{a},#{resort.country.name}")
+    Rails.logger.info("attempting geocode: #{q}")
+    url = "/maps/api/geocode/json?address=#{q}&sensor=false"
     require 'net/http'
     http = Net::HTTP.new('maps.googleapis.com', 80)
-    response, data = http.get(url)
+    response = http.get(url)
+    data = response.body
+    Rails.logger.info(data)
     begin
       json = JSON.parse(data)
     rescue
