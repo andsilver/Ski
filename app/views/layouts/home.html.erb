@@ -26,7 +26,7 @@
 <div id="wrapper">
   <%= render "shared/main_menu" %>
   <div id="shade">&nbsp;</div>
-  <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="My Chalet Finder"></a>
+  <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="<%= alt_attribute('/images/my-chalet-finder-logo-3.png', 'My Chalet Finder') %>"></a>
   <div id="intro">
     <%= t('home_page.introduction') %>
   </div>

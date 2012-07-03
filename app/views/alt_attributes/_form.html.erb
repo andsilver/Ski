@@ -1,0 +1,21 @@
+<% if @alt_attribute.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@alt_attribute.errors.count, "error") %> prohibited this alt attribute from being saved:</h2>
+
+    <ul>
+    <% @alt_attribute.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @alt_attribute do |f| %>
+  <%= f.label :path %>
+  <%= f.text_field :path %>
+
+  <%= f.label :alt_text %>
+  <%= f.text_field :alt_text %>
+
+  <br><%= f.submit class: 'btn btn-primary' %>
+<% end %>

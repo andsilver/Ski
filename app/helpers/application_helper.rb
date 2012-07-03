@@ -79,4 +79,9 @@ module ApplicationHelper
   def empty_star
     '<img src="/images/empty-star.png" alt="">'.html_safe
   end
+
+  def alt_attribute(path, fallback)
+    alt_attr = AltAttribute.find_or_create_by_path(path)
+    alt_attr.alt_text.blank? ? fallback : alt_attr.alt_text
+  end
 end

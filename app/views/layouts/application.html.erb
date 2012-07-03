@@ -34,10 +34,10 @@
 <div id="shade">&nbsp;</div>
 <div id="header_images">
   <% header_image_urls.each do |url| -%>
-  <img src="<%= url %>" alt="My Chalet Finder Ski Accommodation">
+  <img src="<%= url %>" alt="<%= alt_attribute(url, 'My Chalet Finder Ski Accommodation') %>">
   <% end %>
 </div>
-<a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="My Chalet Finder Ski Accommodation"></a>
+<a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="<%= alt_attribute('/images/my-chalet-finder-logo-3.png', 'My Chalet Finder Ski Accommodation') %>"></a>
 <div id="column_headings">
 
 <% if @browse_menu

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625203321) do
+ActiveRecord::Schema.define(:version => 20120703110527) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -66,6 +66,15 @@ ActiveRecord::Schema.define(:version => 20120625203321) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "alt_attributes", :force => true do |t|
+    t.string   "path",                       :null => false
+    t.string   "alt_text",   :default => "", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "alt_attributes", ["path"], :name => "index_alt_attributes_on_path"
 
   create_table "banner_adverts", :force => true do |t|
     t.integer  "user_id",                   :null => false

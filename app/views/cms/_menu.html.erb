@@ -82,6 +82,9 @@
     <li<%= ' class="active"'.html_safe if current_page? pages_path %>>
       <%= link_to 'Page Meta Data', pages_path %>
     </li>
+    <li<%= ' class="active"'.html_safe if current_page? alt_attributes_path %>>
+      <%= link_to 'Alt Attributes', alt_attributes_path %>
+    </li>
     <li<%= ' class="active"'.html_safe if current_page? footers_path %>>
       <%= link_to 'Footers', footers_path %>
     </li>

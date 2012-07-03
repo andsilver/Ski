@@ -1,0 +1,29 @@
+<%= render 'cms/menu' %>
+<div class="cms">
+<h1><%= link_to 'CMS', cms_path %> &rarr; Alt Attributes</h1>
+<p>
+  <%= link_to 'New Alt Attribute', new_alt_attribute_path, class: 'btn btn-primary' %>
+</p>
+<% if @alt_attributes.empty? %>
+<p>There are no alt attributes set up yet.</p>
+<% else %>
+<table class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+      <th>Path</th>
+      <th>Alt Text</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @alt_attributes.each do |alt_attribute| %>
+    <tr>
+      <td><%= link_to alt_attribute.path, edit_alt_attribute_path(alt_attribute) %></td>
+      <td><%= alt_attribute.alt_text %></td>
+      <td><%= link_to 'Delete', alt_attribute, confirm: t('are_you_sure'), method: :delete %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+</div>

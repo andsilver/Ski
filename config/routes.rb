@@ -146,6 +146,8 @@ MySkiChalet::Application.routes.draw do
     get 'resources', on: :collection
   end
 
+  resources :alt_attributes
+
   resources :footers
 
   resources :blog_posts
