@@ -27,10 +27,6 @@ class Image < ActiveRecord::Base
     end
   end
 
-  # write the @file_data data content to disk,
-  # using the IMAGE_STORAGE_PATH constant.
-  # saves the file with the filename of the model id
-  # together with the file original extension
   def write_file
     if @file_data
       # remove any existing images (which may have different extensions)
