@@ -4,7 +4,7 @@
   <p><%= t 'adverts_controller.basket_empty' %></p>
 <% else %>
 <%= form_tag :action => 'update_basket_contents' do %>
-  <table id="basket" class="grid">
+  <table id="basket" class="table table-bordered table-striped">
     <thead>
       <tr>
         <th><%= t 'name' %></th>
@@ -39,10 +39,10 @@
         </td>
         <td>
           <% unless line.coupon || line.advert.nil? %>
-          <input type="submit" value="<%= t('adverts_controller.basket.remove') %>" name="remove_advert[<%= line.advert.id %>]">
+          <input type="submit" class="btn" value="<%= t('adverts_controller.basket.remove') %>" name="remove_advert[<%= line.advert.id %>]">
           <% end %>
           <% if line.windows.to_i > 0 %>
-          <input type="submit" value="<%= t('adverts_controller.basket.remove') %>" name="remove_advert[windows]">
+          <input type="submit" class="btn" value="<%= t('adverts_controller.basket.remove') %>" name="remove_advert[windows]">
           <% end %>
         </td>
       </tr>
@@ -58,7 +58,7 @@
   <% end -%>
           </small><br>
           <%= text_field_tag 'code' %>
-          <%= submit_tag t('adverts_controller.basket.apply_code') %>
+          <%= submit_tag t('adverts_controller.basket.apply_code'), class: 'btn' %>
         </th>
       </tr>
       <tr>
@@ -79,13 +79,13 @@
     </tbody>
   </table>
   <p class="basket_buttons">
-    <input type="submit" name="update_durations" value="<%= t 'update' %>">
+    <input type="submit" name="update_durations" value="<%= t 'update' %>" class="btn">
   </p>
   <p>
     <%= t('adverts_controller.by_pressing_place_order_you_agree_to_the_terms_and_conditions') %>
     <%= link_to t('view'), terms_path %>
   <p>
-    <input type="submit" name="place_order" value="<%= t 'adverts_controller.place_order' %>">
+    <input type="submit" name="place_order" value="<%= t 'adverts_controller.place_order' %>" class="btn btn-primary">
   </p>
 <% end %>
 <% end %>
