@@ -9,117 +9,117 @@
   <code>callbackPW</code> is neither displayed nor verified in this test mode.</p>
 <form action="/payments/worldpay_callback" method="post">
   <p>
-    <input type="submit" value="Simulate WorldPay payment">
+    <input type="submit" value="Simulate WorldPay payment" class="btn btn-primary">
   </p>
   <p>
-    <label>instId</label>:<br>
+    <label>instId</label>
     <input type="text" name="instId" value="<%= @w.worldpay_installation_id %>">
   </p>
   <p>
-    <label>cartId</label>:<br>
+    <label>cartId</label>
     <input type="text" name="cartId" value="<%= @order.order_number %>">
   </p>
   <p>
-    <label>desc</label>:<br>
+    <label>desc</label>
     <input type="text" name="desc" value="Web purchase">
   </p>
 <% if @order.pay_monthly? -%>
   <p>
-    <label>futurePayType</label><br>
+    <label>futurePayType</label>
     <input type="text" name="futurePayType" value="regular">
   </p>
   <p>
-    <label>noOfPayments</label><br>
+    <label>noOfPayments</label>
     <input type="text" name="noOfPayments" value="11">
   </p>
   <p>
-    <label>amount</label><br>
+    <label>amount</label>
     <input type="text" name="amount" value="<%= @order.first_payment / 100.0 %>">
   </p>
   <p>
-    <label>normalAmount</label><br>
+    <label>normalAmount</label>
     <input type="text" name="normalAmount" value="<%= @order.subsequent_payments / 100.0 %>">
   </p>
   <p>
-    <label>intervalUnit</label><br>
+    <label>intervalUnit</label>
     <input type="text" name="intervalUnit" value="3">
   </p>
   <p>
-    <label>intervalMult</label><br>
+    <label>intervalMult</label>
     <input type="text" name="intervalMult" value="1">
   </p>
   <p>
-    <label>startDelayUnit</label><br>
+    <label>startDelayUnit</label>
     <input type="text" name="startDelayUnit" value="3">
   </p>
   <p>
-    <label>startDelayMult</label><br>
+    <label>startDelayMult</label>
     <input type="text" name="startDelayMult" value="1">
   </p>
   <p>
-    <label>option</label><br>
+    <label>option</label>
     <input type="text" name="option" value="1">
   </p>
 <% else -%>
   <p>
-    <label>amount</label>:<br>
+    <label>amount</label>
     <input type="text" name="amount" value="<%= @order.total / 100.0 %>">
   </p>
 <% end -%>
   <p>
-    <label>currency</label>:<br>
+    <label>currency</label>
     <input type="text" name="currency" value="EUR">
   </p>
   <p>
-    <label>testMode</label>:<br>
+    <label>testMode</label>
     <input type="text" name="testMode" value="100">
   </p>
   <p>
-    <label>name</label>:<br>
+    <label>name</label>
     <input type="text" name="name" value="<%= @order.name %>">
   </p>
   <p>
-    <label>address</label>:<br>
+    <label>address</label>
     <textarea name="address"><%= raw address_for_worldpay(@order) %></textarea>
   </p>
   <p>
-    <label>postcode</label>:<br>
+    <label>postcode</label>
     <input type="text" name="postcode" value="<%= @order.postcode %>">
   </p>
   <p>
-    <label>country</label>:<br>
+    <label>country</label>
     <input type="text" name="country" value="<%= @order.country.iso_3166_1_alpha_2 %>">
   </p>
   <p>
-    <label>tel</label>:<br>
+    <label>tel</label>
     <input type="text" name="tel" value="">
   </p>
   <p>
-    <label>fax</label>:<br>
+    <label>fax</label>
     <input type="text" name="fax" value="">
   </p>
   <p>
-    <label>email</label>:<br>
+    <label>email</label>
     <input type="text" name="email" value="<%= @order.email %>">
   </p>
   <p>
-    <label>transId</label>:<br>
+    <label>transId</label>
     <input type="text" name="transId" value="SIMULATED">
   </p>
   <p>
-    <label>transStatus</label>:<br>
+    <label>transStatus</label>
     <input type="text" name="transStatus" value="Y">
   </p>
   <p>
-    <label>transTime</label>:<br>
+    <label>transTime</label>
     <input type="text" name="transTime" value="SIMULATED">
   </p>
   <p>
-    <label>rawAuthMessage</label>:<br>
+    <label>rawAuthMessage</label>
     <input type="text" name="rawAuthMessage" value="SIMULATED">
   </p>
   <p>
-    <input type="submit" value="Simulate WorldPay payment">
+    <input type="submit" value="Simulate WorldPay payment" class="btn btn-primary">
   </p>
 </form>
 <% else -%>
@@ -151,7 +151,7 @@
 <input type="hidden" name="tel" value="">
 <input type="hidden" value="<%= @order.email %>" name="email">
 
-<input name="submit" type="submit" class="button" value="Proceed to WorldPay">
+<input name="submit" type="submit" class="btn btn-primary" value="Proceed to WorldPay">
 </form>
 <% end -%>
 <% end -%>
