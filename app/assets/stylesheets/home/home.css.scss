@@ -13,6 +13,10 @@ body {
   font-family: "ff-basic-gothic-web-pro-1","ff-basic-gothic-web-pro-2", 'Lucida Sans', Arial, Helvetica, sans-serif;
 }
 
+p, input, button, select, textarea {
+  font-family: "ff-basic-gothic-web-pro-1","ff-basic-gothic-web-pro-2", 'Lucida Sans', Arial, Helvetica, sans-serif;
+}
+
 a img {
   border: none;
 }
@@ -25,7 +29,6 @@ a img {
   background-position: top left;
   margin: 0 auto;
   position: relative;
-  border-bottom: 1px solid #00aeef;
 }
 
 #shade {
@@ -74,22 +77,6 @@ div#intro {
 #begin p {
   padding-left: 10px;
   margin-bottom: 4px;
-}
-
-footer {
-  padding-top: 8px;
-  width: 996px;
-  margin: 0 auto;
-}
-
-footer p {
-  text-align: right;
-  padding-top: 8px;
-  font-size: 1.2em;
-}
-
-footer a {
-  color: #000;
 }
 
 .country {

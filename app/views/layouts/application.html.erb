@@ -14,7 +14,6 @@
   <%= render "shared/google" %>
   <script src="http://use.typekit.com/lxc8myw.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
-  <script src="https://apis.google.com/js/plusone.js"></script>
   <script>
   $(document).ready(function() {
     $('#header_images').cycle({
@@ -22,13 +21,10 @@
       speed: 1500,
       timeout: 3000
     });
-
-    gapi.plusone.render("plusone", {"size": "standard", "count": "true"});
   });
   </script>
 </head>
 <body class="<%= 'browse_menu ' if @browse_menu %><%= @body_classes %>">
-  <%= render 'shared/facebook_code' %>
 <div id="wrapper">
 <%= render "shared/main_menu" %>
 <div id="shade">&nbsp;</div>
@@ -38,6 +34,7 @@
   <% end %>
 </div>
 <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="<%= alt_attribute('/images/my-chalet-finder-logo-3.png', 'My Chalet Finder Ski Accommodation') %>"></a>
+<%= render "shared/social" %>
 <div id="column_headings">
 
 <% if @browse_menu
@@ -116,31 +113,7 @@
 <%= yield %>
 </div>
 
-<footer role="contentinfo">
-  <p style="float:right;">
-    <%= render "shared/google_plus_one" %>
-  </p>
-  <p>
-    &copy;2012 My Holiday Home Ventures Limited
-    |
-    <%= link_to I18n.t(:privacy), privacy_path %>
-    |
-    <%= link_to I18n.t(:terms), terms_path %>
-    |
-    <%= link_to I18n.t(:contact), contact_path %>
-    <br>
-    <a href="http://en.mychaletfinder.com<%= request.env['REQUEST_URI'] %>">English</a>
-    |
-    <a href="http://fr.mychaletfinder.com<%= request.env['REQUEST_URI'] %>">Français</a>
-    |
-    <a href="http://de.mychaletfinder.com<%= request.env['REQUEST_URI'] %>">Deutsch</a>
-    |
-    <a href="http://it.mychaletfinder.com<%= request.env['REQUEST_URI'] %>">Italiano</a>
-  </p>
-  <%= render 'shared/facebook_like_box' %>
-  <div style="text-align:center;"><img src="/images/worldpay-card-logos.png" alt="Payments powered by WorldPay"></div>
-  <%= render 'shared/footer_box' %>
-</footer>
+<%= render 'shared/footer' %>
 </div><!--#wrapper-->
 </body>
 </html>

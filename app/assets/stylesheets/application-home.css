@@ -13,4 +13,5 @@
  *= require_tree ./menus
  *= require ./main/featured_properties
  *= require ./main/footer
+ *= require ./main/social
 */

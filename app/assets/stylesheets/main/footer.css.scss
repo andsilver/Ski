@@ -1,3 +1,33 @@
+footer p {
+  padding-top: 8px;
+  font-size: 1.2em;
+}
+
+footer {
+  color: #fff;
+  clear: both;
+  padding: 20px;
+  width: 956px;
+  margin: 0 auto;
+  background-image: linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
+  background-image: -o-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
+  background-image: -moz-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
+  background-image: -webkit-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
+  background-image: -ms-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
+
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.19, rgb(34,34,34)),
+    color-stop(1, rgb(68,68,68))
+  );
+
+  a, a:hover {
+    color: #fff;
+  }
+}
+
 .footer_box {
   -moz-column-count: 4;
   -webkit-column-count: 4;

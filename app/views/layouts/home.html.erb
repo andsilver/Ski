@@ -10,10 +10,8 @@
   <script src="http://use.typekit.com/lxc8myw.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
   <!-- TradeDoubler site verification 1980597 -->
-  <script src="https://apis.google.com/js/plusone.js"></script>
   <script>
   $(document).ready(function() {
-    gapi.plusone.render("plusone", {"size": "standard", "count": "true"});
     $('.carousel').carousel();
   });
   </script>
@@ -22,11 +20,11 @@
   <%= stylesheet_link_tag    "application-print", media: 'print' %>
 </head>
 <body>
-  <%= render 'shared/facebook_code' %>
 <div id="wrapper">
   <%= render "shared/main_menu" %>
   <div id="shade">&nbsp;</div>
   <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="<%= alt_attribute('/images/my-chalet-finder-logo-3.png', 'My Chalet Finder') %>"></a>
+  <%= render "shared/social" %>
   <div id="intro">
     <%= t('home_page.introduction') %>
   </div>
@@ -88,23 +86,6 @@
   </div>
   <% end %>
 </div>
-<footer role="contentinfo">
-  <p style="float:left;">
-    <%= render "shared/google_plus_one" %>
-    <a href="https://twitter.com/#!/MyChaletFinder"><img src="/images/twitter.png" alt="Follow @MyChaletFinder on Twitter"></a>
-  </p>
-  <p>
-    <a href="http://en.mychaletfinder.com">English</a>
-    |
-    <a href="http://fr.mychaletfinder.com">Français</a>
-    |
-    <a href="http://de.mychaletfinder.com">Deutsch</a>
-    |
-    <a href="http://it.mychaletfinder.com">Italiano</a>
-  </p>
-  <%= render 'shared/facebook_like_box' %>
-  <div style="text-align:center; clear: left;"><img src="/images/worldpay-card-logos.png" alt="Payments powered by WorldPay"></div>
-  <%= render 'shared/footer_box' %>
-</footer>
+<%= render 'shared/footer' %>
 </body>
 </html>
