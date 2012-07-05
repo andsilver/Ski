@@ -11,6 +11,7 @@ gem 'rdoc'
 gem 'xml-simple'
 gem 'prawn', '0.11.1'
 gem 'newrelic_rpm'
+gem 'exception_notification'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

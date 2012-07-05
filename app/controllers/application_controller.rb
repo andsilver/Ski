@@ -5,6 +5,18 @@ class ApplicationController < ActionController::Base
 
   before_filter :initialize_website, :set_locale, :initialize_user, :page_defaults
 
+  unless Rails.application.config.consider_all_requests_local
+    rescue_from Exception, with: :render_error
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    rescue_from ActionController::RoutingError, with: :not_found
+    rescue_from ActionController::UnknownController, with: :not_found
+    rescue_from ActionController::UnknownAction, with: :not_found
+  end
+
+  def routing_error
+    not_found
+  end
+
   def restart
     admin_required
     `touch tmp/restart.txt` # assumes Phusion Passenger
@@ -121,8 +133,15 @@ class ApplicationController < ActionController::Base
     signed_in? and @current_user.role.admin?
   end
 
-  def not_found
-    render :file => "#{Rails.root.to_s}/public/404.html", :layout => false, :status => 404
+  def not_found(exception = nil)
+    render file: "#{Rails.root.to_s}/public/404.html", layout: false, status: 404
+  end
+
+  def render_error(exception)
+    ExceptionNotifier::Notifier
+      .exception_notification(request.env, exception)
+      .deliver
+    render file: "#{Rails.root.to_s}/public/500.html", layout: false, status: 500
   end
 
   def default_page_title suggested_title
