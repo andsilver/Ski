@@ -134,14 +134,14 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found(exception = nil)
-    render file: "#{Rails.root.to_s}/public/404.html", layout: false, status: 404
+    render "#{Rails.root.to_s}/public/404", layout: false, status: 404
   end
 
   def render_error(exception)
     ExceptionNotifier::Notifier
       .exception_notification(request.env, exception)
       .deliver
-    render file: "#{Rails.root.to_s}/public/500.html", layout: false, status: 500
+    render "#{Rails.root.to_s}/public/500", layout: false, status: 500
   end
 
   def default_page_title suggested_title
