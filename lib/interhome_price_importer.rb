@@ -17,14 +17,14 @@ class InterhomePriceImporter
   # returns an array of XML filenames. Set max_files to limit the number
   # of smaller files created (for example, when testing).
   def split_xml(max_files = 0)
-    xs = XMLSplitter.new(:root_element => 'prices', :child_element => 'price', :xml_filename => "interhome/#{xml_filename}", :elements_per_file => 2000, :max_files => max_files)
+    xs = XMLSplitter.new(root_element: 'prices', child_element: 'price', xml_filename: "interhome/#{xml_filename}", elements_per_file: 2000, max_files: max_files)
     xs.split
   end
 
   # Imports Interhome prices from an array of filenames of XML files.
   # All previously existing prices for the specified number of days are deleted.
   def import(filenames)
-    InterhomePrice.delete_all(:days => @days)
+    InterhomePrice.delete_all(days: @days)
     filenames.each {|f| import_file(f)}
   end
 

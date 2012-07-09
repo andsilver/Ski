@@ -1,10 +1,10 @@
 class InterhomeImporter
   def self.import(opts)
     opts = {
-      :skip_ftp => false,
-      :skip_places => false,
-      :skip_prices => false,
-      :max_xml_files => 0
+      skip_ftp: false,
+      skip_places: false,
+      skip_prices: false,
+      max_xml_files: 0
     }.merge(opts)
 
     unless opts[:skip_places]
@@ -33,6 +33,6 @@ class InterhomeImporter
     @interhome_accommodation_importer = InterhomeAccommodationImporter.new
     @interhome_accommodation_importer.ftp_get unless opts[:skip_ftp]
     filenames = @interhome_accommodation_importer.split_xml(opts[:max_xml_files])
-    @interhome_accommodation_importer.import(filenames)
+    @interhome_accommodation_importer.import(filenames, true)
   end
 end

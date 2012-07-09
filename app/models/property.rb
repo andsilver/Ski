@@ -118,12 +118,24 @@ class Property < ActiveRecord::Base
   # Loads all properties and saves them to trigger their #normalise_prices
   # callback. Geocoding is temporarily disabled during this process.
   def self.normalise_prices
-    @@perform_geocode = false
+    stop_geocoding
     Property.all.each do |p|
       p.save
     end
-    @@perform_geocode = PERFORM_GEOCODE
+    resume_geocoding
     nil # don't fail before_save callback
+  end
+
+  def self.geocoding?
+    @@perform_geocode
+  end
+
+  def self.stop_geocoding
+    @@perform_geocode = false
+  end
+
+  def self.resume_geocoding
+    @@perform_geocode = PERFORM_GEOCODE
   end
 
   # Returns an array of attributes that can be imported by simple assignment
@@ -200,9 +212,10 @@ class Property < ActiveRecord::Base
   end
 
   def geocode
+    return unless Property.geocoding?
     self.latitude = ''
     self.longitude = ''
-    attempt_geocode(address + ',' + postcode + ',' + resort.name) if @@perform_geocode
+    attempt_geocode(address + ',' + postcode + ',' + resort.name)
   end
 
   def attempt_geocode a
