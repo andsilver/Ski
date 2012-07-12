@@ -108,6 +108,7 @@ class InterhomeAccommodationImporter
   # Imports pictures for the new or existing accommodation.
   # Touch (update timestamp of) existing pictures and add new ones.
   def import_pictures(accommodation, a)
+    return unless a['pictures']
     a['pictures'][0]['picture'].each do |p|
       url = p['url'][0].gsub('/Normal/', '/Zoom/')
       picture = InterhomePicture.find_by_interhome_accommodation_id_and_url(accommodation.id, url)
