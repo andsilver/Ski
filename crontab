@@ -1,1 +1,2 @@
 */10 * * * * ~/myskichalet/denormalize.sh
+0 3 * * * ~/myskichalet/interhome.sh

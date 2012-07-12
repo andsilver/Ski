@@ -1,5 +1,5 @@
 class InterhomeImporter
-  def self.import(opts)
+  def self.import(opts = {})
     opts = {
       skip_ftp: false,
       skip_places: false,
