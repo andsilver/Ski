@@ -1,16 +1,18 @@
 <%= form_for(@blog_post) do |f| %>
 <div class="field">
-  <%= f.check_box :visible %> <%= f.label :visible %>
+  <label class="checkbox">
+    <%= f.check_box :visible %> Visible
+  </label>
 </div>
 <div class="field">
-  <%= f.label :headline %><br>
+  <%= f.label :headline %>
   <%= f.text_field :headline %>
 </div>
 <div class="field">
-  <%= f.label :content %><br>
+  <%= f.label :content %>
   <%= f.text_area :content %>
 </div>
 <div class="field">
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 </div>
 <% end %>
