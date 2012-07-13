@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
-gem 'mysql2', '0.3.11'
+gem 'mysql2'
 gem 'will_paginate', :git => 'git@github.com:bridgeutopia/will_paginate.git', :branch => 'rails3'
 gem 'image_science', '1.2.3'
 gem 'RubyInline'
@@ -12,6 +12,7 @@ gem 'xml-simple'
 gem 'prawn', '0.11.1'
 gem 'newrelic_rpm'
 gem 'exception_notification'
+gem 'liquid'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

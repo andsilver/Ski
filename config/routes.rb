@@ -111,7 +111,6 @@ MySkiChalet::Application.routes.draw do
       get 'latest_receipt'
       get 'receipts'
       get 'select_payment_method'
-      get 'resources'
     end
     member do
       get 'invoice'
@@ -142,9 +141,7 @@ MySkiChalet::Application.routes.draw do
   resources :websites
   match "cms/prices" => "websites#edit_prices", :as => :banner_directory_advert_prices
 
-  resources :pages do
-    get 'resources', on: :collection
-  end
+  resources :pages
 
   resources :alt_attributes
 

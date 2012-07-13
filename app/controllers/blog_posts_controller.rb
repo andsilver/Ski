@@ -15,6 +15,7 @@ class BlogPostsController < ApplicationController
 
   def show
     not_found unless admin? || @w.blog_visible?
+    @content = Liquid::Template.parse(@blog_post.content).render
   end
 
   def new

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :admin_required
+  before_filter :admin_required, except: [:show]
   before_filter :find_page, :only => [:edit, :update, :destroy]
   before_filter :no_browse_menu
 
@@ -37,12 +37,9 @@ class PagesController < ApplicationController
     redirect_to pages_path, :notice => t('notices.deleted')
   end
 
-  def resources
-    @buying_guides = BuyingGuide.all
-  end
-
   def show
     @page = Page.find_by_path("/pages/#{params[:id]}")
+    @content = Liquid::Template.parse(@page.content).render('buying_guides' => BuyingGuide.all)
     not_found unless @page
   end
 
