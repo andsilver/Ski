@@ -66,10 +66,10 @@ class Country < ActiveRecord::Base
   end
 
   def rentals_order_lines
-    paid_order_lines.keep_if {|ol| ol.advert.property && !ol.advert.property.for_sale?}
+    paid_order_lines.keep_if {|ol| ol.advert && ol.advert.property && !ol.advert.property.for_sale?}
   end
 
   def sales_order_lines
-    paid_order_lines.keep_if {|ol| ol.advert.property && ol.advert.property.for_sale?}
+    paid_order_lines.keep_if {|ol| ol.advert && ol.advert.property && ol.advert.property.for_sale?}
   end
 end
