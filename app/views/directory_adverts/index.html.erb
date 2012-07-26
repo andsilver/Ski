@@ -5,6 +5,7 @@
       <tr>
         <th class="numeric">ID</th>
         <th>User</th>
+        <th>Resort</th>
         <th>Business Name</th>
         <th>Strapline</th>
         <th>Actions</th>
@@ -15,6 +16,7 @@
       <tr>
         <td class="numeric"><%= da.id %></td>
         <td><%= da.user.name %></td>
+        <td><%= da.resort %></td>
         <td><%= da.business_name %></td>
         <td><%= da.strapline %></td>
         <td><%= form_tag directory_advert_path(da), :method => :delete do %><input type="submit" value="Delete" class="btn btn-danger"><% end %></td>
