@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726095235) do
+ActiveRecord::Schema.define(:version => 20120726123608) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -540,6 +540,8 @@ ActiveRecord::Schema.define(:version => 20120726095235) do
     t.integer  "for_sale_count",        :default => 0,     :null => false
     t.integer  "hotel_count",           :default => 0,     :null => false
     t.integer  "new_development_count", :default => 0,     :null => false
+    t.text     "gallery_content"
+    t.text     "piste_map_content"
   end
 
   add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"

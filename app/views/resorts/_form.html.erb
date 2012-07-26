@@ -11,7 +11,7 @@
 <% end %>
 
 <% unless @resort.new_record? %>
-<div class="group_panel">
+<div class="well">
 <h2>Image</h2>
 <p><%= link_to 'Change image for this resort', new_image_path %> (changes made on this page will not be saved)</p>
 </div>
@@ -19,12 +19,12 @@
 
 <%= form_for @resort do |f| %>
 <div class="field">
-  <%= f.label :name, I18n.t('name') %><br>
+  <%= f.label :name, t('name') %>
   <%= f.text_field :name %>
 </div>
 <div class="field">
-  <%= f.label :country_id, t('countries.country') %><br>
-  <%= select("resort", "country_id", Country.all(:order => 'name').collect {|c| [ c.name, c.id ] }, {:prompt => t('countries.select_country')}) %>
+  <%= f.label :country_id, t('countries.country') %>
+  <%= select("resort", "country_id", Country.all(order: 'name').collect {|c| [ c.name, c.id ] }, {prompt: t('countries.select_country')}) %>
 </div>
 <div class="field">
   <%= f.check_box :visible %> <%= f.label :visible %>
@@ -33,176 +33,184 @@
   <%= f.check_box :featured %> <%= f.label :featured %>
 </div>
 <div class="field">
-  <%= f.label :local_area, 'Applies to' %><br>
+  <%= f.label :local_area, 'Applies to' %>
   <%= f.select(:local_area, [["Local area", true], ["Whole area", false]],
-    {:selected => @resort.local_area}) %>
+    {selected: @resort.local_area}) %>
 </div>
 <div class="field">
-  <%= f.label :introduction %><br>
+  <%= f.label :introduction %>
   <%= f.text_area :introduction %>
 </div>
 <div class="field">
-  <%= f.label :info %><br>
+  <%= f.label :info %>
   <%= f.text_area :info %>
 </div>
 <div class="field">
-  <%= f.label :how_to_get_to %><br>
+  <%= f.label :how_to_get_to %>
   <%= f.text_area :how_to_get_to %>
 </div>
 <div class="field">
-  <%= f.label :feature %><br>
+  <%= f.label :feature %>
   <%= f.text_area :feature %>
 </div>
 <div class="field">
-  <%= f.label :visiting %><br>
+  <%= f.label :visiting %>
   <%= f.text_area :visiting %>
 </div>
 <div class="field">
-  <%= f.label :owning_a_property_in, t('resorts_controller.detail.owning_a_property_in', resort: @resort) %><br>
+  <%= f.label :owning_a_property_in, t('resorts_controller.detail.owning_a_property_in', resort: @resort) %>
   <%= f.text_area :owning_a_property_in %>
 </div>
 <div class="field">
-  <%= f.label :summer_holidays_in %><br>
+  <%= f.label :summer_holidays_in %>
   <%= f.text_area :summer_holidays_in %>
 </div>
 <div class="field">
-  <%= f.label :living_in %><br>
+  <%= f.label :living_in %>
   <%= f.text_area :living_in %>
 </div>
 <div class="field">
-  <%= f.label :insider_view %><br>
+  <%= f.label :insider_view %>
   <%= f.text_area :insider_view %>
 </div>
 <div class="field">
-  <%= f.label :weather_code %><br>
+  <%= f.label :gallery_content %>
+  <%= f.text_area :gallery_content %>
+</div>
+<div class="field">
+  <%= f.label :piste_map_content %>
+  <%= f.text_area :piste_map_content %>
+</div>
+<div class="field">
+  <%= f.label :weather_code %>
   <%= f.text_area :weather_code %>
 </div>
 <div class="field">
-  <%= f.label :altitude_m %><br>
+  <%= f.label :altitude_m %>
   <%= f.text_field :altitude_m %>
 </div>
 <div class="field">
-  <%= f.label :top_lift_m %><br>
+  <%= f.label :top_lift_m %>
   <%= f.text_field :top_lift_m %>
 </div>
 <div class="field">
-  <%= f.label :ski_area_km %><br>
+  <%= f.label :ski_area_km %>
   <%= f.text_field :ski_area_km %>
 </div>
 <div class="field">
-  <%= f.label :black %><br>
+  <%= f.label :black %>
   <%= f.text_field :black %>
 </div>
 <div class="field">
-  <%= f.label :red %><br>
+  <%= f.label :red %>
   <%= f.text_field :red %>
 </div>
 <div class="field">
-  <%= f.label :blue %><br>
+  <%= f.label :blue %>
   <%= f.text_field :blue %>
 </div>
 <div class="field">
-  <%= f.label :green, t('resorts_controller.facts.green') %><br>
+  <%= f.label :green, t('resorts_controller.facts.green') %>
   <%= f.text_field :green %>
 </div>
 <div class="field">
-  <%= f.label :longest_run_km %><br>
+  <%= f.label :longest_run_km %>
   <%= f.text_field :longest_run_km %>
 </div>
 <div class="field">
-  <%= f.label :drags %><br>
+  <%= f.label :drags %>
   <%= f.text_field :drags %>
 </div>
 <div class="field">
-  <%= f.label :chair %><br>
+  <%= f.label :chair %>
   <%= f.text_field :chair %>
 </div>
 <div class="field">
-  <%= f.label :gondola %><br>
+  <%= f.label :gondola %>
   <%= f.text_field :gondola %>
 </div>
 <div class="field">
-  <%= f.label :cable_car %><br>
+  <%= f.label :cable_car %>
   <%= f.text_field :cable_car %>
 </div>
 <div class="field">
-  <%= f.label :funicular %><br>
+  <%= f.label :funicular %>
   <%= f.text_field :funicular %>
 </div>
 <div class="field">
-  <%= f.label :railways %><br>
+  <%= f.label :railways %>
   <%= f.text_field :railways %>
 </div>
 <div class="field">
-  <%= f.label :slope_direction %><br>
+  <%= f.label :slope_direction %>
   <%= f.text_field :slope_direction %>
 </div>
 <div class="field">
-  <%= f.label :snowboard_parks %><br>
+  <%= f.label :snowboard_parks %>
   <%= f.text_field :snowboard_parks %>
 </div>
 <div class="field">
-  <%= f.label :cross_country_km %><br>
+  <%= f.label :cross_country_km %>
   <%= f.text_field :cross_country_km %>
 </div>
 <div class="field">
-  <%= f.label :mountain_restaurants %><br>
+  <%= f.label :mountain_restaurants %>
   <%= f.text_field :mountain_restaurants %>
 </div>
 <div class="field">
-  <%= f.label :season %><br>
+  <%= f.label :season %>
   <%= f.text_field :season %>
 </div>
 <div class="field">
-  <%= f.label :glacier_skiing %><br>
+  <%= f.label :glacier_skiing %>
   <%= f.select(:glacier_skiing, [["Yes", true], ["No", false]],
-    {:include_blank => true, :selected => @resort.glacier_skiing.to_s}) %>
+    {include_blank: true, selected: @resort.glacier_skiing.to_s}) %>
 </div>
 <div class="field">
-  <%= f.label :beginner %><br>
+  <%= f.label :beginner %>
   <%= f.select(:beginner, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
 </div>
 <div class="field">
-  <%= f.label :intermediate %><br>
+  <%= f.label :intermediate %>
   <%= f.select(:intermediate, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
 </div>
 <div class="field">
-  <%= f.label :expert %><br>
+  <%= f.label :expert %>
   <%= f.select(:expert, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
 </div>
 <div class="field">
-  <%= f.label :off_piste %><br>
+  <%= f.label :off_piste %>
   <%= f.select(:off_piste, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
 </div>
 <div class="field">
-  <%= f.label :apres_ski %><br>
+  <%= f.label :apres_ski %>
   <%= f.text_field :apres_ski %>
 </div>
 <div class="field">
-  <%= f.label :family %><br>
+  <%= f.label :family %>
   <%= f.select(:family, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
 </div>
 <div class="field">
-  <%= f.label :creche %><br>
+  <%= f.label :creche %>
   <%= f.select(:creche, [["Yes", true], ["No", false]],
-    {:include_blank => true, :selected => @resort.creche.to_s}) %>
+    {include_blank: true, selected: @resort.creche.to_s}) %>
 </div>
 <div class="field">
-  <%= f.label :babysitting_services %><br>
+  <%= f.label :babysitting_services %>
   <%= f.select(:babysitting_services, [["Yes", true], ["No", false]],
-    {:include_blank => true, :selected => @resort.babysitting_services.to_s}) %>
+    {include_blank: true, selected: @resort.babysitting_services.to_s}) %>
 </div>
 <div class="field">
-  <%= f.label :summer_skiing %><br>
+  <%= f.label :summer_skiing %>
   <%= f.select(:summer_skiing, [["Yes", true], ["No", false]],
-    {:include_blank => true, :selected => @resort.summer_skiing.to_s}) %>
+    {include_blank: true, selected: @resort.summer_skiing.to_s}) %>
 </div>
 <div class="field">
-  <%= f.label :heli_skiing %><br>
+  <%= f.label :heli_skiing %>
   <%= f.select(:heli_skiing, [["Yes", true], ["No", false]],
-    {:include_blank => true, :selected => @resort.heli_skiing.to_s}) %>
+    {include_blank: true, selected: @resort.heli_skiing.to_s}) %>
 </div>
 <div class="field">
-  <%= f.submit I18n.t('save') %>
+  <%= f.submit t('save'), class: 'btn btn-primary' %>
 </div>
 <% end %>
