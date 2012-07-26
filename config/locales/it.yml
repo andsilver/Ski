@@ -368,6 +368,7 @@ it:
       new: New Property
       new_developments: "New Property Developments in %{resort}"
       show: "%{property_name} - Chalet / Apartment %{rent_or_sale} in %{resort}, %{country}"
+    weekly_price_from: 'Weekly price from'
   receipts: Receipts
   registration: Registration
   resort: 'Resort'

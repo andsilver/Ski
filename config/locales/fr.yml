@@ -368,6 +368,7 @@ fr:
       new: Nouvelle Propriété
       new_developments: "Développements Nouvelle Propriété à %{resort}"
       show: "%{property_name} - Chalet / Appartement %{rent_or_sale} à %{resort}, %{country}"
+    weekly_price_from: 'Weekly price from'
   receipts: Recettes
   registration: Enregistrement
   resort: 'Station'
