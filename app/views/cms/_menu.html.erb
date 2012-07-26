@@ -55,6 +55,9 @@
   </ul>
   <h2>Content</h2>
   <ul class="nav nav-pills nav-stacked">
+    <li<%= ' class="active"'.html_safe if current_page? snippets_path %>>
+      <%= link_to 'Snippets', snippets_path %> 
+    </li>
     <li<%= ' class="active"'.html_safe if current_page? countries_path %>>
       <%= link_to 'Countries', countries_path %> 
     </li>

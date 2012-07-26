@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120703110527) do
+ActiveRecord::Schema.define(:version => 20120726095235) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -563,6 +563,16 @@ ActiveRecord::Schema.define(:version => 20120703110527) do
     t.boolean  "advertises_through_windows",     :default => false, :null => false
     t.boolean  "advertises_hotels",              :default => false, :null => false
   end
+
+  create_table "snippets", :force => true do |t|
+    t.string   "name",       :default => "",   :null => false
+    t.text     "snippet"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.string   "locale",     :default => "en", :null => false
+  end
+
+  add_index "snippets", ["name"], :name => "index_snippets_on_name"
 
   create_table "unregistered_users", :force => true do |t|
     t.datetime "created_at"
