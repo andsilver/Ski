@@ -18,6 +18,9 @@
     <option<%= ' selected' if params[:sort_method]=='sleeping_capacity ASC' %> value="sleeping_capacity ASC"><%= I18n.t('sleeping_capacity') %></option>
 <% end %>
     <option<%= ' selected' if params[:sort_method]=='number_of_bedrooms ASC' %> value="number_of_bedrooms ASC">Number of bedrooms</option>
+<% if params[:action] == 'browse_hotels' %>
+    <option<%= ' selected' if params[:sort_method]=='star_rating DESC' %> value="star_rating DESC">Star rating</option>
+<% end %>
   </select>
 <% unless @for_sale -%>
   <select id="board_basis" name="board_basis" onchange="this.form.submit()">

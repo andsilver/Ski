@@ -88,7 +88,7 @@ class PropertiesController < ApplicationController
     @heading_a = t('resort_options.hotels')
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
-      "metres_from_lift ASC", "sleeping_capacity ASC" ])
+      "metres_from_lift ASC", "sleeping_capacity ASC", "star_rating DESC" ])
 
     @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_HOTEL}"
 
