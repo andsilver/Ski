@@ -31,7 +31,7 @@
 
   <div id="begin">
     <p>
-      Begin your search
+      <%= snippet('home.begin_your_search') %>
     </p>
     <div class="btn-group">
       <button class="btn"><%= @country ? link_to(@country.name, @country) : 'Choose Country' %></button>
