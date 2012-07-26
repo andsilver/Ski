@@ -110,3 +110,32 @@ a {
 #featured_properties {
   margin-bottom: 320px;
 }
+
+#boxes {
+  border-top: 1px solid #ccc;
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 996px;
+}
+
+.box {
+  float: left;
+  margin: 0 2%;
+  text-align: center;
+  width: 21%;
+
+  h1, h2, h3, h4, h5 {
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 18px;
+  }
+}
+
+.clear {
+  font-size: 1px;
+  line-height: 1px;
+  margin: 0;
+  padding: 0;
+  clear: both;
+}
