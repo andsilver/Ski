@@ -34,7 +34,7 @@
   <%= raw property_search_filters @search_filters %>
 </p>
 <% end %>
-</div>
+</div><!--#search_options-->
 <div id="property_summaries">
 <% if @properties.empty? %>
 
@@ -47,9 +47,9 @@
 <% end %>
 
 <%= will_paginate @properties %>
-</div><!--#property_summaries-->
 <% end %>
+</div><!--#property_summaries-->
 </div>
 <div id="wide_skyscrapers">
-  <%= render :partial => 'directory_adverts/banners', :object => DirectoryAdvert.small_banners_for(@resort) %>
+  <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) %>
 </div>

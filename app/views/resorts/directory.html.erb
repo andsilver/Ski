@@ -1,6 +1,4 @@
-<div id="wide_skyscrapers">
-  <%= render :partial => 'directory_adverts/banners', :object => DirectoryAdvert.small_banners_for(@resort) %>
-</div>
+<div id="content_with_wide_skyscrapers">
 
 <ul id="categories">
   <% @categories.each do |category| %>
@@ -9,3 +7,7 @@
 </ul>
 
 <%= clear %>
+</div>
+<div id="wide_skyscrapers">
+  <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) %>
+</div>
