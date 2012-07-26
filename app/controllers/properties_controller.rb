@@ -1,8 +1,6 @@
 class PropertiesController < ApplicationController
   include SpamProtection
 
-  CURRENTLY_ADVERTISED = ["properties.id IN (SELECT adverts.property_id FROM adverts WHERE adverts.expires_at > NOW())"]
-
   before_filter :no_browse_menu, :except => [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
   before_filter :user_required, :except => [
@@ -96,8 +94,7 @@ class PropertiesController < ApplicationController
 
     filter_conditions
 
-    @properties = Property.paginate :page => params[:oage], :order => order,
-      :conditions => @conditions
+    @properties = Property.paginate(page: params[:page], order: order, conditions: @conditions)
     render "browse"
   end
 
@@ -494,8 +491,7 @@ class PropertiesController < ApplicationController
   end
 
   def resort_conditions
-    @conditions = CURRENTLY_ADVERTISED.dup
-    @conditions[0] += " AND resort_id = ?"
+    @conditions = ["publicly_visible = 1 AND resort_id = ?"]
     @conditions << params[:resort_id]
   end
 
