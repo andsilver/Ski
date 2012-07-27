@@ -98,6 +98,13 @@ class ApplicationController < ActionController::Base
         @fixed_banner_target_url = page.fixed_banner_target_url
       end
     end
+
+    use_default_footer if @footer_box.blank?
+  end
+
+  def use_default_footer
+    footer = Footer.find_by_name('Default')
+    @footer_box = footer.content unless footer.nil?
   end
 
   def no_browse_menu
