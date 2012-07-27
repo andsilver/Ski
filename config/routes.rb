@@ -34,6 +34,9 @@ MySkiChalet::Application.routes.draw do
     end
   end
 
+  match "tools/rental-prices" => "rental_prices#index"
+  match "tools/rental-prices/results" => "rental_prices#results"
+
   match "categories/:id/:resort_id" => "categories#show", as: :show_category
   resources :categories
 
