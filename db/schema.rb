@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726123608) do
+ActiveRecord::Schema.define(:version => 20120802115900) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -320,6 +320,21 @@ ActiveRecord::Schema.define(:version => 20120726123608) do
   end
 
   add_index "interhome_prices", ["accommodation_code"], :name => "index_interhome_prices_on_accommodation_code"
+
+  create_table "interhome_vacancies", :force => true do |t|
+    t.integer  "interhome_accommodation_id", :null => false
+    t.string   "accommodation_code",         :null => false
+    t.date     "startday"
+    t.text     "availability"
+    t.text     "changeover"
+    t.text     "minstay"
+    t.text     "flexbooking"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "interhome_vacancies", ["accommodation_code"], :name => "index_interhome_vacancies_on_accommodation_code"
+  add_index "interhome_vacancies", ["interhome_accommodation_id"], :name => "index_interhome_vacancies_on_interhome_accommodation_id"
 
   create_table "order_lines", :force => true do |t|
     t.integer  "order_id",                   :null => false

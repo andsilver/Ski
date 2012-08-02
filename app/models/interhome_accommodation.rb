@@ -1,6 +1,7 @@
 class InterhomeAccommodation < ActiveRecord::Base
   has_many :interhome_pictures, :dependent => :delete_all
   has_one :property, :dependent => :destroy
+  has_one :interhome_vacancy, dependent: :delete
 
   def inside_description
     desc = InterhomeInsideDescription.find_by_accommodation_code(code)
