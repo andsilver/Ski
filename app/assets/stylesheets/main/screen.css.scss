@@ -134,8 +134,28 @@ h2 {
   font-size: 1.6em;
 }
 
-h3 {
+h3, h4, h5 {
   font-size: 1.4em;
+}
+
+.h1 {
+  font-size: 1.6em;
+  text-transform: uppercase;
+}
+
+.h2 {
+  font-size: 1.6em;
+  text-transform: none;
+}
+
+.h3, .h4, .h5 {
+  font-size: 1.4em;
+  text-transform: normal;
+}
+
+.coloured {
+  font-style: italic;
+  color: #3cf;
 }
 
 pre {
