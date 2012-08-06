@@ -55,13 +55,13 @@ end
 
 group :test do
   gem "autotest", "4.4.6"
-  gem "rspec-rails", ">= 2.6.1"
+  gem 'rspec-rails'
   gem 'watchr'
-  gem 'spork', '~> 0.9.0'
+  gem 'spork'
   gem "shoulda-matchers"
-  gem "cucumber-rails", ">= 0.5"
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem "capybara"
-  gem "launchy", ">= 0.3.7"
+  gem 'launchy'
   gem "railroad", "0.5.0"
 end
