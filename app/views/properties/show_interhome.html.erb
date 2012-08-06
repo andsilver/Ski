@@ -106,6 +106,22 @@ features = @accommodation.features.split(',')
   <%= @accommodation.outside_description %>
 </p>
 
+<% if @accommodation.interhome_vacancy %>
+<% cal = InterhomeCalendar.new(@accommodation.interhome_vacancy) %>
+<h2>Vacancy</h2>
+
+<div style="width:33%;float:left;">
+<%= raw cal.show_month(8, 2012) %>
+</div>
+<div style="width:33%;float:left;">
+<%= raw cal.show_month(9, 2012) %>
+</div>
+<div style="width:33%;float:left;">
+<%= raw cal.show_month(10, 2012) %>
+</div>
+<%= clear %>
+<% end %>
+
 <% unless @accommodation.geodata_lat.empty? %>
 <div id="map_cavas"></div>
 <p class="chunky_button"><a href="#" id="location">Location</a></p>

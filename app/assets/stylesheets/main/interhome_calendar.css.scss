@@ -1,0 +1,28 @@
+.interhome-calendar {
+  td, th {
+    padding: 2px 4px;
+    border: 2px solid #fff;
+  }
+
+  td {
+    color: #fff;
+    text-align: right;
+    background: #00aeef;
+  }
+
+  td.empty {
+    background: #fff;
+  }
+
+  td.availability-N, td.availability-unknown {
+    background: red;
+  }
+
+  td.availability-Y {
+    background: green;
+  }
+
+  td.availability-Q {
+    background: orange;
+  }
+}
