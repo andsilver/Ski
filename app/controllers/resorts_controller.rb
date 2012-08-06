@@ -39,6 +39,7 @@ class ResortsController < ApplicationController
         format.html { redirect_to(edit_resort_path(@resort), :notice => t('notices.saved')) }
         format.xml  { head :ok }
       else
+        @interhome_place_resort = InterhomePlaceResort.new(:resort_id => @resort.id)
         format.html { render :action => "edit" }
         format.xml  { render :xml => @resort.errors, :status => :unprocessable_entity }
       end
