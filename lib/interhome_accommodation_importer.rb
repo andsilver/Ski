@@ -116,7 +116,7 @@ class InterhomeAccommodationImporter
       else
         picture = InterhomePicture.new
         picture.picture_type = p['type'][0]
-        picture.season = p['season'][0]
+        picture.season = p['season'] ? p['season'][0] : ''
         picture.url = url
         accommodation.interhome_pictures << picture
       end
