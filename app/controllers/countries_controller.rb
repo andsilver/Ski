@@ -5,7 +5,7 @@ class CountriesController < ApplicationController
   before_filter :no_browse_menu, :except => [:show]
 
   def index
-    @countries = Country.all(:order => 'name')
+    @countries = Country.order(:name)
   end
 
   def new

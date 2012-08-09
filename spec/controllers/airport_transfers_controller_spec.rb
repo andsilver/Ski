@@ -18,5 +18,6 @@ describe AirportTransfersController do
   end
 
   describe 'POST create' do
+    pending
   end
 end
