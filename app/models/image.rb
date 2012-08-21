@@ -103,17 +103,16 @@ class Image < ActiveRecord::Base
   def download_from_source
     begin
       FileUtils.makedirs(directory_path)
+      require 'net/http'
+      uri = URI.parse(source_url)
+      Net::HTTP.start(uri.host, uri.port) do |http|
+        resp = http.get(uri.path)
+        open(original_path, "wb") do |file|
+          file.write(resp.body)
+        end
+      end
     rescue
       return
-    end
-
-    require 'net/http'
-    uri = URI.parse(source_url)
-    Net::HTTP.start(uri.host, uri.port) do |http|
-      resp = http.get(uri.path)
-      open(original_path, "wb") do |file|
-        file.write(resp.body)
-      end
     end
   end
 
