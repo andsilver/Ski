@@ -35,7 +35,7 @@ class InterhomeImporter
     filenames = @interhome_accommodation_importer.split_xml(opts[:max_xml_files])
     @interhome_accommodation_importer.import(filenames, true)
 
-    @interhome_vacancy_importer = InterhomeVancancyImporter.new
+    @interhome_vacancy_importer = InterhomeVacancyImporter.new
     @interhome_vacancy_importer.ftp_get unless opts[:skip_ftp]
     filenames = @interhome_vacancy_importer.split_xml(opts[:max_xml_files])
     @interhome_vacancy_importer.import(filenames)

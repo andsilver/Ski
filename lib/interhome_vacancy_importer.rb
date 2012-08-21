@@ -25,7 +25,7 @@ class InterhomeVacancyImporter
   protected
 
   def import_file(filename)
-    xml_file = File.open(xml_filename, 'rb')
+    xml_file = File.open(filename, 'rb')
     xml = XmlSimple.xml_in(xml_file)
     xml_file.close
 
