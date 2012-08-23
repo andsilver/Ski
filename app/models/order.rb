@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
   belongs_to :country
   belongs_to :user
 
-  has_many :order_lines, :dependent => :delete_all
+  has_many :order_lines, dependent: :delete_all
 
   # Order statuses
   WAITING_FOR_PAYMENT   = 1

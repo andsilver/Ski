@@ -3,7 +3,7 @@
 class ImagesController < ApplicationController
   before_filter :no_browse_menu
 
-  before_filter :find_object, :only => [:new, :edit, :create]
+  before_filter :find_object, only: [:new, :edit, :create]
 
   def index
     @images = @current_user.images
@@ -30,13 +30,13 @@ class ImagesController < ApplicationController
     begin
       if @image.save
         set_main_image_if_first
-        redirect_to(new_image_path, :notice => t('images_controller.image_uploaded')) and return
+        redirect_to(new_image_path, notice: t('images_controller.image_uploaded')) and return
       end
     rescue
     end
 
     @image.destroy
-    redirect_to(new_image_path, :notice => t('images_controller.problem_uploading'))
+    redirect_to(new_image_path, notice: t('images_controller.problem_uploading'))
   end
 
   def edit
@@ -47,18 +47,16 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
 
     if @image.update_attributes(params[:image])
-      flash[:notice] = t('images_controller.saved')
-      redirect_to :action => 'index'
+      redirect_to({ action: 'index' }, notice: t('images_controller.saved'))
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     @image = Image.find(params[:id])
     @image.destroy
-    flash[:notice] = t('images_controller.deleted')
-    redirect_to :action => 'index'
+    redirect_to({ action: 'index' }, notice: t('images_controller.deleted'))
   end
 
   protected

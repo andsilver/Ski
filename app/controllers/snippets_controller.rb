@@ -1,10 +1,10 @@
 class SnippetsController < ApplicationController
   before_filter :admin_required
-  before_filter :find_snippet, :only => [:edit, :update, :destroy]
+  before_filter :find_snippet, only: [:edit, :update, :destroy]
   before_filter :no_browse_menu
 
   def index
-    @snippets = Snippet.all(order: :name)
+    @snippets = Snippet.order('name')
   end
 
   def new
@@ -17,7 +17,7 @@ class SnippetsController < ApplicationController
     if @snippet.save
       redirect_to snippets_path, notice: 'Saved.'
     else
-      render :action => "new"
+      render action: 'new'
     end
   end
 

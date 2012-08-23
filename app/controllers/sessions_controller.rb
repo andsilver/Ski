@@ -11,14 +11,13 @@ class SessionsController < ApplicationController
     if @current_user
       set_user
     else
-      redirect_to sign_in_path, :notice => I18n.t('sign_in_invalid')
+      redirect_to sign_in_path, notice: t('sign_in_invalid')
     end
   end
 
   def destroy
     reset_session
-    flash[:notice] = I18n.t('signed_out')
-    redirect_to root_path
+    redirect_to root_path, notice: t('signed_out')
   end
 
   def switch_user
@@ -32,7 +31,7 @@ class SessionsController < ApplicationController
   def set_user
     reset_session
     session[:user] = @current_user.id
-    flash[:notice] = t('sessions_controller.welcome_back', :name => @current_user.first_name)
+    flash[:notice] = t('sessions_controller.welcome_back', name: @current_user.first_name)
     if @current_user.role.admin?
       redirect_to cms_path
     else

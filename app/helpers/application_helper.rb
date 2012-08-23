@@ -11,21 +11,21 @@ module ApplicationHelper
       notice += ' ' + flash[:notice]
     end
     unless notice.empty?
-      content_tag('div', h(notice), {:id => "flash_notice"})
+      content_tag('div', h(notice), {id: "flash_notice"})
     end
   end
 
   def euros(number)
-    number_to_currency(number, :unit => '€', :precision => 0)
+    number_to_currency(number, unit: '€', precision: 0)
   end
 
   def euros_from_cents(number)
-    number_to_currency(number / 100.00, :unit => '€', :precision => 2)
+    number_to_currency(number / 100.00, unit: '€', precision: 2)
   end
 
   def format_currency(number, currency)
     format = currency.pre? ? "%u%n" : "%n %u"
-    number_to_currency(number, :unit => currency.unit, :precision => 0, :format => format)
+    number_to_currency(number, unit: currency.unit, precision: 0, format: format)
   end
 
   def km(metres)

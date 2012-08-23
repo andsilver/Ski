@@ -1,5 +1,5 @@
-<h1><%= link_to I18n.t('advertise'), advertise_path %> &rarr;
-  <%= I18n.t('my_enquiries') %></h1>
+<h1><%= link_to t('advertise'), advertise_path %> &rarr;
+  <%= t('my_enquiries') %></h1>
 
 <% if @enquiries.empty? %>
 <p>You have no enquiries.</p>
@@ -23,10 +23,10 @@
     <% @enquiries.each do |enquiry| %>
     <tr>
       <td><%= enquiry.name %> &lt;<%= mail_to(enquiry.email) %>&gt;</td>
-      <td><%= l enquiry.created_at, :format => :short %></td>
+      <td><%= l enquiry.created_at, format: :short %></td>
       <td><%= enquiry.phone %></td>
-      <td><%= l(enquiry.date_of_arrival, :format => :short) unless enquiry.date_of_arrival.nil? %></td>
-      <td><%= l(enquiry.date_of_departure, :format => :short) unless enquiry.date_of_departure.nil? %></td>
+      <td><%= l(enquiry.date_of_arrival, format: :short) unless enquiry.date_of_arrival.nil? %></td>
+      <td><%= l(enquiry.date_of_departure, format: :short) unless enquiry.date_of_departure.nil? %></td>
       <td><%= enquiry.number_of_adults %></td>
       <td><%= enquiry.number_of_children %></td>
       <td><%= enquiry.number_of_infants %></td>

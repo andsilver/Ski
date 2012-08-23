@@ -1,10 +1,10 @@
 class CouponsController < ApplicationController
   before_filter :admin_required
   before_filter :no_browse_menu
-  before_filter :find_coupon, :only => [:edit, :update]
+  before_filter :find_coupon, only: [:edit, :update]
 
   def index
-    @coupons = Coupon.all(:order => :code)
+    @coupons = Coupon.order('code')
   end
 
   def new
@@ -15,9 +15,9 @@ class CouponsController < ApplicationController
     @coupon = Coupon.new(params[:coupon])
 
     if @coupon.save
-      redirect_to(coupons_path, :notice => t('notices.created'))
+      redirect_to(coupons_path, notice: t('notices.created'))
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -26,9 +26,9 @@ class CouponsController < ApplicationController
 
   def update
     if @coupon.update_attributes(params[:coupon])
-      redirect_to(coupons_path, :notice => t('notices.saved'))
+      redirect_to(coupons_path, notice: t('notices.saved'))
     else
-      render "edit"
+      render 'edit'
     end
   end
 

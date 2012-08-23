@@ -11,7 +11,7 @@ class FavouritesController < ApplicationController
     @favourite.unregistered_user_id = @unregistered_user.id
     @favourite.save
 
-    redirect_to(@favourite.property, :notice => t('favourites.added'))
+    redirect_to(@favourite.property, notice: t('favourites.added'))
   end
 
   def destroy
@@ -20,7 +20,7 @@ class FavouritesController < ApplicationController
       if @favourite.unregistered_user.id == @unregistered_user.id
         @favourite.destroy
       end
-      redirect_to(@favourite.property, :notice => t('favourites.removed'))
+      redirect_to(@favourite.property, notice: t('favourites.removed'))
     else
       redirect_to home_path
     end

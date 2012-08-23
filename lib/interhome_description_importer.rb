@@ -18,7 +18,7 @@ class InterhomeDescriptionImporter
   # returns an array of XML filenames. Set max_files to limit the number
   # of smaller files created (for example, when testing).
   def split_xml(max_files = 0)
-    xs = XMLSplitter.new(:root_element => 'descriptions', :child_element => 'description', :xml_filename => 'interhome/' + xml_filename, :elements_per_file => 1000, :max_files => max_files)
+    xs = XMLSplitter.new(root_element: 'descriptions', child_element: 'description', xml_filename: 'interhome/' + xml_filename, elements_per_file: 1000, max_files: max_files)
     xs.split
   end
 

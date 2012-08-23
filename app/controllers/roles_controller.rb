@@ -1,6 +1,6 @@
 class RolesController < ApplicationController
-  before_filter :admin_required, :except => [:sales_pitch]
-  before_filter :find_role, :only => [:edit, :update]
+  before_filter :admin_required, except: [:sales_pitch]
+  before_filter :find_role, only: [:edit, :update]
   before_filter :no_browse_menu
 
   def index
@@ -15,9 +15,9 @@ class RolesController < ApplicationController
     @role = Role.new(params[:role])
 
     if @role.save
-      redirect_to(roles_path, :notice => t('notices.created'))
+      redirect_to(roles_path, notice: t('notices.created'))
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -26,9 +26,9 @@ class RolesController < ApplicationController
 
   def update
     if @role.update_attributes(params[:role])
-      redirect_to(edit_role_path(@role), :notice => t('notices.saved'))
+      redirect_to(edit_role_path(@role), notice: t('notices.saved'))
     else
-      render "edit"
+      render 'edit'
     end
   end
 

@@ -35,7 +35,7 @@ $(document).ready(function() {
 <div class="group_panel">
 <div class="field">
   <div class="field_left">
-    <%= f.label :name, I18n.t('property_name') %>
+    <%= f.label :name, t('property_name') %>
   </div>
   <div class="field_right">
     <%= f.text_field :name %> <%= required_field %>
@@ -50,8 +50,8 @@ $(document).ready(function() {
 <p><%= link_to 'Add or remove images for this property', new_image_path %> (changes made on this page will not be saved)</p>
 <% unless @property.images.empty? %>
 <div class="field">
-  <%= f.label :image_id, I18n.t('main_image') %><br>
-  <%= select("property", "image_id", (@property.images.collect {|i| [ i.filename, i.id ] }).sort, {:prompt => 'Select Image'}) %>
+  <%= f.label :image_id, t('main_image') %><br>
+  <%= select("property", "image_id", (@property.images.collect {|i| [ i.filename, i.id ] }).sort, {prompt: 'Select Image'}) %>
 </div>
 <% end %>
 </div>
@@ -84,7 +84,7 @@ $(document).ready(function() {
     <%= f.label :resort_id, I18n.t('resort') %>
   </div>
   <div class="field_right">
-    <%= select("property", "resort_id", (Resort.where(:visible => true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => t('properties.select_resort')}) %> <%= required_field %>
+    <%= select("property", "resort_id", (Resort.where(visible: true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: t('properties.select_resort')}) %> <%= required_field %>
   </div>
 </div>
 <% if @property.hotel? -%>
@@ -93,7 +93,7 @@ $(document).ready(function() {
     <%= f.label :star_rating, t('properties.star_rating') %>
   </div>
   <div class="field_right">
-    <%= select("property", "star_rating", Range.new(1, 5).collect {|sr| [pluralize(sr, 'star'), sr]}, {:prompt => 'Choose'}) %>
+    <%= select("property", "star_rating", Range.new(1, 5).collect {|sr| [pluralize(sr, 'star'), sr]}, {prompt: 'Choose'}) %>
   </div>
 </div>
 <% end -%>
@@ -120,51 +120,51 @@ type="hidden" value="<%= Property::ACCOMMODATION_TYPE_CHALET %>">
     <%= f.label :distance_from_town_centre_m, 'Distance from town centre' %>
   </div>
   <div class="field_right">
-    <%= select 'property', 'distance_from_town_centre_m', distance_options, {:prompt => 'Choose'} %>
+    <%= select 'property', 'distance_from_town_centre_m', distance_options, {prompt: 'Choose'} %>
   </div>
 </div>
 
 <div class="field">
   <div class="field_left">
-    <%= f.label :metres_from_lift, I18n.t('nearest_lift') %>
+    <%= f.label :metres_from_lift, t('nearest_lift') %>
   </div>
   <div class="field_right">
-    <%= select 'property', 'metres_from_lift', distance_options, {:prompt => 'Choose'} %>
+    <%= select 'property', 'metres_from_lift', distance_options, {prompt: 'Choose'} %>
   </div>
 </div>
 <div class="field">
   <div class="field_left">
-    <%= f.label :number_of_bedrooms, I18n.t('number_of_bedrooms') %>
+    <%= f.label :number_of_bedrooms, t('number_of_bedrooms') %>
   </div>
   <div class="field_right">
-    <%= select("property", "number_of_bedrooms", ((1..10).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+    <%= select("property", "number_of_bedrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}) %>
   </div>
 </div>
 <% if @property.for_rent? %>
 <div class="field">
   <div class="field_left">
-    <%= f.label :sleeping_capacity, I18n.t('sleeping_capacity') %>
+    <%= f.label :sleeping_capacity, t('sleeping_capacity') %>
   </div>
   <div class="field_right">
-    <%= select("property", "sleeping_capacity", ((1..30).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+    <%= select("property", "sleeping_capacity", ((1..30).collect {|n| [ n, n ] }), {prompt: 'Choose'}) %>
   </div>
 </div>
 <% end %>
 <div class="field">
   <div class="field_left">
-    <%= f.label :number_of_bathrooms, I18n.t('number_of_bathrooms') %>
+    <%= f.label :number_of_bathrooms, t('number_of_bathrooms') %>
   </div>
   <div class="field_right">
-    <%= select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {:prompt => 'Choose'}) %>
+    <%= select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}) %>
   </div>
 </div>
 <% if @property.for_rent? or @property.for_sale? -%>
 <div class="field">
   <div class="field_left">
-    <%= f.label :floor_area_metres_2, I18n.t('floor_area') %>
+    <%= f.label :floor_area_metres_2, t('floor_area') %>
   </div>
   <div class="field_right">
-    <%= select("property", "floor_area_metres_2", floor_area_options, {:prompt => 'Choose'}) %>
+    <%= select("property", "floor_area_metres_2", floor_area_options, {prompt: 'Choose'}) %>
     square metres
   </div>
 </div>
@@ -172,10 +172,10 @@ type="hidden" value="<%= Property::ACCOMMODATION_TYPE_CHALET %>">
 <% if @property.for_sale? %>
 <div class="field">
   <div class="field_left">
-    <%= f.label :plot_size_metres_2, I18n.t('plot_size') %>
+    <%= f.label :plot_size_metres_2, t('plot_size') %>
   </div>
   <div class="field_right">
-    <%= select("property", "plot_size_metres_2", plot_size_options, {:prompt => 'Choose'}) %>
+    <%= select("property", "plot_size_metres_2", plot_size_options, {prompt: 'Choose'}) %>
     square metres
   </div>
 </div>
@@ -305,7 +305,7 @@ type="hidden" value="<%= Property::ACCOMMODATION_TYPE_CHALET %>">
   <div class="field_right">
     <%= f.text_field :weekly_rent_price %>
 <% end %>
-  <%= select("property", "currency_id", (Currency.order(:code).all.collect {|c| [ c.code, c.id ] }).sort, {:prompt => 'Select Currency'}) %>
+  <%= select("property", "currency_id", (Currency.order('code').all.collect {|c| [ c.code, c.id ] }).sort, {prompt: 'Select Currency'}) %>
   </div>
 </div>
 <%= clear %>
@@ -313,18 +313,18 @@ type="hidden" value="<%= Property::ACCOMMODATION_TYPE_CHALET %>">
 
 <div class="group_panel">
 <div class="field">
-  <%= f.label :address, I18n.t('address') %> <%= required_field %><br>
+  <%= f.label :address, t('address') %> <%= required_field %><br>
   <%= f.text_area :address %>
 </div>
 <div class="field">
-  <%= f.label :postcode, I18n.t('postcode') %><br>
+  <%= f.label :postcode, t('postcode') %><br>
   <%= f.text_field :postcode %>
 </div>
 </div>
 
 <div class="group_panel">
 <div class="field">
-  <%= f.label :strapline, I18n.t('strapline') %><br>
+  <%= f.label :strapline, t('strapline') %><br>
   <%= f.text_area :strapline %>
   <div class="placeholder">
     <%= I18n.t('strapline_placeholder') %> <a href="#" id="strapline_example"><%= t('example') %></a>
@@ -332,7 +332,7 @@ type="hidden" value="<%= Property::ACCOMMODATION_TYPE_CHALET %>">
 </div>
 
 <div class="field">
-  <%= f.label :description, I18n.t('description') %><br>
+  <%= f.label :description, t('description') %><br>
   <%= f.text_area :description %>
 </div>
 </div>

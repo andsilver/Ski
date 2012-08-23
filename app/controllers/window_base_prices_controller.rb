@@ -1,10 +1,10 @@
 class WindowBasePricesController < ApplicationController
   before_filter :admin_required
   before_filter :no_browse_menu
-  before_filter :find_window_base_price, :only => [:edit, :update, :destroy]
+  before_filter :find_window_base_price, only: [:edit, :update, :destroy]
 
   def index
-    @window_base_prices = WindowBasePrice.all(:order => :quantity)
+    @window_base_prices = WindowBasePrice.order('quantity')
   end
 
   def new
@@ -15,9 +15,9 @@ class WindowBasePricesController < ApplicationController
     @window_base_price = WindowBasePrice.new(params[:window_base_price])
 
     if @window_base_price.save
-      redirect_to(window_base_prices_path, :notice => t('notices.created'))
+      redirect_to(window_base_prices_path, notice: t('notices.created'))
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -26,15 +26,15 @@ class WindowBasePricesController < ApplicationController
 
   def update
     if @window_base_price.update_attributes(params[:window_base_price])
-      redirect_to(window_base_prices_path, :notice => t('notices.saved'))
+      redirect_to(window_base_prices_path, notice: t('notices.saved'))
     else
-      render "edit"
+      render 'edit'
     end
   end
 
   def destroy
     @window_base_price.destroy
-    redirect_to(window_base_prices_path, :notice => t('notices.deleted'))
+    redirect_to(window_base_prices_path, notice: t('notices.deleted'))
   end
 
   protected

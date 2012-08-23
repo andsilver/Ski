@@ -1,9 +1,9 @@
-<%= render :partial => 'shared/steps', :locals => { :step => 6 } %>
+<%= render partial: 'shared/steps', locals: { step: 6 } %>
 
 <% if @lines.empty? %>
   <p><%= t 'adverts_controller.basket_empty' %></p>
 <% else %>
-<%= form_tag :action => 'update_basket_contents' do %>
+<%= form_tag action: 'update_basket_contents' do %>
   <table id="basket" class="table table-bordered table-striped">
     <thead>
       <tr>

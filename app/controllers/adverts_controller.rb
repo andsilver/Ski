@@ -1,7 +1,7 @@
 class AdvertsController < ApplicationController
   before_filter :no_browse_menu
   before_filter :user_required
-  before_filter :prepare_basket, :only => [:basket, :place_order]
+  before_filter :prepare_basket, only: [:basket, :place_order]
 
   def my
     @window_groups = WindowGroups.new
@@ -27,8 +27,8 @@ class AdvertsController < ApplicationController
 
     update_durations unless params[:months].nil?
     remove_advert if params[:remove_advert]
-    redirect_to :action => 'place_order' and return if params[:place_order]
-    redirect_to basket_path, :notice => t('notices.basket_updated')
+    redirect_to action: 'place_order' and return if params[:place_order]
+    redirect_to basket_path, notice: t('notices.basket_updated')
   end
 
   def place_order
@@ -53,13 +53,13 @@ class AdvertsController < ApplicationController
       coupon_id = line.coupon ? line.coupon.id : nil
 
       @order.order_lines << OrderLine.new(
-        :advert_id => advert_id,
-        :description => line.order_description,
-        :amount => line.price,
-        :coupon_id => coupon_id,
-        :country_id => country_id,
-        :resort_id => resort_id,
-        :windows => line.windows
+        advert_id: advert_id,
+        description: line.order_description,
+        amount: line.price,
+        coupon_id: coupon_id,
+        country_id: country_id,
+        resort_id: resort_id,
+        windows: line.windows
       )
 
       if line.pay_monthly?
@@ -85,9 +85,9 @@ class AdvertsController < ApplicationController
     session[:order_id] = @order.id
 
     if @order.total == 0
-      redirect_to :controller => 'payments', :action => 'complete_payment_not_required'
+      redirect_to controller: 'payments', action: 'complete_payment_not_required'
     else
-      redirect_to :controller => 'orders', :action => 'select_payment_method'
+      redirect_to controller: 'orders', action: 'select_payment_method'
     end
   end
 
@@ -97,12 +97,12 @@ class AdvertsController < ApplicationController
       @advert.destroy
       notice = t('notices.advert_removed')
     end
-    redirect_to basket_path, :notice => notice
+    redirect_to basket_path, notice: notice
   end
 
   def buy_windows
-    @heading_a = render_to_string(:partial => 'buy_windows_heading').html_safe
-    @window_base_prices = WindowBasePrice.all(:order => :quantity)
+    @heading_a = render_to_string(partial: 'buy_windows_heading').html_safe
+    @window_base_prices = WindowBasePrice.order('quantity')
   end
 
   def add_windows_to_basket
@@ -129,9 +129,9 @@ class AdvertsController < ApplicationController
     total_adverts = @current_user.adverts_so_far
     advert_number = Hash.new
     advert_number = {
-      :banner_advert => @current_user.banner_adverts_so_far,
-      :directory_advert => @current_user.directory_adverts_so_far,
-      :property => @current_user.property_adverts_so_far
+      banner_advert: @current_user.banner_adverts_so_far,
+      directory_advert: @current_user.directory_adverts_so_far,
+      property: @current_user.property_adverts_so_far
     }
     @current_user.adverts_in_basket.each do |advert|
 
@@ -194,7 +194,7 @@ class AdvertsController < ApplicationController
     else
       notice = I18n.t('coupons_controller.coupon_code_not_recognised')
     end
-    redirect_to basket_path, :notice => notice
+    redirect_to basket_path, notice: notice
   end
 
   def update_durations
@@ -215,7 +215,7 @@ class AdvertsController < ApplicationController
       if id=='windows'
         session[:windows_in_basket] = nil
       else
-        Advert.destroy_all(:id => id, :user_id => @current_user.id)
+        Advert.destroy_all(id: id, user_id: @current_user.id)
       end
     end
   end

@@ -11,7 +11,7 @@ select.wide {
   multiple resorts on a Windows computer. On a Mac, press <kbd>Cmd</kbd>.
 </p>
 <div class="well">
-  <%= form_tag(action: :create) do %>
+  <%= form_tag(action: 'create') do %>
   <div class="row">
     <div class="span5">
       <h3>Airport</h3>
@@ -20,7 +20,7 @@ select.wide {
     <div class="span7">
       <h3>Resort(s)</h3>
       <%= select("transfers", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort,
-{}, {:multiple => true, :size => 10, class: 'wide'}) %>
+{}, {multiple: true, size: 10, class: 'wide'}) %>
     </div>
   </div>
   <%= submit_tag 'Add Connection(s)', class: 'btn btn-primary' %>

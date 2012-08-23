@@ -19,7 +19,7 @@
         <td><%= da.resort %></td>
         <td><%= da.business_name %></td>
         <td><%= da.strapline %></td>
-        <td><%= form_tag directory_advert_path(da), :method => :delete do %><input type="submit" value="Delete" class="btn btn-danger"><% end %></td>
+        <td><%= form_tag directory_advert_path(da), method: :delete do %><input type="submit" value="Delete" class="btn btn-danger"><% end %></td>
       </tr>
 <% end -%>
     </tbody>

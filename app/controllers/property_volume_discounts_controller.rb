@@ -1,10 +1,10 @@
 class PropertyVolumeDiscountsController < ApplicationController
   before_filter :admin_required
   before_filter :no_browse_menu
-  before_filter :find_property_volume_discount, :only => [:edit, :update, :destroy]
+  before_filter :find_property_volume_discount, only: [:edit, :update, :destroy]
 
   def index
-    @property_volume_discounts = PropertyVolumeDiscount.all(:order => :current_property_number)
+    @property_volume_discounts = PropertyVolumeDiscount.order('current_property_number')
   end
 
   def new
@@ -15,9 +15,9 @@ class PropertyVolumeDiscountsController < ApplicationController
     @property_volume_discount = PropertyVolumeDiscount.new(params[:property_volume_discount])
 
     if @property_volume_discount.save
-      redirect_to(property_volume_discounts_path, :notice => t('notices.created'))
+      redirect_to(property_volume_discounts_path, notice: t('notices.created'))
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -26,15 +26,15 @@ class PropertyVolumeDiscountsController < ApplicationController
 
   def update
     if @property_volume_discount.update_attributes(params[:property_volume_discount])
-      redirect_to(property_volume_discounts_path, :notice => t('notices.saved'))
+      redirect_to(property_volume_discounts_path, notice: t('notices.saved'))
     else
-      render "edit"
+      render 'edit'
     end
   end
 
   def destroy
     @property_volume_discount.destroy
-    redirect_to(property_volume_discounts_path, :notice => t('notices.deleted'))
+    redirect_to(property_volume_discounts_path, notice: t('notices.deleted'))
   end
 
   protected

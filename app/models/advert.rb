@@ -43,7 +43,7 @@ class Advert < ActiveRecord::Base
   end
 
   def self.activate_windows_for_user(how_many, order)
-    windows = Advert.where(:order_id => order.id, :window => true)
+    windows = Advert.where(order_id: order.id, window: true)
     if windows.empty?
       how_many.times do
         advert = Advert.new

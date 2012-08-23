@@ -6,10 +6,10 @@ class DirectoryAdvertsController < ApplicationController
   ]
 
   before_filter :no_browse_menu
-  before_filter :user_required, :except => [:show, :click]
-  before_filter :admin_required, :only => [:index]
-  before_filter :find_directory_advert_for_current_user, :only => [:edit, :update, :advertise_now]
-  before_filter :set_cache_buster, :only => [:new, :create]
+  before_filter :user_required, except: [:show, :click]
+  before_filter :admin_required, only: [:index]
+  before_filter :find_directory_advert_for_current_user, only: [:edit, :update, :advertise_now]
+  before_filter :set_cache_buster, only: [:new, :create]
 
   def index
     @directory_adverts = DirectoryAdvert.all
@@ -28,7 +28,7 @@ class DirectoryAdvertsController < ApplicationController
       not_found
     else
       default_page_title("#{@directory_advert.business_name}, #{t(@directory_advert.category.name)} in #{@directory_advert.resort.name}, #{@directory_advert.resort.country.name}")
-      @heading_a = render_to_string(:partial => 'show_directory_advert_heading').html_safe
+      @heading_a = render_to_string(partial: 'show_directory_advert_heading').html_safe
       @directory_advert.current_advert.record_view
     end
   end
@@ -50,7 +50,7 @@ class DirectoryAdvertsController < ApplicationController
         render "new" and return
       end
     end
-    redirect_to basket_path, :notice => t('directory_adverts_controller.created')
+    redirect_to basket_path, notice: t('directory_adverts_controller.created')
   end
 
   def edit
@@ -75,12 +75,12 @@ class DirectoryAdvertsController < ApplicationController
   def destroy
     @directory_advert = DirectoryAdvert.find(params[:id])
     @directory_advert.destroy
-    redirect_to(directory_adverts_path, :notice => t('notices.deleted'))
+    redirect_to(directory_adverts_path, notice: t('notices.deleted'))
   end
 
   def advertise_now
     create_advert
-    redirect_to(basket_path, :notice => t('directory_adverts_controller.added_to_basket'))
+    redirect_to(basket_path, notice: t('directory_adverts_controller.added_to_basket'))
   end
 
   def click
@@ -94,7 +94,7 @@ class DirectoryAdvertsController < ApplicationController
 
   def update_images
     begin
-      banner_image = Image.new(:image => params['banner_image'])
+      banner_image = Image.new(image: params['banner_image'])
       banner_image.user_id = @current_user.id
 
       if banner_image.save
@@ -113,7 +113,7 @@ class DirectoryAdvertsController < ApplicationController
     end
 
     begin
-      directory_image = Image.new(:image => params[:image])
+      directory_image = Image.new(image: params[:image])
       directory_image.user_id = @current_user.id
 
       if directory_image.save

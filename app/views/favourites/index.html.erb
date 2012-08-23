@@ -4,6 +4,6 @@
 </p>
 <% else %>
   <% @properties.each do |p| %>
-    <%= render :partial => 'properties/property_summary', :locals => {:p => p} %>
+  <%= render partial: 'properties/property_summary', locals: {p: p} %>
   <% end %>
 <% end %>

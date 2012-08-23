@@ -2,7 +2,7 @@ class BannerPricesController < ApplicationController
   before_filter :admin_required
   before_filter :no_browse_menu
 
-  before_filter :find_banner_price, :only => [:edit, :update, :destroy]
+  before_filter :find_banner_price, only: [:edit, :update, :destroy]
 
   def index
     @banner_prices = BannerPrice.all
@@ -15,7 +15,7 @@ class BannerPricesController < ApplicationController
   def create
     @banner_price = BannerPrice.new(params[:banner_price])
     if @banner_price.save
-      redirect_to banner_prices_path, :notice => t('notices.created')
+      redirect_to banner_prices_path, notice: t('notices.created')
     else
       render 'new'
     end
@@ -26,7 +26,7 @@ class BannerPricesController < ApplicationController
 
   def update
     if @banner_price.update_attributes(params[:banner_price])
-      redirect_to banner_prices_path, :notice => t('notices.saved')
+      redirect_to banner_prices_path, notice: t('notices.saved')
     else
       render 'edit'
     end
@@ -34,7 +34,7 @@ class BannerPricesController < ApplicationController
 
   def destroy
     @banner_price.destroy
-    redirect_to banner_prices_path, :notice => t('notices.deleted')
+    redirect_to banner_prices_path, notice: t('notices.deleted')
   end
 
   protected

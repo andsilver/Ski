@@ -9,21 +9,21 @@ end
 
 Given /^I have a banner advert in my basket$/ do
   # Make a valid banner price
-  BannerPrice.create!(:current_banner_number => 1, :price => 10)
+  BannerPrice.create!(current_banner_number: 1, price: 10)
 
-  d = a_directory_advert(:is_banner_advert => true)
+  d = a_directory_advert(is_banner_advert: true)
   a = Advert.new_for(d)
   a.save!
 end
 
 def a_directory_advert(opts = {})
   DirectoryAdvert.create!({
-    :user_id => users(:alice).id,
-    :category_id => categories(:bars).id,
-    :business_name => 'Chambre Dix',
-    :business_address => '123 av',
-    :resort_id => 1,
-    :strapline => 'A favourite meeting place for locals and visitors alike'}.merge(opts))
+    user_id: users(:alice).id,
+    category_id: categories(:bars).id,
+    business_name: 'Chambre Dix',
+    business_address: '123 av',
+    resort_id: 1,
+    strapline: 'A favourite meeting place for locals and visitors alike'}.merge(opts))
 end
 
 Then /^I should see my adverts$/ do
@@ -31,13 +31,13 @@ Then /^I should see my adverts$/ do
 end
 
 Then /^I should see a drop down box to change advert duration$/ do
-  page.should have_selector("#basket option", :content => "1 month")
+  page.should have_selector("#basket option", content: "1 month")
 end
 
 Then /^I should see a remove button$/ do
-  page.should have_selector("input", :value => "Remove")
+  page.should have_selector("input", value: "Remove")
 end
 
 Then /^I should see a place order button$/ do
-  page.should have_selector("input", :value => "Place Order")
+  page.should have_selector("input", value: "Place Order")
 end

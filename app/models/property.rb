@@ -7,24 +7,24 @@ class Property < ActiveRecord::Base
   belongs_to :currency
   belongs_to :interhome_accommodation
 
-  has_many :images, :dependent => :destroy
-  has_many :adverts, :dependent => :nullify
+  has_many :images, dependent: :destroy
+  has_many :adverts, dependent: :nullify
 
   validates_presence_of :resort_id
-  validates :resort, :presence => true
+  validates :resort, presence: true
   validates_presence_of :address
 
-  validates_length_of :name, :within => 4..50
-  validates_length_of :strapline, :within => 0..255
+  validates_length_of :name, within: 4..50
+  validates_length_of :strapline, within: 0..255
 
   VALID_DISTANCES = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
 
-  validates_inclusion_of :distance_from_town_centre_m, :in => VALID_DISTANCES
-  validates_inclusion_of :metres_from_lift,            :in => VALID_DISTANCES
+  validates_inclusion_of :distance_from_town_centre_m, in: VALID_DISTANCES
+  validates_inclusion_of :metres_from_lift,            in: VALID_DISTANCES
 
-  validates_inclusion_of :star_rating, :in => 1..5, :message => "is not in the range 1-5"
+  validates_inclusion_of :star_rating, in: 1..5, message: "is not in the range 1-5"
 
-  validates_uniqueness_of :pericles_id, :allow_nil => true, :scope => :user_id
+  validates_uniqueness_of :pericles_id, allow_nil: true, scope: :user_id
 
   before_validation :adjust_distances_if_needed
   before_save :geocode, :normalise_prices, :properties_for_rent_cannot_be_new_developments
@@ -171,7 +171,7 @@ class Property < ActiveRecord::Base
   end
 
   def price(advert, property_number)
-    pp = PropertyPricer.new(:months => advert.months, :property_number => property_number)
+    pp = PropertyPricer.new(months: advert.months, property_number: property_number)
     pp.price_in_cents
   end
 

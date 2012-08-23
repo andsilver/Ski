@@ -8,8 +8,8 @@ end
 
 def sign_in_with(email, password)
   step "I am on the sign in page"
-  fill_in("Email", :with => email)
-  fill_in("Password", :with => password)
+  fill_in("Email", with: email)
+  fill_in("Password", with: password)
   click_button('Sign In')
 end
 
@@ -25,5 +25,5 @@ Then /^I should see the "([^"]*)" heading$/ do |arg1|
 end
 
 Then /^I should see a link to "([^"]*)"$/ do |arg1|
-  page.should have_selector("a", :content => arg1)
+  page.should have_selector("a", content: arg1)
 end

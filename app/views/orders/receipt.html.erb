@@ -1,4 +1,4 @@
-<%= render :partial => 'shared/steps', :locals => { :step => 7 } %>
+<%= render partial: 'shared/steps', locals: { step: 7 } %>
 <p>
   Go to <%= link_to t('receipts'), receipts_orders_path %>
 </p>
@@ -8,4 +8,4 @@
 <h1>Details of your order</h1>
 <% end -%>
 
-<%= render :partial => 'order_details' %>
+<%= render partial: 'order_details' %>

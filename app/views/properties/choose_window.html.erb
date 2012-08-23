@@ -3,10 +3,10 @@
   <p><%= link_to t('adverts_controller.buy_advertising_windows'), buy_windows_adverts_path %></p>
 <% else %>
   <p>Choose a window in which to place <%= @property.name %>:</p>
-  <%= form_tag :action => 'place_in_window' do %>
+  <%= form_tag action: 'place_in_window' do %>
     <select name="advert_id">
       <% @current_user.empty_windows.each do |window| %>
-      <option value="<%= window.id %>"><%= l(window.expires_at, :format => :short) %></option>
+      <option value="<%= window.id %>"><%= l(window.expires_at, format: :short) %></option>
       <% end %>
     </select>
     <%= submit_tag t('properties.place_in_window') %>

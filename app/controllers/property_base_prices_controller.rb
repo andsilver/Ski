@@ -1,10 +1,10 @@
 class PropertyBasePricesController < ApplicationController
   before_filter :admin_required
   before_filter :no_browse_menu
-  before_filter :find_property_base_price, :only => [:edit, :update, :destroy]
+  before_filter :find_property_base_price, only: [:edit, :update, :destroy]
 
   def index
-    @property_base_prices = PropertyBasePrice.all(:order => :number_of_months)
+    @property_base_prices = PropertyBasePrice.order('number_of_months')
   end
 
   def new
@@ -15,9 +15,9 @@ class PropertyBasePricesController < ApplicationController
     @property_base_price = PropertyBasePrice.new(params[:property_base_price])
 
     if @property_base_price.save
-      redirect_to(property_base_prices_path, :notice => t('notices.created'))
+      redirect_to(property_base_prices_path, notice: t('notices.created'))
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -26,15 +26,15 @@ class PropertyBasePricesController < ApplicationController
 
   def update
     if @propery_base_price.update_attributes(params[:property_base_price])
-      redirect_to(property_base_prices_path, :notice => t('notices.saved'))
+      redirect_to(property_base_prices_path, notice: t('notices.saved'))
     else
-      render "edit"
+      render 'edit'
     end
   end
 
   def destroy
     @property_base_price.destroy
-    redirect_to(property_base_prices_path, :notice => t('notices.deleted'))
+    redirect_to(property_base_prices_path, notice: t('notices.deleted'))
   end
 
   protected

@@ -47,10 +47,10 @@ $(document).ready(function() {
       <% end %>
       <% if a.currently_advertised? %>
       <td>
-        <%= l a.current_advert.starts_at, :format => :short %>
+        <%= l a.current_advert.starts_at, format: :short %>
       </td>
       <td>
-        <%= l a.current_advert.expires_at, :format => :short %>
+        <%= l a.current_advert.expires_at, format: :short %>
       </td>
       <% else %>
       <td>
@@ -66,17 +66,17 @@ $(document).ready(function() {
       <td class="numeric">
         <% if a.currently_advertised? %>
           <% if a.current_advert.window? %>
-            <%= form_tag :controller => :properties, :action => "remove_from_window", :id => a.id do %>
+            <%= form_tag controller: 'properties', action: 'remove_from_window', id: a.id do %>
             <%= submit_tag t('advertise_action.remove_from_window'), class: 'btn' %>
             <% end %>
           <% else %>
-            <%= form_tag :controller => a.class.table_name, :action => "advertise_now", :id => a.id do %>
+            <%= form_tag controller: a.class.table_name, action: 'advertise_now', id: a.id do %>
             <%= submit_tag t('advertise_action.renew'), class: 'btn' %>
             <% end %>
           <% end %>
         <% else %>
         <% action = a.advert_status == :dormant ? "choose_window" : "advertise_now" %>
-        <%= form_tag :controller => a.class.table_name, :action => action, :id => a.id do %>
+        <%= form_tag controller: a.class.table_name, action: action, id: a.id do %>
         <%= submit_tag t('advertise_action.' + a.advert_status.to_s), class: 'btn' %>
         <% end %>
         <% end %>

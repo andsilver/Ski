@@ -17,7 +17,7 @@
   <tbody>
   <% @users.each do |u| -%>
     <tr>
-      <td><%= link_to h(u.name), :controller => 'users', :action => 'edit', :id => u %></td>
+      <td><%= link_to u.name, edit_user_path(u) %></td>
       <td><%= u.role.name %></td>
       <td><%= mail_to u.email, u.email %>&nbsp;</td>
       <td><%= tick u.role.admin? %></td>

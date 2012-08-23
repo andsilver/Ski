@@ -3,7 +3,7 @@
 <ul id="images_list">
   <% @images.each do |i| %>
   <li>
-    <div class="image_thumbnail"><%= link_to image_tag(i.url(64)), :action => 'edit', :id => i %></div>
+    <div class="image_thumbnail"><%= link_to image_tag(i.url(64)), action: 'edit', id: i %></div>
   </li>
   <% end %>
   <%= content_tag(:li, 'No images') if @images.empty? %>

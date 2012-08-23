@@ -1,7 +1,7 @@
 <div id="user_panel_1">
   <div class="group_panel">
     <h2><%= t 'users.sign_in_to_access_your_account' %></h2>
-  <%= form_tag :action => 'create' do -%>
+  <%= form_tag action: 'create' do -%>
     <label for="email"><%= I18n.t('email') %></label>
     <%= text_field_tag :email, params[:email] %>
 
@@ -12,7 +12,7 @@
       <%= submit_tag I18n.t('sign_in'), class: 'btn btn-primary' %>
     </p>
     <p id="forgot_your_password">
-      <%= link_to t('users.forgot_your_password'), {:controller => 'users', :action => 'forgot_password'}, class: 'btn btn-small' %>
+      <%= link_to t('users.forgot_your_password'), {controller: 'users', action: 'forgot_password'}, class: 'btn btn-small' %>
     </p>
   <% end -%>
   </div>

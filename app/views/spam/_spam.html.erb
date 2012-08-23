@@ -1,8 +1,8 @@
 <script>
 $(function() {
   $('#no_ajax').hide()
-  $('#current_time').load('<%= url_for(:action => "current_time") %>')
+  $('#current_time').load('<%= url_for(action: 'current_time') %>')
 });
 </script>
 
-<p id="no_ajax">You need to have Javascript switched on to use this form</p>
+<p id="no_ajax">You need to have JavaScript switched on to use this form</p>

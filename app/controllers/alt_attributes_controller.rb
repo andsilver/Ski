@@ -4,7 +4,7 @@ class AltAttributesController < ApplicationController
   before_filter :no_browse_menu
 
   def index
-    @alt_attributes = AltAttribute.all(order: 'path')
+    @alt_attributes = AltAttribute.order('path')
   end
 
   def new
@@ -17,7 +17,7 @@ class AltAttributesController < ApplicationController
     if @alt_attribute.save
       redirect_to(alt_attributes_path, notice: t('notices.created'))
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -28,7 +28,7 @@ class AltAttributesController < ApplicationController
     if @alt_attribute.update_attributes(params[:alt_attribute])
       redirect_to(alt_attributes_path, notice: t('notices.saved'))
     else
-      render "edit"
+      render 'edit'
     end
   end
 

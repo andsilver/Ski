@@ -1,6 +1,6 @@
 class InterhomeAccommodation < ActiveRecord::Base
-  has_many :interhome_pictures, :dependent => :delete_all
-  has_one :property, :dependent => :destroy
+  has_many :interhome_pictures, dependent: :delete_all
+  has_one :property, dependent: :destroy
   has_one :interhome_vacancy, dependent: :delete
 
   def inside_description
@@ -21,7 +21,7 @@ class InterhomeAccommodation < ActiveRecord::Base
   # today then returns the earliest price in the table. If no prices are
   # found then nil is returned.
   def current_price
-    prices = InterhomePrice.where(:accommodation_code => code).order('start_date')
+    prices = InterhomePrice.where(accommodation_code: code).order('start_date')
     prices.each {|p| return p.rental_price if p.start_date <= Date.today && p.end_date >= Date.today}
     prices.first ? prices.first.rental_price : nil
   end

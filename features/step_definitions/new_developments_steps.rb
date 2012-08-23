@@ -1,12 +1,12 @@
 def valid_property attributes
   defaults = {
-    :user_id => 1,
-    :resort_id => resorts(:chamonix).id,
-    :name => 'Property',
-    :address => '74400',
-    :listing_type => Property::LISTING_TYPE_FOR_SALE,
-    :distance_from_town_centre_m => 100,
-    :metres_from_lift => 100
+    user_id: 1,
+    resort_id: resorts(:chamonix).id,
+    name: 'Property',
+    address: '74400',
+    listing_type: Property::LISTING_TYPE_FOR_SALE,
+    distance_from_town_centre_m: 100,
+    metres_from_lift: 100
   }
 
   Property.new defaults.merge(attributes)
@@ -24,10 +24,10 @@ Given /^there are (\d+) new developments advertised$/ do |how_many|
   how_many.to_i.times do |d|
     # make each new property cheaper than the last
     # as default sort order is "Price low to high"
-    p = valid_property :name => "New development #{d+1}",
-      :new_development => true, :sale_price => (100 - d.to_i)
+    p = valid_property name: "New development #{d+1}",
+      new_development: true, sale_price: (100 - d.to_i)
     p.save
-    Advert.create(:user_id => p.user_id, :property_id => p.id, :expires_at => Time.now + 1.days)
+    Advert.create(user_id: p.user_id, property_id: p.id, expires_at: Time.now + 1.days)
   end
 end
 

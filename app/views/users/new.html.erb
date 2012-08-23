@@ -1,4 +1,4 @@
-<%= render :partial => 'shared/steps', :locals => { :step => 1 } %>
+<%= render partial: 'shared/steps', locals: { step: 1 } %>
 
 <% if @user.role %>
 <p><%= t 'users.account_type' %>: <strong><%= t(@user.role.localisation_key) %></strong> (<%= link_to t('change'), sign_up_path %>)</p>
@@ -6,7 +6,7 @@
 <%= raw t('users.can_advertise_properties_for_rent') if @user.role.advertises_properties_for_rent? %>
 <%= raw t('users.can_advertise_properties_for_sale') if @user.role.advertises_properties_for_sale? %>
 <%= raw t('users.can_advertise_generally') if @user.role.advertises_generally? %>
-<%= render 'form', :submit_label => 'sign_up' %>
+<%= render 'form', submit_label: 'sign_up' %>
 <% else %>
 <div id="user_panel_1">
   <div class="group_panel">
@@ -14,7 +14,7 @@
 <%= form_for @user do |f| %>
 <input type="hidden" name="stage" value="1">
 <p>
-  <%= f.label :role_id, t('users.account_type') %> <%= select("user", "role_id", Role.where(:select_on_signup => true).collect {|r| [ t(r.localisation_key), r.id ] }, {:prompt => t('users.select_account_type')}) %>
+  <%= f.label :role_id, t('users.account_type') %> <%= select("user", "role_id", Role.where(select_on_signup: true).collect {|r| [ t(r.localisation_key), r.id ] }, {prompt: t('users.select_account_type')}) %>
 </p>
 <p>
   <%= f.submit t('continue'), class: 'btn btn-primary' %>

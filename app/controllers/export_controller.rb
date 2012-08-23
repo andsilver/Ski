@@ -14,7 +14,7 @@ class ExportController < ApplicationController
   def spreadsheet
     Spreadsheet.client_encoding = 'UTF-8'
     book = Spreadsheet::Workbook.new
-    sheet = book.create_worksheet :name => params[:class_name]
+    sheet = book.create_worksheet name: params[:class_name]
 
     c = Kernel.const_get(params[:class_name])
     records = c.all
@@ -39,6 +39,6 @@ class ExportController < ApplicationController
     blob = StringIO.new("")
     book.write blob
     Mime::Type.register "application/vnd.ms-excel", :xls
-    send_data blob.string, :type => :xls, :filename => filename
+    send_data blob.string, type: :xls, filename: filename
   end
 end

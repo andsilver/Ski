@@ -14,8 +14,8 @@
     </tr>
   <% @window_groups.each do |group| %>
     <tr>
-      <td><%= l group.starts_at, :format => :short %></td>
-      <td><%= l group.expires_at, :format => :short %></td>
+      <td><%= l group.starts_at, format: :short %></td>
+      <td><%= l group.expires_at, format: :short %></td>
       <td><%= group.days_remaining %></td>
       <td><%= group.total %></td>
       <td><%= group.number_in_use %></td>
@@ -26,18 +26,18 @@
 <% end %>
 
 <% unless @rentals.empty? %>
-<%= render 'table', :title => 'property_rentals', :adverts => @rentals %>
+<%= render 'table', title: 'property_rentals', adverts: @rentals %>
 <% end %>
 
 
 <% unless @sales.empty? %>
-<%= render 'table', :title => 'property_sales', :adverts => @sales %>
+<%= render 'table', title: 'property_sales', adverts: @sales %>
 <% end %>
 
 <% unless @hotels.empty? %>
-<%= render 'table', :title => 'hotels', :adverts => @hotels %>
+<%= render 'table', title: 'hotels', adverts: @hotels %>
 <% end %>
 
 <% unless @directory_adverts.empty? %>
-<%= render 'table', :title => 'directory_adverts', :adverts => @directory_adverts %>
+<%= render 'table', title: 'directory_adverts', adverts: @directory_adverts %>
 <% end %>

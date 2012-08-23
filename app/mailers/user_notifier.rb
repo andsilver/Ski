@@ -1,5 +1,5 @@
 class UserNotifier < ActionMailer::Base
-  default :from => 'notifier@mychaletfinder.com'
+  default from: 'notifier@mychaletfinder.com'
   layout 'email'
 
   def token user, domain
@@ -7,7 +7,7 @@ class UserNotifier < ActionMailer::Base
     @name = user.name
     @token = user.forgot_password_token
     @domain = domain
-    mail(:to => user.email, :subject => 'My Chalet Finder: how to change your password')
+    mail(to: user.email, subject: 'My Chalet Finder: how to change your password')
   end
 
   def welcome user, password, domain
@@ -15,6 +15,6 @@ class UserNotifier < ActionMailer::Base
     @email = user.email
     @password = password
     @domain = domain
-    mail(:to => user.email, :subject => 'Welcome to My Chalet Finder')
+    mail(to: user.email, subject: 'Welcome to My Chalet Finder')
   end
 end

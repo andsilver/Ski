@@ -1,7 +1,7 @@
 <div class="property_summary">
   <%= render partial: 'properties/user_logo', locals: { property: p } %>
   <%
-  link = p.interhome_accommodation_id ? "/accommodation/#{p.interhome_accommodation.permalink}" : p
+  link = p.interhome_accommodation_id ? interhome_property_path(p.interhome_accommodation.permalink) : p
   %>
   <h3><%= link_to p.name, link %></h3>
   <p class="strapline"><%= p.strapline %></p>
@@ -34,7 +34,7 @@
   </div>
   <%= clear %>
   <% if fav = favourite_for_property(p) %>
-  <%= form_for(fav, :method => :delete) do |f| %>
+  <%= form_for(fav, method: :delete) do |f| %>
   <p><%= f.submit t('favourites.remove') %></p>
   <% end %>
   <% end %>

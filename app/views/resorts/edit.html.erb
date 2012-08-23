@@ -7,8 +7,8 @@
     <%= f.hidden_field :resort_id %>
     <%= f.label :interhome_place_code, 'Interhome place' %>
     <%= select("interhome_place_resort", "interhome_place_code",
-    InterhomePlace.all(:order => 'full_name').collect {|ip| [ ip.full_name, ip.code ] },
-    {:prompt => 'Select Interhome place'}) %>
+    InterhomePlace.order('full_name').collect {|ip| [ ip.full_name, ip.code ] },
+    {prompt: 'Select Interhome place'}) %>
   </div>
   <div class="field">
     <%= f.submit 'Link Interhome place to this resort', class: 'btn' %>

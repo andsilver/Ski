@@ -21,7 +21,7 @@
 </div>
 <div class="field">
   <%= f.label :country_id, t('countries.country') %><br>
-  <%= select("airport", "country_id", Country.all(:order => 'name').collect {|c| [ c.name, c.id ] }, {:prompt => t('countries.select_country')}) %>
+  <%= select("airport", "country_id", Country.all(order: 'name').collect {|c| [ c.name, c.id ] }, {prompt: t('countries.select_country')}) %>
 </div>
 <div class="field">
   <%= f.submit %>

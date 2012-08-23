@@ -1,5 +1,5 @@
-xml.instruct! :xml, :version=>"1.0" 
-xml.rss(:version=>"2.0"){
+xml.instruct! :xml, version: "1.0" 
+xml.rss(version: "2.0"){
   xml.channel{
     xml.title("My Chalet Finder Blog")
     xml.link("http://en.mychaletfinder.com/")

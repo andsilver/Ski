@@ -10,4 +10,10 @@ describe Resort do
     resort.id = 2
     resort.to_param.should == "2-italian-alps"
   end
+
+  describe '#to_s' do
+    it 'returns its name' do
+      Resort.new(name: 'Chamonix').to_s.should == 'Chamonix'
+    end
+  end
 end

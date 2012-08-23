@@ -1,10 +1,10 @@
 class PagesController < ApplicationController
   before_filter :admin_required, except: [:show]
-  before_filter :find_page, :only => [:edit, :update, :destroy]
+  before_filter :find_page, only: [:edit, :update, :destroy]
   before_filter :no_browse_menu
 
   def index
-    @pages = Page.all(:order => 'path')
+    @pages = Page.order('path')
   end
 
   def new
@@ -15,9 +15,9 @@ class PagesController < ApplicationController
     @page = Page.new(params[:page])
 
     if @page.save
-      redirect_to(pages_path, :notice => t('notices.created'))
+      redirect_to(pages_path, notice: t('notices.created'))
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -26,15 +26,15 @@ class PagesController < ApplicationController
 
   def update
     if @page.update_attributes(params[:page])
-      redirect_to(pages_path, :notice => t('notices.saved'))
+      redirect_to(pages_path, notice: t('notices.saved'))
     else
-      render "edit"
+      render 'edit'
     end
   end
 
   def destroy
     @page.destroy
-    redirect_to pages_path, :notice => t('notices.deleted')
+    redirect_to pages_path, notice: t('notices.deleted')
   end
 
   def show

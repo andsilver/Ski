@@ -62,17 +62,17 @@ $(function () {
 
 <div class="field">
   <%= f.label :number_of_adults, t('enquiries_controller.number_of_adults') %><br>
-  <%= select("enquiry", "number_of_adults", (0..10).collect {|n| [ n, n ] }, {:prompt => 'Select'}) %>
+  <%= select("enquiry", "number_of_adults", (0..10).collect {|n| [ n, n ] }, {prompt: 'Select'}) %>
 </div>
 
 <div class="field">
   <%= f.label :number_of_children, t('enquiries_controller.number_of_children') %><br>
-  <%= select("enquiry", "number_of_children", (0..10).collect {|n| [ n, n ] }, {:prompt => 'Select'}) %>
+  <%= select("enquiry", "number_of_children", (0..10).collect {|n| [ n, n ] }, {prompt: 'Select'}) %>
 </div>
 
 <div class="field">
   <%= f.label :number_of_infants, t('enquiries_controller.number_of_infants') %><br>
-  <%= select("enquiry", "number_of_infants", (0..10).collect {|n| [ n, n ] }, {:prompt => 'Select'}) %>
+  <%= select("enquiry", "number_of_infants", (0..10).collect {|n| [ n, n ] }, {prompt: 'Select'}) %>
 </div>
 <% end %>
 

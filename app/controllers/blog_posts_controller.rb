@@ -1,15 +1,15 @@
 class BlogPostsController < ApplicationController
-  before_filter :admin_required, :except => [:blog, :show]
-  before_filter :find_blog_post, :only => [:show, :edit, :update]
+  before_filter :admin_required, except: [:blog, :show]
+  before_filter :find_blog_post, only: [:show, :edit, :update]
   before_filter :no_browse_menu
 
   def index
-    @blog_posts = BlogPost.order('created_at DESC').all
+    @blog_posts = BlogPost.order('created_at DESC')
   end
 
   def blog
     @heading_a = t('blog_posts_controller.blog_heading')
-    @blog_posts = BlogPost.where(visible: true).paginate :page => params[:page], :order => 'created_at DESC'
+    @blog_posts = BlogPost.where(visible: true).paginate(page: params[:page], order: 'created_at DESC')
     not_found unless admin? || @w.blog_visible?
   end
 
@@ -26,7 +26,7 @@ class BlogPostsController < ApplicationController
     @blog_post = BlogPost.new(params[:blog_post])
 
     if @blog_post.save
-      redirect_to(blog_posts_path, :notice => t('notices.created'))
+      redirect_to(blog_posts_path, notice: t('notices.created'))
     else
       render "new"
     end

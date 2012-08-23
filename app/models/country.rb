@@ -1,11 +1,11 @@
 class Country < ActiveRecord::Base
-  belongs_to :image, :dependent => :destroy
+  belongs_to :image, dependent: :destroy
 
-  has_many :resorts, :order => 'name'
-  has_many :visible_resorts, :class_name => 'Resort', :conditions => 'visible = 1', :order => 'name'
+  has_many :resorts, order: 'name'
+  has_many :visible_resorts, class_name: 'Resort', conditions: 'visible = 1', order: 'name'
   has_many :orders
-  has_many :order_lines, :include => :order
-  has_many :users, :foreign_key => 'billing_country_id'
+  has_many :order_lines, include: :order
+  has_many :users, foreign_key: 'billing_country_id'
   has_one :buying_guide, dependent: :delete
 
   scope :with_resorts, where('id IN (SELECT DISTINCT(country_id) FROM resorts)').order('name')

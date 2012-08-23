@@ -10,14 +10,14 @@ Property Name: <%= @property.name %>
 <% unless @enquiry.date_of_arrival.blank? -%>
 <p>
 Date of arrival:
-<%= l @enquiry.date_of_arrival, :format => :short %>
+<%= l @enquiry.date_of_arrival, format: :short %>
 </p>
 <% end -%>
 
 <% unless @enquiry.date_of_departure.blank? -%>
 <p>
 Date of departure:
-<%= l @enquiry.date_of_departure, :format => :short %><br>
+<%= l @enquiry.date_of_departure, format: :short %><br>
 </p>
 <% end -%>
 

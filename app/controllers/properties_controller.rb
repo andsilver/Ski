@@ -3,7 +3,7 @@ InterhomeBooking = Struct.new(:arrival_day, :arrival_month, :arrival_date, :dura
 class PropertiesController < ApplicationController
   include SpamProtection
 
-  before_filter :no_browse_menu, :except => [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_filter :no_browse_menu, except: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
   before_filter :user_required, except: [
     :index, :browse_for_rent, :browse_for_sale,
@@ -12,22 +12,22 @@ class PropertiesController < ApplicationController
     :show_interhome, :check_interhome_booking,
     :import_documentation]
 
-  before_filter :find_property_for_user, :only => [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
+  before_filter :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
-  before_filter :resort_conditions, :only => [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_filter :find_resort, :only => [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_filter :resort_conditions, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_filter :find_resort, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
-  before_filter :find_property, :only => [:show, :contact, :email_a_friend]
+  before_filter :find_property, only: [:show, :contact, :email_a_friend]
 
-  before_filter :admin_required, :only => [:index]
+  before_filter :admin_required, only: [:index]
 
   def index
     @properties = Property.all
   end
 
   def browse_for_rent
-    default_page_title t('properties.titles.browse_for_rent', :resort => @resort.name)
-    @heading_a = render_to_string(:partial => 'browse_property_heading').html_safe
+    default_page_title t('properties.titles.browse_for_rent', resort: @resort)
+    @heading_a = render_to_string(partial: 'browse_property_heading').html_safe
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
@@ -43,15 +43,15 @@ class PropertiesController < ApplicationController
       @conditions << params[:board_basis]
     end
 
-    @properties = Property.paginate :page => params[:page], :order => order,
-      :conditions => @conditions
-    render "browse"
+    @properties = Property.paginate(page: params[:page], order: order,
+      conditions: @conditions)
+    render 'browse'
   end
 
   def browse_for_sale
     @for_sale = true
-    default_page_title t('properties.titles.browse_for_sale', :resort => @resort.name)
-    @heading_a = render_to_string(:partial => 'browse_property_heading').html_safe
+    default_page_title t('properties.titles.browse_for_sale', resort: @resort)
+    @heading_a = render_to_string(partial: 'browse_property_heading').html_safe
 
     order = for_sale_selected_order
 
@@ -61,15 +61,14 @@ class PropertiesController < ApplicationController
 
     filter_conditions
 
-    @properties = Property.paginate :page => params[:page], :order => order,
-      :conditions => @conditions
+    @properties = Property.paginate(page: params[:page], order: order, conditions: @conditions)
     render "browse"
   end
 
   def new_developments
     @for_sale = true
-    default_page_title t('properties.titles.new_developments', :resort => @resort.name)
-    @heading_a = I18n.t(:new_developments)
+    default_page_title t('properties.titles.new_developments', resort: @resort.name)
+    @heading_a = t(:new_developments)
     @conditions[0] += " AND new_development = 1"
 
     order = for_sale_selected_order
@@ -78,14 +77,14 @@ class PropertiesController < ApplicationController
 
     filter_conditions
 
-    @properties = Property.paginate(:page => params[:page], :order => order,
-      :conditions => @conditions)
+    @properties = Property.paginate(page: params[:page], order: order,
+      conditions: @conditions)
     render "browse"
   end
 
   def browse_hotels
     @for_sale = false
-    default_page_title t('properties.titles.hotels', :resort => @resort.name)
+    default_page_title t('properties.titles.hotels', resort: @resort)
     @heading_a = t('resort_options.hotels')
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
@@ -103,7 +102,7 @@ class PropertiesController < ApplicationController
 
   def new
     default_page_title t('properties.titles.new')
-    @heading_a = render_to_string(:partial => 'new_property_heading').html_safe
+    @heading_a = render_to_string(partial: 'new_property_heading').html_safe
 
     @property = Property.new
     @property.new_development = @current_user.role.new_development_by_default?
@@ -154,7 +153,7 @@ class PropertiesController < ApplicationController
 
   def contact
     default_page_title "Enquire About #{@property.name} in #{@property.resort}, #{@property.resort.country}"
-    @heading_a = render_to_string(:partial => 'contact_heading').html_safe
+    @heading_a = render_to_string(partial: 'contact_heading').html_safe
 
     @enquiry = Enquiry.new
     @enquiry.property_id = @property.id
@@ -162,7 +161,7 @@ class PropertiesController < ApplicationController
 
   def email_a_friend
     default_page_title t('properties.email_a_friend')
-    @heading_a = render_to_string(:partial => 'email_a_friend_heading').html_safe
+    @heading_a = render_to_string(partial: 'email_a_friend_heading').html_safe
 
     @form = EmailAFriendForm.new
     @form.property_id = @property.id
@@ -188,15 +187,15 @@ class PropertiesController < ApplicationController
         Advert.create_for(@property)
         notice = t('properties_controller.created')
       end
-      redirect_to new_image_path, :notice => notice
+      redirect_to new_image_path, notice: notice
     else
-      render :action => "new"
+      render action: 'new'
     end
   end
 
   def update
     if @property.update_attributes(params[:property])
-      redirect_to my_adverts_path, :notice => t('properties_controller.saved')
+      redirect_to my_adverts_path, notice: t('properties_controller.saved')
     else
       render "edit"
     end
@@ -204,16 +203,16 @@ class PropertiesController < ApplicationController
 
   def destroy
     @property.destroy
-    redirect_to my_adverts_path(:user_id => @property.user_id), :notice => I18n.t('notices.deleted')
+    redirect_to my_adverts_path(user_id: @property.user_id), notice: t('notices.deleted')
   end
 
   def advertise_now
     Advert.create_for(@property)
-    redirect_to(basket_path, :notice => t('properties_controller.added_to_basket'))
+    redirect_to(basket_path, notice: t('properties_controller.added_to_basket'))
   end
 
   def choose_window
-    @heading_a = render_to_string(:partial => 'choose_window_heading').html_safe
+    @heading_a = render_to_string(partial: 'choose_window_heading').html_safe
   end
 
   def place_in_window
@@ -221,9 +220,9 @@ class PropertiesController < ApplicationController
     if advert && advert.window?
       advert.property_id = @property.id
       advert.save
-      redirect_to my_adverts_path, :notice => t('properties_controller.placed_in_window')
+      redirect_to my_adverts_path, notice: t('properties_controller.placed_in_window')
     else
-      redirect_to :action => 'choose_window'
+      redirect_to action: 'choose_window'
     end
   end
 
@@ -231,7 +230,7 @@ class PropertiesController < ApplicationController
     advert = @property.current_advert
     advert.property_id = nil
     advert.save!
-    redirect_to my_adverts_path, :notice => t('properties_controller.removed_from_window')
+    redirect_to my_adverts_path, notice: t('properties_controller.removed_from_window')
   end
 
   def new_import
@@ -273,7 +272,7 @@ class PropertiesController < ApplicationController
   def pericles_import
     default_resort = Resort.find_by_id(params[:resort_id])
     unless default_resort
-      redirect_to new_pericles_import_properties_path, :notice => "Please select a default resort."
+      redirect_to new_pericles_import_properties_path, notice: 'Please select a default resort.'
       return
     end
 
@@ -335,7 +334,7 @@ class PropertiesController < ApplicationController
     end
 
     redirect_to new_pericles_import_properties_path,
-      :notice => "Total read: #{@total_read}, Newly imported: #{@newly_imported}, Updated: #{@updated}, Failed: #{@failed}"
+      notice: "Total read: #{@total_read}, Newly imported: #{@newly_imported}, Updated: #{@updated}, Failed: #{@failed}"
   end
 
   protected
@@ -422,7 +421,7 @@ class PropertiesController < ApplicationController
 
       image = nil
       if filename[0..3]=="http"
-        image = Image.new(:source_url => filename)
+        image = Image.new(source_url: filename)
       else
         filename = File.basename(filename)
         path = "#{@path}/#{filename}"
@@ -472,7 +471,7 @@ class PropertiesController < ApplicationController
 
   def cleanup_import notice
     FileUtils.rm_rf(@path) unless @path.nil?
-    redirect_to new_import_properties_path, :notice => notice
+    redirect_to new_import_properties_path, notice: notice
   end
 
   def csv_mapping_from_header(row)

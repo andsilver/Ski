@@ -1,11 +1,11 @@
 class CountriesController < ApplicationController
-  before_filter :admin_required, :except => [:show]
-  before_filter :find_country, :only => [:edit, :update, :show, :destroy]
-  before_filter :protect_country, :only => [:show]
-  before_filter :no_browse_menu, :except => [:show]
+  before_filter :admin_required, except: [:show]
+  before_filter :find_country, only: [:edit, :update, :show, :destroy]
+  before_filter :protect_country, only: [:show]
+  before_filter :no_browse_menu, except: [:show]
 
   def index
-    @countries = Country.order(:name)
+    @countries = Country.order('name')
   end
 
   def new
@@ -17,9 +17,9 @@ class CountriesController < ApplicationController
 
     if @country.save
       set_image_mode
-      redirect_to(new_image_path, :notice => t('notices.created'))
+      redirect_to(new_image_path, notice: t('notices.created'))
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -29,9 +29,9 @@ class CountriesController < ApplicationController
 
   def update
     if @country.update_attributes(params[:country])
-      redirect_to(countries_path, :notice => t('notices.saved'))
+      redirect_to(countries_path, notice: t('notices.saved'))
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -51,9 +51,9 @@ class CountriesController < ApplicationController
     @errors << "This country has users associated with it. " unless @country.users.empty?
     if @errors.empty?
       #@country.destroy
-      redirect_to countries_path, :notice => t('notices.deleted')
+      redirect_to countries_path, notice: t('notices.deleted')
     else
-      redirect_to countries_path, :notice => "This country could not be deleted because: " +
+      redirect_to countries_path, notice: "This country could not be deleted because: " +
         @errors.join
     end
   end

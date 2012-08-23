@@ -9,7 +9,7 @@
 <%= form_tag pericles_import_properties_path do %>
   <div class="field">
     Default resort:
-    <%= select("", "resort_id", (Resort.where(:visible => true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {:prompt => t('properties.select_resort')}) %> <%= required_field %>
+    <%= select("", "resort_id", (Resort.where(visible: true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: t('properties.select_resort')}) %> <%= required_field %>
   </div>
   <div class="field">
     <%= submit_tag 'Import' %>

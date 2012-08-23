@@ -1,10 +1,10 @@
 class AirportsController < ApplicationController
   before_filter :admin_required
-  before_filter :find_airport, :only => [:edit, :update, :destroy]
+  before_filter :find_airport, only: [:edit, :update, :destroy]
   before_filter :no_browse_menu
 
   def index
-    @airports = Airport.all(:order => 'code')
+    @airports = Airport.order('code')
   end
 
   def new
@@ -15,7 +15,7 @@ class AirportsController < ApplicationController
     @airport = Airport.new(params[:airport])
 
     if @airport.save
-      redirect_to(airports_path, :notice => t('notices.created'))
+      redirect_to(airports_path, notice: t('notices.created'))
     else
       render "new"
     end
@@ -26,7 +26,7 @@ class AirportsController < ApplicationController
 
   def update
     if @airport.update_attributes(params[:airport])
-      redirect_to(airports_path, :notice => t('notices.saved'))
+      redirect_to(airports_path, notice: t('notices.saved'))
     else
       render "edit"
     end
@@ -34,7 +34,7 @@ class AirportsController < ApplicationController
 
   def destroy
     @airport.destroy
-    redirect_to airports_path, :notice => t('notices.deleted')
+    redirect_to airports_path, notice: t('notices.deleted')
   end
 
   protected

@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= form_for @user, :html => { :multipart => true } do |f| %>
+<%= form_for @user, html: { multipart: true } do |f| %>
 <%= f.hidden_field :role_id %>
 <div id="panel_1">
 <div class="group_panel">
@@ -49,7 +49,7 @@
 </p>
 <div class="field">
   <%= f.label :coupon_id, I18n.t('coupon') %>
-  <%= select("user", "coupon_id", Coupon.all.collect {|c| [ c.code, c.id ] }, {:prompt => 'Select Coupon'}) %>
+  <%= select("user", "coupon_id", Coupon.all.collect {|c| [ c.code, c.id ] }, {prompt: 'Select Coupon'}) %>
 </div>
 </div>
 <% end %>
@@ -67,7 +67,7 @@
 </div>
 <div class="field">
   <%= f.label :vat_number, t('users.vat_number') %>
-  <%= f.text_field :vat_number, :placeholder => 'GB123456789' %>
+  <%= f.text_field :vat_number, placeholder: 'GB123456789' %>
 </div>
 </div>
 <% end %>
@@ -135,7 +135,7 @@
 </div>
 <div class="field">
   <%= f.label :billing_country_id, t('countries.country') %>
-  <%= select("user", "billing_country_id", Country.popular_billing_countries.collect {|c| [ c.name, c.id ] }, {:prompt => t('countries.select_country')}) %>
+  <%= select("user", "billing_country_id", Country.popular_billing_countries.collect {|c| [ c.name, c.id ] }, {prompt: t('countries.select_country')}) %>
   <%= required_field %>
 </div>
 </div>
@@ -162,7 +162,7 @@
   </p>
   <div class="field">
     <%= f.label :google_web_property_id, 'Google Web Property ID' %>
-    <%= f.text_field :google_web_property_id, :placeholder => 'UA-00000000-1' %>
+    <%= f.text_field :google_web_property_id, placeholder: 'UA-00000000-1' %>
   </div>
 </div>
 <% end -%>

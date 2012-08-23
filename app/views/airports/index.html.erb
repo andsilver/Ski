@@ -22,7 +22,7 @@
       <td><%= link_to airport.name, edit_airport_path(airport) %></td>
       <td><%= airport.code %></td>
       <td><%= airport.country.name %></td>
-      <td><%= link_to 'Delete', airport, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Delete', airport, confirm: 'Are you sure?', method: :delete %></td>
     </tr>
     <% end %>
   </tbody>

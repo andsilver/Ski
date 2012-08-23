@@ -113,8 +113,7 @@ class ApplicationController < ActionController::Base
 
   def user_required
     unless signed_in?
-      flash[:notice] = t('notices.sign_in_required')
-      redirect_to sign_in_path
+      redirect_to sign_in_path, notice: t('notices.sign_in_required')
     end
   end
 
@@ -127,8 +126,7 @@ class ApplicationController < ActionController::Base
 
   def admin_required
     unless admin?
-      flash[:notice] = t('notices.admin_required')
-      redirect_to sign_in_path
+      redirect_to sign_in_path, notice: t('notices.admin_required')
     end
   end
 

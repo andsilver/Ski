@@ -6,10 +6,10 @@ class DirectoryAdvert < ActiveRecord::Base
   belongs_to :category
   belongs_to :resort
   belongs_to :user
-  belongs_to :image, :dependent => :destroy
-  belongs_to :banner_image, :class_name => "Image", :dependent => :destroy
+  belongs_to :image, dependent: :destroy
+  belongs_to :banner_image, class_name: 'Image', dependent: :destroy
 
-  has_many :adverts, :dependent => :nullify
+  has_many :adverts, dependent: :nullify
 
   validates_presence_of :category
   validates_presence_of :resort
@@ -17,7 +17,7 @@ class DirectoryAdvert < ActiveRecord::Base
   validates_presence_of :business_name
   validates_presence_of :business_address
   validates_presence_of :strapline
-  validates_format_of :url, :with => /^(#{URI::regexp(%w(http https))})$/, :allow_blank => true
+  validates_format_of :url, with: /^(#{URI::regexp(%w(http https))})$/, allow_blank: true
 
   def name
     business_name
@@ -61,7 +61,7 @@ class DirectoryAdvert < ActiveRecord::Base
 
     ads = []
     uncached do
-      ads = DirectoryAdvert.all(:order => 'RAND()', :conditions => conditions, :limit => qty)
+      ads = DirectoryAdvert.all(order: 'RAND()', conditions: conditions, limit: qty)
     end
 
     ads.each {|ad| ad.current_advert.record_view}

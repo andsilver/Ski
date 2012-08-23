@@ -1,7 +1,7 @@
 class EnquiriesController < ApplicationController
   include SpamProtection
 
-  before_filter :user_required, :only => [:my]
+  before_filter :user_required, only: [:my]
   before_filter :no_browse_menu
 
   def my
@@ -21,9 +21,8 @@ class EnquiriesController < ApplicationController
     @enquiry.user = @property.user
 
     if @enquiry.save
-      notifier = EnquiryNotifier.notify(@enquiry, @property)
-      notifier.deliver
-      redirect_to @property, :notice => t('enquiries_controller.your_enquiry_has_been_sent')
+      EnquiryNotifier.notify(@enquiry, @property).deliver
+      redirect_to @property, notice: t('enquiries_controller.your_enquiry_has_been_sent')
     else
       render 'properties/contact'
       return

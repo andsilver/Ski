@@ -1,4 +1,4 @@
-<%= render :partial => 'shared/steps', :locals => { :step => 4 } %>
+<%= render partial: 'shared/steps', locals: { step: 4 } %>
 <% if @directory_advert.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@directory_advert.errors.count, "error") %> prohibited this directory advert from being saved:</h2>
@@ -11,7 +11,7 @@
   </div>
 <% end %>
 
-<%= form_for(@directory_advert, :html => {:multipart => true}) do |f| %>
+<%= form_for(@directory_advert, html: {multipart: true}) do |f| %>
 
 <% unless @directory_advert.currently_advertised? -%>
 <div class="group_panel">
@@ -22,11 +22,11 @@
   </p>
   <div class="field">
     <label class="radio">
-      <%= f.radio_button :is_banner_advert, false, :class => "radio" %>
+      <%= f.radio_button :is_banner_advert, false, class: 'radio' %>
   	  Directory advert only
     </label>
     <label class="radio">
-      <%= f.radio_button :is_banner_advert, true, :class => "radio" %>
+      <%= f.radio_button :is_banner_advert, true, class: 'radio' %>
   	  Banner advert with free directory advert
     </label>
   </div>
@@ -60,11 +60,11 @@
 <% if @directory_advert.new_record? -%>
   <%= f.label :resort_id, t('resorts') %>
   <%= select("directory_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort,
-  {}, {:multiple => true, :size => 10}) %>
+  {}, {multiple: true, size: 10}) %>
 <% else -%>
   <%= f.label :resort_id, t('resort') %>
   <%= select("directory_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort,
-  {:prompt => 'Select Resort'}) %>
+  {prompt: 'Select Resort'}) %>
 <% end -%>
 </div>
     </td>
@@ -81,7 +81,7 @@
   <tr>
     <td>
 <div class="field">
-  <%= f.label :category_id, I18n.t('category') %>
+  <%= f.label :category_id, t('category') %>
   <%= select("directory_advert", "category_id", (Category.all.collect {|c| [ t(c.name), c.id ] }).sort, {prompt: 'Select Category'}) %> <%= required_field %>
 </div>
     </td>
@@ -184,7 +184,7 @@ Please include the country calling code.
   <tr>
     <td>
 <div class="field">
-  <%= f.submit(I18n.t(:save), class: 'btn btn-large btn-primary') %>
+  <%= f.submit(t('save'), class: 'btn btn-large btn-primary') %>
 </div>
     </td>
     <td>&nbsp;</td>

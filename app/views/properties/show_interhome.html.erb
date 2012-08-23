@@ -69,26 +69,26 @@
 </script>
 <div id="content_with_wide_skyscrapers">
 <div id="property">
-<%= render :partial => 'user_logo', :locals => { :property => @property } %>
-<h1 class="property_name"><span><%= I18n.t('property_name') %>:</span> <%= @property.name %></h1>
+<%= render partial: 'user_logo', locals: { property: @property } %>
+<h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %></h1>
 <p class="property_id"><%= I18n.t('property_id') %>: <span><%= @property.id %></span></p>
 
 <% if fav = favourite_for_property(@property) %>
-<%= form_for(fav, :method => :delete) do |f| %>
+<%= form_for(fav, method: :delete) do |f| %>
 <p><%= f.submit t('favourites.remove') %></p>
 <% end %>
 <% else %>
-<% @favourite = Favourite.new(:property_id => @property.id) %>
+<% @favourite = Favourite.new(property_id: @property.id) %>
 <%= form_for @favourite do |f| %>
 <%= f.hidden_field :property_id %>
-<p><%= f.submit t('favourites.add') %></p>
+<p><%= f.submit(t('favourites.add'), class: 'btn btn-primary btn-large') %></p>
 <% end %>
 <% end %>
 
 <% unless @property.image.nil? %>
 <p class="thumbnails" id="property_thumbnails">
 <% @property.images.each do |i| %>
-  <a href="#pic_<%= i.id %>"><%= image_tag(i.sized_url(135, :height), :alt => "Photo of #{@property.name}") %></a>
+<a href="#pic_<%= i.id %>"><%= image_tag(i.sized_url(135, :height), alt: "Photo of #{@property.name}") %></a>
 <% end %>
 </p>
 <% @property.images.each do |i| %>
@@ -195,5 +195,5 @@ features = @accommodation.features.split(',')
 </div><!--#property-->
 </div>
 <div id="wide_skyscrapers">
-  <%= render :partial => 'directory_adverts/banners', :object => DirectoryAdvert.small_banners_for(@property.resort) %>
+  <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>
 </div>

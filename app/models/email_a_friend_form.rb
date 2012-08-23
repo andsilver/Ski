@@ -5,8 +5,8 @@ class EmailAFriendForm
 
   validates_presence_of :property_id, :your_name, :your_email, :friends_name, :friends_email
 
-  validates_format_of :your_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_format_of :friends_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_format_of :your_email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_format_of :friends_email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   def initialize(params = nil)
     unless params.nil?

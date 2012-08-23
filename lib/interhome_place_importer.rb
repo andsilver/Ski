@@ -43,7 +43,7 @@ class InterhomePlaceImporter
     name = "#{name} > #{place_name}"
     subcode = "#{code}_XXXX"
     code = "#{code}_#{p['code'][0]}"
-    InterhomePlace.create!(:code => code, :name => place_name, :full_name => name)
+    InterhomePlace.create!(code: code, name: place_name, full_name: name)
     p['subplaces'][0]['subplace'].each {|s| import_subplace(s, name, subcode)} unless p['subplaces'].nil?
   end
 
@@ -51,7 +51,7 @@ class InterhomePlaceImporter
     subplace_name = s['name'][0]
     name = "#{name} > #{subplace_name}"
     code = "#{code}_#{s['code'][0]}"
-    InterhomePlace.create!(:code => code, :name => subplace_name, :full_name => name)
+    InterhomePlace.create!(code: code, name: subplace_name, full_name: name)
   end
 
   def xml_filename

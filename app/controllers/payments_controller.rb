@@ -1,14 +1,14 @@
 class PaymentsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:worldpay_callback, :cardsave_callback]
+  skip_before_filter :verify_authenticity_token, only: [:worldpay_callback, :cardsave_callback]
 
-  before_filter :admin_required, :only => [:index, :show]
+  before_filter :admin_required, only: [:index, :show]
 
   before_filter :no_browse_menu
 
   FAILURE_MESSAGE = 'Some information was incorrect and your payment may not have gone through properly. Please contact us.'
 
   def index
-    @payments = Payment.all(:order => 'created_at desc')
+    @payments = Payment.order('created_at DESC')
   end
 
   def show
@@ -55,7 +55,7 @@ class PaymentsController < ApplicationController
       complete_order
     end
     @payment.save
-    render :layout => false
+    render layout: false
   end
 
   def cardsave_callback
@@ -92,7 +92,7 @@ class PaymentsController < ApplicationController
     if order.payment_received?
       make_adverts_live(order)
     end
-    redirect_to :controller => 'orders', :action => 'latest_receipt'
+    redirect_to controller: 'orders', action: 'latest_receipt'
   end
 
   protected

@@ -1,4 +1,4 @@
-<h1><%= link_to I18n.t('advertise'), advertise_path %> &rarr; Receipts</h1>
+<h1><%= link_to t('advertise'), advertise_path %> &rarr; Receipts</h1>
 <% if @orders.empty? %>
 <p>You have no receipts.</p>
 <% else %>
@@ -16,7 +16,7 @@
     <tr>
       <td><%= link_to order.order_number, receipt_order_path(order.id) %></td>
       <td><%= link_to 'Invoice (PDF)', invoice_order_path(order.id) %></td>
-      <td><%= l(order.created_at, :format => :short) %></td>
+      <td><%= l(order.created_at, format: :short) %></td>
       <td><%= euros_from_cents(order.total) %></td>
     </tr>
   <% end %>

@@ -20,7 +20,7 @@
   </div>
 <% end %>
 
-<%= form_for @image, :html => { :multipart => true } do |form| %>
+<%= form_for @image, html: { multipart: true } do |form| %>
 
 <div class="field">
 	<%= form.label :image, "Image (.jpeg, .jpg, .gif, .png)" %><br>

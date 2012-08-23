@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   before_filter :no_browse_menu
-  before_filter :admin_required, :only => [:index, :destroy]
-  before_filter :user_required, :only => [:first_advert, :show, :edit, :update]
-  before_filter :find_user, :only => [:forgot_password_new, :forgot_password_change, :destroy]
-  before_filter :find_current_user_or_selected_user, :only => [:edit, :update]
+  before_filter :admin_required, only: [:index, :destroy]
+  before_filter :user_required, only: [:first_advert, :show, :edit, :update]
+  before_filter :find_user, only: [:forgot_password_new, :forgot_password_change, :destroy]
+  before_filter :find_current_user_or_selected_user, only: [:edit, :update]
 
   def index
-    @users = User.all(:order => :email)
+    @users = User.order('email')
   end
 
   def first_advert
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def show
     default_page_title t('advertise')
-    @heading_a = t('users.advertiser_account', :name => @current_user.name)
+    @heading_a = t('users.advertiser_account', name: @current_user.name)
   end
 
   def new
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     stage_one
 
     if params[:stage] && params[:stage]=="1"
-      render "new" and return
+      render 'new' and return
     end
 
     if @user.save
@@ -43,14 +43,14 @@ class UsersController < ApplicationController
       update_logo
       redirect_to after_create_path(@user)
     else
-      render :action => "new"
+      render action: 'new'
     end
   end
 
   def edit
     @heading_a = admin? ?
-      render_to_string(:partial => 'edit_admin_heading', :locals => {:user => @user}).html_safe :
-      render_to_string(:partial => 'edit_user_heading').html_safe
+      render_to_string(partial: 'edit_admin_heading', locals: {user: @user}).html_safe :
+      render_to_string(partial: 'edit_user_heading').html_safe
   end
 
   def update
@@ -58,21 +58,17 @@ class UsersController < ApplicationController
       @user.coupon_id = params[:user][:coupon_id]
     end
 
-    respond_to do |format|
-      if @user.update_attributes(post_params)
-        update_logo
-        format.html { redirect_to(my_details_path, :notice => I18n.t('my_details_saved')) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    if @user.update_attributes(post_params)
+      update_logo
+      redirect_to(my_details_path, notice: t('my_details_saved'))
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @user.destroy
-    redirect_to users_path, :notice => t('notices.deleted')
+    redirect_to users_path, notice: t('notices.deleted')
   end
 
   def forgot_password
@@ -87,7 +83,7 @@ class UsersController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user.nil?
       flash[:notice] = "There is no user registered with that email address"
-      redirect_to :action => "forgot_password"
+      redirect_to action: 'forgot_password'
     else
       @user.forgot_password_token = User.generate_forgot_password_token
       @user.save
@@ -106,7 +102,7 @@ class UsersController < ApplicationController
       @user.password = params[:password]
       @user.forgot_password_token = ''
       @user.save
-      redirect_to sign_in_path, :notice => t('users.password_changed')
+      redirect_to sign_in_path, notice: t('users.password_changed')
     end
   end
   
@@ -123,9 +119,9 @@ class UsersController < ApplicationController
 
   def after_create_path(user)
     if user.role.only_advertises_properties_for_sale?
-      new_property_path(:listing_type => Property::LISTING_TYPE_FOR_SALE)
+      new_property_path(listing_type: Property::LISTING_TYPE_FOR_SALE)
     elsif user.role.only_advertises_properties_for_rent?
-      new_property_path(:listing_type => Property::LISTING_TYPE_FOR_RENT)
+      new_property_path(listing_type: Property::LISTING_TYPE_FOR_RENT)
     else
       first_advert_path
     end
@@ -150,12 +146,12 @@ class UsersController < ApplicationController
 
   def forgot_password_params_ok?
     if @user.forgot_password_token.blank?
-      redirect_to :action => "forgot_password", notice => t('users.enter_your_email_address')
+      redirect_to({ action: 'forgot_password' }, notice: t('users.enter_your_email_address'))
       return false
     elsif params[:t].nil? or @user.forgot_password_token != params[:t]
       flash[:notice] = "The link you entered was invalid. This can happen if you have re-requested " +
         "a forgot password email or you have already reset and changed your password."
-      redirect_to :action => "forgot_password"
+      redirect_to action: 'forgot_password'
       return false
     end
     true

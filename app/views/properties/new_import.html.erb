@@ -6,7 +6,7 @@
 </ul>
 <% end -%>
 
-<%= form_tag import_properties_path, :multipart => true do %>
+<%= form_tag import_properties_path, multipart: true do %>
   <div class="field">
     <label for="file">ZIP file</label> <%= file_field_tag 'file' %>
   </div>

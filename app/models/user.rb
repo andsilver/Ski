@@ -1,26 +1,26 @@
 class User < ActiveRecord::Base
   belongs_to :role
-  belongs_to :billing_country, :class_name => 'Country'
+  belongs_to :billing_country, class_name: 'Country'
   belongs_to :coupon
   belongs_to :image
 
-  has_many :directory_adverts, :dependent => :destroy
-  has_many :enquiries, :dependent => :delete_all, :order => "created_at DESC"
-  has_many :adverts, :dependent => :delete_all
-  has_many :adverts_in_basket, :class_name => 'Advert', :conditions => {:starts_at => nil}
+  has_many :directory_adverts, dependent: :destroy
+  has_many :enquiries, dependent: :delete_all, order: "created_at DESC"
+  has_many :adverts, dependent: :delete_all
+  has_many :adverts_in_basket, class_name: 'Advert', conditions: {starts_at: nil}
 
   # TODO: these should probably exclude expired windows
-  has_many :windows, :class_name => 'Advert', :conditions => {:window => true}, :order => "expires_at DESC"
-  has_many :empty_windows, :class_name => 'Advert', :conditions => {:property_id => nil, :window => true}, :order => "expires_at DESC"
+  has_many :windows, class_name: 'Advert', conditions: {window: true}, order: "expires_at DESC"
+  has_many :empty_windows, class_name: 'Advert', conditions: {property_id: nil, window: true}, order: "expires_at DESC"
 
-  has_many :properties, :dependent => :destroy
-  has_many :properties_for_rent, :class_name => 'Property', :conditions => {:listing_type => Property::LISTING_TYPE_FOR_RENT}
-  has_many :properties_for_sale, :class_name => 'Property', :conditions => {:listing_type => Property::LISTING_TYPE_FOR_SALE}
-  has_many :hotels, :class_name => 'Property', :conditions => {:listing_type => Property::LISTING_TYPE_HOTEL}
-  has_many :images, :dependent => :destroy
-  has_many :orders, :dependent => :destroy
-  has_many :orders_with_receipts, :class_name => 'Order', :conditions => "status NOT IN (#{Order::WAITING_FOR_PAYMENT})",
-    :order => 'created_at DESC'
+  has_many :properties, dependent: :destroy
+  has_many :properties_for_rent, class_name: 'Property', conditions: {listing_type: Property::LISTING_TYPE_FOR_RENT}
+  has_many :properties_for_sale, class_name: 'Property', conditions: {listing_type: Property::LISTING_TYPE_FOR_SALE}
+  has_many :hotels, class_name: 'Property', conditions: {listing_type: Property::LISTING_TYPE_HOTEL}
+  has_many :images, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_many :orders_with_receipts, class_name: 'Order', conditions: "status NOT IN (#{Order::WAITING_FOR_PAYMENT})",
+    order: 'created_at DESC'
 
   has_many :airport_transfers, dependent: :delete_all
 
@@ -31,25 +31,25 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
 
-  validates_length_of :password, :within => 5..40, :if => :password_required?
-  validates_format_of :google_web_property_id, :with => /\AUA-\d\d\d\d\d\d(\d)?(\d)?(\d)?-\d(\d)?\Z/, :allow_blank => true
+  validates_length_of :password, within: 5..40, if: :password_required?
+  validates_format_of :google_web_property_id, with: /\AUA-\d\d\d\d\d\d(\d)?(\d)?(\d)?-\d(\d)?\Z/, allow_blank: true
 
   validates_presence_of :first_name
   validates_presence_of :last_name
 
   validates_uniqueness_of :email
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
-  validates_format_of :vat_number, :with => /[a-z][a-z].*/i, :allow_blank => true
+  validates_format_of :vat_number, with: /[a-z][a-z].*/i, allow_blank: true
 
   validates_presence_of :billing_street
   validates_presence_of :billing_city
   validates_presence_of :billing_country_id
   validates_presence_of :role_id
 
-  validates_format_of :website, :with => /^(#{URI::regexp(%w(http https))})$/, :allow_blank => true
+  validates_format_of :website, with: /^(#{URI::regexp(%w(http https))})$/, allow_blank: true
 
-  validates_acceptance_of :terms_and_conditions, :on => :create, :accept => true
+  validates_acceptance_of :terms_and_conditions, on: :create, accept: true
 
   before_save :encrypt_password
 
@@ -92,19 +92,19 @@ class User < ActiveRecord::Base
 
   def banner_adverts_so_far
     Advert.count(
-      :conditions => ['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
+      conditions: ['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
       id])
   end
 
   def directory_adverts_so_far
     Advert.count(
-      :conditions => ['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
+      conditions: ['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
       id])
   end
 
   def property_adverts_so_far
     Advert.count(
-      :conditions => ['user_id = ? AND property_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
+      conditions: ['user_id = ? AND property_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
       id])
   end
 
