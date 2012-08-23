@@ -1,7 +1,6 @@
 # Ignore bundler config
 /.bundle
 
-*.gif
 *.jpg
 *.JPG
 *.pdf
@@ -22,6 +21,7 @@ doc/features.html
 /tmp
 
 /public/up
+/public/uploads
 .sass-cache/
 
 # Ignore generated RDOC
