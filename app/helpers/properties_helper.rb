@@ -144,4 +144,58 @@ module PropertiesHelper
       [15000, 15000]
     ]
   end
+
+  def booking_days(month, year)
+    days = []
+    (1..Time.days_in_month(month, year)).each do |day|
+      days << ["#{Date.new(year, month, day).strftime('%a')[0..1]} #{day}", day]
+    end
+    days
+  end
+
+  def booking_months
+    months = []
+    first_month = Date.today.month
+    last_month = first_month + 24
+    (first_month..last_month).each do |month|
+      year = Date.today.year + (month - 1) / 12
+      month = (month - 1) % 12 + 1
+      date = Date.new(year, month, 1)
+      months << [date.strftime('%B %Y'), date.to_s[0..6]]
+    end
+    months
+  end
+
+  def booking_durations
+    [
+      ["1 night", 1],
+      ["2 nights", 2],
+      ["3 nights", 3],
+      ["4 nights", 4],
+      ["5 nights", 5],
+      ["6 nights", 6],
+      ["1 week", 7],
+      ["8 nights", 8],
+      ["9 nights", 9],
+      ["10 nights", 10],
+      ["11 nights", 11],
+      ["12 nights", 12],
+      ["13 nights", 13],
+      ["2 weeks", 14],
+      ["15 nights", 15],
+      ["16 nights", 16],
+      ["17 nights", 17],
+      ["18 nights", 18],
+      ["19 nights", 19],
+      ["20 nights", 20],
+      ["3 weeks", 21],
+      ["22 nights", 22],
+      ["23 nights", 23],
+      ["24 nights", 24],
+      ["25 nights", 25],
+      ["26 nights", 26],
+      ["27 nights", 27],
+      ["4 weeks", 28]
+    ]
+  end
 end

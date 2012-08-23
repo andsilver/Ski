@@ -42,6 +42,30 @@
 
     showMap();
 	});
+
+  function submit() {
+    $('#booking_results').replaceWith('<div id="booking_results"><img src="/images/ajax-loader.gif" alt="Loading..."></div>');
+    var valuesToSubmit = $('#booking_form form').serialize();
+    $.ajax({
+      url: '/properties/check_interhome_booking',
+      type: 'POST',
+      data: valuesToSubmit
+    }).success(function(data) {
+      $('#booking_results').replaceWith(data);
+    });
+  }
+
+  $(document).ready(function() {
+    $('#booking_form input').change(submit);
+    $('#booking_form select').change(submit);
+    $('.availability-Y').click(function() {
+      $('#interhome_booking_arrival_month').val($(this).data('month'));
+      $('#interhome_booking_arrival_day').val($(this).data('day'));
+      var new_position = $('#rental_price').offset();
+      window.scrollTo(new_position.left,new_position.top);
+      submit();
+    });
+  });
 </script>
 <div id="content_with_wide_skyscrapers">
 <div id="property">
@@ -106,6 +130,7 @@ features = @accommodation.features.split(',')
   <%= @accommodation.outside_description %>
 </p>
 
+<% if admin? %>
 <% if @accommodation.interhome_vacancy %>
 <% cal = InterhomeCalendar.new(@accommodation.interhome_vacancy) %>
 <h2>Vacancy</h2>
@@ -121,6 +146,42 @@ features = @accommodation.features.split(',')
 </div>
 <%= clear %>
 <% end %>
+
+<h2>Book</h2>
+<div class="well">
+<div id="booking_form">
+<%= form_tag action: 'check_interhome_booking', id: @property.id do |form| %>
+<input type="hidden" name="permalink" value="<%= params[:permalink] %>">
+<h3>Travel dates</h3>
+<label>Date of arrival</label>
+<%= select('interhome_booking', 'arrival_day', booking_days(@interhome_booking.arrival_date.month, @interhome_booking.arrival_date.year)) %>
+<%= select('interhome_booking', 'arrival_month', booking_months) %>
+<label>Duration of stay</label>
+<%= select('interhome_booking', 'duration', booking_durations) %>
+<h3>Travellers</h3>
+<label>
+  Adults
+  <input type="text" id="interhome_booking_adults" name="interhome_booking[adults]" value="<%= @interhome_booking.adults %>">
+</label><br>
+<label>
+  Children (2-12 years)
+  <input type="text" id="interhome_booking_children" name="interhome_booking[children]" value="<%= @interhome_booking.children %>">
+</label><br>
+<label>
+  Babies (0-1 year)
+  <input type="text" id="interhome_booking_babies" name="interhome_booking[babies]" value="<%= @interhome_booking.babies %>">
+</label>
+<% end %>
+</div>
+
+<h3 id="rental_price">Rental price</h3>
+<div id="booking_results">
+  <p>
+    Please select your dates of travel.
+  </p>
+</div>
+</div>
+<% end -%>
 
 <% unless @accommodation.geodata_lat.empty? %>
 <div id="map_cavas"></div>

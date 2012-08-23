@@ -12,7 +12,21 @@ class InterhomeCalendar < Calendar
   end
 
   def day_cell(date)
-    "<td class=\"availability-#{@vacancy.availability_on(date)}\">#{date.mday}</td>"
+    class_attr = availability = @vacancy.availability_on(date)
+    title_attr = ''
+    if availability == 'Y'
+      if !@vacancy.check_in_on?(date)
+        class_attr = 'Y-no-check-in'
+        title_attr = 'No check in'
+      else
+        title_attr = "Min stay: #{@vacancy.minstay_on(date)} days"
+      end
+    elsif availability == 'N' || availability == 'unknown'
+      title_attr = 'Unavailable'
+    elsif availability == 'Q'
+      title_attr = 'Booking possible only on request'
+    end
+    "<td class=\"availability-#{class_attr}\" title=\"#{title_attr}\" data-day=\"#{date.to_s[8..9].to_i}\" data-month=\"#{date.to_s[0..6]}\">#{date.mday}</td>"
   end
 
   def empty_day_cell

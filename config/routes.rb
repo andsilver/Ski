@@ -68,20 +68,26 @@ MySkiChalet::Application.routes.draw do
   match "my/adverts" => "adverts#my", :as => :my_adverts
 
   resources :properties do
-    post 'advertise_now',        :on => :member
-    post 'choose_window',        :on => :member
-    get  'contact',              :on => :member
-    get  'email_a_friend',       :on => :member
-    post 'place_in_window',      :on => :member
-    get  'rent',                 :on => :collection
-    post 'remove_from_window',   :on => :member
-    get  'sale',                 :on => :collection
-    get  'current_time',         :on => :collection
-    get  'import_documentation', :on => :collection
-    get  'new_import',           :on => :collection
-    post 'import',               :on => :collection
-    get  'new_pericles_import',  :on => :collection
-    post 'pericles_import',      :on => :collection
+    member do
+      post 'advertise_now'
+      post 'choose_window'
+      get  'contact'
+      get  'email_a_friend'
+      post 'place_in_window'
+      post 'remove_from_window'
+    end
+
+    collection do
+      get  'rent'
+      get  'sale'
+      get  'current_time'
+      get  'import_documentation'
+      get  'new_import'
+      post 'import'
+      get  'new_pericles_import'
+      post 'pericles_import'
+      post 'check_interhome_booking'
+    end
   end
 
   match 'accommodation/:permalink' => 'properties#show_interhome', as: :interhome_property

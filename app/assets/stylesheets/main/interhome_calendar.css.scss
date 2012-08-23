@@ -20,6 +20,12 @@
 
   td.availability-Y {
     background: green;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  td.availability-Y-no-check-in {
+    background: limegreen;
   }
 
   td.availability-Q {

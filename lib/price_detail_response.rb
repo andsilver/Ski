@@ -1,0 +1,2 @@
+class PriceDetailResponse < InterhomeResponse
+end

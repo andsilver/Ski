@@ -1,12 +1,15 @@
+InterhomeBooking = Struct.new(:arrival_day, :arrival_month, :arrival_date, :duration, :adults, :children, :babies)
+
 class PropertiesController < ApplicationController
   include SpamProtection
 
   before_filter :no_browse_menu, :except => [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
-  before_filter :user_required, :except => [
+  before_filter :user_required, except: [
     :index, :browse_for_rent, :browse_for_sale,
     :new_developments, :browse_hotels, :contact,
-    :email_a_friend, :current_time, :show, :show_interhome,
+    :email_a_friend, :current_time, :show,
+    :show_interhome, :check_interhome_booking,
     :import_documentation]
 
   before_filter :find_property_for_user, :only => [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
@@ -126,7 +129,27 @@ class PropertiesController < ApplicationController
     not_found and return if @accommodation.nil?
     @property = @accommodation.property
 
+    arrival = Date.today
+    @interhome_booking = InterhomeBooking.new(arrival.to_s[8..9], arrival.to_s[0..6], arrival, 7, 2, 0, 0)
+
     show_shared
+  end
+
+  def check_interhome_booking
+    @accommodation = InterhomeAccommodation.find_by_permalink(params[:permalink])
+    check_in = params[:interhome_booking][:arrival_month] + '-' + params[:interhome_booking][:arrival_day]
+    check_in_date = Date.new(check_in[0..3].to_i, check_in[5..6].to_i, check_in[8..9].to_i)
+    check_out = (check_in_date + params[:interhome_booking][:duration].to_i.days).to_s
+    details = {
+      accommodation_code: @accommodation.code,
+      adults: params[:interhome_booking][:adults],
+      check_in: check_in,
+      check_out: check_out,
+      children: params[:interhome_booking][:children],
+      babies: params[:interhome_booking][:babies]
+    }
+    @response = InterhomeWebServices.request('Availability', details)
+    render layout: false
   end
 
   def contact
