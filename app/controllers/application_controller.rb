@@ -80,8 +80,12 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_user
-    @current_user = User.find_by_id(session[:user])
+    @current_user = current_user
     @unregistered_user = UnregisteredUser.find_by_id(session[:unregistered_user])
+  end
+
+  def current_user
+    User.find_by_id(session[:user])
   end
 
   def page_defaults
