@@ -136,7 +136,7 @@ class PropertiesController < ApplicationController
 
   def check_interhome_booking
     @accommodation = InterhomeAccommodation.find_by_permalink(params[:permalink])
-    check_in = params[:interhome_booking][:arrival_month] + '-' + params[:interhome_booking][:arrival_day]
+    check_in = params[:interhome_booking][:arrival_month] + '-' + '%02d' % params[:interhome_booking][:arrival_day]
     check_in_date = Date.new(check_in[0..3].to_i, check_in[5..6].to_i, check_in[8..9].to_i)
     check_out = (check_in_date + params[:interhome_booking][:duration].to_i.days).to_s
     details = {
