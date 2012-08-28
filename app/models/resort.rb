@@ -30,7 +30,7 @@ class Resort < ActiveRecord::Base
   end
 
   def area_type
-    local_area? ? t('resorts_controller.detail.local_area') : t('resorts_controller.detail.whole_area')
+    local_area? ? I18n.t('resorts_controller.detail.local_area') : I18n.t('resorts_controller.detail.whole_area')
   end
 
   def to_s
