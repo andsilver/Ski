@@ -147,7 +147,11 @@ class PropertiesController < ApplicationController
       children: params[:interhome_booking][:children],
       babies: params[:interhome_booking][:babies]
     }
-    @response = InterhomeWebServices.request('Availability', details)
+    @availability = InterhomeWebServices.request('Availability', details)
+    if @availability.available?
+      @prices = InterhomeWebServices.request('Prices', details)
+      @additional_services = InterhomeWebServices.request('AdditionalServices', details)
+    end
     render layout: false
   end
 

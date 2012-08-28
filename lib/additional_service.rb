@@ -3,6 +3,10 @@ class AdditionalService
     @xml = xml
   end
 
+  def amount
+    @xml['Amount'][0]
+  end
+
   def code
     @xml['Code'][0]
   end
@@ -12,7 +16,7 @@ class AdditionalService
   end
 
   def currency
-    @xml['Currency']
+    @xml['Currency'][0]
   end
 
   def description
@@ -43,12 +47,44 @@ class AdditionalService
     @xml['PriceRule'][0]
   end
 
+  def price_rule_desc
+    return '' if price_rule.empty?
+    {
+      'PD' => 'Per person per day',
+      'PW' => 'Per person per week',
+      'UD' => 'Per unit (object) per day',
+      'UW' => 'Per unit (object) per week',
+      'P1' => 'Per person 1*',
+      'U1' => 'Per unit (object) 1*',
+      'UH' => 'Per hour',
+      'K1' => 'Per kilowatt hour',
+      'M1' => 'Per m3',
+      'X1' => 'According to use',
+      'NO' => 'No calculation relevance',
+      'LX' => 'Per litre'
+    }[price_rule]
+  end
+
   def text
-    @xml['text'][0]
+    @xml['Text'][0]
   end
 
   def type
     @xml['Type'][0]
+  end
+
+  def type_desc
+    return '' if type.empty?
+    {
+      'N1' => 'Bookable (additional cost)',
+      'N2' => 'Bookable (included in price)',
+      'N4' => 'Bookable and payable in resort',
+      'Y1' => 'Mandatory fee on invoice',
+      'Y2' => 'Included in the price',
+      'Y4' => 'Mandatory fee payable in resort',
+      'Y5' => 'Added to invoice, payable in resort',
+      'Y6' => 'Own arrangement'
+    }[type]
   end
 
   def valid_from

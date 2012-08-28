@@ -1,7 +1,66 @@
 <div id="booking_results">
-<% if @response.unavailable? -%>
+<% if @availability.unavailable? -%>
   <h3>The property is unavailable for the dates you have requested.</h3>
+<% else -%>
+  <h3><%= number_to_currency(@prices.price, unit: '€', precision: 2) %></h3>
+<% end -%>
+<% if @additional_services -%>
+
+<% unless @additional_services.bookable.empty? %>
+  <h3>Additional bookable services</h3>
+  <table class="table">
+<% @additional_services.bookable.each do |service| -%>
+    <tr>
+      <td>
+        <input type="checkbox">
+      </td>
+      <td>
+        <strong><%= service.description %></strong>
+        <%= service.amount %> <%= service.currency %>
+        <br>
+        <%= service.text %>
+      </td>
+    </tr>
+<% end -%>
+  </table>
+<% end -%>
+
+<% unless @additional_services.not_included.empty? %>
+  <h3>Not included</h3>
+  <table class="table">
+<% @additional_services.not_included.each do |service| -%>
+    <tr>
+      <td>
+        <%= service.description %>,
+        <%= service.amount %> <%= service.currency %>,
+        <%= service.price_rule_desc %>,
+        <%= service.type_desc %>
+      </td>
+    </tr>
+<% end -%>
+  </table>
+<% end -%>
+
+<% unless @additional_services.included.empty? %>
+  <h3>Included</h3>
+  <table class="table">
+<% @additional_services.included.each do |service| -%>
+    <tr>
+      <td>
+        <%= service.description %> (<%= service.type_desc %>)
+      </td>
+    </tr>
+<% end -%>
+  </table>
+<% end -%>
+
 <% end -%>
   <h3>CHECKED! <%= @accommodation.code %></h3>
-  <pre><%= @response.xml %></pre>
+  <pre><%= @availability.xml %></pre>
+<% if @prices -%>
+  <pre><%= @prices.xml %></pre>
+<% end -%>
+<% if @additional_services -%>
+  <pre><%= @additional_services.xml %></pre>
+<% end -%>
 </div>
