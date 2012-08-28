@@ -13,11 +13,20 @@ describe Property do
   it { should respond_to(:star_rating) }
 
   describe '.accommodation_type_description' do
-    pending
+    it "returns either 'Chalet' or 'Apartment'" do
+      Property.accommodation_type_description(Property::ACCOMMODATION_TYPE_CHALET).should == 'Chalet'
+      Property.accommodation_type_description(Property::ACCOMMODATION_TYPE_APARTMENT).should == 'Apartment'
+    end
   end
 
   describe '#accommodation_type_description' do
-    pending
+    it "returns either 'Chalet' or 'Apartment' for the property object" do
+      p = Property.new
+      p.accommodation_type = Property::ACCOMMODATION_TYPE_CHALET
+      p.accommodation_type_description.should == 'Chalet'
+      p.accommodation_type = Property::ACCOMMODATION_TYPE_APARTMENT
+      p.accommodation_type_description.should == 'Apartment'
+    end
   end
 
   describe '.parking_description' do
