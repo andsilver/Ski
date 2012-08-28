@@ -1,4 +1,7 @@
 <div id="booking_results">
+<% if @response.unavailable? -%>
+  <h3>The property is unavailable for the dates you have requested.</h3>
+<% end -%>
   <h3>CHECKED! <%= @accommodation.code %></h3>
   <pre><%= @response.xml %></pre>
 </div>

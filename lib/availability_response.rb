@@ -1,4 +1,36 @@
 class AvailabilityResponse < InterhomeResponse
+  def unavailable?
+    !available?
+  end
+
+  def available?
+    ok? &&
+    start_date == requested(:check_in) &&
+    end_date == requested(:check_out) &&
+    available_every_day? &&
+    check_in_on_first_day? &&
+    check_out_on_last_day? &&
+    staying_long_enough?
+  end
+
+  def available_every_day?
+    state.gsub('Y', '').empty?
+  end
+
+  def check_in_on_first_day?
+    'CI'.include? change[0]
+  end
+
+  def check_out_on_last_day?
+    'CO'.include? change[-1]
+  end
+
+  def staying_long_enough?
+    duration = (Date.parse(end_date) - Date.parse(start_date)).to_i
+    min_duration = '0ABCDEFGHIJKLMNOPQRSTUVWXYZ'.index(minimum_stay[0])
+    duration >= min_duration
+  end
+
   def start_date
     result['StartDate'][0]
   end

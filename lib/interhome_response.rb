@@ -41,6 +41,10 @@ class InterhomeResponse
     raise 'override #result'
   end
 
+  def requested(key)
+    @soap_request.request_object.details[key]
+  end
+
   protected
 
   # override in subclass for testing

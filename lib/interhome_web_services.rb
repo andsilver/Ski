@@ -33,6 +33,7 @@ class InterhomeWebServices
     request_class = Kernel.const_get("#{action}Request")
     response_class = Kernel.const_get("#{action}Response")
     defaults = {
+      url: 'https://webservices.interhome.com/quality/partnerV3/WebService.asmx',
       username: 'CH1000723',
       password: 'mychaletfinder',
       language_code: 'EN',
@@ -47,10 +48,10 @@ class InterhomeWebServices
       children: '1',
       babies: '1'
     }
-    request = request_class.new(defaults.merge(details))
-    url = 'https://webservices.interhome.com/quality/partnerV3/WebService.asmx'
+    opts = defaults.merge(details)
+    request = request_class.new(opts)
     puts request.xml
-    soap_request = SoapRequest.new(request, url)
+    soap_request = SoapRequest.new(request, opts[:url])
     puts soap_request.xml_response
     response_class.new(soap_request)
   end
