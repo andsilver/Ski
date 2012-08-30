@@ -18,11 +18,7 @@ function closeMenu(menu) {
 </script>
 <nav id="main_menu">
   <ul>
-    <li><a id="featured_resorts_link" href="<%= featured_resorts_path %>" onmouseover="openMenu(document.getElementById('featured_resorts'));" onmouseout="startCloseMenu(document.getElementById('featured_resorts'));"><%= I18n.t('featured_resorts') %></a><div class="drop" id="featured_resorts" onmouseover="openMenu(this);" onmouseout="startCloseMenu(this);">
-      <% Resort.featured.each do |resort| %>
-      <%= link_to resort.name, resort_path(resort) %>
-      <% end %>
-    </div></li>
+    <li><a href="/pages/resources">Resources</a></li>
 <% if @w.blog_visible? -%>
     <li><%= link_to t('blog_posts_controller.blog'), blog_path %></li>
 <% end -%>
