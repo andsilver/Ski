@@ -12,6 +12,7 @@
       <td><strong>Rental price</strong></td>
       <td style="text-align: right;"><strong><%= number_to_currency(@price_detail.price, unit: '€', precision: 2) %></strong></td>
     </tr>
+<% unless params[:additional_service].nil? -%>
 <% @price_detail.on_invoice.each do |service| -%>
     <tr>
       <td><%= service.description %></td>
@@ -22,6 +23,7 @@
       <td><strong>Total price</strong></td>
       <td style="text-align: right;"><strong><%= number_to_currency(@price_detail.total, unit: '€', precision: 2) %></strong></td>
     </tr>
+<% end -%>
   </table>
   </div>
 <% end -%>
