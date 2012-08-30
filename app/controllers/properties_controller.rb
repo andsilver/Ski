@@ -140,7 +140,8 @@ class PropertiesController < ApplicationController
     begin
       check_in_date = Date.new(check_in[0..3].to_i, check_in[5..6].to_i, check_in[8..9].to_i)
     rescue
-      render('interhome_invalid_date', layout: false) and return
+      @message = 'Please choose a valid check in date.'
+      render('interhome_error', layout: false) and return
     end
     check_out = (check_in_date + params[:interhome_booking][:duration].to_i.days).to_s
     details = {
@@ -151,6 +152,12 @@ class PropertiesController < ApplicationController
       children: params[:interhome_booking][:children],
       babies: params[:interhome_booking][:babies]
     }
+    pax = details[:children].to_i + details[:adults].to_i
+    if(pax > @accommodation.pax)
+      @message = 'The number of people (adults + children) exceeds the capacity for this property.'
+      render('interhome_error', layout: false) and return
+    end
+
     @availability = InterhomeWebServices.request('Availability', details)
     if @availability.available?
       @prices = InterhomeWebServices.request('Prices', details)
