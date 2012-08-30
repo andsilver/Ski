@@ -56,8 +56,8 @@
   }
 
   $(function() {
-    $('#booking_form').on('change', 'input', submit);
-    $('#booking_form').on('change', 'select', submit);
+    $('#booking_form').on('change', '.trigger-update input', submit);
+    $('#booking_form').on('change', '.trigger-update select', submit);
     $('.availability-Y').click(function() {
       $('#interhome_booking_arrival_month').val($(this).data('month'));
       $('#interhome_booking_arrival_day').val($(this).data('day'));
@@ -162,6 +162,7 @@ features = @accommodation.features.split(',')
 <div id="booking_form">
 <%= form_tag action: 'check_interhome_booking', id: @property.id do |form| %>
 <input type="hidden" name="permalink" value="<%= params[:permalink] %>">
+<div class="trigger-update">
 <h3>Travel dates</h3>
 <label>Date of arrival</label>
 <%= select('interhome_booking', 'arrival_day', booking_days(@interhome_booking.arrival_date.month, @interhome_booking.arrival_date.year)) %>
@@ -181,7 +182,7 @@ features = @accommodation.features.split(',')
   Babies (0-1 year)
   <input type="text" id="interhome_booking_babies" name="interhome_booking[babies]" value="<%= @interhome_booking.babies %>">
 </label>
-
+</div>
 <div id="booking_results">
   <p>
     Please select your dates of travel.

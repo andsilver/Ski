@@ -7,6 +7,10 @@ class AdditionalService
     @xml['Amount'][0]
   end
 
+  def amount_or_free
+    amount == '0' ? 'Free' : amount
+  end
+
   def code
     @xml['Code'][0]
   end
@@ -16,7 +20,7 @@ class AdditionalService
   end
 
   def currency
-    @xml['Currency'][0]
+    @xml['Currency'][0].is_a?(Hash) ? '' : @xml['Currency'][0]
   end
 
   def description

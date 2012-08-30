@@ -28,7 +28,7 @@
   </div>
 <% end -%>
 <% if @additional_services -%>
-
+<div class="trigger-update">
 <% unless @additional_services.bookable.empty? %>
   <h3>Additional bookable services</h3>
   <table class="table">
@@ -40,7 +40,9 @@
 <% (0..service.count).each do |x| %>
           <option value="<%= x %>"<%= ' selected' if additional_service_matched?(service.code, x) %>>
             <%= x %>
+            <% unless service.amount == '0' %>
             (<%= number_to_currency(service.amount.to_f * x, unit: '€', precision: 2) %>)
+            <% end %>
           </option>
 <% end %>
         </select>
@@ -50,7 +52,7 @@
       </td>
       <td>
         <strong><%= service.description %></strong>
-        <%= service.amount %> <%= service.currency %>
+        <%= service.amount_or_free %> <%= service.currency %>
         <br>
         <%= service.text %>
       </td>
@@ -87,6 +89,8 @@
 <% end -%>
   </table>
 
+</div><!--.trigger-update-->
+
   <h3>Contact information</h3>
   <label>Title</label>
   <select>
@@ -117,14 +121,5 @@
 <% end -%>
 
 
-
 <% end -%>
-  <h3>CHECKED! <%= @accommodation.code %></h3>
-  <pre><%= @availability.xml %></pre>
-<% if @price_detail -%>
-<pre><%= @price_detail.xml %></pre>
-<% end -%>
-<% if @additional_services -%>
-  <pre><%= @additional_services.xml %></pre>
-<% end -%>
-</div>
+</div><!--#booking-results-->
