@@ -158,19 +158,44 @@ class PropertiesController < ApplicationController
       render('interhome_error', layout: false) and return
     end
 
+    if params[:additional_service]
+      # convert ticked check boxes to '1'
+      params[:additional_service].each do |key, val|
+        params[:additional_service][key] = '1' if 'on'==val
+      end
+      details[:additional_services] = params[:additional_service]
+    end
+
+    if params[:submit] == 'Book'
+      return if make_interhome_booking(details)
+    end
+
     @availability = InterhomeWebServices.request('Availability', details)
     if @availability.available?
-      if params[:additional_service]
-        # convert ticked check boxes to '1'
-        params[:additional_service].each do |key, val|
-          params[:additional_service][key] = '1' if 'on'==val
-        end
-        details[:additional_services] = params[:additional_service]
-      end
       @price_detail = InterhomeWebServices.request('PriceDetail', details)
       @additional_services = InterhomeWebServices.request('AdditionalServices', details)
     end
     render layout: false
+  end
+
+  def make_interhome_booking(details)
+    @price_detail = InterhomeWebServices.request('PriceDetail', details)
+    @deposit = @price_detail.prepayment != '0'
+    @amount = @deposit ? @price_detail.prepayment : @price_detail.total
+    @amount_in_cents = (@amount.to_f * 100).to_i
+    details[:payment_type] = 'SecuredCreditCard'
+    details[:credit_card_type] = 'NotSet'
+    details[:customer_salutation_type] = params[:customer_salutation_type]
+    details[:customer_first_name] = params[:customer_first_name]
+    details[:customer_name] = params[:customer_name]
+    details[:customer_email] = params[:customer_email]
+    details[:customer_address_street] = params[:customer_address_street]
+    details[:customer_address_additional_street] = params[:customer_address_additional_street]
+    details[:customer_address_place] = params[:customer_address_place]
+    details[:customer_address_zip] = params[:customer_address_zip]
+    details[:customer_address_country_code] = params[:customer_address_country_code]
+    @client_booking = InterhomeWebServices.request('ClientBooking', details)
+    render('interhome_payment', layout: false)
   end
 
   def contact

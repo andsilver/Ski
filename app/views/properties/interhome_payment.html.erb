@@ -1,0 +1,8 @@
+<div id="payment-form">
+  <h3>
+    To pay: <%= number_to_currency(@amount, unit: '€', precision: 2) %>
+    <% if @deposit %>(deposit)<% end %>
+  </h3>
+  <iframe src="https://www.interhome.com/PaymentGateway/Payment.aspx?Reservation=<%= @client_booking.booking_id %>&amp;Currency=EUR&amp;Amount=<%= @amount_in_cents %>&amp;Language=2&amp;Method=CC&amp;URLSuccess=http://www.interhome.com/PaymentGateway/PaymentSuccess.aspx&amp;URLFailure= http://www.interhome.com/PaymentGateway/PaymentFailure.aspx" frameborder="0" scrolling="no" style="width:100%;height:420px;border:0">
+  </iframe>
+</div>

@@ -9,6 +9,18 @@ class PriceDetailResponse < InterhomeResponse
     initialize_additional_services
   end
 
+  def expiration_pre_payment
+    result['ExpirationPrePayment'][0]
+  end
+
+  def expiration_residue
+    result['ExpirationResidue'][0]
+  end
+
+  def prepayment
+    result['Prepayment'][0]
+  end
+
   def price
     result['Price'][0]
   end
