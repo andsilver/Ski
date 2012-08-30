@@ -42,8 +42,8 @@ class InterhomeWebServices
       retailer_code: 'CH1000723',
 
       accommodation_code: 'PT6660.50.1',
-      check_in: '2012-08-29',
-      check_out: '2012-09-05',
+      check_in: '2012-10-01',
+      check_out: '2012-10-08',
       adults: '2',
       children: '1',
       babies: '1'

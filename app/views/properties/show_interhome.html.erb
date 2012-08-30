@@ -20,7 +20,7 @@
     <% end %>
   }
 
-	$(document).ready(function() {
+	$(function() {
 		$('#property_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
 
     var $dialog = $('<div id="map_canvas"></div>')
@@ -44,8 +44,8 @@
 	});
 
   function submit() {
-    $('#booking_results').replaceWith('<div id="booking_results"><img src="/images/ajax-loader.gif" alt="Loading..."></div>');
     var valuesToSubmit = $('#booking_form form').serialize();
+    $('#booking_results').replaceWith('<div id="booking_results"><img src="/images/ajax-loader.gif" alt="Loading..."></div>');
     $.ajax({
       url: '/properties/check_interhome_booking',
       type: 'POST',
@@ -55,13 +55,13 @@
     });
   }
 
-  $(document).ready(function() {
-    $('#booking_form input').change(submit);
-    $('#booking_form select').change(submit);
+  $(function() {
+    $('#booking_form').on('change', 'input', submit);
+    $('#booking_form').on('change', 'select', submit);
     $('.availability-Y').click(function() {
       $('#interhome_booking_arrival_month').val($(this).data('month'));
       $('#interhome_booking_arrival_day').val($(this).data('day'));
-      var new_position = $('#rental_price').offset();
+      var new_position = $('#booking_results').offset();
       window.scrollTo(new_position.left,new_position.top);
       submit();
     });
@@ -181,16 +181,15 @@ features = @accommodation.features.split(',')
   Babies (0-1 year)
   <input type="text" id="interhome_booking_babies" name="interhome_booking[babies]" value="<%= @interhome_booking.babies %>">
 </label>
-<% end %>
-</div>
 
-<h3 id="rental_price">Rental price</h3>
 <div id="booking_results">
   <p>
     Please select your dates of travel.
   </p>
 </div>
-</div>
+<% end %>
+</div><!--#booking_form-->
+</div><!--.well-->
 <% end -%>
 
 <% unless @accommodation.geodata_lat.empty? %>

@@ -198,4 +198,9 @@ module PropertiesHelper
       ["4 weeks", 28]
     ]
   end
+
+  def additional_service_matched?(code, value)
+    return false unless params[:additional_service]
+    return params[:additional_service][code] == value.to_s
+  end
 end

@@ -160,7 +160,14 @@ class PropertiesController < ApplicationController
 
     @availability = InterhomeWebServices.request('Availability', details)
     if @availability.available?
-      @prices = InterhomeWebServices.request('Prices', details)
+      if params[:additional_service]
+        # convert ticked check boxes to '1'
+        params[:additional_service].each do |key, val|
+          params[:additional_service][key] = '1' if 'on'==val
+        end
+        details[:additional_services] = params[:additional_service]
+      end
+      @price_detail = InterhomeWebServices.request('PriceDetail', details)
       @additional_services = InterhomeWebServices.request('AdditionalServices', details)
     end
     render layout: false

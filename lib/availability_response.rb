@@ -26,9 +26,12 @@ class AvailabilityResponse < InterhomeResponse
   end
 
   def staying_long_enough?
-    duration = (Date.parse(end_date) - Date.parse(start_date)).to_i
     min_duration = '0ABCDEFGHIJKLMNOPQRSTUVWXYZ'.index(minimum_stay[0])
     duration >= min_duration
+  end
+
+  def duration
+    (Date.parse(end_date) - Date.parse(start_date)).to_i
   end
 
   def start_date

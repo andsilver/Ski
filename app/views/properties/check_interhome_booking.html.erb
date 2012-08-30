@@ -2,7 +2,28 @@
 <% if @availability.unavailable? -%>
   <h3>The property is unavailable for the dates you have requested.</h3>
 <% else -%>
-  <h3><%= number_to_currency(@prices.price, unit: '€', precision: 2) %></h3>
+  <div style="padding: 10px; background: #fff;">
+  <table class="table">
+    <tr>
+      <td><strong>Travel period</strong></td>
+      <td style="text-align: right;"><strong><%= @availability.start_date %> - <%= @availability.end_date %></strong></td>
+    </tr>
+    <tr>
+      <td><strong>Rental price</strong></td>
+      <td style="text-align: right;"><strong><%= number_to_currency(@price_detail.price, unit: '€', precision: 2) %></strong></td>
+    </tr>
+<% @price_detail.on_invoice.each do |service| -%>
+    <tr>
+      <td><%= service.description %></td>
+      <td style="text-align: right;"><%= number_to_currency(service.amount, unit: '€', precision: 2) %></td>
+    </tr>
+<% end -%>
+    <tr>
+      <td><strong>Total price</strong></td>
+      <td style="text-align: right;"><strong><%= number_to_currency(@price_detail.total, unit: '€', precision: 2) %></strong></td>
+    </tr>
+  </table>
+  </div>
 <% end -%>
 <% if @additional_services -%>
 
@@ -12,7 +33,18 @@
 <% @additional_services.bookable.each do |service| -%>
     <tr>
       <td>
-        <input type="checkbox">
+<% if service.n_type? && service.count > 0 %>
+        <select name="additional_service[<%= service.code %>]">
+<% (0..service.count).each do |x| %>
+          <option value="<%= x %>"<%= ' selected' if additional_service_matched?(service.code, x) %>>
+            <%= x %>
+            (<%= number_to_currency(service.amount.to_f * x, unit: '€', precision: 2) %>)
+          </option>
+<% end %>
+        </select>
+<% else %>
+        <input type="checkbox" name="additional_service[<%= service.code %>]"<%= ' checked' if additional_service_matched?(service.code, 1) %>>
+<% end %>
       </td>
       <td>
         <strong><%= service.description %></strong>
@@ -52,13 +84,43 @@
     </tr>
 <% end -%>
   </table>
+
+  <h3>Contact information</h3>
+  <label>Title</label>
+  <select>
+    <option value="Blank">-- Choose --</option>
+    <option value="Mr">Mr</option>
+    <option value="Mrs">Mrs</option>
+  </select>
+  <label>Name</label>
+  <input type="text" name="customer_first_name">
+  <label>Surname</label>
+  <input type="text" name="customer_name">
+  <label>Address</label>
+  <input type="text" name="customer_address_street"><br>
+  <input type="text" name="customer_address_additional_street">
+  <label>City</label>
+  <input type="text" name="customer_address_place">
+  <label>Postcode</label>
+  <input type="text" name="customer_address_zip">
+  <label>Country</label>
+  <select name="customer_address_country_code">
+    <option value="">-- Choose --</option>
+<% Country.order('name').each do |c| -%>
+    <option value="<%= c.iso_3166_1_alpha_2 %>"><%= c.name %></option>
 <% end -%>
+  </select>
+
+  <br><input type="submit" value="Book" class="btn btn-primary">
+<% end -%>
+
+
 
 <% end -%>
   <h3>CHECKED! <%= @accommodation.code %></h3>
   <pre><%= @availability.xml %></pre>
-<% if @prices -%>
-  <pre><%= @prices.xml %></pre>
+<% if @price_detail -%>
+<pre><%= @price_detail.xml %></pre>
 <% end -%>
 <% if @additional_services -%>
   <pre><%= @additional_services.xml %></pre>

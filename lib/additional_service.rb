@@ -12,7 +12,7 @@ class AdditionalService
   end
 
   def count
-    @xml['Count'][0]
+    @xml['Count'][0].to_i
   end
 
   def currency
@@ -66,7 +66,11 @@ class AdditionalService
   end
 
   def text
-    @xml['Text'][0]
+    @xml['Text'][0].is_a?(Hash) ? '' : @xml['Text'][0]
+  end
+
+  def n_type?
+    'N' == type[0]
   end
 
   def type
