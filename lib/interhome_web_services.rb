@@ -22,7 +22,8 @@ class InterhomeWebServices
   end
 
   def self.test_cancellation_conditions
-    request('CancellationConditions')
+    require 'pp'
+    pp request('CancellationConditions').conditions
   end
 
   def self.test_price_detail

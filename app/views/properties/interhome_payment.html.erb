@@ -3,6 +3,24 @@
     To pay: <%= number_to_currency(@amount, unit: '€', precision: 2) %>
     <% if @deposit %>(deposit)<% end %>
   </h3>
+  <h2>Cancellation Conditions</h2>
+  <p>
+    The table below shows how much you will be required
+    to pay depending on when you cancel your booking.
+  </p>
+  <table class="table">
+    <tr>
+      <th>Days remaining until check-in</th>
+      <th>Amount you will need to pay</th>
+    </tr>
+<% @conditions.each_pair do |days, percentage| -%>
+    <tr>
+      <td><%= days %></td>
+      <td><%= percentage %>%</td>
+    </tr>
+<% end -%>
+  </table>
+    
   <iframe src="https://www.interhome.com/PaymentGateway/Payment.aspx?Reservation=<%= @client_booking.booking_id %>&amp;Currency=EUR&amp;Amount=<%= @amount_in_cents %>&amp;Language=2&amp;Method=CC&amp;URLSuccess=http://www.interhome.com/PaymentGateway/PaymentSuccess.aspx&amp;URLFailure= http://www.interhome.com/PaymentGateway/PaymentFailure.aspx" frameborder="0" scrolling="no" style="width:100%;height:420px;border:0">
   </iframe>
 </div>

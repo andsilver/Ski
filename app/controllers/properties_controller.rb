@@ -179,6 +179,7 @@ class PropertiesController < ApplicationController
   end
 
   def make_interhome_booking(details)
+    @conditions = InterhomeWebServices.request('CancellationConditions', details).conditions
     @price_detail = InterhomeWebServices.request('PriceDetail', details)
     @deposit = @price_detail.prepayment != '0'
     @amount = @deposit ? @price_detail.prepayment : @price_detail.total
