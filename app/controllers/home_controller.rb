@@ -6,6 +6,15 @@ class HomeController < ApplicationController
     render layout: 'home'
   end
 
+  def resort_options_for_quick_search
+    if params[:country_id].blank?
+      @resorts = []
+    else
+      @resorts = Country.find(params[:country_id]).visible_resorts
+    end
+    render layout: false
+  end
+
   def contact
     default_page_title t('contact')
   end

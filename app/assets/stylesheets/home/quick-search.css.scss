@@ -1,0 +1,59 @@
+#quick-search, #quick-search-panel {
+  position: absolute;
+  top: 425px;
+  left: 73px;
+}
+
+#quick-search-panel {
+  width: 230px;
+  height: 262px;
+  background-color: #fff;
+  border-radius: 5px;
+  opacity: 0.6;
+}
+
+#quick-search {
+  padding: 5px;
+
+  select, span {
+    margin-bottom: 3px;
+  }
+
+  p {
+    text-align: right;
+    padding-right: 2px;
+  }
+
+  span {
+    border: 1px solid #111;
+    width: 190px;
+    display: block;
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    padding: 9px 14px;
+    font-size: 15px;
+    line-height: normal;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    vertical-align: middle;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+
+    background-color: #333;
+    background-image: linear-gradient(bottom, rgb(34,34,34) 0%, rgb(85,85,85) 100%);
+    background-image: -o-linear-gradient(bottom, rgb(34,34,34) 0%, rgb(85,85,85) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(34,34,34) 0%, rgb(85,85,85) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(34,34,34) 0%, rgb(85,85,85) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(34,34,34) 0%, rgb(85,85,85) 100%);
+
+    background-image: -webkit-gradient(
+    	linear,
+    	left bottom,
+    	left top,
+    	color-stop(0, rgb(34,34,34)),
+    	color-stop(1, rgb(85,85,85))
+    );
+  }
+}

@@ -5,6 +5,7 @@ MySkiChalet::Application.routes.draw do
 
   resources :snippets
 
+  match 'properties/search' => 'properties#quick_search'
   match "resorts/:resort_id/properties/rent" => "properties#browse_for_rent", :as => :resort_property_rent
   match "resorts/:resort_id/properties/sale" => "properties#browse_for_sale", :as => :resort_property_sale
   match "resorts/:resort_id/properties/new-developments" => "properties#new_developments",
@@ -176,7 +177,9 @@ MySkiChalet::Application.routes.draw do
   match "terms" => "home#terms"
   match 'sitemap.xml' => 'application#sitemap', :as => 'sitemap', :format => 'xml'
   match 'restart' => 'application#restart', as: 'restart'
-  root :to => "home#index"
+
+  match 'home/resort_options_for_quick_search' => 'home#resort_options_for_quick_search'
+  root to: 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

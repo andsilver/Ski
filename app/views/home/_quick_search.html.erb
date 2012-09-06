@@ -1,0 +1,74 @@
+  <script>
+  function getResorts() {
+    var valuesToSubmit = $('#quick-search form').serialize();
+    $.ajax({
+      url: '/home/resort_options_for_quick_search',
+      type: 'POST',
+      data: valuesToSubmit
+    }).success(function(data) {
+      $('#resort_id').replaceWith(data);
+    });
+    return false;
+  }
+
+  $(function() {
+    $('#country_id').change(getResorts);
+    $('#quick-search form').submit(function() {
+      if($('#resort_id').val() == '') {
+        alert('Please choose a resort first.');
+        return false;
+      }
+    });
+  });
+  </script>
+  <div id="quick-search-panel">
+  </div>
+  <div id="quick-search">
+    <%= form_tag controller: 'properties', action: 'quick_search' do %>
+      <span>mychaletfinder search</span>
+      <select id="country_id" name="country_id">
+        <option value="">Choose Country</option>
+<% Country.with_visible_resorts.each do |c| -%>
+        <option value="<%= c.id %>"><%= c %></option>
+<% end -%>
+      </select><br>
+      <select id="resort_id" name="resort_id">
+        <option value="">Choose Resort</option>
+        <option value="">Choose Country First &uarr;</option>
+      </select>
+      <br>
+      <select id="sleeps" name="sleeps">
+        <option>Sleeps</option>
+        <option value="1">Sleeps 1</option>
+        <option value="2">Sleeps 2</option>
+        <option value="3">Sleeps 3</option>
+        <option value="4">Sleeps 4</option>
+        <option value="5">Sleeps 5</option>
+        <option value="6">Sleeps 6</option>
+        <option value="8">Sleeps 8</option>
+        <option value="10">Sleeps 10+</option>
+      </select><br>
+      <select id="price_range" name="price_range">
+        <option>Price Range</option>
+        <option value="1">Less than €300</option>
+        <option value="2">€300 &#8212; €450</option>
+        <option value="3">€450 &#8212; €600</option>
+        <option value="4">€600 &#8212; €800</option>
+        <option value="5">€800 &#8212; €1,000</option>
+        <option value="6">€1,000 &#8212; €1,250</option>
+        <option value="7">€1,250 &#8212; €1,500</option>
+        <option value="8">€1,500 +</option>
+      </select>
+      <br>
+      <select id="filter_long_term_lets_available" name="filter_long_term_lets_available">
+        <option value="">Long Lets</option>
+        <option value="on">Long Lets - Yes</option>
+        <option value="">Long Lets - Don&apos;t Care</option>
+      </select>
+      <br>
+      <br>
+      <p style="text-align: right;">
+        <input type="submit" value="Search" class="btn btn-large btn-primary">
+      </p>
+    <% end %>
+  </div>

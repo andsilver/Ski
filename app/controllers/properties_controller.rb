@@ -3,10 +3,11 @@ InterhomeBooking = Struct.new(:arrival_day, :arrival_month, :arrival_date, :dura
 class PropertiesController < ApplicationController
   include SpamProtection
 
-  before_filter :no_browse_menu, except: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_filter :no_browse_menu, except: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
   before_filter :user_required, except: [
-    :index, :browse_for_rent, :browse_for_sale,
+    :index, :quick_search,
+    :browse_for_rent, :browse_for_sale,
     :new_developments, :browse_hotels, :contact,
     :email_a_friend, :current_time, :show,
     :show_interhome, :check_interhome_booking,
@@ -14,8 +15,8 @@ class PropertiesController < ApplicationController
 
   before_filter :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
-  before_filter :resort_conditions, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_filter :find_resort, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_filter :find_resort, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_filter :resort_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
   before_filter :find_property, only: [:show, :contact, :email_a_friend]
 
@@ -23,6 +24,32 @@ class PropertiesController < ApplicationController
 
   def index
     @properties = Property.all
+  end
+
+  def quick_search
+    default_page_title t('properties.titles.browse_for_rent', resort: @resort)
+    @heading_a = render_to_string(partial: 'browse_property_heading').html_safe
+
+    order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
+      "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
+    @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_FOR_RENT}"
+
+    @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :satellite, :wifi,
+      :disabled, :long_term_lets_available, :short_stays, :ski_in_ski_out]
+
+    filter_conditions
+
+    filter_price_range
+    filter_sleeps
+
+    unless params[:board_basis].nil? or params[:board_basis]=="-1"
+      @conditions[0] += " AND board_basis = ?"
+      @conditions << params[:board_basis]
+    end
+
+    @properties = Property.paginate(page: params[:page], order: order,
+      conditions: @conditions)
+    render 'browse'
   end
 
   def browse_for_rent
@@ -547,7 +574,7 @@ class PropertiesController < ApplicationController
   end
 
   def find_resort
-    @resort = Resort.find(params[:resort_id])
+    @resort = Resort.find_by_id(params[:resort_id])
   end
 
   def selected_order(whitelist)
@@ -561,13 +588,17 @@ class PropertiesController < ApplicationController
   end
 
   def resort_conditions
-    @conditions = ["publicly_visible = 1 AND resort_id = ?"]
-    @conditions << params[:resort_id]
+    if @resort
+      @conditions = ["publicly_visible = 1 AND resort_id = ?"]
+      @conditions << params[:resort_id]
+    else
+      @conditions = ["publicly_visible = 1"]
+    end
   end
 
   def filter_conditions
     @search_filters.each do |filter|
-      @conditions[0] += " AND #{filter_column(filter)}>=#{filter_threshold(filter)}" if params["filter_" + filter.to_s]
+      @conditions[0] += " AND #{filter_column(filter)}>=#{filter_threshold(filter)}" unless params["filter_" + filter.to_s].blank?
     end
   end
 
@@ -589,6 +620,33 @@ class PropertiesController < ApplicationController
     else
       1
     end
+  end
+
+  def filter_price_range
+    return if params[:price_range].blank? || !['1', '2', '3', '4', '5', '6', '7', '8'].include?(params[:price_range])
+    ranges = [
+      [0, 300],
+      [300, 450],
+      [450, 600],
+      [600, 800],
+      [800, 1000],
+      [1000, 1250],
+      [1250, 1500],
+      [1500, 10000]
+    ]
+    min = ranges[params[:price_range].to_i - 1][0]
+    max = ranges[params[:price_range].to_i - 1][1]
+    @conditions[0] += " AND normalised_weekly_rent_price >= ? AND normalised_weekly_rent_price <= ?"
+    @conditions << min
+    @conditions << max
+  end
+
+  def filter_sleeps
+    return if params[:sleeps].blank?
+    sleeps = params[:sleeps].to_i
+    @conditions[0] += " AND sleeping_capacity >= ? AND sleeping_capacity <= ?"
+    @conditions << sleeps
+    @conditions << sleeps * 2
   end
 
   def set_image_mode
