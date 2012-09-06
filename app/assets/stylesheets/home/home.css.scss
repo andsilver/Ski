@@ -1,5 +1,18 @@
-#main_menu {
-  background-image: url(/images/home-menu-bg.jpg);
+#main-menu {
+  background-color: #18b3df;
+  background-image: linear-gradient(left , rgb(109,207,246) 48%, rgb(0,148,206) 87%);
+  background-image: -o-linear-gradient(left , rgb(109,207,246) 48%, rgb(0,148,206) 87%);
+  background-image: -moz-linear-gradient(left , rgb(109,207,246) 48%, rgb(0,148,206) 87%);
+  background-image: -webkit-linear-gradient(left , rgb(109,207,246) 48%, rgb(0,148,206) 87%);
+  background-image: -ms-linear-gradient(left , rgb(109,207,246) 48%, rgb(0,148,206) 87%);
+
+  background-image: -webkit-gradient(
+  	linear,
+  	left bottom,
+  	right bottom,
+  	color-stop(0.48, rgb(109,207,246)),
+  	color-stop(0.87, rgb(0,148,206))
+  );
 }
 
 body, html {
