@@ -172,6 +172,8 @@ en:
     site_verification: lqULaLa4Fubz6zh09WjcMwZHUGPb7SnTz38rxtkcRHY
     web_property_id: UA-22451896-2
   home: Home
+  home_controller:
+    news_flash: 'News Flash'
   hotels: Hotels
   images_controller:
     deleted: 'Image deleted.'
