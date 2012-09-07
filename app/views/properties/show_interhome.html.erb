@@ -182,32 +182,66 @@ features = @accommodation.features.split(',')
   <%= @accommodation.outside_description %>
 </p>
 
-<% if admin? %>
+<% if signed_in? %>
 <% if @accommodation.interhome_vacancy %>
 <% cal = InterhomeCalendar.new(@accommodation.interhome_vacancy) %>
 <h2>Vacancy</h2>
+<script>
+$(function() {
+  $('#later').click(function() {
+    if($('.month:visible').last().next('.month').length) {
+      a = $('.month:visible').last().next('.month');
+      b = a.next();
+      c = b.next();
+      $('.month:visible').hide();
+      a.show();
+      b.show();
+      c.show();
+    }
+  });
 
-<div style="width:33%;float:left;">
-<%= raw cal.show_month(8, 2012) %>
+  $('#earlier').click(function() {
+    if($('.month:visible').first().prev('.month').length) {
+      a = $('.month:visible').first().prev('.month');
+      b = a.prev();
+      c = b.prev();
+      $('.month:visible').hide();
+      a.show();
+      b.show();
+      c.show();
+    }
+  });
+});
+</script>
+<div class="well">
+<div class="btn-group">
+  <button class="btn" id="earlier"><i class="icon-backward"></i> Earlier</button>
+  <button class="btn" id="later">Later <i class="icon-forward"></i></button>
 </div>
-<div style="width:33%;float:left;">
-<%= raw cal.show_month(9, 2012) %>
-</div>
-<div style="width:33%;float:left;">
-<%= raw cal.show_month(10, 2012) %>
-</div>
-<%= clear %>
-<div style="width:33%;float:left;">
-<%= raw cal.show_month(11, 2012) %>
-</div>
-<div style="width:33%;float:left;">
-<%= raw cal.show_month(12, 2012) %>
-</div>
-<div style="width:33%;float:left;">
-<%= raw cal.show_month(1, 2013) %>
-</div>
-<%= clear %>
+<%
+today = Date.today
+month = today.month
+year = today.year
+hide = false
+15.times do |i|
+%>
+  <div class="month" id="month<%= month %><%= year %>"
+    data-month="<%= month %>" data-year="<%= year %>"
+    <%= ' style="display: none;"'.html_safe if hide %>>
+    <%= raw cal.show_month(month, year) %>
+  </div>
+  <% hide = true if (i + 1) % 3 == 0 %>
+<%
+  month += 1
+  if month == 13
+    month = 1
+    year += 1
+  end
+end
+%>
 <% end %>
+<%= clear %>
+</div>
 
 <h2>Book</h2>
 <div class="well">

@@ -7,7 +7,11 @@
   td {
     color: #fff;
     text-align: right;
-    background: #00aeef;
+  }
+
+  th {
+    background: #333;
+    color: #fff;
   }
 
   td.empty {
@@ -31,4 +35,10 @@
   td.availability-Q {
     background: orange;
   }
+}
+
+.month {
+  width: 33%;
+  float: left;
+  margin: 6px 0.3% 0 0;
 }
