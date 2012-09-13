@@ -46,6 +46,7 @@ a img {
 
 #shade {
   opacity: 0.8;
+  filter: alpha(opacity = 80);
   background: #000;
   height: 56px;
   margin-bottom: 130px;
@@ -132,19 +133,29 @@ a {
   height: 24px;
 
   .carousel {
-    display: inline-block;
+    display: block;
+    float: left;
     width: 800px;
+    height: 24px;
+    margin-bottom: 0;
+
+    p {
+      line-height: 24px;
+    }
   }
 
   a {
     color: #fff;
+    text-decoration: underline;
   }
 
   h4 {
     text-transform: uppercase;
     padding: 0 10px 0 20px;
-    display: inline-block;
+    display: block;
+    width: 98px;
     line-height: 24px;
+    float: left;
   }
 }
 
