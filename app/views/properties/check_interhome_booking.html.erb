@@ -42,9 +42,9 @@
       <td>Balance remaining to be paid by</td>
       <td style="text-align: right;"><%= l(Date.parse(@price_detail.expiration_residue), format: :short) %></td>
     </tr>
+<% end -%>
   </table>
   </div>
-<% end -%>
 <% end -%>
 <% if @additional_services -%>
 <div class="trigger-update">
