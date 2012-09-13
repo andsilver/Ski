@@ -1,7 +1,9 @@
 <div id="content_with_wide_skyscrapers">
 <div id="search_options">
 <%= form_tag request.path, method: 'get' do %>
+<% if @resort -%>
 <input type="hidden" name="resort_id" value="<%= @resort.id %>">
+<% end -%>
 <p>
   <select id="sort_method" name="sort_method" onchange="this.form.submit()">
 <% if @for_sale %>
