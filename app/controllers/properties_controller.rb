@@ -38,10 +38,11 @@ class PropertiesController < ApplicationController
     @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :satellite, :wifi,
       :disabled, :long_term_lets_available, :short_stays, :ski_in_ski_out]
 
-    filter_conditions
-
+    filter_duration
     filter_price_range
     filter_sleeps
+
+    filter_conditions
 
     unless params[:board_basis].nil? or params[:board_basis]=="-1"
       @conditions[0] += " AND board_basis = ?"
@@ -650,6 +651,14 @@ class PropertiesController < ApplicationController
     @conditions[0] += " AND sleeping_capacity >= ? AND sleeping_capacity <= ?"
     @conditions << sleeps
     @conditions << sleeps * 2
+  end
+
+  def filter_duration
+    if params[:duration] == 'long'
+      @conditions[0] += " AND long_term_lets_available = 1"
+    elsif params[:duration] == 'short'
+      @conditions[0] += " AND short_stays = 1"
+    end
   end
 
   def set_image_mode
