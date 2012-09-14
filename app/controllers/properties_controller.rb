@@ -16,6 +16,7 @@ class PropertiesController < ApplicationController
   before_filter :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
   before_filter :find_resort, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_filter :require_resort, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
   before_filter :resort_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
   before_filter :find_property, only: [:show, :contact, :email_a_friend]
@@ -573,6 +574,10 @@ class PropertiesController < ApplicationController
 
   def find_resort
     @resort = Resort.find_by_id(params[:resort_id])
+  end
+
+  def require_resort
+    not_found unless @resort
   end
 
   def selected_order(whitelist)
