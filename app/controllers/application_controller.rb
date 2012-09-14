@@ -153,7 +153,13 @@ class ApplicationController < ActionController::Base
     render "#{Rails.root.to_s}/public/500", layout: false, status: 500
   end
 
-  def default_page_title suggested_title
+  def default_meta_description(options = {})
+    options[:default] = ''
+    key = "#{params[:controller]}_controller.meta_descriptions.#{params[:action]}"
+    @meta_description = t(key, options) if @meta_description.blank?
+  end
+
+  def default_page_title(suggested_title)
     @page_title = suggested_title if @page_title.blank?
   end
 

@@ -421,9 +421,7 @@ class PropertiesController < ApplicationController
       resort: @property.resort, country: @property.resort.country)
     @resort = @property.resort
     @heading_a = render_to_string(partial: 'show_property_heading').html_safe
-    if @meta_description.blank?
-      @meta_description = "#{@resort} Accommodation - #{@property.strapline[0..130]}"
-    end
+    default_meta_description(resort: @resort, strapline: @property.strapline[0..130])
   end
 
   def process_row(row)
