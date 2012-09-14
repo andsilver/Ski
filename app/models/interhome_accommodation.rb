@@ -14,7 +14,7 @@ class InterhomeAccommodation < ActiveRecord::Base
   end
 
   def partner_link
-    "http://www.interhome.co.uk/Forward.aspx?navigationid=10&partnerid=CH1000651&aCode=#{code}"
+    "http://www.interhome.co.uk/Forward.aspx?navigationid=10&partnerid=CH1000759&aCode=#{code}"
   end
 
   # Returns the rental price for today's date. If there are no prices for
