@@ -174,6 +174,7 @@ it:
   home: Home
   home_controller:
     news_flash: 'Ultime Notizie'
+    resort_guide: 'Sciistica Guida'
   hotels: Hotels
   images_controller:
     deleted: 'Image deleted.'
