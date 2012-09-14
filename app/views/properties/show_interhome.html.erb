@@ -117,6 +117,32 @@
       window.scrollTo(new_position.left,new_position.top);
       submitCheck();
     });
+
+    $(function() {
+      $('#later').click(function() {
+        if($('.month:visible').last().next('.month').length) {
+          a = $('.month:visible').last().next('.month');
+          b = a.next();
+          c = b.next();
+          $('.month:visible').hide();
+          a.show();
+          b.show();
+          c.show();
+        }
+      });
+
+      $('#earlier').click(function() {
+        if($('.month:visible').first().prev('.month').length) {
+          a = $('.month:visible').first().prev('.month');
+          b = a.prev();
+          c = b.prev();
+          $('.month:visible').hide();
+          a.show();
+          b.show();
+          c.show();
+        }
+      });
+    });
   });
 </script>
 <div id="content_with_wide_skyscrapers">
@@ -186,38 +212,11 @@ features = @accommodation.features.split(',')
 <% if @accommodation.interhome_vacancy %>
 <% cal = InterhomeCalendar.new(@accommodation.interhome_vacancy) %>
 <h2>Vacancy</h2>
-<script>
-$(function() {
-  $('#later').click(function() {
-    if($('.month:visible').last().next('.month').length) {
-      a = $('.month:visible').last().next('.month');
-      b = a.next();
-      c = b.next();
-      $('.month:visible').hide();
-      a.show();
-      b.show();
-      c.show();
-    }
-  });
-
-  $('#earlier').click(function() {
-    if($('.month:visible').first().prev('.month').length) {
-      a = $('.month:visible').first().prev('.month');
-      b = a.prev();
-      c = b.prev();
-      $('.month:visible').hide();
-      a.show();
-      b.show();
-      c.show();
-    }
-  });
-});
-</script>
 <div class="well">
 <div class="btn-group">
   <button class="btn" id="earlier"><i class="icon-backward"></i> Earlier</button>
   <button class="btn" id="later">Later <i class="icon-forward"></i></button>
-</div>
+</div><!--.btn-group-->
 <%
 today = Date.today
 month = today.month
@@ -229,7 +228,7 @@ hide = false
     data-month="<%= month %>" data-year="<%= year %>"
     <%= ' style="display: none;"'.html_safe if hide %>>
     <%= raw cal.show_month(month, year) %>
-  </div>
+  </div><!--.month-->
   <% hide = true if (i + 1) % 3 == 0 %>
 <%
   month += 1
@@ -241,7 +240,7 @@ end
 %>
 <% end %>
 <%= clear %>
-</div>
+</div><!--.well-->
 
 <h2>Book</h2>
 <div class="well">
@@ -268,7 +267,7 @@ end
   Babies (0-2 years)
   <input type="text" id="interhome_booking_babies" name="interhome_booking[babies]" value="<%= @interhome_booking.babies %>">
 </label>
-</div>
+</div><!--.trigger-update-->
 <div id="booking_results">
   <p>
     Please select your dates of travel.
