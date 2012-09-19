@@ -1,3 +1,10 @@
+<% if @resort -%>
+<script>
+  $(function() {
+    $.cookie('quick_search_resort_id', '<%= @resort.id %>', { path: '/' });
+  });
+</script>
+<% end -%>
 <div id="content_with_wide_skyscrapers">
 <div id="search_options">
 <%= form_tag request.path, method: 'get' do %>

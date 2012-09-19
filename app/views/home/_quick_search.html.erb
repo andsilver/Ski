@@ -7,6 +7,11 @@
       data: valuesToSubmit
     }).success(function(data) {
       $('#resort_id').replaceWith(data);
+
+      if($.cookie('quick_search_resort_id') != null) {
+        $('#resort_id').val($.cookie('quick_search_resort_id'));
+        $.removeCookie('quick_search_resort_id');
+      }
     });
     return false;
   }
@@ -19,6 +24,9 @@
         return false;
       }
     });
+    if($('#country_id').val() != '') {
+      getResorts();
+    }
   });
   </script>
   <div id="quick-search-panel">
