@@ -76,39 +76,48 @@
     }
     if($('#customer_first_name').val() == '') {
       alert('Please enter your first name.');
+      $('#customer_first_name').focus();
       return;
     }
     if($('#customer_name').val() == '') {
       alert('Please enter your surname.');
+      $('#customer_name').focus();
       return;
     }
     email = $('#customer_email').val();
     if(email == '') {
       alert('Please enter your email address.');
+      $('#customer_email').focus();
       return;
     }
     if(!isValidEmailAddress(email)) {
       alert('Please enter a valid email address.');
+      $('#customer_email').focus();
       return;      
     }
     if(email.length > 69) {
       alert('Please enter an email address under 70 characters long.');
+      $('#customer_email').focus();
       return;      
     }
     if($('#customer_address_street').val() == '') {
       alert('Please enter the first line of your address.');
+      $('#customer_address_street').focus();
       return;
     }
     if($('#customer_address_place').val() == '') {
       alert('Please enter the town/city of your address.');
+      $('#customer_address_place').focus();
       return;
     }
     if($('#customer_address_zip').val() == '') {
       alert('Please enter your postcode/ZIP.');
+      $('#customer_address_zip').focus();
       return;
     }
     if($('#customer_address_country_code').val() == '') {
       alert('Please choose your country from the list.');
+      $('#customer_address_country_code').focus();
       return;
     }
     if(!$('#terms_accepted').is(':checked')) {
@@ -116,7 +125,7 @@
       $('#terms_accepted').focus();
       return;
     }
-    submit('&submit=Book');    
+    submit('&submit=Book');
   }
 
   $(function() {
