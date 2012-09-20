@@ -13,9 +13,8 @@
   <script src="/bootstrap/js/bootstrap.min.js"></script>
   <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= csrf_meta_tags %>
-  <%= render "shared/google" %>
-  <script src="http://use.typekit.com/lxc8myw.js"></script>
-  <script>try{Typekit.load();}catch(e){}</script>
+  <%= render 'shared/google' %>
+  <%= render 'shared/typekit' %>
   <script>
   $(document).ready(function() {
     $('#header_images').cycle({
