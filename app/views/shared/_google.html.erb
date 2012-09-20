@@ -1,4 +1,5 @@
 <meta name="google-site-verification" content="<%= t('google.site_verification') %>">
+<% if Rails.env == 'production' -%>
 <script>
 
   var _gaq = _gaq || [];
@@ -17,3 +18,4 @@
   })();
 
 </script>
+<% end -%>
