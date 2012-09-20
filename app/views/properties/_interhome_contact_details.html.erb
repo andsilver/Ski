@@ -1,9 +1,11 @@
   <h3>Contact information</h3>
   <label>Title</label>
   <select id="customer_salutation_type" name="customer_salutation_type">
-    <option value="Blank">-- Choose --</option>
+    <option value="">-- Choose --</option>
     <option value="Mr">Mr</option>
     <option value="Mrs">Mrs</option>
+    <option value="MrAndMrs">Mr and Mrs</option>
+    <option value="Blank">None of the above</option>
   </select> <%= required_field %>
   <label>Name</label>
   <input type="text" id="customer_first_name" name="customer_first_name" value="<%= params[:customer_first_name] %>"> <%= required_field %>

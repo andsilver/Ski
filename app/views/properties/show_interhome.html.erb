@@ -69,6 +69,11 @@
   }
 
   function submitBooking() {
+    if($('#customer_salutation_type').val() == '') {
+      alert('Please choose your title from the list.');
+      $('#customer_salutation_type').focus();
+      return;
+    }
     if($('#customer_first_name').val() == '') {
       alert('Please enter your first name.');
       return;
