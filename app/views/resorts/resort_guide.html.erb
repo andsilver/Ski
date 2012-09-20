@@ -101,6 +101,12 @@
     <td><%= ad.distance_km %>km</td>
   </tr>
   <% end %>
+  <tr>
+    <td colspan="2" style="text-align: center;">
+      <%= link_to 'Airport Transfers &rarr;'.html_safe, find_airport_transfers_path,
+      class: 'btn btn-primary' %>
+    </td>
+  </tr>
 </table>
 <% end -%>
 
