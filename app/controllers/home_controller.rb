@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   layout 'application', except: [:index]
 
   def index
-    @featured_properties = Property.order('RAND()').limit(15).where(publicly_visible: true)
+    @featured_properties = Property.featured(count: 15)
     render layout: 'home'
   end
 
