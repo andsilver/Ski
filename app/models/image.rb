@@ -101,6 +101,7 @@ class Image < ActiveRecord::Base
   end
 
   def download_from_source
+    return if Rails.env == 'development'
     begin
       FileUtils.makedirs(directory_path)
       require 'net/http'
