@@ -1,0 +1,29 @@
+  <h3>Additional bookable services</h3>
+  <table class="table">
+<% @additional_services.bookable.each do |service| -%>
+    <tr>
+      <td>
+<% if service.n_type? && service.count > 0 %>
+        <select name="additional_service[<%= service.code %>]">
+<% (0..service.count).each do |x| %>
+          <option value="<%= x %>"<%= ' selected' if additional_service_matched?(service.code, x) %>>
+            <%= x %>
+            <% unless service.amount == '0' %>
+            (<%= number_to_currency(service.amount.to_f * x, unit: '€', precision: 2) %>)
+            <% end %><!--/ service amount 0 -->
+          </option>
+<% end %><!--/ service with count line -->
+        </select>
+<% else %>
+        <input type="checkbox" name="additional_service[<%= service.code %>]"<%= ' checked' if additional_service_matched?(service.code, 1) %>>
+<% end %><!--/ one of two bookable service types -->
+      </td>
+      <td>
+        <strong><%= service.description %></strong>
+        <%= service.amount_or_free %> <%= service.currency %>
+        <br>
+        <%= service.text %>
+      </td>
+    </tr>
+<% end -%><!--/ bookable service line -->
+  </table>

@@ -1,0 +1,13 @@
+  <h3>Not included</h3>
+  <table class="table">
+<% @additional_services.not_included.each do |service| -%>
+    <tr>
+      <td>
+        <%= service.description %>,
+        <%= service.amount %> <%= service.currency %>,
+        <%= service.price_rule_desc %>,
+        <%= service.type_desc %>
+      </td>
+    </tr>
+<% end -%><!-- not included service line -->
+  </table>

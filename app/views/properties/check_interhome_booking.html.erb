@@ -12,18 +12,9 @@
       <td><strong>Rental price</strong></td>
       <td style="text-align: right;"><strong><%= number_to_currency(@price_detail.price, unit: '€', precision: 2) %></strong></td>
     </tr>
-<% unless params[:additional_service].nil? -%>
-<% @price_detail.on_invoice.each do |service| -%>
-    <tr>
-      <td><%= service.description %></td>
-      <td style="text-align: right;"><%= number_to_currency(service.amount, unit: '€', precision: 2) %></td>
-    </tr>
-<% end -%>
-    <tr>
-      <td><strong>Total price</strong></td>
-      <td style="text-align: right;"><strong><%= number_to_currency(@price_detail.total, unit: '€', precision: 2) %></strong></td>
-    </tr>
-<% end -%>
+
+<%= render 'interhome_selected_additional_services' unless params[:additional_service].nil? %>
+
 <% if @price_detail.prepayment == '0' -%>
     <tr>
       <td>Payment to be made by</td>
@@ -42,105 +33,22 @@
       <td>Balance remaining to be paid by</td>
       <td style="text-align: right;"><%= l(Date.parse(@price_detail.expiration_residue), format: :short) %></td>
     </tr>
-<% end -%>
+<% end -%><!--/ payment/prepayment-->
   </table>
-  </div>
-<% end -%>
+  </div><!--/ padded div -->
 <% if @additional_services -%>
 <div class="trigger-update">
-<% unless @additional_services.bookable.empty? %>
-  <h3>Additional bookable services</h3>
-  <table class="table">
-<% @additional_services.bookable.each do |service| -%>
-    <tr>
-      <td>
-<% if service.n_type? && service.count > 0 %>
-        <select name="additional_service[<%= service.code %>]">
-<% (0..service.count).each do |x| %>
-          <option value="<%= x %>"<%= ' selected' if additional_service_matched?(service.code, x) %>>
-            <%= x %>
-            <% unless service.amount == '0' %>
-            (<%= number_to_currency(service.amount.to_f * x, unit: '€', precision: 2) %>)
-            <% end %>
-          </option>
-<% end %>
-        </select>
-<% else %>
-        <input type="checkbox" name="additional_service[<%= service.code %>]"<%= ' checked' if additional_service_matched?(service.code, 1) %>>
-<% end %>
-      </td>
-      <td>
-        <strong><%= service.description %></strong>
-        <%= service.amount_or_free %> <%= service.currency %>
-        <br>
-        <%= service.text %>
-      </td>
-    </tr>
-<% end -%>
-  </table>
-<% end -%>
+<%= render 'interhome_bookable_services' unless @additional_services.bookable.empty? %>
 
-<% unless @additional_services.not_included.empty? %>
-  <h3>Not included</h3>
-  <table class="table">
-<% @additional_services.not_included.each do |service| -%>
-    <tr>
-      <td>
-        <%= service.description %>,
-        <%= service.amount %> <%= service.currency %>,
-        <%= service.price_rule_desc %>,
-        <%= service.type_desc %>
-      </td>
-    </tr>
-<% end -%>
-  </table>
-<% end -%>
+<%= render 'interhome_additional_services_not_included' unless @additional_services.not_included.empty? %>
 
-<% unless @additional_services.included.empty? %>
-  <h3>Included</h3>
-  <table class="table">
-<% @additional_services.included.each do |service| -%>
-    <tr>
-      <td>
-        <%= service.description %> (<%= service.type_desc %>)
-      </td>
-    </tr>
-<% end -%>
-  </table>
+<%= render 'interhome_additional_services_included' unless @additional_services.included.empty? %>
 
 </div><!--.trigger-update-->
 
-  <h3>Contact information</h3>
-  <label>Title</label>
-  <select id="customer_salutation_type" name="customer_salutation_type">
-    <option value="Blank">-- Choose --</option>
-    <option value="Mr">Mr</option>
-    <option value="Mrs">Mrs</option>
-  </select> <%= required_field %>
-  <label>Name</label>
-  <input type="text" id="customer_first_name" name="customer_first_name" value="<%= params[:customer_first_name] %>"> <%= required_field %>
-  <label>Surname</label>
-  <input type="text" id="customer_name" name="customer_name" value="<%= params[:customer_name] %>"> <%= required_field %>
-  <label>Email address</label>
-  <input type="email" id="customer_email" name="customer_email" value="<%= params[:customer_email] %>"> <%= required_field %>
-  <label>Address</label>
-  <input type="text" id="customer_address_street" name="customer_address_street" value="<%= params[:customer_address_street] %>"> <%= required_field %><br>
-  <input type="text" id="customer_address_additional_street" name="customer_address_additional_street" value="<%= params[:customer_address_additional_street] %>">
-  <label>City</label>
-  <input type="text" id="customer_address_place" name="customer_address_place" value="<%= params[:customer_address_place] %>"> <%= required_field %>
-  <label>Postcode</label>
-  <input type="text" id="customer_address_zip" name="customer_address_zip" value="<%= params[:customer_address_zip] %>"> <%= required_field %>
-  <label>Country</label>
-  <select id="customer_address_country_code" name="customer_address_country_code">
-    <option value="">-- Choose --</option>
-<% Country.order('name').each do |c| -%>
-    <option value="<%= c.iso_3166_1_alpha_2 %>"><%= c.name %></option>
-<% end -%>
-  </select> <%= required_field %>
+<%= render 'interhome_contact_details' %>
 
-  <br><input type="submit" name="submit" value="Book" class="btn btn-primary">
-<% end -%>
+<% end -%><!--/ additional services -->
 
-
-<% end -%>
+<% end -%><!--/ availability -->
 </div><!--#booking-results-->

@@ -1,0 +1,10 @@
+<% @price_detail.on_invoice.each do |service| -%>
+    <tr>
+      <td><%= service.description %></td>
+      <td style="text-align: right;"><%= number_to_currency(service.amount, unit: '€', precision: 2) %></td>
+    </tr>
+<% end -%>
+    <tr>
+      <td><strong>Total price</strong></td>
+      <td style="text-align: right;"><strong><%= number_to_currency(@price_detail.total, unit: '€', precision: 2) %></strong></td>
+    </tr>
