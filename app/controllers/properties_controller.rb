@@ -175,15 +175,18 @@ class PropertiesController < ApplicationController
     check_out = (check_in_date + params[:interhome_booking][:duration].to_i.days).to_s
     details = {
       accommodation_code: @accommodation.code,
-      adults: params[:interhome_booking][:adults],
+      adults: params[:interhome_booking][:adults].to_i.to_s,
       check_in: check_in,
       check_out: check_out,
-      children: params[:interhome_booking][:children],
-      babies: params[:interhome_booking][:babies]
+      children: params[:interhome_booking][:children].to_i.to_s,
+      babies: params[:interhome_booking][:babies].to_i.to_s
     }
     pax = details[:children].to_i + details[:adults].to_i
     if(pax > @accommodation.pax)
       @message = 'The number of people (adults + children) exceeds the capacity for this property.'
+      render('interhome_error', layout: false) and return
+    elsif(details[:adults].to_i < 1)
+      @message = 'At least 1 adult must be included.'
       render('interhome_error', layout: false) and return
     end
 
