@@ -1,5 +1,6 @@
 <div id="payment-form">
   <h3>
+    Booking reference: <%= @client_booking.booking_id %><br>
     To pay: <%= number_to_currency(@amount, unit: '€', precision: 2) %>
     <% if @deposit %>(deposit)<% end %>
   </h3>
