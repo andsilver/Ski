@@ -52,6 +52,9 @@
       data: valuesToSubmit
     }).success(function(data) {
       $('#booking_results').replaceWith(data);
+    }).error(function(data) {
+      $('#booking_results').replaceWith('<div id="booking_results"><h2>An error occurred. Please <a id="retry">try again</a>.</h2></div>');
+      $('#retry').click(submitCheck);
     });
     return false;
   }
