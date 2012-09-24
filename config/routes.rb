@@ -88,6 +88,8 @@ MySkiChalet::Application.routes.draw do
       get  'new_pericles_import'
       post 'pericles_import'
       post 'check_interhome_booking'
+      get 'interhome_payment_success'
+      get 'interhome_payment_failure'
     end
   end
 

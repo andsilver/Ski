@@ -11,6 +11,7 @@ class PropertiesController < ApplicationController
     :new_developments, :browse_hotels, :contact,
     :email_a_friend, :current_time, :show,
     :show_interhome, :check_interhome_booking,
+    :interhome_payment_success, :interhome_payment_failure,
     :import_documentation]
 
   before_filter :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
