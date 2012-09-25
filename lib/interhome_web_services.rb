@@ -34,13 +34,13 @@ class InterhomeWebServices
     request_class = Kernel.const_get("#{action}Request")
     response_class = Kernel.const_get("#{action}Response")
     defaults = {
-      url: 'https://webservices.interhome.com/quality/partnerV3/WebService.asmx',
-      username: 'CH1000723',
+      url: 'https://webservices.interhome.com/partnerV3/WebService.asmx',
+      username: 'CH1000759',
       password: 'mychaletfinder',
       language_code: 'EN',
       currency_code: 'EUR',
       sales_office_code: '2048',
-      retailer_code: 'CH1000723',
+      retailer_code: 'CH1000759',
 
       accommodation_code: 'PT6660.50.1',
       check_in: '2012-10-01',

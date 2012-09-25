@@ -230,7 +230,6 @@ features = @accommodation.features.split(',')
   <%= @accommodation.outside_description %>
 </p>
 
-<% if signed_in? %>
 <% if @accommodation.interhome_vacancy %>
 <% cal = InterhomeCalendar.new(@accommodation.interhome_vacancy) %>
 <h2>Vacancy</h2>
@@ -298,7 +297,6 @@ end
 <% end %>
 </div><!--#booking_form-->
 </div><!--.well-->
-<% end -%>
 
 <% unless @accommodation.geodata_lat.empty? %>
 <div id="map_cavas"></div>
