@@ -123,7 +123,6 @@ class Property < ActiveRecord::Base
       p.save
     end
     resume_geocoding
-    nil # don't fail before_save callback
   end
 
   def self.geocoding?
@@ -263,6 +262,7 @@ class Property < ActiveRecord::Base
   def normalise_prices
     self.normalised_sale_price = sale_price * currency.in_euros
     self.normalised_weekly_rent_price = weekly_rent_price * currency.in_euros
+    nil # don't fail before_save callback
   end
 
   def properties_for_rent_cannot_be_new_developments
