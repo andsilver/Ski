@@ -135,6 +135,7 @@ de:
     added_to_basket: 'Your directory advert has been added to your basket.'
     created: "Your directory advert was successfully created."
     saved: "Your directory advert was successfully updated."
+  directory_and_banner_adverts: 'Directory and Banner Adverts'
   duration: Duration
   edit: Edit
   email: 'Email'
