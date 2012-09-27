@@ -15,20 +15,43 @@
 
 <% unless @directory_advert.currently_advertised? -%>
 <div class="group_panel">
-  <h2>Type of Advert</h2>
-  <p>
-    You can have either a directory listing on its own or
-    a banner advert which includes a free directory listing.
-  </p>
-  <div class="field">
-    <label class="radio">
-      <%= f.radio_button :is_banner_advert, false, class: 'radio' %>
-  	  Directory advert only
-    </label>
-    <label class="radio">
-      <%= f.radio_button :is_banner_advert, true, class: 'radio' %>
-  	  Banner advert with free directory advert
-    </label>
+  <div class="row">
+    <div class="span8">
+      <h2>Type of Advert</h2>
+      <p>
+        You can have either a directory listing on its own or
+        a banner advert which includes a free directory listing.
+      </p>
+      <div class="field">
+        <label class="radio">
+          <%= f.radio_button :is_banner_advert, false, class: 'radio' %>
+      	  Directory advert only (<%= euros(Website.first.directory_advert_price) %> each)
+        </label>
+        <label class="radio">
+          <%= f.radio_button :is_banner_advert, true, class: 'radio' %>
+      	  Banner advert with free directory advert
+        </label>
+      </div>
+    </div>
+    <div class="span4">
+      <h2>Banner Advert Prices</h2>
+      <table class="table table-bordered" style="background: #fff;">
+        <tr>
+          <th>Banner Number</th>
+          <th>Price Each</th>
+        </tr>
+<% BannerPrice.order('current_banner_number').each do |p| -%>
+        <tr>
+          <td>
+            <%= p.current_banner_number %>
+          </td>
+          <td>
+            <%= euros(p.price) %>
+          </td>
+        </tr>
+<% end -%>
+      </table>
+    </div>
   </div>
 </div>
 <% end -%>
