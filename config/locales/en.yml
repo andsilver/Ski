@@ -178,7 +178,9 @@ en:
     resort_guide: 'Resort Guide'
   hotels: Hotels
   images_controller:
+    banner_image: 'Banner Image'
     deleted: 'Image deleted.'
+    directory_image: 'Directory Image'
     image: 'Image'
     image_uploaded: Image uploaded.
     invalid_dimensions: This image was not accepted because it does not have valid dimensions.
