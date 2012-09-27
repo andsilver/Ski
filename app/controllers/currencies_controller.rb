@@ -37,8 +37,7 @@ class CurrenciesController < ApplicationController
 
   def update_exchange_rates
     Currency.update_exchange_rates
-    Property.normalise_prices
-    redirect_to currencies_path, notice: t('currencies_controller.exhange_rates_updated')
+    redirect_to currencies_path, notice: t('currencies_controller.exchange_rates_updated')
   end
 
   protected

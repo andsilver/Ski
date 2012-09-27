@@ -122,7 +122,7 @@ fr:
     select_country: 'Select Country'
   county: Région
   currencies_controller:
-    exchange_rate_updated: 'Exchange rates updated.'
+    exchange_rates_updated: 'Exchange rates updated.'
   date:
     formats:
       short: "%d %b %Y"
