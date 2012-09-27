@@ -29,6 +29,7 @@ class Image < ActiveRecord::Base
 
   def write_file
     if @file_data
+      @file_data.rewind
       # remove any existing images (which may have different extensions)
       delete_files
       FileUtils.makedirs(directory_path)
