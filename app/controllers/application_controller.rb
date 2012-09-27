@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :initialize_website, :set_locale, :initialize_user, :page_defaults
 
+  before_filter :admin_required, only: [:restart]
+
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, with: :render_error
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -18,7 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   def restart
-    admin_required
     `touch tmp/restart.txt` # assumes Phusion Passenger
     redirect_to cms_path, notice: 'Application restarted.'
   end
