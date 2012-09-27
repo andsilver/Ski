@@ -1,5 +1,7 @@
 class Denormalize
   def self.denormalize
+    Currency.update_exchange_rates
+
     Property.find_in_batches(batch_size: 250, include: [:resort]) do |properties|
       properties.each do |p|
         publicly_visible = p.currently_advertised? && p.resort.visible?
