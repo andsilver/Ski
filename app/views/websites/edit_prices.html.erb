@@ -1,6 +1,6 @@
 <%= render 'cms/menu' %>
 <div class="cms">
-<h1><%= link_to 'CMS', cms_path %> &rarr; Banner and Directory Advert Pricing</h1>
+<h1><%= link_to 'CMS', cms_path %> &rarr; Directory Advert Price</h1>
 
 <% if @website.errors.any? %>
   <div id="error_explanation">
@@ -15,8 +15,6 @@
 <% end %>
 
 <%= form_for @website do |f| %>
-  <%= f.label :banner_advert_price %>
-  <%= f.text_field :banner_advert_price %> EUR
   <%= f.label :directory_advert_price %>
   <%= f.text_field :directory_advert_price %> EUR
   <br><%= f.submit class: 'btn btn-primary' %>
