@@ -28,4 +28,40 @@ describe User do
       user.has_properties_for_sale?.should be_false
     end
   end
+
+  describe 'pays_vat?' do
+    let(:uk) { Country.new(in_eu: true, iso_3166_1_alpha_2: 'GB') }
+    let(:france) { Country.new(in_eu: true, iso_3166_1_alpha_2: 'FR') }
+    let(:us) { Country.new(in_eu: false, iso_3166_1_alpha_2: 'US') }
+
+    it 'returns true if the VAT number is blank and the country is in the EU' do
+      user = User.new(vat_number: '')
+      user.stub(:billing_country).and_return(uk)
+      user.pays_vat?.should be_true
+      user.stub(:billing_country).and_return(france)
+      user.pays_vat?.should be_true
+    end
+
+    it 'returns false if the VAT number is given and the country is in the EU, not UK' do
+      user = User.new(vat_number: '123')
+      user.stub(:billing_country).and_return(france)
+      user.pays_vat?.should be_false
+    end
+
+    it 'returns false if the country is not in the EU' do
+      user = User.new(vat_number: '')
+      user.stub(:billing_country).and_return(us)
+      user.pays_vat?.should be_false
+      user.vat_number = '123'
+      user.pays_vat?.should be_false
+    end
+
+    it 'returns true if country is United Kingdom' do
+      user = User.new(vat_number: '')
+      user.stub(:billing_country).and_return(uk)
+      user.pays_vat?.should be_true
+      user.vat_number = '123'
+      user.pays_vat?.should be_true
+    end
+  end
 end
