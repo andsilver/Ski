@@ -12,6 +12,7 @@
  *= require_tree ./menus
  *= require ./main/featured_properties
  *= require ./main/footer
+ *= require ./main/localization
  *= require ./main/social
  *= require_tree ./home
 */
