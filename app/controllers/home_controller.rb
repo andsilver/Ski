@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   layout 'application', except: [:index]
 
   def index
-    @featured_properties = Property.featured
+    @featured_properties = @w.featured_properties
     render layout: 'home'
   end
 
