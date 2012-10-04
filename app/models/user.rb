@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :role
   belongs_to :billing_country, class_name: 'Country'
+  belongs_to :vat_country, class_name: 'Country'
   belongs_to :coupon
   belongs_to :image
 
@@ -68,7 +69,7 @@ class User < ActiveRecord::Base
     (SE)?[0-9]{12} |                              # Sweden
     (SI)?[0-9]{8} |                               # Slovenia
     (SK)?[0-9]{10}                                # Slovakia
-    )$/x, allow_blank: true
+    )$/x, if: Proc.new {|u| u.vat_country}
 
   validates_presence_of :billing_street
   validates_presence_of :billing_city
@@ -197,6 +198,6 @@ class User < ActiveRecord::Base
   end
 
   def tidy_vat_number
-    self.vat_number = vat_number.upcase.gsub(/[^A-Z0-9]/, '')
+    self.vat_number = vat_country ? vat_number.upcase.gsub(/[^A-Z0-9]/, '') : ''
   end
 end

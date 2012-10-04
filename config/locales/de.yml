@@ -540,7 +540,7 @@ de:
     register_to_advertise: Register to advertise your property or business
     select_account_type: Select account type
     sign_in_to_access_your_account: Sign in to access your account
-    vat_number: VAT number
+    vat_number: 'Tax/VAT registration number'
     website: Website
     website_format_tip: 'Please start with either http:// or https://'
     your_details: Your Details

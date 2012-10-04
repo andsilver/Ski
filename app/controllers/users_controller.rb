@@ -173,6 +173,6 @@ class UsersController < ApplicationController
     params[:user].slice(:email, :website, :description, :billing_street, :billing_location,
       :billing_city, :billing_postcode, :billing_country_id, :phone, :mobile, :business_name,
       :position, :terms_and_conditions, :first_name, :last_name, :google_web_property_id,
-      :vat_number, :password)
+      :vat_country_id, :vat_number, :password)
   end
 end

@@ -65,9 +65,25 @@
   <%= f.label :position, t('users.your_position') %>
   <%= f.text_field :position %>
 </div>
+<script>
+$(function() {
+  $('#user_vat_country_id').change(function() {
+    if($('#user_vat_country_id').val() == '') {
+      $('#vat_number').hide();
+    } else {
+      $('#vat_number').show();
+    }
+  });
+});
+</script>
 <div class="field">
+  <%= f.label :vat_country_id, 'EU tax/VAT registration status' %>
+  <%= select('user', 'vat_country_id', Country.where(in_eu: true).order('name').collect {|c| [ "Registered in #{c.name}", c.id ] }, {include_blank: 'Not registered in the EU'}, style: 'width: 275px;') %>
+</div>
+<div id="vat_number" class="field"<%= ' style="display: none;"'.html_safe unless @user.vat_country %>>
   <%= f.label :vat_number, t('users.vat_number') %>
   <%= f.text_field :vat_number, placeholder: 'GB123456789' %>
+  <%= required_field %>
 </div>
 </div>
 <% end %>
