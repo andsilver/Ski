@@ -40,7 +40,35 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
-  validates_format_of :vat_number, with: /[a-z][a-z].*/i, allow_blank: true
+  validates_format_of :vat_number, with: /^(
+    (AT)?U[0-9]{8} |                              # Austria
+    (BE)?0?[0-9]{9} |                             # Belgium
+    (BG)?[0-9]{9,10} |                            # Bulgaria
+    (CY)?[0-9]{8}L |                              # Cyprus
+    (CZ)?[0-9]{8,10} |                            # Czech Republic
+    (DE)?[0-9]{9} |                               # Germany
+    (DK)?[0-9]{8} |                               # Denmark
+    (EE)?[0-9]{9} |                               # Estonia
+    (EL|GR)?[0-9]{9} |                            # Greece
+    (ES)?[0-9A-Z][0-9]{7}[0-9A-Z] |               # Spain
+    (FI)?[0-9]{8} |                               # Finland
+    (FR)?[0-9A-Z]{2}[0-9]{9} |                    # France
+    (GB)?([0-9]{9}([0-9]{3})?|[A-Z]{2}[0-9]{3}) | # United Kingdom
+    (HU)?[0-9]{8} |                               # Hungary
+    (IE)?[0-9]S[0-9]{5}L |                        # Ireland
+    (IT)?[0-9]{11} |                              # Italy
+    (LT)?([0-9]{9}|[0-9]{12}) |                   # Lithuania
+    (LU)?[0-9]{8} |                               # Luxembourg
+    (LV)?[0-9]{11} |                              # Latvia
+    (MT)?[0-9]{8} |                               # Malta
+    (NL)?[0-9]{9}B[0-9]{2} |                      # Netherlands
+    (PL)?[0-9]{10} |                              # Poland
+    (PT)?[0-9]{9} |                               # Portugal
+    (RO)?[0-9]{2,10} |                            # Romania
+    (SE)?[0-9]{12} |                              # Sweden
+    (SI)?[0-9]{8} |                               # Slovenia
+    (SK)?[0-9]{10}                                # Slovakia
+    )$/x, allow_blank: true
 
   validates_presence_of :billing_street
   validates_presence_of :billing_city
@@ -52,6 +80,7 @@ class User < ActiveRecord::Base
   validates_acceptance_of :terms_and_conditions, on: :create, accept: true
 
   before_save :encrypt_password
+  before_validation :tidy_vat_number
 
   def self.encrypt(pass, salt)
     Digest::SHA1.hexdigest("--#{salt}--#{pass}--")
@@ -164,6 +193,10 @@ class User < ActiveRecord::Base
   end
 
   def password_required?
-     encrypted_password.blank? || !password.blank?
-   end
+    encrypted_password.blank? || !password.blank?
+  end
+
+  def tidy_vat_number
+    self.vat_number = vat_number.upcase.gsub(/[^A-Z0-9]/, '')
+  end
 end
