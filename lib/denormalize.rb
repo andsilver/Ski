@@ -4,6 +4,7 @@ class Denormalize
 
     Currency.update_exchange_rates
 
+    Property.stop_geocoding
     Property.find_in_batches(batch_size: 250, include: [:resort]) do |properties|
       properties.each do |p|
         publicly_visible = p.currently_advertised? && p.resort.visible?
@@ -15,6 +16,7 @@ class Denormalize
       end
       sleep(0.5)
     end
+    Property.resume_geocoding
 
     Resort.visible.each do |resort|
       resort.for_rent_count = count_properties(resort, :listing_type, Property::LISTING_TYPE_FOR_RENT)
