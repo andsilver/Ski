@@ -55,9 +55,10 @@ fr:
     place_order: Commander
     purchased_on: Purchased On
     subtotal: Subtotal
-    tax_amount: VAT
     total: Total
+    vat: VAT
     windows: Windows
+    zero_rated: 'Zero Rated'
   advert_details: Détail de l'annonce
   airport_transfers_controller:
     titles:

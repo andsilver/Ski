@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927144020) do
+ActiveRecord::Schema.define(:version => 20120927160554) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -357,22 +357,24 @@ ActiveRecord::Schema.define(:version => 20120927144020) do
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
-    t.string   "order_number",                           :null => false
-    t.string   "email",                                  :null => false
-    t.integer  "status",                                 :null => false
-    t.string   "name",                                   :null => false
-    t.string   "address",                                :null => false
-    t.integer  "country_id",                             :null => false
-    t.string   "phone",                                  :null => false
-    t.integer  "total",                                  :null => false
+    t.string   "order_number",                                                         :null => false
+    t.string   "email",                                                                :null => false
+    t.integer  "status",                                                               :null => false
+    t.string   "name",                                                                 :null => false
+    t.string   "address",                                                              :null => false
+    t.integer  "country_id",                                                           :null => false
+    t.string   "phone",                                                                :null => false
+    t.integer  "total",                                                                :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "postcode",            :default => "",    :null => false
-    t.boolean  "pay_monthly",         :default => false
-    t.integer  "first_payment",       :default => 0
-    t.integer  "subsequent_payments", :default => 0
-    t.integer  "tax_amount",          :default => 0,     :null => false
-    t.string   "customer_vat_number", :default => "",    :null => false
+    t.string   "postcode",                                          :default => "",    :null => false
+    t.boolean  "pay_monthly",                                       :default => false
+    t.integer  "first_payment",                                     :default => 0
+    t.integer  "subsequent_payments",                               :default => 0
+    t.integer  "tax_amount",                                        :default => 0,     :null => false
+    t.string   "customer_vat_number",                               :default => "",    :null => false
+    t.string   "tax_description",                                   :default => "VAT", :null => false
+    t.decimal  "sterling_in_euros",   :precision => 6, :scale => 4
   end
 
   add_index "orders", ["email"], :name => "index_orders_on_email"

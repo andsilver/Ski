@@ -32,7 +32,7 @@
   </tr>
   <% end -%>
   <tr>
-    <td><%= t('adverts_controller.tax_amount') %></th>
+    <td><%= @order.tax_description %></th>
     <td class="price numeric"><%= euros_from_cents @order.tax_amount %></td>
   </tr>
   <tr>

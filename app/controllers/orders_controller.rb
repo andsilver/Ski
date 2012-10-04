@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
       @order.order_lines.each do |line|
         cells << [line.description, euros_from_cents(line.amount)]
       end
-      cells << [I18n.t('adverts_controller.tax_amount'), euros_from_cents(@order.tax_amount)]
+      cells << [@order.tax_description, euros_from_cents(@order.tax_amount)]
       cells << ["Order total:", euros_from_cents(@order.total)]
 
       t = Prawn::Table.new(cells, pdf)

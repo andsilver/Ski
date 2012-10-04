@@ -130,6 +130,10 @@ class User < ActiveRecord::Base
     (vat_number.blank? && billing_country.in_eu?) || billing_country.iso_3166_1_alpha_2 == 'GB'
   end
 
+  def tax_description
+    pays_vat? ? 'VAT' : 'Zero Rated'
+  end
+
   def to_s
     name
   end
