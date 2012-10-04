@@ -1,5 +1,7 @@
 class Denormalize
   def self.denormalize
+    update_featured_properties
+
     Currency.update_exchange_rates
 
     Property.find_in_batches(batch_size: 250, include: [:resort]) do |properties|
@@ -31,5 +33,11 @@ class Denormalize
 
   def self.count_properties(resort, attribute, value)
     Property.where(resort_id: resort.id, publicly_visible: true, attribute => value).count
+  end
+
+  def self.update_featured_properties
+    website = Website.first
+    website.featured_properties = Property.featured
+    website.save
   end
 end

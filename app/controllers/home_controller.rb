@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   layout 'application', except: [:index]
 
   def index
-    @featured_properties = Property.featured(count: 15)
+    @featured_properties = Property.featured
     render layout: 'home'
   end
 

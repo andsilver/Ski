@@ -153,22 +153,9 @@ class Property < ActiveRecord::Base
       wifi)
   end
 
-  # Returns up to opts[:count] randomly chosen publicly visible properties.
-  def self.featured(opts)
-    opts = {
-      count: 10,
-      tries: 50
-    }.merge(opts)
-
-    properties = []
-    max_id = Property.maximum('id')
-    tries = 0
-    while properties.count < opts[:count] && (tries += 1) <= opts[:tries] do
-      p = Property.where("id >= #{rand(max_id)}").limit(1).first
-      # prevent MySQL using publicly_visible as key (PRIMARY is better)
-      properties << p if p.publicly_visible?
-    end
-    properties
+  # Returns 15 randomly chosen visible properties. Not fast.
+  def self.featured
+    Property.order('RAND()').limit(15).where(publicly_visible: true)
   end
 
   def to_param
