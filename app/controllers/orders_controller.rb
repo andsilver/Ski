@@ -90,7 +90,12 @@ class OrdersController < ApplicationController
   end
 
   def find_users_order
-    @order = Order.find_by_id_and_user_id(params[:id], @current_user.id)
+    if admin?
+      @order = Order.find_by_id(params[:id])
+    else
+      @order = Order.find_by_id_and_user_id(params[:id], @current_user.id)
+    end
+
     if @order.nil?
       redirect_to(receipts_orders_path, notice: t('orders_controller.receipt_not_found'))
     end
