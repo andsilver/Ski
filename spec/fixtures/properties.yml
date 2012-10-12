@@ -10,6 +10,7 @@ alpen_lounge:
   weekly_rent_price: 1200
   currency_id: 1 # Euros
   description: "The Alpen Lounge is a 100 square meter self catering chalet."
+  publicly_visible: 1
 
 chalet_alaska:
   id: 2
@@ -20,6 +21,7 @@ chalet_alaska:
   listing_type: 1 # For sale
   sale_price: 195000
   currency_id: 1 # Euros
+  publicly_visible: 1
 
 hotel_le_chamonix:
   id: 3
@@ -30,3 +32,4 @@ hotel_le_chamonix:
   weekly_rent_price: 700
   currency_id: 1 # Euros
   star_rating: 4
+  publicly_visible: 1
