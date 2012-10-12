@@ -28,48 +28,21 @@ Use: a-chalet.jpg
 HTML
 ----
 
-Most content can be entered using the Visual mode of the text editor.
+You can create your own HTML files that give you free reign over style.
 
-Sometimes you will need to click on the Source view to edit the HTML.
+Create a file on your computer: test.html for example
 
-To enter an image:
+Edit your file in NotePad++
 
-First upload it using CMS > Uploads.
+You can put any HTML or CSS you like in here without affecting the
+website.
 
-Browse for the image on your computer and press Upload.
+Open the file on your computer with a web browser to preview your work.
 
-Now go to the area in the CMS where you can edit your content.
+Upload the file to the /public/ folder using FileZilla.
 
-Let's say you upload an image called chalet.jpg. This is the HTML code to
-embed it in the page:
-
-<pre>
-&lt;img src="/uploads/chalet.jpg" alt="A chalet"&gt;
-</pre>
-
-To position the image on the right:
-
-<pre>
-&lt;p class="image_right"&gt;
-  &lt;img src="/uploads/chalet.jpg" alt="A chalet"&gt;
-&lt;/p&gt;
-</pre>
-
-Centre:
-
-<pre>
-&lt;p class="image_centre"&gt;
-  &lt;img src="/uploads/chalet.jpg" alt="A chalet"&gt;
-&lt;/p&gt;
-</pre>
-
-Left:
-
-<pre>
-&lt;p class="image_left"&gt;
-  &lt;img src="/uploads/chalet.jpg" alt="A chalet"&gt;
-&lt;/p&gt;
-</pre>
+When you are happy you will need me to transfer it across and create
+the styles to fit within the website.
 
 Promotion Codes
 ---------------
@@ -90,3 +63,18 @@ appear in the same area. Prefixing the promotion code with a 'B' for banner
 advert or a 'P' for property can aid in reminding what the promotion code
 was intended for and also makes it easier to locate alphabetically in the
 drop down list.
+
+Headers
+-------
+
+Resort headers go in
+/public/resorts/resort-name/headers
+
+Summer holidays headers go in
+/public/resorts/resort-name/summer-headers
+
+Blog headers go in
+/public/blog-posts/1
+
+Replace '1' with the ID of your blog post - you can see this as the number at
+the beginning of the link on the blog post CMS index page.
