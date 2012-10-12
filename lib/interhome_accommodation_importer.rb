@@ -145,7 +145,7 @@ class InterhomeAccommodationImporter
   end
 
   def create_property(accommodation)
-    place = InterhomePlace.find_by_country_and_region_and_place(accommodation.country, accommodation.region, accommodation.place)
+    place = accommodation.interhome_place
     return unless place
 
     ipr = InterhomePlaceResort.find_by_interhome_place_code(place.code)
