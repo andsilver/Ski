@@ -7,7 +7,7 @@ Feature: My Directory Adverts
   Scenario: I can get to the new directory advert page from my account
     Given I am signed in as an other business
     And I am on the advertise page
-    When I follow "New Directory Advert"
+    When I follow "New Directory/Banner Advert"
     Then I should be on the new directory advert page
 
   Scenario: I can see a list of my directory adverts in My Directory Adverts
