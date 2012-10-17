@@ -25,7 +25,7 @@ class PropertyBasePricesController < ApplicationController
   end
 
   def update
-    if @propery_base_price.update_attributes(params[:property_base_price])
+    if @property_base_price.update_attributes(params[:property_base_price])
       redirect_to(property_base_prices_path, notice: t('notices.saved'))
     else
       render 'edit'
