@@ -51,13 +51,19 @@
 
 <% if fav = favourite_for_property(@property) %>
 <%= form_for(fav, method: :delete) do |f| %>
-<p><%= f.submit t('favourites.remove') %></p>
+<p>
+  <%= f.submit t('favourites.remove'), class: 'btn btn-large' %>
+</p>
 <% end %>
 <% else %>
 <% @favourite = Favourite.new(property_id: @property.id) %>
 <%= form_for @favourite do |f| %>
 <%= f.hidden_field :property_id %>
-<p><%= f.submit(t('favourites.add'), class: 'btn btn-primary btn-large') %></p>
+<p>
+  <a href="#" class="btn btn-primary btn-large"
+  onclick="$('#new_favourite').submit(); return false;"><i class="icon-heart icon-white"></i>
+  <%= t('favourites.add') %></a>
+</p>
 <% end %>
 <% end %>
 

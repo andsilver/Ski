@@ -182,13 +182,21 @@
 
 <% if fav = favourite_for_property(@property) %>
 <%= form_for(fav, method: :delete) do |f| %>
-<p><%= f.submit t('favourites.remove') %></p>
+<p>
+  <%= f.submit t('favourites.remove'), class: 'btn btn-large' %>
+  <%= render 'location_button' %>
+</p>
 <% end %>
 <% else %>
 <% @favourite = Favourite.new(property_id: @property.id) %>
 <%= form_for @favourite do |f| %>
 <%= f.hidden_field :property_id %>
-<p><%= f.submit(t('favourites.add'), class: 'btn btn-primary btn-large') %></p>
+<p>
+  <a href="#" class="btn btn-primary btn-large"
+  onclick="$('#new_favourite').submit(); return false;"><i class="icon-heart icon-white"></i>
+  <%= t('favourites.add') %></a>
+  <%= render 'location_button' %>
+</p>
 <% end %>
 <% end %>
 
@@ -304,11 +312,6 @@ end
 <% end %>
 </div><!--#booking_form-->
 </div><!--.well-->
-
-<% unless @accommodation.geodata_lat.empty? %>
-<div id="map_cavas"></div>
-<p class="chunky_button"><a href="#" id="location">Location</a></p>
-<% end %>
 
 <%= clear %>
 
