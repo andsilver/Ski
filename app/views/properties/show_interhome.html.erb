@@ -132,7 +132,7 @@
     $('#booking_form').on('change', '.trigger-update input', submitCheck);
     $('#booking_form').on('change', '.trigger-update select', submitCheck);
     $('#booking_form').submit(function() { submitBooking(); return false; });
-    $('.availability-Y').click(function() {
+    $('.month .availability-Y').click(function() {
       $('#interhome_booking_arrival_month').val($(this).data('month'));
       $('#interhome_booking_arrival_day').val($(this).data('day'));
       var new_position = $('#booking_results').offset();
@@ -276,6 +276,17 @@ end
 %>
 <% end %>
 <%= clear %>
+<section class="calendar-key">
+  <h4>Key</h4>
+  <table class="interhome-calendar">
+    <tr>
+      <td class="availability-Y">Available</td>
+      <td class="availability-Y-no-check-in">No check-in</td>
+      <td class="availability-N">Unavailable</td>
+      <td class="availability-Q">Booking possible only on request</td>
+    </tr>
+  </table>
+</section>
 </div><!--.well-->
 
 <h2>Book</h2>
