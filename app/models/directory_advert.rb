@@ -49,8 +49,6 @@ class DirectoryAdvert < ActiveRecord::Base
   end
 
   def self.banner_adverts_for(resort, dimensions, qty)
-    return [] if(rand > 0.7)
-
     conditions = CURRENTLY_ADVERTISED.dup
     conditions[0] += " AND resort_id = ? AND width = ? AND height = ?"
     conditions[0] += " AND banner_image_id IS NOT NULL"
