@@ -14,6 +14,7 @@ gem 'prawn'
 gem 'newrelic_rpm'
 gem 'exception_notification'
 gem 'liquid'
+gem 'aws-sdk'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

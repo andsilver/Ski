@@ -67,6 +67,30 @@ class Image < ActiveRecord::Base
     "#{"%02x" % (id.to_i % 256)}/#{id}"
   end
 
+  def s3_bucket_name
+    "mcf-up-images-%x" % (id.to_i % 16)
+  end
+
+  def s3_url_for_filename(fn)
+    "http://s3.amazonaws.com/#{s3_bucket_name}/#{s3_key(fn)}"
+  end
+
+  def s3_key(fn)
+    "#{id}/#{fn}"
+  end
+
+  def s3_upload(path)
+    fn = File.basename(path)
+    s3 = AWS::S3.new
+    bucket = s3.buckets[s3_bucket_name]
+    obj = bucket.objects.create(
+      s3_key(fn),
+      Pathname.new(path),
+      acl: :public_read,
+      reduced_redundancy: true
+    )
+  end
+
   def sized_url(size, method)
     if method != :longest_side && method != :height
       raise ArgumentError.new("method must be :longest_side or :height")
@@ -76,6 +100,10 @@ class Image < ActiveRecord::Base
 
     f = method.to_s + '_' + size.to_s + '.' + extension
     path = "#{directory_path}/#{f}"
+    s3_path = path + '.s3uploaded'
+
+    return s3_url_for_filename(f) if Rails.env == 'production' && File.exists?(s3_path)
+
     # create a new image of the required size if it doesn't exist
     unless FileTest.exists?(path)
       begin
@@ -94,7 +122,21 @@ class Image < ActiveRecord::Base
         return IMAGE_MISSING
       end
     end
-    url_for_filename(f)
+
+    return IMAGE_MISSING unless File.exists?(path)
+
+    if Rails.env == 'production'
+      unless File.exists?(s3_path)
+        s3_upload(path)
+        FileUtils.touch(s3_path)
+      end
+
+      FileUtils.rm(path) if File.exists?(path)
+
+      return s3_url_for_filename(f)
+    else
+      return url_for_filename(f)
+    end
   end
 
   def download_from_source_if_needed
@@ -120,7 +162,18 @@ class Image < ActiveRecord::Base
 
   # Deletes the file(s) by removing the whole directory.
   def delete_files
-    FileUtils.rm_rf(directory_path) unless id.nil?
+    unless id.nil?
+      FileUtils.rm_rf(directory_path)
+      s3_delete_files
+    end
+  end
+
+  def s3_delete_files
+    s3 = AWS::S3.new
+    bucket = s3.buckets[s3_bucket_name]
+    bucket.objects.with_prefix("#{id}/").each do |obj|
+      obj.delete
+    end
   end
 
   def uploaded_extension

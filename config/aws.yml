@@ -1,0 +1,9 @@
+development:
+  access_key_id: AKIAI6NSSZ445G3EKPYQ
+  secret_access_key: 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
+production:
+  access_key_id: AKIAI6NSSZ445G3EKPYQ
+  secret_access_key: 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
+test:
+  access_key_id: AKIAI6NSSZ445G3EKPYQ
+  secret_access_key: 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
