@@ -56,6 +56,8 @@ class UsersController < ApplicationController
   def update
     if admin?
       @user.coupon_id = params[:user][:coupon_id]
+      @user.apply_price_override = params[:user][:apply_price_override]
+      @user.price_override = params[:user][:price_override]
     end
 
     if @user.update_attributes(post_params)

@@ -1,3 +1,4 @@
+# coding: utf-8
 class AdvertsController < ApplicationController
   before_filter :no_browse_menu
   before_filter :user_required
@@ -164,6 +165,14 @@ class AdvertsController < ApplicationController
         @lines << discount_line
         @total += discount_line.price
       end
+    end
+
+    if @current_user.apply_price_override?
+      override_line = BasketLine.new
+      override_line.description = "Price override €#{@current_user.price_override}"
+      override_line.price = @current_user.price_override * 100 - @total
+      @lines << override_line
+      @total += override_line.price
     end
 
     @subtotal = @total

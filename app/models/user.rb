@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
   attr_protected :coupon_id
   attr_protected :forgot_password_token
   attr_protected :image_id
+  attr_protected :apply_price_override
+  attr_protected :price_override
 
   attr_accessor :password
 

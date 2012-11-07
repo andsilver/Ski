@@ -51,6 +51,20 @@
   <%= f.label :coupon_id, I18n.t('coupon') %>
   <%= select("user", "coupon_id", Coupon.all.collect {|c| [ c.code, c.id ] }, {prompt: 'Select Coupon'}) %>
 </div>
+<h2>Price Override</h2>
+<p>
+  Applying a price override to a user will set that user's basket and order
+  net value to the price override amount regardless of what is actually in the
+  order.
+</p>
+<div class="field">
+  <%= f.check_box :apply_price_override %>
+  <%= f.label :apply_price_override %>
+</div>
+<div class="field">
+  <%= f.label :price_override %>
+  <%= f.text_field :price_override %> EUR
+</div>
 </div>
 <% end %>
 
