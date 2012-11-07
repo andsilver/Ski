@@ -32,6 +32,8 @@ class AirportTransfersController < ApplicationController
     @heading_a = 'Find Airport Transfers'
     default_page_title(@heading_a)
     @airport_transfer_search = AirportTransferSearch.new
+
+    @ad  = AirportTransfer.order('RAND()').first.user.airport_transfer_banner_advert
   end
 
   def results
@@ -40,22 +42,23 @@ class AirportTransfersController < ApplicationController
     airport_id, resort_id = params[:airport_transfer_search][:airport_id],
       params[:airport_transfer_search][:resort_id]
 
-    unless airport_id.blank? or resort_id.blank?
-      @airport = Airport.find(airport_id)
-      @resort = Resort.find(resort_id)
-      airport_transfers = AirportTransfer.all(conditions: ["airport_id = ? AND resort_id = ?", airport_id, resort_id])
+    if airport_id.blank? || resort_id.blank?
+      redirect_to action: 'find' and return
+    end
 
-      @results = []
-      airport_transfers.each do |t|
-        ad = t.user.airport_transfer_banner_advert
-        @results << ad unless ad.nil?
-      end
+    @airport = Airport.find(airport_id)
+    @resort = Resort.find(resort_id)
+    airport_transfers = AirportTransfer.all(conditions: ["airport_id = ? AND resort_id = ?", airport_id, resort_id])
+
+    @results = []
+    airport_transfers.each do |t|
+      ad = t.user.airport_transfer_banner_advert
+      @results << ad unless ad.nil?
     end
 
     @airport_transfer_search = AirportTransferSearch.new(
       params[:airport_transfer_search][:airport_id],
       params[:airport_transfer_search][:resort_id]
     )
-    render 'find'
   end
 end

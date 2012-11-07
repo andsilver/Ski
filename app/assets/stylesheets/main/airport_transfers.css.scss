@@ -1,3 +1,45 @@
+#airport-transfers {
+  height: 580px;
+  background-image: url(/images/airport-transfers.jpg);
+  position: relative;
+
+  .search, .search-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 736px;
+    height: 200px;
+    padding: 0 20px;
+  }
+
+  .search-panel {
+    background: #000;
+    opacity: 0.7;
+  }
+
+  td {
+    padding-right: 10px;
+  }
+
+  tr + tr td {
+    text-align: right;
+  }
+
+  .ad {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .search {
+    color: #fff;
+
+    label {
+      color: #fff;
+    }
+  }
+}
+
 #airport_transfers {
   float: left;
   width: 756px;
