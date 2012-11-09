@@ -32,8 +32,6 @@ class AirportTransfersController < ApplicationController
     @heading_a = 'Find Airport Transfers'
     default_page_title(@heading_a)
     @airport_transfer_search = AirportTransferSearch.new
-
-    @ad  = AirportTransfer.order('RAND()').first.user.airport_transfer_banner_advert
   end
 
   def results

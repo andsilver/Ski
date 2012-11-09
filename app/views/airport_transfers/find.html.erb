@@ -25,11 +25,6 @@
 </table>
     <% end %>
   </div><!--.search-->
-<% unless @ad.nil? -%>
-  <div class="ad">
-    <a href="<%= @ad.url %>"><%= image_tag(@ad.banner_image.url, alt: @ad.business_name) unless @ad.image.nil? %></a>
-  </div>
-<% end -%>
   <div class="results">
     <% if defined? @results %>
     <% if @results.empty? %>
