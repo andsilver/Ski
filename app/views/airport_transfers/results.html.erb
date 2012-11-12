@@ -21,12 +21,15 @@
   <% @results.each do |r| %>
   <div class="property_summary airport_transfer">
     <p class="airport_thumbnail"><%= image_tag(r.banner_image.url, alt: r.business_name) unless r.image.nil? %></p>
-    <h3><a href="<%= r.url %>"><%= r.business_name %></a></h3>
-    <p class="strapline">
-      <%= r.strapline %>
-    </p>
-    <div class="actions">
-      <p class="contact_owner"><%= link_to 'Visit website', r.url %></p>
+    <div class="airport-transfer-detail">
+      <h3><a href="<%= r.url %>"><%= r.business_name %></a></h3>
+      <p class="strapline">
+        <%= r.strapline %>
+      </p>
+      <%= render partial: 'shuttle_direct', locals: {result: r} %>
+      <div class="actions">
+        <p class="contact_owner"><%= link_to 'Visit website', r.url %></p>
+      </div>
     </div>
     <%= clear %>
   </div>
