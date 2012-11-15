@@ -19,7 +19,7 @@
 
 <%= form_for @country do |f| %>
 <div class="field">
-  <%= f.label :name %><br>
+  <%= f.label :name %>
   <%= f.text_field :name %>
 </div>
 <div class="field">
@@ -29,18 +29,18 @@
   <%= f.check_box :in_eu %> <%= f.label :in_eu, 'In the EU' %>
 </div>
 <div class="field">
-  <%= f.label :iso_3166_1_alpha_2, 'ISO 3166-1 Alpha 2' %><br>
+  <%= f.label :iso_3166_1_alpha_2, 'ISO 3166-1 Alpha 2' %>
   <%= f.text_field :iso_3166_1_alpha_2 %>
 </div>
 <div class="field">
-  <%= f.label :info %><br>
+  <%= f.label :info %>
   <%= f.text_area :info %>
 </div>
 <div class="field">
-  <%= f.label :banner_advert_html %><br>
+  <%= f.label :banner_advert_html %>
   <%= f.text_area :banner_advert_html %>
 </div>
 <div class="field">
-  <%= f.submit %>
+  <%= f.submit(class: 'btn btn-primary') %>
 </div>
 <% end %>
