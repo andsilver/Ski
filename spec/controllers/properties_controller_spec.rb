@@ -54,7 +54,7 @@ describe PropertiesController do
     end
 
     it "finds new developments" do
-      Property.should_receive(:paginate).with(hash_including(:conditions => [PropertiesController::CURRENTLY_ADVERTISED[0] + " AND resort_id = ? AND new_development = 1", "1"]))
+      Property.should_receive(:paginate).with(hash_including(conditions: ["publicly_visible = 1 AND resort_id = ? AND new_development = 1", "1"]))
       get :new_developments, :resort_id => "1"
     end
 
