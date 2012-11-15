@@ -66,7 +66,7 @@ class DirectoryAdvert < ActiveRecord::Base
     ads
   end
 
-  def self.small_banners_for(resort, qty = 3)
+  def self.small_banners_for(resort, qty = 6)
     self.banner_adverts_for(resort, [160, 200], qty)
   end
 end
