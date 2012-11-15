@@ -29,7 +29,7 @@ class CountriesController < ApplicationController
 
   def update
     if @country.update_attributes(params[:country])
-      redirect_to(countries_path, notice: t('notices.saved'))
+      redirect_to(edit_country_path(@country), notice: t('notices.saved'))
     else
       render 'edit'
     end
