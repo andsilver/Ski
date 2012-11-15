@@ -152,6 +152,8 @@ describe PropertiesController do
         Enquiry.stub(:new).and_return(enquiry)
         property.stub(:resort).and_return(resort)
         property.stub(:user).and_return(property_owner)
+        property.stub(:strapline).and_return('A strapline')
+        property.stub(:interhome_accommodation).and_return(nil)
       end
 
       it "assigns @property" do
@@ -159,9 +161,9 @@ describe PropertiesController do
         assigns[:property].should equal(property)
       end
 
-      context "when the property is not being advertised" do
+      context "when the property is not publicly visible" do
         before do
-          property.stub(:currently_advertised?).and_return(false)
+          property.stub(:publicly_visible?).and_return(false)
         end
 
         context "when not signed in as admin" do
