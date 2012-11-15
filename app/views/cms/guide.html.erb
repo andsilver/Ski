@@ -2,8 +2,26 @@
 <div class="cms">
 <h2>Contents</h2>
 <ul>
+  <li><a href="#guide-sftp-access">SFTP Access</a></li>
   <li><a href="#guide_directory_adverts">Directory Adverts</a></li>
+  <li><a href="#guide-seo-meta-defaults">SEO Meta Defaults</a></li>
 </ul>
+
+<h3 id="guide-sftp-access">SFTP Access</h3>
+
+<p>
+  The SFTP access details are:
+</p>
+
+<p>
+  Host: straylight.yesl.co.uk<br>
+  Username: mychaletfinder<br>
+  Password: KLqxdGqP99
+</p>
+
+<p>
+  You will need to connect in SFTP mode and not FTP.
+</p>
 
 <h3 id="guide_directory_adverts">Directory Adverts</h3>
 
@@ -21,4 +39,64 @@
   <li>Press your browser's back button and enter another directory advert if you want to</li>
   <li>Checkout</li>
 </ol>
+
+<h3 id="guide-seo-meta-defaults">SEO Meta Defaults</h3>
+
+<p>
+  These can be changed in the YAML locale (translation) files under
+  <kbd>config/locales/</kbd>. The files are de.yml (German),
+  en.yml (English), fr.yml (French) and it.yml (Italian).
+</p>
+
+<p>
+  The files should be edited in a proper text editor and saved as UTF-8.
+  The files should be uploaded to the server with UNIX line endings (setting
+  your FTP client to ASCII mode should do this).
+</p>
+
+<p>
+  After making changes you should restart the application for the changes to
+  take effect. You should also let Ian ianf@yesl.co.uk know so that your
+  changes do not get overwritten.
+</p>
+
+<p>
+  The following keys can be set:
+</p>
+
+<ul>
+  <li>properties_controller.meta_descriptions.show</li>
+  <li>properties_controller.meta_descriptions.show_interhome</li>
+  <li>properties.titles.browse_for_rent</li>
+  <li>properties.titles.browse_for_sale</li>
+  <li>properties.titles.hotels</li>
+  <li>properties.titles.new</li>
+  <li>properties.titles.new_developments</li>
+  <li>properties.titles.show</li>
+  <li>resorts_controller.meta_descriptions.directory</li>
+  <li>resorts_controller.meta_descriptions.gallery</li>
+  <li>resorts_controller.meta_descriptions.piste_map</li>
+  <li>resorts_controller.meta_descriptions.resort_guide</li>
+  <li>resorts_controller.meta_descriptions.show</li>
+  <li>resorts_controller.meta_descriptions.summer_holidays</li>
+  <li>resorts_controller.titles.directory</li>
+  <li>resorts_controller.titles.gallery</li>
+  <li>resorts_controller.titles.piste_map</li>
+  <li>resorts_controller.titles.resort_guide</li>
+  <li>resorts_controller.titles.show</li>
+  <li>resorts_controller.titles.summer_holidays</li>
+</ul>
+
+<p>
+  You can use the following placeholders in certain strings:
+</p>
+
+<ul>
+  <li>%{country}</li>
+  <li>%{property_name}</li>
+  <li>%{rent_or_sale}</li>
+  <li>%{resort}</li>
+  <li>%{strapline}</li>
+</p>
+
 </div>
