@@ -323,4 +323,64 @@ describe PropertiesController do
       end
     end
   end
+
+  describe 'POST place_in_window' do
+    let(:current_user) { mock_model(User).as_null_object }
+
+    before do
+      signed_in_user
+    end
+
+    it "finds the user's property" do
+      Property.should_receive(:find_by_id_and_user_id)
+      post 'place_in_window', id: '1'
+    end
+
+    context "when the user's property is found" do
+      before do
+        Property.stub(:find_by_id_and_user_id).and_return(property)
+      end
+
+      it "finds the user's advert" do
+        Advert.should_receive(:find_by_id_and_user_id)
+        post 'place_in_window', id: '1'
+      end
+
+      context 'when an advert is found and it is a window' do
+        let(:advert) { mock_model(Advert).as_null_object }
+
+        before do
+          Advert.stub(:find_by_id_and_user_id).and_return(advert)
+          advert.stub(:window?).and_return(true)
+        end
+
+        context 'when it has expired' do
+          before do
+            advert.stub(:expired?).and_return(true)
+          end
+
+          it 'sets a flash[:notice] message' do
+            post 'place_in_window', id: '1'
+            flash[:notice].should eq('That window has expired.')
+          end
+
+          it 'redirects to choose window' do
+            post 'place_in_window', id: '1'
+            response.should redirect_to(action: 'choose_window')
+          end
+        end
+
+        context 'when it has not expired' do
+          before do
+            advert.stub(:expired?).and_return(false)
+          end
+
+          it 'redirects to my adverts' do
+            post 'place_in_window', id: '1'
+            response.should redirect_to(my_adverts_path)
+          end
+        end
+      end
+    end
+  end
 end

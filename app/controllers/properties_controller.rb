@@ -299,9 +299,13 @@ class PropertiesController < ApplicationController
   def place_in_window
     advert = Advert.find_by_id_and_user_id(params[:advert_id], @current_user.id)
     if advert && advert.window?
-      advert.property_id = @property.id
-      advert.save
-      redirect_to my_adverts_path, notice: t('properties_controller.placed_in_window')
+      if advert.expired?
+        redirect_to({action: 'choose_window'}, notice: 'That window has expired.')
+      else
+        advert.property_id = @property.id
+        advert.save
+        redirect_to my_adverts_path, notice: t('properties_controller.placed_in_window')
+      end
     else
       redirect_to action: 'choose_window'
     end
