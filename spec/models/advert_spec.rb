@@ -53,6 +53,20 @@ describe Advert do
     pending
   end
 
+  describe '#expired?' do
+    it 'returns true when expired_at is earlier than the current time' do
+      a = valid_advert
+      a.expires_at = Time.now - 1.minute
+      a.expired?.should be_true
+    end
+
+    it 'returns false expired_at is later than the current time' do
+      a = valid_advert
+      a.expires_at = Time.now + 1.minute
+      a.expired?.should be_false
+    end
+  end
+
   describe "#type" do
     pending
   end

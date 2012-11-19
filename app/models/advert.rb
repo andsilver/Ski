@@ -61,6 +61,10 @@ class Advert < ActiveRecord::Base
     end
   end
 
+  def expired?
+    expires_at < Time.now
+  end
+
   def type
     [:directory_advert_id, :property_id].each do |sym|
       return sym.to_s.gsub('_id', '').to_sym unless send(sym).nil?
