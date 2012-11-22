@@ -1,3 +1,8 @@
+<div id="wide_content_with_wide_skyscrapers">
 <% unless @resort.summer_holidays_in.blank? %>
-<%= md @resort.summer_holidays_in %>
+<%= raw @resort.summer_holidays_in %>
 <% end %>
+</div>
+<div id="wide_skyscrapers">
+  <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) %>
+</div>
