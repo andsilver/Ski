@@ -10,11 +10,6 @@
   <%= render 'shared/google' %>
   <%= render 'shared/typekit' %>
   <!-- TradeDoubler site verification 1980597 -->
-  <script>
-  $(document).ready(function() {
-    $('.carousel').carousel();
-  });
-  </script>
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
   <%= stylesheet_link_tag    "application-home", media: 'screen' %>
   <%= stylesheet_link_tag    "application-print", media: 'print' %>
@@ -47,28 +42,7 @@
     </div>
   </div>
 
-  <div id="featured_properties" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="item active">
-        <ul class="thumbnails">
-          <%= featured_properties(@featured_properties[0..4]) %>
-        </ul>
-      </div>
-      <div class="item">
-        <ul class="thumbnails">
-          <%= featured_properties(@featured_properties[5..9]) %>
-        </ul>
-      </div>
-      <div class="item">
-        <ul class="thumbnails">
-          <%= featured_properties(@featured_properties[10..14]) %>
-        </ul>
-      </div>
-    </div>
-    <!-- Carousel nav -->
-    <a class="carousel-control left" href="#featured_properties" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#featured_properties" data-slide="next">&rsaquo;</a>
-  </div>
+  <%= render 'shared/featured_properties' %>
 
 <%= render 'home/quick_search' %>
 </div>
