@@ -162,7 +162,10 @@ MySkiChalet::Application.routes.draw do
 
   resources :footers
 
-  resources :blog_posts
+  resources :blog_posts do
+    get 'feed', on: :collection
+  end
+
   match "blog" => "blog_posts#blog"
   resources :favourites
 

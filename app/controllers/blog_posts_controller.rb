@@ -1,5 +1,5 @@
 class BlogPostsController < ApplicationController
-  before_filter :admin_required, except: [:blog, :show]
+  before_filter :admin_required, except: [:blog, :show, :feed]
   before_filter :find_blog_post, only: [:show, :edit, :update]
   before_filter :no_browse_menu
 
@@ -41,6 +41,10 @@ class BlogPostsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def feed
+    @blog_posts = BlogPost.visible_posts
   end
 
   protected
