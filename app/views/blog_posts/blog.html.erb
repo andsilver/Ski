@@ -1,6 +1,6 @@
 <% @blog_posts.each do |post| %>
 <h2><%= link_to post.headline, blog_post_path(post) %></h2>
-<%= md post.summary %>
+<%= raw post.summary %>
 <p class="post_meta">
   <span class="post_date">
     <%= l(post.created_at, format: :short) %>
