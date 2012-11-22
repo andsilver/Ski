@@ -32,6 +32,7 @@ MySkiChalet::Application.routes.draw do
     collection do
       get 'find'
       post 'results'
+      get 'skilifts'
     end
   end
 
