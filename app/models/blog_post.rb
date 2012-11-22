@@ -7,7 +7,10 @@ class BlogPost < ActiveRecord::Base
   end
 
   def summary
-    (content.length < 500) ? content : content[0..400] + '...'
+    Sanitize.clean(
+      (content.length < 500) ? content : content[0..400] + '...',
+      Sanitize::Config::RELAXED
+    )
   end
 
   def to_param
