@@ -23,24 +23,28 @@
   <%= f.text_field :name %>
 </div>
 <div class="field">
-  <%= f.check_box :popular_billing_country %> <%= f.label :popular_billing_country %>
+  <label class="checkbox">
+    <%= f.check_box :popular_billing_country %> Popular billing country
+  </label>
 </div>
 <div class="field">
-  <%= f.check_box :in_eu %> <%= f.label :in_eu, 'In the EU' %>
+  <label class="checkbox">
+    <%= f.check_box :in_eu %> In the EU
+  </label>
 </div>
 <div class="field">
   <%= f.label :iso_3166_1_alpha_2, 'ISO 3166-1 Alpha 2' %>
-  <%= f.text_field :iso_3166_1_alpha_2 %>
+  <%= f.text_field :iso_3166_1_alpha_2, maxlength: 2, class: 'span1' %>
 </div>
 <div class="field">
   <%= f.label :info %>
   <%= f.text_area :info %>
 </div>
 <div class="field">
-  <%= f.label :banner_advert_html %>
+  <%= f.label :banner_advert_html, 'Banner advert HTML' %>
   <%= f.text_area :banner_advert_html %>
 </div>
-<div class="field">
+<div class="form-actions">
   <%= f.submit(class: 'btn btn-primary') %>
 </div>
 <% end %>
