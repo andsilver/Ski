@@ -15,6 +15,10 @@ module ApplicationHelper
     end
   end
 
+  def page_header(title)
+    content_tag(:h1, title, class: 'page-header')
+  end
+
   def euros(number)
     number_to_currency(number, unit: '€', precision: 0)
   end
