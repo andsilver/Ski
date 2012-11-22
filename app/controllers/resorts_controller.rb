@@ -2,6 +2,7 @@ class ResortsController < ApplicationController
   before_filter :admin_required, except: [:show, :directory, :feature, :featured, :piste_map, :piste_map_full_size, :resort_guide, :gallery, :summer_holidays]
   before_filter :find_resort, only: [:edit, :update, :show, :destroy, :resort_guide, :directory, :feature, :piste_map, :piste_map_full_size, :gallery, :summer_holidays]
   before_filter :no_browse_menu, except: [:show, :feature, :directory, :resort_guide, :summer_holidays]
+  before_filter :find_featured_properties, only: [:show, :summer_holidays]
 
   def index
     @countries = Country.with_resorts
@@ -42,7 +43,6 @@ class ResortsController < ApplicationController
     default_page_title t('resorts_controller.titles.show', resort: @resort, country: @resort.country)
     default_meta_description(resort: @resort, country: @resort.country)
     @heading_a = t('resorts_controller.resort_information_heading', resort: @resort)
-    @featured_properties = Property.order('RAND()').limit(12).where(publicly_visible: true, resort_id: @resort.id)
   end
 
   def destroy
@@ -109,5 +109,9 @@ class ResortsController < ApplicationController
   def set_image_mode
     session[:image_mode] = 'resort'
     session[:resort_id] = @resort.id
+  end
+
+  def find_featured_properties
+    @featured_properties = Property.order('RAND()').limit(12).where(publicly_visible: true, resort_id: @resort.id)
   end
 end

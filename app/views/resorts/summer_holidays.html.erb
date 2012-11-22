@@ -1,6 +1,7 @@
 <div id="wide_content_with_wide_skyscrapers">
 <% unless @resort.summer_holidays_in.blank? %>
-<%= raw @resort.summer_holidays_in %>
+<% featured_properties = @featured_properties.empty? ? '' : render('shared/featured_properties') %>
+<%= raw Liquid::Template.parse(@resort.summer_holidays_in).render('featured_properties' => featured_properties) %>
 <% end %>
 </div>
 <div id="wide_skyscrapers">
