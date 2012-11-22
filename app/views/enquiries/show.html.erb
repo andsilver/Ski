@@ -1,0 +1,48 @@
+<h1>
+  <a href="/enquiries/my">My Email Enquiries</a>
+  &rarr;
+  View Enquiry
+</h1>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>From</th>
+    <td><%= @enquiry.name %> &lt;<%= mail_to(@enquiry.email) %>&gt;</td>
+  </tr>
+  <tr>
+    <th>When</th>
+    <td><%= l @enquiry.created_at, format: :short %></td>
+  </tr>
+  <tr>
+    <th><%= t('phone') %></th>
+    <td><%= @enquiry.phone %></td>
+  </tr>
+  <tr>
+    <th><%= t('enquiries_controller.date_of_arrival') %></th>
+    <td><%= l(@enquiry.date_of_arrival, format: :short) unless @enquiry.date_of_arrival.nil? %></td>
+  </tr>
+  <tr>
+    <th><%= t('enquiries_controller.date_of_departure') %></th>
+    <td><%= l(@enquiry.date_of_departure, format: :short) unless @enquiry.date_of_departure.nil? %></td>
+  </tr>
+  <tr>
+    <th><%= t('enquiries_controller.number_of_adults') %></th>
+    <td><%= @enquiry.number_of_adults %></td>
+  </tr>
+  <tr>
+    <th><%= t('enquiries_controller.number_of_children') %></th>
+    <td><%= @enquiry.number_of_children %></td>
+  </tr>
+  <tr>
+    <th><%= t('enquiries_controller.number_of_infants') %></th>
+    <td><%= @enquiry.number_of_infants %></td>
+  </tr>
+  <tr>
+    <th><%= t('enquiries_controller.comments') %></th>
+    <td><%= @enquiry.comments %></td>
+  </tr>
+  <tr>
+    <th><%= t('enquiries_controller.permission_to_contact') %></th>
+    <td><%= tick_cross @enquiry.permission_to_contact? %></td>
+  </tr>
+</table>

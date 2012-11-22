@@ -88,4 +88,10 @@ module ApplicationHelper
     alt_attr = AltAttribute.find_or_create_by_path(path)
     alt_attr.alt_text.blank? ? fallback : alt_attr.alt_text
   end
+
+  def view_button(object)
+    link_to '<i class="icon-eye-open"></i> View'.html_safe,
+    object,
+    class: 'btn btn-mini'
+  end
 end

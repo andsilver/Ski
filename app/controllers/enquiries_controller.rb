@@ -1,11 +1,16 @@
 class EnquiriesController < ApplicationController
   include SpamProtection
 
-  before_filter :user_required, only: [:my]
+  before_filter :user_required, only: [:my, :show]
   before_filter :no_browse_menu
 
   def my
     @enquiries = @current_user.enquiries
+  end
+
+  def show
+    @enquiry = Enquiry.find(params[:id])
+    not_found and return unless @enquiry.user == @current_user
   end
 
   def create

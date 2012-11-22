@@ -4,7 +4,7 @@
 <% if @enquiries.empty? %>
 <p>You have no enquiries.</p>
 <% else %>
-<table class="grid">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>From</th>
@@ -12,11 +12,6 @@
       <th><%= t('phone') %></th>
       <th><%= t('enquiries_controller.date_of_arrival') %></th>
       <th><%= t('enquiries_controller.date_of_departure') %></th>
-      <th><%= t('enquiries_controller.number_of_adults') %></th>
-      <th><%= t('enquiries_controller.number_of_children') %></th>
-      <th><%= t('enquiries_controller.number_of_infants') %></th>
-      <th><%= t('enquiries_controller.comments') %></th>
-      <th><%= t('enquiries_controller.permission_to_contact') %></th>
     </tr>
   </thead>
   <tbody>
@@ -27,11 +22,7 @@
       <td><%= enquiry.phone %></td>
       <td><%= l(enquiry.date_of_arrival, format: :short) unless enquiry.date_of_arrival.nil? %></td>
       <td><%= l(enquiry.date_of_departure, format: :short) unless enquiry.date_of_departure.nil? %></td>
-      <td><%= enquiry.number_of_adults %></td>
-      <td><%= enquiry.number_of_children %></td>
-      <td><%= enquiry.number_of_infants %></td>
-      <td><%= enquiry.comments %></td>
-      <td><%= tick_cross enquiry.permission_to_contact? %></td>
+      <td><%= view_button(enquiry) %></td>
     </tr>
     <% end %>
   </tbody>
