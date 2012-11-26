@@ -70,13 +70,17 @@ class InterhomeAccommodationImporter
     else
       accommodation = InterhomeAccommodation.new
     end
-    accommodation.code = a['code'][0]
+    accommodation.code = a['code'][0].strip
     accommodation.name = a['name'][0]
-    accommodation.name = '' unless accommodation.name.kind_of?(String)
-    accommodation.country = a['country'][0]
-    accommodation.region = a['region'][0]
-    accommodation.place = a['place'][0]
-    accommodation.zip = a['zip'] ? a['zip'][0] : '' # some countries (e.g. RoI) don't use postal codes
+    if accommodation.name.kind_of?(String)
+      accommodation.name.strip!
+    else
+      accommodation.name = ''
+    end
+    accommodation.country = a['country'][0].strip
+    accommodation.region = a['region'][0].strip
+    accommodation.place = a['place'][0].strip
+    accommodation.zip = a['zip'] ? a['zip'][0].strip : '' # some countries (e.g. RoI) don't use postal codes
     accommodation.accommodation_type = a['type'][0]
     accommodation.details = a['details'][0]
     accommodation.quality = a['quality'][0]

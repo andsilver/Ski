@@ -19,13 +19,13 @@ class InterhomePlaceImporter
   end
 
   def import_country(c)
-    country_name = c['name'][0]
-    code = c['code'][0]
+    country_name = c['name'][0].strip
+    code = c['code'][0].strip
     c['regions'][0]['region'].each {|r| import_region(r, country_name, code)}
   end
 
   def import_region(r, name, code)
-    region_name = r['name'][0]
+    region_name = r['name'][0].strip
     name = "#{name} > #{region_name}"
     if r['subregions']
       r['subregions'][0]['subregion'].each {|sr| import_region(sr, name, code)}
@@ -39,18 +39,18 @@ class InterhomePlaceImporter
     # Interhome sometimes has unnamed places (maybe newly added & incomplete?)
     return if p['name'].nil?
 
-    place_name = p['name'][0]
+    place_name = p['name'][0].strip
     name = "#{name} > #{place_name}"
     subcode = "#{code}_XXXX"
-    code = "#{code}_#{p['code'][0]}"
+    code = "#{code}_#{p['code'][0].strip}"
     InterhomePlace.create!(code: code, name: place_name, full_name: name)
     p['subplaces'][0]['subplace'].each {|s| import_subplace(s, name, subcode)} unless p['subplaces'].nil?
   end
 
   def import_subplace(s, name, code)
-    subplace_name = s['name'][0]
+    subplace_name = s['name'][0].strip
     name = "#{name} > #{subplace_name}"
-    code = "#{code}_#{s['code'][0]}"
+    code = "#{code}_#{s['code'][0].strip}"
     InterhomePlace.create!(code: code, name: subplace_name, full_name: name)
   end
 
