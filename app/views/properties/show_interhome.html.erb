@@ -177,7 +177,11 @@
   ABTA Member<br>
   ABTA No. L7890
 </div>
-<h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %> (<%= @property.interhome_accommodation.interhome_place.name %>)</h1>
+<h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %>
+<% unless @property.interhome_accommodation.interhome_place.nil? -%>
+  (<%= @property.interhome_accommodation.interhome_place.name %>)
+<% end -%>
+</h1>
 <p class="property_id"><%= I18n.t('property_id') %>: <span><%= @property.id %></span></p>
 
 <% if fav = favourite_for_property(@property) %>
