@@ -128,16 +128,37 @@
     submit('&submit=Book');
   }
 
+  function updateDayOfMonthSelect() {
+    var valuesToSubmit = 'year_month=' + $('#interhome_booking_arrival_month').val();
+    $.ajax({
+      url: '/properties/update_day_of_month_select',
+      type: 'GET',
+      data: valuesToSubmit
+    }).success(function(data) {
+      $('#day-of-month').replaceWith(data);
+      if(window.selectDay) {
+        $('#interhome_booking_arrival_day').val(selectDay);
+        window.selectDay = 0;
+      }
+      submitCheck();
+    }).error(function(data) {
+      $('#day-of-month').replaceWith('<span id="day-of-month"><h2>An error occurred. Please <a id="retry-day-of-month">try again</a>.</h2></div>');
+      $('#retry-day-of-month').click(updateDayOfMonthSelect);
+    });
+    return false;
+  }
+
   $(function() {
     $('#booking_form').on('change', '.trigger-update input', submitCheck);
     $('#booking_form').on('change', '.trigger-update select', submitCheck);
+    $('#booking_form').on('change', '#interhome_booking_arrival_month', updateDayOfMonthSelect);
     $('#booking_form').submit(function() { submitBooking(); return false; });
     $('.month .availability-Y').click(function() {
+      window.selectDay = $(this).data('day');
       $('#interhome_booking_arrival_month').val($(this).data('month'));
-      $('#interhome_booking_arrival_day').val($(this).data('day'));
       var new_position = $('#booking_results').offset();
-      window.scrollTo(new_position.left,new_position.top);
-      submitCheck();
+      window.scrollTo(new_position.left, new_position.top);
+      $('#interhome_booking_arrival_month').change();
     });
 
     $(function() {
@@ -298,11 +319,15 @@ end
 <div id="booking_form">
 <%= form_tag action: 'check_interhome_booking', id: @property.id do |form| %>
 <input type="hidden" name="permalink" value="<%= params[:permalink] %>">
-<div class="trigger-update">
 <h3>Travel dates</h3>
+<span class="trigger-update">
 <label>Date of arrival</label>
+<span id="day-of-month">
 <%= select('interhome_booking', 'arrival_day', booking_days(@interhome_booking.arrival_date.month, @interhome_booking.arrival_date.year)) %>
+</span>
+</span>
 <%= select('interhome_booking', 'arrival_month', booking_months) %>
+<div class="trigger-update">
 <label>Duration of stay</label>
 <%= select('interhome_booking', 'duration', booking_durations) %>
 <h3>Travellers</h3>

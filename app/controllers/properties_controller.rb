@@ -211,6 +211,12 @@ class PropertiesController < ApplicationController
     render layout: false
   end
 
+  def update_day_of_month_select
+    @year = params[:year_month][0..3].to_i
+    @month = params[:year_month][5..6].to_i
+    render layout: false
+  end
+
   def make_interhome_booking(details)
     @conditions = InterhomeWebServices.request('CancellationConditions', details).conditions
     @price_detail = InterhomeWebServices.request('PriceDetail', details)
