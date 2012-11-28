@@ -7,10 +7,16 @@ class OrdersController < ApplicationController
   before_filter :require_order_from_session, only: [:select_payment_method, :latest_receipt]
   before_filter :find_users_order, only: [:receipt, :invoice]
 
-  before_filter :admin_required, only: [:index, :show]
+  before_filter :admin_required, only: [:index, :show, :destroy]
 
   def index
     @orders = Order.order('created_at DESC')
+  end
+
+  def destroy
+    order = Order.find(params[:id])
+    order.destroy
+    redirect_to orders_path, notice: t('notices.deleted')
   end
 
   def select_payment_method
