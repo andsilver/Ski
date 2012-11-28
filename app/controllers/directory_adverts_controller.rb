@@ -38,6 +38,7 @@ class DirectoryAdvertsController < ApplicationController
     resort_ids.each do |resort_id|
       next if resort_id == ''
 
+      params[:directory_advert].delete(:resort_id)
       @directory_advert = DirectoryAdvert.new(params[:directory_advert])
       @directory_advert.resort_id = resort_id
 
