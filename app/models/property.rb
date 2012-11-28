@@ -8,6 +8,9 @@ class Property < ActiveRecord::Base
   belongs_to :interhome_accommodation
 
   has_many :images, dependent: :destroy
+
+  # Delete adverts in basket but leave others remaining
+  has_many :adverts_in_basket, class_name: 'Advert', conditions: {starts_at: nil}, dependent: :delete_all
   has_many :adverts, dependent: :nullify
 
   validates_presence_of :resort_id

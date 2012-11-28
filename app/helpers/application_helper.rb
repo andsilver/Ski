@@ -89,6 +89,14 @@ module ApplicationHelper
     alt_attr.alt_text.blank? ? fallback : alt_attr.alt_text
   end
 
+  def delete_button(object)
+    link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe,
+    object,
+    data: { confirm: 'Are you sure?' },
+    method: :delete,
+    class: 'btn btn-danger'
+  end
+
   def view_button(object)
     link_to '<i class="icon-eye-open"></i> View'.html_safe,
     object,

@@ -35,9 +35,7 @@ $(document).ready(function() {
       <td class="numeric"><%= a.id %></td>
       <td>
         <%= link_to t('edit'), edit_polymorphic_path(a), title: "Edit #{a.to_s}", class: 'btn' %>
-<% if admin? -%>
-        <%= link_to 'Destroy', a, confirm: t('are_you_sure'), method: :delete, class: 'btn btn-danger' %>
-<% end -%>
+        <%= delete_button(a) if a.advert_status == :new || admin? %>
       </td>
       <td><%= a.resort.name %></td>
       <td><%= link_to a.name, polymorphic_path(a) %></td>
