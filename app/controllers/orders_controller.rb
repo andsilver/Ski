@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   before_filter :admin_required, only: [:index, :show]
 
   def index
-    @orders = Order.all
+    @orders = Order.order('created_at DESC')
   end
 
   def select_payment_method
