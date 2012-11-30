@@ -97,6 +97,12 @@ module ApplicationHelper
     class: 'btn btn-danger'
   end
 
+  def edit_button(object)
+    link_to '<i class="icon-edit"></i> Edit'.html_safe,
+    edit_polymorphic_path(object),
+    class: 'btn'
+  end
+
   def view_button(object)
     link_to '<i class="icon-eye-open"></i> View'.html_safe,
     object,
