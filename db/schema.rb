@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121107121634) do
+ActiveRecord::Schema.define(:version => 20121130085549) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -542,7 +542,6 @@ ActiveRecord::Schema.define(:version => 20121107121634) do
     t.boolean  "heli_skiing"
     t.boolean  "summer_skiing"
     t.integer  "family",                :default => 0,     :null => false
-    t.text     "how_to_get_to"
     t.text     "visiting"
     t.text     "owning_a_property_in"
     t.text     "summer_holidays_in"

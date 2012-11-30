@@ -1,7 +1,7 @@
 class ResortsController < ApplicationController
-  before_filter :admin_required, except: [:show, :directory, :feature, :featured, :piste_map, :piste_map_full_size, :resort_guide, :gallery, :summer_holidays]
-  before_filter :find_resort, only: [:edit, :update, :show, :destroy, :resort_guide, :directory, :feature, :piste_map, :piste_map_full_size, :gallery, :summer_holidays]
-  before_filter :no_browse_menu, except: [:show, :feature, :directory, :resort_guide, :summer_holidays]
+  before_filter :admin_required, except: [:directory, :feature, :featured, :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide, :gallery, :show, :summer_holidays]
+  before_filter :find_resort, only: [:destroy, :directory, :edit, :edit_page, :feature, :gallery, :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide, :show, :summer_holidays, :update]
+  before_filter :no_browse_menu, except: [:show, :feature, :directory, :how_to_get_there, :resort_guide, :summer_holidays]
   before_filter :find_featured_properties, only: [:show, :summer_holidays]
 
   def index
@@ -93,6 +93,17 @@ class ResortsController < ApplicationController
     @heading_a = t('resorts_controller.titles.summer_holidays', resort: @resort)
     default_page_title @heading_a
     default_meta_description(resort: @resort, country: @resort.country)
+  end
+
+  def edit_page
+    page_name = params[:page_name]
+    if Resort.page_names.include?(page_name)
+      @resort.create_page(page_name) unless @resort.has_page?(page_name)
+      redirect_to edit_page_path(@resort.page(page_name))
+    end
+  end
+
+  def how_to_get_there
   end
 
   protected

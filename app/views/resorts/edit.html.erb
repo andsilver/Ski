@@ -29,4 +29,11 @@
   <% end %>
 </div>
 
+<div class="well">
+  <h2>Additional Pages</h2>
+  <% Resort.page_names.each do |n| %>
+  <%= link_to "Edit #{n} page", edit_page_resort_path(@resort, page_name: n), class: 'btn' %>
+  <% end %>
+</div>
+
 <%= render 'form' %>

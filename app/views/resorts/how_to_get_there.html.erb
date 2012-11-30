@@ -1,0 +1,29 @@
+<div id="wide_content_with_wide_skyscrapers">
+  <h2><%= t('resorts_controller.detail.how_to_get_there') %></h2>
+<% unless @resort.airport_distances.empty? -%>
+  <table class="table table-bordered table-striped" id="airport-distances">
+    <tr>
+      <th>Airport</th>
+      <th>Distance</th>
+    </tr>
+    <% @resort.airport_distances.each do |ad| %>
+    <tr>
+      <td><%= ad.airport.name %></td>
+      <td><%= ad.distance_km %>km</td>
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan="2" style="text-align: center;">
+        <%= link_to 'Airport Transfers &rarr;'.html_safe, find_airport_transfers_path,
+        class: 'btn btn-primary' %>
+      </td>
+    </tr>
+  </table>
+<% end -%>
+<% unless @page_content.blank? -%>
+  <%= raw Liquid::Template.parse(@page_content).render() %>
+<% end -%>
+</div>
+<div id="wide_skyscrapers">
+  <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) %>
+</div>

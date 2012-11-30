@@ -13,6 +13,7 @@ MySkiChalet::Application.routes.draw do
   match "resorts/:resort_id/properties/hotels" => "properties#browse_hotels", :as => :resort_property_hotels
   match "resorts/:id/resort-guide" => "resorts#resort_guide", as: :resort_guide
   match "resorts/:id/summer-holidays" => "resorts#summer_holidays", as: :summer_holidays
+  match "resorts/:id/how-to-get-there" => "resorts#how_to_get_there", as: :how_to_get_there
   resources :resorts do
     get 'featured',  :on => :collection
     member do
@@ -22,6 +23,7 @@ MySkiChalet::Application.routes.draw do
       get 'gallery'
       get 'piste_map'
       get 'piste_map_full_size'
+      get 'edit_page'
     end
   end
 

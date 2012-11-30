@@ -89,35 +89,6 @@
   </tr>
 </table>
 
-<% unless @resort.airport_distances.empty? -%>
-<table class="table table-bordered table-striped" id="airport-distances">
-  <tr>
-    <th>Airport</th>
-    <th>Distance</th>
-  </tr>
-  <% @resort.airport_distances.each do |ad| %>
-  <tr>
-    <td><%= ad.airport.name %></td>
-    <td><%= ad.distance_km %>km</td>
-  </tr>
-  <% end %>
-  <tr>
-    <td colspan="2" style="text-align: center;">
-      <%= link_to 'Airport Transfers &rarr;'.html_safe, find_airport_transfers_path,
-      class: 'btn btn-primary' %>
-    </td>
-  </tr>
-</table>
-<% end -%>
-
-<h2><%= t('resorts_controller.detail.how_to_get_there') %></h2>
-
-<% unless @resort.how_to_get_to.blank? %>
-<div id="how_to_get_to">
-  <%= md @resort.how_to_get_to %>
-</div>
-<% end %>
-
 <% unless @resort.visiting.blank? %>
 <h2><%= t('resorts_controller.detail.visiting', resort: @resort) %></h2>
 <%= md @resort.visiting %>
