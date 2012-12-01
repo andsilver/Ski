@@ -146,7 +146,11 @@ class PropertiesController < ApplicationController
     not_found and return unless @property.publicly_visible? or admin? or
       (@current_user && @current_user.id == @property.user_id)
 
-    redirect_to "/accommodation/#{@property.interhome_accommodation.permalink}" and return if @property.interhome_accommodation
+    if @property.interhome_accommodation
+      flash.keep
+      redirect_to "/accommodation/#{@property.interhome_accommodation.permalink}"
+      return
+    end
 
     @property.current_advert.record_view if @property.current_advert
 

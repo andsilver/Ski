@@ -6,7 +6,7 @@ Feature: Directory Adverts Admin
 
   Scenario: I can reach the directory adverts list from the CMS
     Given I am signed in as an administrator
-    When I follow "Directory Adverts"
+    When I follow "Directory & Banner Adverts"
     Then I should be on the directory adverts page
 
   Scenario: Only administrators can see the directory adverts list

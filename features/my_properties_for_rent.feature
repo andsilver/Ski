@@ -19,7 +19,7 @@ Feature: My Properties for Rent
   Scenario: Advertisers can go to the new property for rent page
     Given I am signed in
     And I am on the advertise page
-    When I follow "New Property for Rent"
+    When I follow "Advertise a Property for Rent"
     Then I should be on the new property page
 
   Scenario: Advertisers can create a new property for rent
@@ -30,8 +30,8 @@ Feature: My Properties for Rent
       | Strapline                 | Excellent facilities, sleeps 4 |
       | Address                   | 74400                          |
       | Weekly rental price from  | 1650                           |
-    And I select "800" from "Distance from town centre"
-    And I select "500" from "Nearest lift"
+    And I select "< 800m" from "Distance from town centre"
+    And I select "< 500m" from "Nearest lift"
     And I select "France > Chamonix" from "Resort"
     And I select "4" from "Sleeping capacity"
     And I select "2" from "Number of bedrooms"

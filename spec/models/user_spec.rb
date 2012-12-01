@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe User do
+  describe '#empty_windows' do
+    it 'returns windows that are empty' do
+      pending
+    end
+
+    it 'returns windows that have not yet expired' do
+      pending
+    end
+  end
+
   describe "#has_properties_for_rent?" do
     it "returns true when there are one or more properties for rent" do
       user = User.new

@@ -12,5 +12,5 @@ Feature: CMS
 
   Scenario: Administrators should be able to access a how-to guide
     Given I am signed in as an administrator
-    When I follow "Guide"
+    When I follow the Guide link
     Then I should be on the guide page

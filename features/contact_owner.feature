@@ -7,7 +7,7 @@ Feature: Contact Owner
 
   Scenario: Contact owner of a property for rent
     Given I am on the Chamonix Properties for Rent page
-    And I follow "Alpen Lounge"
+    And I follow "Read more about Alpen Lounge"
     And I follow "Enquire"
     When I fill in the following:
       | Name         | Natalie           |
@@ -19,7 +19,7 @@ Feature: Contact Owner
 
   Scenario: Contact owner of a property for sale
     Given I am on the Chamonix Properties for Sale page
-    And I follow "Chalet Alaska"
+    And I follow "Read more about Chalet Alaska"
     When I follow "Enquire"
     Then I should not see "Date of arrival"
     And I should not see "Date of departure"

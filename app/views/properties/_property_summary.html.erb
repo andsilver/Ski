@@ -3,7 +3,7 @@
   <%
   link = p.interhome_accommodation_id ? interhome_property_path(p.interhome_accommodation.permalink) : p
   %>
-  <h3><%= link_to p.name, link %></h3>
+  <h3><%= link_to p.name, link, title: "Read more about #{p.name}" %></h3>
   <p class="strapline"><%= p.strapline %></p>
   <p class="property_thumbnail">
     <% unless p.image.nil? %>

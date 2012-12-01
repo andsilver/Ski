@@ -30,6 +30,13 @@ describe UsersController do
     end
   end
 
+  describe 'GET select_role' do
+    it 'renders the "new" template' do
+      get 'select_role', {user: {role_id: 1}}
+      response.should render_template('new')
+    end
+  end
+
   describe "POST create" do
     let(:role) { mock_model(Role).as_null_object }
     let(:params) { { :user => { "name" => "Carey", "role_id" => "1" }} }

@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Currency do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '.update_exchange_rates' do
+    pending
+  end
 end

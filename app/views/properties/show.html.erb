@@ -60,9 +60,8 @@
 <%= form_for @favourite do |f| %>
 <%= f.hidden_field :property_id %>
 <p>
-  <a href="#" class="btn btn-primary btn-large"
-  onclick="$('#new_favourite').submit(); return false;"><i class="icon-heart icon-white"></i>
-  <%= t('favourites.add') %></a>
+  <button type="submit" class="btn btn-primary btn-large"><i class='icon-heart icon-white'></i>
+  <%= t('favourites.add') %></button>
 </p>
 <% end %>
 <% end %>

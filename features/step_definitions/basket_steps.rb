@@ -31,13 +31,13 @@ Then /^I should see my adverts$/ do
 end
 
 Then /^I should see a drop down box to change advert duration$/ do
-  page.should have_selector("#basket option", content: "1 month")
+  page.should have_selector('#basket option', text: '12 months')
 end
 
 Then /^I should see a remove button$/ do
-  page.should have_selector("input", value: "Remove")
+  page.should have_selector("input[value='Remove']")
 end
 
 Then /^I should see a place order button$/ do
-  page.should have_selector("input", value: "Place Order")
+  page.should have_selector("input[value='Place Order']")
 end

@@ -29,8 +29,9 @@ Feature:
     | property owner |
 
   Scenario: I can get to the new developments page from the home page
-    Given I am on the Chamonix resort info page
-    When I follow "New Build"
+    Given there are 3 new developments advertised
+    And I am on the Chamonix resort info page
+    When I follow "New Build (3)"
     Then I should be on the Chamonix new developments page
     And I should see the "New Developments" heading
 

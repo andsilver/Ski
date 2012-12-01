@@ -21,9 +21,9 @@ Given /^I am not signed in$/ do
 end
 
 Then /^I should see the "([^"]*)" heading$/ do |arg1|
-  page.should have_selector("h1", :content => arg1)
+  page.should have_selector('h1', text: arg1)
 end
 
 Then /^I should see a link to "([^"]*)"$/ do |arg1|
-  page.should have_selector("a", content: arg1)
+  page.should have_selector('a', text: arg1)
 end

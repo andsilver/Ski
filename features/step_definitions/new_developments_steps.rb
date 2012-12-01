@@ -29,6 +29,8 @@ Given /^there are (\d+) new developments advertised$/ do |how_many|
     p.save
     Advert.create(user_id: p.user_id, property_id: p.id, expires_at: Time.now + 1.days)
   end
+  resorts(:chamonix).new_development_count = how_many
+  resorts(:chamonix).save
 end
 
 Then /^I should see (\d+) out of (\d+) new developments$/ do |how_many, total|
