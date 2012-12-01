@@ -7,8 +7,8 @@ class Resort < ActiveRecord::Base
     :introduction, :living_in, :local_area, :longest_run_km,
     :mountain_restaurants, :name, :off_piste, :owning_a_property_in,
     :piste_map_content, :railways, :red, :season, :ski_area_km,
-    :slope_direction, :snowboard_parks, :summer_holidays_in, :summer_skiing,
-    :top_lift_m, :weather_code, :visible, :visiting
+    :slope_direction, :snowboard_parks, :summer_holidays_in, :summer_only,
+    :summer_skiing, :top_lift_m, :weather_code, :visible, :visiting
 
   belongs_to :country
   belongs_to :image, dependent: :destroy

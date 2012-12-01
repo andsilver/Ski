@@ -95,10 +95,14 @@
       t('resort_options.hotels') %> (<%= @resort.hotel_count %>)</a></li>
 <% end -%>
     <li <%= 'class="active"'.html_safe if current_page?(directory_resort_path(@resort)) %>><%= link_to t('directory'), directory_resort_path(@resort), title: "#{@resort.name} directory" %></li>
+<% unless @resort.summer_only? -%>
     <li <%= 'class="active"'.html_safe if current_page?(piste_map_resort_path(@resort)) %>><%= link_to I18n.t('piste_map'), piste_map_resort_path(@resort), title: "#{@resort.name} piste maps" %></li>
+<% end -%>
     <li <%= 'class="active"'.html_safe if current_page?(gallery_resort_path(@resort)) %>><%= link_to t('gallery'), gallery_resort_path(@resort), title: "Photos of #{@resort.name}" %></li>
+<% unless @resort.summer_only? -%>
     <li <%= 'class="active"'.html_safe if current_page?(summer_holidays_path(@resort)) %>><%= link_to t('resorts_controller.summer_holidays'), summer_holidays_path(@resort), title: "Summer holidays in #{@resort.name}" %></li>
 <% if @resort.has_page?('how-to-get-there') -%>
+<% end -%>
     <li <%= 'class="active"'.html_safe if current_page?(how_to_get_there_path(@resort)) %>><%= link_to 'How to Get There', how_to_get_there_path(@resort) %></li>
 <% end -%>
   </ul>

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Resort do
   # ActiveRecord
   it { should have_many(:interhome_place_resorts) }
+  it { should respond_to(:summer_only?) }
 
   it "has an SEO-friendly to_param" do
     resort = Resort.new

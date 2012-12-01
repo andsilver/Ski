@@ -393,7 +393,8 @@ fr:
       local_area: Local Area
       more_detail: "More Detail"
       owning_a_property_in: "%{resort} Accommodation"
-      visiting: "Skiing in %{resort}"
+      skiing_in: "Skiing in %{resort}"
+      visiting: "Visiting %{resort}"
       whole_area: Whole Area
     facts:
       altitude: Altitude

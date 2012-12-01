@@ -42,6 +42,11 @@
     </div>
   </div>
   <div class="control-group">
+    <div class="controls">
+      <label class="checkbox"><%= f.check_box :summer_only %> Summer only</label>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :local_area, 'Applies to', class: 'control-label' %>
     <div class="controls">
       <%= f.select(:local_area, [["Local area", true], ["Whole area", false]],
