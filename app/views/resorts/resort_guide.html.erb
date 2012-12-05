@@ -1,7 +1,7 @@
 <div id="content-with-side-banners">
 <h2><%= t('resorts_controller.detail.an_introduction_to', resort: @resort) %></h2>
 <% unless @resort.info.blank? %>
-<%= md @resort.info %>
+<%= raw @resort.info %>
 <% end %>
 
 <%= render 'resort_facts' unless @resort.summer_only? %>
@@ -17,17 +17,17 @@
 
 <% unless @resort.owning_a_property_in.blank? %>
 <h2><%= t('resorts_controller.detail.owning_a_property_in', resort: @resort) %></h2>
-<%= md @resort.owning_a_property_in %>
+<%= raw @resort.owning_a_property_in %>
 <% end %>
 
 <% unless @resort.living_in.blank? %>
 <h2><%= t('resorts_controller.detail.living_in', resort: @resort) %></h2>
-<%= md @resort.living_in %>
+<%= raw @resort.living_in %>
 <% end %>
 
 <% unless @resort.insider_view.blank? %>
 <h2><%= t('resorts_controller.detail.insider_view', resort: @resort) %></h2>
-<%= md @resort.insider_view %>
+<%= raw @resort.insider_view %>
 <% end %>
 
 </div>

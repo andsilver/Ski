@@ -38,7 +38,7 @@
 <%= render 'shared/featured_properties' %>
 
 <% unless @resort.introduction.blank? %>
-<%= md @resort.introduction %>
+<%= raw @resort.introduction %>
 <% end %>
 <% unless @resort.weather_code.blank? %>
 <div id="weather_code">
