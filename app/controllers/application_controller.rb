@@ -136,6 +136,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ssl_required
+    if Rails.env == 'production' && !request.ssl?
+      flash.keep
+      redirect_to protocol: 'https://'
+    end
+  end
+
   def signed_in?
     @current_user.is_a?(User)
   end
