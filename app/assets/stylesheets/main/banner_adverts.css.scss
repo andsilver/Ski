@@ -2,6 +2,62 @@
   width: 821px;
   padding: 0 15px 0 0;
   float: left;
+
+  .first-third {
+    width: 247px;
+    margin: 8px 8px 0 0;
+  }
+
+  .last-two-thirds {
+    width: 518px;
+    margin-top: 8px;
+  }
+
+  .first-third, .last-two-thirds {
+    float: left;
+    padding: 2px 12px;
+  }
+
+  .first-third-photo-shadow, .wide-photo-shadow {
+    box-shadow: inset 0 12px 12px -12px #000,
+    inset 0 -12px 12px -12px #000;
+    clear: left;
+    position: relative;
+    background-color: #fff;
+    background-repeat: no-repeat;
+
+    p {
+      color: #000;
+      font-size: 14px;
+      font-weight: bold;
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      margin: 0;
+    }
+
+    p.inverted {
+      color: #fff;
+    }
+  }
+
+  .wide-photo-shadow {
+    margin: 8px 0;
+  }
+
+  .first-third-photo-shadow {
+    width: 271px;
+    float: left;
+    margin: 8px 8px 0 0;    
+  }
+
+  h2.coloured {
+    font-size:36px;
+    font-weight:normal;
+    font-style: normal;
+    color:#525c66;
+    letter-spacing: -3px;
+  }
 }
 
 #side-banners {
