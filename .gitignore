@@ -18,8 +18,10 @@ doc/features.html
 /log/*.log
 /tmp
 
+/public/countries
 /public/fixed-banners
 /public/resorts
+/pulbic/test
 /public/up
 /public/uploads
 .sass-cache/
