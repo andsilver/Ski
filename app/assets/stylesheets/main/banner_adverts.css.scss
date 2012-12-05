@@ -1,29 +1,16 @@
-#leaderboard img {
-  display: block;
-  width: 728px;
-  height: 90px;
-  margin: 10px auto;
-}
-
-#wide_content_with_wide_skyscrapers {
+#content-with-side-banners {
   width: 821px;
   padding: 0 15px 0 0;
   float: left;
 }
 
-#content_with_wide_skyscrapers {
-  width: 821px;
-  padding: 0 15px 0 0;
-  float: left;
-}
-
-#wide_skyscrapers {
+#side-banners {
   float: left;
   padding-top: 13px;
   width: 160px;
-}
 
-#wide_skyscrapers a {
-  margin-bottom: 13px;
-  display: block;
+  a {
+    margin-bottom: 13px;
+    display: block;
+  }
 }

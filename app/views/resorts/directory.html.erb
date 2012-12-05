@@ -1,4 +1,4 @@
-<div id="content_with_wide_skyscrapers">
+<div id="content-with-side-banners">
 
 <ul id="categories">
   <% @categories.each do |category| %>
@@ -8,6 +8,6 @@
 
 <%= clear %>
 </div>
-<div id="wide_skyscrapers">
+<div id="side-banners">
   <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) %>
 </div>

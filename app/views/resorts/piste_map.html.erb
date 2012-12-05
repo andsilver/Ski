@@ -1,4 +1,4 @@
-<div id="wide_content_with_wide_skyscrapers">
+<div id="content-with-side-banners">
 
 <% resort_images(@resort, 'piste-maps')
 if @images.empty? %>
@@ -18,6 +18,6 @@ if @images.empty? %>
 <%= raw @resort.piste_map_content %>
 
 </div>
-<div id="wide_skyscrapers">
+<div id="side-banners">
   <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) %>
 </div>
