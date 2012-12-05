@@ -273,7 +273,7 @@ features = @accommodation.features.split(',')
 
 <% if @accommodation.interhome_vacancy %>
 <% cal = InterhomeCalendar.new(@accommodation.interhome_vacancy) %>
-<h2>Check Availability</h2>
+<h2>Check availability</h2>
 <div class="well">
 <div class="btn-group">
   <button class="btn" id="earlier"><i class="icon-backward"></i> Earlier</button>
@@ -332,18 +332,26 @@ end
 <label>Duration of stay</label>
 <%= select('interhome_booking', 'duration', booking_durations) %>
 <h3>Travellers</h3>
-<label>
-  Adults
-  <input type="text" id="interhome_booking_adults" name="interhome_booking[adults]" value="<%= @interhome_booking.adults %>">
-</label><br>
-<label>
-  Children (3-12 years)
-  <input type="text" id="interhome_booking_children" name="interhome_booking[children]" value="<%= @interhome_booking.children %>">
-</label><br>
-<label>
-  Babies (0-2 years)
-  <input type="text" id="interhome_booking_babies" name="interhome_booking[babies]" value="<%= @interhome_booking.babies %>">
-</label>
+<div class="row">
+  <div class="span2">
+    <label>
+      Adults
+      <input type="text" id="interhome_booking_adults" name="interhome_booking[adults]" value="<%= @interhome_booking.adults %>" class="span1">
+    </label>
+  </div>
+  <div class="span2">
+    <label>
+      Children (3-12 years)
+      <input type="text" id="interhome_booking_children" name="interhome_booking[children]" value="<%= @interhome_booking.children %>" class="span1">
+    </label>
+  </div>
+  <div class="span2">
+    <label>
+      Babies (0-2 years)
+      <input type="text" id="interhome_booking_babies" name="interhome_booking[babies]" value="<%= @interhome_booking.babies %>" class="span1">
+    </label>
+  </div>
+</div>
 </div><!--.trigger-update-->
 <div id="booking_results">
   <p>
