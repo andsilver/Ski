@@ -149,6 +149,8 @@
   }
 
   $(function() {
+    $('td[rel=popover]').popover();
+
     $('#booking_form').on('change', '.trigger-update input', submitCheck);
     $('#booking_form').on('change', '.trigger-update select', submitCheck);
     $('#booking_form').on('change', '#interhome_booking_arrival_month', updateDayOfMonthSelect);
@@ -305,7 +307,7 @@ end
   <table class="interhome-calendar">
     <tr>
       <td class="availability-Y">Available</td>
-      <td class="availability-Y-no-check-in">No check-in</td>
+      <td class="availability-Y-no-check-in" rel="popover" data-original-title="No check-in" data-content="Some of our holiday rentals only accept arrivals on certain dates even though the property may be free on other days. Arrival dates are shown on the calendar as the dark green squares."><i class="icon-info-sign icon-white"></i> No check-in</td>
       <td class="availability-N">Unavailable</td>
       <td class="availability-Q">Booking possible only on request</td>
     </tr>
