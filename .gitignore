@@ -29,3 +29,6 @@ doc/features.html
 
 # Ignore Interhome data files
 /interhome
+
+# Ignore Pierre et Vacances data files
+/pierreetvacances
