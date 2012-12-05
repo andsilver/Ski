@@ -7,14 +7,26 @@ describe InterhomeAccommodationImporter do
       i = InterhomeAccommodationImporter.new
       i.stub(:delete_all_adverts)
       i.should_receive(:setup)
-      i.import []
+      i.import [], false
     end
 
-    it 'deletes all adverts' do
-      i = InterhomeAccommodationImporter.new
-      i.should_receive(:delete_all_adverts)
-      i.stub(:setup)
-      i.import []
+    context 'with cleanup set to true' do
+      it 'deletes old adverts' do
+        i = InterhomeAccommodationImporter.new
+        i.should_receive(:delete_old_adverts)
+        i.stub(:setup)
+        i.interhome = User.new
+        i.import [], true
+      end
+    end
+
+    context 'with cleanup set to false' do
+      it 'does not delete old adverts' do
+        i = InterhomeAccommodationImporter.new
+        i.should_not_receive(:delete_old_adverts)
+        i.stub(:setup)
+        i.import [], false
+      end
     end
   end
 

@@ -3,6 +3,8 @@
 require 'xmlsimple'
 
 class InterhomeAccommodationImporter
+  attr_accessor :interhome
+
   XML_FILENAME = 'accommodation.xml'
 
   def ftp_get
