@@ -118,14 +118,13 @@ class Property < ActiveRecord::Base
     Property.board_basis_description board_basis
   end
 
-  # Loads all properties and saves them to trigger their #normalise_prices
-  # callback. Geocoding is temporarily disabled during this process.
+  # Loads each currency and updates its associated properties' normalised
+  # prices with direct SQL.
   def self.normalise_prices
-    stop_geocoding
-    Property.all.each do |p|
-      p.save
+    Currency.all.each do |c|
+      sql = "UPDATE properties SET normalised_sale_price = sale_price * #{c.in_euros}, normalised_weekly_rent_price = weekly_rent_price * #{c.in_euros} WHERE currency_id = #{c.id}"
+      ActiveRecord::Base.connection.update_sql(sql)
     end
-    resume_geocoding
   end
 
   def self.geocoding?
