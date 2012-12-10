@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<countries xmlns:prx="urn:sap.com:proxy:IHP:/1SAI/TAS6F1068D8D48D216DEB67:700:2011/07/20">
+  <country>
+    <code>AD</code>
+    <name>Andorra</name>
+    <regions>
+      <region>
+        <code>1</code>
+        <name>Andorra</name>
+        <places>
+          <place>
+            <code>1450</code>
+            <name>Arinsal</name>
+          </place>
+          <place>
+            <code>1500</code>
+            <name>El Tarter</name>
+          </place>
+          <place>
+            <code>1550</code>
+            <name>Soldeu</name>
+          </place>
+        </places>
+      </region>
+    </regions>
+  </country>
+  <country>
+    <code>AT</code>
+    <name>Austria</name>
+    <regions>
+      <region>
+        <code>1</code>
+        <name>Vienna</name>
+        <places>
+          <place>
+            <code>1000</code>
+            <name>Vienna</name>
+            <subplaces>
+              <subplace>
+                <code>1010</code>
+                <name>Vienna / 1. District</name>
+              </subplace>
+              <subplace>
+                <code>1020</code>
+                <name>Vienna / 2. District</name>
+              </subplace>
+              <subplace>
+                <code>1030</code>
+                <name>Vienna / 3. District</name>
+              </subplace>
+              <subplace>
+                <code>1040</code>
+                <name>Vienna / 4. District</name>
+              </subplace>
+            </subplaces>
+          </place>
+          <place>
+            <code>3021</code>
+            <name>Wien / Pressbaum</name>
+          </place>
+        </places>
+      </region>
+      <region>
+        <code>10</code>
+        <name>Lower Austria</name>
+        <places>
+          <place>
+            <code>2304</code>
+            <name>Mannsdorf/Donau</name>
+          </place>
+          <place>
+            <code>2305</code>
+            <name>Eckartsau</name>
+          </place>
+          <place>
+            <code>3820</code>
+            <name>Raabs/ Thaya</name>
+          </place>
+          <place>
+            <code>3874</code>
+            <name>Litschau/Waldviertel</name>
+          </place>
+        </places>
+      </region>
+      <region>
+        <code>20</code>
+        <name>Upper Austria</name>
+        <places>
+          <place>
+            <code>4553</code>
+            <name>Schlierbach/Kremstal</name>
+            <subplaces>
+              <subplace>
+                <code>4561</code>
+                <name>Inzersdorf/Kremstal</name>
+              </subplace>
+              <subplace>
+                <code>4643</code>
+                <name>Pettenbach im Almtal/Kremstal</name>
+              </subplace>
+            </subplaces>
+          </place>
+          <place>
+            <code>4580</code>
+            <name>Hinterstoder</name>
+          </place>
+          <place>
+            <code>4591</code>
+            <name>Molln/Steyrtal</name>
+          </place>
+        </places>
+      </region>
+      <region>
+        <code>30</code>
+        <name>Salzburg</name>
+        <places>
+          <place>
+            <code>5020</code>
+            <name>Salzburg</name>
+          </place>
+          <place>
+            <code>5090</code>
+            <name>Lofer</name>
+          </place>
+          <place>
+            <code>5524</code>
+            <name>Annaberg/Lammertal</name>
+          </place>
+          <place>
+            <code>5532</code>
+            <name>Filzmoos/Sportwelt Amadé</name>
+          </place>
+          <place>
+            <code>5540</code>
+            <name>Flachau - Altenmarkt - Radstadt/Skiwelt Amadé</name>
+            <subplaces>
+              <subplace>
+                <code>5541</code>
+                <name>Altenmarkt/Sportwelt Amadé</name>
+              </subplace>
+              <subplace>
+                <code>5542</code>
+                <name>Flachau/Sportwelt Amadé</name>
+              </subplace>
+              <subplace>
+                <code>5550</code>
+                <name>Radstadt/Sportwelt Amadé</name>
+              </subplace>
+            </subplaces>
+          </place>
+          <place>
+            <code>5562</code>
+            <name>Obertauern</name>
+          </place>
+          <place>
+            <code>5570</code>
+            <name>Lungau</name>
+            <subplaces>
+              <subplace>
+                <code>5571</code>
+                <name>Mariapfarr/Lungau</name>
+              </subplace>
+              <subplace>
+                <code>5580</code>
+                <name>Tamsweg/Lungau</name>
+              </subplace>
+              <subplace>
+                <code>5581</code>
+                <name>St Margarethen/Lungau</name>
+              </subplace>
+              <subplace>
+                <code>5582</code>
+                <name>St Michael/Lungau</name>
+              </subplace>
+            </subplaces>
+          </place>
+          <place>
+            <code>5600</code>
+            <name>St Johann im Pongau/Sportwelt Amadé</name>
+          </place>
+          <place>
+            <code>5602</code>
+            <name>Wagrain/Sportwelt Amadé</name>
+          </place>
+          <place>
+            <code>5720</code>
+            <name>Nationalpark Hohe Tauern</name>
+            <subplaces>
+              <subplace>
+                <code>5722</code>
+                <name>Niedernsill/Nationalpark Hohe Tauern</name>
+              </subplace>
+              <subplace>
+                <code>5723</code>
+                <name>Uttendorf/Nationalpark Hohe Tauern</name>
+              </subplace>
+              <subplace>
+                <code>5730</code>
+                <name>Mittersill/Nationalpark Hohe Tauern</name>
+              </subplace>
+              <subplace>
+                <code>5731</code>
+                <name>Hollersbach/Nationalpark Hohe Tauern</name>
+              </subplace>
+            </subplaces>
+          </place>
+          <place>
+            <code>5771</code>
+            <name>Leogang</name>
+          </place>
+        </places>
+      </region>
+    </regions>
+  </country>
+</countries>
