@@ -29,14 +29,8 @@
   <%= f.label :footer %>
   <%= select("page", "footer_id", (Footer.all.collect {|f| [ f.name, f.id ] }).sort, {prompt: 'Choose footer'}) %>
 
-<div class="group_panel">
-  <h2>Fixed Banner</h2>
-    <%= f.label :fixed_banner_image_filename %>
-    /public/fixed-banners/ <%= f.text_field :fixed_banner_image_filename %>
-
-    <%= f.label :fixed_banner_target_url %>
-    <%= f.text_field :fixed_banner_target_url %>
-</div>
+  <%= f.label :banner_advert_html, 'Banner advert HTML' %>
+  <%= f.text_area :banner_advert_html %>
 <div class="field">
   <%= f.submit class: 'btn btn-primary' %>
 </div>

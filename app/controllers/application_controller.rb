@@ -99,10 +99,7 @@ class ApplicationController < ActionController::Base
       @meta_keywords = page.keywords
       @page_content = page.content
       @footer_box = page.footer.content unless page.footer.nil?
-      unless page.fixed_banner_image_filename.blank?
-        @fixed_banner_image_path = "/fixed-banners/" + page.fixed_banner_image_filename
-        @fixed_banner_target_url = page.fixed_banner_target_url
-      end
+      @banner_advert_html = page.banner_advert_html unless page.banner_advert_html.blank?
     end
 
     use_default_footer if @footer_box.blank?

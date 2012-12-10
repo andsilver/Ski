@@ -1,10 +1,5 @@
 <%
-# Banner advert HTML from Countries are shown if they exist
-
-# Fixed banners from Pages are shown if they exist, next
-
-# There's no reason to have both Country and Page banners on the same page
-# but showing both regardless avoids confusion
+# Banner advert HTML from pages or countries are shown if they exist
 
 # Users banners are always shown if they exist, beneath all other banners
 
@@ -15,11 +10,7 @@
 <%= raw @banner_advert_html %>
 <% end -%>
 
-<% if @fixed_banner_image_path -%>
-<% if @fixed_banner_target_url %><a href="<%= @fixed_banner_target_url %>"><% end %><img src="<%= @fixed_banner_image_path %>" alt=""><% if @fixed_banner_target_url %></a><% end %>
-<% end -%>
-
-<% if banners.empty? and @banner_advert_html.blank? and !@fixed_banner_image_path %>
+<% if banners.empty? and @banner_advert_html.blank? %>
   <% if rand() > 0.666 %>
     <a href='http://scripts.affiliatefuture.com/AFClick.asp?affiliateID=252735&amp;merchantID=3287&amp;programmeID=8586&amp;mediaID=114123&amp;tracking=&amp;url='><img src='http://banners.affiliatefuture.com/3287/114123.gif' alt="Advert"></a>
   <% elsif rand() > 0.5 %>

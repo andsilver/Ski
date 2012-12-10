@@ -38,7 +38,7 @@ class CountriesController < ApplicationController
   def show
     @heading_a = @country.name
     default_page_title(@heading_a)
-    @banner_advert_html = @country.banner_advert_html
+    @banner_advert_html ||= @country.banner_advert_html
 
     @featured_properties = @country.featured_properties(12)
   end
