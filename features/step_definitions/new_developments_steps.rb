@@ -25,9 +25,9 @@ Given /^there are (\d+) new developments advertised$/ do |how_many|
     # make each new property cheaper than the last
     # as default sort order is "Price low to high"
     p = valid_property name: "New development #{d+1}",
-      new_development: true, sale_price: (100 - d.to_i)
+      new_development: true, sale_price: (100 - d.to_i), publicly_visible: true
     p.save
-    Advert.create(user_id: p.user_id, property_id: p.id, expires_at: Time.now + 1.days)
+    Advert.create(user_id: p.user_id, property_id: p.id)
   end
   resorts(:chamonix).new_development_count = how_many
   resorts(:chamonix).save

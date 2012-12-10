@@ -6,7 +6,7 @@ Feature: Sign Up
 
   Scenario: Going to the sign up page
     Given I am on the sign in page
-    When I follow "Register"
+    When I follow "sign-up"
     Then I should be on the sign up page
 
   Scenario: Sign up for a new account

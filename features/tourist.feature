@@ -56,7 +56,7 @@ Feature: Tourist
 
   Scenario: View more details about a property for rent
     Given I am on the Chamonix Properties for Rent page
-    When I follow "Alpen Lounge"
+    When I follow "Read more about Alpen Lounge"
     Then I should be on the Alpen Lounge page
     And I should see the "Alpen Lounge" heading
     And I should see "The Alpen Lounge is a 100 square meter self catering chalet."
