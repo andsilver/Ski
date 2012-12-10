@@ -90,6 +90,12 @@
       $('#customer_email').focus();
       return;
     }
+    emailConfirmation = $('#customer_email_confirmation').val();
+    if(email != emailConfirmation) {
+      alert('Please check and confirm that your email address is correct.');
+      $('#customer_email_confirmation').focus();
+      return;
+    }
     if(!isValidEmailAddress(email)) {
       alert('Please enter a valid email address.');
       $('#customer_email').focus();
@@ -323,7 +329,7 @@ end
 <div id="booking_form">
 <%= form_tag action: 'check_interhome_booking', id: @property.id do |form| %>
 <input type="hidden" name="permalink" value="<%= params[:permalink] %>">
-<h3>Travel dates</h3>
+<h3>Step 1: Travel dates</h3>
 <span class="trigger-update">
 <label>Date of arrival</label>
 <span id="day-of-month">
