@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210125526) do
+ActiveRecord::Schema.define(:version => 20121210131342) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -382,14 +382,12 @@ ActiveRecord::Schema.define(:version => 20121210125526) do
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "pages", :force => true do |t|
-    t.string   "path",                                        :null => false
-    t.string   "title",                                       :null => false
-    t.string   "description",                 :default => "", :null => false
-    t.string   "keywords",                    :default => "", :null => false
+    t.string   "path",                               :null => false
+    t.string   "title",                              :null => false
+    t.string   "description",        :default => "", :null => false
+    t.string   "keywords",           :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "fixed_banner_image_filename", :default => "", :null => false
-    t.string   "fixed_banner_target_url",     :default => "", :null => false
     t.integer  "footer_id"
     t.text     "content"
     t.text     "banner_advert_html"
