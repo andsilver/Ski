@@ -24,3 +24,11 @@ Feature: Categories Admin
     And I am on the new category page
     When I press "Save"
     Then I should see "1 error prohibited this category from being saved"
+
+  Scenario: Delete an unwanted category
+    Given I am signed in as an administrator
+    And there exists a category named "Babysitters"
+    And I am on the categories page
+    When I follow "Delete Babysitters"
+    Then I should see "Deleted."
+    And I should not see "Babysitters"

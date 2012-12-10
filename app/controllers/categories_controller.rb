@@ -54,7 +54,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
 
-    redirect_to(resort_categories_path(@category.resort), notice: t('notices.deleted'))
+    redirect_to(categories_path, notice: t('notices.deleted'))
   end
 
   protected

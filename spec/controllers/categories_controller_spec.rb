@@ -3,12 +3,10 @@ require 'spec_helper'
 describe CategoriesController do
   let(:website) { mock_model(Website).as_null_object }
   let(:category) { mock_model(Category).as_null_object }
-  let(:resort) { mock_model(Resort).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
     Category.stub(:new).and_return(category)
-    Resort.stub(:find).and_return(resort)
     controller.stub(:admin?).and_return(true)
   end
 
@@ -25,7 +23,7 @@ describe CategoriesController do
   end
 
   describe "POST create" do
-    let(:params) { { :resort_id => 1, :category => { "name" => "Restaurants", "resort_id" => "1" }} }
+    let(:params) { {category: { "name" => "Restaurants" }} }
 
     it "instantiates a new category with the given params" do
       Category.should_receive(:new).with(params[:category])
@@ -66,5 +64,28 @@ describe CategoriesController do
   end
 
   describe "GET show" do
+  end
+
+  describe 'DELETE destroy' do
+    it 'finds the category' do
+      Category.should_receive(:find_by_id).with('1')
+      delete 'destroy', id: 1
+    end
+
+    it 'destroys the category' do
+      Category.stub(:find_by_id).and_return(category)
+      category.should_receive(:destroy)
+      delete 'destroy', id: 1
+    end
+
+    it 'sets a flash[:notice] message' do
+      post 'destroy', id: 1
+      flash[:notice].should == 'Deleted.'
+    end
+
+    it 'redirects to the categories page' do
+      delete 'destroy', id: 1
+      response.should redirect_to(categories_path)
+    end
   end
 end
