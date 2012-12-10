@@ -45,7 +45,9 @@ class Resort < ActiveRecord::Base
   end
 
   def create_page(page_name)
-    Page.create(path: page_path(page_name), title: page_name)
+    key = 'resorts_controller.titles.' + page_name.gsub('-', '_')
+    title = I18n.t(key, resort: name, default: page_name)
+    Page.create(path: page_path(page_name), title: title)
   end
 
   def page_path(page_name)

@@ -442,6 +442,7 @@ fr:
     titles:
       directory: "Directory for %{resort}, %{country}"
       gallery: "Photos of %{resort}"
+      how_to_get_there: "%{resort}|Transfers to %{resort}|Airport Transfers to %{resort}|How to get to %{resort}"
       piste_map: "%{resort} piste map | Chalet Rentals in %{resort} | Holiday Homes for Rent in %{resort} / Ski Holidays in %{resort}"
       resort_guide: "Detailed Information for %{resort} Ski Resort, %{country}"
       show: "%{resort} | Ski Holiday Accommodation | Chalets & Apartments for Rent & Sale"
