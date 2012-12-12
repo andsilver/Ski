@@ -1,7 +1,7 @@
 <div id="content-with-side-banners">
-<% unless @resort.summer_holidays_in.blank? %>
+<% unless @page_content.blank? %>
 <% featured_properties = @featured_properties.empty? ? '' : render('shared/featured_properties') %>
-<%= raw Liquid::Template.parse(@resort.summer_holidays_in).render('featured_properties' => featured_properties) %>
+<%= raw Liquid::Template.parse(@page_content).render('featured_properties' => featured_properties) %>
 <% end %>
 </div>
 <div id="side-banners">

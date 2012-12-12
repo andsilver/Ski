@@ -7,7 +7,7 @@ class Resort < ActiveRecord::Base
     :introduction, :living_in, :local_area, :longest_run_km,
     :mountain_restaurants, :name, :off_piste, :owning_a_property_in,
     :piste_map_content, :railways, :red, :season, :ski_area_km,
-    :slope_direction, :snowboard_parks, :summer_holidays_in, :summer_only,
+    :slope_direction, :snowboard_parks, :summer_only,
     :summer_skiing, :top_lift_m, :weather_code, :visible, :visiting
 
   belongs_to :country
@@ -59,7 +59,7 @@ class Resort < ActiveRecord::Base
   end
 
   def self.page_names
-    ['how-to-get-there']
+    ['how-to-get-there', 'summer-holidays']
   end
 
   def handle_name_change

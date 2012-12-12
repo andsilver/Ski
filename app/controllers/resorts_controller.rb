@@ -90,9 +90,6 @@ class ResortsController < ApplicationController
   end
 
   def summer_holidays
-    @heading_a = t('resorts_controller.titles.summer_holidays', resort: @resort)
-    default_page_title @heading_a
-    default_meta_description(resort: @resort, country: @resort.country)
   end
 
   def edit_page
