@@ -3,25 +3,35 @@
   padding: 0 15px 0 0;
   float: left;
 
-  .first-third {
+  .first-third, .last-third {
     width: 247px;
+  }
+
+  .first-third {
     margin: 8px 8px 0 0;
   }
 
-  .last-two-thirds {
+  .last-third {
+    margin: 8px 0 0 8px;
+  }
+
+  .first-two-thirds, .last-two-thirds {
     width: 518px;
     margin-top: 8px;
   }
 
-  .first-third, .last-two-thirds {
+  .first-third, .last-two-thirds, .first-two-thirds, .last-third {
     float: left;
     padding: 2px 12px;
   }
 
   .first-third-photo-shadow, .wide-photo-shadow {
+    clear: left;
+  }
+
+  .first-third-photo-shadow, .last-third-photo-shadow, .wide-photo-shadow {
     box-shadow: inset 0 12px 12px -12px #000,
     inset 0 -12px 12px -12px #000;
-    clear: left;
     position: relative;
     background-color: #fff;
     background-repeat: no-repeat;
@@ -45,10 +55,17 @@
     margin: 8px 0;
   }
 
-  .first-third-photo-shadow {
+  .first-third-photo-shadow, .last-third-photo-shadow {
     width: 271px;
     float: left;
-    margin: 8px 8px 0 0;    
+  }
+
+  .first-third-photo-shadow {
+    margin: 8px 8px 0 0;
+  }
+
+  .last-third-photo-shadow {
+    margin: 8px 0 0 8px;
   }
 
   section h2.coloured {
