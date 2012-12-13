@@ -2,7 +2,7 @@
 <div class="cms">
 <h1><%= link_to 'CMS', cms_path %> &rarr; Pages</h1>
 <p>
-  <%= link_to 'New Page', new_page_path %>
+  <%= link_to 'New Page', new_page_path, class: 'btn btn-primary' %>
 </p>
 <% if @pages.empty? %>
 <p>There are no pages set up yet.</p>
