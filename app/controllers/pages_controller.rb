@@ -26,7 +26,7 @@ class PagesController < ApplicationController
 
   def update
     if @page.update_attributes(params[:page])
-      redirect_to(pages_path, notice: t('notices.saved'))
+      redirect_to(edit_page_path(@page), notice: t('notices.saved'))
     else
       render 'edit'
     end
