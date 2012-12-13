@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212154453) do
+ActiveRecord::Schema.define(:version => 20121213172234) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -503,8 +503,8 @@ ActiveRecord::Schema.define(:version => 20121212154453) do
   end
 
   create_table "resorts", :force => true do |t|
-    t.integer  "country_id",            :default => 0,     :null => false
-    t.string   "name",                  :default => "",    :null => false
+    t.integer  "country_id",             :default => 0,     :null => false
+    t.string   "name",                   :default => "",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "info"
@@ -529,34 +529,35 @@ ActiveRecord::Schema.define(:version => 20121212154453) do
     t.boolean  "glacier_skiing"
     t.boolean  "creche"
     t.boolean  "babysitting_services"
-    t.boolean  "visible",               :default => false, :null => false
-    t.boolean  "featured",              :default => false, :null => false
+    t.boolean  "visible",                :default => false, :null => false
+    t.boolean  "featured",               :default => false, :null => false
     t.text     "feature"
     t.text     "introduction"
-    t.string   "season",                :default => "",    :null => false
-    t.integer  "beginner",              :default => 0,     :null => false
-    t.integer  "intermediate",          :default => 0,     :null => false
-    t.integer  "off_piste",             :default => 0,     :null => false
-    t.integer  "expert",                :default => 0,     :null => false
+    t.string   "season",                 :default => "",    :null => false
+    t.integer  "beginner",               :default => 0,     :null => false
+    t.integer  "intermediate",           :default => 0,     :null => false
+    t.integer  "off_piste",              :default => 0,     :null => false
+    t.integer  "expert",                 :default => 0,     :null => false
     t.boolean  "heli_skiing"
     t.boolean  "summer_skiing"
-    t.integer  "family",                :default => 0,     :null => false
+    t.integer  "family",                 :default => 0,     :null => false
     t.text     "visiting"
     t.text     "owning_a_property_in"
     t.text     "living_in"
     t.text     "insider_view"
     t.integer  "image_id"
     t.text     "weather_code"
-    t.string   "apres_ski",             :default => "",    :null => false
-    t.boolean  "local_area",            :default => false, :null => false
-    t.integer  "property_count",        :default => 0,     :null => false
-    t.integer  "for_rent_count",        :default => 0,     :null => false
-    t.integer  "for_sale_count",        :default => 0,     :null => false
-    t.integer  "hotel_count",           :default => 0,     :null => false
-    t.integer  "new_development_count", :default => 0,     :null => false
+    t.string   "apres_ski",              :default => "",    :null => false
+    t.boolean  "local_area",             :default => false, :null => false
+    t.integer  "property_count",         :default => 0,     :null => false
+    t.integer  "for_rent_count",         :default => 0,     :null => false
+    t.integer  "for_sale_count",         :default => 0,     :null => false
+    t.integer  "hotel_count",            :default => 0,     :null => false
+    t.integer  "new_development_count",  :default => 0,     :null => false
     t.text     "gallery_content"
     t.text     "piste_map_content"
-    t.boolean  "summer_only",           :default => false, :null => false
+    t.boolean  "summer_only",            :default => false, :null => false
+    t.integer  "directory_advert_count", :default => 0,     :null => false
   end
 
   add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"

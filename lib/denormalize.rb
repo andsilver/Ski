@@ -24,6 +24,12 @@ class Denormalize
       resort.hotel_count = count_properties(resort, :listing_type, Property::LISTING_TYPE_HOTEL)
       resort.new_development_count = count_properties(resort, :new_development, true)
       resort.property_count = resort.for_rent_count + resort.for_sale_count + resort.hotel_count + resort.new_development_count
+
+      conditions = CategoriesController::CURRENTLY_ADVERTISED.dup
+      conditions[0] += " AND resort_id = ?"
+      conditions << resort.id
+      resort.directory_advert_count = DirectoryAdvert.count(conditions: conditions)
+
       resort.save
     end
 
