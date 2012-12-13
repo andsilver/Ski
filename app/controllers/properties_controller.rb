@@ -1,5 +1,3 @@
-InterhomeBooking = Struct.new(:arrival_day, :arrival_month, :arrival_date, :duration, :adults, :children, :babies)
-
 class PropertiesController < ApplicationController
   include SpamProtection
 
@@ -164,7 +162,7 @@ class PropertiesController < ApplicationController
     @property = @accommodation.property
 
     arrival = Date.today
-    @interhome_booking = InterhomeBooking.new(arrival.to_s[8..9], arrival.to_s[0..6], arrival, 7, 2, 0, 0)
+    @interhome_booking = Interhome::Booking.new(arrival.to_s[8..9], arrival.to_s[0..6], arrival, 7, 2, 0, 0)
 
     show_shared
   end
@@ -208,10 +206,10 @@ class PropertiesController < ApplicationController
       return if make_interhome_booking(details)
     end
 
-    @availability = InterhomeWebServices.request('Availability', details)
+    @availability = Interhome::WebServices.request('Availability', details)
     if @availability.available?
-      @price_detail = InterhomeWebServices.request('PriceDetail', details)
-      @additional_services = InterhomeWebServices.request('AdditionalServices', details)
+      @price_detail = Interhome::WebServices.request('PriceDetail', details)
+      @additional_services = Interhome::WebServices.request('AdditionalServices', details)
     end
     render layout: false
   end
@@ -223,8 +221,8 @@ class PropertiesController < ApplicationController
   end
 
   def make_interhome_booking(details)
-    @conditions = InterhomeWebServices.request('CancellationConditions', details).conditions
-    @price_detail = InterhomeWebServices.request('PriceDetail', details)
+    @conditions = Interhome::WebServices.request('CancellationConditions', details).conditions
+    @price_detail = Interhome::WebServices.request('PriceDetail', details)
     @deposit = @price_detail.prepayment != '0'
     @amount = @deposit ? @price_detail.prepayment : @price_detail.total
     @amount_in_cents = (@amount.to_f * 100).to_i
@@ -239,7 +237,7 @@ class PropertiesController < ApplicationController
     details[:customer_address_place] = params[:customer_address_place]
     details[:customer_address_zip] = params[:customer_address_zip]
     details[:customer_address_country_code] = params[:customer_address_country_code]
-    @client_booking = InterhomeWebServices.request('ClientBooking', details)
+    @client_booking = Interhome::WebServices.request('ClientBooking', details)
     render('interhome_payment', layout: false)
   end
 
