@@ -237,7 +237,14 @@ class PropertiesController < ApplicationController
     details[:customer_address_place] = params[:customer_address_place]
     details[:customer_address_zip] = params[:customer_address_zip]
     details[:customer_address_country_code] = params[:customer_address_country_code]
+
     @client_booking = Interhome::WebServices.request('ClientBooking', details)
+
+    details[:booking_id] = @client_booking.booking_id
+    details[:property] = InterhomeAccommodation.find_by_permalink(params[:permalink]).property
+    details[:permalink] = params[:permalink]
+    details[:total] = @price_detail.total
+    InterhomeNotifier.booking_confirmation(details).deliver
     render('interhome_payment', layout: false)
   end
 

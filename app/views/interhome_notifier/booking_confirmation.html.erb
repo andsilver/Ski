@@ -1,0 +1,73 @@
+<p>
+  Dear <%= @details[:customer_salutation_type] %>
+  <%= @details[:customer_name] %>
+</p>
+
+<p>
+  Thank you for booking your holiday with MyChaletFinder. This email provides
+  summary details of your booking. You will receive by email further details
+  of your booking and invoice for any amount still outstanding within 24
+  hours from our booking partner.
+</p>
+
+<h2>Summary</h2>
+
+<p>
+  We have reserved for you:
+</p>
+<table>
+  <tr>
+    <th>Resort</th>
+    <td><%= @details[:property].resort %></td>
+  </tr>
+  <tr>
+    <th>Holiday apartment</th>
+    <td><%= @details[:property].name %></td>
+  </tr>
+  <tr>
+    <th>Booking ID</th>
+    <td><%= @details[:booking_id] %></td>
+  </tr>
+  <tr>
+    <th>Arrival date</th>
+    <td><%= @details[:check_in] %></td>
+  </tr>
+  <tr>
+    <th>Departure date</th>
+    <td><%= @details[:check_out] %></td>
+  </tr>
+  <tr>
+    <th>No. of adults</th>
+    <td><%= @details[:adults] %></td>
+  </tr>
+  <tr>
+    <th>No. of children</th>
+    <td><%= @details[:children] %></td>
+  </tr>
+  <tr>
+    <th>No. of babies</th>
+    <td><%= @details[:babies] %></td>
+  </tr>
+  <tr>
+    <th>Total cost</th>
+    <td><%= number_to_currency(@details[:total], unit: '€', precision: 2) %></td>
+  </tr>
+</table>
+
+<p>
+  Here is the direct link to your holiday apartment:
+  http://en.mychaletfinder.com/accommodation/<%= @details[:permalink] %>
+</p>
+
+<p>
+  In case of queries our booking partner is available 24/7 via their Service
+  Hotline +41 (0) 43 810 91 26.
+</p>
+<p>
+  If you need a transfer from the airport and have not already arranged this
+  yet, you can choose from one of our recommended
+  <a href="http://en.mychaletfinder.com/airport_transfers/find">airport
+    transfer partners</a>.
+</p>
+
+<p>We hope you have a great holiday!</p>
