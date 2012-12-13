@@ -35,7 +35,7 @@ class PropertiesController < ApplicationController
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
     @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_FOR_RENT}"
 
-    @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :satellite, :wifi,
+    @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :wifi,
       :disabled, :long_term_lets_available, :short_stays, :ski_in_ski_out]
 
     filter_duration
@@ -62,7 +62,7 @@ class PropertiesController < ApplicationController
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
     @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_FOR_RENT}"
 
-    @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :satellite, :wifi,
+    @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :wifi,
       :disabled, :long_term_lets_available, :short_stays, :ski_in_ski_out]
 
     filter_conditions
