@@ -1,4 +1,4 @@
 desc "Import properties from Interhome"
 task :interhome => :environment do
-  InterhomeImporter.import
+  Interhome::Importer.import
 end
