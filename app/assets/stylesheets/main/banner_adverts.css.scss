@@ -7,12 +7,24 @@
     width: 247px;
   }
 
-  .first-third {
+  .first-third, .first-third-photo-shadow {
     margin: 8px 8px 0 0;
   }
 
-  .last-third {
+  .first-third-photo-shadows {
+    margin-right: 8px;
+  }
+
+  .last-third, .last-third-photo-shadow {
     margin: 8px 0 0 8px;
+  }
+
+  .last-third-photo-shadows {
+    margin-left: 8px;
+  }
+
+  .first-third-photo-shadows div, .last-third-photo-shadows div {
+    margin-top: 8px;
   }
 
   .first-two-thirds, .last-two-thirds {
@@ -25,11 +37,12 @@
     padding: 2px 12px;
   }
 
-  .first-third-photo-shadow, .wide-photo-shadow {
+  .first-third-photo-shadow, .first-third-photo-shadows, .wide-photo-shadow {
     clear: left;
   }
 
-  .first-third-photo-shadow, .last-third-photo-shadow, .wide-photo-shadow {
+  .first-third-photo-shadow, .last-third-photo-shadow, .wide-photo-shadow,
+  .first-third-photo-shadows div, .last-third-photo-shadows div {
     box-shadow: inset 0 12px 12px -12px #000,
     inset 0 -12px 12px -12px #000;
     position: relative;
@@ -55,17 +68,9 @@
     margin: 8px 0;
   }
 
-  .first-third-photo-shadow, .last-third-photo-shadow {
+  .first-third-photo-shadow, .last-third-photo-shadow, .first-third-photo-shadows, .last-third-photo-shadows {
     width: 271px;
     float: left;
-  }
-
-  .first-third-photo-shadow {
-    margin: 8px 8px 0 0;
-  }
-
-  .last-third-photo-shadow {
-    margin: 8px 0 0 8px;
   }
 
   section h2.coloured {
