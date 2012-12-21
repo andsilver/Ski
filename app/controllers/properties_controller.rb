@@ -161,6 +161,12 @@ class PropertiesController < ApplicationController
     not_found and return if @accommodation.nil?
     @property = @accommodation.property
 
+    if @property.nil?
+      @accommodation.destroy
+      not_found
+      return
+    end
+
     arrival = Date.today
     @interhome_booking = Interhome::Booking.new(arrival.to_s[8..9], arrival.to_s[0..6], arrival, 7, 2, 0, 0)
 

@@ -193,6 +193,7 @@ module Interhome
 
       unless property.save
         Rails.logger.info(property.errors.to_s)
+        accommodation.destroy
         return
       end
 
