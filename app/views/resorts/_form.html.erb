@@ -10,13 +10,6 @@
   </div>
 <% end %>
 
-<% unless @resort.new_record? %>
-<div class="well">
-<h2>Image</h2>
-<p><%= link_to 'Change image for this resort', new_image_path %> (changes made on this page will not be saved)</p>
-</div>
-<% end %>
-
 <%= form_for @resort do |f| %>
 <div class="form-horizontal">
   <div class="control-group">

@@ -3,7 +3,7 @@ class Resort < ActiveRecord::Base
     :black, :blue, :cable_car, :chair, :country_id, :creche,
     :cross_country_km, :drags, :expert, :family, :feature, :featured, :funicular,
     :gallery_content, :glacier_skiing, :gondola, :green, :heli_skiing,
-    :image_id, :info, :insider_view, :intermediate,
+    :info, :insider_view, :intermediate,
     :introduction, :living_in, :local_area, :longest_run_km,
     :mountain_restaurants, :name, :off_piste, :owning_a_property_in,
     :piste_map_content, :railways, :red, :season, :ski_area_km,
@@ -11,7 +11,6 @@ class Resort < ActiveRecord::Base
     :summer_skiing, :top_lift_m, :weather_code, :visible, :visiting
 
   belongs_to :country
-  belongs_to :image, dependent: :destroy
 
   has_many :properties, dependent: :nullify
   has_many :order_lines
