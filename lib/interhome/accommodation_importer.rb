@@ -9,7 +9,7 @@ module Interhome
     XML_FILENAME = 'accommodation.xml'
 
     def ftp_get
-      InterhomeFTP.get(XML_FILENAME)
+      FTP.get(XML_FILENAME)
     end
 
     # Splits the large Interhome XML file into a number of smaller files and

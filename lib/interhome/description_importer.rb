@@ -12,7 +12,7 @@ module Interhome
     # Gets the zipped XML file from the Interhome FTP server and
     # decompresses it.
     def ftp_get
-      InterhomeFTP.get(xml_filename)
+      FTP.get(xml_filename)
     end
 
     # Splits the large Interhome XML file into a number of smaller files and
