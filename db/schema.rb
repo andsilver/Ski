@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110141248) do
+ActiveRecord::Schema.define(:version => 20130110155133) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -501,6 +501,26 @@ ActiveRecord::Schema.define(:version => 20130110141248) do
     t.datetime "updated_at"
     t.integer  "discount_amount",         :default => 0, :null => false
   end
+
+  create_table "pv_vacancies", :force => true do |t|
+    t.string   "destination_code",                                :null => false
+    t.string   "apartment_code",                                  :null => false
+    t.integer  "typology"
+    t.date     "start_date",                                      :null => false
+    t.integer  "duration",                                        :null => false
+    t.integer  "stock_quantity",                                  :null => false
+    t.decimal  "base_price",       :precision => 10, :scale => 2, :null => false
+    t.decimal  "promo_price_fr",   :precision => 10, :scale => 2, :null => false
+    t.decimal  "promo_price_en",   :precision => 10, :scale => 2, :null => false
+    t.decimal  "promo_price_de",   :precision => 10, :scale => 2, :null => false
+    t.decimal  "promo_price_nl",   :precision => 10, :scale => 2, :null => false
+    t.decimal  "promo_price_es",   :precision => 10, :scale => 2, :null => false
+    t.decimal  "promo_price_it",   :precision => 10, :scale => 2, :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+  end
+
+  add_index "pv_vacancies", ["destination_code", "apartment_code"], :name => "index_pv_vacancies_on_destination_code_and_apartment_code"
 
   create_table "resorts", :force => true do |t|
     t.integer  "country_id",             :default => 0,     :null => false
