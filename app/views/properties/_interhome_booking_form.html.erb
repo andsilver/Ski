@@ -1,0 +1,318 @@
+<script>
+function submit(extraValues) {
+  var valuesToSubmit = $('#booking_form form').serialize() + extraValues;
+  $('#booking_results').replaceWith('<div id="booking_results"></div>');
+  $('#checking').modal('show');
+  $.ajax({
+    url: '/properties/check_interhome_booking',
+    type: 'POST',
+    data: valuesToSubmit
+  }).success(function(data) {
+    $('#booking_results').replaceWith(data);
+    $('#checking').modal('hide');
+    if(data.indexOf('unavailable') == -1) {
+      $('#collapse2').collapse('show');
+      var new_position = $('#collapse_heading2').offset();
+      window.scrollTo(new_position.left, new_position.top);
+    } else {
+      $('#collapse1').collapse('show');
+      var new_position = $('#collapse_heading1').offset();
+      window.scrollTo(new_position.left, new_position.top);
+      $('#unavailable').modal('show');
+    }
+  }).error(function(data) {
+    $('#checking').modal('hide');
+    $('#retry_modal').modal('show');
+    $('#retry').click(
+      function() {
+        $('#retry_modal').modal('hide');
+        submitCheck();
+      }
+    );
+  });
+  return false;
+}
+
+function submitCheck() {
+  submit('');
+}
+
+function isValidEmailAddress(emailAddress) {
+  var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+  return pattern.test(emailAddress);
+}
+
+function submitBooking() {
+  if($('#customer_salutation_type').val() == '') {
+    alert('Please choose your title from the list.');
+    $('#customer_salutation_type').focus();
+    return;
+  }
+  if($('#customer_first_name').val() == '') {
+    alert('Please enter your first name.');
+    $('#customer_first_name').focus();
+    return;
+  }
+  if($('#customer_name').val() == '') {
+    alert('Please enter your surname.');
+    $('#customer_name').focus();
+    return;
+  }
+  email = $('#customer_email').val();
+  if(email == '') {
+    alert('Please enter your email address.');
+    $('#customer_email').focus();
+    return;
+  }
+  emailConfirmation = $('#customer_email_confirmation').val();
+  if(email != emailConfirmation) {
+    alert('Please check and confirm that your email address is correct.');
+    $('#customer_email_confirmation').focus();
+    return;
+  }
+  if(!isValidEmailAddress(email)) {
+    alert('Please enter a valid email address.');
+    $('#customer_email').focus();
+    return;      
+  }
+  if(email.length > 69) {
+    alert('Please enter an email address under 70 characters long.');
+    $('#customer_email').focus();
+    return;      
+  }
+  if($('#customer_address_street').val() == '') {
+    alert('Please enter the first line of your address.');
+    $('#customer_address_street').focus();
+    return;
+  }
+  if($('#customer_address_place').val() == '') {
+    alert('Please enter the town/city of your address.');
+    $('#customer_address_place').focus();
+    return;
+  }
+  if($('#customer_address_zip').val() == '') {
+    alert('Please enter your postcode/ZIP.');
+    $('#customer_address_zip').focus();
+    return;
+  }
+  if($('#customer_address_country_code').val() == '') {
+    alert('Please choose your country from the list.');
+    $('#customer_address_country_code').focus();
+    return;
+  }
+  if(!$('#terms_accepted').is(':checked')) {
+    alert('You must accept Interhome\'s terms and conditions before you can make a booking.');
+    $('#terms_accepted').focus();
+    return;
+  }
+  submit('&submit=Book');
+}
+
+function updateDayOfMonthSelect() {
+  var valuesToSubmit = 'year_month=' + $('#interhome_booking_arrival_month').val();
+  $.ajax({
+    url: '/properties/update_day_of_month_select',
+    type: 'GET',
+    data: valuesToSubmit
+  }).success(function(data) {
+    $('#day-of-month').replaceWith(data);
+    if(window.selectDay) {
+      $('#interhome_booking_arrival_day').val(selectDay);
+      window.selectDay = 0;
+    }
+    submitCheck();
+  }).error(function(data) {
+    $('#day-of-month').replaceWith('<span id="day-of-month"><h2>An error occurred. Please <a id="retry-day-of-month">try again</a>.</h2></div>');
+    $('#retry-day-of-month').click(updateDayOfMonthSelect);
+  });
+  return false;
+}
+
+$(function() {
+  $(".collapse").collapse({parent: '#accordion', toggle: false});
+  $('td[rel=popover]').popover();
+
+  $('#booking_form').on('change', '.trigger-update input', submitCheck);
+  $('#booking_form').on('change', '.trigger-update select', submitCheck);
+  $('#booking_form').on('change', '#interhome_booking_arrival_month', updateDayOfMonthSelect);
+  $('#booking_form').submit(function() { submitBooking(); return false; });
+  $('.month .availability-Y').click(function() {
+    window.selectDay = $(this).data('day');
+    $('#interhome_booking_arrival_month').val($(this).data('month'));
+    var new_position = $('#booking_results').offset();
+    window.scrollTo(new_position.left, new_position.top);
+    $('#interhome_booking_arrival_month').change();
+  });
+
+  $('#later').click(function() {
+    if($('.month:visible').last().next('.month').length) {
+      a = $('.month:visible').last().next('.month');
+      b = a.next();
+      c = b.next();
+      $('.month:visible').hide();
+      a.show();
+      b.show();
+      c.show();
+    }
+    return false;
+  });
+
+  $('#earlier').click(function() {
+    if($('.month:visible').first().prev('.month').length) {
+      a = $('.month:visible').first().prev('.month');
+      b = a.prev();
+      c = b.prev();
+      $('.month:visible').hide();
+      a.show();
+      b.show();
+      c.show();
+    }
+    return false;
+  });
+});
+</script>
+<div class="modal hide fade" id="checking">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Checking...</h3>
+  </div>
+  <div class="modal-body">
+    <p>We're checking the availability, prices and options for your selection...</p>
+    <div class="progress progress-striped active">
+      <div class="bar" style="width: 100%;"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal hide fade" id="retry_modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Oops</h3>
+  </div>
+  <div class="modal-body">
+    <p>An error occurred. Please <a id="retry">try again</a>.</p>
+  </div>
+</div>
+
+<div class="modal hide fade" id="unavailable">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Property unavailable</h3>
+  </div>
+  <div class="modal-body">
+    <p>The property is unavailable for the dates you have requested.</p>
+  </div>
+</div>
+
+
+<div id="booking_form">
+<%= form_tag action: 'check_interhome_booking', id: @property.id do |form| %>
+<% cal = InterhomeCalendar.new(@accommodation.interhome_vacancy) %>
+<section>
+  <h2 class="coloured">Book your holiday</h2>
+  <p>
+    Booking your summer or skiing holiday with MyChaletFinder is safe, simple and fast.
+  </p>
+</section>
+<div class="accordion" id="accordion">
+  <div class="accordion-group">
+    <div class="accordion-heading" id="collapse_heading1">
+      <h2 style="line-height: 20px;"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">1. Check availability</a></h2>
+    </div>
+    <div id="collapse1" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        <div class="well">
+          <div class="btn-group">
+            <button class="btn" id="earlier"><i class="icon-backward"></i> Earlier</button>
+            <button class="btn" id="later">Later <i class="icon-forward"></i></button>
+          </div><!--.btn-group-->
+          <br>
+<%
+today = Date.today
+month = today.month
+year = today.year
+hide = false
+15.times do |i|
+%>
+  <div class="month" id="month<%= month %><%= year %>"
+    data-month="<%= month %>" data-year="<%= year %>"
+    <%= ' style="display: none;"'.html_safe if hide %>>
+    <%= raw cal.show_month(month, year) %>
+  </div><!--.month-->
+  <% hide = true if (i + 1) % 3 == 0 %>
+<%
+  month += 1
+  if month == 13
+    month = 1
+    year += 1
+  end
+end
+%>
+          <%= clear %>
+          <section class="calendar-key">
+            <h4>Key</h4>
+            <table class="interhome-calendar">
+              <tr>
+                <td class="availability-Y">Available</td>
+                <td class="availability-Y-no-check-in" rel="popover" data-original-title="No check-in" data-content="Some of our holiday rentals only accept arrivals on certain dates even though the property may be free on other days. Arrival dates are shown on the calendar as the dark green squares."><i class="icon-info-sign icon-white"></i> No check-in</td>
+                <td class="availability-N">Unavailable</td>
+                <td class="availability-Q">Booking possible only on request</td>
+              </tr>
+            </table>
+          </section>
+        </div><!--.well-->
+      </div><!--.accordion-inner-->
+    </div><!--.accordion-body-->
+  </div><!--.accordion-group-->
+  <div class="accordion-group">
+    <div class="accordion-heading" id="collapse_heading2">
+      <h2 style="line-height: 20px;"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">2. Customise your stay</a></h2>
+    </div>
+    <div id="collapse2" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <div class="well">
+          <input type="hidden" name="permalink" value="<%= params[:permalink] %>">
+          <span class="trigger-update">
+            <label>Date of arrival</label>
+            <span id="day-of-month">
+              <%= select('interhome_booking', 'arrival_day', booking_days(@interhome_booking.arrival_date.month, @interhome_booking.arrival_date.year)) %>
+            </span>
+          </span>
+          <%= select('interhome_booking', 'arrival_month', booking_months) %>
+          <div class="trigger-update">
+            <label>Duration of stay</label>
+            <%= select('interhome_booking', 'duration', booking_durations) %>
+            <h3>Travellers</h3>
+            <div class="row">
+              <div class="span2">
+                <label>
+                  Adults
+                  <input type="text" id="interhome_booking_adults" name="interhome_booking[adults]" value="<%= @interhome_booking.adults %>" class="span1">
+                </label>
+              </div>
+              <div class="span2">
+                <label>
+                  Children (3-12 years)
+                  <input type="text" id="interhome_booking_children" name="interhome_booking[children]" value="<%= @interhome_booking.children %>" class="span1">
+                </label>
+              </div>
+              <div class="span2">
+                <label>
+                  Babies (0-2 years)
+                  <input type="text" id="interhome_booking_babies" name="interhome_booking[babies]" value="<%= @interhome_booking.babies %>" class="span1">
+                </label>
+              </div>
+            </div><!--.row-->
+          </div><!--.trigger-update-->
+          <div id="booking_results">
+            <p>
+              Please select your dates of travel.
+            </p>
+          </div>
+        </div><!--.well-->
+      </div><!--.accordion-inner-->
+    </div><!--.accordion-body-->
+  </div><!--.accordion-group-->
+</div><!--#accordion-->
+<% end %>
+</div><!--#booking_form-->
