@@ -126,6 +126,7 @@ en:
     exchange_rates_updated: 'Exchange rates updated.'
   date:
     formats:
+      long: "%d %B %Y"
       short: "%d %b %Y"
   delete: 'Delete'
   description: 'Description'

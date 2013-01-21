@@ -5,8 +5,8 @@
   <div style="padding: 10px; background: #fff;">
   <table class="table">
     <tr>
-      <td><strong>Travel period</strong></td>
-      <td style="text-align: right;"><strong><%= @availability.start_date %> - <%= @availability.end_date %></strong></td>
+      <td>Travel period</td>
+      <td style="text-align: right;"><%= l(Date.parse(@availability.start_date), format: :long) %>&#8211;<%= l(Date.parse(@availability.end_date), format: :long) %></td>
     </tr>
     <tr>
       <td>Travellers</td>
@@ -24,7 +24,7 @@
 <% if @price_detail.prepayment == '0' -%>
     <tr>
       <td>Payment to be made by</td>
-      <td style="text-align: right;"><%= l(Date.parse(@price_detail.expiration_residue), format: :short) %></td>
+      <td style="text-align: right;"><%= l(Date.parse(@price_detail.expiration_residue), format: :long) %></td>
     </tr>
 <% else -%>
     <tr>
@@ -33,11 +33,11 @@
     </tr>
     <tr>
       <td>Deposit to be paid by</td>
-      <td style="text-align: right;"><%= l(Date.parse(@price_detail.expiration_pre_payment), format: :short) %></td>
+      <td style="text-align: right;"><%= l(Date.parse(@price_detail.expiration_pre_payment), format: :long) %></td>
     </tr>
     <tr>
       <td>Balance remaining to be paid by</td>
-      <td style="text-align: right;"><%= l(Date.parse(@price_detail.expiration_residue), format: :short) %></td>
+      <td style="text-align: right;"><%= l(Date.parse(@price_detail.expiration_residue), format: :long) %></td>
     </tr>
 <% end -%><!--/ payment/prepayment-->
   </table>
