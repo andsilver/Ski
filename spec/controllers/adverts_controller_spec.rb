@@ -43,6 +43,7 @@ describe AdvertsController do
   describe "GET basket" do
     before do
       current_user.stub(:adverts_in_basket).and_return []
+      current_user.stub(:apply_price_override?).and_return(false)
       website.stub(:vat_for).and_return 0
     end
 
@@ -79,6 +80,7 @@ describe AdvertsController do
     before do
       website.stub(:vat_for).and_return 0
       current_user.stub(:adverts_in_basket).and_return([])
+      current_user.stub(:apply_price_override?).and_return(false)
     end
 
     context "with adverts in the basket" do

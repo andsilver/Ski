@@ -77,7 +77,7 @@ class AdvertsController < ApplicationController
     @order.total = @total
     @order.tax_amount = @tax_amount
     @order.tax_description = @current_user.tax_description
-    @order.sterling_in_euros = Currency.find_by_code('GBP').in_euros
+    @order.sterling_in_euros = Currency.sterling_in_euros
     if @order.total == 0
       @order.status = Order::PAYMENT_NOT_REQUIRED
     else

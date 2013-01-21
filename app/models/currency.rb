@@ -2,6 +2,11 @@ require 'csv'
 require 'open-uri'
 
 class Currency < ActiveRecord::Base
+  def self.sterling_in_euros
+    gbp = find_by_code('GBP')
+    gbp ? gbp.in_euros : 0
+  end
+
   def self.update_exchange_rates
     currencies = Currency.all
     return if currencies.empty?
