@@ -164,6 +164,25 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def valid_image_file?
+    return true if needs_downloading?
+    return true unless extension == 'jpg'
+
+    begin
+      File.open(original_path, "rb") do |file|
+        b1 = file.readbyte
+        b2 = file.readbyte
+        b3 = file.readbyte
+        gif = b1 == 0x47 && b2 == 0x49 && b3 == 0x46
+        jpg = b1 == 0xff && b2 == 0xd8
+        png = b1 == 0x89 && b2 == 0x50 && b3 == 0x4e
+        return gif || jpg || png
+      end
+    rescue
+      false
+    end
+  end
+
   # Deletes the file(s) by removing the whole directory.
   def delete_files
     unless id.nil?
@@ -172,6 +191,7 @@ class Image < ActiveRecord::Base
     end
   end
 
+  # Deletes resized versions hosted on Amazon S3.
   def s3_delete_files
     s3 = AWS::S3.new
     bucket = s3.buckets[s3_bucket_name]
