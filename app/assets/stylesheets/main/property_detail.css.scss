@@ -10,6 +10,10 @@
   font-size: 1.3em;
 }
 
+.interhome-features .column:nth-child(4n+5) {
+  clear: left;
+}
+
 #features .column {
   width: 160px;
   float: left;
