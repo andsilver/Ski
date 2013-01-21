@@ -199,13 +199,14 @@ module Interhome
 
       accommodation.interhome_pictures.each do |picture|
         image = Image.find_by_property_id_and_source_url(property.id, picture.url)
-        next if image
 
-        image = Image.new
-        image.user_id = @interhome.id
-        image.source_url = picture.url
-        image.property_id = property.id
-        image.save
+        if image.nil?
+          image = Image.new
+          image.user_id = @interhome.id
+          image.source_url = picture.url
+          image.property_id = property.id
+          image.save
+        end
 
         if picture.picture_type == 'm'
           property.image_id = image.id
