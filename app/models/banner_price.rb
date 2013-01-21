@@ -1,4 +1,6 @@
 class BannerPrice < ActiveRecord::Base
+  attr_accessible :current_banner_number, :price
+
   validates_uniqueness_of :current_banner_number
   validates_uniqueness_of :price
 

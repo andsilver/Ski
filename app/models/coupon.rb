@@ -1,4 +1,6 @@
 class Coupon < ActiveRecord::Base
+  attr_accessible :code, :expires_on, :number_of_adverts, :percentage_off
+
   has_many :users, dependent: :nullify
   has_many :order_lines
 
