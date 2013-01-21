@@ -8,7 +8,7 @@ describe PropertiesController do
 
   before do
     Website.stub(:first).and_return(website)
-    Resort.stub(:find).and_return(resort)
+    Resort.stub(:find_by_id).and_return(resort)
     non_admin_role.stub(:admin?).and_return(false)
   end
 
@@ -18,14 +18,14 @@ describe PropertiesController do
         controller.stub(:admin?).and_return(true)
       end
 
-      it "finds all properties" do
-        Property.should_receive(:all)
+      it "finds a page of properties" do
+        Property.should_receive(:paginate)
         get :index
       end
 
       it "assigns @properties" do
         properties = [Property.new]
-        Property.stub(:all).and_return(properties)
+        Property.stub(:paginate).and_return(properties)
         get :index
         assigns(:properties).should eq(properties)
       end
