@@ -9,6 +9,12 @@
       <td style="text-align: right;"><strong><%= @availability.start_date %> - <%= @availability.end_date %></strong></td>
     </tr>
     <tr>
+      <td>Travellers</td>
+      <td style="text-align: right;">
+        <%= pluralize(@adults, 'adult') %>, <%= pluralize(@children, 'child') %>, <%= pluralize(@babies, 'baby') %>
+      </td>
+    </tr>
+    <tr>
       <td><strong>Rental price</strong></td>
       <td style="text-align: right;"><strong><%= number_to_currency(@price_detail.price, unit: '€', precision: 2) %></strong></td>
     </tr>
