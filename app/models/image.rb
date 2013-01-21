@@ -154,7 +154,9 @@ class Image < ActiveRecord::Base
       require 'net/http'
       uri = URI.parse(source_url)
       Net::HTTP.start(uri.host, uri.port) do |http|
-        resp = http.get(uri.path)
+        to_get = uri.path
+        to_get = "#{to_get}?" + uri.query unless uri.query == ''
+        resp = http.get(to_get)
         open(original_path, "wb") do |file|
           file.write(resp.body)
         end
