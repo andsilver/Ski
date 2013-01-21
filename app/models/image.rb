@@ -24,7 +24,7 @@ class Image < ActiveRecord::Base
     elsif !source_url.blank?
       self.filename = 'image.jpg'
     else
-      raise "No file data."
+      raise "No file data." if new_record?
     end
   end
 
