@@ -140,7 +140,11 @@ class Image < ActiveRecord::Base
   end
 
   def download_from_source_if_needed
-    download_from_source unless FileTest.exists?(original_path) or source_url.blank?
+    download_from_source if needs_downloading?
+  end
+
+  def needs_downloading?
+    !(FileTest.exists?(original_path) || source_url.blank?)
   end
 
   def download_from_source

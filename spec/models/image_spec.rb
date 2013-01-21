@@ -90,4 +90,26 @@ describe Image do
       end
     end
   end
+
+  describe "#needs_downloading?" do
+    it "returns true if the file doesn't exist and the source URL is not blank" do
+      i = Image.new
+      i.source_url = 'http://www.example.org/image.jpeg'
+      FileTest.stub(:exists?).and_return(false)
+      i.needs_downloading?.should be_true
+    end
+
+    it "returns false if the file exists" do
+      i = Image.new
+      i.source_url = 'http://www.example.org/image.jpeg'
+      FileTest.stub(:exists?).and_return(true)
+      i.needs_downloading?.should be_false
+    end
+
+    it "returns false if the source URL is blank" do
+      i = Image.new
+      FileTest.stub(:exists?).and_return(true)
+      i.needs_downloading?.should be_false
+    end
+  end
 end
