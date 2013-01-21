@@ -154,10 +154,6 @@ MySkiChalet::Application.routes.draw do
   end
   match "welcome/:role" => "roles#sales_pitch", :as => :sales_pitch
 
-  resources :uploads do
-    delete 'delete_file', :on => :collection
-  end
-
   resources :websites
   match 'cms/directory-price' => 'websites#edit_prices', as: :directory_price
 

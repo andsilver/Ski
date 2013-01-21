@@ -199,7 +199,6 @@ This is a list of pages in the website.
 /sign_in
 /sign_out
 /sign_up
-/uploads
 /users
 /users/new
 /users/:id/edit
