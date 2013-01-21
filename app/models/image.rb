@@ -10,6 +10,7 @@ class Image < ActiveRecord::Base
   after_destroy :delete_files
 
   belongs_to :property
+  belongs_to :user
 
   def image=(file_data)
     unless file_data.kind_of? String and file_data.empty?
