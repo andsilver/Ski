@@ -1,34 +1,43 @@
 <% if @directory_adverts.empty? %>
 <p>No results for <%= t(@category.name) %> in <%= @resort.name %>.</p>
 <% else %>
-<table id="directory_adverts">
-  <thead>
-    <tr>
-      <th>&nbsp;</th>
-      <th><%= t 'business' %></th>
-      <th><%= t 'description' %></th>
-      <th><%= t 'contact_details' %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @directory_adverts.each do |da| %>
-    <tr>
-      <td>
+<ul class="directory-advert-summaries">
+<% @directory_adverts.each do |da| %>
+  <li>
+    <div class="logo-space">
       <% if da.image %>
       <div class="user_logo">
         <%= link_to_unless(da.description.blank?, "<img src=\"#{h(da.image.url(85))}\">".html_safe, da) %>
       </div>
       <% end %>
-      </td>
-      <td><%= link_to_unless(da.description.blank?, da.business_name, da) %></td>
-      <td><%= da.strapline %></td>
-      <td>
+    </div>
+    <div class="business-name">
+      <h3>
+        <%= da.business_name %>
+      </h3>
+      <p class="strapline">
+        <%= da.strapline %>
+      </p>
+    </div>
+    <div class="contact-details">
+      <h3>
+        Contact Details
+      </h3>
+      <p>
         <%= da.business_address %><br>
-        <%= da.phone %><br>
-        <%= link_to da.url, da.url %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+        <%= da.phone %>
+      </p>
+    </div>
+    <div class="more-info">
+      <% unless da.description.blank? %>
+      <div><%= link_to 'More Info <i class="icon-arrow-right"></i>'.html_safe, da, class: 'btn' %></div>
+      <% end %>
+      <% unless da.url.blank? %>
+      <div><%= link_to 'Visit Website <i class="icon-arrow-right"></i>'.html_safe, da.url, class: 'btn' %></div>
+      <% end %>
+    </div>
+    <%= clear %>
+  </li>
+<% end %>
+</ul>
 <% end %>
