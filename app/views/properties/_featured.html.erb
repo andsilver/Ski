@@ -6,6 +6,9 @@
                 <% end %>
               </div>
               <p class="resort-name"><%= p.resort %></p>
+<% if p.for_rent? -%>
+              <p class="sleeps">Sleeps <%= p.sleeping_capacity %></p>
+<% end -%>
               <p class="price"><%= p.for_sale? ? t('sale_price') : t('properties.weekly_price_from') %><br>
                 <span><%= p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
               </p>
