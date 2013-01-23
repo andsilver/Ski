@@ -376,6 +376,7 @@ en:
     titles:
       browse_for_rent: "Chalets and Apartments for Rent in %{resort}"
       browse_for_sale: "Chalets and Apartments for Sale in %{resort}"
+      edit: 'Edit Property'
       hotels: "Hotels in %{resort}"
       new: New Property
       new_developments: "New Property Developments in %{resort}"

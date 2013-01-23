@@ -274,6 +274,7 @@ class PropertiesController < ApplicationController
   end
 
   def edit
+    default_page_title t('properties.titles.edit')
     set_image_mode
   end
 

@@ -375,6 +375,7 @@ fr:
     titles:
       browse_for_sale: "Propriétés à Louer à %{resort}"
       browse_for_sale: "Propriétés à Vendre à %{resort}"
+      edit: 'Modifier la Propriété'
       hotels: "Hotels in %{resort}"
       new: Nouvelle Propriété
       new_developments: "Développements Nouvelle Propriété à %{resort}"

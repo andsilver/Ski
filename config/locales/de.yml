@@ -375,6 +375,7 @@ de:
     titles:
       browse_for_rent: "Properties for Rent in %{resort}"
       browse_for_sale: "Properties for Sale in %{resort}"
+      edit: 'Bearbeiten Immobilien'
       hotels: "Hotels in %{resort}"
       new: New Property
       new_developments: "New Property Developments in %{resort}"

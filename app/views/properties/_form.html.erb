@@ -16,15 +16,15 @@ $(document).ready(function() {
 </script>
 
 <% if @property.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+<div id="error_explanation">
+  <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
 
-    <ul>
-    <% @property.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
+  <ul>
+  <% @property.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
 <% end %>
 
 <%= form_for @property do |f| %>
@@ -32,309 +32,304 @@ $(document).ready(function() {
 
 <div id="panel_1">
 
-<div class="group_panel">
-<div class="field">
-  <div class="field_left">
-    <%= f.label :name, t('property_name') %>
+  <div class="well">
+    <div class="form-horizontal">
+      <div class="control-group">
+        <%= f.label :name, t('property_name'), class: 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :name %> <%= required_field %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="field_right">
-    <%= f.text_field :name %> <%= required_field %>
-  </div>
-</div>
-<%= clear %>
-</div>
 
-<% unless @property.new_record? %>
-<div class="group_panel">
-<h2>Images</h2>
-<p><%= link_to 'Add or remove images for this property', new_image_path %> (changes made on this page will not be saved)</p>
-<% unless @property.images.empty? %>
-<div class="field">
-  <%= f.label :image_id, t('main_image') %><br>
-  <%= select("property", "image_id", (@property.images.collect {|i| [ i.filename, i.id ] }).sort, {prompt: 'Select Image'}) %>
-</div>
-<% end %>
-</div>
-<% end %>
+  <% unless @property.new_record? %>
+  <div class="well">
+    <h2>Images</h2>
+    <p>
+      <%= link_to 'Add or remove images for this property', new_image_path %>
+      (changes made on this page will not be saved)
+    </p>
+    <% unless @property.images.empty? %>
+    <%= f.label :image_id, t('main_image') %>
+    <%= select("property", "image_id", (@property.images.collect {|i| [ i.filename, i.id ] }).sort, {prompt: 'Select Image'}) %>
+    <% end %>
+  </div>
+  <% end %>
 
-<% if @current_user.role.flag_new_development? or @property.for_rent? %>
-<div class="group_panel">
-<% if @current_user.role.flag_new_development? %>
-<div class="field">
-  <%= f.check_box :new_development %>
-  <%= f.label :new_development, t('properties.features.new_development') %>
-</div>
-<% end %>
-<% if @property.for_rent? %>
-<div class="field">
-  <%= f.check_box :long_term_lets_available %>
-  <%= f.label :long_term_lets_available, t('properties.features.long_term_lets_available') %>
-</div>
-<div class="field">
-  <%= f.check_box :short_stays %>
-  <%= f.label :short_stays, t('properties.features.short_stays') %>
-</div>
-<% end %>
-</div>
-<% end %>
+  <% if @current_user.role.flag_new_development? or @property.for_rent? %>
+  <div class="well">
+    <% if @current_user.role.flag_new_development? %>
+    <label class="checkbox">
+      <%= f.check_box :new_development %>
+      <%= t('properties.features.new_development') %>
+    </label>
+    <% end %>
+    <% if @property.for_rent? %>
+    <label class="checkbox">
+      <%= f.check_box :long_term_lets_available %>
+      <%= t('properties.features.long_term_lets_available') %>
+    </label>
+    <label class="checkbox">
+      <%= f.check_box :short_stays %>
+      <%= t('properties.features.short_stays') %>
+    </label>
+    <% end %>
+  </div>
+  <% end %>
 
-<div class="group_panel">
-<div class="field">
-  <div class="field_left">
-    <%= f.label :resort_id, I18n.t('resort') %>
-  </div>
-  <div class="field_right">
-    <%= select("property", "resort_id", (Resort.where(visible: true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: t('properties.select_resort')}) %> <%= required_field %>
-  </div>
-</div>
-<% if @property.hotel? -%>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :star_rating, t('properties.star_rating') %>
-  </div>
-  <div class="field_right">
-    <%= select("property", "star_rating", Range.new(1, 5).collect {|sr| [pluralize(sr, 'star'), sr]}, {prompt: 'Choose'}) %>
-  </div>
-</div>
-<% end -%>
-<% if @property.for_sale? or @property.for_rent? -%>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :accommodation_type, t('properties.accommodation_type') %>
-  </div>
-  <div class="field_right">
-    <select id="property_accommodation_type" name="property[accommodation_type]">
-      <% [Property::ACCOMMODATION_TYPE_CHALET, Property::ACCOMMODATION_TYPE_APARTMENT].each do |value| %>
-      <option value="<%= value %>"<%= ' selected="selected"' if @property.accommodation_type==value %>><%= Property.accommodation_type_description(value) %></option>
+  <div class="well">
+    <div class="form-horizontal">
+      <div class="control-group">
+        <%= f.label :resort_id, I18n.t('resort'), class: 'control-label' %>
+        <div class="controls">
+          <%= select("property", "resort_id", (Resort.where(visible: true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: t('properties.select_resort')}) %> <%= required_field %>
+        </div>
+      </div>
+      <% if @property.hotel? %>
+      <div class="control-group">
+        <%= f.label :star_rating, t('properties.star_rating'), class: 'control-label' %>
+        <div class="controls">
+          <%= select("property", "star_rating", Range.new(1, 5).collect {|sr| [pluralize(sr, 'star'), sr]}, {prompt: 'Choose'}) %>
+        </div>
+      </div>
       <% end %>
-    </select>
-  </div>
-</div>
-<% else -%>
-<!-- not relevant -->
-<input id="property_accommodation_type" name="property[accommodation_type]"
-type="hidden" value="<%= Property::ACCOMMODATION_TYPE_CHALET %>">
-<% end -%>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :distance_from_town_centre_m, 'Distance from town centre' %>
-  </div>
-  <div class="field_right">
-    <%= select 'property', 'distance_from_town_centre_m', distance_options, {prompt: 'Choose'} %>
-  </div>
-</div>
+      <% if @property.for_sale? or @property.for_rent? %>
+      <div class="control-group">
+        <%= f.label :accommodation_type, t('properties.accommodation_type'), class: 'control-label' %>
+        <div class="controls">
+          <select id="property_accommodation_type" name="property[accommodation_type]">
+            <% [Property::ACCOMMODATION_TYPE_CHALET, Property::ACCOMMODATION_TYPE_APARTMENT].each do |value| -%>
+            <option value="<%= value %>"<%= ' selected="selected"' if @property.accommodation_type==value %>><%= Property.accommodation_type_description(value) %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      <% else %>
+      <!-- not relevant -->
+      <input id="property_accommodation_type" name="property[accommodation_type]"
+      type="hidden" value="<%= Property::ACCOMMODATION_TYPE_CHALET %>">
+      <% end %>
+      <div class="control-group">
+        <%= f.label :distance_from_town_centre_m, 'Distance from town centre', class: 'control-label' %>
+        <div class="controls">
+          <%= select 'property', 'distance_from_town_centre_m', distance_options, {prompt: 'Choose', class: 'narrow'} %>
+        </div>
+      </div>
 
-<div class="field">
-  <div class="field_left">
-    <%= f.label :metres_from_lift, t('nearest_lift') %>
-  </div>
-  <div class="field_right">
-    <%= select 'property', 'metres_from_lift', distance_options, {prompt: 'Choose'} %>
-  </div>
-</div>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :number_of_bedrooms, t('number_of_bedrooms') %>
-  </div>
-  <div class="field_right">
-    <%= select("property", "number_of_bedrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}) %>
-  </div>
-</div>
-<% if @property.for_rent? %>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :sleeping_capacity, t('sleeping_capacity') %>
-  </div>
-  <div class="field_right">
-    <%= select("property", "sleeping_capacity", ((1..30).collect {|n| [ n, n ] }), {prompt: 'Choose'}) %>
-  </div>
-</div>
-<% end %>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :number_of_bathrooms, t('number_of_bathrooms') %>
-  </div>
-  <div class="field_right">
-    <%= select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}) %>
-  </div>
-</div>
-<% if @property.for_rent? or @property.for_sale? -%>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :floor_area_metres_2, t('floor_area') %>
-  </div>
-  <div class="field_right">
-    <%= select("property", "floor_area_metres_2", floor_area_options, {prompt: 'Choose'}) %>
+      <div class="control-group">
+        <%= f.label :metres_from_lift, t('nearest_lift'), class: 'control-label' %>
+        <div class="controls">
+          <%= select 'property', 'metres_from_lift', distance_options, {prompt: 'Choose', class: 'narrow'} %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :number_of_bedrooms, t('number_of_bedrooms'), class: 'control-label' %>
+        <div class="controls">
+          <%= select("property", "number_of_bedrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'narrow') %>
+        </div>
+      </div>
+
+      <% if @property.for_rent? %>
+      <div class="control-group">
+        <%= f.label :sleeping_capacity, t('sleeping_capacity'), class: 'control-label' %>
+        <div class="controls">
+          <%= select("property", "sleeping_capacity", ((1..30).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'narrow') %>
+        </div>
+      </div>
+      <% end %>
+
+      <div class="control-group">
+        <%= f.label :number_of_bathrooms, t('number_of_bathrooms'), class: 'control-label' %>
+        <div class="controls">
+          <%= select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'narrow') %>
+        </div>
+      </div>
+
+      <% if @property.for_rent? or @property.for_sale? %>
+      <div class="control-group">
+        <%= f.label :floor_area_metres_2, t('floor_area'), class: 'control-label' %>
+        <div class="controls">
+          <%= select("property", "floor_area_metres_2", floor_area_options, {prompt: 'Choose'}, class: 'narrow') %>
+      square metres
+        </div>
+      </div>
+      <% end %>
+
+      <% if @property.for_sale? %>
+      <div class="control-group">
+        <%= f.label :plot_size_metres_2, t('plot_size'), class: 'control-label' %>
+        <div class="controls">
+          <%= select("property", "plot_size_metres_2", plot_size_options, {prompt: 'Choose'}, class: 'narrow') %>
     square metres
-  </div>
-</div>
-<% end -%>
-<% if @property.for_sale? %>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :plot_size_metres_2, t('plot_size') %>
-  </div>
-  <div class="field_right">
-    <%= select("property", "plot_size_metres_2", plot_size_options, {prompt: 'Choose'}) %>
-    square metres
-  </div>
-</div>
-<% end %>
-<%= clear %>
-</div>
+        </div>
+      </div>
+      <% end %>
 
-<div class="group_panel">
-<% if @property.for_rent? %>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :tv, t('properties.features.tv') %>
-  </div>
-  <div class="field_right">
-    <select id="property_tv" name="property[tv]">
-      <% [Property::TV_NO, Property::TV_YES, Property::TV_FREEVIEW, Property::TV_SATELLITE].each do |value| %>
-      <option value="<%= value %>"<%= ' selected="selected"' if @property.tv==value %>><%= Property.tv_description(value) %></option>
+    </div><!--.form-horizontal-->
+  </div><!--.well-->
+
+  <div class="well">
+    <div class="form-horizontal">
+      <% if @property.for_rent? %>
+      <div class="control-group">
+        <%= f.label :tv, t('properties.features.tv'), class: 'control-label' %>
+        <div class="controls">
+          <select id="property_tv" name="property[tv]">
+            <% [Property::TV_NO, Property::TV_YES, Property::TV_FREEVIEW, Property::TV_SATELLITE].each do |value| %>
+            <option value="<%= value %>"<%= ' selected="selected"' if @property.tv==value %>><%= Property.tv_description(value) %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :board_basis, t('properties.features.board_basis'), class: 'control-label' %>
+        <div class="controls">
+          <select id="property_board_basis" name="property[board_basis]">
+            <% [Property::BOARD_BASIS_SELF_CATERING, Property::BOARD_BASIS_BED_AND_BREAKFAST, Property::BOARD_BASIS_HALF_BOARD, Property::BOARD_BASIS_FULL_BOARD].each do |value| %>
+            <option value="<%= value %>"<%= ' selected="selected"' if @property.board_basis==value %>><%= Property.board_basis_description(value) %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
       <% end %>
-    </select>
+
+      <div class="control-group">
+        <%= f.label :parking, t('properties.features.parking'), class: 'control-label' %>
+        <div class="controls">
+          <select id="property_parking" name="property[parking]">
+            <% [Property::PARKING_NO, Property::PARKING_ON_STREET, Property::PARKING_OFF_STREET, Property::PARKING_GARAGE].each do |value| %>
+            <option value="<%= value %>"<%= ' selected="selected"' if @property.parking==value %>><%= Property.parking_description(value) %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <table>
+        <tr>
+          <td>
+            <label class="checkbox">
+              <%= f.check_box :balcony %>
+              <%= t('properties.features.balcony') %>
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :terrace %>
+              <%= t('properties.features.terrace') %>
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :mountain_views %>
+              <%= t('properties.features.mountain_views') %>
+            </label>
+            <% if @property.for_rent? %>
+            <label class="checkbox">
+              <%= f.check_box :wifi %>
+              <%= t('properties.features.wifi') %>
+            </label>
+            <% end %>
+            <label class="checkbox">
+              <%= f.check_box :log_fire %>
+              <%= t('properties.features.log_fire') %>
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :fully_equipped_kitchen %>
+              <%= t('properties.features.fully_equipped_kitchen') %>
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :cave %>
+              <%= t('properties.features.cave') %>
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :ski_in_ski_out %>
+              <%= t('properties.features.ski_in_ski_out') %>
+            </label>
+          </td>
+          <td>
+            <% if @property.for_rent? %>
+            <label class="checkbox">
+              <%= f.check_box :children_welcome %>
+              <%= t('properties.features.children_welcome') %>
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :pets %>
+              <%= t('properties.features.pets') %>
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :smoking %>
+              <%= t('properties.features.smoking') %>
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :disabled %>
+              <%= t('properties.features.disabled') %>
+            </label>
+            <% end %>
+            <label class="checkbox">
+              <%= f.check_box :garden %>
+              <%= t('properties.features.garden') %>
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :hot_tub %>
+              <%= t('properties.features.hot_tub') %>
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :indoor_swimming_pool %>
+              <%= t('properties.features.indoor_swimming_pool') %>
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :outdoor_swimming_pool %>
+              <%= t('properties.features.outdoor_swimming_pool') %>
+            </label>
+          <label class="checkbox">
+            <%= f.check_box :sauna %>
+            <%= t('properties.features.sauna') %>
+          </label>
+        </td>
+      </tr>
+    </table>
   </div>
-</div>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :board_basis, t('properties.features.board_basis') %>
-  </div>
-  <div class="field_right">
-    <select id="property_board_basis" name="property[board_basis]">
-      <% [Property::BOARD_BASIS_SELF_CATERING, Property::BOARD_BASIS_BED_AND_BREAKFAST, Property::BOARD_BASIS_HALF_BOARD, Property::BOARD_BASIS_FULL_BOARD].each do |value| %>
-      <option value="<%= value %>"<%= ' selected="selected"' if @property.board_basis==value %>><%= Property.board_basis_description(value) %></option>
-      <% end %>
-    </select>
-  </div>
-</div>
-<% end %>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :parking, t('properties.features.parking') %>
-  </div>
-  <div class="field_right">
-    <select id="property_parking" name="property[parking]">
-      <% [Property::PARKING_NO, Property::PARKING_ON_STREET, Property::PARKING_OFF_STREET, Property::PARKING_GARAGE].each do |value| %>
-      <option value="<%= value %>"<%= ' selected="selected"' if @property.parking==value %>><%= Property.parking_description(value) %></option>
-      <% end %>
-    </select>
-  </div>
-</div>
-<table>
-<tr><td>
-<div class="field">
-  <%= f.check_box :balcony %> <%= f.label :balcony, t('properties.features.balcony') %>
-</div>
-<div class="field">
-  <%= f.check_box :terrace %> <%= f.label :terrace, t('properties.features.terrace') %>
-</div>
-<div class="field">
-  <%= f.check_box :mountain_views %> <%= f.label :mountain_views, t('properties.features.mountain_views') %>
-</div>
-<% if @property.for_rent? %>
-<div class="field">
-  <%= f.check_box :wifi %> <%= f.label :wifi, t('properties.features.wifi') %>
-</div>
-<% end %>
-<div class="field">
-  <%= f.check_box :log_fire %> <%= f.label :log_fire, t('properties.features.log_fire') %>
-</div>
-<div class="field">
-  <%= f.check_box :fully_equipped_kitchen %> <%= f.label :fully_equipped_kitchen, t('properties.features.fully_equipped_kitchen') %>
-</div>
-<div class="field">
-  <%= f.check_box :cave %> <%= f.label :cave, t('properties.features.cave') %>
-</div>
-<div class="field">
-  <%= f.check_box :ski_in_ski_out %> <%= f.label :ski_in_ski_out, t('properties.features.ski_in_ski_out') %>
-</div>
-</td>
-<td>
-<% if @property.for_rent? %>
-<div class="field">
-  <%= f.check_box :children_welcome %> <%= f.label :children_welcome, t('properties.features.children_welcome') %>
-</div>
-<div class="field">
-  <%= f.check_box :pets %> <%= f.label :pets, t('properties.features.pets') %>
-</div>
-<div class="field">
-  <%= f.check_box :smoking %> <%= f.label :smoking, t('properties.features.smoking') %>
-</div>
-<div class="field">
-  <%= f.check_box :disabled %> <%= f.label :disabled, t('properties.features.disabled') %>
-</div>
-<% end %>
-<div class="field">
-  <%= f.check_box :garden %> <%= f.label :garden, t('properties.features.garden') %>
-</div>
-<div class="field">
-  <%= f.check_box :hot_tub %> <%= f.label :hot_tub, t('properties.features.hot_tub') %>
-</div>
-<div class="field">
-  <%= f.check_box :indoor_swimming_pool %> <%= f.label :indoor_swimming_pool, t('properties.features.indoor_swimming_pool') %>
-</div>
-<div class="field">
-  <%= f.check_box :outdoor_swimming_pool %> <%= f.label :outdoor_swimming_pool, t('properties.features.outdoor_swimming_pool') %>
-</div>
-<div class="field">
-  <%= f.check_box :sauna %> <%= f.label :sauna, t('properties.features.sauna') %>
-</div>
-</td></tr>
-</table>
 </div>
 
 </div><!--#panel_1-->
 
 <div id="panel_2">
 
-<div class="group_panel">
+<div class="well">
+  <div class="form-horizontal">
+    <div class="control-group">
 <% if @property.for_sale? %>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :sale_price, I18n.t('sale_price') %>
-  </div>
-  <div class="field_right">
-    <%= f.text_field :sale_price %>
+      <%= f.label :sale_price, I18n.t('sale_price'), class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :sale_price %>
 <% else %>
-<div class="field">
-  <div class="field_left">
-    <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price') %>
-  </div>
-  <div class="field_right">
-    <%= f.text_field :weekly_rent_price %>
+      <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price'), class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :weekly_rent_price %>
 <% end %>
-  <%= select("property", "currency_id", (Currency.order('code').all.collect {|c| [ c.code, c.id ] }).sort, {prompt: 'Select Currency'}) %>
+        <%= select("property", "currency_id", (Currency.order('code').all.collect {|c| [ c.code, c.id ] }).sort, {prompt: 'Select Currency'}, class: 'narrow') %>
+      </di>
+    </div>
   </div>
 </div>
 <%= clear %>
 </div>
 
-<div class="group_panel">
-<div class="field">
-  <%= f.label :address, t('address') %> <%= required_field %><br>
-  <%= f.text_area :address %>
-</div>
-<div class="field">
-  <%= f.label :postcode, t('postcode') %><br>
+<div class="well">
+  <%= f.label :address, t('address') %>
+  <%= f.text_area :address, class: 'narrow' %> <%= required_field %>
+
+  <%= f.label :postcode, t('postcode') %>
   <%= f.text_field :postcode %>
 </div>
-</div>
 
-<div class="group_panel">
-<div class="field">
-  <%= f.label :strapline, t('strapline') %><br>
-  <%= f.text_area :strapline %>
+<div class="well">
+  <%= f.label :strapline, t('strapline') %>
+  <%= f.text_area :strapline, class: 'narrow' %>
   <div class="placeholder">
     <%= I18n.t('strapline_placeholder') %> <a href="#" id="strapline_example"><%= t('example') %></a>
   </div>
-</div>
 
-<div class="field">
-  <%= f.label :description, t('description') %><br>
-  <%= f.text_area :description %>
-</div>
+  <%= f.label :description, t('description') %>
+  <%= f.text_area :description, class: 'narrow' %>
 </div>
 
 </div><!--#panel_2-->
@@ -342,6 +337,6 @@ type="hidden" value="<%= Property::ACCOMMODATION_TYPE_CHALET %>">
 <%= clear %>
 
 <div class="field">
-  <%= f.submit I18n.t('save') %>
+  <%= f.submit I18n.t('save'), class: 'btn btn-primary' %>
 </div>
 <% end %>
