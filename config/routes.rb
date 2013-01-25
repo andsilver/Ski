@@ -5,6 +5,8 @@ MySkiChalet::Application.routes.draw do
 
   resources :snippets
 
+  match 'late-availability' => 'late_availability#index'
+
   match 'properties/search' => 'properties#quick_search'
   match "resorts/:resort_id/properties/rent" => "properties#browse_for_rent", :as => :resort_property_rent
   match "resorts/:resort_id/properties/sale" => "properties#browse_for_sale", :as => :resort_property_sale
