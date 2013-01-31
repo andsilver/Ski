@@ -37,9 +37,6 @@ module Interhome
       @interhome = User.find_by_email('interhome@mychaletfinder.com')
       raise 'A user with email interhome@mychaletfinder.com is required' unless @interhome
 
-      @default_resort = Resort.find_by_name('Interhome')
-      raise 'A resort with name Interhome is required' unless @default_resort
-
       @euro = Currency.find_by_code('EUR')
       raise 'A currency with code EUR is required' unless @euro
 
@@ -106,9 +103,14 @@ module Interhome
       accommodation.permalink = accommodation.code.parameterize
       accommodation.save
 
-      import_pictures(accommodation, a)
-      delete_old_pictures(accommodation)
-      create_property(accommodation)
+      place = accommodation.interhome_place
+      if place && ipr = InterhomePlaceResort.find_by_interhome_place_code(place.code)
+        import_pictures(accommodation, a)
+        delete_old_pictures(accommodation)
+        create_property(accommodation, ipr.resort_id, place.name)
+      else
+        accommodation.destroy
+      end
     end
 
     # Imports pictures for the new or existing accommodation.
@@ -151,12 +153,7 @@ module Interhome
       end
     end
 
-    def create_property(accommodation)
-      place = accommodation.interhome_place
-      return unless place
-
-      ipr = InterhomePlaceResort.find_by_interhome_place_code(place.code)
-
+    def create_property(accommodation, resort_id, address)
       property = Property.find_by_interhome_accommodation_id(accommodation.id)
       if property
         # delete the advert; we'll create a new one shortly
@@ -167,10 +164,10 @@ module Interhome
 
       property.interhome_accommodation_id = accommodation.id
       property.user_id = @interhome.id
-      property.resort_id = ipr ? ipr.resort_id : @default_resort.id
+      property.resort_id = resort_id
       property.name = accommodation.name.blank? ? accommodation.code : accommodation.name
       property.strapline = accommodation.inside_description[0..254]
-      property.address = place.name
+      property.address = address
       property.latitude = accommodation.geodata_lat
       property.longitude = accommodation.geodata_lng
       property.weekly_rent_price = accommodation.current_price

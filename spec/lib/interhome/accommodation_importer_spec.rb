@@ -32,9 +32,8 @@ module Interhome
     end
 
     describe '#setup' do
-      it 'finds the Euro currency, Interhome resort and interhome@mychaletfinder.com user' do
+      it 'finds the Euro currency and interhome@mychaletfinder.com user' do
         User.should_receive(:find_by_email).with('interhome@mychaletfinder.com').and_return(true)
-        Resort.should_receive(:find_by_name).with('Interhome').and_return(true)
         Currency.should_receive(:find_by_code).with('EUR').and_return(true)
         AccommodationImporter.new.setup
       end
