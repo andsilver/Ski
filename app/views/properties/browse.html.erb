@@ -39,6 +39,13 @@
     <option value="<%= value %>"<%= ' selected="selected"' if params[:board_basis]==value.to_s %>><%= Property.board_basis_description(value) %></option>
     <% end %>
   </select>
+  <select id="start_date" name="start_date" onchange="this.form.submit()">
+    <option value="">Start Date</option>
+<% LateAvailability.next_three_saturdays.each do |saturday| %>
+    <option value="<%= saturday %>"<%= ' selected="selected"' if params[:start_date]==saturday.to_s %>>Sat <%= l(saturday, format: :long) %></option>
+<% end %>
+    <option value="">Decide Later</option>
+  </select>
 <% end -%>
   <br>
   <%= raw property_search_filters @search_filters %>

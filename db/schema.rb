@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125112501) do
+ActiveRecord::Schema.define(:version => 20130131140527) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -612,6 +612,17 @@ ActiveRecord::Schema.define(:version => 20130125112501) do
   end
 
   add_index "snippets", ["name"], :name => "index_snippets_on_name"
+
+  create_table "unavailabilities", :force => true do |t|
+    t.integer  "property_id"
+    t.date     "start_date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "unavailabilities", ["property_id", "start_date"], :name => "index_unavailabilities_on_property_id_and_start_date"
+  add_index "unavailabilities", ["property_id"], :name => "index_unavailabilities_on_property_id"
+  add_index "unavailabilities", ["start_date"], :name => "index_unavailabilities_on_start_date"
 
   create_table "unregistered_users", :force => true do |t|
     t.datetime "created_at"

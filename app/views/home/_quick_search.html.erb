@@ -32,7 +32,7 @@
   <div id="quick-search-panel">
   </div>
   <div id="quick-search">
-    <%= form_tag controller: 'properties', action: 'quick_search' do %>
+    <%= form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do %>
       <span>mychaletfinder search</span>
       <select id="country_id" name="country_id">
         <option value="">Choose Country</option>
@@ -66,6 +66,14 @@
         <option value="6">€1,000 &#8212; €1,250</option>
         <option value="7">€1,250 &#8212; €1,500</option>
         <option value="8">€1,500 +</option>
+      </select>
+      <br>
+      <select id="start_date" name="start_date">
+        <option value="">Start Date</option>
+<% LateAvailability.next_three_saturdays.each do |saturday| %>
+        <option value="<%= saturday %>">Sat <%= l(saturday, format: :long) %></option>
+<% end %>
+        <option value="">Decide Later</option>
       </select>
       <br>
       <br>

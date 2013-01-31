@@ -273,6 +273,16 @@ class Property < ActiveRecord::Base
     interhome_accommodation ? interhome_accommodation.available_to_check_in_on_dates?(dates_to_consider) : true
   end
 
+  def cache_unavailability(dates)
+    return unless interhome_accommodation
+
+    dates.each do |date|
+      if !interhome_accommodation.available_to_check_in_on_dates?([date])
+        Unavailability.create!(property_id: id, start_date: date)
+      end
+    end
+  end
+
   # Returns the default number of months that a property advert should be
   # advertised for, depending on its attributes.
   #

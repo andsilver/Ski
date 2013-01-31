@@ -1,10 +1,12 @@
-include LateAvailability
-
 class Denormalize
   def self.denormalize
     update_featured_properties
 
     Currency.update_exchange_rates
+
+    next_three_saturdays = LateAvailability.next_three_saturdays
+
+    start_time = Time.now
 
     Property.stop_geocoding
     Property.find_in_batches(batch_size: 250, include: [:resort]) do |properties|
@@ -14,12 +16,15 @@ class Denormalize
         p.publicly_visible = publicly_visible
         p.country_id = country_id
         p.normalise_prices
-        p.late_availability = p.calculate_late_availability(LateAvailability::next_three_saturdays)
+        p.late_availability = p.calculate_late_availability(next_three_saturdays)
+        p.cache_unavailability(next_three_saturdays)
         p.save
       end
       sleep(0.5)
     end
     Property.resume_geocoding
+
+    Unavailability.where('created_at < ?', start_time).delete_all
 
     Resort.visible.each do |resort|
       resort.for_rent_count = count_properties(resort, :listing_type, Property::LISTING_TYPE_FOR_RENT)

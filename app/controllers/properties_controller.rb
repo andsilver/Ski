@@ -41,6 +41,7 @@ class PropertiesController < ApplicationController
     filter_duration
     filter_price_range
     filter_sleeps
+    filter_start_date
 
     filter_conditions
 
@@ -65,6 +66,7 @@ class PropertiesController < ApplicationController
     @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :wifi,
       :disabled, :long_term_lets_available, :short_stays, :ski_in_ski_out]
 
+    filter_start_date
     filter_conditions
 
     unless params[:board_basis].nil? or params[:board_basis]=="-1"
@@ -692,6 +694,13 @@ class PropertiesController < ApplicationController
       @conditions[0] += " AND long_term_lets_available = 1"
     elsif params[:duration] == 'short'
       @conditions[0] += " AND short_stays = 1"
+    end
+  end
+
+  def filter_start_date
+    unless params[:start_date].blank?
+      @conditions[0] += " AND id NOT IN (SELECT property_id FROM unavailabilities WHERE start_date = ?)"
+      @conditions << params[:start_date]
     end
   end
 
