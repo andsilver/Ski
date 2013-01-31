@@ -1,0 +1,9 @@
+<h1>Late Availability</h1>
+
+<h2>Featured Properties</h2>
+
+<div id="property_summaries">
+<% @featured_properties.each do |p| %>
+<%= render partial: 'properties/property_summary', locals: {p: p} %>
+<% end %>
+</div><!--#property_summaries-->

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110155133) do
+ActiveRecord::Schema.define(:version => 20130125112501) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -479,10 +479,12 @@ ActiveRecord::Schema.define(:version => 20130110155133) do
     t.integer  "interhome_accommodation_id"
     t.integer  "country_id"
     t.boolean  "publicly_visible",             :default => false, :null => false
+    t.boolean  "late_availability",            :default => true
   end
 
   add_index "properties", ["country_id"], :name => "index_properties_on_country_id"
   add_index "properties", ["interhome_accommodation_id"], :name => "index_properties_on_interhome_accommodation_id"
+  add_index "properties", ["late_availability"], :name => "index_properties_on_late_availability"
   add_index "properties", ["publicly_visible"], :name => "index_properties_on_publicly_visible"
   add_index "properties", ["resort_id"], :name => "index_properties_on_resort_id"
   add_index "properties", ["user_id"], :name => "index_properties_on_user_id"

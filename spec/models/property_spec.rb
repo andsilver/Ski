@@ -191,4 +191,21 @@ describe Property do
       property.name.should eq('x' * 50)
     end
   end
+
+  describe '#calculate_late_availability' do
+    it 'returns true if it has no Interhome accommodation' do
+      Property.new.calculate_late_availability([]).should be_true
+    end
+
+    it 'returns the value of the Interhome accommodation availability' do
+      available = mock_model(InterhomeAccommodation, available_to_check_in_on_dates?: true)
+      p = Property.new
+      p.interhome_accommodation = available
+      p.calculate_late_availability([]).should be_true
+
+      unavailable = mock_model(InterhomeAccommodation, available_to_check_in_on_dates?: false)
+      p.interhome_accommodation = unavailable
+      p.calculate_late_availability([]).should be_false
+    end
+  end
 end

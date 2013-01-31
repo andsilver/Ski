@@ -55,6 +55,35 @@ describe InterhomeVacancy do
     end
   end
 
+  describe '#available_to_check_in_on_dates?' do
+    before do
+      vacancy.availability = 'NNYYYY'
+      vacancy.changeover = 'CXCICO'
+    end
+
+    it 'returns false if availability is not Y' do
+      vacancy.availability = 'NN'
+      vacancy.changeover = 'CX'
+      vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)]).should be_false
+    end
+
+    it 'returns true if all dates can be checked in on and are available' do
+      vacancy.availability = 'YY'
+      vacancy.changeover = 'CI'
+      vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)]).should be_true
+    end
+
+    it 'returns false if any date cannot be checked in on' do
+      vacancy.availability = 'YY'
+      vacancy.changeover = 'CO'
+      vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)]).should be_false
+
+      vacancy.availability = 'NY'
+      vacancy.changeover = 'CC'
+      vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)]).should be_false
+    end
+  end
+
   describe '#get_value_for_date' do
     it 'returns "unknown" for dates in the past' do
       vacancy.get_value_for_date('ABC', Date.new(2012, 10, 9)).should == 'unknown'

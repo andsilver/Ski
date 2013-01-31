@@ -29,4 +29,8 @@ class InterhomeAccommodation < ActiveRecord::Base
     prices.each {|p| return p.rental_price if p.start_date <= Date.today && p.end_date >= Date.today}
     prices.first ? prices.first.rental_price : nil
   end
+
+  def available_to_check_in_on_dates?(dates)
+    interhome_vacancy ? interhome_vacancy.available_to_check_in_on_dates?(dates) : false
+  end
 end

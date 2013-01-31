@@ -1,3 +1,5 @@
+include LateAvailability
+
 class Denormalize
   def self.denormalize
     update_featured_properties
@@ -12,6 +14,7 @@ class Denormalize
         p.publicly_visible = publicly_visible
         p.country_id = country_id
         p.normalise_prices
+        p.late_availability = p.calculate_late_availability(LateAvailability::next_three_saturdays)
         p.save
       end
       sleep(0.5)

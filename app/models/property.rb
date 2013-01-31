@@ -263,6 +263,16 @@ class Property < ActiveRecord::Base
     PropertyBasePrice.order('number_of_months').all.collect {|pbp| pbp.number_of_months}
   end
 
+  # Calculates late availability depending on the best availability
+  # information for the property. Returns true if all the dates for which
+  # there is availability information are believed to be available.
+  #
+  # :call-seq:
+  #   calculate_late_availability(array_of_dates) -> boolean
+  def calculate_late_availability(dates_to_consider)
+    interhome_accommodation ? interhome_accommodation.available_to_check_in_on_dates?(dates_to_consider) : true
+  end
+
   # Returns the default number of months that a property advert should be
   # advertised for, depending on its attributes.
   #
