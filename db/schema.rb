@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131140527) do
+ActiveRecord::Schema.define(:version => 20130204111922) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -620,6 +620,7 @@ ActiveRecord::Schema.define(:version => 20130131140527) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "unavailabilities", ["created_at"], :name => "index_unavailabilities_on_created_at"
   add_index "unavailabilities", ["property_id", "start_date"], :name => "index_unavailabilities_on_property_id_and_start_date"
   add_index "unavailabilities", ["property_id"], :name => "index_unavailabilities_on_property_id"
   add_index "unavailabilities", ["start_date"], :name => "index_unavailabilities_on_start_date"

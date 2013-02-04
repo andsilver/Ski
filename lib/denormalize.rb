@@ -4,13 +4,6 @@ class Denormalize
 
     Currency.update_exchange_rates
 
-    dates = []
-    (3 * 30).times do |d|
-      dates << Date.today + d.days
-    end
-
-    start_time = Time.now
-
     Property.stop_geocoding
     Property.find_in_batches(batch_size: 250, include: [:resort]) do |properties|
       properties.each do |p|
@@ -26,8 +19,6 @@ class Denormalize
       sleep(0.5)
     end
     Property.resume_geocoding
-
-    Unavailability.where('created_at < ?', start_time).delete_all
 
     Resort.visible.each do |resort|
       resort.for_rent_count = count_properties(resort, :listing_type, Property::LISTING_TYPE_FOR_RENT)
@@ -58,5 +49,23 @@ class Denormalize
     website = Website.first
     website.featured_properties = Property.featured
     website.save
+  end
+
+  def self.cache_unavailability
+    start_time = Time.now
+
+    dates = []
+    (18 * 30).times do |d|
+      dates << Date.today + d.days
+    end
+
+    Property.stop_geocoding
+    Property.find_in_batches(batch_size: 25) do |properties|
+      properties.each { |p| p.cache_unavailability(dates) }
+      sleep(1)
+    end
+    Property.resume_geocoding
+
+    Unavailability.where('created_at < ?', start_time).delete_all
   end
 end
