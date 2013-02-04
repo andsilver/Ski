@@ -45,19 +45,18 @@
 <% if @property.for_rent? %>
 <script>
 $(function () {
-  $('#enquiry_date_of_arrival').datepicker({dateFormat: 'D, d M yy', showOn: 'both', buttonImage: '/images/calendar.png'});
-  $('#enquiry_date_of_departure').datepicker({dateFormat: 'D, d M yy', showOn: 'both', buttonImage: '/images/calendar.png'});
+  $('.date').datepicker({format: 'D d MM yyyy', showOn: 'both', buttonImage: '/images/calendar.png'});
 });
 </script>
 
-<div class="field">
-  <%= f.label :date_of_arrival, t('enquiries_controller.date_of_arrival') %><br>
-  <%= f.text_field :date_of_arrival %>
+<div class="field input-append date">
+  <%= f.label :date_of_arrival, t('enquiries_controller.date_of_arrival') %>
+  <%= f.text_field :date_of_arrival %><span class="add-on"><i class="icon-th"></i></span>
 </div>
 
-<div class="field">
-  <%= f.label :date_of_departure, t('enquiries_controller.date_of_departure') %><br>
-  <%= f.text_field :date_of_departure %>
+<div class="field input-append date">
+  <%= f.label :date_of_departure, t('enquiries_controller.date_of_departure') %>
+  <%= f.text_field :date_of_departure %><span class="add-on"><i class="icon-th"></i></span>
 </div>
 
 <div class="field">

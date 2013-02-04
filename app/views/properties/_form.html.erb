@@ -1,14 +1,7 @@
 <script>
-$(document).ready(function() {
-  var $dialog = $('<div></div>')
-    .html('<%= t('properties.strapline_example_content') %>')
-    .dialog({
-      autoOpen: false,
-      title: '<%= t('properties.strapline_example') %>'
-    });
-
+$(function() {
   $('#strapline_example').click(function() {
-    $dialog.dialog('open');
+    $('#strapline-example-modal').modal('show');
     // prevent the default action, e.g., following a link
     return false;
   });
@@ -319,6 +312,16 @@ $(document).ready(function() {
 
   <%= f.label :postcode, t('postcode') %>
   <%= f.text_field :postcode %>
+</div>
+
+<div class="modal hide fade" id="strapline-example-modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3><%= t('properties.strapline_example') %></h3>
+  </div>
+  <div class="modal-body">
+    <p><%= t('properties.strapline_example_content') %></p>
+  </div>
 </div>
 
 <div class="well">

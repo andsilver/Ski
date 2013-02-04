@@ -1,0 +1,17 @@
+<script>
+$(function() {
+  var startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
+
+  $('#arrival-datepicker').datepicker({
+    format: 'D d MM yyyy',
+    startDate: startOfToday,
+    endDate: '+18m',
+    todayHighlight: false
+  });
+});
+</script>
+<div class="input-append date" id="arrival-datepicker">
+  <input type="text" value="<%= params[:start_date] ? params[:start_date] : 'Arrival Date' %>" name="start_date">
+  <span class="add-on"><i class="icon-th"></i></span>
+</div>

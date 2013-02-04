@@ -700,7 +700,7 @@ class PropertiesController < ApplicationController
   def filter_start_date
     unless params[:start_date].blank?
       @conditions[0] += " AND id NOT IN (SELECT property_id FROM unavailabilities WHERE start_date = ?)"
-      @conditions << params[:start_date]
+      @conditions << Date.parse(params[:start_date])
     end
   end
 

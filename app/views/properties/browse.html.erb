@@ -5,6 +5,13 @@
   });
 </script>
 <% end -%>
+<script>
+$(function() {
+  $('#search_options input, #search_options select').change(function() {
+    $('#search_options form').submit();
+  });
+});
+</script>
 <div id="content-with-side-banners">
 <div id="search_options">
 <%= form_tag request.path, method: 'get' do %>
@@ -12,7 +19,7 @@
 <input type="hidden" name="resort_id" value="<%= @resort.id %>">
 <% end -%>
 <p>
-  <select id="sort_method" name="sort_method" onchange="this.form.submit()">
+  <select id="sort_method" name="sort_method">
 <% if @for_sale %>
     <option<%= ' selected' if params[:sort_method]=='normalised_sale_price DESC' %> value="normalised_sale_price DESC">Price high to low</option>
     <option<%= ' selected' if params[:sort_method]=='normalised_sale_price ASC' %> value="normalised_sale_price ASC">Price low to high</option>
@@ -33,19 +40,13 @@
 <% end %>
   </select>
 <% unless @for_sale -%>
-  <select id="board_basis" name="board_basis" onchange="this.form.submit()">
+  <select id="board_basis" name="board_basis">
     <option value="-1">Any board basis</option>
     <% [Property::BOARD_BASIS_SELF_CATERING, Property::BOARD_BASIS_BED_AND_BREAKFAST, Property::BOARD_BASIS_HALF_BOARD, Property::BOARD_BASIS_FULL_BOARD].each do |value| %>
     <option value="<%= value %>"<%= ' selected="selected"' if params[:board_basis]==value.to_s %>><%= Property.board_basis_description(value) %></option>
     <% end %>
   </select>
-  <select id="start_date" name="start_date" onchange="this.form.submit()">
-    <option value="">Start Date</option>
-<% LateAvailability.next_three_saturdays.each do |saturday| %>
-    <option value="<%= saturday %>"<%= ' selected="selected"' if params[:start_date]==saturday.to_s %>>Sat <%= l(saturday, format: :long) %></option>
-<% end %>
-    <option value="">Decide Later</option>
-  </select>
+  <%= render 'home/arrival_datepicker' %>
 <% end -%>
   <br>
   <%= raw property_search_filters @search_filters %>

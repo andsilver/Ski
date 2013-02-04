@@ -20,24 +20,18 @@
     <% end %>
   }
 
-	$(function() {
-		$('#property_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
-
-    var $dialog = $('<div id="map_canvas"></div>')
-      .html('')
-      .dialog({
-        autoOpen: false,
-        title: 'Location',
-        width: 450,
-        height: 350
-      });
+  $(function() {
+    $('#property_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
 
     $('#location').click(function() {
-      $dialog.dialog('open');
+      $('#location-modal').modal('show');
       // prevent the default action, e.g., following a link
+      return false;
+    });
+
+    $('#location-modal').on('shown', function() {
       google.maps.event.trigger(map, 'resize');
       map.setCenter(marker.getPosition());
-      return false;
     });
 
     showMap();
