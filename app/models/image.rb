@@ -186,12 +186,14 @@ class Image < ActiveRecord::Base
     end
   end
 
-  # Deletes the file(s) by removing the whole directory.
+  # Deletes the file(s) by removing the whole directory and
+  # removing remote files from Amazon S3.
   def delete_files
-    unless id.nil?
-      FileUtils.rm_rf(directory_path)
-      s3_delete_files
-    end
+    return if id.nil?
+    return unless File.exists?(directory_path)
+
+    FileUtils.rm_rf(directory_path)
+    s3_delete_files
   end
 
   # Deletes resized versions hosted on Amazon S3.
