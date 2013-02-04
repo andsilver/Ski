@@ -158,8 +158,6 @@
 <%= md @property.description %>
 <% end %>
 
-<% unless @property.latitude.empty? %>
-
 <div class="modal hide fade" id="location-modal">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -170,10 +168,11 @@
   </div>
 </div>
 
-<p class="chunky_button"><a href="#" id="location">Location</a></p>
-<% end %>
-
 <p>
+<% unless @property.latitude.empty? -%>
+  <a href="#" id="location" class="btn btn-primary btn-large"><i class="icon-map-marker icon-white"></i> Location</a>
+<% end -%>
+
   <%= link_to t('enquire'), contact_property_path(@property), class: 'btn btn-large btn-primary' %>
 </p>
 
