@@ -4,7 +4,10 @@ class Denormalize
 
     Currency.update_exchange_rates
 
-    next_three_saturdays = LateAvailability.next_three_saturdays
+    dates = []
+    (3 * 30).times do |d|
+      dates << Date.today + d.days
+    end
 
     start_time = Time.now
 
@@ -16,8 +19,8 @@ class Denormalize
         p.publicly_visible = publicly_visible
         p.country_id = country_id
         p.normalise_prices
-        p.late_availability = p.calculate_late_availability(next_three_saturdays)
-        p.cache_unavailability(next_three_saturdays)
+        p.late_availability = p.calculate_late_availability(LateAvailability.next_three_saturdays)
+        p.cache_unavailability(dates)
         p.save
       end
       sleep(0.5)
