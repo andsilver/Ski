@@ -13,7 +13,6 @@ class Denormalize
         p.country_id = country_id
         p.normalise_prices
         p.late_availability = p.calculate_late_availability(LateAvailability.next_three_saturdays)
-        p.cache_unavailability(dates)
         p.save
       end
       sleep(0.5)
