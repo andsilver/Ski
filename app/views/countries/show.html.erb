@@ -1,3 +1,41 @@
+<style>
+#quick-search, #quick-search-panel {
+  top: 95px;
+  height: 170px;
+  left: 30px;
+}
+</style>
+<script>
+$(function() {
+  $('#quick-search form').submit(function() {
+    if($('#resort_id').val() == '') {
+      alert('Please choose a resort first.');
+      return false;
+    }
+  });
+});
+</script>
+<div id="quick-search-panel">
+</div>
+<div id="quick-search">
+  <%= form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do %>
+    <select id="resort_id" name="resort_id">
+      <option value="">Choose Resort</option>
+      <% @country.resorts.each do |resort| %>
+      <option value="<%= resort.id %>"><%= resort.name %></option>
+      <% end %>
+    </select>
+    <br>
+    <%= render 'properties/sleeps_select' %>
+    <br>
+    <%= render 'home/arrival_datepicker' %>
+    <p style="text-align: right;">
+      <input type="submit" value="Search" class="btn btn-large btn-primary">
+    </p>
+  <% end %>
+</div>
+
+
 <div id="content-with-side-banners">
   <% featured_properties = @featured_properties.empty? ? '' : render('shared/featured_properties') %>
   <%= raw Liquid::Template.parse(@country.info).render('featured_properties' => featured_properties) %>

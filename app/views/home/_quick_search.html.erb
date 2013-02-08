@@ -45,17 +45,8 @@
         <option value="">Choose Country First &uarr;</option>
       </select>
       <br>
-      <select id="sleeps" name="sleeps">
-        <option value="">Sleeps</option>
-        <option value="1">Sleeps 1</option>
-        <option value="2">Sleeps 2</option>
-        <option value="3">Sleeps 3</option>
-        <option value="4">Sleeps 4</option>
-        <option value="5">Sleeps 5</option>
-        <option value="6">Sleeps 6</option>
-        <option value="8">Sleeps 8</option>
-        <option value="10">Sleeps 10+</option>
-      </select><br>
+      <%= render 'properties/sleeps_select' %>
+      <br>
       <select id="price_range" name="price_range">
         <option value="">Price Range</option>
         <option value="1">Less than €300</option>
@@ -68,7 +59,7 @@
         <option value="8">€1,500 +</option>
       </select>
       <br>
-      <%= render 'arrival_datepicker' %>
+      <%= render 'home/arrival_datepicker' %>
       <p style="text-align: right;">
         <input type="submit" value="Search" class="btn btn-large btn-primary">
       </p>
