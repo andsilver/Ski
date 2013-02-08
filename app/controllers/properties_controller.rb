@@ -67,6 +67,7 @@ class PropertiesController < ApplicationController
       :disabled, :long_term_lets_available, :short_stays, :ski_in_ski_out]
 
     filter_start_date
+    filter_sleeps
     filter_conditions
 
     unless params[:board_basis].nil? or params[:board_basis]=="-1"
