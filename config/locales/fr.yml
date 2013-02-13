@@ -259,6 +259,9 @@ fr:
       winterwalkingpath: Winter walking path
       wlan: WLAN
   last_name: Nom de famille
+  late_availability_controller:
+    titles:
+      index: 'Late Availability - Last Minute Ski Accommodation'
   main_image: 'Main image'
   map: Carte
   mobile: Portable

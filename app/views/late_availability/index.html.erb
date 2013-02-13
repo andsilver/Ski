@@ -1,9 +1,112 @@
 <h1>Late Availability</h1>
 
-<h2>Featured Properties</h2>
+<style>
+#quick-search {
+  position: relative;
+  left: auto;
+  top: auto;
+  width: 223px;
+}
+</style>
 
-<div id="property_summaries">
-<% @featured_properties.each do |p| %>
-<%= render partial: 'properties/property_summary', locals: {p: p} %>
-<% end %>
-</div><!--#property_summaries-->
+<div id="content-with-side-banners">
+
+<section class="first-two-thirds">
+  <p>
+    Still not booked your accommodation for your ski holidays? Use our search tool that will help you find what you are looking for quickly.  Our chalet rentals, apartments to rent and other holiday rental accommodation lists are updated every day so you can be assured you will only see what is currently available. 
+  </p>
+
+  <p>
+    Search for last minute accommodation for your ski holidays or summer vacation.
+  </p>
+
+  <script>
+  function getResorts() {
+    var valuesToSubmit = $('#quick-search form').serialize();
+    $.ajax({
+      url: '/home/resort_options_for_quick_search',
+      type: 'POST',
+      data: valuesToSubmit
+    }).success(function(data) {
+      $('#resort_id').replaceWith(data);
+
+      if($.cookie('quick_search_resort_id') != null) {
+        $('#resort_id').val($.cookie('quick_search_resort_id'));
+        $.removeCookie('quick_search_resort_id');
+      }
+    });
+    return false;
+  }
+
+  $(function() {
+    $('#country_id').change(getResorts);
+    $('#quick-search form').submit(function() {
+      if($('#resort_id').val() == '') {
+        alert('Please choose a resort first.');
+        return false;
+      }
+    });
+    if($('#country_id').val() != '') {
+      getResorts();
+    }
+  });
+  </script>
+  <div id="quick-search">
+    <%= form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do %>
+      <span id="mcfs">last minute search</span>
+      <select id="country_id" name="country_id">
+        <option value="">Choose Country</option>
+<% Country.with_visible_resorts.each do |c| -%>
+        <option value="<%= c.id %>"><%= c %></option>
+<% end -%>
+      </select><br>
+      <select id="resort_id" name="resort_id">
+        <option value="">Choose Resort</option>
+        <option value="">Choose Country First &uarr;</option>
+      </select>
+      <br>
+      <%= render 'properties/sleeps_select' %>
+      <br>
+      <%= render 'properties/price_range_select' %>
+      <br>
+      <select name="start_date">
+        <% LateAvailability::next_three_saturdays.each do |saturday| %>
+        <option value="<%= saturday %>">Sat <%= l(saturday, format: :short) %></option>
+        <% end %>
+      </select>
+      <p style="text-align: right;">
+        <input type="submit" value="Search" class="btn btn-large btn-primary">
+      </p>
+    <% end %>
+  </div>
+
+</section>
+
+<section class="last-third">
+  <p>
+    Other accommodation searches:<br>
+    Easter ski holidays<br>
+    End of season ski holidays<br>
+    Summer Ski Holidays<br>
+    Lapland &amp; Santa holidays<br>
+    Christmas Ski Holidays
+  </p>
+</section>
+
+<p class="clear">&nbsp;</p>
+
+<h2>Featured Last Minute Properties</h2>
+
+<div id="featured-properties">
+  <ul class="thumbnails">
+  <% @featured_properties.each do |p| %>
+  <%= render partial: 'properties/featured', locals: {p: p} %>
+  <% end %>
+  </ul>
+</div>
+
+</div>
+
+<div id="side-banners">
+  <%= render partial: 'directory_adverts/banners', object: [] %>
+</div>

@@ -8,10 +8,10 @@ describe LateAvailabilityController do
   end
 
   describe 'GET index' do
-    it 'finds 9 featured late availability properties' do
+    it 'finds 8 featured late availability properties' do
       finder = mock(LateAvailability::Finder)
       LateAvailability::Finder.should_receive(:new).and_return(finder)
-      finder.should_receive(:find_featured).with(limit: 9)
+      finder.should_receive(:find_featured).with(limit: 8)
       get 'index'
     end
 
