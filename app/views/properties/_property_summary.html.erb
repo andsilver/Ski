@@ -1,7 +1,13 @@
 <div class="property_summary">
   <%= render partial: 'properties/user_logo', locals: { property: p } %>
   <%
-  link = p.interhome_accommodation_id ? interhome_property_path(p.interhome_accommodation.permalink) : p
+  if p.interhome_accommodation_id
+    link = interhome_property_path(p.interhome_accommodation.permalink)
+  elsif p.pv_accommodation_id
+    link = pv_property_path(p.pv_accommodation.permalink)
+  else
+    link = p
+  end
   %>
   <h3><%= link_to p.name, link, title: "Read more about #{p.name}" %></h3>
   <p class="strapline"><%= p.strapline %></p>

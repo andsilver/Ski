@@ -101,6 +101,7 @@ MySkiChalet::Application.routes.draw do
   end
 
   match 'accommodation/:permalink' => 'properties#show_interhome', as: :interhome_property
+  match 'holiday-rentals/:permalink' => 'properties#show_pv', as: :pv_property
 
   resources :banner_prices
   resources :property_base_prices

@@ -6,6 +6,7 @@ class Property < ActiveRecord::Base
   belongs_to :image
   belongs_to :currency
   belongs_to :interhome_accommodation
+  belongs_to :pv_accommodation
 
   has_many :images, dependent: :destroy
 

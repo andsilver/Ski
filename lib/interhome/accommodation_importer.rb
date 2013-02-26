@@ -3,9 +3,7 @@
 require 'xmlsimple'
 
 module Interhome
-  class AccommodationImporter
-    attr_accessor :interhome
-
+  class AccommodationImporter < ::AccommodationImporter
     XML_FILENAME = 'accommodation.xml'
 
     def ftp_get
@@ -20,43 +18,12 @@ module Interhome
       xs.split
     end
 
-    # Non-destructive import.
-    # Updates existing Interhome accommodations and imports new accommodations
-    # from the XML file.
-    # Old accommodations are destroyed by checking their updated_at timestamps.
-    def import(filenames, cleanup)
-      setup
-      filenames.each {|f| import_file(f)}
-      if cleanup
-        delete_old_adverts
-        InterhomeAccommodation.destroy_all(['updated_at < ?', @import_start_time])
-      end
+    def user_email
+      'interhome@mychaletfinder.com'
     end
 
-    def setup
-      @interhome = User.find_by_email('interhome@mychaletfinder.com')
-      raise 'A user with email interhome@mychaletfinder.com is required' unless @interhome
-
-      @euro = Currency.find_by_code('EUR')
-      raise 'A currency with code EUR is required' unless @euro
-
-      @import_start_time = Time.now
-    end
-
-    def delete_old_adverts
-      Advert.delete_all(['user_id = ? AND updated_at < ?', @interhome.id, @import_start_time])
-    end
-
-    # Imports a single XML file. Property geocoding is suspended for the
-    # duration of the file's import.
-    def import_file(filename)
-      xml_file = File.open(filename, 'rb')
-      xml = XmlSimple.xml_in(xml_file)
-      xml_file.close
-
-      Property.stop_geocoding
-      xml['accommodation'].each {|a| import_accommodation(a)} if xml
-      Property.resume_geocoding
+    def model_class
+      InterhomeAccommodation
     end
 
     def import_accommodation(a)
@@ -163,7 +130,7 @@ module Interhome
       end
 
       property.interhome_accommodation_id = accommodation.id
-      property.user_id = @interhome.id
+      property.user_id = @user.id
       property.resort_id = resort_id
       property.name = accommodation.name.blank? ? accommodation.code : accommodation.name
       property.strapline = accommodation.inside_description[0..254]
@@ -199,7 +166,7 @@ module Interhome
 
         if image.nil?
           image = Image.new
-          image.user_id = @interhome.id
+          image.user_id = @user.id
           image.source_url = picture.url
           image.property_id = property.id
           image.save
@@ -211,13 +178,7 @@ module Interhome
         end
       end
 
-      advert = Advert.new
-      advert.user_id = @interhome.id
-      advert.property_id = property.id
-      advert.starts_at = Time.now
-      advert.expires_at = Time.now + 10.years
-      advert.months = 120
-      advert.save
+      create_advert(property)
     end
 
     def themes(a)
@@ -250,6 +211,10 @@ module Interhome
 
     def xml_filename
       "interhome/#{XML_FILENAME}"
+    end
+
+    def accommodations(xml)
+      xml['accommodation']
     end
   end
 end

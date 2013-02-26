@@ -8,7 +8,7 @@ class PropertiesController < ApplicationController
     :browse_for_rent, :browse_for_sale,
     :new_developments, :browse_hotels, :contact,
     :email_a_friend, :current_time, :show,
-    :show_interhome, :check_interhome_booking,
+    :show_interhome, :show_pv, :check_interhome_booking,
     :interhome_payment_success, :interhome_payment_failure,
     :update_day_of_month_select,
     :import_documentation]
@@ -174,6 +174,21 @@ class PropertiesController < ApplicationController
     @interhome_booking = Interhome::Booking.new(arrival.to_s[8..9], arrival.to_s[0..6], arrival, 7, 2, 0, 0)
 
     show_shared
+  end
+
+  def show_pv
+    @accommodation = PvAccommodation.find_by_permalink(params[:permalink])
+    not_found and return if @accommodation.nil?
+    @property = @accommodation.property
+
+    if @property.nil?
+      @accommodation.destroy
+      not_found
+      return
+    end
+
+    show_shared
+    render 'show'
   end
 
   def check_interhome_booking

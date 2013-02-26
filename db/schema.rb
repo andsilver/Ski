@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204111922) do
+ActiveRecord::Schema.define(:version => 20130214160740) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -480,12 +480,14 @@ ActiveRecord::Schema.define(:version => 20130204111922) do
     t.integer  "country_id"
     t.boolean  "publicly_visible",             :default => false, :null => false
     t.boolean  "late_availability",            :default => true
+    t.integer  "pv_accommodation_id"
   end
 
   add_index "properties", ["country_id"], :name => "index_properties_on_country_id"
   add_index "properties", ["interhome_accommodation_id"], :name => "index_properties_on_interhome_accommodation_id"
   add_index "properties", ["late_availability"], :name => "index_properties_on_late_availability"
   add_index "properties", ["publicly_visible"], :name => "index_properties_on_publicly_visible"
+  add_index "properties", ["pv_accommodation_id"], :name => "index_properties_on_pv_accommodation_id"
   add_index "properties", ["resort_id"], :name => "index_properties_on_resort_id"
   add_index "properties", ["user_id"], :name => "index_properties_on_user_id"
 
@@ -503,6 +505,32 @@ ActiveRecord::Schema.define(:version => 20130204111922) do
     t.datetime "updated_at"
     t.integer  "discount_amount",         :default => 0, :null => false
   end
+
+  create_table "pv_accommodations", :force => true do |t|
+    t.string   "name",            :null => false
+    t.string   "code",            :null => false
+    t.string   "iso_3166_1",      :null => false
+    t.string   "iso_3166_2",      :null => false
+    t.string   "onu",             :null => false
+    t.text     "accroche_liste"
+    t.text     "accroche_fiche"
+    t.text     "description"
+    t.string   "address_1",       :null => false
+    t.string   "address_2",       :null => false
+    t.string   "town",            :null => false
+    t.string   "postcode",        :null => false
+    t.string   "latitude",        :null => false
+    t.string   "longitude",       :null => false
+    t.text     "sports"
+    t.text     "services"
+    t.string   "price_table_url", :null => false
+    t.string   "permalink",       :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "pv_accommodations", ["code"], :name => "index_pv_accommodations_on_code"
+  add_index "pv_accommodations", ["permalink"], :name => "index_pv_accommodations_on_permalink"
 
   create_table "pv_vacancies", :force => true do |t|
     t.string   "destination_code",                                :null => false
