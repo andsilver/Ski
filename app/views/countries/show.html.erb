@@ -21,7 +21,7 @@ $(function() {
   <%= form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do %>
     <select id="resort_id" name="resort_id">
       <option value="">Choose Resort</option>
-      <% @country.resorts.each do |resort| %>
+      <% @country.visible_resorts.each do |resort| %>
       <option value="<%= resort.id %>"><%= resort.name %></option>
       <% end %>
     </select>
