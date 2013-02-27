@@ -76,7 +76,7 @@ MySkiChalet::Application.routes.draw do
   resources :properties do
     member do
       post 'advertise_now'
-      post 'choose_window'
+      get 'choose_window'
       get  'contact'
       get  'email_a_friend'
       post 'place_in_window'

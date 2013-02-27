@@ -79,10 +79,13 @@ $(document).ready(function() {
             <% end %>
           <% end %>
         <% else %>
-        <% action = a.advert_status == :dormant ? "choose_window" : "advertise_now" %>
-        <%= form_tag controller: a.class.table_name, action: action, id: a.id do %>
-        <%= submit_tag t('advertise_action.' + a.advert_status.to_s), class: 'btn' %>
-        <% end %>
+          <% if a.advert_status == :dormant %>
+          <%= link_to t('advertise_action.dormant'), choose_window_property_path(a), class: 'btn' %>
+          <% else %>
+            <%= form_tag controller: a.class.table_name, action: 'advertise_now', id: a.id do %>
+            <%= submit_tag t('advertise_action.' + a.advert_status.to_s), class: 'btn' %>
+            <% end %>
+          <% end %>
         <% end %>
       </td>
     </tr>
