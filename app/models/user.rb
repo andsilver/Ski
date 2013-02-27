@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
 
   # TODO: these should probably exclude expired windows
   has_many :windows, class_name: 'Advert', conditions: {window: true}, order: "expires_at DESC"
-  has_many :empty_windows, class_name: 'Advert', conditions: {property_id: nil, window: true}, order: "expires_at DESC"
 
   has_many :properties, dependent: :destroy
   has_many :properties_for_rent, class_name: 'Property', conditions: {listing_type: Property::LISTING_TYPE_FOR_RENT}
@@ -84,6 +83,10 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
   before_validation :tidy_vat_number
+
+  def empty_windows
+    adverts.where('property_id IS NULL AND window = 1 AND expires_at > ?', Time.zone.now).order('expires_at DESC')
+  end
 
   def self.encrypt(pass, salt)
     Digest::SHA1.hexdigest("--#{salt}--#{pass}--")

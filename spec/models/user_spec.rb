@@ -1,13 +1,31 @@
 require 'spec_helper'
 
 describe User do
+  fixtures :users
+
   describe '#empty_windows' do
-    it 'returns windows that are empty' do
-      pending
+    it 'returns adverts that are windows' do
+      user = users(:alice)
+      window_advert = Advert.create!(window: true, user_id: user.id, expires_at: Time.zone.now + 1.hour)
+      non_window_advert = Advert.create!(window: false, user_id: user.id, expires_at: Time.zone.now + 1.hour)
+      user.empty_windows.should include(window_advert)
+      user.empty_windows.should_not include(non_window_advert)
+    end
+
+    it 'returns empty windows' do
+      user = users(:alice)
+      empty_window_advert = Advert.create!(window: true, property_id: nil, user_id: user.id, expires_at: Time.zone.now + 1.hour)
+      full_window_advert = Advert.create!(window: true, property_id: 123, user_id: user.id, expires_at: Time.zone.now + 1.hour)
+      user.empty_windows.should include(empty_window_advert)
+      user.empty_windows.should_not include(full_window_advert)
     end
 
     it 'returns windows that have not yet expired' do
-      pending
+      user = users(:alice)
+      unexpired_window_advert = Advert.create!(window: true, user_id: user.id, expires_at: Time.zone.now + 1.hour)
+      expired_window_advert = Advert.create!(window: true, user_id: user.id, expires_at: Time.zone.now - 1.hour)
+      user.empty_windows.should include(unexpired_window_advert)
+      user.empty_windows.should_not include(expired_window_advert)
     end
   end
 
