@@ -80,13 +80,15 @@ describe Advert do
 
     it "returns :directory_advert when the object is a DirectoryAdvert but not a banner advert" do
       a = valid_advert
-      a.directory_advert = DirectoryAdvert.new(:is_banner_advert => false)
+      a.directory_advert = DirectoryAdvert.new
+      a.directory_advert.is_banner_advert = false
       a.virtual_type.should eq(:directory_advert)
     end
 
     it "returns :banner_advert when the object is a DirectoryAdvert and a banner advert" do
       a = valid_advert
-      a.directory_advert = DirectoryAdvert.new(:is_banner_advert => true)
+      a.directory_advert = DirectoryAdvert.new
+      a.directory_advert.is_banner_advert = true
       a.virtual_type.should eq(:banner_advert)
     end
 
@@ -160,6 +162,32 @@ describe Advert do
       a = valid_advert
       a.should_receive(:save)
       a.record_view
+    end
+  end
+
+  describe '#old?' do
+    it 'returns true if the starts_at + number of months is in the past' do
+      a = valid_advert
+      a.starts_at = Time.zone.now - (1.year + 1.day)
+      a.months = 12
+      a.expires_at = Time.zone.now - 1.day
+      a.old?.should be_true
+    end
+
+    it 'returns false if the starts_at + number of months is in the future' do
+      a = valid_advert
+      a.starts_at = Time.zone.now - (1.day)
+      a.months = 12
+      a.expires_at = Time.zone.now + (1.year - 1.day)
+      a.old?.should be_false
+    end
+
+    it 'returns false regardless of starts_at if expires_at is in the future' do
+      a = valid_advert
+      a.starts_at = Time.zone.now - (1.year + 1.day)
+      a.months = 12
+      a.expires_at = Time.zone.now + 1.hour
+      a.old?.should be_false
     end
   end
 

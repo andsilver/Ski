@@ -1,4 +1,4 @@
-<% if @current_user.role.advertises_through_windows? %>
+<% if @current_user.advertises_through_windows? %>
 <%= user_action(buy_windows_adverts_path,
   t('adverts_controller.buy_advertising_windows'),
   t('users.buy_advertising_windows.description')) %>

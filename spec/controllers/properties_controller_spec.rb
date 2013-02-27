@@ -118,8 +118,7 @@ describe PropertiesController do
 
       context "when not advertising through windows" do
         before do
-          role.stub(:advertises_through_windows?).and_return(false)
-          current_user.role = role
+          current_user.stub(:advertises_through_windows?).and_return(false)
         end
 
         it "creates a corresponding advert" do

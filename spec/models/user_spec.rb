@@ -29,6 +29,21 @@ describe User do
     end
   end
 
+  describe '#delete_old_windows' do
+    it 'deletes old window adverts' do
+      alice = users(:alice)
+      old_window = mock_model(Advert, {:old? => true})
+      current_window = mock_model(Advert, {:old? => false})
+
+      alice.stub(:windows).and_return [old_window, current_window]
+
+      old_window.should_receive(:delete)
+      current_window.should_not_receive(:delete)
+
+      alice.delete_old_windows
+    end
+  end
+
   describe "#has_properties_for_rent?" do
     it "returns true when there are one or more properties for rent" do
       user = User.new

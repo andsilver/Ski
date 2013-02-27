@@ -113,4 +113,8 @@ class Advert < ActiveRecord::Base
     self.views += 1
     save
   end
+
+  def old?
+    starts_at + months.months < Time.zone.now && expires_at < Time.zone.now
+  end
 end

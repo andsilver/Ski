@@ -15,6 +15,15 @@ describe AdvertsController do
       current_user.stub(:windows).and_return([])
     end
 
+    context 'when the user advertises through windows' do
+      before { current_user.stub(:advertises_through_windows?).and_return(true) }
+
+      it "deletes the user's old windows" do
+        current_user.should_receive(:delete_old_windows)
+        get 'my'
+      end
+    end
+
     it "collects windows into groups" do
       pending
     end

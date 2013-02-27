@@ -11,6 +11,9 @@ class AdvertsController < ApplicationController
     else
       user = @current_user
     end
+
+    user.delete_old_windows if user.advertises_through_windows?
+
     user.windows.each {|w| @window_groups << w}
     @rentals = user.properties_for_rent
     @sales = user.properties_for_sale

@@ -88,6 +88,14 @@ class User < ActiveRecord::Base
     adverts.where('property_id IS NULL AND window = 1 AND expires_at > ?', Time.zone.now).order('expires_at DESC')
   end
 
+  def delete_old_windows
+    windows.each {|w| w.delete if w.old?}
+  end
+
+  def advertises_through_windows?
+    role.advertises_through_windows?
+  end
+
   def self.encrypt(pass, salt)
     Digest::SHA1.hexdigest("--#{salt}--#{pass}--")
   end

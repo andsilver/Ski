@@ -302,7 +302,7 @@ class PropertiesController < ApplicationController
 
     if @property.save
       set_image_mode
-      if @current_user.role.advertises_through_windows?
+      if @current_user.advertises_through_windows?
         if Advert.assign_window_for(@property)
           notice = t('properties_controller.created_and_assigned_to_window')
         else
