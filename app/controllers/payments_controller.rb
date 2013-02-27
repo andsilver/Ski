@@ -1,5 +1,5 @@
 class PaymentsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, only: [:worldpay_callback, :cardsave_callback]
+  skip_before_filter :verify_authenticity_token, only: [:worldpay_callback]
 
   before_filter :admin_required, only: [:index, :show]
 
@@ -56,35 +56,6 @@ class PaymentsController < ApplicationController
     end
     @payment.save
     render layout: false
-  end
-
-  def cardsave_callback
-    @payment = Payment.new
-    @payment.service_provider = 'CardSave'
-    @payment.installation_id = params[:MerchantID]
-    @payment.amount = params[:Amount]
-    @payment.currency = params[:CurrencyCode]
-    @payment.cart_id = params[:OrderID]
-    @payment.transaction_status = (params[:StatusCode] and params[:StatusCode]=='0')
-    @payment.transaction_time = params[:TransactionDateTime]
-    @payment.accepted = false # for now
-    @payment.save # this first save is for safety
-
-    if cardsave_hash_matches?
-      if params[:StatusCode]=='0'
-        @message = t('payments_controller.payment_received')
-        @payment.accepted = true
-        complete_order
-      elsif params[:StatusCode]=='5'
-        @message = t('payments_controller.payment_declined')
-      elsif params[:StatusCode]=='30'
-        @message = t('payments_controller.processing_error')
-      else
-        @message = t('payments_controller.unconfirmed')
-      end
-    else
-      @message = t('payments_controller.failure_validating_payment')
-    end
   end
 
   def complete_payment_not_required
