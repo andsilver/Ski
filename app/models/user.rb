@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
   end
 
   def delete_old_windows
-    windows.each {|w| w.delete if w.old?}
+    windows.each {|w| w.delete && windows.delete(w) if w.old?}
   end
 
   def advertises_through_windows?
