@@ -30,7 +30,10 @@ doc/features.html
 /doc/app/*
 
 # Ignore Interhome data files
-/interhome
+/interhome/*
+!/interhome/.keep
 
 # Ignore Pierre et Vacances data files
-/pierreetvacances
+/pierreetvacances/*
+!/pierreetvacances/.keep
+
