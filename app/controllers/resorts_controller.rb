@@ -28,6 +28,7 @@ class ResortsController < ApplicationController
     set_image_mode
 
     @interhome_place_resort = InterhomePlaceResort.new(resort_id: @resort.id)
+    @pv_place_resort = PvPlaceResort.new(resort_id: @resort.id)
   end
 
   def update

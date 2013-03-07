@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214160740) do
+ActiveRecord::Schema.define(:version => 20130307142440) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -155,8 +155,8 @@ ActiveRecord::Schema.define(:version => 20130214160740) do
   end
 
   create_table "directory_adverts", :force => true do |t|
-    t.integer  "user_id",                             :null => false
-    t.integer  "category_id",                         :null => false
+    t.integer  "user_id"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "business_address",                    :null => false
@@ -377,6 +377,7 @@ ActiveRecord::Schema.define(:version => 20130214160740) do
     t.decimal  "sterling_in_euros",   :precision => 6, :scale => 4
   end
 
+  add_index "orders", ["created_at"], :name => "index_orders_on_created_at"
   add_index "orders", ["email"], :name => "index_orders_on_email"
   add_index "orders", ["order_number"], :name => "index_orders_on_order_number"
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
@@ -531,6 +532,16 @@ ActiveRecord::Schema.define(:version => 20130214160740) do
 
   add_index "pv_accommodations", ["code"], :name => "index_pv_accommodations_on_code"
   add_index "pv_accommodations", ["permalink"], :name => "index_pv_accommodations_on_permalink"
+
+  create_table "pv_place_resorts", :force => true do |t|
+    t.integer  "resort_id",     :null => false
+    t.string   "pv_place_code", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "pv_place_resorts", ["pv_place_code"], :name => "index_pv_place_resorts_on_pv_place_code"
+  add_index "pv_place_resorts", ["resort_id"], :name => "index_pv_place_resorts_on_resort_id"
 
   create_table "pv_vacancies", :force => true do |t|
     t.string   "destination_code",                                :null => false

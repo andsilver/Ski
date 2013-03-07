@@ -107,4 +107,8 @@ module ResortsHelper
       @images = []
     end
   end
+
+  def pv_place_codes
+    ActiveRecord::Base.connection.execute("SELECT DISTINCT(CONCAT_WS('-', iso_3166_1, iso_3166_2, onu)) FROM `pv_accommodations`").map{|c| c[0]}.sort
+  end
 end

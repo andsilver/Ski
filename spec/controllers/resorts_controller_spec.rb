@@ -29,6 +29,7 @@ describe ResortsController do
 
   describe 'GET edit' do
     let(:interhome_place_resort) { InterhomePlaceResort.new }
+    let(:pv_place_resort) { PvPlaceResort.new }
 
     it 'finds a resort' do
       Resort.should_receive(:find_by_id).with('1')
@@ -49,6 +50,17 @@ describe ResortsController do
         InterhomePlaceResort.stub(:new).and_return(interhome_place_resort)
         get 'edit', :id => '1'
         assigns(:interhome_place_resort).should == interhome_place_resort
+      end
+
+      it 'creates a new P&V place resort and sets its resort_id' do
+        PvPlaceResort.should_receive(:new).with(resort_id: resort.id)
+        get 'edit', id: '1'
+      end
+
+      it 'assigns(@pv_place_resort)' do
+        PvPlaceResort.stub(:new).and_return(pv_place_resort)
+        get 'edit', id: '1'
+        assigns(:pv_place_resort).should == pv_place_resort
       end
     end
   end

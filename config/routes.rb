@@ -124,6 +124,7 @@ MySkiChalet::Application.routes.draw do
   match "email_a_friend_form/1" => "email_a_friend_form#create"
 
   resources :interhome_place_resorts
+  resources :pv_place_resorts
 
   resources :images
 

@@ -1,32 +1,64 @@
 <h1><%= link_to 'Resorts', resorts_path %> &rarr; Edit Resort</h1>
 
-<div class="well">
-  <h2>Interhome Places</h2>
-  <%= form_for(@interhome_place_resort) do |f| %>
-  <div class="field">
-    <%= f.hidden_field :resort_id %>
-    <%= f.label :interhome_place_code, 'Interhome place' %>
-    <%= select("interhome_place_resort", "interhome_place_code",
-    InterhomePlace.order('full_name').collect {|ip| [ ip.full_name, ip.code ] },
-    {prompt: 'Select Interhome place'}) %>
+<div class="row">
+  <div class="span6">
+    <div class="well">
+      <h2>Interhome Places</h2>
+      <%= form_for(@interhome_place_resort) do |f| %>
+      <div class="field">
+        <%= f.hidden_field :resort_id %>
+        <%= f.label :interhome_place_code, 'Interhome place' %>
+        <%= select("interhome_place_resort", "interhome_place_code",
+        InterhomePlace.order('full_name').collect {|ip| [ ip.full_name, ip.code ] },
+        {prompt: 'Select Interhome place'}) %>
+      </div>
+      <div class="field">
+        <%= f.submit 'Link Interhome place to this resort', class: 'btn' %>
+      </div>
+      <% end %>
+      <% if @resort.interhome_place_resorts.empty? %>
+      <p>
+        There are no Interhome places represented by this resort.
+      </p>
+      <% else %>
+      <ul>
+        <% @resort.interhome_place_resorts.each do |ipr| %>
+        <li>
+          <%= ipr.name %>
+          <%= link_to 'Unlink', ipr, confirm: t('are_you_sure'), method: :delete, class: 'btn' %>
+        </li>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.submit 'Link Interhome place to this resort', class: 'btn' %>
+  <div class="span6">
+    <div class="well">
+      <h2>Pierre et Vacances Places</h2>
+      <%= form_for(@pv_place_resort) do |f| %>
+      <%= f.hidden_field :resort_id %>
+      <%= f.label :pv_place_code, 'P&V place code' %>
+      <%= select("pv_place_resort", "pv_place_code",
+      pv_place_codes.collect {|p| [ p, p ] },
+      {prompt: 'Select P&V place'}) %>
+      <div>
+        <%= f.submit 'Link P&V place to this resort', class: 'btn' %>
+      </div>
+      <% end %>
+      <% if @resort.pv_place_resorts.empty? %>
+      <p>
+        There are no P&amp;V places represented by this resort.
+      </p>
+      <% else %>
+      <ul>
+        <% @resort.pv_place_resorts.each do |pr| %>
+        <li>
+          <%= pr.pv_place_code %>
+          <%= link_to 'Unlink', pr, confirm: t('are_you_sure'), method: :delete, class: 'btn' %>
+        </li>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-  <% end %>
-  <% if @resort.interhome_place_resorts.empty? %>
-  <p>
-    There are no Interhome places represented by this resort.
-  </p>
-  <% else %>
-  <ul>
-    <% @resort.interhome_place_resorts.each do |ipr| %>
-    <li>
-      <%= ipr.name %>
-      <%= link_to 'Unlink', ipr, confirm: t('are_you_sure'), method: :delete, class: 'btn' %>
-    </li>
-    <% end %>
-  <% end %>
 </div>
 
 <div class="well" id="additional-pages">

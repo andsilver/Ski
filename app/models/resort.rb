@@ -16,7 +16,9 @@ class Resort < ActiveRecord::Base
   has_many :order_lines
   has_many :airport_distances, dependent: :delete_all, order: 'distance_km ASC'
   has_many :airport_transfers, dependent: :delete_all
+
   has_many :interhome_place_resorts, dependent: :delete_all
+  has_many :pv_place_resorts, dependent: :delete_all
 
   scope :featured, where('featured = 1').order('name')
   scope :visible, where('visible = 1').order('name')
