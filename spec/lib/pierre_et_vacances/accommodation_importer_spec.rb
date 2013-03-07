@@ -13,8 +13,8 @@ module PierreEtVacances
     end
 
     describe '#xml_filename' do
-      it "returns the filename of yesterday's summer catalogue" do
-        FTP.stub(:yesterday_date_string).and_return('11Feb2013')
+      it "returns the most recent summer property XML filename from the FTP server" do
+        FTP.should_receive(:property_filename).with(:summer).and_return('EN_PV_AA_E13_GENERAL_11Feb2013.xml')
         i = PierreEtVacances::AccommodationImporter.new
         i.xml_filename.should eq 'EN_PV_AA_E13_GENERAL_11Feb2013.xml'
       end

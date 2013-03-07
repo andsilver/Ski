@@ -145,7 +145,7 @@ module PierreEtVacances
     end
 
     def xml_filename
-      'EN_PV_AA_E13_GENERAL_' + FTP.yesterday_date_string + '.xml'
+      @xml_filename ||= FTP.property_filename(:summer)
     end
 
     def user_email

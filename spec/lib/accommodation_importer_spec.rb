@@ -4,7 +4,6 @@ describe AccommodationImporter do
   describe '#import' do
     it 'runs setup' do
       i = AccommodationImporter.new
-      i.stub(:delete_all_adverts)
       i.should_receive(:setup)
       i.import [], false
     end

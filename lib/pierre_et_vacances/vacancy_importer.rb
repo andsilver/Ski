@@ -3,7 +3,7 @@ require 'xmlsimple'
 module PierreEtVacances
   class VacancyImporter
     def base_filename
-      'DISPO_B2C_' + FTP.yesterday_date_string.upcase
+      FTP.most_recent_file_matching('DISPO_B2C_*').gsub('.zip', '')
     end
 
     def zip_filename
@@ -71,10 +71,6 @@ module PierreEtVacances
       vacancy.minstay = v['minstay'][0]
       vacancy.flexbooking = v['flexbooking'][0]
       vacancy.save
-    end
-
-    def xml_filename
-      "interhome/#{XML_FILENAME}"
     end
   end
 end
