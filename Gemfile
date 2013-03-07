@@ -58,6 +58,8 @@ end
 # To use debugger
 # gem 'debugger'
 
+gem 'simplecov', :require => false, :group => :test
+
 group :test do
   gem "autotest", "4.4.6"
   gem 'rspec-rails'

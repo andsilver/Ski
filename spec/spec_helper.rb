@@ -1,3 +1,13 @@
+# Run coverage with:
+# RUN_COVERAGE=true rspec spec --no-drb
+if(ENV["RUN_COVERAGE"])
+  require 'simplecov'
+  SimpleCov.start 'rails' do
+    add_filter "/spec/"
+  end
+  puts "Running coverage tool\n"
+end
+
 require 'spork'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
