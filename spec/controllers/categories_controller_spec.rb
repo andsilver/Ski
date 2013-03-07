@@ -72,20 +72,23 @@ describe CategoriesController do
       delete 'destroy', id: 1
     end
 
-    it 'destroys the category' do
-      Category.stub(:find_by_id).and_return(category)
-      category.should_receive(:destroy)
-      delete 'destroy', id: 1
-    end
+    context 'when the category is found' do
+      before { Category.stub(:find_by_id).and_return(category) }
 
-    it 'sets a flash[:notice] message' do
-      post 'destroy', id: 1
-      flash[:notice].should == 'Deleted.'
-    end
+      it 'destroys the category' do
+        category.should_receive(:destroy)
+        delete 'destroy', id: 1
+      end
 
-    it 'redirects to the categories page' do
-      delete 'destroy', id: 1
-      response.should redirect_to(categories_path)
+      it 'sets a flash[:notice] message' do
+        post 'destroy', id: 1
+        flash[:notice].should == 'Deleted.'
+      end
+
+      it 'redirects to the categories page' do
+        delete 'destroy', id: 1
+        response.should redirect_to(categories_path)
+      end
     end
   end
 end

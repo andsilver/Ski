@@ -3,7 +3,7 @@ require 'spec_helper'
 describe DirectoryAdvert do
   describe '#price' do
     context 'when a banner advert' do
-      let(:da) { DirectoryAdvert.new(:is_banner_advert => true) }
+      let(:da) { DirectoryAdvert.new {|da| da.is_banner_advert = true} }
 
       it 'requests the price from BannerPrice' do
         BannerPrice.should_receive(:price_for_advert_number).with(3).and_return(10)

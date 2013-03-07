@@ -11,13 +11,13 @@ describe CountriesController do
     @mock_country ||= mock_model(Country)
   end
 
-  context 'when logged in as admin' do
-    before { controller.stub(:admin?).and_return(true) }
+  context 'when signed in as admin' do
+    before { signed_in_as_admin }
 
     describe 'GET index' do
       it 'assigns all countries ordered by name to @countries' do
         countries = [mock_country]
-        Country.should_receive(:order).with(:name).and_return(countries)
+        Country.should_receive(:order).with('name').and_return(countries)
         get 'index'
         assigns(:countries).should == countries
       end

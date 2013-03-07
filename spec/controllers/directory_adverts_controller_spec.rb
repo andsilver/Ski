@@ -108,7 +108,7 @@ describe DirectoryAdvertsController do
     end
 
     def post_valid
-      post "create", :directory_advert => { :category_id => "1", :business_address => '123 av' }
+      post "create", directory_advert: { category_id: '1', business_address: '123 av', resort_id: ['1'] }
     end
 
     it "instantiates a new directory advert" do
@@ -143,12 +143,12 @@ describe DirectoryAdvertsController do
       end
 
       it "assigns @directory_advert" do
-        post :create
+        post_valid
         assigns[:directory_advert].should eq(directory_advert)
       end
 
       it "renders the new template" do
-        post :create
+        post_valid
         response.should render_template("new")
       end
     end

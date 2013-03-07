@@ -9,11 +9,10 @@ feature 'Late Availability' do
   end
 
   scenario 'Featured late availability properties' do
-    setup_late_availability_properties(9)
+    setup_late_availability_properties(8)
     visit '/late-availability'
-    save_and_open_page
-    page.should have_content 'Featured Properties'
-    9.times {|x| page.should have_content "Featured property #{x}"}
+    page.should have_content 'Featured Last Minute Properties'
+    8.times {|x| page.should have_content "Sleeps #{x}"}
   end
 
   def setup_website
@@ -22,7 +21,7 @@ feature 'Late Availability' do
 
   def setup_late_availability_properties(how_many)
     how_many.times do |x|
-      create_property(late_availability: true, name: "Featured property #{x}")
+      create_property(late_availability: true, sleeping_capacity: x)
     end
   end
 
