@@ -126,6 +126,8 @@ MySkiChalet::Application.routes.draw do
   resources :interhome_place_resorts
   resources :pv_place_resorts
 
+  resources :pv_accommodations
+
   resources :images
 
   match "basket" => "adverts#basket"

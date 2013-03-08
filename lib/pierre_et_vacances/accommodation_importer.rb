@@ -63,7 +63,9 @@ module PierreEtVacances
       accommodation.permalink = accommodation.code.downcase
       accommodation.save
 
-      create_property(accommodation, Resort.first.id, accommodation.address_1)
+      if ppr = PvPlaceResort.find_by_pv_place_code(accommodation.place_code)
+        create_property(accommodation, ppr.resort_id, accommodation.address_1)
+      end
     end
 
     def address_part(title, a)
