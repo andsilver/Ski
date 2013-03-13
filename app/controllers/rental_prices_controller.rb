@@ -8,6 +8,8 @@ class RentalPricesController < ApplicationController
   end
 
   def results
+    redirect_to action: 'index' and return unless params[:rental_prices_search].kind_of? Array
+
     resort_id, sleeping_capacity = params[:rental_prices_search][:resort_id],
       params[:rental_prices_search][:sleeping_capacity]
 
