@@ -73,6 +73,10 @@ p#property_thumbnails {
   height: 155px;
   overflow: auto;
   white-space: nowrap; 
+
+  img {
+    max-height: 135px;
+  }
 }
 
 p#property_main_image {

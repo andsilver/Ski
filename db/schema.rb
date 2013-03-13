@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307142440) do
+ActiveRecord::Schema.define(:version => 20130313182211) do
 
   create_table "adverts", :force => true do |t|
     t.integer  "user_id",                                :null => false
@@ -528,6 +528,7 @@ ActiveRecord::Schema.define(:version => 20130307142440) do
     t.string   "permalink",       :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.text     "photos"
   end
 
   add_index "pv_accommodations", ["code"], :name => "index_pv_accommodations_on_code"

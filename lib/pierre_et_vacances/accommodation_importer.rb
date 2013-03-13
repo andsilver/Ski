@@ -61,6 +61,9 @@ module PierreEtVacances
 
       accommodation.price_table_url = a['lesprix'][0]['tableau_prix'][0]['objet'][0]['petit'][0]['content']
       accommodation.permalink = accommodation.code.downcase
+
+      accommodation.photos = photos(a)
+
       accommodation.save
 
       if ppr = PvPlaceResort.find_by_pv_place_code(accommodation.place_code)
@@ -80,6 +83,17 @@ module PierreEtVacances
 
     def location(a)
       a['informations_generiques'][0]['destinations'][0]['destination'][0]['arrivee'][0]['pays'][0]
+    end
+
+    def photos(a)
+      list = []
+      begin
+        a['informations_formule'][0]['location'][0]['hebergement_location'][0]['descriptif'][0]['paragraphe'][0]['objet'].each do |o|
+          list << o['grand'][0]['content']
+        end
+      rescue
+      end
+      list.join(',')
     end
 
     def create_property(accommodation, resort_id, address)
