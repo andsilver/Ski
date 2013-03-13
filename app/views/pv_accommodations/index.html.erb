@@ -2,6 +2,10 @@
 <div class="cms">
   <h1><%= link_to 'CMS', cms_path %> &rarr; Pierre et Vacances Accommodations</h1>
 
+  <p>
+    <%= link_to 'Import Accommodations', import_accommodations_pv_accommodations_path, data: {method: 'post'}, class: 'btn' %>
+  </p>
+
   <table class="table">
     <tr>
       <th>ID</th>

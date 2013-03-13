@@ -126,7 +126,9 @@ MySkiChalet::Application.routes.draw do
   resources :interhome_place_resorts
   resources :pv_place_resorts
 
-  resources :pv_accommodations
+  resources :pv_accommodations do
+    post 'import_accommodations', on: :collection
+  end
 
   resources :images
 
