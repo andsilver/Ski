@@ -15,7 +15,7 @@
     </tr>
   <% @pv_accommodations.each do |a| %>
     <tr>
-      <td><%= a.id %></td>
+      <td><%= link_to_if a.showing?, a.id, pv_property_path(a.permalink) %></td>
       <td><%= a.place_code %></td>
       <td><%= a.address_1 %>, <%= a.town %></td>
       <td><%= tick_cross(a.showing?) %></td>
