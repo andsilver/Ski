@@ -188,7 +188,7 @@ class PropertiesController < ApplicationController
     end
 
     show_shared
-    render 'show'
+    render 'show_pv'
   end
 
   def check_interhome_booking

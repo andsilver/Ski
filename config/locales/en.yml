@@ -295,6 +295,30 @@ en:
     processing_error: 'There was an error processing your payment'
     unconfirmed: 'Your payment has not recorded by us as we could not confirm if it was successful'
   phone: Phone
+  pierre_et_vacances:
+    features:
+      accueil_mobilite_reduite: Reduced mobility access
+      animaux_admis: Pets welcome
+      bibliotheque: Library
+      boutiques: Shops
+      cafes_bars: Cafés / bars
+      garderie: Nursery
+      jacuzzi: Jacuzzi
+      laverie: Laundromat
+      linge_toilette: Bathroom linen
+      lit_bebe: Baby bed
+      location_velos: Bicycle hire
+      mail: Mail
+      menage: Cleaning kit
+      parking: Parking
+      reception_24_24: 24-hour reception
+      restaurants: Restaurants
+      hammam: Hammam
+      salle_musculation: Gym
+      sauna: Sauna
+      superette: Supermarket
+      telecopie: Fax
+      thalasso: Thalasso
   piste_map: Piste Map
   please_correct: Please correct the following errors
   plot_size: 'Plot size'

@@ -1,0 +1,117 @@
+<script>
+  var map;
+  var marker;
+
+  function showMap() {
+    <% unless @property.latitude.empty? %>
+    var latlng = new google.maps.LatLng(<%= @property.latitude %>, <%= @property.longitude %>);
+    var myOptions = {
+      zoom: 16,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"),
+      myOptions);
+    marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title:"<%= @property.name %>"
+    });
+    <% end %>
+  }
+
+  $(function() {
+    $('#property_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
+
+    $('#location').click(function() {
+      $('#location-modal').modal('show');
+      // prevent the default action, e.g., following a link
+      return false;
+    });
+
+    $('#location-modal').on('shown', function() {
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(marker.getPosition());
+    });
+
+    showMap();
+	});
+</script>
+<div id="content-with-side-banners">
+<div id="property">
+  <%= render partial: 'user_logo', locals: { property: @property } %>
+<h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %></h1>
+<p class="property_id"><%= I18n.t('property_id') %>: <span><%= @property.id %></span></p>
+
+<% if fav = favourite_for_property(@property) %>
+<%= form_for(fav, method: :delete) do |f| %>
+<p>
+  <%= f.submit t('favourites.remove'), class: 'btn btn-large' %>
+</p>
+<% end %>
+<% else %>
+<% @favourite = Favourite.new(property_id: @property.id) %>
+<%= form_for @favourite do |f| %>
+<%= f.hidden_field :property_id %>
+<p>
+  <button type="submit" class="btn btn-primary btn-large"><i class='icon-heart icon-white'></i>
+  <%= t('favourites.add') %></button>
+</p>
+<% end %>
+<% end %>
+
+<% unless @property.image.nil? %>
+<p class="thumbnails" id="property_thumbnails">
+<% @property.images.each do |i| %>
+<a href="#pic_<%= i.id %>"><%= image_tag(i.sized_url(135, :height), alt: "Photo of #{@property.name}") %></a>
+<% end %>
+</p>
+<% @property.images.each do |i| %>
+<div id="pic_<%= i.id %>"><img src="<%= i.url %>" alt="Larger photo of <%= @property.name %>"></div>
+<% end %>
+<%= clear %>
+<% end %>
+
+<h2><%= I18n.t('features') %></h2>
+<div id="features" class="interhome-features">
+<%
+features = @accommodation.services.split(',')
+%>
+<% features.each do |feature| %>
+  <div class="column">
+    <%= feature_tick(true, t("pierre_et_vacances.features.#{feature}")) %><br>
+  </div>
+<% end %>
+  <%= clear %>
+</div>
+
+<% unless @property.description.nil? %>
+<h2><%= I18n.t('description') %></h2>
+<%= md @property.description %>
+<% end %>
+
+<div class="modal hide fade" id="location-modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Location</h3>
+  </div>
+  <div class="modal-body">
+    <div id="map_canvas"></div>
+  </div>
+</div>
+
+<p>
+<% unless @property.latitude.empty? -%>
+  <a href="#" id="location" class="btn btn-primary btn-large"><i class="icon-map-marker icon-white"></i> Location</a>
+<% end -%>
+
+  <%= link_to t('enquire'), contact_property_path(@property), class: 'btn btn-large btn-primary' %>
+</p>
+
+<%= clear %>
+
+</div><!--#property-->
+</div>
+<div id="side-banners">
+  <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>
+</div>
