@@ -61,21 +61,18 @@
 <% end %>
 
 <p class="thumbnails" id="property_thumbnails">
-<% @accommodation.photos.split(',').each_with_index do |i, idx| %>
+<% @accommodation.photo_array.each_with_index do |i, idx| %>
 <a href="#pic_<%= idx %>"><%= image_tag(i, alt: "Photo of #{@property.name}") %></a>
 <% end %>
 </p>
-<% @accommodation.photos.split(',').each_with_index do |i, idx| %>
+<% @accommodation.photo_array.each_with_index do |i, idx| %>
 <div id="pic_<%= idx %>"><img src="<%= i %>" alt="Larger photo of <%= @property.name %>"></div>
 <% end %>
 <%= clear %>
 
 <h2><%= I18n.t('features') %></h2>
 <div id="features" class="interhome-features">
-<%
-features = @accommodation.services.split(',')
-%>
-<% features.each do |feature| %>
+<% @accommodation.service_array.each do |feature| %>
   <div class="column">
     <%= feature_tick(true, t("pierre_et_vacances.features.#{feature}")) %><br>
   </div>
@@ -102,9 +99,13 @@ features = @accommodation.services.split(',')
 <% unless @property.latitude.empty? -%>
   <a href="#" id="location" class="btn btn-primary btn-large"><i class="icon-map-marker icon-white"></i> Location</a>
 <% end -%>
-
-  <%= link_to t('enquire'), contact_property_path(@property), class: 'btn btn-large btn-primary' %>
 </p>
+
+<iframe src="<%= @accommodation.price_table_url %>" id="pv-booking">
+  <p>
+    <a href="<%= @accommodation.price_table_url %>">Prices &amp; Availability</a>
+  </p>
+</iframe>
 
 <%= clear %>
 

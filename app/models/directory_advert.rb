@@ -52,10 +52,11 @@ class DirectoryAdvert < ActiveRecord::Base
 
   def self.banner_adverts_for(resort, dimensions, qty)
     conditions = CURRENTLY_ADVERTISED.dup
-    conditions[0] += " AND resort_id = ? AND width = ? AND height = ?"
+    conditions[0] += " AND resort_id = ?" if resort
+    conditions[0] += " AND width = ? AND height = ?"
     conditions[0] += " AND banner_image_id IS NOT NULL"
     conditions[0] += " AND is_banner_advert = 1"
-    conditions << resort.id
+    conditions << resort.id if resort
     conditions << dimensions[0]
     conditions << dimensions[1]
 
