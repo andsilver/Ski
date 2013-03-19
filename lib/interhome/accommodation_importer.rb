@@ -85,7 +85,7 @@ module Interhome
     def import_pictures(accommodation, a)
       return unless a['pictures']
       a['pictures'][0]['picture'].each do |p|
-        url = p['url'][0].gsub('/Normal/', '/Zoom/')
+        url = p['url'][0]
         picture = InterhomePicture.find_by_interhome_accommodation_id_and_url(accommodation.id, url)
         if picture
           picture.touch
