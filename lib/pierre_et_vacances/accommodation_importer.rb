@@ -129,7 +129,7 @@ module PierreEtVacances
         property.parking = Property::PARKING_ON_STREET
       end
 
-      #property.pets = accommodation.features.include? 'petsallowed'
+      property.pets = accommodation.services.include? 'animaux_admis'
       #property.smoking = !(accommodation.features.include? 'nonsmoking')
       #property.tv = Property::TV_YES if accommodation.features.include? 'tv'
       #property.wifi = accommodation.features.include? 'wlan'
