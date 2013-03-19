@@ -113,7 +113,7 @@ module PierreEtVacances
       property.address = address
       property.latitude = accommodation.latitude
       property.longitude = accommodation.longitude
-      property.weekly_rent_price = 0 # TODO
+      property.weekly_rent_price = weekly_rent_price_for(accommodation.code)
     
       return if property.weekly_rent_price.nil?
       property.currency_id = @euro.id
@@ -158,6 +158,12 @@ module PierreEtVacances
       #end
 
       create_advert(property)
+    end
+
+    def weekly_rent_price_for(code)
+      quoted_code = ActiveRecord::Base.connection.quote(code)
+      result = ActiveRecord::Base.connection.execute "SELECT MIN(promo_price_en * 7 / duration) FROM `pv_vacancies` WHERE `destination_code`=#{quoted_code}"
+      result.first[0]
     end
 
     def xml_filename
