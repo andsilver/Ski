@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'mysql2'
-gem 'will_paginate', :git => 'git@github.com:bridgeutopia/will_paginate.git', :branch => 'rails3'
+gem 'will_paginate', :git => 'git://github.com/bridgeutopia/will_paginate.git', :branch => 'rails3'
 gem 'image_science', '1.2.3'
 gem 'RubyInline'
 gem 'rdiscount', '1.6.8'

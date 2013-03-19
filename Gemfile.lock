@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:bridgeutopia/will_paginate.git
+  remote: git://github.com/bridgeutopia/will_paginate.git
   revision: 4b3be48d62ee4fb7e1025ce38728bf8023c0196e
   branch: rails3
   specs:
