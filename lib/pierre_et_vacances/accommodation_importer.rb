@@ -123,11 +123,11 @@ module PierreEtVacances
       property.description = accommodation.description
       property.publicly_visible = 1
 
-      #if accommodation.features.include? 'parking'
-      #  property.parking = Property::PARKING_OFF_STREET
-      #else
-      #  property.parking = Property::PARKING_ON_STREET
-      #end
+      if accommodation.services.include? 'parking'
+        property.parking = Property::PARKING_OFF_STREET
+      else
+        property.parking = Property::PARKING_ON_STREET
+      end
 
       #property.pets = accommodation.features.include? 'petsallowed'
       #property.smoking = !(accommodation.features.include? 'nonsmoking')
