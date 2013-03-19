@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 gem 'mysql2'
 gem 'will_paginate', :git => 'git@github.com:bridgeutopia/will_paginate.git', :branch => 'rails3'
 gem 'image_science', '1.2.3'
@@ -65,7 +65,7 @@ group :test do
   gem 'rspec-rails'
   gem 'watchr'
   gem 'spork'
-  gem "shoulda-matchers"
+  gem "shoulda-matchers", "~> 1.4.2" # temporary hold for require cannot load such file -- rspec
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem "capybara"
