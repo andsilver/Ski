@@ -10,7 +10,7 @@ describe AdvertsController do
     User.stub(:find_by_id).and_return(current_user)
   end
 
-  describe "GET my" do
+  describe 'GET my' do
     before do
       current_user.stub(:windows).and_return([])
     end
@@ -22,10 +22,15 @@ describe AdvertsController do
         current_user.should_receive(:delete_old_windows)
         get 'my'
       end
-    end
 
-    it "collects windows into groups" do
-      pending
+      it 'collects windows into groups' do
+        window = mock_model(Advert).as_null_object
+        current_user.stub(:windows).and_return([window, window])
+        groups = mock(WindowGroups).as_null_object
+        WindowGroups.stub(:new).and_return(groups)
+        groups.should_receive(:<<).with(window).twice
+        get 'my'
+      end
     end
 
     it "finds directory adverts belonging to the current user" do

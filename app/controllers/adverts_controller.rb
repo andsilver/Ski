@@ -12,9 +12,11 @@ class AdvertsController < ApplicationController
       user = @current_user
     end
 
-    user.delete_old_windows if user.advertises_through_windows?
+    if user.advertises_through_windows?
+      user.delete_old_windows
+      user.windows.each {|w| @window_groups << w}
+    end
 
-    user.windows.each {|w| @window_groups << w}
     @rentals = user.properties_for_rent
     @sales = user.properties_for_sale
     @hotels = user.hotels
