@@ -17,7 +17,7 @@ class AirportDistancesController < ApplicationController
     if @airport_distance.save
       redirect_to(airport_distances_path, notice: t('notices.created'))
     else
-      render "new"
+      render 'new'
     end
   end
 
