@@ -130,4 +130,20 @@ describe User do
       user.empty_basket
     end
   end
+
+  describe '#new_advertisables' do
+    it 'returns an array of new advertisables' do
+      p_new = mock_model(Property, advert_status: :new)
+      p_live = mock_model(Property, advert_status: :live)
+      d_new = mock_model(DirectoryAdvert, advert_status: :new)
+      d_live = mock_model(DirectoryAdvert, advert_status: :live)
+      u = User.new
+      u.stub(:properties).and_return([p_new, p_live])
+      u.stub(:directory_adverts).and_return([d_new, d_live])
+      u.new_advertisables.should include(p_new)
+      u.new_advertisables.should include(d_new)
+      u.new_advertisables.should_not include(p_live)
+      u.new_advertisables.should_not include(d_live)
+    end
+  end
 end

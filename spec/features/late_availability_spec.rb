@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Late Availability' do
-  before { setup_website }
+  fixtures :websites
 
   scenario 'Visit the page' do
     visit '/late-availability'
@@ -13,10 +13,6 @@ feature 'Late Availability' do
     visit '/late-availability'
     page.should have_content 'Featured Last Minute Properties'
     8.times {|x| page.should have_content "Sleeps #{x}"}
-  end
-
-  def setup_website
-    Website.create!
   end
 
   def setup_late_availability_properties(how_many)

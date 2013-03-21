@@ -145,4 +145,28 @@ describe AdvertsController do
       pending
     end
   end
+
+  describe 'DELETE delete_all_new_advertisables' do
+    it 'gets all new adverts from the user' do
+      current_user.should_receive(:new_advertisables)
+      delete 'delete_all_new_advertisables'
+    end
+
+    it 'destroys each advertisable' do
+      property = mock_model(Property)
+      current_user.stub(:new_advertisables).and_return([property])
+      property.should_receive(:destroy)
+      delete 'delete_all_new_advertisables'
+    end
+
+    it 'sets a flash notice' do
+      delete 'delete_all_new_advertisables'
+      flash[:notice].should eq 'All new adverts have been deleted.'
+    end
+
+    it 'redirects to My Adverts' do
+      delete 'delete_all_new_advertisables'
+      response.should redirect_to(action: 'my')
+    end
+  end
 end

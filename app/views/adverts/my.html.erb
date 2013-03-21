@@ -41,3 +41,7 @@
 <% unless @directory_adverts.empty? %>
 <%= render 'table', title: 'directory_and_banner_adverts', adverts: @directory_adverts %>
 <% end %>
+
+<%= form_tag(action: 'delete_all_new_advertisables') do %>
+<%= submit_tag('Delete all new adverts', class: 'btn btn-danger', data: {confirm: 'Are you sure?'})%>
+<% end %>

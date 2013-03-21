@@ -126,6 +126,11 @@ class AdvertsController < ApplicationController
     redirect_to basket_path
   end
 
+  def delete_all_new_advertisables
+    current_user.new_advertisables.each {|a| a.destroy}
+    redirect_to my_adverts_path, notice: 'All new adverts have been deleted.'
+  end
+
   protected
 
   def prepare_basket

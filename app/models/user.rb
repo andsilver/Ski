@@ -200,6 +200,12 @@ class User < ActiveRecord::Base
     adverts_in_basket.delete_all
   end
 
+  # Returns advertisable objects (properties and directory adverts) that are
+  # new. That is, objects that have not yet been advertised.
+  def new_advertisables
+    (properties + directory_adverts).select {|a| a.advert_status == :new}
+  end
+
   protected
 
   def encrypt_password

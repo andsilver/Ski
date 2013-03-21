@@ -66,10 +66,13 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :adverts do
-    post 'update_basket_contents',  :on => :collection
-    get  'place_order',             :on => :collection
-    post 'add_windows_to_basket',   :on => :collection
-    get  'buy_windows',             :on => :collection
+    collection do
+      post 'update_basket_contents'
+      get  'place_order'
+      post 'add_windows_to_basket'
+      get  'buy_windows'
+      post 'delete_all_new_advertisables'
+    end
   end
   match "my/adverts" => "adverts#my", :as => :my_adverts
 
