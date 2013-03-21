@@ -1,10 +1,15 @@
-<%= form_tag action: 'add_windows_to_basket' do %>
-  <select name="quantity">
+<%= form_tag({ action: 'add_windows_to_basket' }, class: 'well') do %>
+<p>
+  <label>How many windows would you like to buy?</label>
+  <select name="quantity" class="span5">
     <% @window_base_prices.each do |wbp| %>
     <option value="<%= wbp.quantity %>"><%= wbp.quantity %> <%= t('adverts_controller.windows') %> @ <%= euros(wbp.price) %> (<%= euros(wbp.price / wbp.quantity) %> each)</option>
     <% end %>
   </select>
-<%= submit_tag t('adverts_controller.add_to_basket') %>
+</p>
+<p>
+  <%= submit_tag t('adverts_controller.add_to_basket'), class: 'btn btn-primary' %>
+</p>
 <% end %>
 
 <%= render 'shared/worldpay_logos' %>
