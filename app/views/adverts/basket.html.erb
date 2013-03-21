@@ -91,7 +91,9 @@
   <p>
     <%= t('adverts_controller.by_pressing_place_order_you_agree_to_the_terms_and_conditions') %>
     <%= link_to t('view'), terms_path %>
+  </p>
   <p>
+    <input type="submit" name="empty_basket" value="<%= t 'adverts_controller.basket.empty_basket' %>" class="btn btn-danger" data-confirm="Are you sure you want to empty your basket?">
     <input type="submit" name="place_order" value="<%= t 'adverts_controller.place_order' %>" class="btn btn-primary">
   </p>
 <% end %>

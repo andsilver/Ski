@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   end
 
   def advertises_through_windows?
-    role.advertises_through_windows?
+    role && role.advertises_through_windows?
   end
 
   def self.encrypt(pass, salt)
@@ -194,6 +194,10 @@ class User < ActiveRecord::Base
       return a if a.is_banner_advert? && a.currently_advertised? && a.category.name == 'category_names.airport_transfer'
     end
     nil
+  end
+
+  def empty_basket
+    adverts_in_basket.delete_all
   end
 
   protected

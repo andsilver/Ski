@@ -39,8 +39,10 @@ class DirectoryAdvertsController < ApplicationController
       next if resort_id == ''
 
       params[:directory_advert].delete(:resort_id)
+      is_banner_advert = params[:directory_advert].delete(:is_banner_advert)
       @directory_advert = DirectoryAdvert.new(params[:directory_advert])
       @directory_advert.resort_id = resort_id
+      @directory_advert.is_banner_advert = is_banner_advert
 
       @directory_advert.user_id = @current_user.id
 

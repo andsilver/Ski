@@ -44,6 +44,19 @@ describe User do
     end
   end
 
+  describe '#advertises_through_windows?' do
+    it 'returns false if the user has no role' do
+      User.new.advertises_through_windows?.should be_false
+    end
+
+    it "returns the value of the role's advertises_through_windows?" do
+      role = mock_model(Role, :advertises_through_windows? => true)
+      user = User.new
+      user.stub(:role).and_return(role)
+      user.advertises_through_windows?.should be_true
+    end
+  end
+
   describe "#has_properties_for_rent?" do
     it "returns true when there are one or more properties for rent" do
       user = User.new
@@ -105,6 +118,16 @@ describe User do
       user.pays_vat?.should be_true
       user.vat_number = '123'
       user.pays_vat?.should be_true
+    end
+  end
+
+  describe '#empty_basket' do
+    it 'deletes all adverts in basket' do
+      user = User.new
+      adverts = []
+      adverts.should_receive(:delete_all)
+      user.stub(:adverts_in_basket).and_return(adverts)
+      user.empty_basket
     end
   end
 end

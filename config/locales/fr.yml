@@ -39,6 +39,7 @@ fr:
     add_to_basket: Ajouter au Panier
     basket:
       apply_code: 'Appliquer le Code'
+      empty_basket: Empty Basket
       first_payment: 'Premier paiement'
       followed_by_11_payments_of: 'Suivi par 11 paiements de'
       remove: 'Supprimer'
@@ -50,6 +51,9 @@ fr:
     days_remaining: Days Remaining
     expires_on: Expires On
     no_coupon_code_applied: 'You have no promotion code applied.'
+    notices:
+      basket_emptied: Your basket has been emptied.
+      basket_updated: Basket updated.
     number_free: Number Free
     number_in_use: Number in Use
     place_order: Commander
@@ -275,7 +279,6 @@ fr:
     added: Added.
     admin_required: You need to be logged in as an administrator to do that.
     advert_removed: Advert removed.
-    basket_updated: Basket updated.
     created: Created.
     deleted: Deleted.
     saved: Saved.

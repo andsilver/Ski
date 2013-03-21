@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe BannerPrice do
   before do
+    BannerPrice.delete_all
     BannerPrice.create!(:current_banner_number => 100, :price => 20)
   end
 

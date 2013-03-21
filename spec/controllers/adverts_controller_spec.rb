@@ -86,6 +86,23 @@ describe AdvertsController do
         post :update_basket_contents, :remove_advert => {"1" => "1"}
       end
     end
+
+    context 'when the basket is being emptied' do
+      it "empties the current user's basket" do
+        current_user.should_receive(:empty_basket)
+        post :update_basket_contents, empty_basket: 'Empty Basket'
+      end
+
+      it 'removes windows from the basket' do
+        controller.should_receive(:remove_windows_from_basket)        
+        post :update_basket_contents, empty_basket: 'Empty Basket'
+      end
+
+      it 'tells the user their basket has been emptied' do
+        post :update_basket_contents, empty_basket: 'Empty Basket'
+        flash[:notice].should == 'Your basket has been emptied.'
+      end
+    end
   end
 
   describe "POST place order" do

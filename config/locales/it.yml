@@ -39,6 +39,7 @@ it:
     add_to_basket: Añadir a la Cesta
     basket:
       apply_code: 'Applicare un Codice'
+      empty_basket: Empty Basket
       first_payment: 'Primo pagamento'
       followed_by_11_payments_of: 'Seguito da 11 pagamenti di'
       remove: 'Rimuovere'
@@ -50,6 +51,9 @@ it:
     days_remaining: Days Remaining
     expires_on: Expires On
     no_coupon_code_applied: 'You have no promotion code applied.'
+    notices:
+      basket_emptied: Your basket has been emptied.
+      basket_updated: Basket updated.
     number_free: Number Free
     number_in_use: Number in Use
     place_order: Place Order
@@ -275,7 +279,6 @@ it:
     added: Added.
     admin_required: You need to be logged in as an administrator to do that.
     advert_removed: Advert removed.
-    basket_updated: Basket updated.
     created: Created.
     deleted: Deleted.
     saved: Saved.

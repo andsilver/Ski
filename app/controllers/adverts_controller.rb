@@ -34,7 +34,15 @@ class AdvertsController < ApplicationController
     update_durations unless params[:months].nil?
     remove_advert if params[:remove_advert]
     redirect_to action: 'place_order' and return if params[:place_order]
-    redirect_to basket_path, notice: t('notices.basket_updated')
+
+    if params[:empty_basket]
+      @current_user.empty_basket
+      remove_windows_from_basket
+      flash[:notice] = t('adverts_controller.notices.basket_emptied')
+    else
+      flash[:notice] = t('adverts_controller.notices.basket_updated')
+    end
+    redirect_to basket_path
   end
 
   def place_order
@@ -234,6 +242,10 @@ class AdvertsController < ApplicationController
         Advert.destroy_all(id: id, user_id: @current_user.id)
       end
     end
+  end
+
+  def remove_windows_from_basket
+    session[:windows_in_basket] = nil
   end
 
   def copy_user_details_to_order
