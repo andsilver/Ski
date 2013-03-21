@@ -174,4 +174,8 @@ class ApplicationController < ActionController::Base
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
+
+  def owned_or_admin?(object)
+    admin? || (signed_in? && object.user_id == current_user.id)
+  end
 end

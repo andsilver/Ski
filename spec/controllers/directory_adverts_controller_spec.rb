@@ -161,19 +161,32 @@ describe DirectoryAdvertsController do
       DirectoryAdvert.stub(:find).and_return(directory_advert)
     end
 
-    it "finds a directory advert specified by param[:id]" do
-      DirectoryAdvert.should_receive(:find).with("1")
-      delete :destroy, :id => "1"
+    it 'finds a directory advert specified by param[:id]' do
+      DirectoryAdvert.should_receive(:find).with('1')
+      delete :destroy, id: '1'
     end
 
-    it "destroys a directory advert" do
-      directory_advert.should_receive(:destroy)
-      delete :destroy, :id => "1"
+    context 'when not owned or admin' do
+      before { controller.should_receive(:owned_or_admin?).with(directory_advert).and_return(false) }
+
+      it 'responds with 404' do
+        delete :destroy, id: '1'
+        response.status.should eq 404
+      end
     end
 
-    it "redirects to directory adverts page" do
-      delete :destroy, :id => "1"
-      response.should redirect_to(directory_adverts_path)
+    context 'when owned or admin' do
+      before { controller.should_receive(:owned_or_admin?).with(directory_advert).and_return(true) }
+
+      it 'destroys a directory advert' do
+        directory_advert.should_receive(:destroy)
+        delete :destroy, :id => "1"
+      end
+
+      it 'redirects to directory adverts page' do
+        delete :destroy, :id => "1"
+        response.should redirect_to(directory_adverts_path)
+      end
     end
   end
 end

@@ -77,8 +77,13 @@ class DirectoryAdvertsController < ApplicationController
 
   def destroy
     @directory_advert = DirectoryAdvert.find(params[:id])
-    @directory_advert.destroy
-    redirect_to(directory_adverts_path, notice: t('notices.deleted'))
+
+    if owned_or_admin?(@directory_advert)
+      @directory_advert.destroy
+      redirect_to(directory_adverts_path, notice: t('notices.deleted'))
+    else
+      not_found
+    end
   end
 
   def advertise_now
