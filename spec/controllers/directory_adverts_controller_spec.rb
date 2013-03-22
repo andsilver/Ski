@@ -183,9 +183,22 @@ describe DirectoryAdvertsController do
         delete :destroy, :id => "1"
       end
 
-      it 'redirects to directory adverts page' do
-        delete :destroy, :id => "1"
-        response.should redirect_to(directory_adverts_path)
+      context 'when admin' do
+        before { controller.stub(:admin?).and_return(true) }
+
+        it 'redirects to directory adverts page' do
+          delete :destroy, :id => "1"
+          response.should redirect_to(directory_adverts_path)
+        end
+      end
+
+      context 'when not admin' do
+        before { controller.stub(:admin?).and_return(false) }
+
+        it 'redirects to My Adverts' do
+          delete :destroy, :id => "1"
+          response.should redirect_to(my_adverts_path)
+        end
       end
     end
   end

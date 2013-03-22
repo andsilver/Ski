@@ -80,7 +80,8 @@ class DirectoryAdvertsController < ApplicationController
 
     if owned_or_admin?(@directory_advert)
       @directory_advert.destroy
-      redirect_to(directory_adverts_path, notice: t('notices.deleted'))
+      flash.notice = t('notices.deleted')
+      redirect_to(admin? ? directory_adverts_path : my_adverts_path)
     else
       not_found
     end
