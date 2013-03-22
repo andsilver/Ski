@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
   attr_accessible :name
 
-  has_many :directory_adverts, dependent: :nullify
+  has_many :directory_adverts, dependent: :restrict
   validates_uniqueness_of :name
   validates_presence_of :name
 
