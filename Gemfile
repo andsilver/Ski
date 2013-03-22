@@ -60,6 +60,10 @@ end
 
 gem 'simplecov', :require => false, :group => :test
 
+group :test, :development do
+  gem 'factory_girl_rails'
+end
+
 group :test do
   gem "autotest", "4.4.6"
   gem 'rspec-rails'
