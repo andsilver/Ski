@@ -35,11 +35,12 @@ class DirectoryAdvertsController < ApplicationController
 
   def create
     resort_ids = params[:directory_advert][:resort_id]
+    is_banner_advert = params[:directory_advert].delete(:is_banner_advert) || false
+
     resort_ids.each do |resort_id|
       next if resort_id == ''
 
       params[:directory_advert].delete(:resort_id)
-      is_banner_advert = params[:directory_advert].delete(:is_banner_advert)
       @directory_advert = DirectoryAdvert.new(params[:directory_advert])
       @directory_advert.resort_id = resort_id
       @directory_advert.is_banner_advert = is_banner_advert

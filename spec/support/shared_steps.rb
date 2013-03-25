@@ -1,7 +1,11 @@
-def add_banner_advert_to_basket
+def add_banner_advert_to_basket(options = {})
+  options = {
+    resorts: ['France > Chamonix']
+  }.merge(options)
+
   visit '/directory_adverts/new'
   choose 'Banner advert with free directory advert'
-  select 'France > Chamonix', from: 'Resorts'
+  options[:resorts].each { |resort| select resort, from: 'Resorts' }
   select 'Bars', from: 'Category'
   fill_in 'Business name', with: 'My business'
   fill_in 'Business address', with: 'An address'
