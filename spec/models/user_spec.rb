@@ -146,4 +146,51 @@ describe User do
       u.new_advertisables.should_not include(d_live)
     end
   end
+
+  describe '#remove_expired_coupon' do
+    context 'with an expired coupon' do
+      let(:coupon) { mock_model(Coupon, :expired? => true) }
+
+      it 'removes it' do
+        u = User.new
+        u.coupon = coupon
+        u.remove_expired_coupon
+        u.coupon.should be_nil
+      end
+
+      it 'saves' do
+        u = User.new
+        u.coupon = coupon
+        u.should_receive(:save)
+        u.remove_expired_coupon
+      end
+    end
+
+    context 'with an unexpired coupon' do
+      let(:coupon) { mock_model(Coupon, :expired? => false) }
+
+      it 'leaves it' do
+        u = User.new
+        u.coupon = coupon
+        u.remove_expired_coupon
+        u.coupon.should == coupon
+      end
+
+      it 'does not save' do
+        u = User.new
+        u.coupon = coupon
+        u.should_not_receive(:save)
+        u.remove_expired_coupon
+      end
+    end
+
+    context 'with no coupon' do
+      it 'does not save' do
+        u = User.new
+        u.coupon = nil
+        u.should_not_receive(:save)
+        u.remove_expired_coupon
+      end
+    end
+  end
 end

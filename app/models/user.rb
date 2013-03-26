@@ -206,6 +206,13 @@ class User < ActiveRecord::Base
     (properties + directory_adverts).select {|a| a.advert_status == :new}
   end
 
+  def remove_expired_coupon
+    if coupon && coupon.expired?
+      self.coupon = nil
+      save
+    end
+  end
+
   protected
 
   def encrypt_password

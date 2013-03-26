@@ -142,7 +142,9 @@ describe AdvertsController do
     end
 
     it "copies the user's details to the order" do
-      pending
+      Order.stub(:new).and_return(order)
+      controller.should_receive(:copy_user_details_to_order)
+      post 'place_order'
     end
   end
 

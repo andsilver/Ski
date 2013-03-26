@@ -1,4 +1,3 @@
-# coding: utf-8
 class AdvertsController < ApplicationController
   before_filter :no_browse_menu
   before_filter :user_required
@@ -134,64 +133,13 @@ class AdvertsController < ApplicationController
   protected
 
   def prepare_basket
-    @lines = Array.new
-    @total = 0
-    remove_expired_coupons
+    @current_user.remove_expired_coupon
 
-    if session[:windows_in_basket]
-      line = BasketLine.new
-      line.description = "#{session[:windows_in_basket]} property windows"
-      line.price = WindowBasePrice.find_by_quantity(session[:windows_in_basket]).price * 100
-      line.windows = session[:windows_in_basket]
-      @lines << line
-      @total += line.price
-    end
+    @basket = Basket.new(windows: session[:windows_in_basket], user: @current_user)
+    @basket.prepare
 
-    total_adverts = @current_user.adverts_so_far
-    advert_number = Hash.new
-    advert_number = {
-      banner_advert: @current_user.banner_adverts_so_far,
-      directory_advert: @current_user.directory_adverts_so_far,
-      property: @current_user.property_adverts_so_far
-    }
-    @current_user.adverts_in_basket.each do |advert|
-
-      # Remove advert types that are no longer valid from the basket
-      if advert.virtual_type.nil?
-        advert.destroy
-        next
-      end
-
-      advert_number[advert.virtual_type] += 1
-      total_adverts += 1
-      line = BasketLine.new
-      line.description = line.advert = advert
-      begin
-        line.price = advert.price(advert_number[advert.virtual_type])
-      rescue
-        advert.destroy
-        next
-      end
-      @lines << line
-      @total += line.price
-      if @current_user.coupon && @current_user.coupon.number_of_adverts >= total_adverts
-        discount_line = BasketLine.new
-        discount_line.advert = advert
-        discount_line.coupon = @current_user.coupon
-        discount_line.price = -(@current_user.coupon.percentage_off / 100.0) * line.price
-        discount_line.description = @current_user.coupon.code + ' #' + total_adverts.to_s
-        @lines << discount_line
-        @total += discount_line.price
-      end
-    end
-
-    if @current_user.apply_price_override?
-      override_line = BasketLine.new
-      override_line.description = "Price override €#{@current_user.price_override}"
-      override_line.price = @current_user.price_override * 100 - @total
-      @lines << override_line
-      @total += override_line.price
-    end
+    @lines = @basket.lines
+    @total = @subtotal = @basket.subtotal
 
     @subtotal = @total
 
@@ -200,13 +148,6 @@ class AdvertsController < ApplicationController
       @total += @tax_amount
     else
       @tax_amount = 0
-    end
-  end
-
-  def remove_expired_coupons
-    if @current_user.coupon && @current_user.coupon.expired?
-      @current_user.coupon = nil
-      @current_user.save
     end
   end
 
