@@ -22,7 +22,7 @@ class BasketLine
   end
 
   def first_payment
-    price - 11 * (price / 12)
+    price - 11 * subsequent_payments
   end
 
   def subsequent_payments
