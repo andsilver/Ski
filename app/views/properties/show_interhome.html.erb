@@ -34,6 +34,11 @@
       map.setCenter(marker.getPosition());
     });
 
+    $('.availability-Q').click(function() {
+      var win = window.open('<%= contact_property_path(@property) %>', '_blank');
+      win.focus();
+    });
+
     showMap();
 	});
 </script>
