@@ -140,24 +140,28 @@ module PierreEtVacances
         return
       end
 
-      #accommodation.interhome_pictures.each do |picture|
-      #  image = Image.find_by_property_id_and_source_url(property.id, picture.url)
-
-      #  if image.nil?
-      #    image = Image.new
-      #    image.user_id = @user.id
-      #    image.source_url = picture.url
-      #    image.property_id = property.id
-      #    image.save
-      #  end
-
-      #  if picture.picture_type == 'm'
-      #    property.image_id = image.id
-      #    property.save
-      #  end
-      #end
+      set_main_image(accommodation, property)
 
       create_advert(property)
+    end
+
+    def set_main_image(accommodation, property)
+      photo_url = accommodation.photo_array.first
+
+      if property.image && property.image.source_url != photo_url
+        property.image.destroy
+        property.image_id = nil
+      end
+
+      unless property.image
+        image = Image.new
+        image.user_id = @user.id
+        image.source_url = photo_url
+        image.property_id = property.id
+        image.save
+        property.image_id = image.id
+        property.save
+      end
     end
 
     def weekly_rent_price_for(code)
