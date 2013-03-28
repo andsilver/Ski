@@ -42,6 +42,7 @@ module ResortsHelper
     url.gsub(' ', '%20')
   end
 
+  # TODO: Refactor
   def header_image_urls
     urls = []
 
@@ -63,6 +64,14 @@ module ResortsHelper
       blog_post_images(id)
       @images.each do |img|
         urls << "/blog-posts/#{id}/#{img}"
+      end
+    end
+
+    if controller.controller_name == 'pages' && controller.action_name == 'show'
+      slug = params[:id]
+      images_in_directory("#{Rails.root.to_s}/public/pages/#{slug}/headers")
+      @images.each do |img|
+        urls << "/pages/#{slug}/headers/#{img}"
       end
     end
 
