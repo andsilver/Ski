@@ -39,11 +39,15 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find_by_path("/pages/#{params[:id]}")
-    not_found and return unless @page
+    not_found and return unless show_page?
     @content = Liquid::Template.parse(@page.content).render('buying_guides' => BuyingGuide.all)
   end
 
   protected
+
+  def show_page?
+    @page && (@page.visible? || admin?)
+  end
 
   def find_page
     @page = Page.find(params[:id])

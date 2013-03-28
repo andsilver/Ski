@@ -12,7 +12,7 @@ describe PagesController do
     @page ||= mock_model(Page, stubs).as_null_object
   end
 
-  describe 'PUT #update' do
+  describe 'PUT update' do
     it 'finds the page' do
       Page.should_receive(:find).with('1').and_return(page)
       put 'update', id: '1'
@@ -27,6 +27,14 @@ describe PagesController do
         put 'update', id: '1'
         response.should redirect_to(edit_page_path(page))
       end
+    end
+  end
+
+  describe 'GET show' do
+    it 'finds the page by path' do
+      # received twice and found the first time by ApplicationController#page_defaults
+      Page.should_receive(:find_by_path).with('/pages/slug').twice.and_return(page(content: ''))
+      get 'show', id: 'slug'
     end
   end
 end
