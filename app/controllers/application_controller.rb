@@ -96,7 +96,6 @@ class ApplicationController < ActionController::Base
     if page
       @page_title = page.title
       @meta_description = page.description
-      @meta_keywords = page.keywords
       @page_content = page.content
       @footer_box = page.footer.content unless page.footer.nil?
       @banner_advert_html = page.banner_advert_html unless page.banner_advert_html.blank?
