@@ -14,7 +14,7 @@
 <%= form_for(@directory_advert, html: {multipart: true}) do |f| %>
 
 <% unless @directory_advert.currently_advertised? -%>
-<div class="group_panel">
+<div class="well">
   <div class="row">
     <div class="span8">
       <h2>Type of Advert</h2>
@@ -56,7 +56,7 @@
 </div>
 <% end -%>
 
-<div class="group_panel">
+<div class="well">
 <% if @directory_advert.banner_image %>
   <p style="float:right;"><img src="<%= @directory_advert.banner_image.url %>"></p>
 <% end %>
@@ -75,7 +75,7 @@
   </div>
 </div>
 
-<div class="group_panel">
+<div class="well">
 <table>
   <tr>
     <td width="40%">
@@ -213,5 +213,5 @@ Please include the country calling code.
     <td>&nbsp;</td>
   </tr>
 </table>
-</div><!--.group_panel-->
+</div><!--.well-->
 <% end %>

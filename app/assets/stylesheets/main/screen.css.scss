@@ -323,26 +323,6 @@ input#property_postcode {
   padding-top: 2em;
 }
 
-#user_panel_1 .group_panel, #user_panel_3 .group_panel {
-  height: 260px;
-}
-
-.group_panel {
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  background: #eee;
-  margin: 1em 0;
-  padding: 0.5em 1em;
-}
-
-.group_panel table {
-  width: 100%;
-}
-
-.edit_property .group_panel table td {
-  width: 50%;
-}
-
 .km {
   font-size: 0.8em;
   padding-left: 0.2em;

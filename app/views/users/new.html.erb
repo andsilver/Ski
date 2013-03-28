@@ -8,8 +8,9 @@
 <%= raw t('users.can_advertise_generally') if @user.role.advertises_generally? %>
 <%= render 'form', submit_label: 'sign_up' %>
 <% else %>
-<div id="user_panel_1">
-  <div class="group_panel">
+<div class="row">
+  <div class="span6">
+    <div class="well">
 <p><%= t('users.choose_an_account_type') %></p>
 <%= form_for @user do |f| %>
 <input type="hidden" name="stage" value="1">
@@ -20,6 +21,7 @@
   <%= f.submit t('continue'), class: 'btn btn-primary' %>
 </p>
 <% end %>
+    </div>
   </div>
 </div>
 <% end %>
