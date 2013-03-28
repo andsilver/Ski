@@ -19,13 +19,13 @@
   </label>
 
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, class: 'span5' %>
 
   <%= f.label :description %>
-  <%= f.text_area :description %>
+  <%= f.text_area :description, rows: 3 %>
 
   <%= f.label :keywords %>
-  <%= f.text_area :keywords %>
+  <%= f.text_area :keywords, rows: 2 %>
 
   <%= f.label :content %>
   <%= f.text_area :content %>
@@ -34,7 +34,7 @@
   <%= select("page", "footer_id", (Footer.all.collect {|f| [ f.name, f.id ] }).sort, {prompt: 'Choose footer'}) %>
 
   <%= f.label :banner_advert_html, 'Banner advert HTML' %>
-  <%= f.text_area :banner_advert_html %>
+  <%= f.text_area :banner_advert_html, rows: 6 %>
 <div class="field">
   <%= f.submit class: 'btn btn-primary' %>
 </div>
