@@ -62,7 +62,11 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(post_params)
       update_logo
-      redirect_to(my_details_path, notice: t('my_details_saved'))
+      if admin?
+        redirect_to users_path, notice: t('notices.saved')
+      else
+        redirect_to my_details_path, notice: t('my_details_saved')
+      end
     else
       render action: 'edit'
     end
