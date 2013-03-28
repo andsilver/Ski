@@ -13,7 +13,7 @@
 <%= form_for @user, html: { multipart: true } do |f| %>
 <%= f.hidden_field :role_id %>
 <div id="panel_1">
-<div class="group_panel">
+<div class="well">
 <h2><%= t('users.your_details') %></h2>
 <div class="field">
   <%= f.label :first_name, t('first_name') %>
@@ -25,7 +25,7 @@
 </div>
 <div class="field">
   <%= f.label :email %>
-  <%= f.text_field :email %> <%= required_field %>
+  <%= f.email_field :email %> <%= required_field %>
 </div>
 <div class="field">
   <%= f.label :password, t('password') %>
@@ -42,7 +42,7 @@
 </div>
 
 <% if admin? %>
-<div class="group_panel">
+<div class="well">
 <h2><%= t 'coupon' %></h2>
 <p>
   Apply the following coupon code to this user's purchases:
@@ -58,18 +58,20 @@
   order.
 </p>
 <div class="field">
-  <%= f.check_box :apply_price_override %>
-  <%= f.label :apply_price_override %>
+  <label class="checkbox">
+    <%= f.check_box :apply_price_override %>
+    Apply price override
+  </label>
 </div>
 <div class="field">
   <%= f.label :price_override %>
-  <%= f.text_field :price_override %> EUR
+  <%= f.text_field :price_override, class: 'span1' %> EUR
 </div>
 </div>
 <% end %>
 
 <% if @user.role.has_business_details? %>
-<div class="group_panel">
+<div class="well">
 <h2><%= t('business_details') %></h2>
 <div class="field">
   <%= f.label :business_name, t('users.business_name') %>
@@ -103,17 +105,17 @@ $(function() {
 <% end %>
 
 <% if @user.role.has_a_website? %>
-<div class="group_panel">
+<div class="well">
 <div class="field">
   <%= f.label :website, t('users.website') %>
-  <%= f.text_field :website %>
+  <%= f.url_field :website %>
 </div>
 <p>
   <%= t('users.website_format_tip') %>
 </p>
 </div>
 
-<div class="group_panel">
+<div class="well">
   <h2>Logo or Photo of Business</h2>
   <div class="field">
   	<label for="image">Image (.jpeg, .jpg, .gif, .png)</label>
@@ -122,7 +124,7 @@ $(function() {
 </div>
 <% end %>
 
-<div class="group_panel">
+<div class="well">
 <% if @user.new_record? %>
 <h2><%= t 'terms' %></h2>
 <div class="field">
@@ -142,7 +144,7 @@ $(function() {
 
 </div><!--#panel_1-->
 <div id="panel_2">
-<div class="group_panel">
+<div class="well">
 <h2><%= t('users.billing_details') %></h2>
 <div class="field">
   <%= f.label :billing_street, t('users.billing_street') %>
@@ -171,7 +173,7 @@ $(function() {
 </div>
 
 <% if @user.role.advertises_generally? %>
-<div class="group_panel">
+<div class="well">
 <h2><%= @user.role.has_business_details? ? t('users.describe_your_business') : t('users.describe_yourself') %></h2>
 <div class="field">
   <%= f.label :description, t('description') %>
@@ -181,7 +183,7 @@ $(function() {
 <% end %>
 
 <% if @user.role.advertises_properties? -%>
-<div class="group_panel">
+<div class="well">
   <h2>Google Analytics</h2>
   <p>
     We can embed Google Analytics tracking code on your property detail pages
