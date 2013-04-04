@@ -55,21 +55,12 @@ a img {
   height: 264px;
 }
 
-#shade {
-  position: absolute;
-  z-index: 2;
-  opacity: 0.6;
-  background: #000;
-  width: 996px;
-  height: 56px;
-}
-
 #logo {
   display: block;
   position: absolute;
   z-index: 3;
-  left: 35px;
-  top: 40px;
+  left: 19px;
+  top: 15px;
 }
 
 /* Display zoomed images above the header */

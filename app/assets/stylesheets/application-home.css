@@ -13,6 +13,7 @@
  *= require ./main/datepicker
  *= require ./main/featured_properties
  *= require ./main/footer
+ *= require ./main/header
  *= require ./main/localization
  *= require ./main/quick-search
  *= require ./main/social

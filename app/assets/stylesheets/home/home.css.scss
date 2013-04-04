@@ -44,19 +44,11 @@ a img {
   position: relative;
 }
 
-#shade {
-  opacity: 0.8;
-  filter: alpha(opacity = 80);
-  background: #000;
-  height: 56px;
-  margin-bottom: 130px;
-}
-
 #logo {
   display: block;
   position: absolute;
   left: 19px;
-  top: 40px;
+  top: 15px;
 }
 
 h1 {
@@ -223,6 +215,10 @@ a {
   clear: both;
 }
 
-#social {
-  right: 16px;
+header {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+#featured-properties {
+  top: 186px;
 }

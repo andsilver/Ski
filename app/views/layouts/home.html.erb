@@ -18,9 +18,10 @@
 <body>
 <div id="wrapper">
   <%= render "shared/main_menu" %>
-  <div id="shade">&nbsp;</div>
-  <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="<%= alt_attribute('/images/my-chalet-finder-logo-3.png', 'My Chalet Finder') %>"></a>
-  <%= render "shared/social" %>
+  <header>
+    <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="<%= alt_attribute('/images/my-chalet-finder-logo-3.png', 'My Chalet Finder') %>"></a>
+    <%= render "shared/social" %>
+  </header>
   <div id="intro">
     <%= snippet('home.introduction') %>
   </div>
