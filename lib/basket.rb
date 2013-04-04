@@ -66,7 +66,7 @@ class Basket
     return unless @user.apply_price_override?
     override_line = BasketLine.new
     override_line.description = "Price override €#{@user.price_override}"
-    override_line.price = @user.price_override * 100 - total
+    override_line.price = @user.price_override * 100 - subtotal
     @lines << override_line
   end
 

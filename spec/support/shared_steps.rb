@@ -16,8 +16,12 @@ def add_banner_advert_to_basket(options = {})
 end
 
 def sign_in_as_emily_evans
+  sign_in_with('emily@mychaletfinder.com', 'secret')
+end
+
+def sign_in_with(email, password)
   visit '/sign_in'
-  fill_in 'Email', with: 'emily@mychaletfinder.com'
-  fill_in 'Password', with: 'secret'
+  fill_in 'Email', with: email
+  fill_in 'Password', with: password
   click_button 'Sign In'
 end

@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe Basket do
@@ -37,7 +38,14 @@ describe Basket do
   end
 
   describe '#apply_price_override' do
-    pending
+    context 'with a user price override' do
+      let(:b) { Basket.new(user: FactoryGirl.build(:user, apply_price_override: true, price_override: 10)) }
+
+      it 'creates a price override describing the override amount' do
+        b.apply_price_override
+        b.lines.first.order_description.should eq 'Price override €10'
+      end
+    end
   end
 
   describe '#subtotal' do
