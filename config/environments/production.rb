@@ -71,4 +71,6 @@ MySkiChalet::Application.configure do
     exception_recipients: %w{ianfleeton@gmail.com}
 end
 
+ActionMailer::Base.delivery_method = :sendmail
+
 PERFORM_GEOCODE = true
