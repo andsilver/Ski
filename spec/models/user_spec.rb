@@ -85,6 +85,8 @@ describe User do
     end
   end
 
+  # These specs purposely integrate with #country_for_checking_vat instead
+  # of stubbing it.
   describe 'pays_vat?' do
     let(:uk) { Country.new(in_eu: true, iso_3166_1_alpha_2: 'GB') }
     let(:france) { Country.new(in_eu: true, iso_3166_1_alpha_2: 'FR') }
@@ -118,6 +120,35 @@ describe User do
       user.pays_vat?.should be_true
       user.vat_number = '123'
       user.pays_vat?.should be_true
+    end
+
+    it 'returns false if billing country is UK but VAT country is France' do
+      user = User.new(vat_number: '123')
+      user.stub(:billing_country).and_return(uk)
+      user.stub(:vat_country).and_return(france)
+      user.pays_vat?.should be_false
+    end
+
+    it 'returns true if billing country is US but VAT country is UK' do
+      user = User.new(vat_number: '123')
+      user.stub(:billing_country).and_return(us)
+      user.stub(:vat_country).and_return(uk)
+      user.pays_vat?.should be_true
+    end
+  end
+
+  describe '#country_for_checking_vat' do
+    let(:uk) { Country.new(in_eu: true, iso_3166_1_alpha_2: 'GB') }
+    let(:france) { Country.new(in_eu: true, iso_3166_1_alpha_2: 'FR') }
+
+    it 'returns vat_country if not nil' do
+      user = User.new(vat_country: uk, billing_country: france)
+      user.country_for_checking_vat.should eq uk
+    end
+
+    it 'returns billing_country if vat_country is nil' do
+      user = User.new(vat_country: nil, billing_country: france)
+      user.country_for_checking_vat.should eq france
     end
   end
 

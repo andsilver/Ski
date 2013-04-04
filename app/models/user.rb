@@ -163,14 +163,19 @@ class User < ActiveRecord::Base
   end
 
   # Returns true if the user should pay VAT.
-  # A user pays VAT when their billing country is in the EU and they have not
-  # supplied a VAT number.
-  # All customers in the UK should pay VAT, regardless of a VAT number.
+  # A user pays VAT when their country for checking VAT is in the EU and they
+  # have not supplied a VAT number.
+  # All customers in the UK for tax purposes should pay VAT, regardless of a
+  # VAT number.
   #
   # :call-seq:
   #   pays_vat? -> true or false
   def pays_vat?
-    (vat_number.blank? && billing_country.in_eu?) || billing_country.iso_3166_1_alpha_2 == 'GB'
+    (vat_number.blank? && country_for_checking_vat.in_eu?) || country_for_checking_vat.iso_3166_1_alpha_2 == 'GB'
+  end
+
+  def country_for_checking_vat
+    vat_country || billing_country
   end
 
   def tax_description
