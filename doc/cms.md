@@ -1,8 +1,6 @@
-CMS User Guide
-==============
+# CMS User Guide
 
-Resizing Images
----------------
+## Resizing Images
 
 Get IrfanView from http://www.irfanview.com/
 
@@ -12,8 +10,7 @@ Use Image > Scale (or Resize) image
 
 Save a copy of the image (Save As) as a .jpg
 
-Naming Files
-------------
+## Naming Files
 
 The web server is case sensitive: CHALET.jpg is not the same as chalet.jpg
 
@@ -25,8 +22,7 @@ Instead of: a chalet.jpg
 
 Use: a-chalet.jpg
 
-HTML
-----
+## HTML
 
 You can create your own HTML files that give you free reign over style.
 
@@ -44,8 +40,7 @@ Upload the file to the /public/ folder using FileZilla.
 When you are happy you will need me to transfer it across and create
 the styles to fit within the website.
 
-Promotion Codes
----------------
+## Promotion Codes
 
 Create a new promotion code in CMS > Promotion Codes
 
@@ -64,8 +59,7 @@ advert or a 'P' for property can aid in reminding what the promotion code
 was intended for and also makes it easier to locate alphabetically in the
 drop down list.
 
-Headers
--------
+## Headers
 
 Resort headers go in
 /public/resorts/resort-name/headers

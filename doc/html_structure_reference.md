@@ -1,17 +1,14 @@
-HTML Structure Reference
-========================
+# HTML Structure Reference
 
 This document is a general reference for anyone wanting to script or style
 the HTML produced by this application.
 
-HTML5
------
+## HTML5
 
 The code includes new HTML5 elements. The current code includes modernizr
 and CSS to display:block the block-level elements for older browsers.
 
-Part of the Main Layout
------------------------
+## Part of the Main Layout
 
 * `html.no-js` interacts with modernizr to detect feature support. This
   class attribute will change if the user's browser has Javascript
@@ -29,8 +26,7 @@ Part of the Main Layout
   changes between pages.
 * `footer` is only used once and is used for the main site footer.
 
-Found Frequently
-----------------
+## Found Frequently
 
 * `div#error_explanation` appears above forms that have failed to validate
   and surrounds an `<h2>` and a list of error messages.
@@ -44,8 +40,7 @@ Found Frequently
   distances).
 * `td.price` for table cells containing prices
 
-Forms
------
+## Forms
 
 Each form for creating a new object has the selectors `form.new_objectname`
 and `form#new_objectname`. Existing object names are:
@@ -64,8 +59,7 @@ When the form is used for editing the selectors become form.edit_objectname
 and form#edit_objectname_X where X is the ID of the object being edited.
 As the ID changes you would use the form.edit_objectname for applying CSS.
 
-Pagination
-----------
+## Pagination
 
 Page navigation used on search results that are displayed over a number of
 pages.
@@ -79,8 +73,7 @@ pages.
 * `.pagination .next_page`
 * `.pagination .previous_page`
 
-Categories
-----------
+## Categories
 
 ### categories/_form.html.erb
 
@@ -94,8 +87,7 @@ Categories
 
 * `table#directory_adverts`
 
-Properties
-----------
+## Properties
 
 ### properties/_my_details_summary.html.erb
 
@@ -120,8 +112,7 @@ of the new advert, prompting the advertiser to update them if necessary.
 * `span#current_time` is where Javascript puts a hidden input field inside
   with the current time. This is part of the spam protection.
 
-Resorts
--------
+## Resorts
 
 ### resorts/_form.html.erb
 
@@ -129,8 +120,7 @@ Resorts
 * `input#resort_country_id`
 * `textarea#resort_info`
 
-Routes
-------
+## Routes
 
 This is a list of pages in the website.
 
