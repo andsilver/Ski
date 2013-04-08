@@ -1,8 +1,8 @@
 class CreateWebsites < ActiveRecord::Migration
   def self.up
     create_table :websites do |t|
-      t.text :terms, :default => ''
-      t.text :pricing_info, :default => ''
+      t.text :terms
+      t.text :pricing_info
 
       t.timestamps
     end

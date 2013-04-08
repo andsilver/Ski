@@ -1,6 +1,6 @@
 class AddDescriptionToProperties < ActiveRecord::Migration
   def self.up
-    add_column :properties, :description, :text, :default => ''
+    add_column :properties, :description, :text
   end
 
   def self.down

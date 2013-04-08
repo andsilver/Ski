@@ -1,6 +1,6 @@
 class AddPrivacyPolicyToWebsites < ActiveRecord::Migration
   def self.up
-    add_column :websites, :privacy_policy, :text, :default => ''
+    add_column :websites, :privacy_policy, :text
   end
 
   def self.down

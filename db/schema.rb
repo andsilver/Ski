@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.integer  "banner_advert_id"
     t.integer  "directory_advert_id"
     t.integer  "property_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.boolean  "window",              :default => false, :null => false
     t.integer  "order_id"
   end
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.integer  "resort_id",                  :null => false
     t.integer  "airport_id",                 :null => false
     t.integer  "distance_km", :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   add_index "airport_distances", ["resort_id"], :name => "index_airport_distances_on_resort_id"
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.string   "name",       :default => "", :null => false
     t.string   "code",       :default => "", :null => false
     t.integer  "country_id",                 :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "alt_attributes", :force => true do |t|
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.integer  "width",      :default => 0, :null => false
     t.integer  "height",     :default => 0, :null => false
     t.integer  "clicks",     :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "banner_adverts", ["resort_id"], :name => "index_banner_adverts_on_resort_id"
@@ -94,16 +94,16 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
   create_table "banner_prices", :force => true do |t|
     t.integer  "current_banner_number", :default => 0, :null => false
     t.integer  "price",                 :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "blog_posts", :force => true do |t|
     t.string   "headline",   :default => "",   :null => false
     t.text     "content"
     t.integer  "image_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.boolean  "visible",    :default => true, :null => false
   end
 
@@ -118,28 +118,28 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "countries", :force => true do |t|
     t.string   "name",                    :default => "",    :null => false
     t.string   "iso_3166_1_alpha_2",      :default => "",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.text     "info"
     t.boolean  "popular_billing_country", :default => false, :null => false
     t.boolean  "in_eu",                   :default => false, :null => false
     t.integer  "image_id"
-    t.text     "banner_advert_html",                         :null => false
+    t.text     "banner_advert_html"
     t.integer  "property_count",          :default => 0,     :null => false
   end
 
   create_table "coupons", :force => true do |t|
     t.string   "code"
     t.integer  "number_of_adverts"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "percentage_off",    :default => 100, :null => false
     t.date     "expires_on"
   end
@@ -150,15 +150,15 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.boolean  "pre",                                      :default => true, :null => false
     t.string   "code",                                     :default => "",   :null => false
     t.decimal  "in_euros",   :precision => 6, :scale => 4, :default => 1.0,  :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
   end
 
   create_table "directory_adverts", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "user_id",                             :null => false
+    t.integer  "category_id",                         :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "business_address",                    :null => false
     t.string   "postcode",         :default => "",    :null => false
     t.string   "opening_hours",    :default => "",    :null => false
@@ -187,10 +187,10 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.string   "phone",                                    :null => false
     t.date     "date_of_arrival"
     t.date     "date_of_departure"
-    t.text     "comments",                                 :null => false
+    t.text     "comments"
     t.boolean  "contact_me",            :default => false, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.integer  "number_of_adults",      :default => 0,     :null => false
     t.integer  "number_of_children",    :default => 0,     :null => false
     t.integer  "number_of_infants",     :default => 0,     :null => false
@@ -200,8 +200,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
   create_table "favourites", :force => true do |t|
     t.integer  "property_id",          :null => false
     t.integer  "unregistered_user_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   add_index "favourites", ["property_id"], :name => "index_favourites_on_property_id"
@@ -219,8 +219,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
   create_table "images", :force => true do |t|
     t.integer  "user_id"
     t.string   "filename",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "property_id"
     t.text     "source_url"
   end
@@ -341,8 +341,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.string   "description",                :null => false
     t.integer  "amount",                     :null => false
     t.integer  "advert_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.integer  "coupon_id"
     t.integer  "country_id"
     t.integer  "resort_id"
@@ -365,8 +365,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.integer  "country_id",                                                           :null => false
     t.string   "phone",                                                                :null => false
     t.integer  "total",                                                                :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                           :null => false
+    t.datetime "updated_at",                                                           :null => false
     t.string   "postcode",                                          :default => "",    :null => false
     t.boolean  "pay_monthly",                                       :default => false
     t.integer  "first_payment",                                     :default => 0
@@ -387,8 +387,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.string   "title",                                :null => false
     t.string   "description",        :default => "",   :null => false
     t.string   "keywords",           :default => "",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.integer  "footer_id"
     t.text     "content"
     t.text     "banner_advert_html"
@@ -418,8 +418,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.string   "transaction_time"
     t.text     "raw_auth_message"
     t.boolean  "accepted"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "futurepay_id",       :default => "", :null => false
   end
 
@@ -449,8 +449,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.boolean  "garden",                       :default => false, :null => false
     t.integer  "floor_area_metres_2",          :default => 0,     :null => false
     t.integer  "plot_size_metres_2",           :default => 0,     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.text     "description"
     t.integer  "number_of_bathrooms",          :default => 0,     :null => false
     t.string   "address",                      :default => "",    :null => false
@@ -496,15 +496,15 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
   create_table "property_base_prices", :force => true do |t|
     t.integer  "number_of_months", :default => 0, :null => false
     t.integer  "price",            :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "property_volume_discounts", :force => true do |t|
     t.integer  "current_property_number", :default => 0, :null => false
     t.integer  "discount_percentage",     :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.integer  "discount_amount",         :default => 0, :null => false
   end
 
@@ -568,8 +568,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
   create_table "resorts", :force => true do |t|
     t.integer  "country_id",             :default => 0,     :null => false
     t.string   "name",                   :default => "",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.text     "info"
     t.integer  "altitude_m"
     t.integer  "top_lift_m"
@@ -631,8 +631,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.boolean  "select_on_signup"
     t.boolean  "admin"
     t.boolean  "flag_new_development"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.boolean  "advertises_properties_for_rent", :default => false, :null => false
     t.boolean  "advertises_generally",           :default => false, :null => false
     t.boolean  "has_business_details",           :default => false, :null => false
@@ -667,8 +667,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
   add_index "unavailabilities", ["start_date"], :name => "index_unavailabilities_on_start_date"
 
   create_table "unregistered_users", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -688,8 +688,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.string   "business_name",          :default => "",    :null => false
     t.string   "position",               :default => "",    :null => false
     t.boolean  "terms_and_conditions",                      :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "role_id",                                   :null => false
     t.integer  "coupon_id"
     t.string   "forgot_password_token",  :default => "",    :null => false
@@ -708,8 +708,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
 
   create_table "websites", :force => true do |t|
     t.text     "terms"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                          :null => false
+    t.datetime "updated_at",                                                                          :null => false
     t.text     "privacy_policy"
     t.text     "home_content"
     t.integer  "directory_advert_price",                                           :default => 0,     :null => false
@@ -729,8 +729,8 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
   create_table "window_base_prices", :force => true do |t|
     t.integer  "quantity",   :default => 0, :null => false
     t.integer  "price",      :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
 end

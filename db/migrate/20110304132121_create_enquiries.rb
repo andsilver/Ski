@@ -9,7 +9,7 @@ class CreateEnquiries < ActiveRecord::Migration
       t.string :postcode, :null => false
       t.date :date_of_arrival
       t.date :date_of_departure
-      t.text :comments, :default => '', :null => false
+      t.text :comments
       t.boolean :contact_me, :default => false, :null => false
 
       t.timestamps
