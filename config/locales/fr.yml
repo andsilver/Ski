@@ -580,5 +580,12 @@ fr:
     your_details: Your Details
     your_position: Your position
   view: View
-  views: 'Views'
+  views:
+    adverts:
+      _table:
+        views: 'Views'
+    layouts:
+      application:
+        resort_nav:
+          for_rent: 'Holiday Rentals'
   weekly_rent_price: 'Prix de location hebdomadaire (minimale)'

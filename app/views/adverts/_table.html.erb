@@ -19,7 +19,7 @@ $(document).ready(function() {
       <% elsif adverts.first.respond_to? :image %>
       <th><%= t 'images_controller.image' %></th>
       <% end %>
-      <th class="numeric"><%= t 'views' %></th>
+      <th class="numeric"><%= t 'views.adverts._table.views' %></th>
       <% if adverts.first.respond_to? :clicks %>
       <th class="numeric"><%= t 'clicks' %></th>
       <% end %>

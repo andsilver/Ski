@@ -10,6 +10,7 @@
 
 Property.destroy_all
 Resort.destroy_all
+DirectoryAdvert.destroy_all
 Category.destroy_all
 User.destroy_all
 
@@ -350,7 +351,7 @@ bob = User.create!(
 chamonix = Resort.create!(country_id: france, name: 'Chamonix',
   visible: true,
   info: 'Chamonix, with a population of approximately 10,000, is a world famous resort and was the location of the first winter Olympics in 1924.'
-)
+) { |r| r.for_rent_count = 30 }
 
 Resort.create([
   { country_id: austria, name: 'Alpbach' },

@@ -76,7 +76,7 @@
     <li <%= 'class="active"'.html_safe if current_page?(resort_property_rent_path(@resort)) %>><a
       title="Property for rent in <%= @resort.name %>"
       href="<%= resort_property_rent_path(@resort) %>"><%=
-      t('for_rent') %> (<%= @resort.for_rent_count %>)</a></li>
+      t('views.layouts.application.resort_nav.for_rent') %> (<%= @resort.for_rent_count %>)</a></li>
 <% end -%>
 <% unless @resort.for_sale_count == 0 -%>
     <li <%= 'class="active"'.html_safe if current_page?(resort_property_sale_path(@resort)) %>><a
