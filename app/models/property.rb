@@ -18,6 +18,8 @@ class Property < ActiveRecord::Base
   validates :resort, presence: true
   validates_presence_of :address
 
+  validates_presence_of :currency
+
   validates_length_of :name, within: 4..50
   validates_length_of :strapline, within: 0..255
 

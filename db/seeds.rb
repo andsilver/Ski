@@ -8,6 +8,22 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Property.destroy_all
+Resort.destroy_all
+Category.destroy_all
+User.destroy_all
+
+website = Website.create!(
+)
+
+euros = Currency.create!(
+  name: 'Euro',
+  unit: '€',
+  pre: true,
+  code: 'EUR',
+  in_euros: 1
+)
+
 countries = Country.create([
   { name: 'Andorra',               iso_3166_1_alpha_2: 'AD' },
   { name: 'Afghanistan',           iso_3166_1_alpha_2: 'AF' },
@@ -310,8 +326,9 @@ other_business = Role.create(
   has_a_website: true
 )
 
-alice = User.create(
-  name: 'Alice',
+alice = User.create!(
+  first_name: 'Alice',
+  last_name: 'Adams',
   email: 'alice@mychaletfinder.com',
   password: 'secret',
   billing_street: '1, High St',
@@ -319,8 +336,9 @@ alice = User.create(
   billing_country_id: united_kingdom,
   terms_and_conditions: true
   ) { |u| u.role_id = admin.id }
-bob = User.create(
-  name: 'Bob',
+bob = User.create!(
+  first_name: 'Bob',
+  last_name: 'Brown',
   email: 'bob@mychaletfider.com',
   password: 'secret',
   billing_street: '2, Main Rd',
@@ -329,9 +347,8 @@ bob = User.create(
   terms_and_conditions: true
   ) { |u| u.role_id = property_developer.id }
 
-
-
-chamonix = Resort.create(country_id: france, name: 'Chamonix',
+chamonix = Resort.create!(country_id: france, name: 'Chamonix',
+  visible: true,
   info: 'Chamonix, with a population of approximately 10,000, is a world famous resort and was the location of the first winter Olympics in 1924.'
 )
 
@@ -350,80 +367,95 @@ Resort.create([
   { country_id: italy, name: 'Italian Alps' },
 ])
 
-Category.create([
-  { resort_id: chamonix.id, name: 'Bars' },
-  { resort_id: chamonix.id, name: 'Restaurants' },
-  { resort_id: chamonix.id, name: 'Nightclubs' },
-  { resort_id: chamonix.id, name: 'Babysitters' },
-  { resort_id: chamonix.id, name: 'Child Clubs' },
-  { resort_id: chamonix.id, name: 'Car Hire' },
-  { resort_id: chamonix.id, name: 'Mountain Guides' },
-  { resort_id: chamonix.id, name: 'Estate Agents' },
-  { resort_id: chamonix.id, name: 'Lawyers' },
+bars = Category.create!(name: 'Bars')
+
+Category.create!([
+  { name: 'Restaurants' },
+  { name: 'Nightclubs' },
+  { name: 'Babysitters' },
+  { name: 'Child Clubs' },
+  { name: 'Car Hire' },
+  { name: 'Mountain Guides' },
+  { name: 'Estate Agents' },
+  { name: 'Lawyers' },
 ])
 
+image_source_url = 'http://en.mychaletfinder.com'
+
 images = Image.create([
-  { filename: 'chalet1.jpg' },
-  { filename: 'chalet2.jpg' },
-  { filename: 'chalet3.jpg' },
-  { filename: 'chalet4.jpg' },
-  { filename: 'chalet5.jpg' },
-  { filename: 'chalet6.jpg' },
-  { filename: 'chalet7.jpg' },
-  { filename: 'chalet8.jpg' },
-  { filename: 'chalet9.jpg' },
-  { filename: 'chalet10.jpg' },
-  { filename: 'chalet11.jpg' },
-  { filename: 'chalet12.jpg' },
-  { filename: 'chalet13.jpg' },
-  { filename: 'chalet14.jpg' },
-  { filename: 'chalet15.jpg' },
-  { filename: 'chalet16.jpg' },
-  { filename: 'chalet17.jpg' },
-  { filename: 'chalet18.jpg' },
-  { filename: 'chalet19.jpg' },
-  { filename: 'chalet20.jpg' },
-  { filename: 'chalet21.jpg' },
-  { filename: 'chalet22.jpg' },
-  { filename: 'chalet23.jpg' },
-  { filename: 'chalet24.jpg' },
-  { filename: 'chalet25.jpg' },
-  { filename: 'chalet26.jpg' },
-  { filename: 'chalet27.jpg' },
-  { filename: 'chalet28.jpg' },
-  { filename: 'chalet29.jpg' },
-  { filename: 'chalet30.jpg' }
+  { filename: 'chalet1.jpg', source_url: image_source_url },
+  { filename: 'chalet2.jpg', source_url: image_source_url },
+  { filename: 'chalet3.jpg', source_url: image_source_url },
+  { filename: 'chalet4.jpg', source_url: image_source_url },
+  { filename: 'chalet5.jpg', source_url: image_source_url },
+  { filename: 'chalet6.jpg', source_url: image_source_url },
+  { filename: 'chalet7.jpg', source_url: image_source_url },
+  { filename: 'chalet8.jpg', source_url: image_source_url },
+  { filename: 'chalet9.jpg', source_url: image_source_url },
+  { filename: 'chalet10.jpg', source_url: image_source_url },
+  { filename: 'chalet11.jpg', source_url: image_source_url },
+  { filename: 'chalet12.jpg', source_url: image_source_url },
+  { filename: 'chalet13.jpg', source_url: image_source_url },
+  { filename: 'chalet14.jpg', source_url: image_source_url },
+  { filename: 'chalet15.jpg', source_url: image_source_url },
+  { filename: 'chalet16.jpg', source_url: image_source_url },
+  { filename: 'chalet17.jpg', source_url: image_source_url },
+  { filename: 'chalet18.jpg', source_url: image_source_url },
+  { filename: 'chalet19.jpg', source_url: image_source_url },
+  { filename: 'chalet20.jpg', source_url: image_source_url },
+  { filename: 'chalet21.jpg', source_url: image_source_url },
+  { filename: 'chalet22.jpg', source_url: image_source_url },
+  { filename: 'chalet23.jpg', source_url: image_source_url },
+  { filename: 'chalet24.jpg', source_url: image_source_url },
+  { filename: 'chalet25.jpg', source_url: image_source_url },
+  { filename: 'chalet26.jpg', source_url: image_source_url },
+  { filename: 'chalet27.jpg', source_url: image_source_url },
+  { filename: 'chalet28.jpg', source_url: image_source_url },
+  { filename: 'chalet29.jpg', source_url: image_source_url },
+  { filename: 'chalet30.jpg', source_url: image_source_url }
   ])
 
-properties = Property.create([
-  { resort_id: 1, user_id: 1, name: "Alpen Lounge",      sleeping_capacity: 6,   metres_from_lift: 2500, weekly_rent_price: 1750, image_id: 1 },
-  { resort_id: 1, user_id: 1, name: "Apartment Teracce", sleeping_capacity: 8,   metres_from_lift: 4700, weekly_rent_price: 2000, image_id: 2 },
-  { resort_id: 1, user_id: 1, name: "Brigitte's Mazot",  sleeping_capacity: 2,   metres_from_lift: 3100, weekly_rent_price: 1825, image_id: 3 },
-  { resort_id: 1, user_id: 1, name: "Chalet Alaska",     sleeping_capacity: 5,   metres_from_lift: 8300, weekly_rent_price: 1950, image_id: 4 },
-  { resort_id: 1, user_id: 1, name: "Chalet Anchorage",  sleeping_capacity: 10,  metres_from_lift: 5000, weekly_rent_price: 1650, image_id: 5 },
-  { resort_id: 1, user_id: 1, name: "Chalet Arkle",      sleeping_capacity: 14,  metres_from_lift: 4000, weekly_rent_price: 1725, image_id: 6 },
-  { resort_id: 1, user_id: 1, name: "Chalet Azimuth",    sleeping_capacity: 8,   metres_from_lift: 6300, weekly_rent_price: 2150, image_id: 7 },
-  { resort_id: 1, user_id: 1, name: "Chalet Bibendum",   sleeping_capacity: 8,   metres_from_lift: 5500, weekly_rent_price: 1350, image_id: 8 },
-  { resort_id: 1, user_id: 1, name: "Chalet Bornian",    sleeping_capacity: 8,   metres_from_lift: 4400, weekly_rent_price: 1400, image_id: 9 },
-  { resort_id: 1, user_id: 1, name: "Chalet Chachat",    sleeping_capacity: 14,  metres_from_lift: 3500, weekly_rent_price: 1500, image_id: 10 },
-  { resort_id: 1, user_id: 1, name: "Chalet Cachemire",  sleeping_capacity: 20,  metres_from_lift: 1400, weekly_rent_price: 1375, image_id: 11 },
-  { resort_id: 1, user_id: 1, name: "Chalet Chardonnet", sleeping_capacity: 8,   metres_from_lift: 9300, weekly_rent_price: 2000, image_id: 12 },
-  { resort_id: 1, user_id: 1, name: "Chalet Chintalaya", sleeping_capacity: 10,  metres_from_lift: 6500, weekly_rent_price: 1475, image_id: 13 },
-  { resort_id: 1, user_id: 1, name: "Chalet Chosalet",   sleeping_capacity: 8,   metres_from_lift: 5900, weekly_rent_price: 2025, image_id: 14 },
-  { resort_id: 1, user_id: 1, name: "Chalet D'Or",       sleeping_capacity: 8,   metres_from_lift: 6000, weekly_rent_price: 1550, image_id: 15 },
-  { resort_id: 1, user_id: 1, name: "Chalet des Sapins", sleeping_capacity: 10,  metres_from_lift: 4300, weekly_rent_price: 1650, image_id: 16 },
-  { resort_id: 1, user_id: 1, name: "Chalet des Isles",  sleeping_capacity: 12,  metres_from_lift: 2600, weekly_rent_price: 1850, image_id: 17 },
-  { resort_id: 1, user_id: 1, name: "Chalet des Islouts", sleeping_capacity: 8,  metres_from_lift: 8500, weekly_rent_price: 1550, image_id: 18 },
-  { resort_id: 1, user_id: 1, name: "Chalet Dubrulle",   sleeping_capacity: 11,  metres_from_lift: 5000, weekly_rent_price: 1575, image_id: 19 },
-  { resort_id: 1, user_id: 1, name: "Chalet Eco-Farm",   sleeping_capacity: 10,  metres_from_lift: 7200, weekly_rent_price: 2100, image_id: 20 },
-  { resort_id: 1, user_id: 1, name: "Chalet Edelweiss",  sleeping_capacity: 12,  metres_from_lift: 4200, weekly_rent_price: 1900, image_id: 21 },
-  { resort_id: 1, user_id: 1, name: "Chalet Eftikhia" ,  sleeping_capacity: 10,  metres_from_lift: 5900, weekly_rent_price: 1600, image_id: 22 },
-  { resort_id: 1, user_id: 1, name: "Chalet Flegere",    sleeping_capacity: 10,  metres_from_lift: 3400, weekly_rent_price: 1700, image_id: 23 },
-  { resort_id: 1, user_id: 1, name: "Chalet Gauthier",   sleeping_capacity: 16,  metres_from_lift: 4300, weekly_rent_price: 1600, image_id: 24 },
-  { resort_id: 1, user_id: 1, name: "Chalet Ghia",       sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, image_id: 25 },
-  { resort_id: 1, user_id: 1, name: "Chalet Grassonnets", sleeping_capacity: 8,  metres_from_lift: 3500, weekly_rent_price: 1300, image_id: 26 },
-  { resort_id: 1, user_id: 1, name: "Chalet Guapa",      sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, image_id: 27 },
-  { resort_id: 1, user_id: 1, name: "Chalet Ibex",       sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, image_id: 28 },
-  { resort_id: 1, user_id: 1, name: "Chalet Jomain",     sleeping_capacity: 18,  metres_from_lift: 10200, weekly_rent_price: 2050, image_id: 29 },
-  { resort_id: 1, user_id: 1, name: "Chalet Kushi",      sleeping_capacity: 8,   metres_from_lift: 9800, weekly_rent_price: 1500, image_id: 30 }
+properties = Property.create!([
+  { resort_id: chamonix.id, user_id: 1, name: "Alpen Lounge",      address: '123 street', sleeping_capacity: 6,   metres_from_lift: 2500, weekly_rent_price: 1750, image_id: 1 },
+  { resort_id: chamonix.id, user_id: 1, name: "Apartment Teracce", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4700, weekly_rent_price: 2000, image_id: 2 },
+  { resort_id: chamonix.id, user_id: 1, name: "Brigitte's Mazot",  address: '123 street', sleeping_capacity: 2,   metres_from_lift: 3100, weekly_rent_price: 1825, image_id: 3 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Alaska",     address: '123 street', sleeping_capacity: 5,   metres_from_lift: 8300, weekly_rent_price: 1950, image_id: 4 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Anchorage",  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5000, weekly_rent_price: 1650, image_id: 5 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Arkle",      address: '123 street', sleeping_capacity: 14,  metres_from_lift: 4000, weekly_rent_price: 1725, image_id: 6 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Azimuth",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6300, weekly_rent_price: 2150, image_id: 7 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Bibendum",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 5500, weekly_rent_price: 1350, image_id: 8 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Bornian",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4400, weekly_rent_price: 1400, image_id: 9 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Chachat",    address: '123 street', sleeping_capacity: 14,  metres_from_lift: 3500, weekly_rent_price: 1500, image_id: 10 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Cachemire",  address: '123 street', sleeping_capacity: 20,  metres_from_lift: 1400, weekly_rent_price: 1375, image_id: 11 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Chardonnet", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9300, weekly_rent_price: 2000, image_id: 12 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Chintalaya", address: '123 street', sleeping_capacity: 10,  metres_from_lift: 6500, weekly_rent_price: 1475, image_id: 13 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Chosalet",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 5900, weekly_rent_price: 2025, image_id: 14 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet D'Or",       address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6000, weekly_rent_price: 1550, image_id: 15 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet des Sapins", address: '123 street', sleeping_capacity: 10,  metres_from_lift: 4300, weekly_rent_price: 1650, image_id: 16 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet des Isles",  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 2600, weekly_rent_price: 1850, image_id: 17 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet des Islouts", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 8500, weekly_rent_price: 1550, image_id: 18 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Dubrulle",   address: '123 street', sleeping_capacity: 11,  metres_from_lift: 5000, weekly_rent_price: 1575, image_id: 19 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Eco-Farm",   address: '123 street', sleeping_capacity: 10,  metres_from_lift: 7200, weekly_rent_price: 2100, image_id: 20 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Edelweiss",  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 4200, weekly_rent_price: 1900, image_id: 21 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Eftikhia" ,  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5900, weekly_rent_price: 1600, image_id: 22 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Flegere",    address: '123 street', sleeping_capacity: 10,  metres_from_lift: 3400, weekly_rent_price: 1700, image_id: 23 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Gauthier",   address: '123 street', sleeping_capacity: 16,  metres_from_lift: 4300, weekly_rent_price: 1600, image_id: 24 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Ghia",       address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, image_id: 25 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Grassonnets", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 3500, weekly_rent_price: 1300, image_id: 26 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Guapa",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, image_id: 27 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Ibex",       address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, image_id: 28 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Jomain",     address: '123 street', sleeping_capacity: 18,  metres_from_lift: 10200, weekly_rent_price: 2050, image_id: 29 },
+  { resort_id: chamonix.id, user_id: 1, name: "Chalet Kushi",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9800, weekly_rent_price: 1500, image_id: 30 }
   ])
+
+DirectoryAdvert.destroy_all
+
+directory_advert = DirectoryAdvert.new(
+  category_id: bars.id,
+  resort_id: chamonix.id,
+  business_name: 'My Business',
+  business_address: '123 Street',
+  strapline: 'Awesome'
+)
+directory_advert.user_id = alice.id
+directory_advert.save!
