@@ -155,8 +155,9 @@ describe User do
   describe '#empty_basket' do
     it 'deletes all adverts in basket' do
       user = User.new
-      adverts = []
-      adverts.should_receive(:delete_all)
+      advert = mock_model(Advert)
+      advert.should_receive(:delete)
+      adverts = [advert]
       user.stub(:adverts_in_basket).and_return(adverts)
       user.empty_basket
     end

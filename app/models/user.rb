@@ -202,7 +202,7 @@ class User < ActiveRecord::Base
   end
 
   def empty_basket
-    adverts_in_basket.delete_all
+    adverts_in_basket.each { |a| a.delete }
   end
 
   # Returns advertisable objects (properties and directory adverts) that are
