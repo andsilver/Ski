@@ -194,6 +194,7 @@ MySkiChalet::Application.routes.draw do
   match "terms" => "home#terms"
   match 'sitemap.xml' => 'application#sitemap', :as => 'sitemap', :format => 'xml'
   match 'restart' => 'application#restart', as: 'restart'
+  match 'precompile_assets' => 'application#precompile_assets', as: 'precompile_assets'
 
   match 'home/resort_options_for_quick_search' => 'home#resort_options_for_quick_search'
   root to: 'home#index'

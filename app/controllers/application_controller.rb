@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :initialize_website, :set_locale, :initialize_user, :page_defaults
 
-  before_filter :admin_required, only: [:restart]
+  before_filter :admin_required, only: [:restart, :precompile_assets]
 
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, with: :render_error
@@ -22,6 +22,11 @@ class ApplicationController < ActionController::Base
   def restart
     `touch tmp/restart.txt` # assumes Phusion Passenger
     redirect_to cms_path, notice: 'Application restarted.'
+  end
+
+  def precompile_assets
+    `bundle exec rake assets:precompile RAILS_ENV=production && touch tmp/restart.txt`
+    redirect_to cms_path, notice: 'Assets precompiled.'
   end
 
   def sitemap
