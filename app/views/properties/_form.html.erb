@@ -144,7 +144,7 @@ $(function() {
       <div class="control-group">
         <%= f.label :floor_area_metres_2, t('floor_area'), class: 'control-label' %>
         <div class="controls">
-          <%= select("property", "floor_area_metres_2", floor_area_options, {prompt: 'Choose'}, class: 'narrow') %>
+          <%= f.number_field :floor_area_metres_2 %>
       square metres
         </div>
       </div>
