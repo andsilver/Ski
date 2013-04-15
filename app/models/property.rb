@@ -14,8 +14,7 @@ class Property < ActiveRecord::Base
   has_many :adverts_in_basket, class_name: 'Advert', conditions: {starts_at: nil}, dependent: :delete_all
   has_many :adverts, dependent: :nullify
 
-  validates_presence_of :resort_id
-  validates :resort, presence: true
+  validates_presence_of :resort
   validates_presence_of :address
 
   validates_presence_of :currency
