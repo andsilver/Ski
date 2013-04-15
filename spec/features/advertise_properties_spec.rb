@@ -11,6 +11,7 @@ feature 'Advertise Properties' do
     select 'France > Chamonix', from: 'Resort'
     select 'Apartment', from: 'Accommodation type'
     fill_in 'Address', with: 'La Frasse'
+    fill_in 'Floor area', with: '77'
     click_button 'Save'
     attach_file 'Image', 'test-files/banner-image.png'
     click_button 'Upload Image'
