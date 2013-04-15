@@ -13,9 +13,9 @@ Resort.destroy_all
 DirectoryAdvert.destroy_all
 Category.destroy_all
 User.destroy_all
+Currency.destroy_all
 
-website = Website.create!(
-)
+website = Website.create!
 
 euros = Currency.create!(
   name: 'Euro',

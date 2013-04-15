@@ -4,6 +4,8 @@ require 'open-uri'
 class Currency < ActiveRecord::Base
   attr_accessible :code, :in_euros, :name, :pre, :unit
 
+  validates_uniqueness_of :code
+
   def self.sterling_in_euros
     gbp = find_by_code('GBP')
     gbp ? gbp.in_euros : 0
