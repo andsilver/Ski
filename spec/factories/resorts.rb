@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :resort do
-    name 'Tignes'
+    name        'Tignes'
+    association :country
   end
 end
