@@ -588,4 +588,7 @@ it:
       application:
         resort_nav:
           for_rent: 'Holiday Rentals'
+    properties:
+      _show_property_heading:
+        new_developments: 'New Developments'
   weekly_rent_price: 'Weekly rental price from'
