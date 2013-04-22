@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  validates_presence_of :user_id, :email, :name, :address, :country_id
+  validates :address, :country, :email, :name, :phone, :status, :total, :user, presence: true
 
   before_create :create_order_number
 
