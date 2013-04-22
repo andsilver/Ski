@@ -460,3 +460,15 @@ directory_advert = DirectoryAdvert.new(
 )
 directory_advert.user_id = alice.id
 directory_advert.save!
+
+Order.destroy_all
+Order.create!(
+  user_id: alice.id,
+  email: alice.email,
+  name: alice.first_name,
+  address: alice.billing_street,
+  country_id: alice.billing_country.id,
+  phone: '+44.1234567890',
+  status: Order::PAYMENT_RECEIVED,
+  total: 0
+)

@@ -29,3 +29,11 @@ def sign_in_with(email, password)
   fill_in 'Password', with: password
   click_button 'Sign In'
 end
+
+def signed_in
+  controller.stub(:current_user).and_return(FactoryGirl.create(:user))
+end
+
+def signed_in_as_admin
+  controller.stub(:admin?).and_return(true)
+end

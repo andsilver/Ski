@@ -75,10 +75,6 @@ Spork.each_run do
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-
-  def signed_in_as_admin
-    controller.stub(:admin?).and_return(true)
-  end
 end
 
 # --- Instructions ---
