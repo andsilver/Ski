@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
       pdf.font_size 18
       pdf.text "Invoice number #{@order.order_number}"
       pdf.move_down 24
-      pdf.font_size 11
+      pdf.font_size 10
       pdf.text "Invoice created at: #{@order.created_at}"
       pdf.move_down 24
 
@@ -57,15 +57,26 @@ class OrdersController < ApplicationController
       end
 
       cells = []
-      cells << ["Product", "Price"]
+      headers = ["Product", "Price"]
+      headers <<= 'Sterling' if @order.sterling_in_euros 
+      cells << headers
       @order.order_lines.each do |line|
         cells << [line.description, euros_from_cents(line.amount)]
       end
-      cells << [@order.tax_description, euros_from_cents(@order.tax_amount)]
-      cells << ["Order total:", euros_from_cents(@order.total)]
+      tax_line = [@order.tax_description, euros_from_cents(@order.tax_amount)]
+      tax_line <<= @order.tax_amount / @order.sterling_in_euros if @order.sterling_in_euros
+      cells << tax_line
+      total_line = ["Order total:", euros_from_cents(@order.total)]
+      total_line <<= @order.total / @order.sterling_in_euros if @order.sterling_in_euros
+      cells << total_line
 
       t = Prawn::Table.new(cells, pdf)
       t.draw
+
+      if @order.sterling_in_euros
+        pdf.move_down 24
+        pdf.text "1 GBP = #{@order.sterling_in_euros} EUR"
+      end
 
       logopath = "#{Rails.root.to_s}/public/images/my-chalet-finder-logo.png"
       pdf.bounding_box([300, 770], width: 126, height: 22) do
