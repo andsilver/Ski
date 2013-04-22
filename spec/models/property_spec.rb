@@ -7,7 +7,7 @@ describe Property do
 
   # ActiveModel
   it { should ensure_length_of(:name).is_at_least(4).is_at_most(50) }
-  it { should validate_presence_of(:resort_id) }
+  it { should validate_presence_of(:resort) }
   it { should ensure_inclusion_of(:star_rating).in_range(1..5).with_message("is not in the range 1-5") }
 
   it { should respond_to(:star_rating) }
