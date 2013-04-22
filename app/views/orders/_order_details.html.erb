@@ -16,11 +16,12 @@
 <% end -%>
 </p>
  
-<table id="receipt">
+<table id="receipt" class="table table-bordered">
 
   <tr>
     <th>Product</th>
     <th class="price numeric">Price</th>
+    <th class="price numeric">Sterling</th>
   </tr>
 
   <% @order.order_lines.each do |line| -%>
@@ -34,10 +35,22 @@
   <tr>
     <td><%= @order.tax_description %></th>
     <td class="price numeric"><%= euros_from_cents @order.tax_amount %></td>
+<% if @order.sterling_in_euros -%>
+    <td class="price numeric"><%= euros_from_cents @order.tax_amount / @order.sterling_in_euros %></td>
+<% end -%>
   </tr>
   <tr>
     <td id="order_total">Order total:</th>
     <td class="price numeric total"><%= euros_from_cents(@order.total) %></td>
+<% if @order.sterling_in_euros -%>
+    <td class="price numeric"><%= euros_from_cents @order.total / @order.sterling_in_euros %></td>
+<% end -%>
   </tr>
   
 </table>
+
+<% if @order.sterling_in_euros -%>
+<p>
+  1 GBP = <%= @order.sterling_in_euros %> EUR
+</p>
+<% end -%>
