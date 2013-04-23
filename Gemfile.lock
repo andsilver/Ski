@@ -5,6 +5,14 @@ GIT
   specs:
     will_paginate (3.0.pre3)
 
+GIT
+  remote: git://github.com/smartinez87/exception_notification.git
+  revision: 6026c274d284def545cda9bfed8dcbc3964ae08f
+  specs:
+    exception_notification (3.0.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -88,8 +96,6 @@ GEM
     diff-lcs (1.2.4)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    exception_notification (3.0.1)
-      actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -255,7 +261,7 @@ DEPENDENCIES
   cucumber-rails
   curb
   database_cleaner
-  exception_notification
+  exception_notification!
   factory_girl_rails
   image_science (= 1.2.3)
   jbuilder (~> 1.0.1)
