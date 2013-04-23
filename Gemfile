@@ -68,11 +68,11 @@ gem 'simplecov', :require => false, :group => :test
 
 group :test, :development do
   gem 'factory_girl_rails'
+  gem 'rspec-rails'
 end
 
 group :test do
   gem "autotest", "4.4.6"
-  gem 'rspec-rails'
   gem 'watchr'
   gem 'spork'
   gem "shoulda-matchers", "~> 1.4.2" # temporary hold for require cannot load such file -- rspec
