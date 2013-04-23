@@ -11,7 +11,7 @@ class FootersController < ApplicationController
   end
 
   def create
-    @footer = Footer.new(params[:footer])
+    @footer = Footer.new(footer_params)
 
     if @footer.save
       redirect_to(footers_path, notice: t('notices.created'))
@@ -24,7 +24,7 @@ class FootersController < ApplicationController
   end
 
   def update
-    if @footer.update_attributes(params[:footer])
+    if @footer.update_attributes(footer_params)
       redirect_to(footers_path, notice: t('notices.saved'))
     else
       render "edit"
@@ -40,5 +40,9 @@ class FootersController < ApplicationController
 
   def find_footer
     @footer = Footer.find(params[:id])
+  end
+
+  def footer_params
+    params.require(:footer).permit(:content, :name)
   end
 end

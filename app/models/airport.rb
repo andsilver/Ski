@@ -1,6 +1,4 @@
 class Airport < ActiveRecord::Base
-  attr_accessible :code, :country_id, :name
-
   belongs_to :country
   has_many :airport_distances, dependent: :delete_all
   has_many :airport_transfers, dependent: :delete_all

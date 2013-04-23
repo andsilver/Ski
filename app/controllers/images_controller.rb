@@ -17,7 +17,7 @@ class ImagesController < ApplicationController
   end
 
   def create
-    @image = Image.new(params[:image])
+    @image = Image.new(image_params)
 
     if session[:image_mode] == 'property'
       @image.property_id = session[:property_id]
@@ -46,7 +46,7 @@ class ImagesController < ApplicationController
   def update
     @image = Image.find(params[:id])
 
-    if @image.update_attributes(params[:image])
+    if @image.update_attributes(image_params)
       redirect_to({ action: 'index' }, notice: t('images_controller.saved'))
     else
       render action: 'edit'
@@ -84,5 +84,9 @@ class ImagesController < ApplicationController
 
   def remove_previous_image
     @object.image.destroy if @object.image
+  end
+
+  def image_params
+    params.require(:image).permit(:image, :source_url)
   end
 end

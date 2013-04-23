@@ -1,6 +1,4 @@
 class DirectoryAdvert < ActiveRecord::Base
-  attr_accessible :business_address, :business_name, :category_id, :description, :opening_hours, :phone, :postcode, :resort_id, :strapline, :url
-
   include AdvertBehaviours
 
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]
@@ -19,7 +17,7 @@ class DirectoryAdvert < ActiveRecord::Base
   validates_presence_of :business_name
   validates_presence_of :business_address
   validates_presence_of :strapline
-  validates_format_of :url, with: /^(#{URI::regexp(%w(http https))})$/, allow_blank: true
+  validates_format_of :url, with: /\A(#{URI::regexp(%w(http https))})\Z/, allow_blank: true
 
   def name
     business_name

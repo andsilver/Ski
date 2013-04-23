@@ -14,7 +14,7 @@ class ResortsController < ApplicationController
   end
 
   def create
-    @resort = Resort.new(params[:resort])
+    @resort = Resort.new(resort_params)
 
     if @resort.save
       session[:last_country_id] = @resort.country_id
@@ -32,7 +32,7 @@ class ResortsController < ApplicationController
   end
 
   def update
-    if @resort.update_attributes(params[:resort])
+    if @resort.update_attributes(resort_params)
       redirect_to(edit_resort_path(@resort), notice: t('notices.saved'))
     else
       @interhome_place_resort = InterhomePlaceResort.new(resort_id: @resort.id)
@@ -122,5 +122,18 @@ class ResortsController < ApplicationController
 
   def find_featured_properties
     @featured_properties = Property.order('RAND()').limit(12).where(publicly_visible: true, resort_id: @resort.id)
+  end
+
+  def resort_params
+    params.require(:resort).permit(:altitude_m, :apres_ski, :babysitting_services, :beginner,
+      :black, :blue, :cable_car, :chair, :country_id, :creche,
+      :cross_country_km, :drags, :expert, :family, :feature, :featured, :funicular,
+      :gallery_content, :glacier_skiing, :gondola, :green, :heli_skiing,
+      :info, :insider_view, :intermediate,
+      :introduction, :living_in, :local_area, :longest_run_km,
+      :mountain_restaurants, :name, :off_piste, :owning_a_property_in,
+      :piste_map_content, :railways, :red, :season, :ski_area_km,
+      :slope_direction, :snowboard_parks, :summer_only,
+      :summer_skiing, :top_lift_m, :weather_code, :visible, :visiting)
   end
 end

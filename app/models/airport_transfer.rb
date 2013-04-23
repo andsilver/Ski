@@ -1,6 +1,4 @@
 class AirportTransfer < ActiveRecord::Base
-  attr_accessible :airport_id, :publicly_visible, :resort_id
-
   belongs_to :airport
   belongs_to :resort
   belongs_to :user

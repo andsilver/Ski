@@ -41,7 +41,7 @@ class DirectoryAdvertsController < ApplicationController
       next if resort_id == ''
 
       params[:directory_advert].delete(:resort_id)
-      @directory_advert = DirectoryAdvert.new(params[:directory_advert])
+      @directory_advert = DirectoryAdvert.new(directory_advert_params)
       @directory_advert.resort_id = resort_id
       @directory_advert.is_banner_advert = is_banner_advert
 
@@ -61,7 +61,7 @@ class DirectoryAdvertsController < ApplicationController
   end
 
   def update
-    if @directory_advert.update_attributes(params[:directory_advert])
+    if @directory_advert.update_attributes(directory_advert_params)
       flash[:notice] = t('directory_adverts_controller.saved')
 
       update_images
@@ -149,5 +149,9 @@ class DirectoryAdvertsController < ApplicationController
     advert = Advert.new_for(@directory_advert)
     advert.months = @directory_advert.default_months
     advert.save!
+  end
+
+  def directory_advert_params
+    params.require(:directory_advert).permit(:business_address, :business_name, :category_id, :description, :opening_hours, :phone, :postcode, :resort_id, :strapline, :url)
   end
 end

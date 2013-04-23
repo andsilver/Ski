@@ -6,30 +6,22 @@ class User < ActiveRecord::Base
   belongs_to :image
 
   has_many :directory_adverts, dependent: :destroy
-  has_many :enquiries, dependent: :delete_all, order: "created_at DESC"
+  has_many :enquiries, -> { order 'created_at DESC' }, dependent: :delete_all
   has_many :adverts, dependent: :delete_all
-  has_many :adverts_in_basket, class_name: 'Advert', conditions: {starts_at: nil}
+  has_many :adverts_in_basket, -> { where starts_at: nil }, class_name: 'Advert'
 
   # TODO: these should probably exclude expired windows
-  has_many :windows, class_name: 'Advert', conditions: {window: true}, order: "expires_at DESC"
+  has_many :windows, -> { where window: true }, class_name: 'Advert', order: "expires_at DESC"
 
   has_many :properties, dependent: :destroy
-  has_many :properties_for_rent, class_name: 'Property', conditions: {listing_type: Property::LISTING_TYPE_FOR_RENT}
-  has_many :properties_for_sale, class_name: 'Property', conditions: {listing_type: Property::LISTING_TYPE_FOR_SALE}
-  has_many :hotels, class_name: 'Property', conditions: {listing_type: Property::LISTING_TYPE_HOTEL}
+  has_many :properties_for_rent, -> { where listing_type: Property::LISTING_TYPE_FOR_RENT }, class_name: 'Property'
+  has_many :properties_for_sale, -> { where listing_type: Property::LISTING_TYPE_FOR_SALE }, class_name: 'Property'
+  has_many :hotels, -> { where listing_type: Property::LISTING_TYPE_HOTEL }, class_name: 'Property'
   has_many :images, dependent: :destroy
   has_many :orders, dependent: :destroy
-  has_many :orders_with_receipts, class_name: 'Order', conditions: "status NOT IN (#{Order::WAITING_FOR_PAYMENT})",
-    order: 'created_at DESC'
+  has_many :orders_with_receipts, -> { where("status NOT IN (#{Order::WAITING_FOR_PAYMENT})").order('created_at DESC') }, class_name: 'Order'
 
   has_many :airport_transfers, dependent: :delete_all
-
-  attr_protected :role_id
-  attr_protected :coupon_id
-  attr_protected :forgot_password_token
-  attr_protected :image_id
-  attr_protected :apply_price_override
-  attr_protected :price_override
 
   attr_accessor :password
 
@@ -42,7 +34,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
-  validates_format_of :vat_number, with: /^(
+  validates_format_of :vat_number, with: /\A(
     (AT)?U[0-9]{8} |                              # Austria
     (BE)?0?[0-9]{9} |                             # Belgium
     (BG)?[0-9]{9,10} |                            # Bulgaria
@@ -70,14 +62,14 @@ class User < ActiveRecord::Base
     (SE)?[0-9]{12} |                              # Sweden
     (SI)?[0-9]{8} |                               # Slovenia
     (SK)?[0-9]{10}                                # Slovakia
-    )$/x, if: Proc.new {|u| u.vat_country}
+    )\Z/x, if: Proc.new {|u| u.vat_country}
 
   validates_presence_of :billing_street
   validates_presence_of :billing_city
   validates_presence_of :billing_country_id
   validates_presence_of :role_id
 
-  validates_format_of :website, with: /^(#{URI::regexp(%w(http https))})$/, allow_blank: true
+  validates_format_of :website, with: /\A(#{URI::regexp(%w(http https))})\Z/, allow_blank: true
 
   validates_acceptance_of :terms_and_conditions, on: :create, accept: true
 
@@ -134,21 +126,18 @@ class User < ActiveRecord::Base
   end
 
   def banner_adverts_so_far
-    Advert.count(
-      conditions: ['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
-      id])
+    Advert.where(['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
+      id]).count
   end
 
   def directory_adverts_so_far
-    Advert.count(
-      conditions: ['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
-      id])
+    Advert.where(['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
+      id]).count
   end
 
   def property_adverts_so_far
-    Advert.count(
-      conditions: ['user_id = ? AND property_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
-      id])
+    Advert.where(['user_id = ? AND property_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
+      id]).count
   end
 
   def adverts_so_far

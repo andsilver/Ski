@@ -12,7 +12,7 @@ class AirportDistancesController < ApplicationController
   end
 
   def create
-    @airport_distance = AirportDistance.new(params[:airport_distance])
+    @airport_distance = AirportDistance.new(airport_distance_params)
 
     if @airport_distance.save
       redirect_to(airport_distances_path, notice: t('notices.created'))
@@ -25,7 +25,7 @@ class AirportDistancesController < ApplicationController
   end
 
   def update
-    if @airport_distance.update_attributes(params[:airport_distance])
+    if @airport_distance.update_attributes(airport_distance_params)
       redirect_to(airport_distances_path, notice: t('notices.saved'))
     else
       render "edit"
@@ -41,5 +41,9 @@ class AirportDistancesController < ApplicationController
 
   def find_airport_distance
     @airport_distance = AirportDistance.find(params[:id])
+  end
+
+  def airport_distance_params
+    params.require(:airport_distance).permit(:airport_id, :distance_km, :resort_id)
   end
 end

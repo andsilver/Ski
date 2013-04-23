@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'late_availability'
 include LateAvailability
 
 describe '#next_three_saturdays' do

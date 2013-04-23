@@ -12,7 +12,7 @@ class AltAttributesController < ApplicationController
   end
 
   def create
-    @alt_attribute = AltAttribute.new(params[:alt_attribute])
+    @alt_attribute = AltAttribute.new(alt_attribute_params)
 
     if @alt_attribute.save
       redirect_to(alt_attributes_path, notice: t('notices.created'))
@@ -25,7 +25,7 @@ class AltAttributesController < ApplicationController
   end
 
   def update
-    if @alt_attribute.update_attributes(params[:alt_attribute])
+    if @alt_attribute.update_attributes(alt_attribute_params)
       redirect_to(alt_attributes_path, notice: t('notices.saved'))
     else
       render 'edit'
@@ -41,5 +41,9 @@ class AltAttributesController < ApplicationController
 
   def find_alt_attribute
     @alt_attribute = AltAttribute.find(params[:id])
+  end
+
+  def alt_attribute_params
+    params.require(:alt_attribute).permit(:alt_text, :path)
   end
 end

@@ -19,7 +19,7 @@ class PropertyPricer
   def volume_discount_percentage
     percentage_off = 0
 
-    PropertyVolumeDiscount.order(:current_property_number).all.each do |pvd|
+    PropertyVolumeDiscount.order(:current_property_number).each do |pvd|
       percentage_off = pvd.discount_percentage if @property_number >= pvd.current_property_number
     end
 
@@ -29,7 +29,7 @@ class PropertyPricer
   def volume_discount_amount
     discount_amount = 0
 
-    PropertyVolumeDiscount.order(:current_property_number).all.each do |pvd|
+    PropertyVolumeDiscount.order(:current_property_number).each do |pvd|
       discount_amount = pvd.discount_amount if @property_number >= pvd.current_property_number
     end
 

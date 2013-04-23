@@ -23,7 +23,7 @@ class BlogPostsController < ApplicationController
   end
 
   def create
-    @blog_post = BlogPost.new(params[:blog_post])
+    @blog_post = BlogPost.new(blog_post_params)
 
     if @blog_post.save
       redirect_to(blog_posts_path, notice: t('notices.created'))
@@ -36,7 +36,7 @@ class BlogPostsController < ApplicationController
   end
 
   def update
-    if @blog_post.update_attributes(params[:blog_post])
+    if @blog_post.update_attributes(blog_post_params)
       redirect_to(edit_blog_post_path(@blog_post), notice: t('notices.saved'))
     else
       render "edit"
@@ -51,5 +51,9 @@ class BlogPostsController < ApplicationController
 
   def find_blog_post
     @blog_post = BlogPost.find(params[:id])
+  end
+
+  def blog_post_params
+    params.require(:blog_post).permit(:content, :headline, :image_id)
   end
 end

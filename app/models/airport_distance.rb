@@ -1,6 +1,4 @@
 class AirportDistance < ActiveRecord::Base
-  attr_accessible :airport_id, :distance_km, :resort_id
-
   belongs_to :resort
   belongs_to :airport
 
