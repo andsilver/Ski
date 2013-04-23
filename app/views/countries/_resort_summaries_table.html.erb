@@ -1,0 +1,18 @@
+<% rst = ResortSummariesTable.new(@country) %>
+<table class="table table-bordered table-striped">
+  <tr>
+<% rst.headers.each do |hdr| -%>
+    <th><%= hdr %></th>
+<% end -%>
+  </tr>
+<% rst.rows.each do |row| -%>
+  <tr>
+    <td><%= link_to row[0], row[0].name %></td>
+    <td><%= row[1] %>m</td>
+    <td><%= row[2] %>m</td>
+    <td><%= row[3] %>km<sup>2</sup></td>
+    <td><%= row[4].nil? ? '' : link_to(row[4], row[0].page_path('how-to-get-there')) %></td>
+    <td><%= row[5].nil? ? '' : "#{row[5]}km" %></td>
+  </tr>
+<% end -%>
+</table>
