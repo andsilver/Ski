@@ -9,6 +9,7 @@ describe RolesController do
 
   describe "PUT update" do
     let(:role) { mock_model(Role).as_null_object }
+    let(:update_params) {{ id: '1', role: { name: 'A Role'}}}
 
     context "when signed in as admin" do
       before do
@@ -18,23 +19,23 @@ describe RolesController do
 
       it "finds the role" do
         Role.should_receive(:find).with("1")
-        put 'update', :id => "1"
+        put 'update', update_params
       end
 
       it "assigns @role" do
-        put 'update', :id => "1"
+        put 'update', update_params
         assigns(:role).should eq(role)
       end
 
       it "updates the role" do
         role.should_receive(:update_attributes)
-        put 'update', :id => "1"
+        put 'update', update_params
       end
 
       context "when the role updates successfully" do
         it "redirects to the edit role page" do
           role.stub(:update_attributes).and_return(true)
-          put 'update', :id => "1"
+          put 'update', update_params
           response.should redirect_to(edit_role_path(role))
         end
       end
@@ -42,7 +43,7 @@ describe RolesController do
       context "when the role doesn't update successfully" do
         it "renders the edit role page" do
           role.stub(:update_attributes).and_return(false)
-          put 'update', :id => "1"
+          put 'update', update_params
           response.should render_template('edit')
         end
       end
@@ -51,7 +52,7 @@ describe RolesController do
     context "when not signed in as admin" do
       it "redirects to the sign in page" do
         controller.stub(:admin?).and_return(false)
-        put 'update', :id => "1"
+        put 'update', update_params
         response.should redirect_to(sign_in_path)
       end
     end

@@ -97,6 +97,7 @@ describe PropertiesController do
   describe "POST create" do
     let(:current_user) { mock_model(User).as_null_object }
     let(:role) { mock_model(Role).as_null_object }
+    let(:create_params) {{ id: '1', property: {name: 'A Property'}}}
 
     before do
       session[:user] = 1
@@ -123,12 +124,12 @@ describe PropertiesController do
 
         it "creates a corresponding advert" do
           Advert.should_receive(:create_for)
-          post :create
+          post 'create', create_params
         end
       end
 
       it "redirects to image uploading form" do
-        post :create
+        post 'create', create_params
         response.should redirect_to(new_image_path)
       end
     end

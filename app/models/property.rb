@@ -11,7 +11,7 @@ class Property < ActiveRecord::Base
   has_many :images, dependent: :destroy
 
   # Delete adverts in basket but leave others remaining
-  has_many :adverts_in_basket, class_name: 'Advert', conditions: {starts_at: nil}, dependent: :delete_all
+  has_many :adverts_in_basket, -> { where starts_at: nil }, class_name: 'Advert', dependent: :delete_all
   has_many :adverts, dependent: :nullify
 
   validates_presence_of :resort

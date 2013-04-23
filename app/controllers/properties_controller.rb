@@ -297,7 +297,7 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    @property = Property.new(params[:property])
+    @property = Property.new(property_params)
     @property.user_id = @current_user.id
 
     if @property.save
@@ -728,5 +728,20 @@ class PropertiesController < ApplicationController
   def set_image_mode
     session[:image_mode] = 'property'
     session[:property_id] = @property.id
+  end
+
+  def property_params
+    params.require(:property).permit(:accommodation_type, :address, :balcony,
+      :board_basis, :cave,
+      :children_welcome, :currency_id, :description, :disabled,
+      :distance_from_town_centre_m, :floor_area_metres_2,
+      :fully_equipped_kitchen, :garden, :hot_tub, :indoor_swimming_pool,
+      :latitude, :listing_type, :log_fire,
+      :long_term_lets_available, :longitude,
+      :metres_from_lift, :mountain_views, :name, :new_development, :number_of_bathrooms,
+      :number_of_bedrooms, :outdoor_swimming_pool, :parking, :pets,
+      :plot_size_metres_2, :postcode, :resort_id, :sale_price,
+      :sauna, :short_stays, :ski_in_ski_out, :sleeping_capacity, :smoking,
+      :star_rating, :strapline, :terrace, :tv, :weekly_rent_price, :wifi)
   end
 end

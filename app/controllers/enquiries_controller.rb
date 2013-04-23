@@ -16,7 +16,7 @@ class EnquiriesController < ApplicationController
   def create
     @property = Property.find(params[:enquiry][:property_id])
 
-    @enquiry = Enquiry.new(params[:enquiry])
+    @enquiry = Enquiry.new(enquiry_params)
 
     unless good_token?
       render 'properties/contact'
@@ -32,5 +32,11 @@ class EnquiriesController < ApplicationController
       render 'properties/contact'
       return
     end
+  end
+
+  protected
+
+  def enquiry_params
+    params.require(:enquiry).permit(:comments, :contact_me, :date_of_arrival, :date_of_departure, :email, :name, :number_of_adults, :number_of_children, :number_of_infants, :permission_to_contact, :phone, :property_id)
   end
 end

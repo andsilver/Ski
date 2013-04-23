@@ -33,6 +33,7 @@ feature 'Import Pierre et Vacances' do
     billing_street: 'Street',
     billing_city: 'City',
     billing_country: countries(:france),
+    description: '',
     role: roles(:estate_agent),
     terms_and_conditions: true)
   end

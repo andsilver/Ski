@@ -5,7 +5,7 @@ class BannerPrice < ActiveRecord::Base
   def self.price_for_advert_number(n)
     price = nil
 
-    BannerPrice.order(:current_banner_number).all.each do |bp|
+    BannerPrice.order(:current_banner_number).each do |bp|
       price = bp.price if n >= bp.current_banner_number
     end
 

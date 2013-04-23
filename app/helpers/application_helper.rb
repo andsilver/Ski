@@ -85,7 +85,7 @@ module ApplicationHelper
   end
 
   def alt_attribute(path, fallback)
-    alt_attr = AltAttribute.find_or_create_by_path(path)
+    alt_attr = AltAttribute.find_or_create_by(path: path)
     alt_attr.alt_text.blank? ? fallback : alt_attr.alt_text
   end
 

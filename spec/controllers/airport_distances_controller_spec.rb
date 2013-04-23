@@ -96,7 +96,7 @@ describe AirportDistancesController do
   end
 
   def put_params
-    { 'id' => '1', 'airport_distance' => { 'some' => 'params' } }
+    { 'id' => '1', 'airport_distance' => { 'distance_km' => '90' } }
   end
 
   describe 'PUT update' do

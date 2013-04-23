@@ -148,6 +148,8 @@ describe UsersController do
   describe 'PUT update' do
     before { controller.stub(:current_user).and_return(user) }
 
+    let(:update_params) {{id: '1', user: { 'first_name' => 'Fred' } }}
+
     context 'when the user saves' do
       before do
         User.stub(:find).with('1').and_return(user)
@@ -157,12 +159,12 @@ describe UsersController do
         before { signed_in_as_admin }
 
         it 'redirects to users index' do
-          put 'update', id: '1', user: {}
+          put 'update', update_params
           response.should redirect_to(users_path)
         end
 
         it 'sets a notice' do
-          put 'update', id: '1', user: {}
+          put 'update', update_params
           flash.notice.should eq I18n.t('notices.saved')
         end
       end
@@ -171,12 +173,12 @@ describe UsersController do
         before { controller.stub(:admin?).and_return(false) }
 
         it 'redirects to My Details' do
-          put 'update', id: '1', user: {}
+          put 'update', update_params
           response.should redirect_to(my_details_path)
         end
 
         it 'sets a notice' do
-          put 'update', id: '1', user: {}
+          put 'update', update_params
           flash.notice.should eq I18n.t('my_details_saved')
         end
       end
