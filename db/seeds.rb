@@ -349,9 +349,16 @@ bob = User.create!(
   ) { |u| u.role_id = property_developer.id }
 
 chamonix = Resort.create!(country_id: france, name: 'Chamonix',
+  altitude_m: 1035,
+  top_lift_m: 3842,
+  ski_area_km: 550,
   visible: true,
   info: 'Chamonix, with a population of approximately 10,000, is a world famous resort and was the location of the first winter Olympics in 1924.'
 ) { |r| r.for_rent_count = 30 }
+
+Airport.destroy_all
+geneva = Airport.create!(name: 'Geneva', code: 'GVA', country_id: france)
+AirportDistance.create!(airport_id: geneva.id, resort_id: chamonix.id, distance_km: 90)
 
 Resort.create([
   { country_id: austria, name: 'Alpbach' },

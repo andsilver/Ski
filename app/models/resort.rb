@@ -75,6 +75,10 @@ class Resort < ActiveRecord::Base
     end
   end
 
+  def nearest_airport
+    airport_distances.any? ? airport_distances.first.airport : nil
+  end
+
   def to_s
     name
   end
