@@ -1,6 +1,4 @@
 class BlogPost < ActiveRecord::Base
-  attr_accessible :content, :headline, :image_id
-
   cattr_reader :per_page
   @@per_page = 5
 

@@ -3,8 +3,6 @@ class Image < ActiveRecord::Base
   IMAGE_STORAGE_URL = "/up/images"
   IMAGE_MISSING = "image-missing.png"
 
-  attr_protected :user_id
-
   before_save   :determine_filename
   after_save    :write_file
   after_destroy :delete_files

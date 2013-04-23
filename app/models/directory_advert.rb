@@ -1,6 +1,4 @@
 class DirectoryAdvert < ActiveRecord::Base
-  attr_accessible :business_address, :business_name, :category_id, :description, :opening_hours, :phone, :postcode, :resort_id, :strapline, :url
-
   include AdvertBehaviours
 
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]

@@ -14,7 +14,7 @@ class CurrenciesController < ApplicationController
   end
 
   def create
-    @currency = Currency.new(params[:currency])
+    @currency = Currency.new(currency_params)
 
     if @currency.save
       redirect_to(currencies_path, notice: t('notices.created'))
@@ -28,7 +28,7 @@ class CurrenciesController < ApplicationController
   end
 
   def update
-    if @currency.update_attributes(params[:currency])
+    if @currency.update_attributes(currency_params)
       redirect_to(currencies_path, notice: t('notices.saved'))
     else
       render 'edit'
@@ -44,5 +44,9 @@ class CurrenciesController < ApplicationController
 
   def find_currency
     @currency = Currency.find(params[:id])
+  end
+
+  def currency_params
+    params.require(:currenct).permit(:code, :in_euros, :name, :pre, :unit)
   end
 end

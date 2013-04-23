@@ -12,7 +12,7 @@ class SnippetsController < ApplicationController
   end
 
   def create
-    @snippet = Snippet.new(params[:snippet])
+    @snippet = Snippet.new(snippet_params)
 
     if @snippet.save
       redirect_to snippets_path, notice: 'Saved.'
@@ -22,7 +22,7 @@ class SnippetsController < ApplicationController
   end
 
   def update
-    if @snippet.update_attributes(params[:snippet])
+    if @snippet.update_attributes(snippet_params)
       redirect_to snippets_path, notice: 'Saved.'
     else
       render action: 'edit'
@@ -38,5 +38,9 @@ class SnippetsController < ApplicationController
 
   def find_snippet
     @snippet = Snippet.find_by_id(params[:id])
+  end
+
+  def snippet_params
+    params.require(:snippet).permit(:locale, :name, :snippet)
   end
 end

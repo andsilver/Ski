@@ -13,7 +13,7 @@ class CountriesController < ApplicationController
   end
 
   def create
-    @country = Country.new(params[:country])
+    @country = Country.new(country_params)
 
     if @country.save
       set_image_mode
@@ -28,7 +28,7 @@ class CountriesController < ApplicationController
   end
 
   def update
-    if @country.update_attributes(params[:country])
+    if @country.update_attributes(country_params)
       redirect_to(edit_country_path(@country), notice: t('notices.saved'))
     else
       render 'edit'
@@ -71,5 +71,9 @@ class CountriesController < ApplicationController
   def set_image_mode
     session[:image_mode] = 'country'
     session[:country_id] = @country.id
+  end
+
+  def country_params
+    params.require(:country).permit(:banner_advert_html, :image_id, :in_eu, :info, :iso_3166_1_alpha_2, :name, :popular_billing_country)
   end
 end

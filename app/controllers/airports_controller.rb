@@ -12,7 +12,7 @@ class AirportsController < ApplicationController
   end
 
   def create
-    @airport = Airport.new(params[:airport])
+    @airport = Airport.new(airport_params)
 
     if @airport.save
       redirect_to(airports_path, notice: t('notices.created'))
@@ -25,7 +25,7 @@ class AirportsController < ApplicationController
   end
 
   def update
-    if @airport.update_attributes(params[:airport])
+    if @airport.update_attributes(airport_params)
       redirect_to(airports_path, notice: t('notices.saved'))
     else
       render "edit"
@@ -41,5 +41,9 @@ class AirportsController < ApplicationController
 
   def find_airport
     @airport = Airport.find(params[:id])
+  end
+
+  def airport_params
+    params.require(:airport).permit(:code, :country_id, :name)
   end
 end

@@ -1,6 +1,4 @@
 class InterhomeVacancy < ActiveRecord::Base
-  attr_accessible :accommodation_code, :availability, :changeover, :flexbooking, :interhome_accommodation_id, :minstay, :startday
-
   def availability_on(date)
     get_value_for_date(availability, date)
   end

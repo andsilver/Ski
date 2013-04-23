@@ -60,7 +60,7 @@ class UsersController < ApplicationController
       @user.price_override = params[:user][:price_override]
     end
 
-    if @user.update_attributes(post_params)
+    if @user.update_attributes(user_params)
       update_logo
       if admin?
         redirect_to users_path, notice: t('notices.saved')
@@ -116,7 +116,7 @@ class UsersController < ApplicationController
 
   def stage_one
     @heading_a = t 'sign_up'
-    @user = User.new(post_params)
+    @user = User.new(user_params)
     @role = Role.find_by_id(params[:user][:role_id])
     if @role && @role.select_on_signup?
       @user.role_id = @role.id
@@ -175,8 +175,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def post_params
-    params[:user].slice(:email, :website, :description, :billing_street, :billing_location,
+  def user_params
+    params.require(:user).permit(:email, :website, :description, :billing_street, :billing_location,
       :billing_city, :billing_postcode, :billing_country_id, :phone, :mobile, :business_name,
       :position, :terms_and_conditions, :first_name, :last_name, :google_web_property_id,
       :vat_country_id, :vat_number, :password)

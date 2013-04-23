@@ -12,7 +12,7 @@ class BuyingGuidesController < ApplicationController
   end
 
   def create
-    @buying_guide = BuyingGuide.new(params[:buying_guide])
+    @buying_guide = BuyingGuide.new(buying_guide_params)
 
     if @buying_guide.save
       redirect_to(buying_guides_path, notice: t('notices.created'))
@@ -25,7 +25,7 @@ class BuyingGuidesController < ApplicationController
   end
 
   def update
-    if @buying_guide.update_attributes(params[:buying_guide])
+    if @buying_guide.update_attributes(buying_guide_params)
       redirect_to(edit_buying_guide_path(@buying_guide), notice: t('notices.saved'))
     else
       render 'edit'
@@ -52,5 +52,9 @@ class BuyingGuidesController < ApplicationController
     else
       not_found if !@buying_guide
     end
+  end
+
+  def buying_guide_params
+    params.require(:buying_guide).permit(:content, :country_id)
   end
 end

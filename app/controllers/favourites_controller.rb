@@ -7,7 +7,7 @@ class FavouritesController < ApplicationController
   end
 
   def create
-    @favourite = Favourite.new(params[:favourite])
+    @favourite = Favourite.new(favourite_params)
     @favourite.unregistered_user_id = @unregistered_user.id
     @favourite.save
 
@@ -24,5 +24,11 @@ class FavouritesController < ApplicationController
     else
       redirect_to home_path
     end
+  end
+
+  protected
+
+  def favourite_params
+    params.require(:favourite).permit(:property_id)
   end
 end

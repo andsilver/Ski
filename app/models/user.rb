@@ -24,13 +24,6 @@ class User < ActiveRecord::Base
 
   has_many :airport_transfers, dependent: :delete_all
 
-  attr_protected :role_id
-  attr_protected :coupon_id
-  attr_protected :forgot_password_token
-  attr_protected :image_id
-  attr_protected :apply_price_override
-  attr_protected :price_override
-
   attr_accessor :password
 
   validates_length_of :password, within: 5..40, if: :password_required?

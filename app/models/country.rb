@@ -1,6 +1,4 @@
 class Country < ActiveRecord::Base
-  attr_accessible :banner_advert_html, :image_id, :in_eu, :info, :iso_3166_1_alpha_2, :name, :popular_billing_country
-
   belongs_to :image, dependent: :destroy
 
   has_many :resorts, order: 'name'

@@ -1,15 +1,4 @@
 class Resort < ActiveRecord::Base
-  attr_accessible :altitude_m, :apres_ski, :babysitting_services, :beginner,
-    :black, :blue, :cable_car, :chair, :country_id, :creche,
-    :cross_country_km, :drags, :expert, :family, :feature, :featured, :funicular,
-    :gallery_content, :glacier_skiing, :gondola, :green, :heli_skiing,
-    :info, :insider_view, :intermediate,
-    :introduction, :living_in, :local_area, :longest_run_km,
-    :mountain_restaurants, :name, :off_piste, :owning_a_property_in,
-    :piste_map_content, :railways, :red, :season, :ski_area_km,
-    :slope_direction, :snowboard_parks, :summer_only,
-    :summer_skiing, :top_lift_m, :weather_code, :visible, :visiting
-
   belongs_to :country
 
   has_many :properties, dependent: :nullify

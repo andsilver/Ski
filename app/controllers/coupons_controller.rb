@@ -12,7 +12,7 @@ class CouponsController < ApplicationController
   end
 
   def create
-    @coupon = Coupon.new(params[:coupon])
+    @coupon = Coupon.new(coupon_params)
 
     if @coupon.save
       redirect_to(coupons_path, notice: t('notices.created'))
@@ -25,7 +25,7 @@ class CouponsController < ApplicationController
   end
 
   def update
-    if @coupon.update_attributes(params[:coupon])
+    if @coupon.update_attributes(coupon_params)
       redirect_to(coupons_path, notice: t('notices.saved'))
     else
       render 'edit'
@@ -36,5 +36,9 @@ class CouponsController < ApplicationController
 
   def find_coupon
     @coupon = Coupon.find(params[:id])
+  end
+
+  def coupon_params
+    params.require(:coupon).permit(:code, :expires_on, :number_of_adverts, :percentage_off)
   end
 end

@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(category_params)
 
     if @category.save
       redirect_to(categories_path, notice: t('notices.created'))
@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    if @category.update_attributes(params[:category])
+    if @category.update_attributes(category_params)
       redirect_to(categories_path, notice: t('notices.saved'))
     else
       render action: 'edit'
@@ -66,5 +66,9 @@ class CategoriesController < ApplicationController
   def find_category
     @category = Category.find_by_id(params[:id])
     redirect_to(:root, notice: t('categories_controller.not_found')) unless @category
+  end
+
+  def category_params
+    params.require(:category).permit(:name)
   end
 end

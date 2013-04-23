@@ -13,7 +13,7 @@ class BannerPricesController < ApplicationController
   end
 
   def create
-    @banner_price = BannerPrice.new(params[:banner_price])
+    @banner_price = BannerPrice.new(banner_price_params)
     if @banner_price.save
       redirect_to banner_prices_path, notice: t('notices.created')
     else
@@ -25,7 +25,7 @@ class BannerPricesController < ApplicationController
   end
 
   def update
-    if @banner_price.update_attributes(params[:banner_price])
+    if @banner_price.update_attributes(banner_price_params)
       redirect_to banner_prices_path, notice: t('notices.saved')
     else
       render 'edit'
@@ -41,5 +41,9 @@ class BannerPricesController < ApplicationController
 
   def find_banner_price
     @banner_price = BannerPrice.find(params[:id])
+  end
+
+  def banner_price_params
+    params.require(:banner_price).permit(:current_banner_number, :price)
   end
 end
