@@ -24,6 +24,7 @@ class PropertiesController < ApplicationController
   before_filter :admin_required, only: [:index]
 
   def index
+    default_page_title 'Properties'
     @properties = Property.paginate(page: params[:page], order: 'id ASC', per_page: 200)
   end
 
