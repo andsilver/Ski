@@ -42,6 +42,8 @@ class Property < ActiveRecord::Base
   LISTING_TYPE_FOR_SALE = 1
   LISTING_TYPE_HOTEL = 2
 
+  validates :listing_type, inclusion: { in: (LISTING_TYPE_FOR_RENT..LISTING_TYPE_HOTEL) }
+
   ACCOMMODATION_TYPE_CHALET = 0
   ACCOMMODATION_TYPE_APARTMENT = 1
 
