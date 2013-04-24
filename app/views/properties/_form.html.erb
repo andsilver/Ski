@@ -145,7 +145,7 @@ $(function() {
         <%= f.label :floor_area_metres_2, t('floor_area'), class: 'control-label' %>
         <div class="controls">
           <%= f.number_field :floor_area_metres_2 %>
-      square metres
+          square metres
         </div>
       </div>
       <% end %>
@@ -154,8 +154,8 @@ $(function() {
       <div class="control-group">
         <%= f.label :plot_size_metres_2, t('plot_size'), class: 'control-label' %>
         <div class="controls">
-          <%= select("property", "plot_size_metres_2", plot_size_options, {prompt: 'Choose'}, class: 'narrow') %>
-    square metres
+          <%= f.number_field :plot_size_metres_2 %>
+          square metres
         </div>
       </div>
       <% end %>
@@ -299,12 +299,11 @@ $(function() {
         <%= f.text_field :weekly_rent_price %>
 <% end %>
         <%= select("property", "currency_id", (Currency.order('code').collect {|c| [ c.code, c.id ] }).sort, {prompt: 'Select Currency'}, class: 'narrow') %>
-      </di>
+      </div>
     </div>
   </div>
 </div>
 <%= clear %>
-</div>
 
 <div class="well">
   <%= f.label :address, t('address') %>
