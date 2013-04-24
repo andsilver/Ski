@@ -16,7 +16,7 @@
       <tr>
         <td><%= property.id %></td>
         <td><%= property.name %></td>
-        <td><%= property.user.name %></td>
+        <td><%= property.user.name if property.user %></td>
         <td>
           <%= link_to 'Edit', edit_property_path(property) %>
           <%= link_to 'View', property_path(property) %>
