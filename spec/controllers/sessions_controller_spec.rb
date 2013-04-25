@@ -86,4 +86,13 @@ describe SessionsController do
       response.should redirect_to root_path
     end
   end
+
+  describe 'GET switch_user' do
+    it 'requires admin' do
+      controller.stub(:admin?).and_return(false)
+      User.stub(:find).and_return(mock_model(User).as_null_object)
+      get 'switch_user', user_id: '1'
+      response.should redirect_to sign_in_path
+    end
+  end
 end
