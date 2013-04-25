@@ -54,7 +54,7 @@ MySkiChalet::Application.routes.draw do
   get "sign_in" => "sessions#new"
   get "sign_out" => "sessions#destroy"
   get "sign_up" => "users#new"
-  post "switch_user/:user_id" => "sessions#switch_user", as: :switch_user
+  get "switch_user/:user_id" => "sessions#switch_user", as: :switch_user
   resources :sessions
 
   get "advertise" => "users#show"
