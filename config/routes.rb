@@ -54,7 +54,7 @@ MySkiChalet::Application.routes.draw do
   get "sign_in" => "sessions#new"
   get "sign_out" => "sessions#destroy"
   get "sign_up" => "users#new"
-  post "switch_user/:user_id" => "sessions#switch_user", as: :switch_user
+  get "switch_user/:user_id" => "sessions#switch_user", as: :switch_user
   resources :sessions
 
   get "advertise" => "users#show"
@@ -201,7 +201,7 @@ MySkiChalet::Application.routes.draw do
   get 'restart' => 'application#restart', as: 'restart'
   get 'precompile_assets' => 'application#precompile_assets', as: 'precompile_assets'
 
-  post 'home/resort_options_for_quick_search' => 'home#resort_options_for_quick_search'
+  get 'home/resort_options_for_quick_search' => 'home#resort_options_for_quick_search'
   root to: 'home#index'
 
   # The priority is based upon order of creation:
