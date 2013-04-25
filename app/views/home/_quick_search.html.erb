@@ -3,7 +3,7 @@
     var valuesToSubmit = $('#quick-search form').serialize();
     $.ajax({
       url: '/home/resort_options_for_quick_search',
-      type: 'POST',
+      type: 'GET',
       data: valuesToSubmit
     }).success(function(data) {
       $('#resort_id').replaceWith(data);
