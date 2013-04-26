@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_filter :no_browse_menu
+  before_filter :admin_required, only: [:switch_user]
 
   def new
     default_page_title t('sign_in')
@@ -21,7 +22,6 @@ class SessionsController < ApplicationController
   end
 
   def switch_user
-    admin_required
     @current_user = User.find(params[:user_id])
     set_user
   end
