@@ -12,7 +12,7 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Page.new(params[:page])
+    @page = Page.new(page_params)
 
     if @page.save
       redirect_to(pages_path, notice: t('notices.created'))
@@ -25,7 +25,7 @@ class PagesController < ApplicationController
   end
 
   def update
-    if @page.update_attributes(params[:page])
+    if @page.update_attributes(page_params)
       redirect_to(edit_page_path(@page), notice: t('notices.saved'))
     else
       render 'edit'
@@ -51,5 +51,9 @@ class PagesController < ApplicationController
 
   def find_page
     @page = Page.find(params[:id])
+  end
+
+  def page_params
+    params.require(:page).permit(:banner_advert_html, :content, :description, :footer_id, :keywords, :path, :title, :visible)
   end
 end

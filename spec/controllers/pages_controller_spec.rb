@@ -12,10 +12,14 @@ describe PagesController do
     @page ||= mock_model(Page, stubs).as_null_object
   end
 
+  def put_update
+    put 'update', id: '1', page: { title: 'T' }
+  end
+
   describe 'PUT update' do
     it 'finds the page' do
       Page.should_receive(:find).with('1').and_return(page)
-      put 'update', id: '1'
+      put_update
     end
 
     context 'when the page updates successfully' do
@@ -24,7 +28,7 @@ describe PagesController do
       end
 
       it 'redirects to the edit page' do
-        put 'update', id: '1'
+        put_update
         response.should redirect_to(edit_page_path(page))
       end
     end
