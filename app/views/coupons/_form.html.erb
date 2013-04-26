@@ -12,22 +12,22 @@
 
 <%= form_for @coupon do |f| %>
 <p>
-  <%= f.label :code %><br>
+  <%= f.label :code %>
   <%= f.text_field :code %>
 </p>
 <p>
-  <%= f.label :number_of_adverts %><br>
-  <%= f.text_field :number_of_adverts %>
+  <%= f.label :number_of_adverts %>
+  <%= f.number_field :number_of_adverts %>
 </p>
 <p>
-  <%= f.label :percentage_off %><br>
-  <%= f.text_field :percentage_off %> %
+  <%= f.label :percentage_off %>
+  <%= f.number_field :percentage_off %> %
 </p>
 <p>
-  <%= f.label :expires_on %><br>
+  <%= f.label :expires_on %>
   <%= f.date_select :expires_on, include_blank: true, order: [:day, :month, :year] %>
 </p>
 <p>
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 </p>
 <% end %>
