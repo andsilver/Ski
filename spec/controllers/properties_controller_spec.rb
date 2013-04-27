@@ -259,6 +259,10 @@ describe PropertiesController do
     end
   end
 
+  def put_update
+    put 'update', id: '1', property: { title: 'T' }
+  end
+
   describe "PUT update" do
     let(:current_user) { mock_model(User).as_null_object }
 
@@ -268,7 +272,7 @@ describe PropertiesController do
 
     it "finds a property belonging to the current user" do
       find_a_property_belonging_to_the_current_user
-      put :update, { :id => "1" }
+      put_update
     end
 
     context "when a valid property is found" do
@@ -285,12 +289,12 @@ describe PropertiesController do
 
         it "redirects to my adverts page" do
           property.stub(:for_sale?).and_return(false)
-          put :update, { :id => "1" }
+          put_update
           response.should redirect_to(my_adverts_path)
         end
 
         it "sets a flash[:notice] message" do
-          put :update, { :id => "1" }
+          put_update
           flash[:notice].should eq("Your property advert details have been saved.")
         end
       end
@@ -301,12 +305,12 @@ describe PropertiesController do
         end
 
         it "assigns @property" do
-          put :update, { :id => "1" }
+          put_update
           assigns[:property].should eq(property)
         end
 
         it "renders the edit template" do
-          put :update, { :id => "1" }
+          put_update
           response.should render_template("edit")
         end
       end

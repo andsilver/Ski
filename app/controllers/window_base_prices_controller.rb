@@ -12,7 +12,7 @@ class WindowBasePricesController < ApplicationController
   end
 
   def create
-    @window_base_price = WindowBasePrice.new(params[:window_base_price])
+    @window_base_price = WindowBasePrice.new(windows_base_price_params)
 
     if @window_base_price.save
       redirect_to(window_base_prices_path, notice: t('notices.created'))
@@ -25,7 +25,7 @@ class WindowBasePricesController < ApplicationController
   end
 
   def update
-    if @window_base_price.update_attributes(params[:window_base_price])
+    if @window_base_price.update_attributes(windows_base_price_params)
       redirect_to(window_base_prices_path, notice: t('notices.saved'))
     else
       render 'edit'
@@ -41,5 +41,9 @@ class WindowBasePricesController < ApplicationController
 
   def find_window_base_price
     @window_base_price = WindowBasePrice.find(params[:id])
+  end
+
+  def windows_base_price_params
+    params.require(:windows_base_price).permit(:price, :quantity)
   end
 end

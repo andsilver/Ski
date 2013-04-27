@@ -10,7 +10,7 @@ class WebsitesController < ApplicationController
   end
 
   def update
-    if @website.update_attributes(params[:website])
+    if @website.update_attributes(website_params)
       if params[:website][:banner_advert_price]
         redirect_to(banner_directory_advert_prices_path, notice: t('notices.saved'))
       else
@@ -25,5 +25,15 @@ class WebsitesController < ApplicationController
 
   def find_website
     @website = @w
+  end
+
+  def website_params
+    params.require(:website).permit(
+      :blog_visible, :contact_details, :directory_advert_price,
+      :featured_property_ids, :home_content, :privacy_policy,
+      :resources_banner_html, :start_page_content, :skip_payment, :terms,
+      :vat_rate, :worldpay_active, :worldpay_installation_id,
+      :worldpay_payment_response_password, :worldpay_test_mode
+    )
   end
 end
