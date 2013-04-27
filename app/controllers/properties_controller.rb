@@ -320,7 +320,7 @@ class PropertiesController < ApplicationController
   end
 
   def update
-    if @property.update_attributes(params[:property])
+    if @property.update_attributes(property_params)
       redirect_to my_adverts_path, notice: t('properties_controller.saved')
     else
       render "edit"

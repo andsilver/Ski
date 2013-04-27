@@ -12,7 +12,7 @@ class PropertyBasePricesController < ApplicationController
   end
 
   def create
-    @property_base_price = PropertyBasePrice.new(params[:property_base_price])
+    @property_base_price = PropertyBasePrice.new(property_base_price_params)
 
     if @property_base_price.save
       redirect_to(property_base_prices_path, notice: t('notices.created'))
@@ -25,7 +25,7 @@ class PropertyBasePricesController < ApplicationController
   end
 
   def update
-    if @property_base_price.update_attributes(params[:property_base_price])
+    if @property_base_price.update_attributes(property_base_price_params)
       redirect_to(property_base_prices_path, notice: t('notices.saved'))
     else
       render 'edit'
@@ -41,5 +41,9 @@ class PropertyBasePricesController < ApplicationController
 
   def find_property_base_price
     @property_base_price = PropertyBasePrice.find(params[:id])
+  end
+
+  def property_base_price_params
+    params.require(:property_base_price).permit(:number_of_months, :price)
   end
 end

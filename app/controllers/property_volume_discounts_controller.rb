@@ -12,7 +12,7 @@ class PropertyVolumeDiscountsController < ApplicationController
   end
 
   def create
-    @property_volume_discount = PropertyVolumeDiscount.new(params[:property_volume_discount])
+    @property_volume_discount = PropertyVolumeDiscount.new(property_volume_discount_params)
 
     if @property_volume_discount.save
       redirect_to(property_volume_discounts_path, notice: t('notices.created'))
@@ -25,7 +25,7 @@ class PropertyVolumeDiscountsController < ApplicationController
   end
 
   def update
-    if @property_volume_discount.update_attributes(params[:property_volume_discount])
+    if @property_volume_discount.update_attributes(property_volume_discount_params)
       redirect_to(property_volume_discounts_path, notice: t('notices.saved'))
     else
       render 'edit'
@@ -41,5 +41,9 @@ class PropertyVolumeDiscountsController < ApplicationController
 
   def find_property_volume_discount
     @property_volume_discount = PropertyVolumeDiscount.find(params[:id])
+  end
+
+  def property_volume_discount_params
+    params.require(:property_volume_discount).permit(:current_property_number, :discount_amount, :discount_percentage)
   end
 end
