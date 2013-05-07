@@ -1,8 +1,9 @@
 class Page < ActiveRecord::Base
-  validates_presence_of :path
-  validates_presence_of :title
+  validates :path, :title, presence: true
 
-  validates_uniqueness_of :path
+  validate :path, uniqueness: true
+
+  validates :description, :path, :title, length: { maximum: 255 }
 
   belongs_to :footer
 end
