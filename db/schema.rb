@@ -9,395 +9,395 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328100245) do
+ActiveRecord::Schema.define(version: 20130328100245) do
 
-  create_table "adverts", :force => true do |t|
-    t.integer  "user_id",                                :null => false
-    t.integer  "months",              :default => 3,     :null => false
+  create_table "adverts", force: true do |t|
+    t.integer  "user_id",                             null: false
+    t.integer  "months",              default: 3,     null: false
     t.datetime "starts_at"
     t.datetime "expires_at"
-    t.boolean  "moderated",           :default => false, :null => false
-    t.boolean  "paused",              :default => false, :null => false
-    t.integer  "views",               :default => 0,     :null => false
+    t.boolean  "moderated",           default: false, null: false
+    t.boolean  "paused",              default: false, null: false
+    t.integer  "views",               default: 0,     null: false
     t.integer  "banner_advert_id"
     t.integer  "directory_advert_id"
     t.integer  "property_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.boolean  "window",              :default => false, :null => false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.boolean  "window",              default: false, null: false
     t.integer  "order_id"
   end
 
-  add_index "adverts", ["banner_advert_id"], :name => "index_adverts_on_banner_advert_id"
-  add_index "adverts", ["directory_advert_id"], :name => "index_adverts_on_directory_advert_id"
-  add_index "adverts", ["order_id"], :name => "index_adverts_on_order_id"
-  add_index "adverts", ["property_id"], :name => "index_adverts_on_property_id"
-  add_index "adverts", ["user_id"], :name => "index_adverts_on_user_id"
+  add_index "adverts", ["banner_advert_id"], name: "index_adverts_on_banner_advert_id"
+  add_index "adverts", ["directory_advert_id"], name: "index_adverts_on_directory_advert_id"
+  add_index "adverts", ["order_id"], name: "index_adverts_on_order_id"
+  add_index "adverts", ["property_id"], name: "index_adverts_on_property_id"
+  add_index "adverts", ["user_id"], name: "index_adverts_on_user_id"
 
-  create_table "airport_distances", :force => true do |t|
-    t.integer  "resort_id",                  :null => false
-    t.integer  "airport_id",                 :null => false
-    t.integer  "distance_km", :default => 0, :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+  create_table "airport_distances", force: true do |t|
+    t.integer  "resort_id",               null: false
+    t.integer  "airport_id",              null: false
+    t.integer  "distance_km", default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "airport_distances", ["resort_id"], :name => "index_airport_distances_on_resort_id"
+  add_index "airport_distances", ["resort_id"], name: "index_airport_distances_on_resort_id"
 
-  create_table "airport_transfers", :force => true do |t|
-    t.integer  "airport_id",                         :null => false
-    t.integer  "resort_id",                          :null => false
-    t.integer  "user_id",                            :null => false
-    t.boolean  "publicly_visible", :default => true, :null => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+  create_table "airport_transfers", force: true do |t|
+    t.integer  "airport_id",                      null: false
+    t.integer  "resort_id",                       null: false
+    t.integer  "user_id",                         null: false
+    t.boolean  "publicly_visible", default: true, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
-  add_index "airport_transfers", ["airport_id"], :name => "index_airport_transfers_on_airport_id"
-  add_index "airport_transfers", ["resort_id"], :name => "index_airport_transfers_on_resort_id"
-  add_index "airport_transfers", ["user_id"], :name => "index_airport_transfers_on_user_id"
+  add_index "airport_transfers", ["airport_id"], name: "index_airport_transfers_on_airport_id"
+  add_index "airport_transfers", ["resort_id"], name: "index_airport_transfers_on_resort_id"
+  add_index "airport_transfers", ["user_id"], name: "index_airport_transfers_on_user_id"
 
-  create_table "airports", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
-    t.string   "code",       :default => "", :null => false
-    t.integer  "country_id",                 :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+  create_table "airports", force: true do |t|
+    t.string   "name",       default: "", null: false
+    t.string   "code",       default: "", null: false
+    t.integer  "country_id",              null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  create_table "alt_attributes", :force => true do |t|
-    t.string   "path",                       :null => false
-    t.string   "alt_text",   :default => "", :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+  create_table "alt_attributes", force: true do |t|
+    t.string   "path",                    null: false
+    t.string   "alt_text",   default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "alt_attributes", ["path"], :name => "index_alt_attributes_on_path"
+  add_index "alt_attributes", ["path"], name: "index_alt_attributes_on_path"
 
-  create_table "banner_adverts", :force => true do |t|
-    t.integer  "user_id",                   :null => false
-    t.integer  "resort_id",                 :null => false
+  create_table "banner_adverts", force: true do |t|
+    t.integer  "user_id",                null: false
+    t.integer  "resort_id",              null: false
     t.integer  "image_id"
-    t.string   "url",                       :null => false
-    t.integer  "width",      :default => 0, :null => false
-    t.integer  "height",     :default => 0, :null => false
-    t.integer  "clicks",     :default => 0, :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.string   "url",                    null: false
+    t.integer  "width",      default: 0, null: false
+    t.integer  "height",     default: 0, null: false
+    t.integer  "clicks",     default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "banner_adverts", ["resort_id"], :name => "index_banner_adverts_on_resort_id"
-  add_index "banner_adverts", ["user_id"], :name => "index_banner_adverts_on_user_id"
+  add_index "banner_adverts", ["resort_id"], name: "index_banner_adverts_on_resort_id"
+  add_index "banner_adverts", ["user_id"], name: "index_banner_adverts_on_user_id"
 
-  create_table "banner_prices", :force => true do |t|
-    t.integer  "current_banner_number", :default => 0, :null => false
-    t.integer  "price",                 :default => 0, :null => false
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+  create_table "banner_prices", force: true do |t|
+    t.integer  "current_banner_number", default: 0, null: false
+    t.integer  "price",                 default: 0, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
-  create_table "blog_posts", :force => true do |t|
-    t.string   "headline",   :default => "",   :null => false
+  create_table "blog_posts", force: true do |t|
+    t.string   "headline",   default: "",   null: false
     t.text     "content"
     t.integer  "image_id"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.boolean  "visible",    :default => true, :null => false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "visible",    default: true, null: false
   end
 
-  create_table "buying_guides", :force => true do |t|
-    t.integer  "country_id", :null => false
+  create_table "buying_guides", force: true do |t|
+    t.integer  "country_id", null: false
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "buying_guides", ["country_id"], :name => "index_buying_guides_on_country_id"
+  add_index "buying_guides", ["country_id"], name: "index_buying_guides_on_country_id"
 
-  create_table "categories", :force => true do |t|
+  create_table "categories", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "countries", :force => true do |t|
-    t.string   "name",                    :default => "",    :null => false
-    t.string   "iso_3166_1_alpha_2",      :default => "",    :null => false
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+  create_table "countries", force: true do |t|
+    t.string   "name",                    default: "",    null: false
+    t.string   "iso_3166_1_alpha_2",      default: "",    null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.text     "info"
-    t.boolean  "popular_billing_country", :default => false, :null => false
-    t.boolean  "in_eu",                   :default => false, :null => false
+    t.boolean  "popular_billing_country", default: false, null: false
+    t.boolean  "in_eu",                   default: false, null: false
     t.integer  "image_id"
     t.text     "banner_advert_html"
-    t.integer  "property_count",          :default => 0,     :null => false
+    t.integer  "property_count",          default: 0,     null: false
   end
 
-  create_table "coupons", :force => true do |t|
+  create_table "coupons", force: true do |t|
     t.string   "code"
     t.integer  "number_of_adverts"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.integer  "percentage_off",    :default => 100, :null => false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "percentage_off",    default: 100, null: false
     t.date     "expires_on"
   end
 
-  create_table "currencies", :force => true do |t|
-    t.string   "name",                                     :default => "",   :null => false
-    t.string   "unit",                                     :default => "",   :null => false
-    t.boolean  "pre",                                      :default => true, :null => false
-    t.string   "code",                                     :default => "",   :null => false
-    t.decimal  "in_euros",   :precision => 6, :scale => 4, :default => 1.0,  :null => false
-    t.datetime "created_at",                                                 :null => false
-    t.datetime "updated_at",                                                 :null => false
+  create_table "currencies", force: true do |t|
+    t.string   "name",                               default: "",   null: false
+    t.string   "unit",                               default: "",   null: false
+    t.boolean  "pre",                                default: true, null: false
+    t.string   "code",                               default: "",   null: false
+    t.decimal  "in_euros",   precision: 6, scale: 4, default: 1.0,  null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
-  create_table "directory_adverts", :force => true do |t|
-    t.integer  "user_id",                             :null => false
-    t.integer  "category_id",                         :null => false
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.string   "business_address",                    :null => false
-    t.string   "postcode",         :default => "",    :null => false
-    t.string   "opening_hours",    :default => "",    :null => false
+  create_table "directory_adverts", force: true do |t|
+    t.integer  "user_id",                          null: false
+    t.integer  "category_id",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "business_address",                 null: false
+    t.string   "postcode",         default: "",    null: false
+    t.string   "opening_hours",    default: "",    null: false
     t.integer  "resort_id"
-    t.string   "phone",            :default => "",    :null => false
+    t.string   "phone",            default: "",    null: false
     t.integer  "image_id"
-    t.string   "url",              :default => "",    :null => false
-    t.string   "strapline",        :default => "",    :null => false
+    t.string   "url",              default: "",    null: false
+    t.string   "strapline",        default: "",    null: false
     t.text     "description"
-    t.boolean  "is_banner_advert", :default => false, :null => false
+    t.boolean  "is_banner_advert", default: false, null: false
     t.integer  "banner_image_id"
-    t.integer  "width",            :default => 0,     :null => false
-    t.integer  "height",           :default => 0,     :null => false
-    t.integer  "clicks",           :default => 0,     :null => false
-    t.string   "business_name",    :default => "",    :null => false
+    t.integer  "width",            default: 0,     null: false
+    t.integer  "height",           default: 0,     null: false
+    t.integer  "clicks",           default: 0,     null: false
+    t.string   "business_name",    default: "",    null: false
   end
 
-  add_index "directory_adverts", ["resort_id"], :name => "index_directory_adverts_on_resort_id"
-  add_index "directory_adverts", ["user_id"], :name => "index_directory_adverts_on_user_id"
+  add_index "directory_adverts", ["resort_id"], name: "index_directory_adverts_on_resort_id"
+  add_index "directory_adverts", ["user_id"], name: "index_directory_adverts_on_user_id"
 
-  create_table "enquiries", :force => true do |t|
-    t.integer  "user_id",                                  :null => false
+  create_table "enquiries", force: true do |t|
+    t.integer  "user_id",                               null: false
     t.integer  "property_id"
-    t.string   "name",                                     :null => false
-    t.string   "email",                                    :null => false
-    t.string   "phone",                                    :null => false
+    t.string   "name",                                  null: false
+    t.string   "email",                                 null: false
+    t.string   "phone",                                 null: false
     t.date     "date_of_arrival"
     t.date     "date_of_departure"
     t.text     "comments"
-    t.boolean  "contact_me",            :default => false, :null => false
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.integer  "number_of_adults",      :default => 0,     :null => false
-    t.integer  "number_of_children",    :default => 0,     :null => false
-    t.integer  "number_of_infants",     :default => 0,     :null => false
-    t.boolean  "permission_to_contact", :default => false, :null => false
+    t.boolean  "contact_me",            default: false, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "number_of_adults",      default: 0,     null: false
+    t.integer  "number_of_children",    default: 0,     null: false
+    t.integer  "number_of_infants",     default: 0,     null: false
+    t.boolean  "permission_to_contact", default: false, null: false
   end
 
-  create_table "favourites", :force => true do |t|
-    t.integer  "property_id",          :null => false
-    t.integer  "unregistered_user_id", :null => false
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+  create_table "favourites", force: true do |t|
+    t.integer  "property_id",          null: false
+    t.integer  "unregistered_user_id", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "favourites", ["property_id"], :name => "index_favourites_on_property_id"
-  add_index "favourites", ["unregistered_user_id"], :name => "index_favourites_on_unregistered_user_id"
+  add_index "favourites", ["property_id"], name: "index_favourites_on_property_id"
+  add_index "favourites", ["unregistered_user_id"], name: "index_favourites_on_unregistered_user_id"
 
-  create_table "footers", :force => true do |t|
-    t.string   "name",       :null => false
+  create_table "footers", force: true do |t|
+    t.string   "name",       null: false
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "footers", ["name"], :name => "index_footers_on_name"
+  add_index "footers", ["name"], name: "index_footers_on_name"
 
-  create_table "images", :force => true do |t|
+  create_table "images", force: true do |t|
     t.integer  "user_id"
-    t.string   "filename",    :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "filename",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "property_id"
     t.text     "source_url"
   end
 
-  add_index "images", ["property_id"], :name => "index_images_on_property_id"
+  add_index "images", ["property_id"], name: "index_images_on_property_id"
 
-  create_table "interhome_accommodations", :force => true do |t|
-    t.string   "code",               :null => false
-    t.string   "name",               :null => false
-    t.string   "country",            :null => false
-    t.string   "region",             :null => false
-    t.string   "place",              :null => false
-    t.string   "zip",                :null => false
-    t.string   "accommodation_type", :null => false
-    t.string   "details",            :null => false
-    t.integer  "quality",            :null => false
-    t.integer  "brand",              :null => false
-    t.integer  "pax",                :null => false
-    t.integer  "sqm",                :null => false
-    t.integer  "floor",              :null => false
-    t.integer  "rooms",              :null => false
-    t.integer  "bedrooms",           :null => false
-    t.integer  "toilets",            :null => false
-    t.integer  "bathrooms",          :null => false
-    t.string   "geodata_lat",        :null => false
-    t.string   "geodata_lng",        :null => false
+  create_table "interhome_accommodations", force: true do |t|
+    t.string   "code",               null: false
+    t.string   "name",               null: false
+    t.string   "country",            null: false
+    t.string   "region",             null: false
+    t.string   "place",              null: false
+    t.string   "zip",                null: false
+    t.string   "accommodation_type", null: false
+    t.string   "details",            null: false
+    t.integer  "quality",            null: false
+    t.integer  "brand",              null: false
+    t.integer  "pax",                null: false
+    t.integer  "sqm",                null: false
+    t.integer  "floor",              null: false
+    t.integer  "rooms",              null: false
+    t.integer  "bedrooms",           null: false
+    t.integer  "toilets",            null: false
+    t.integer  "bathrooms",          null: false
+    t.string   "geodata_lat",        null: false
+    t.string   "geodata_lng",        null: false
     t.text     "features"
-    t.string   "themes",             :null => false
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.string   "themes",             null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "permalink"
   end
 
-  add_index "interhome_accommodations", ["code"], :name => "index_interhome_accommodations_on_code"
-  add_index "interhome_accommodations", ["permalink"], :name => "index_interhome_accommodations_on_permalink"
+  add_index "interhome_accommodations", ["code"], name: "index_interhome_accommodations_on_code"
+  add_index "interhome_accommodations", ["permalink"], name: "index_interhome_accommodations_on_permalink"
 
-  create_table "interhome_inside_descriptions", :force => true do |t|
-    t.string   "accommodation_code", :null => false
+  create_table "interhome_inside_descriptions", force: true do |t|
+    t.string   "accommodation_code", null: false
     t.text     "description"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
-  add_index "interhome_inside_descriptions", ["accommodation_code"], :name => "index_interhome_inside_descriptions_on_accommodation_code"
+  add_index "interhome_inside_descriptions", ["accommodation_code"], name: "index_interhome_inside_descriptions_on_accommodation_code"
 
-  create_table "interhome_outside_descriptions", :force => true do |t|
-    t.string   "accommodation_code", :null => false
+  create_table "interhome_outside_descriptions", force: true do |t|
+    t.string   "accommodation_code", null: false
     t.text     "description"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
-  add_index "interhome_outside_descriptions", ["accommodation_code"], :name => "index_interhome_outside_descriptions_on_accommodation_code"
+  add_index "interhome_outside_descriptions", ["accommodation_code"], name: "index_interhome_outside_descriptions_on_accommodation_code"
 
-  create_table "interhome_pictures", :force => true do |t|
-    t.integer  "interhome_accommodation_id", :null => false
-    t.string   "picture_type",               :null => false
-    t.string   "season",                     :null => false
-    t.string   "url",                        :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+  create_table "interhome_pictures", force: true do |t|
+    t.integer  "interhome_accommodation_id", null: false
+    t.string   "picture_type",               null: false
+    t.string   "season",                     null: false
+    t.string   "url",                        null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  add_index "interhome_pictures", ["interhome_accommodation_id"], :name => "index_interhome_pictures_on_interhome_accommodation_id"
+  add_index "interhome_pictures", ["interhome_accommodation_id"], name: "index_interhome_pictures_on_interhome_accommodation_id"
 
-  create_table "interhome_place_resorts", :force => true do |t|
-    t.integer  "resort_id",            :null => false
-    t.string   "interhome_place_code", :null => false
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+  create_table "interhome_place_resorts", force: true do |t|
+    t.integer  "resort_id",            null: false
+    t.string   "interhome_place_code", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "interhome_place_resorts", ["resort_id"], :name => "index_interhome_place_resorts_on_resort_id"
+  add_index "interhome_place_resorts", ["resort_id"], name: "index_interhome_place_resorts_on_resort_id"
 
-  create_table "interhome_places", :force => true do |t|
-    t.string   "code",       :null => false
-    t.string   "name",       :null => false
-    t.string   "full_name",  :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "interhome_places", force: true do |t|
+    t.string   "code",       null: false
+    t.string   "name",       null: false
+    t.string   "full_name",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "interhome_places", ["code"], :name => "index_interhome_places_on_code"
+  add_index "interhome_places", ["code"], name: "index_interhome_places_on_code"
 
-  create_table "interhome_prices", :force => true do |t|
-    t.string   "accommodation_code",  :null => false
-    t.integer  "days",                :null => false
-    t.date     "start_date",          :null => false
-    t.date     "end_date",            :null => false
-    t.integer  "rental_price",        :null => false
-    t.integer  "min_rental_price",    :null => false
-    t.integer  "max_rental_price",    :null => false
+  create_table "interhome_prices", force: true do |t|
+    t.string   "accommodation_code",  null: false
+    t.integer  "days",                null: false
+    t.date     "start_date",          null: false
+    t.date     "end_date",            null: false
+    t.integer  "rental_price",        null: false
+    t.integer  "min_rental_price",    null: false
+    t.integer  "max_rental_price",    null: false
     t.string   "special_offer_code"
     t.integer  "special_offer_price"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
-  add_index "interhome_prices", ["accommodation_code"], :name => "index_interhome_prices_on_accommodation_code"
+  add_index "interhome_prices", ["accommodation_code"], name: "index_interhome_prices_on_accommodation_code"
 
-  create_table "interhome_vacancies", :force => true do |t|
-    t.integer  "interhome_accommodation_id", :null => false
-    t.string   "accommodation_code",         :null => false
+  create_table "interhome_vacancies", force: true do |t|
+    t.integer  "interhome_accommodation_id", null: false
+    t.string   "accommodation_code",         null: false
     t.date     "startday"
     t.text     "availability"
     t.text     "changeover"
     t.text     "minstay"
     t.text     "flexbooking"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  add_index "interhome_vacancies", ["accommodation_code"], :name => "index_interhome_vacancies_on_accommodation_code"
-  add_index "interhome_vacancies", ["interhome_accommodation_id"], :name => "index_interhome_vacancies_on_interhome_accommodation_id"
+  add_index "interhome_vacancies", ["accommodation_code"], name: "index_interhome_vacancies_on_accommodation_code"
+  add_index "interhome_vacancies", ["interhome_accommodation_id"], name: "index_interhome_vacancies_on_interhome_accommodation_id"
 
-  create_table "order_lines", :force => true do |t|
-    t.integer  "order_id",                   :null => false
-    t.string   "description",                :null => false
-    t.integer  "amount",                     :null => false
+  create_table "order_lines", force: true do |t|
+    t.integer  "order_id",                null: false
+    t.string   "description",             null: false
+    t.integer  "amount",                  null: false
     t.integer  "advert_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "coupon_id"
     t.integer  "country_id"
     t.integer  "resort_id"
-    t.integer  "windows",     :default => 0, :null => false
+    t.integer  "windows",     default: 0, null: false
   end
 
-  add_index "order_lines", ["advert_id"], :name => "index_order_lines_on_advert_id"
-  add_index "order_lines", ["country_id"], :name => "index_order_lines_on_country_id"
-  add_index "order_lines", ["coupon_id"], :name => "index_order_lines_on_coupon_id"
-  add_index "order_lines", ["order_id"], :name => "index_order_lines_on_order_id"
-  add_index "order_lines", ["resort_id"], :name => "index_order_lines_on_resort_id"
+  add_index "order_lines", ["advert_id"], name: "index_order_lines_on_advert_id"
+  add_index "order_lines", ["country_id"], name: "index_order_lines_on_country_id"
+  add_index "order_lines", ["coupon_id"], name: "index_order_lines_on_coupon_id"
+  add_index "order_lines", ["order_id"], name: "index_order_lines_on_order_id"
+  add_index "order_lines", ["resort_id"], name: "index_order_lines_on_resort_id"
 
-  create_table "orders", :force => true do |t|
+  create_table "orders", force: true do |t|
     t.integer  "user_id"
-    t.string   "order_number",                                                         :null => false
-    t.string   "email",                                                                :null => false
-    t.integer  "status",                                                               :null => false
-    t.string   "name",                                                                 :null => false
-    t.string   "address",                                                              :null => false
-    t.integer  "country_id",                                                           :null => false
-    t.string   "phone",                                                                :null => false
-    t.integer  "total",                                                                :null => false
-    t.datetime "created_at",                                                           :null => false
-    t.datetime "updated_at",                                                           :null => false
-    t.string   "postcode",                                          :default => "",    :null => false
-    t.boolean  "pay_monthly",                                       :default => false
-    t.integer  "first_payment",                                     :default => 0
-    t.integer  "subsequent_payments",                               :default => 0
-    t.integer  "tax_amount",                                        :default => 0,     :null => false
-    t.string   "customer_vat_number",                               :default => "",    :null => false
-    t.string   "tax_description",                                   :default => "VAT", :null => false
-    t.decimal  "sterling_in_euros",   :precision => 6, :scale => 4
+    t.string   "order_number",                                                null: false
+    t.string   "email",                                                       null: false
+    t.integer  "status",                                                      null: false
+    t.string   "name",                                                        null: false
+    t.string   "address",                                                     null: false
+    t.integer  "country_id",                                                  null: false
+    t.string   "phone",                                                       null: false
+    t.integer  "total",                                                       null: false
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+    t.string   "postcode",                                    default: "",    null: false
+    t.boolean  "pay_monthly",                                 default: false
+    t.integer  "first_payment",                               default: 0
+    t.integer  "subsequent_payments",                         default: 0
+    t.integer  "tax_amount",                                  default: 0,     null: false
+    t.string   "customer_vat_number",                         default: "",    null: false
+    t.string   "tax_description",                             default: "VAT", null: false
+    t.decimal  "sterling_in_euros",   precision: 6, scale: 4
   end
 
-  add_index "orders", ["created_at"], :name => "index_orders_on_created_at"
-  add_index "orders", ["email"], :name => "index_orders_on_email"
-  add_index "orders", ["order_number"], :name => "index_orders_on_order_number"
-  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+  add_index "orders", ["created_at"], name: "index_orders_on_created_at"
+  add_index "orders", ["email"], name: "index_orders_on_email"
+  add_index "orders", ["order_number"], name: "index_orders_on_order_number"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
-  create_table "pages", :force => true do |t|
-    t.string   "path",                                 :null => false
-    t.string   "title",                                :null => false
-    t.string   "description",        :default => "",   :null => false
-    t.string   "keywords",           :default => "",   :null => false
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+  create_table "pages", force: true do |t|
+    t.string   "path",                              null: false
+    t.string   "title",                             null: false
+    t.string   "description",        default: "",   null: false
+    t.string   "keywords",           default: "",   null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "footer_id"
     t.text     "content"
     t.text     "banner_advert_html"
-    t.boolean  "visible",            :default => true, :null => false
+    t.boolean  "visible",            default: true, null: false
   end
 
-  add_index "pages", ["path"], :name => "index_pages_on_path"
+  add_index "pages", ["path"], name: "index_pages_on_path"
 
-  create_table "payments", :force => true do |t|
+  create_table "payments", force: true do |t|
     t.integer  "order_id"
     t.string   "service_provider"
     t.string   "installation_id"
@@ -418,158 +418,158 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.string   "transaction_time"
     t.text     "raw_auth_message"
     t.boolean  "accepted"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.string   "futurepay_id",       :default => "", :null => false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "futurepay_id",       default: "", null: false
   end
 
-  add_index "payments", ["created_at"], :name => "index_payments_on_created_at"
-  add_index "payments", ["order_id"], :name => "index_payments_on_order_id"
+  add_index "payments", ["created_at"], name: "index_payments_on_created_at"
+  add_index "payments", ["order_id"], name: "index_payments_on_order_id"
 
-  create_table "properties", :force => true do |t|
-    t.integer  "user_id",                                         :null => false
-    t.integer  "resort_id",                                       :null => false
-    t.string   "name",                         :default => "",    :null => false
-    t.string   "strapline",                    :default => "",    :null => false
-    t.integer  "metres_from_lift",             :default => 0,     :null => false
-    t.integer  "sleeping_capacity",            :default => 0,     :null => false
-    t.integer  "number_of_bedrooms",           :default => 0,     :null => false
-    t.boolean  "new_development",              :default => false, :null => false
-    t.integer  "listing_type",                 :default => 0,     :null => false
+  create_table "properties", force: true do |t|
+    t.integer  "user_id",                                      null: false
+    t.integer  "resort_id",                                    null: false
+    t.string   "name",                         default: "",    null: false
+    t.string   "strapline",                    default: "",    null: false
+    t.integer  "metres_from_lift",             default: 0,     null: false
+    t.integer  "sleeping_capacity",            default: 0,     null: false
+    t.integer  "number_of_bedrooms",           default: 0,     null: false
+    t.boolean  "new_development",              default: false, null: false
+    t.integer  "listing_type",                 default: 0,     null: false
     t.integer  "image_id"
-    t.integer  "weekly_rent_price",            :default => 0,     :null => false
-    t.boolean  "fully_equipped_kitchen",       :default => false, :null => false
-    t.integer  "tv",                           :default => 0,     :null => false
-    t.boolean  "wifi",                         :default => false, :null => false
-    t.boolean  "disabled",                     :default => false, :null => false
-    t.integer  "parking",                      :default => 0,     :null => false
-    t.boolean  "pets",                         :default => false, :null => false
-    t.boolean  "smoking",                      :default => false, :null => false
-    t.integer  "sale_price",                   :default => 0,     :null => false
-    t.boolean  "garden",                       :default => false, :null => false
-    t.integer  "floor_area_metres_2",          :default => 0,     :null => false
-    t.integer  "plot_size_metres_2",           :default => 0,     :null => false
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.integer  "weekly_rent_price",            default: 0,     null: false
+    t.boolean  "fully_equipped_kitchen",       default: false, null: false
+    t.integer  "tv",                           default: 0,     null: false
+    t.boolean  "wifi",                         default: false, null: false
+    t.boolean  "disabled",                     default: false, null: false
+    t.integer  "parking",                      default: 0,     null: false
+    t.boolean  "pets",                         default: false, null: false
+    t.boolean  "smoking",                      default: false, null: false
+    t.integer  "sale_price",                   default: 0,     null: false
+    t.boolean  "garden",                       default: false, null: false
+    t.integer  "floor_area_metres_2",          default: 0,     null: false
+    t.integer  "plot_size_metres_2",           default: 0,     null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.text     "description"
-    t.integer  "number_of_bathrooms",          :default => 0,     :null => false
-    t.string   "address",                      :default => "",    :null => false
-    t.string   "postcode",                     :default => "",    :null => false
-    t.string   "latitude",                     :default => "",    :null => false
-    t.string   "longitude",                    :default => "",    :null => false
-    t.boolean  "long_term_lets_available",     :default => false, :null => false
-    t.boolean  "balcony",                      :default => false, :null => false
-    t.boolean  "mountain_views",               :default => false, :null => false
-    t.boolean  "log_fire",                     :default => false, :null => false
-    t.boolean  "cave",                         :default => false, :null => false
-    t.boolean  "ski_in_ski_out",               :default => false, :null => false
-    t.boolean  "hot_tub",                      :default => false, :null => false
-    t.boolean  "indoor_swimming_pool",         :default => false, :null => false
-    t.boolean  "outdoor_swimming_pool",        :default => false, :null => false
-    t.boolean  "sauna",                        :default => false, :null => false
-    t.integer  "distance_from_town_centre_m",  :default => 0,     :null => false
-    t.integer  "accommodation_type",           :default => 0,     :null => false
-    t.integer  "currency_id",                  :default => 1,     :null => false
-    t.integer  "normalised_sale_price",        :default => 0,     :null => false
-    t.integer  "normalised_weekly_rent_price", :default => 0,     :null => false
-    t.boolean  "children_welcome",             :default => false, :null => false
-    t.boolean  "short_stays",                  :default => false, :null => false
-    t.boolean  "terrace",                      :default => false, :null => false
+    t.integer  "number_of_bathrooms",          default: 0,     null: false
+    t.string   "address",                      default: "",    null: false
+    t.string   "postcode",                     default: "",    null: false
+    t.string   "latitude",                     default: "",    null: false
+    t.string   "longitude",                    default: "",    null: false
+    t.boolean  "long_term_lets_available",     default: false, null: false
+    t.boolean  "balcony",                      default: false, null: false
+    t.boolean  "mountain_views",               default: false, null: false
+    t.boolean  "log_fire",                     default: false, null: false
+    t.boolean  "cave",                         default: false, null: false
+    t.boolean  "ski_in_ski_out",               default: false, null: false
+    t.boolean  "hot_tub",                      default: false, null: false
+    t.boolean  "indoor_swimming_pool",         default: false, null: false
+    t.boolean  "outdoor_swimming_pool",        default: false, null: false
+    t.boolean  "sauna",                        default: false, null: false
+    t.integer  "distance_from_town_centre_m",  default: 0,     null: false
+    t.integer  "accommodation_type",           default: 0,     null: false
+    t.integer  "currency_id",                  default: 1,     null: false
+    t.integer  "normalised_sale_price",        default: 0,     null: false
+    t.integer  "normalised_weekly_rent_price", default: 0,     null: false
+    t.boolean  "children_welcome",             default: false, null: false
+    t.boolean  "short_stays",                  default: false, null: false
+    t.boolean  "terrace",                      default: false, null: false
     t.integer  "pericles_id"
-    t.integer  "board_basis",                  :default => 0,     :null => false
-    t.integer  "star_rating",                  :default => 1,     :null => false
+    t.integer  "board_basis",                  default: 0,     null: false
+    t.integer  "star_rating",                  default: 1,     null: false
     t.integer  "interhome_accommodation_id"
     t.integer  "country_id"
-    t.boolean  "publicly_visible",             :default => false, :null => false
-    t.boolean  "late_availability",            :default => true
+    t.boolean  "publicly_visible",             default: false, null: false
+    t.boolean  "late_availability",            default: true
     t.integer  "pv_accommodation_id"
   end
 
-  add_index "properties", ["country_id"], :name => "index_properties_on_country_id"
-  add_index "properties", ["interhome_accommodation_id"], :name => "index_properties_on_interhome_accommodation_id"
-  add_index "properties", ["late_availability"], :name => "index_properties_on_late_availability"
-  add_index "properties", ["publicly_visible"], :name => "index_properties_on_publicly_visible"
-  add_index "properties", ["pv_accommodation_id"], :name => "index_properties_on_pv_accommodation_id"
-  add_index "properties", ["resort_id"], :name => "index_properties_on_resort_id"
-  add_index "properties", ["user_id"], :name => "index_properties_on_user_id"
+  add_index "properties", ["country_id"], name: "index_properties_on_country_id"
+  add_index "properties", ["interhome_accommodation_id"], name: "index_properties_on_interhome_accommodation_id"
+  add_index "properties", ["late_availability"], name: "index_properties_on_late_availability"
+  add_index "properties", ["publicly_visible"], name: "index_properties_on_publicly_visible"
+  add_index "properties", ["pv_accommodation_id"], name: "index_properties_on_pv_accommodation_id"
+  add_index "properties", ["resort_id"], name: "index_properties_on_resort_id"
+  add_index "properties", ["user_id"], name: "index_properties_on_user_id"
 
-  create_table "property_base_prices", :force => true do |t|
-    t.integer  "number_of_months", :default => 0, :null => false
-    t.integer  "price",            :default => 0, :null => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+  create_table "property_base_prices", force: true do |t|
+    t.integer  "number_of_months", default: 0, null: false
+    t.integer  "price",            default: 0, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
-  create_table "property_volume_discounts", :force => true do |t|
-    t.integer  "current_property_number", :default => 0, :null => false
-    t.integer  "discount_percentage",     :default => 0, :null => false
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.integer  "discount_amount",         :default => 0, :null => false
+  create_table "property_volume_discounts", force: true do |t|
+    t.integer  "current_property_number", default: 0, null: false
+    t.integer  "discount_percentage",     default: 0, null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "discount_amount",         default: 0, null: false
   end
 
-  create_table "pv_accommodations", :force => true do |t|
-    t.string   "name",            :null => false
-    t.string   "code",            :null => false
-    t.string   "iso_3166_1",      :null => false
-    t.string   "iso_3166_2",      :null => false
-    t.string   "onu",             :null => false
+  create_table "pv_accommodations", force: true do |t|
+    t.string   "name",            null: false
+    t.string   "code",            null: false
+    t.string   "iso_3166_1",      null: false
+    t.string   "iso_3166_2",      null: false
+    t.string   "onu",             null: false
     t.text     "accroche_liste"
     t.text     "accroche_fiche"
     t.text     "description"
-    t.string   "address_1",       :null => false
-    t.string   "address_2",       :null => false
-    t.string   "town",            :null => false
-    t.string   "postcode",        :null => false
-    t.string   "latitude",        :null => false
-    t.string   "longitude",       :null => false
+    t.string   "address_1",       null: false
+    t.string   "address_2",       null: false
+    t.string   "town",            null: false
+    t.string   "postcode",        null: false
+    t.string   "latitude",        null: false
+    t.string   "longitude",       null: false
     t.text     "sports"
     t.text     "services"
-    t.string   "price_table_url", :null => false
-    t.string   "permalink",       :null => false
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "price_table_url", null: false
+    t.string   "permalink",       null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.text     "photos"
   end
 
-  add_index "pv_accommodations", ["code"], :name => "index_pv_accommodations_on_code"
-  add_index "pv_accommodations", ["permalink"], :name => "index_pv_accommodations_on_permalink"
+  add_index "pv_accommodations", ["code"], name: "index_pv_accommodations_on_code"
+  add_index "pv_accommodations", ["permalink"], name: "index_pv_accommodations_on_permalink"
 
-  create_table "pv_place_resorts", :force => true do |t|
-    t.integer  "resort_id",     :null => false
-    t.string   "pv_place_code", :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+  create_table "pv_place_resorts", force: true do |t|
+    t.integer  "resort_id",     null: false
+    t.string   "pv_place_code", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "pv_place_resorts", ["pv_place_code"], :name => "index_pv_place_resorts_on_pv_place_code"
-  add_index "pv_place_resorts", ["resort_id"], :name => "index_pv_place_resorts_on_resort_id"
+  add_index "pv_place_resorts", ["pv_place_code"], name: "index_pv_place_resorts_on_pv_place_code"
+  add_index "pv_place_resorts", ["resort_id"], name: "index_pv_place_resorts_on_resort_id"
 
-  create_table "pv_vacancies", :force => true do |t|
-    t.string   "destination_code",                                :null => false
-    t.string   "apartment_code",                                  :null => false
+  create_table "pv_vacancies", force: true do |t|
+    t.string   "destination_code",                          null: false
+    t.string   "apartment_code",                            null: false
     t.integer  "typology"
-    t.date     "start_date",                                      :null => false
-    t.integer  "duration",                                        :null => false
-    t.integer  "stock_quantity",                                  :null => false
-    t.decimal  "base_price",       :precision => 10, :scale => 2, :null => false
-    t.decimal  "promo_price_fr",   :precision => 10, :scale => 2, :null => false
-    t.decimal  "promo_price_en",   :precision => 10, :scale => 2, :null => false
-    t.decimal  "promo_price_de",   :precision => 10, :scale => 2, :null => false
-    t.decimal  "promo_price_nl",   :precision => 10, :scale => 2, :null => false
-    t.decimal  "promo_price_es",   :precision => 10, :scale => 2, :null => false
-    t.decimal  "promo_price_it",   :precision => 10, :scale => 2, :null => false
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.date     "start_date",                                null: false
+    t.integer  "duration",                                  null: false
+    t.integer  "stock_quantity",                            null: false
+    t.decimal  "base_price",       precision: 10, scale: 2, null: false
+    t.decimal  "promo_price_fr",   precision: 10, scale: 2, null: false
+    t.decimal  "promo_price_en",   precision: 10, scale: 2, null: false
+    t.decimal  "promo_price_de",   precision: 10, scale: 2, null: false
+    t.decimal  "promo_price_nl",   precision: 10, scale: 2, null: false
+    t.decimal  "promo_price_es",   precision: 10, scale: 2, null: false
+    t.decimal  "promo_price_it",   precision: 10, scale: 2, null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
-  add_index "pv_vacancies", ["destination_code", "apartment_code"], :name => "index_pv_vacancies_on_destination_code_and_apartment_code"
+  add_index "pv_vacancies", ["destination_code", "apartment_code"], name: "index_pv_vacancies_on_destination_code_and_apartment_code"
 
-  create_table "resorts", :force => true do |t|
-    t.integer  "country_id",             :default => 0,     :null => false
-    t.string   "name",                   :default => "",    :null => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+  create_table "resorts", force: true do |t|
+    t.integer  "country_id",             default: 0,     null: false
+    t.string   "name",                   default: "",    null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.text     "info"
     t.integer  "altitude_m"
     t.integer  "top_lift_m"
@@ -592,145 +592,145 @@ ActiveRecord::Schema.define(:version => 20130328100245) do
     t.boolean  "glacier_skiing"
     t.boolean  "creche"
     t.boolean  "babysitting_services"
-    t.boolean  "visible",                :default => false, :null => false
-    t.boolean  "featured",               :default => false, :null => false
+    t.boolean  "visible",                default: false, null: false
+    t.boolean  "featured",               default: false, null: false
     t.text     "feature"
     t.text     "introduction"
-    t.string   "season",                 :default => "",    :null => false
-    t.integer  "beginner",               :default => 0,     :null => false
-    t.integer  "intermediate",           :default => 0,     :null => false
-    t.integer  "off_piste",              :default => 0,     :null => false
-    t.integer  "expert",                 :default => 0,     :null => false
+    t.string   "season",                 default: "",    null: false
+    t.integer  "beginner",               default: 0,     null: false
+    t.integer  "intermediate",           default: 0,     null: false
+    t.integer  "off_piste",              default: 0,     null: false
+    t.integer  "expert",                 default: 0,     null: false
     t.boolean  "heli_skiing"
     t.boolean  "summer_skiing"
-    t.integer  "family",                 :default => 0,     :null => false
+    t.integer  "family",                 default: 0,     null: false
     t.text     "visiting"
     t.text     "owning_a_property_in"
     t.text     "living_in"
     t.text     "insider_view"
     t.text     "weather_code"
-    t.string   "apres_ski",              :default => "",    :null => false
-    t.boolean  "local_area",             :default => false, :null => false
-    t.integer  "property_count",         :default => 0,     :null => false
-    t.integer  "for_rent_count",         :default => 0,     :null => false
-    t.integer  "for_sale_count",         :default => 0,     :null => false
-    t.integer  "hotel_count",            :default => 0,     :null => false
-    t.integer  "new_development_count",  :default => 0,     :null => false
+    t.string   "apres_ski",              default: "",    null: false
+    t.boolean  "local_area",             default: false, null: false
+    t.integer  "property_count",         default: 0,     null: false
+    t.integer  "for_rent_count",         default: 0,     null: false
+    t.integer  "for_sale_count",         default: 0,     null: false
+    t.integer  "hotel_count",            default: 0,     null: false
+    t.integer  "new_development_count",  default: 0,     null: false
     t.text     "gallery_content"
     t.text     "piste_map_content"
-    t.boolean  "summer_only",            :default => false, :null => false
-    t.integer  "directory_advert_count", :default => 0,     :null => false
+    t.boolean  "summer_only",            default: false, null: false
+    t.integer  "directory_advert_count", default: 0,     null: false
   end
 
-  add_index "resorts", ["country_id"], :name => "index_resorts_on_country_id"
-  add_index "resorts", ["featured"], :name => "index_resorts_on_featured"
-  add_index "resorts", ["visible"], :name => "index_resorts_on_visible"
+  add_index "resorts", ["country_id"], name: "index_resorts_on_country_id"
+  add_index "resorts", ["featured"], name: "index_resorts_on_featured"
+  add_index "resorts", ["visible"], name: "index_resorts_on_visible"
 
-  create_table "roles", :force => true do |t|
+  create_table "roles", force: true do |t|
     t.string   "name"
     t.boolean  "select_on_signup"
     t.boolean  "admin"
     t.boolean  "flag_new_development"
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
-    t.boolean  "advertises_properties_for_rent", :default => false, :null => false
-    t.boolean  "advertises_generally",           :default => false, :null => false
-    t.boolean  "has_business_details",           :default => false, :null => false
-    t.boolean  "has_a_website",                  :default => false, :null => false
-    t.boolean  "new_development_by_default",     :default => false, :null => false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.boolean  "advertises_properties_for_rent", default: false, null: false
+    t.boolean  "advertises_generally",           default: false, null: false
+    t.boolean  "has_business_details",           default: false, null: false
+    t.boolean  "has_a_website",                  default: false, null: false
+    t.boolean  "new_development_by_default",     default: false, null: false
     t.text     "sales_pitch"
-    t.boolean  "advertises_properties_for_sale", :default => false, :null => false
-    t.boolean  "advertises_through_windows",     :default => false, :null => false
-    t.boolean  "advertises_hotels",              :default => false, :null => false
+    t.boolean  "advertises_properties_for_sale", default: false, null: false
+    t.boolean  "advertises_through_windows",     default: false, null: false
+    t.boolean  "advertises_hotels",              default: false, null: false
   end
 
-  create_table "snippets", :force => true do |t|
-    t.string   "name",       :default => "",   :null => false
+  create_table "snippets", force: true do |t|
+    t.string   "name",       default: "",   null: false
     t.text     "snippet"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.string   "locale",     :default => "en", :null => false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "locale",     default: "en", null: false
   end
 
-  add_index "snippets", ["name"], :name => "index_snippets_on_name"
+  add_index "snippets", ["name"], name: "index_snippets_on_name"
 
-  create_table "unavailabilities", :force => true do |t|
+  create_table "unavailabilities", force: true do |t|
     t.integer  "property_id"
     t.date     "start_date"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "unavailabilities", ["created_at"], :name => "index_unavailabilities_on_created_at"
-  add_index "unavailabilities", ["property_id", "start_date"], :name => "index_unavailabilities_on_property_id_and_start_date"
-  add_index "unavailabilities", ["property_id"], :name => "index_unavailabilities_on_property_id"
-  add_index "unavailabilities", ["start_date"], :name => "index_unavailabilities_on_start_date"
+  add_index "unavailabilities", ["created_at"], name: "index_unavailabilities_on_created_at"
+  add_index "unavailabilities", ["property_id", "start_date"], name: "index_unavailabilities_on_property_id_and_start_date"
+  add_index "unavailabilities", ["property_id"], name: "index_unavailabilities_on_property_id"
+  add_index "unavailabilities", ["start_date"], name: "index_unavailabilities_on_start_date"
 
-  create_table "unregistered_users", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "unregistered_users", force: true do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password"
     t.string   "salt"
-    t.string   "website",                :default => "",    :null => false
-    t.text     "description",                               :null => false
-    t.string   "billing_street",                            :null => false
-    t.string   "billing_locality",       :default => "",    :null => false
-    t.string   "billing_city",                              :null => false
-    t.string   "billing_county",         :default => "",    :null => false
-    t.string   "billing_postcode",       :default => "",    :null => false
+    t.string   "website",                default: "",    null: false
+    t.text     "description",                            null: false
+    t.string   "billing_street",                         null: false
+    t.string   "billing_locality",       default: "",    null: false
+    t.string   "billing_city",                           null: false
+    t.string   "billing_county",         default: "",    null: false
+    t.string   "billing_postcode",       default: "",    null: false
     t.integer  "billing_country_id"
-    t.string   "phone",                  :default => "",    :null => false
-    t.string   "mobile",                 :default => "",    :null => false
-    t.string   "business_name",          :default => "",    :null => false
-    t.string   "position",               :default => "",    :null => false
-    t.boolean  "terms_and_conditions",                      :null => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.integer  "role_id",                                   :null => false
+    t.string   "phone",                  default: "",    null: false
+    t.string   "mobile",                 default: "",    null: false
+    t.string   "business_name",          default: "",    null: false
+    t.string   "position",               default: "",    null: false
+    t.boolean  "terms_and_conditions",                   null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "role_id",                                null: false
     t.integer  "coupon_id"
-    t.string   "forgot_password_token",  :default => "",    :null => false
-    t.string   "first_name",             :default => "",    :null => false
-    t.string   "last_name",              :default => "",    :null => false
+    t.string   "forgot_password_token",  default: "",    null: false
+    t.string   "first_name",             default: "",    null: false
+    t.string   "last_name",              default: "",    null: false
     t.integer  "image_id"
-    t.string   "google_web_property_id", :default => "",    :null => false
-    t.string   "vat_number",             :default => "",    :null => false
+    t.string   "google_web_property_id", default: "",    null: false
+    t.string   "vat_number",             default: "",    null: false
     t.integer  "vat_country_id"
-    t.boolean  "apply_price_override",   :default => false, :null => false
-    t.integer  "price_override",         :default => 0,     :null => false
+    t.boolean  "apply_price_override",   default: false, null: false
+    t.integer  "price_override",         default: 0,     null: false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["last_name"], :name => "index_users_on_last_name"
+  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["last_name"], name: "index_users_on_last_name"
 
-  create_table "websites", :force => true do |t|
+  create_table "websites", force: true do |t|
     t.text     "terms"
-    t.datetime "created_at",                                                                          :null => false
-    t.datetime "updated_at",                                                                          :null => false
+    t.datetime "created_at",                                                                 null: false
+    t.datetime "updated_at",                                                                 null: false
     t.text     "privacy_policy"
     t.text     "home_content"
-    t.integer  "directory_advert_price",                                           :default => 0,     :null => false
+    t.integer  "directory_advert_price",                                     default: 0,     null: false
     t.text     "start_page_content"
-    t.string   "worldpay_installation_id",                                         :default => "",    :null => false
-    t.boolean  "worldpay_active",                                                  :default => false, :null => false
-    t.boolean  "worldpay_test_mode",                                               :default => false, :null => false
-    t.boolean  "skip_payment",                                                     :default => false, :null => false
-    t.string   "worldpay_payment_response_password",                               :default => "",    :null => false
-    t.boolean  "blog_visible",                                                     :default => false, :null => false
+    t.string   "worldpay_installation_id",                                   default: "",    null: false
+    t.boolean  "worldpay_active",                                            default: false, null: false
+    t.boolean  "worldpay_test_mode",                                         default: false, null: false
+    t.boolean  "skip_payment",                                               default: false, null: false
+    t.string   "worldpay_payment_response_password",                         default: "",    null: false
+    t.boolean  "blog_visible",                                               default: false, null: false
     t.text     "contact_details"
-    t.decimal  "vat_rate",                           :precision => 4, :scale => 2, :default => 20.0,  :null => false
+    t.decimal  "vat_rate",                           precision: 4, scale: 2, default: 20.0,  null: false
     t.text     "resources_banner_html"
-    t.string   "featured_properties_ids",                                          :default => "",    :null => false
+    t.string   "featured_properties_ids",                                    default: "",    null: false
   end
 
-  create_table "window_base_prices", :force => true do |t|
-    t.integer  "quantity",   :default => 0, :null => false
-    t.integer  "price",      :default => 0, :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+  create_table "window_base_prices", force: true do |t|
+    t.integer  "quantity",   default: 0, null: false
+    t.integer  "price",      default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end
