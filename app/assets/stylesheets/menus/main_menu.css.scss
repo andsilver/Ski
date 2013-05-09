@@ -88,3 +88,30 @@ nav {
   line-height: 1px;
   font-weight: bold;
 }
+
+#session {
+  font-size: 0;
+  margin-right: 15px;
+  text-align: right;
+
+  li {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-bottom: 4px solid #000000;
+    color: #ededed;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 26px;
+    margin-left: 5px;
+    min-width: 145px;
+    text-align: left;
+
+    a {
+      color: #ededed;
+      display: inline-block;
+      margin-right: 2px;
+      padding: 0px 15px 0px 10px;
+      text-decoration: none;
+      width: 110px;
+    }
+  }
+}

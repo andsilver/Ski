@@ -61,6 +61,25 @@
   }
   </script>
 <header role="banner">
+  <nav id="session">
+    <ul>
+<% if signed_in? -%>
+<% if @current_user.has_adverts_in_basket? -%>
+      <li><a href="<%= basket_path %>"><%= t 'basket' %> <span class="count"><%= @current_user.adverts_in_basket.count %></span></a><i class="icon-caret-right"></i></li>
+<% elsif session[:windows_in_basket] -%>
+      <li><a href="<%= basket_path %>"><%= t 'basket' %> <span class="count">1</span></a><i class="icon-caret-right"></i></li>
+<% end -%>
+      <li><%= link_to t('account'), advertise_path %><i class="icon-caret-right"></i></li>
+      <li><%= link_to t('sign_out'), sign_out_path %><i class="icon-caret-right"></i></li>
+<% else -%>
+      <li><%= link_to t('sign_in'), sign_in_path %><i class="icon-caret-right"></i></li>
+      <li><%= link_to t('sign_up'), sign_up_path, id: 'sign-up' %><i class="icon-caret-right"></i></li>
+<% end -%>
+<% if admin? -%>
+      <li><%= link_to 'CMS', cms_path %><i class="icon-caret-right"></i></li>
+<% end -%>
+    </ul>
+  </nav>
   <a href="/" title="Home" id="logo"><%= image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation')) %></a>
 </header>
 <div id="column_headings">
