@@ -1,9 +1,6 @@
 class HomeController < ApplicationController
-  layout 'application', except: [:index]
-
   def index
     @featured_properties = @w.featured_properties
-    render layout: 'home'
   end
 
   def resort_options_for_quick_search
