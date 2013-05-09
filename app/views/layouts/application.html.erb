@@ -17,15 +17,6 @@
   <%= csrf_meta_tags %>
   <%= render 'shared/google' %>
   <%= render 'shared/typekit' %>
-  <script>
-  $(function() {
-    $('#header_images').cycle({
-      fx: 'fade',
-      speed: 1500,
-      timeout: 3000
-    });
-  });
-  </script>
 </head>
 <body class="<%= 'browse_menu ' if @browse_menu %><%= @body_classes %>">
 <div id="wrapper">
@@ -34,11 +25,6 @@
   <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="<%= alt_attribute('/images/my-chalet-finder-logo-3.png', 'My Chalet Finder Ski Accommodation') %>"></a>
   <%= render "shared/social" %>
 </header>
-<div id="header_images">
-  <% header_image_urls.each do |url| -%>
-  <img src="<%= url %>" alt="<%= alt_attribute(url, 'My Chalet Finder Ski Accommodation') %>">
-  <% end %>
-</div>
 <div id="column_headings">
 
 <% if @browse_menu
