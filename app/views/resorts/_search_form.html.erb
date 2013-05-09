@@ -1,12 +1,3 @@
-<style>
-#quick-search, #quick-search-panel {
-  top: 95px;
-  height: 170px;
-  left: 30px;
-}
-</style>
-<div id="quick-search-panel">
-</div>
 <div id="quick-search">
   <%= form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do %>
     <input type="hidden" name="resort_id" value="<%= @resort.id %>">
