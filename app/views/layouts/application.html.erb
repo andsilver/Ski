@@ -22,7 +22,7 @@
 <div id="wrapper">
 <%= render "shared/main_menu" %>
 <header role="banner">
-  <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="<%= alt_attribute('/images/my-chalet-finder-logo-3.png', 'My Chalet Finder Ski Accommodation') %>"></a>
+  <a href="/" title="Home" id="logo"><%= image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation')) %></a>
   <%= render "shared/social" %>
 </header>
 <div id="column_headings">
