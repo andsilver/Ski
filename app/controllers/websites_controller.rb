@@ -3,6 +3,8 @@ class WebsitesController < ApplicationController
   before_filter :no_browse_menu
   before_filter :find_website, only: [:edit, :edit_prices, :update]
 
+  layout 'admin'
+
   def edit
   end
 

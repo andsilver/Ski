@@ -1,5 +1,4 @@
-<%= render 'cms/menu' %>
-<div class="cms">
+<%= page_header 'Currencies' %>
 <p>
   <%= link_to 'New Currency', new_currency_path, class: 'btn' %>
   <%= link_to 'Update Exchange Rates', update_exchange_rates_currencies_path, class: 'btn' %>
@@ -30,4 +29,3 @@
   </tbody>
 </table>
 <% end %>
-</div>

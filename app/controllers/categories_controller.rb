@@ -1,13 +1,14 @@
 class CategoriesController < ApplicationController
   before_filter :no_browse_menu, except: [:show]
   before_filter :admin_required, except: [:show]
+  layout 'admin', except: [:show]
+
   before_filter :find_resort, only: [:show]
   before_filter :find_category, only: [:edit, :update, :show, :destroy]
 
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]
 
   def index
-    @heading_a = t('categories_controller.categories')
     @categories = Category.order('name')
   end
 

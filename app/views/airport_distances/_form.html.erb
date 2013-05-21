@@ -12,18 +12,18 @@
 
 <%= form_for @airport_distance do |f| %>
 <div class="field">
-  <%= f.label :resort_id, t('resort') %><br>
+  <%= f.label :resort_id, t('resort') %>
   <%= select("airport_distance", "resort_id", (Resort.where(visible: true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: t('properties.select_resort')}) %>
 </div>
 <div class="field">
-  <%= f.label :airport_id, t('airport') %><br>
+  <%= f.label :airport_id, t('airport') %>
   <%= select("airport_distance", "airport_id", (Airport.all.collect {|a| [ a.code + ' ' + a.name, a.id ] }).sort, {prompt: 'Select Airport'}) %>
 </div>
 <div class="field">
-  <%= f.label :distance_km %><br>
-  <%= f.text_field :distance_km %>km
+  <%= f.label :distance_km %>
+  <%= f.number_field :distance_km %> km
 </div>
 <div class="field">
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 </div>
 <% end %>

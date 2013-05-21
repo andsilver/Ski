@@ -1,5 +1,7 @@
 class BuyingGuidesController < ApplicationController
   before_filter :admin_required, except: [:show]
+  layout 'admin', except: [:show]
+
   before_filter :find_buying_guide, only: [:edit, :update, :show, :destroy]
   before_filter :no_browse_menu
 

@@ -1,5 +1,7 @@
 class CountriesController < ApplicationController
   before_filter :admin_required, except: [:show]
+  layout 'admin', except: [:show]
+
   before_filter :find_country, only: [:edit, :update, :show, :destroy]
   before_filter :protect_country, only: [:show]
   before_filter :no_browse_menu, except: [:show]

@@ -3,6 +3,8 @@ class AltAttributesController < ApplicationController
   before_filter :find_alt_attribute, only: [:edit, :update, :show, :destroy]
   before_filter :no_browse_menu
 
+  layout 'admin'
+
   def index
     @alt_attributes = AltAttribute.order('path')
   end

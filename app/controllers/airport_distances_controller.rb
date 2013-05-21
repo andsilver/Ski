@@ -3,6 +3,8 @@ class AirportDistancesController < ApplicationController
   before_filter :find_airport_distance, only: [:edit, :update, :destroy]
   before_filter :no_browse_menu
 
+  layout 'admin'
+
   def index
     @airport_distances = AirportDistance.all
   end

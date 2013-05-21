@@ -77,7 +77,6 @@ fr:
   business: Entreprise
   business_details: Détails d'entreprise
   categories_controller:
-    categories: Categories
     not_found: 'That category does not exist.'
   category: 'Catégorie'
   category_names:

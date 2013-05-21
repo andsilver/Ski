@@ -1,6 +1,8 @@
 class PvAccommodationsController < ApplicationController
   before_filter :admin_required
 
+  layout 'admin'
+
   def index
     @pv_accommodations = PvAccommodation.all
   end

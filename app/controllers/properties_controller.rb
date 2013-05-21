@@ -22,6 +22,7 @@ class PropertiesController < ApplicationController
   before_filter :find_property, only: [:show, :contact, :email_a_friend]
 
   before_filter :admin_required, only: [:index]
+  layout 'admin', only: [:index]
 
   def index
     default_page_title 'Properties'

@@ -3,13 +3,13 @@ class CurrenciesController < ApplicationController
   before_filter :no_browse_menu
   before_filter :find_currency, only: [:edit, :update]
 
+  layout 'admin'
+
   def index
-    @heading_a = render_to_string(partial: 'index_heading').html_safe
     @currencies = Currency.order('code')
   end
 
   def new
-    @heading_a = render_to_string(partial: 'create_edit_heading').html_safe
     @currency = Currency.new
   end
 
@@ -24,7 +24,6 @@ class CurrenciesController < ApplicationController
   end
 
   def edit
-    @heading_a = render_to_string(partial: 'create_edit_heading').html_safe
   end
 
   def update

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title><%= @page_title ? @page_title + " - My Chalet Finder" : "My Chalet Finder" %></title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <script src="/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div style="height:60px;">&nbsp;</div>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="/">Home</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">General
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li<%= ' class="active"'.html_safe if current_page? guide_path %>>
+                  <%= link_to 'Guide', guide_path, id: 'cms-guide' %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? export_path %>>
+                  <%= link_to 'Export Data', export_path %>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Financial &amp; Analysis
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li<%= ' class="active"'.html_safe if current_page? management_information_path %>>
+                  <%= link_to 'Management Information', management_information_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? orders_path %>>
+                  <%= link_to 'Orders', orders_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? payments_path %>>
+                  <%= link_to 'Payments', payments_path %>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pricing
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li<%= ' class="active"'.html_safe if current_page? directory_price_path %>>
+                  <%= link_to 'Directory Price', directory_price_path %> 
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? banner_prices_path %>>
+                  <%= link_to 'Banner Prices', banner_prices_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? property_base_prices_path %>>
+                  <%= link_to 'Property Base Prices', property_base_prices_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? property_volume_discounts_path %>>
+                  <%= link_to 'Property Volume Discounts', property_volume_discounts_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? window_base_prices_path %>>
+                  <%= link_to 'Window Base Prices', window_base_prices_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? coupons_path %>>
+                  <%= link_to 'Promotion Codes', coupons_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? currencies_path %>>
+                  <%= link_to 'Currencies', currencies_path %>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Management
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li<%= ' class="active"'.html_safe if current_page? users_path %>>
+                  <%= link_to 'Users', users_path %> 
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? roles_path %>>
+                  <%= link_to 'Roles', roles_path %>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Content
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li<%= ' class="active"'.html_safe if current_page? snippets_path %>>
+                  <%= link_to 'Snippets', snippets_path %> 
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? countries_path %>>
+                  <%= link_to 'Countries', countries_path %> 
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? buying_guides_path %>>
+                  <%= link_to 'Buying Guides', buying_guides_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? airports_path %>>
+                  <%= link_to 'Airports', airports_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? airport_distances_path %>>
+                  <%= link_to 'Airport Distances', airport_distances_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? resorts_path %>>
+                  <%= link_to 'Resorts', resorts_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? categories_path %>>
+                  <%= link_to 'Categories', categories_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? blog_posts_path %>>
+                  <%= link_to 'Blog', blog_posts_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? pages_path %>>
+                  <%= link_to 'Page Meta Data', pages_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? alt_attributes_path %>>
+                  <%= link_to 'Alt Attributes', alt_attributes_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? footers_path %>>
+                  <%= link_to 'Footers', footers_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? edit_website_path(@w) %>>
+                  <%= link_to 'Website Misc', edit_website_path(@w) %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? directory_adverts_path %>>
+                  <%= link_to 'Directory & Banner Adverts', directory_adverts_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? properties_path %>>
+                  <%= link_to 'Properties', properties_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? pv_accommodations_path %>>
+                  <%= link_to 'Pierre et Vacances', pv_accommodations_path %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+<% if flash[:notice] -%>
+    <div class="alert alert-info fade in">
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      <%= flash[:notice] %>
+    </div>
+<% end -%>
+    <%= yield %>
+  </div>
+</body>
+</html>

@@ -2,6 +2,8 @@ class CmsController < ApplicationController
   before_filter :admin_required
   before_filter :no_browse_menu
 
+  layout 'admin'
+
   def index
     @heading_a = t('cms_controller.cms')
     default_page_title(@heading_a)

@@ -1,6 +1,6 @@
-<%= render 'cms/menu' %>
-<div class="cms">
-<h1><%= link_to 'CMS', cms_path %> &rarr; Edit Miscellaneous Website Details</h1>
+<div class="page-header">
+  <h1><%= link_to 'CMS', cms_path %> &rarr; Edit Miscellaneous Website Details</h1>
+</div>
 
 <% if @website.errors.any? %>
   <div id="error_explanation">
@@ -85,4 +85,3 @@
   <%= f.submit class: 'btn btn-primary' %>
 </div>
 <% end %>
-</div>

@@ -4,6 +4,8 @@ class BannerPricesController < ApplicationController
 
   before_filter :find_banner_price, only: [:edit, :update, :destroy]
 
+  layout 'admin'
+
   def index
     @banner_prices = BannerPrice.all
   end

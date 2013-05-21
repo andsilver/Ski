@@ -106,6 +106,6 @@ module ApplicationHelper
   def view_button(object)
     link_to '<i class="icon-eye-open"></i> View'.html_safe,
     object,
-    class: 'btn btn-mini'
+    class: 'btn'
   end
 end

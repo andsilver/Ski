@@ -77,7 +77,6 @@ de:
   business: Business
   business_details: Business Details
   categories_controller:
-    categories: 'Categories'
     not_found: 'That category does not exist.'
   category: 'Category'
   category_names:

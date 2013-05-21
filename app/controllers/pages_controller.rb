@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   before_filter :admin_required, except: [:show]
+  layout 'admin', except: [:show]
+
   before_filter :find_page, only: [:edit, :update, :destroy]
   before_filter :no_browse_menu
 

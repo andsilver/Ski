@@ -12,18 +12,18 @@
 
 <%= form_for @airport do |f| %>
 <div class="field">
-  <%= f.label :name %><br>
+  <%= f.label :name %>
   <%= f.text_field :name %>
 </div>
 <div class="field">
-  <%= f.label :code %><br>
+  <%= f.label :code %>
   <%= f.text_field :code %>
 </div>
 <div class="field">
-  <%= f.label :country_id, t('countries.country') %><br>
+  <%= f.label :country_id, t('countries.country') %>
   <%= select("airport", "country_id", Country.all(order: 'name').collect {|c| [ c.name, c.id ] }, {prompt: t('countries.select_country')}) %>
 </div>
 <div class="field">
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 </div>
 <% end %>

@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   before_filter :find_order, only: [:receipt, :invoice]
 
   before_filter :admin_required, only: [:index, :show, :destroy]
+  layout 'admin', only: [:index, :show, :destroy]
 
   def index
     @orders = Order.order('created_at DESC')

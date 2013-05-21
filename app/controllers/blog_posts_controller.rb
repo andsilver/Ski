@@ -1,5 +1,7 @@
 class BlogPostsController < ApplicationController
   before_filter :admin_required, except: [:blog, :show, :feed]
+  layout 'admin', except: [:blog, :show, :feed]
+
   before_filter :find_blog_post, only: [:show, :edit, :update]
   before_filter :no_browse_menu
 

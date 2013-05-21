@@ -3,6 +3,8 @@ class CouponsController < ApplicationController
   before_filter :no_browse_menu
   before_filter :find_coupon, only: [:edit, :update]
 
+  layout 'admin'
+
   def index
     @coupons = Coupon.order('code')
   end

@@ -3,6 +3,8 @@ class SnippetsController < ApplicationController
   before_filter :find_snippet, only: [:edit, :update, :destroy]
   before_filter :no_browse_menu
 
+  layout 'admin'
+
   def index
     @snippets = Snippet.order('name')
   end

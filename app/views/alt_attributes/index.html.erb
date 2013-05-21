@@ -1,6 +1,7 @@
-<%= render 'cms/menu' %>
-<div class="cms">
-<h1><%= link_to 'CMS', cms_path %> &rarr; Alt Attributes</h1>
+<div class="page-header">
+  <h1><%= link_to 'CMS', cms_path %> &rarr; Alt Attributes</h1>
+</div>
+
 <p>
   <%= link_to 'New Alt Attribute', new_alt_attribute_path, class: 'btn btn-primary' %>
 </p>
@@ -20,10 +21,9 @@
     <tr>
       <td><%= link_to alt_attribute.path, edit_alt_attribute_path(alt_attribute) %></td>
       <td><%= alt_attribute.alt_text %></td>
-      <td><%= link_to 'Delete', alt_attribute, confirm: t('are_you_sure'), method: :delete %></td>
+      <td><%= delete_button(alt_attribute) %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 <% end %>
-</div>

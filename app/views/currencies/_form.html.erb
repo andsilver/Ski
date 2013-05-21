@@ -12,25 +12,27 @@
 
 <%= form_for @currency do |f| %>
 <div class="field">
-  <%= f.label :name %><br>
+  <%= f.label :name %>
   <%= f.text_field :name %>
 </div>
 <div class="field">
-  <%= f.label :unit %><br>
+  <%= f.label :unit %>
   <%= f.text_field :unit %>
 </div>
 <div class="field">
-  <%= f.check_box :pre %> <%= f.label :pre, 'Unit goes before the number' %>
+  <label class="checkbox">
+    <%= f.check_box :pre %> Unit goes before the number
+  </label>
 </div>
 <div class="field">
-  <%= f.label :code %><br>
+  <%= f.label :code %>
   <%= f.text_field :code %>
 </div>
 <div class="field">
-  <%= f.label :in_euros %><br>
+  <%= f.label :in_euros %>
   <%= f.text_field :in_euros %>
 </div>
 <div class="field">
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 </div>
 <% end %>

@@ -2,6 +2,8 @@ class FootersController < ApplicationController
   before_filter :admin_required
   before_filter :find_footer, only: [:edit, :update, :destroy]
 
+  layout 'admin'
+
   def index
     @footers = Footer.all
   end

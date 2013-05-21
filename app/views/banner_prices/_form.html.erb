@@ -1,13 +1,13 @@
 <%= form_for @banner_price do |f| %>
 <div class="field">
-  <%= f.label :current_banner_number %><br>
-  <%= f.text_field :current_banner_number %>
+  <%= f.label :current_banner_number %>
+  <%= f.number_field :current_banner_number %>
 </div>
 <div class="field">
-  <%= f.label :price %><br>
-  <%= f.text_field :price %> EUR
+  <%= f.label :price %>
+  <%= f.number_field :price %> EUR
 </div>
 <div class="field">
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 </div>
 <% end %>

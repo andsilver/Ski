@@ -1,5 +1,7 @@
 class ResortsController < ApplicationController
   before_filter :admin_required, except: [:directory, :feature, :featured, :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide, :gallery, :show, :summer_holidays]
+  layout 'admin', except: [:directory, :feature, :featured, :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide, :gallery, :show, :summer_holidays]
+
   before_filter :find_resort, only: [:destroy, :directory, :edit, :edit_page, :feature, :gallery, :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide, :show, :summer_holidays, :update]
   before_filter :no_browse_menu, except: [:show, :feature, :directory, :how_to_get_there, :resort_guide, :summer_holidays]
   before_filter :find_featured_properties, only: [:show, :summer_holidays]

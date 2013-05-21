@@ -12,14 +12,14 @@
 
 <%= form_for @window_base_price do |f| %>
 <div class="field">
-  <%= f.label :quantity %><br>
-  <%= f.text_field :quantity %>
+  <%= f.label :quantity %>
+  <%= f.number_field :quantity %>
 </div>
 <div class="field">
-  <%= f.label :price %><br>
-  <%= f.text_field :price %> EUR
+  <%= f.label :price %>
+  <%= f.number_field :price %> EUR
 </div>
 <div class="field">
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 </div>
 <% end %>

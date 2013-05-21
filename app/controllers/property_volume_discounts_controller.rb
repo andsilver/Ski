@@ -3,6 +3,8 @@ class PropertyVolumeDiscountsController < ApplicationController
   before_filter :no_browse_menu
   before_filter :find_property_volume_discount, only: [:edit, :update, :destroy]
 
+  layout 'admin'
+
   def index
     @property_volume_discounts = PropertyVolumeDiscount.order('current_property_number')
   end

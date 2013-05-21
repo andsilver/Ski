@@ -2,6 +2,8 @@ class ExportController < ApplicationController
   before_filter :admin_required
   before_filter :no_browse_menu
 
+  layout 'admin'
+
   CLASSES = %w{Advert AirportDistances Airports BlogPost
     Category Country Coupon Currency DirectoryAdvert Enquiry Favourite Image
     Order OrderLine Page Payment Property PropertyBasePrice
