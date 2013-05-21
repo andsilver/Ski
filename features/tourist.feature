@@ -21,7 +21,7 @@ Feature: Tourist
     Given I am on the home page
     When I follow "France"
     And I follow "Chamonix"
-    Then I should see "For Rent"
+    Then I should see "Holiday Rentals"
     And I should see "For Sale"
     And I should see "Directory"
     And I should see "Resort Info"
