@@ -328,6 +328,12 @@ other_business = Role.create!(
   has_a_website: true
 )
 
+advertiser = Role.create!(
+  name: 'Advertiser',
+  admin: false,
+  select_on_signup: false
+)
+
 alice = User.create!(
   first_name: 'Alice',
   last_name: 'Adams',
