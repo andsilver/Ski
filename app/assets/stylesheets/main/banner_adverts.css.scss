@@ -1,8 +1,4 @@
 #content-with-side-banners {
-  width: 821px;
-  padding: 0 15px 0 0;
-  float: left;
-
   .first-third, .last-third {
     width: 247px;
   }
@@ -79,16 +75,5 @@
     font-style: normal;
     color:#525c66;
     letter-spacing: -3px;
-  }
-}
-
-#side-banners {
-  float: left;
-  padding-top: 13px;
-  width: 160px;
-
-  a {
-    margin-bottom: 13px;
-    display: block;
   }
 }

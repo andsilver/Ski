@@ -40,6 +40,45 @@ a img {
   position: relative;
 }
 
+#links-and-search {
+  float: left;
+  margin-left: 15px;
+  margin-right: 10px;
+  min-height: 10px;
+  width: 170px;
+
+  section {
+    background: #0069af;
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+
+  select {
+    width: 160px;
+  }
+
+  #arrival-datepicker input {
+    width: 120px;
+  }
+}
+
+#content {
+  float: left;
+  min-height: 10px;
+  width: 620px;
+}
+
+#advertising {
+  float: left;
+  margin-left: 10px;
+  width: 160px;
+
+  a {
+    margin-bottom: 13px;
+    display: block;
+  }
+}
+
 #logo {
   display: block;
   position: absolute;
@@ -54,9 +93,7 @@ a img {
 }
 
 #column_headings {
-  margin-top: 264px;
-  border-top: 1px solid #68c8e7;
-  border-bottom: 1px solid #68c8e7;
+  margin-bottom: 15px;
 }
 
 #column_headings h1 {
@@ -202,11 +239,6 @@ table.grid {
 
 .grid tr:hover {
   background: yellow;
-}
-
-#search_options {
-  float: left;
-  width: 240px;
 }
 
 input[type=text] .LV_invalid_field,

@@ -1,3 +1,4 @@
+<%= content_for :links_and_search do %>
 <script>
 $(function() {
   $('#quick-search form').submit(function() {
@@ -8,6 +9,7 @@ $(function() {
   });
 });
 </script>
+<section>
 <div id="quick-search">
   <%= form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do %>
     <select id="resort_id" name="resort_id">
@@ -25,7 +27,8 @@ $(function() {
     </p>
   <% end %>
 </div>
-
+</section>
+<% end %>
 
 <div id="content-with-side-banners">
   <% featured_properties = @featured_properties.empty? ? '' : render('shared/featured_properties') %>
@@ -34,6 +37,4 @@ $(function() {
   'resort_summaries_table' => render('resort_summaries_table')
   ) %>
 </div>
-<div id="side-banners">
-  <%= render partial: 'directory_adverts/banners', object: [] %>
-</div>
+<%= render partial: 'directory_adverts/banners', object: [] %>

@@ -5,6 +5,8 @@
   });
 </script>
 <% end -%>
+
+<%= content_for :links_and_search do %>
 <script>
 $(function() {
   $('#search_options input, #search_options select').change(function() {
@@ -12,7 +14,7 @@ $(function() {
   });
 });
 </script>
-<div id="content-with-side-banners">
+<section>
 <div id="search_options">
 <%= form_tag request.path, method: 'get' do %>
 <% if @resort -%>
@@ -54,6 +56,15 @@ $(function() {
 </p>
 <% end %>
 </div><!--#search_options-->
+</section>
+<% end %>
+
+
+
+
+
+
+<div id="content-with-side-banners">
 <div id="property_summaries">
 <% if @properties.empty? %>
 
@@ -69,6 +80,4 @@ $(function() {
 <% end %>
 </div><!--#property_summaries-->
 </div>
-<div id="side-banners">
-  <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) if @resort %>
-</div>
+<%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) if @resort %>

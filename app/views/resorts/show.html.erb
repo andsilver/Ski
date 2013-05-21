@@ -1,4 +1,6 @@
+<%= content_for :links_and_search do %>
 <%= render 'search_form' %>
+<% end %>
 
 <div id="content-with-side-banners">
   <p class="more_detail" style="width: 30%; float: right;">
@@ -48,6 +50,5 @@
 </div>
 <% end %>
 </div>
-<div id="side-banners">
-  <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) %>
-</div>
+
+<%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) %>

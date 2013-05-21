@@ -129,6 +129,4 @@ features = @accommodation.features.split(',')
 
 </div><!--#property-->
 </div>
-<div id="side-banners">
-  <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>
-</div>
+<%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>
