@@ -60,7 +60,7 @@ class DirectoryAdvert < ActiveRecord::Base
 
     ads = []
     uncached do
-      ads = DirectoryAdvert.all(order: 'RAND()', conditions: conditions, limit: qty)
+      ads = DirectoryAdvert.where(conditions).order('RAND()').limit(qty)
     end
 
     ads.each {|ad| ad.current_advert.record_view}
