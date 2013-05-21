@@ -10,6 +10,7 @@ chamonix:
   name: Chamonix
   introduction: "Chamonix, with a population of approximately 10,000"
   visible: 1
+  directory_advert_count: 1
   for_rent_count: 1
   for_sale_count: 1
   hotel_count: 1
