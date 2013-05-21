@@ -41,36 +41,6 @@ nav {
     padding: 0;
     width: 140px;
   }
-
-  .drop {
-    border-top: 1px solid #fff;
-    visibility: hidden;
-    position: absolute;
-    width: 180px;
-    text-align: center;
-    font-size: 1em;
-    text-transform: none;
-    margin-left: -20px;
-    margin-top: 3px;
-    z-index: 10;
-
-    a {
-      line-height: 24px;
-      border: none;
-      background: #222;
-      opacity: 0.9;
-      color: #fff;
-      text-decoration: none;
-      display: block;
-    }
-
-    a:hover {
-      background: #222;
-      opacity: 1;
-      color: #fff;
-      text-decoration: underline;
-    }
-  }
 }
 
 .count {

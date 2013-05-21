@@ -42,24 +42,6 @@
 </head>
 <body class="<%= 'browse_menu ' if @browse_menu %><%= @body_classes %>">
 <div id="wrapper">
-  <script>
-  var menuTimeout;
-
-  function openMenu(menu) {
-    menu.style.visibility = 'visible';
-    clearTimeout(menu.timeout);
-  }
-
-  function startCloseMenu(menu) {
-    menu.timeout = setTimeout(function() {
-      menu.style.visibility = 'hidden';
-    }, 500);
-  }
-
-  function closeMenu(menu) {
-    menu.style.visibility = 'hidden';
-  }
-  </script>
 <header role="banner">
   <nav id="session">
     <ul>
@@ -210,14 +192,7 @@
     <li><%= link_to 'CMS', cms_path %></li>
 <% end %>
     <li><%= link_to t('favourites.favourites'), favourites_path, rel: 'nofollow' %></li>
-    <li><a id="advertise_link" href="/welcome/advertiser" onmouseover="openMenu(document.getElementById('welcome_advertisers'));" onmouseout="startCloseMenu(document.getElementById('welcome_advertisers'));"><%= t('advertise') %></a><div class="drop" id="welcome_advertisers" onmouseover="openMenu(this);" onmouseout="startCloseMenu(this);">
-      <a href="/welcome/property-owner"><%= t('roles.property_owners') %></a>
-      <a href="/welcome/letting-agent"><%= t('roles.letting_agents') %></a>
-      <a href="/welcome/property-developer"><%= t('roles.property_developers') %></a>
-      <a href="/welcome/estate-agent"><%= t('roles.estate_agents') %></a>
-      <a href="/welcome/hotelier"><%= t('roles.hoteliers') %></a>
-      <a href="/welcome/other-business"><%= t('roles.other_business') %></a>
-    </div></li>
+    <li><a id="advertise_link" href="/welcome/advertiser"><%= t('advertise') %></a></li>
     <li><%= link_to t('home'), root_path %></li>
   </ul>
 </nav>
