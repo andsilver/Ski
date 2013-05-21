@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.integer  "order_id"
   end
 
-  add_index "adverts", ["banner_advert_id"], name: "index_adverts_on_banner_advert_id"
-  add_index "adverts", ["directory_advert_id"], name: "index_adverts_on_directory_advert_id"
-  add_index "adverts", ["order_id"], name: "index_adverts_on_order_id"
-  add_index "adverts", ["property_id"], name: "index_adverts_on_property_id"
-  add_index "adverts", ["user_id"], name: "index_adverts_on_user_id"
+  add_index "adverts", ["banner_advert_id"], name: "index_adverts_on_banner_advert_id", using: :btree
+  add_index "adverts", ["directory_advert_id"], name: "index_adverts_on_directory_advert_id", using: :btree
+  add_index "adverts", ["order_id"], name: "index_adverts_on_order_id", using: :btree
+  add_index "adverts", ["property_id"], name: "index_adverts_on_property_id", using: :btree
+  add_index "adverts", ["user_id"], name: "index_adverts_on_user_id", using: :btree
 
   create_table "airport_distances", force: true do |t|
     t.integer  "resort_id",               null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "airport_distances", ["resort_id"], name: "index_airport_distances_on_resort_id"
+  add_index "airport_distances", ["resort_id"], name: "index_airport_distances_on_resort_id", using: :btree
 
   create_table "airport_transfers", force: true do |t|
     t.integer  "airport_id",                      null: false
@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",                      null: false
   end
 
-  add_index "airport_transfers", ["airport_id"], name: "index_airport_transfers_on_airport_id"
-  add_index "airport_transfers", ["resort_id"], name: "index_airport_transfers_on_resort_id"
-  add_index "airport_transfers", ["user_id"], name: "index_airport_transfers_on_user_id"
+  add_index "airport_transfers", ["airport_id"], name: "index_airport_transfers_on_airport_id", using: :btree
+  add_index "airport_transfers", ["resort_id"], name: "index_airport_transfers_on_resort_id", using: :btree
+  add_index "airport_transfers", ["user_id"], name: "index_airport_transfers_on_user_id", using: :btree
 
   create_table "airports", force: true do |t|
     t.string   "name",       default: "", null: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",              null: false
   end
 
-  add_index "alt_attributes", ["path"], name: "index_alt_attributes_on_path"
+  add_index "alt_attributes", ["path"], name: "index_alt_attributes_on_path", using: :btree
 
   create_table "banner_adverts", force: true do |t|
     t.integer  "user_id",                null: false
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "banner_adverts", ["resort_id"], name: "index_banner_adverts_on_resort_id"
-  add_index "banner_adverts", ["user_id"], name: "index_banner_adverts_on_user_id"
+  add_index "banner_adverts", ["resort_id"], name: "index_banner_adverts_on_resort_id", using: :btree
+  add_index "banner_adverts", ["user_id"], name: "index_banner_adverts_on_user_id", using: :btree
 
   create_table "banner_prices", force: true do |t|
     t.integer  "current_banner_number", default: 0, null: false
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "buying_guides", ["country_id"], name: "index_buying_guides_on_country_id"
+  add_index "buying_guides", ["country_id"], name: "index_buying_guides_on_country_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -176,8 +176,8 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.string   "business_name",    default: "",    null: false
   end
 
-  add_index "directory_adverts", ["resort_id"], name: "index_directory_adverts_on_resort_id"
-  add_index "directory_adverts", ["user_id"], name: "index_directory_adverts_on_user_id"
+  add_index "directory_adverts", ["resort_id"], name: "index_directory_adverts_on_resort_id", using: :btree
+  add_index "directory_adverts", ["user_id"], name: "index_directory_adverts_on_user_id", using: :btree
 
   create_table "enquiries", force: true do |t|
     t.integer  "user_id",                               null: false
@@ -204,8 +204,8 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "favourites", ["property_id"], name: "index_favourites_on_property_id"
-  add_index "favourites", ["unregistered_user_id"], name: "index_favourites_on_unregistered_user_id"
+  add_index "favourites", ["property_id"], name: "index_favourites_on_property_id", using: :btree
+  add_index "favourites", ["unregistered_user_id"], name: "index_favourites_on_unregistered_user_id", using: :btree
 
   create_table "footers", force: true do |t|
     t.string   "name",       null: false
@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "footers", ["name"], name: "index_footers_on_name"
+  add_index "footers", ["name"], name: "index_footers_on_name", using: :btree
 
   create_table "images", force: true do |t|
     t.integer  "user_id"
@@ -225,7 +225,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.text     "source_url"
   end
 
-  add_index "images", ["property_id"], name: "index_images_on_property_id"
+  add_index "images", ["property_id"], name: "index_images_on_property_id", using: :btree
 
   create_table "interhome_accommodations", force: true do |t|
     t.string   "code",               null: false
@@ -254,8 +254,8 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.string   "permalink"
   end
 
-  add_index "interhome_accommodations", ["code"], name: "index_interhome_accommodations_on_code"
-  add_index "interhome_accommodations", ["permalink"], name: "index_interhome_accommodations_on_permalink"
+  add_index "interhome_accommodations", ["code"], name: "index_interhome_accommodations_on_code", using: :btree
+  add_index "interhome_accommodations", ["permalink"], name: "index_interhome_accommodations_on_permalink", using: :btree
 
   create_table "interhome_inside_descriptions", force: true do |t|
     t.string   "accommodation_code", null: false
@@ -264,7 +264,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",         null: false
   end
 
-  add_index "interhome_inside_descriptions", ["accommodation_code"], name: "index_interhome_inside_descriptions_on_accommodation_code"
+  add_index "interhome_inside_descriptions", ["accommodation_code"], name: "index_interhome_inside_descriptions_on_accommodation_code", using: :btree
 
   create_table "interhome_outside_descriptions", force: true do |t|
     t.string   "accommodation_code", null: false
@@ -273,7 +273,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",         null: false
   end
 
-  add_index "interhome_outside_descriptions", ["accommodation_code"], name: "index_interhome_outside_descriptions_on_accommodation_code"
+  add_index "interhome_outside_descriptions", ["accommodation_code"], name: "index_interhome_outside_descriptions_on_accommodation_code", using: :btree
 
   create_table "interhome_pictures", force: true do |t|
     t.integer  "interhome_accommodation_id", null: false
@@ -284,7 +284,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "interhome_pictures", ["interhome_accommodation_id"], name: "index_interhome_pictures_on_interhome_accommodation_id"
+  add_index "interhome_pictures", ["interhome_accommodation_id"], name: "index_interhome_pictures_on_interhome_accommodation_id", using: :btree
 
   create_table "interhome_place_resorts", force: true do |t|
     t.integer  "resort_id",            null: false
@@ -293,7 +293,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "interhome_place_resorts", ["resort_id"], name: "index_interhome_place_resorts_on_resort_id"
+  add_index "interhome_place_resorts", ["resort_id"], name: "index_interhome_place_resorts_on_resort_id", using: :btree
 
   create_table "interhome_places", force: true do |t|
     t.string   "code",       null: false
@@ -303,7 +303,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "interhome_places", ["code"], name: "index_interhome_places_on_code"
+  add_index "interhome_places", ["code"], name: "index_interhome_places_on_code", using: :btree
 
   create_table "interhome_prices", force: true do |t|
     t.string   "accommodation_code",  null: false
@@ -319,7 +319,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",          null: false
   end
 
-  add_index "interhome_prices", ["accommodation_code"], name: "index_interhome_prices_on_accommodation_code"
+  add_index "interhome_prices", ["accommodation_code"], name: "index_interhome_prices_on_accommodation_code", using: :btree
 
   create_table "interhome_vacancies", force: true do |t|
     t.integer  "interhome_accommodation_id", null: false
@@ -333,8 +333,8 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "interhome_vacancies", ["accommodation_code"], name: "index_interhome_vacancies_on_accommodation_code"
-  add_index "interhome_vacancies", ["interhome_accommodation_id"], name: "index_interhome_vacancies_on_interhome_accommodation_id"
+  add_index "interhome_vacancies", ["accommodation_code"], name: "index_interhome_vacancies_on_accommodation_code", using: :btree
+  add_index "interhome_vacancies", ["interhome_accommodation_id"], name: "index_interhome_vacancies_on_interhome_accommodation_id", using: :btree
 
   create_table "order_lines", force: true do |t|
     t.integer  "order_id",                null: false
@@ -349,11 +349,11 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.integer  "windows",     default: 0, null: false
   end
 
-  add_index "order_lines", ["advert_id"], name: "index_order_lines_on_advert_id"
-  add_index "order_lines", ["country_id"], name: "index_order_lines_on_country_id"
-  add_index "order_lines", ["coupon_id"], name: "index_order_lines_on_coupon_id"
-  add_index "order_lines", ["order_id"], name: "index_order_lines_on_order_id"
-  add_index "order_lines", ["resort_id"], name: "index_order_lines_on_resort_id"
+  add_index "order_lines", ["advert_id"], name: "index_order_lines_on_advert_id", using: :btree
+  add_index "order_lines", ["country_id"], name: "index_order_lines_on_country_id", using: :btree
+  add_index "order_lines", ["coupon_id"], name: "index_order_lines_on_coupon_id", using: :btree
+  add_index "order_lines", ["order_id"], name: "index_order_lines_on_order_id", using: :btree
+  add_index "order_lines", ["resort_id"], name: "index_order_lines_on_resort_id", using: :btree
 
   create_table "orders", force: true do |t|
     t.integer  "user_id"
@@ -377,10 +377,10 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.decimal  "sterling_in_euros",   precision: 6, scale: 4
   end
 
-  add_index "orders", ["created_at"], name: "index_orders_on_created_at"
-  add_index "orders", ["email"], name: "index_orders_on_email"
-  add_index "orders", ["order_number"], name: "index_orders_on_order_number"
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+  add_index "orders", ["created_at"], name: "index_orders_on_created_at", using: :btree
+  add_index "orders", ["email"], name: "index_orders_on_email", using: :btree
+  add_index "orders", ["order_number"], name: "index_orders_on_order_number", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.string   "path",                              null: false
@@ -395,7 +395,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.boolean  "visible",            default: true, null: false
   end
 
-  add_index "pages", ["path"], name: "index_pages_on_path"
+  add_index "pages", ["path"], name: "index_pages_on_path", using: :btree
 
   create_table "payments", force: true do |t|
     t.integer  "order_id"
@@ -423,8 +423,8 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.string   "futurepay_id",       default: "", null: false
   end
 
-  add_index "payments", ["created_at"], name: "index_payments_on_created_at"
-  add_index "payments", ["order_id"], name: "index_payments_on_order_id"
+  add_index "payments", ["created_at"], name: "index_payments_on_created_at", using: :btree
+  add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
 
   create_table "properties", force: true do |t|
     t.integer  "user_id",                                      null: false
@@ -485,13 +485,13 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.integer  "pv_accommodation_id"
   end
 
-  add_index "properties", ["country_id"], name: "index_properties_on_country_id"
-  add_index "properties", ["interhome_accommodation_id"], name: "index_properties_on_interhome_accommodation_id"
-  add_index "properties", ["late_availability"], name: "index_properties_on_late_availability"
-  add_index "properties", ["publicly_visible"], name: "index_properties_on_publicly_visible"
-  add_index "properties", ["pv_accommodation_id"], name: "index_properties_on_pv_accommodation_id"
-  add_index "properties", ["resort_id"], name: "index_properties_on_resort_id"
-  add_index "properties", ["user_id"], name: "index_properties_on_user_id"
+  add_index "properties", ["country_id"], name: "index_properties_on_country_id", using: :btree
+  add_index "properties", ["interhome_accommodation_id"], name: "index_properties_on_interhome_accommodation_id", using: :btree
+  add_index "properties", ["late_availability"], name: "index_properties_on_late_availability", using: :btree
+  add_index "properties", ["publicly_visible"], name: "index_properties_on_publicly_visible", using: :btree
+  add_index "properties", ["pv_accommodation_id"], name: "index_properties_on_pv_accommodation_id", using: :btree
+  add_index "properties", ["resort_id"], name: "index_properties_on_resort_id", using: :btree
+  add_index "properties", ["user_id"], name: "index_properties_on_user_id", using: :btree
 
   create_table "property_base_prices", force: true do |t|
     t.integer  "number_of_months", default: 0, null: false
@@ -532,8 +532,8 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.text     "photos"
   end
 
-  add_index "pv_accommodations", ["code"], name: "index_pv_accommodations_on_code"
-  add_index "pv_accommodations", ["permalink"], name: "index_pv_accommodations_on_permalink"
+  add_index "pv_accommodations", ["code"], name: "index_pv_accommodations_on_code", using: :btree
+  add_index "pv_accommodations", ["permalink"], name: "index_pv_accommodations_on_permalink", using: :btree
 
   create_table "pv_place_resorts", force: true do |t|
     t.integer  "resort_id",     null: false
@@ -542,8 +542,8 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "pv_place_resorts", ["pv_place_code"], name: "index_pv_place_resorts_on_pv_place_code"
-  add_index "pv_place_resorts", ["resort_id"], name: "index_pv_place_resorts_on_resort_id"
+  add_index "pv_place_resorts", ["pv_place_code"], name: "index_pv_place_resorts_on_pv_place_code", using: :btree
+  add_index "pv_place_resorts", ["resort_id"], name: "index_pv_place_resorts_on_resort_id", using: :btree
 
   create_table "pv_vacancies", force: true do |t|
     t.string   "destination_code",                          null: false
@@ -563,7 +563,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",                                null: false
   end
 
-  add_index "pv_vacancies", ["destination_code", "apartment_code"], name: "index_pv_vacancies_on_destination_code_and_apartment_code"
+  add_index "pv_vacancies", ["destination_code", "apartment_code"], name: "index_pv_vacancies_on_destination_code_and_apartment_code", using: :btree
 
   create_table "resorts", force: true do |t|
     t.integer  "country_id",             default: 0,     null: false
@@ -622,9 +622,9 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.integer  "directory_advert_count", default: 0,     null: false
   end
 
-  add_index "resorts", ["country_id"], name: "index_resorts_on_country_id"
-  add_index "resorts", ["featured"], name: "index_resorts_on_featured"
-  add_index "resorts", ["visible"], name: "index_resorts_on_visible"
+  add_index "resorts", ["country_id"], name: "index_resorts_on_country_id", using: :btree
+  add_index "resorts", ["featured"], name: "index_resorts_on_featured", using: :btree
+  add_index "resorts", ["visible"], name: "index_resorts_on_visible", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -652,7 +652,7 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.string   "locale",     default: "en", null: false
   end
 
-  add_index "snippets", ["name"], name: "index_snippets_on_name"
+  add_index "snippets", ["name"], name: "index_snippets_on_name", using: :btree
 
   create_table "unavailabilities", force: true do |t|
     t.integer  "property_id"
@@ -661,10 +661,10 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "unavailabilities", ["created_at"], name: "index_unavailabilities_on_created_at"
-  add_index "unavailabilities", ["property_id", "start_date"], name: "index_unavailabilities_on_property_id_and_start_date"
-  add_index "unavailabilities", ["property_id"], name: "index_unavailabilities_on_property_id"
-  add_index "unavailabilities", ["start_date"], name: "index_unavailabilities_on_start_date"
+  add_index "unavailabilities", ["created_at"], name: "index_unavailabilities_on_created_at", using: :btree
+  add_index "unavailabilities", ["property_id", "start_date"], name: "index_unavailabilities_on_property_id_and_start_date", using: :btree
+  add_index "unavailabilities", ["property_id"], name: "index_unavailabilities_on_property_id", using: :btree
+  add_index "unavailabilities", ["start_date"], name: "index_unavailabilities_on_start_date", using: :btree
 
   create_table "unregistered_users", force: true do |t|
     t.datetime "created_at", null: false
@@ -703,8 +703,8 @@ ActiveRecord::Schema.define(version: 20130521112420) do
     t.integer  "price_override",         default: 0,     null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email"
-  add_index "users", ["last_name"], name: "index_users_on_last_name"
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["last_name"], name: "index_users_on_last_name", using: :btree
 
   create_table "websites", force: true do |t|
     t.text     "terms"
