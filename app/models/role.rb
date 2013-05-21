@@ -1,6 +1,8 @@
 class Role < ActiveRecord::Base
   has_many :users
 
+  validates :name, uniqueness: true
+
   def advertises_properties?
     advertises_properties_for_rent || advertises_properties_for_sale
   end

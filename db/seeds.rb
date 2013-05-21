@@ -13,6 +13,7 @@ Resort.destroy_all
 DirectoryAdvert.destroy_all
 Category.destroy_all
 User.destroy_all
+Role.delete_all
 Currency.destroy_all
 
 website = Website.create!
@@ -278,40 +279,40 @@ france = Country.find_by_name('France').id
 italy = Country.find_by_name('Italy').id
 united_kingdom = Country.find_by_name('United Kingdom').id
 
-admin = Role.create(
-  name: "Administrator",
+admin = Role.create!(
+  name: 'Administrator',
   admin: true,
   select_on_signup: false,
   flag_new_development: true,
   has_a_website: true
 )
 
-property_owner = Role.create(
-  name: "Property owner",
+property_owner = Role.create!(
+  name: 'Property owner',
   admin: false,
   select_on_signup: true,
   flag_new_development: false,
   has_a_website: false
 )
 
-estate_agent = Role.create(
-  name: "Estate agent",
+estate_agent = Role.create!(
+  name: 'Estate agent',
   admin: false,
   select_on_signup: true,
   flag_new_development: true,
   has_a_website: true
 )
 
-letting_agent = Role.create(
-  name: "Letting agent",
+letting_agent = Role.create!(
+  name: 'Letting agent',
   admin: false,
   select_on_signup: true,
   flag_new_development: false,
   has_a_website: true
 )
 
-property_developer = Role.create(
-  name: "Property developer",
+property_developer = Role.create!(
+  name: 'Property developer',
   admin: false,
   select_on_signup: true,
   flag_new_development: true,
@@ -319,8 +320,8 @@ property_developer = Role.create(
   has_a_website: true
 )
 
-other_business = Role.create(
-  name: "Other business",
+other_business = Role.create!(
+  name: 'Other business',
   admin: false,
   select_on_signup: true,
   flag_new_development: false,
