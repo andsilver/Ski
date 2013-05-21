@@ -15,8 +15,7 @@ Given /^there are bars advertised in Chamonix$/ do
 end
 
 Then /^I should see a list of bars in Chamonix$/ do
-  page.should have_selector("table#directory_adverts")
-  page.should have_selector("table#directory_adverts td")
+  page.should have_selector("ul.directory-advert-summaries li")
 end
 
 Then /^I should see weekly rent prices$/ do
