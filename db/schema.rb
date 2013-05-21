@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130328100245) do
+ActiveRecord::Schema.define(version: 20130521112420) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -676,7 +676,7 @@ ActiveRecord::Schema.define(version: 20130328100245) do
     t.string   "encrypted_password"
     t.string   "salt"
     t.string   "website",                default: "",    null: false
-    t.text     "description",                            null: false
+    t.text     "description"
     t.string   "billing_street",                         null: false
     t.string   "billing_locality",       default: "",    null: false
     t.string   "billing_city",                           null: false
