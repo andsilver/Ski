@@ -30,7 +30,7 @@ Feature: Tourist
     Given I am on the home page
     When I follow "France"
     And I follow "Chamonix"
-    And I follow "For Rent"
+    And I follow "Holiday Rentals"
     Then I should see "Alpen Lounge"
 
   Scenario: Get to and browse a list of hotels in a resort
