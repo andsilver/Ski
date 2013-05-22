@@ -62,7 +62,7 @@
 <% end -%>
     </ul>
   </nav>
-  <a href="/" title="Home" id="logo"><%= image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation')) %></a>
+  <a href="<%= root_path %>" title="Home" id="logo"><%= image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation')) %></a>
 </header>
 <div id="column_headings">
 
@@ -189,19 +189,8 @@
 <% if @w.blog_visible? -%>
     <li><%= link_to t('blog_posts_controller.blog'), blog_path %></li>
 <% end -%>
-<% if signed_in? %>
-<% if @current_user.has_adverts_in_basket? -%>
-    <li><a href="<%= basket_path %>"><%= t 'basket' %> <span class="count"><%= @current_user.adverts_in_basket.count %></span></a></li>
-<% elsif session[:windows_in_basket] -%>
-<li><a href="<%= basket_path %>"><%= t 'basket' %> <span class="count">1</span></a></li>
-<% end -%>
-<% end %>
-<% if admin? %>
-    <li><%= link_to 'CMS', cms_path %></li>
-<% end %>
     <li><%= link_to t('favourites.favourites'), favourites_path, rel: 'nofollow' %></li>
     <li><a id="advertise_link" href="/welcome/advertiser"><%= t('advertise') %></a></li>
-    <li><%= link_to t('home'), root_path %></li>
   </ul>
 </nav>
 <div id="social">
