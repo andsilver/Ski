@@ -1,0 +1,20 @@
+<%= page_header 'Regions' %>
+
+<p>
+  <%= link_to 'New', new_admin_region_path, class: 'btn' %>
+</p>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th colspan="2">Region</th>
+  </tr>
+<% @regions.each do |region| -%>
+  <tr>
+    <td><%= region.name %></td>
+    <td>
+      <%= edit_button([:admin, region]) %>
+      <%= delete_button([:admin, region]) %>
+    </td>
+  </tr>
+<% end -%>
+</table>

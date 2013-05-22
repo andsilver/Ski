@@ -94,13 +94,15 @@ module ApplicationHelper
     object,
     data: { confirm: 'Are you sure?' },
     method: :delete,
-    class: 'btn btn-danger'
+    class: 'btn btn-danger',
+    title: "Delete #{object_title(object)}"
   end
 
   def edit_button(object)
     link_to '<i class="icon-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),
-    class: 'btn'
+    class: 'btn',
+    title: "Edit #{object_title(object)}"
   end
 
   def view_button(object)
@@ -108,4 +110,10 @@ module ApplicationHelper
     object,
     class: 'btn'
   end
+
+  protected
+
+    def object_title(object)
+      object.instance_of?(Array) ? object.last : object
+    end
 end

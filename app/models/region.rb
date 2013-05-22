@@ -3,4 +3,6 @@ class Region < ActiveRecord::Base
 
   validates :country_id, presence: true
   validates :name, length: { maximum: 100 }, presence: true, uniqueness: { scope: :country }
+
+  def to_s; name; end
 end

@@ -1,0 +1,11 @@
+<%= form_for([:admin, @region]) do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.label :country_id %>
+<%= country_select('region') %>
+<%= f.label :info %>
+<%= f.text_area :info, rows: 6, class: 'input-xxlarge' %>
+<p>
+  <%= f.submit class: 'btn btn-primary' %>
+</p>
+<% end %>
