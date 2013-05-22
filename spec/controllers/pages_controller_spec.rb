@@ -29,7 +29,7 @@ describe PagesController do
 
       it 'redirects to the edit page' do
         put_update
-        response.should redirect_to(edit_page_path(page))
+        expect(response).to redirect_to(edit_page_path(page))
       end
     end
   end

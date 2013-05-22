@@ -12,7 +12,7 @@ describe DirectoryAdvert do
 
       it 'returns the price from BannerPrice multiplied by 100' do
         BannerPrice.stub(:price_for_advert_number).and_return(10)
-        da.price(Advert.new, 3).should == 1000
+        expect(da.price(Advert.new, 3)).to eq 1000
       end
     end
   end

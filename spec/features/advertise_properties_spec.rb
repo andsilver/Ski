@@ -16,6 +16,6 @@ feature 'Advertise Properties' do
     click_button 'Save'
     attach_file 'Image', 'test-files/banner-image.png'
     click_button 'Upload Image'
-    page.should have_content 'Image uploaded.'
+    expect(page).to have_content 'Image uploaded.'
   end
 end

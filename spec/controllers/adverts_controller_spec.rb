@@ -76,14 +76,14 @@ describe AdvertsController do
     context "when durations have been updated" do
       it "updates durations" do
         controller.should_receive(:update_durations)
-        post :update_basket_contents, :update_durations => "1", :months => {"1" => "1"}
+        post :update_basket_contents, update_durations: '1', months: {'1' => '1'}
       end
     end
 
     context "when and advert is removed" do
       it "removes the advert" do
         controller.should_receive(:remove_advert)
-        post :update_basket_contents, :remove_advert => {"1" => "1"}
+        post :update_basket_contents, remove_advert: {'1' => '1'}
       end
     end
 
@@ -100,7 +100,7 @@ describe AdvertsController do
 
       it 'tells the user their basket has been emptied' do
         post :update_basket_contents, empty_basket: 'Empty Basket'
-        flash[:notice].should == 'Your basket has been emptied.'
+        expect(flash[:notice]).to eq 'Your basket has been emptied.'
       end
     end
   end
@@ -163,12 +163,12 @@ describe AdvertsController do
 
     it 'sets a flash notice' do
       delete 'delete_all_new_advertisables'
-      flash[:notice].should eq 'All new adverts have been deleted.'
+      expect(flash[:notice]).to eq 'All new adverts have been deleted.'
     end
 
     it 'redirects to My Adverts' do
       delete 'delete_all_new_advertisables'
-      response.should redirect_to(action: 'my')
+      expect(response).to redirect_to(action: 'my')
     end
   end
 end

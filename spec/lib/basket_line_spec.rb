@@ -3,7 +3,7 @@ require 'spec_helper'
 describe BasketLine do
   describe '#initialize' do
     it 'sets @windows to 0' do
-      BasketLine.new.windows.should == 0
+      expect(BasketLine.new.windows).to eq 0
     end
   end
 
@@ -18,7 +18,7 @@ describe BasketLine do
 
       context 'without a coupon' do
         it 'describes the advert' do
-          @bl.order_description.should eq '12 month(s): Advert'
+          expect(@bl.order_description).to eq '12 month(s): Advert'
         end
       end
 
@@ -29,7 +29,7 @@ describe BasketLine do
         end
 
         it 'describes the advert and the coupon description in brackets' do
-          @bl.order_description.should eq '12 month(s): Advert [Coupon description]'
+          expect(@bl.order_description).to eq '12 month(s): Advert [Coupon description]'
         end
       end
     end
@@ -38,7 +38,7 @@ describe BasketLine do
       it 'returns @description' do
         bl = BasketLine.new
         bl.description = 'Line'
-        bl.order_description.should eq 'Line'
+        expect(bl.order_description).to eq 'Line'
       end
     end
   end
@@ -47,13 +47,13 @@ describe BasketLine do
     it 'returns true when there are windows' do
       bl = BasketLine.new
       bl.windows = '1'
-      bl.pay_monthly?.should be_true
+      expect(bl.pay_monthly?).to be_true
     end
 
     it 'returns false when there are no windows' do
       bl = BasketLine.new
       bl.windows = '0'
-      bl.pay_monthly?.should be_false
+      expect(bl.pay_monthly?).to be_false
     end
   end
 
@@ -62,7 +62,7 @@ describe BasketLine do
       bl = BasketLine.new
       bl.price = 145
       bl.stub(:subsequent_payments).and_return(12)
-      bl.first_payment.should eq 13
+      expect(bl.first_payment).to eq 13
     end
   end
 
@@ -70,7 +70,7 @@ describe BasketLine do
     it 'returns the integer price / 12' do
       bl = BasketLine.new
       bl.price = 145
-      bl.subsequent_payments.should eq 12
+      expect(bl.subsequent_payments).to eq 12
     end
   end
 end

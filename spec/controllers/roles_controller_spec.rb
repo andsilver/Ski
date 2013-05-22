@@ -24,7 +24,7 @@ describe RolesController do
 
       it "assigns @role" do
         put 'update', update_params
-        assigns(:role).should eq(role)
+        expect(assigns(:role)).to eq(role)
       end
 
       it "updates the role" do
@@ -36,7 +36,7 @@ describe RolesController do
         it "redirects to the edit role page" do
           role.stub(:update_attributes).and_return(true)
           put 'update', update_params
-          response.should redirect_to(edit_role_path(role))
+          expect(response).to redirect_to(edit_role_path(role))
         end
       end
 
@@ -44,7 +44,7 @@ describe RolesController do
         it "renders the edit role page" do
           role.stub(:update_attributes).and_return(false)
           put 'update', update_params
-          response.should render_template('edit')
+          expect(response).to render_template('edit')
         end
       end
     end
@@ -53,7 +53,7 @@ describe RolesController do
       it "redirects to the sign in page" do
         controller.stub(:admin?).and_return(false)
         put 'update', update_params
-        response.should redirect_to(sign_in_path)
+        expect(response).to redirect_to(sign_in_path)
       end
     end
   end
@@ -63,7 +63,7 @@ describe RolesController do
 
     it "finds the role by its SEO param" do
       Role.should_receive(:find_by_name).with('property developer')
-      get 'sales_pitch', :role => 'property-developer'
+      get 'sales_pitch', role: 'property-developer'
     end
 
     context "when the role exists" do
@@ -73,8 +73,8 @@ describe RolesController do
     context "when the role does not exist" do
       it "renders not found" do
         Role.stub(:find_by_name).and_return(nil)
-        put 'sales_pitch', :role => 'property-developer'
-        response.status.should eql 404
+        put 'sales_pitch', role: 'property-developer'
+        expect(response.status).to eql 404
       end
     end
   end

@@ -9,6 +9,6 @@ feature 'Price Override' do
     sign_in_with('zach.anyman@example.org', 'secret')
     add_banner_advert_to_basket
     visit '/basket'
-    page.should have_content 'Price override €500'
+    expect(page).to have_content 'Price override €500'
   end
 end

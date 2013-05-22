@@ -7,6 +7,6 @@ describe 'properties/show_pv' do
     assign(:property, property)
     assign(:accommodation, pv_accommodation)
     render
-    rendered.should have_selector('iframe#pv-booking[src="http://example.org"]')
+    expect(rendered).to have_selector('iframe#pv-booking[src="http://example.org"]')
   end
 end

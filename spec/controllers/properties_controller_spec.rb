@@ -27,7 +27,7 @@ describe PropertiesController do
         properties = [Property.new]
         Property.stub(:paginate).and_return(properties)
         get :index
-        assigns(:properties).should eq(properties)
+        expect(assigns(:properties)).to eq(properties)
       end
     end
 
@@ -36,7 +36,7 @@ describe PropertiesController do
         controller.stub(:signed_in?).and_return(true)
         controller.stub(:admin?).and_return(false)
         get :index
-        response.should redirect_to(sign_in_path)
+        expect(response).to redirect_to(sign_in_path)
       end
     end
   end
@@ -50,17 +50,17 @@ describe PropertiesController do
 
     it "finds paginated properties" do
       Property.should_receive(:paginate)
-      get :new_developments, :resort_id => "1"
+      get :new_developments, resort_id: '1'
     end
 
     it "finds new developments" do
       Property.should_receive(:paginate).with(hash_including(conditions: ["publicly_visible = 1 AND resort_id = ? AND new_development = 1", "1"]))
-      get :new_developments, :resort_id => "1"
+      get :new_developments, resort_id: '1'
     end
 
     it "assigns @properties" do
-      get :new_developments, :resort_id => "1"
-      assigns[:properties].should equal(properties)
+      get :new_developments, resort_id: '1'
+      expect(assigns[:properties]).to equal(properties)
     end
   end
 
@@ -82,7 +82,7 @@ describe PropertiesController do
     context "with params[:listing_type] set" do
       it "sets property.listing_type to the given param" do
         property.should_receive(:listing_type=).with('1')
-        get :new, :listing_type => '1'
+        get :new, listing_type: '1'
       end
     end
 
@@ -130,7 +130,7 @@ describe PropertiesController do
 
       it "redirects to image uploading form" do
         post 'create', create_params
-        response.should redirect_to(new_image_path)
+        expect(response).to redirect_to(new_image_path)
       end
     end
   end
@@ -138,7 +138,7 @@ describe PropertiesController do
   describe "GET show" do
     it "finds a property" do
       Property.should_receive(:find_by_id).with("1")
-      get :show, :id => "1"
+      get :show, id: '1'
     end
 
     context "when a property is found" do
@@ -157,8 +157,8 @@ describe PropertiesController do
       end
 
       it "assigns @property" do
-        get :show, :id => "1"
-        assigns[:property].should equal(property)
+        get :show, id: '1'
+        expect(assigns[:property]).to equal(property)
       end
 
       context "when the property is not publicly visible" do
@@ -177,15 +177,15 @@ describe PropertiesController do
             it "shows the property" do
               signed_in_user
               property.stub(:user_id).and_return(current_user.id)
-              get :show, { :id => 1 }
-              response.should render_template('show')
+              get :show, { id: '1' }
+              expect(response).to render_template('show')
             end
           end
 
           context "when not the owner either" do
             it "renders not found" do
-              get :show, { :id => 1 }
-              response.status.should eql 404
+              get :show, { id: '1' }
+              expect(response.status).to eql 404
             end
           end
         end
@@ -193,8 +193,8 @@ describe PropertiesController do
         context "when signed in as admin" do
           it "shows the property" do
             controller.stub(:admin?).and_return(true)
-            get :show, { :id => 1 }
-            response.should render_template('show')
+            get :show, { id: '1' }
+            expect(response).to render_template('show')
           end
         end
       end
@@ -206,8 +206,8 @@ describe PropertiesController do
       end
 
       it "renders not found" do
-        get :show, { :id => 1 }
-        response.status.should eql 404
+        get :show, { id: '1' }
+        expect(response.status).to eql 404
       end
     end
   end
@@ -233,7 +233,7 @@ describe PropertiesController do
 
     it "finds a property belonging to the current user" do
       find_a_property_belonging_to_the_current_user
-      get :edit, { :id => "1" }
+      get :edit, { id: '1' }
     end
 
     context "when a valid_property is found" do
@@ -242,8 +242,8 @@ describe PropertiesController do
       end
 
       it "assigns @property" do
-        get :edit, :id => "1"
-        assigns[:property].should equal(property)
+        get :edit, id: '1'
+        expect(assigns[:property]).to equal(property)
       end
     end
 
@@ -253,8 +253,8 @@ describe PropertiesController do
       end
 
       it "renders not found" do
-        get :edit, { :id => 1 }
-        response.status.should eql 404
+        get :edit, { id: '1' }
+        expect(response.status).to eql 404
       end
     end
   end
@@ -290,12 +290,12 @@ describe PropertiesController do
         it "redirects to my adverts page" do
           property.stub(:for_sale?).and_return(false)
           put_update
-          response.should redirect_to(my_adverts_path)
+          expect(response).to redirect_to(my_adverts_path)
         end
 
         it "sets a flash[:notice] message" do
           put_update
-          flash[:notice].should eq("Your property advert details have been saved.")
+          expect(flash[:notice]).to eq("Your property advert details have been saved.")
         end
       end
 
@@ -306,12 +306,12 @@ describe PropertiesController do
 
         it "assigns @property" do
           put_update
-          assigns[:property].should eq(property)
+          expect(assigns[:property]).to eq(property)
         end
 
         it "renders the edit template" do
           put_update
-          response.should render_template("edit")
+          expect(response).to render_template('edit')
         end
       end
     end
@@ -322,8 +322,8 @@ describe PropertiesController do
       end
 
       it "renders not found" do
-        put :update, { :id => 1 }
-        response.status.should eql 404
+        put :update, { id: '1' }
+        expect(response.status).to eql 404
       end
     end
   end
@@ -365,12 +365,12 @@ describe PropertiesController do
 
           it 'sets a flash[:notice] message' do
             post 'place_in_window', id: '1'
-            flash[:notice].should eq('That window has expired.')
+            expect(flash[:notice]).to eq('That window has expired.')
           end
 
           it 'redirects to choose window' do
             post 'place_in_window', id: '1'
-            response.should redirect_to(action: 'choose_window')
+            expect(response).to redirect_to(action: 'choose_window')
           end
         end
 
@@ -381,7 +381,7 @@ describe PropertiesController do
 
           it 'redirects to my adverts' do
             post 'place_in_window', id: '1'
-            response.should redirect_to(my_adverts_path)
+            expect(response).to redirect_to(my_adverts_path)
           end
         end
       end

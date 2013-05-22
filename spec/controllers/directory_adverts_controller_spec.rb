@@ -49,7 +49,7 @@ describe DirectoryAdvertsController do
 
     it "finds a directory advert specified by param[:id]" do
       DirectoryAdvert.should_receive(:find_by_id).with("1")
-      get "show", :id => "1"
+      get 'show', id: '1'
     end
 
     context "when the advert is found" do
@@ -67,8 +67,8 @@ describe DirectoryAdvertsController do
       end
 
       it "assigns @directory_advert" do
-        get "show", { :id => "1" }
-        assigns[:directory_advert].should equal(directory_advert)
+        get 'show', { id: '1' }
+        expect(assigns[:directory_advert]).to equal(directory_advert)
       end
 
       it "sets the default page title" do
@@ -77,12 +77,12 @@ describe DirectoryAdvertsController do
         resort.stub(:name).and_return("Chamonix")
         country.stub(:name).and_return("France")
         controller.should_receive(:default_page_title).with(anything())
-        get "show", { :id => 1 }
+        get 'show', { id: 1 }
       end
 
       it "records a view" do
         advert.should_receive(:record_view)
-        get "show", { :id => 1 }
+        get 'show', { id: 1 }
       end
     end
 
@@ -92,8 +92,8 @@ describe DirectoryAdvertsController do
       end
 
       it "renders not found" do
-        get "show", { :id => 1 }
-        response.status.should eql 404
+        get 'show', { id: 1 }
+        expect(response.status).to eql 404
       end
     end
   end
@@ -128,12 +128,12 @@ describe DirectoryAdvertsController do
 
       it "sets a flash[:notice] message" do
         post_valid
-        flash[:notice].should eq("Your directory advert was successfully created.")
+        expect(flash[:notice]).to eq("Your directory advert was successfully created.")
       end
 
       it "redirects to the basket" do
         post_valid
-        response.should redirect_to(basket_path)
+        expect(response).to redirect_to(basket_path)
       end
     end
 
@@ -144,12 +144,12 @@ describe DirectoryAdvertsController do
 
       it "assigns @directory_advert" do
         post_valid
-        assigns[:directory_advert].should eq(directory_advert)
+        expect(assigns[:directory_advert]).to eq(directory_advert)
       end
 
       it "renders the new template" do
         post_valid
-        response.should render_template("new")
+        expect(response).to render_template('new')
       end
     end
   end
@@ -171,7 +171,7 @@ describe DirectoryAdvertsController do
 
       it 'responds with 404' do
         delete :destroy, id: '1'
-        response.status.should eq 404
+        expect(response.status).to eq 404
       end
     end
 
@@ -180,15 +180,15 @@ describe DirectoryAdvertsController do
 
       it 'destroys a directory advert' do
         directory_advert.should_receive(:destroy)
-        delete :destroy, :id => "1"
+        delete :destroy, id: '1'
       end
 
       context 'when admin' do
         before { controller.stub(:admin?).and_return(true) }
 
         it 'redirects to directory adverts page' do
-          delete :destroy, :id => "1"
-          response.should redirect_to(directory_adverts_path)
+          delete :destroy, id: '1'
+          expect(response).to redirect_to(directory_adverts_path)
         end
       end
 
@@ -196,8 +196,8 @@ describe DirectoryAdvertsController do
         before { controller.stub(:admin?).and_return(false) }
 
         it 'redirects to My Adverts' do
-          delete :destroy, :id => "1"
-          response.should redirect_to(my_adverts_path)
+          delete :destroy, id: '1'
+          expect(response).to redirect_to(my_adverts_path)
         end
       end
     end

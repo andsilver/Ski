@@ -117,17 +117,21 @@ MySkiChalet::Application.routes.draw do
   resources :window_base_prices
 
   resources :directory_adverts do
-    post 'advertise_now', :on => :member
-    get  'click',         :on => :member
+    member do
+      post 'advertise_now'
+      get  'click'
+    end
   end
 
   resources :enquiries do
-    get 'current_time', :on => :collection
-    get 'my', :on => :collection
+    collection do
+      get 'current_time'
+      get 'my'
+    end
   end
 
   resources :email_a_friend_form do
-    post 'current_time', :on => :collection
+    post 'current_time', on: :collection
   end
   get "email_a_friend_form/1" => "email_a_friend_form#create"
 

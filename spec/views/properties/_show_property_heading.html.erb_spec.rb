@@ -4,6 +4,6 @@ describe 'properties/_show_property_heading' do
   it 'shows New Developments in the breadcrumbs for a new development' do
     assign(:property, FactoryGirl.create(:property, listing_type: Property::LISTING_TYPE_FOR_SALE, new_development: true))
     render
-    rendered.should have_content 'New Developments'
+    expect(rendered).to have_content 'New Developments'
   end
 end

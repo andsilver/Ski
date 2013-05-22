@@ -11,7 +11,7 @@ describe ResortSummariesTable do
 
   describe '#headers' do
     it 'returns an array of headers' do
-      rst.headers.should == ['Resort', 'Altitude', 'Top lift', 'Ski area', 'Nearest airport', 'Distance']
+      expect(rst.headers).to eq ['Resort', 'Altitude', 'Top lift', 'Ski area', 'Nearest airport', 'Distance']
     end
   end
 
@@ -19,39 +19,39 @@ describe ResortSummariesTable do
     it 'returns one row per resort' do
       country.resorts << resort_x
       country.resorts << resort_y
-      rst(country).rows.count.should eq 2
+      expect(rst(country).rows.count).to eq 2
     end
 
     it 'returns resort in cell 0' do
       country.resorts << resort_x
-      rst(country).rows.first[0].should eq resort_x
+      expect(rst(country).rows.first[0]).to eq resort_x
     end
 
     it 'returns altitude in cell 1' do
       country.resorts << resort_x
-      rst(country).rows.first[1].should eq resort_x.altitude_m
+      expect(rst(country).rows.first[1]).to eq resort_x.altitude_m
     end
 
     it 'returns top lift in cell 2' do
       country.resorts << resort_x
-      rst(country).rows.first[2].should eq resort_x.top_lift_m
+      expect(rst(country).rows.first[2]).to eq resort_x.top_lift_m
     end
 
     it 'returns ski area in cell 3' do
       country.resorts << resort_x
-      rst(country).rows.first[3].should eq resort_x.ski_area_km
+      expect(rst(country).rows.first[3]).to eq resort_x.ski_area_km
     end
 
     it 'returns nearest airport name in cell 4' do
       country.resorts << resort_x
       create_airport
-      rst(country).rows.first[4].should eq 'Robin Hood Airport'
+      expect(rst(country).rows.first[4]).to eq 'Robin Hood Airport'
     end
 
     it 'returns nearest airport distance in cell 5' do
       country.resorts << resort_x
       create_airport
-      rst(country).rows.first[5].should eq 100
+      expect(rst(country).rows.first[5]).to eq 100
     end
 
     def create_airport

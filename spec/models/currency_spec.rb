@@ -13,7 +13,7 @@ describe Currency do
       end
 
       it 'returns the amount of GBP in Euros' do
-        Currency.sterling_in_euros.should == 1.5
+        expect(Currency.sterling_in_euros).to eq 1.5
       end
     end
 
@@ -21,7 +21,7 @@ describe Currency do
       before { Currency.stub(:find_by_code).and_return(nil) }
 
       it 'returns 0' do
-        Currency.sterling_in_euros.should == 0
+        expect(Currency.sterling_in_euros).to eq 0
       end
     end
   end

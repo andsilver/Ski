@@ -20,7 +20,7 @@ describe AirportDistancesController do
     it 'assigns @airport_distances' do
       AirportDistance.stub(:all).and_return([airport_distance])
       get 'index'
-      assigns(:airport_distances).should == [airport_distance]
+      expect(assigns(:airport_distances)).to eq [airport_distance]
     end
   end
 
@@ -33,7 +33,7 @@ describe AirportDistancesController do
     it 'assigns a new airport distance' do
       AirportDistance.stub(:new).and_return(airport_distance)
       get 'new'
-      assigns(:airport_distance).should == airport_distance
+      expect(assigns(:airport_distance)).to eq airport_distance
     end
   end
 
@@ -56,12 +56,12 @@ describe AirportDistancesController do
       
       it 'redirects to index' do
         post 'create', post_params
-        response.should redirect_to(action: 'index')
+        expect(response).to redirect_to(action: 'index')
       end
 
       it 'sets a notice' do
         post 'create', post_params
-        flash[:notice].should == I18n.t('notices.created')
+        expect(flash[:notice]).to eq I18n.t('notices.created')
       end
     end
 
@@ -73,7 +73,7 @@ describe AirportDistancesController do
 
       it 'renders new' do
         post 'create', post_params
-        response.should render_template('new')
+        expect(response).to render_template('new')
       end
     end
   end
@@ -87,7 +87,7 @@ describe AirportDistancesController do
     it 'assigns @airport_distance' do
       AirportDistance.stub(:find).and_return(airport_distance)
       get 'edit', { 'id' => '1' }
-      assigns(:airport_distance).should == airport_distance
+      expect(assigns(:airport_distance)).to eq airport_distance
     end
   end
 
@@ -119,12 +119,12 @@ describe AirportDistancesController do
 
       it 'redirects to index' do
         put 'update', put_params
-        response.should redirect_to(action: 'index')
+        expect(response).to redirect_to(action: 'index')
       end
 
       it 'sets a notice' do
         put 'update', put_params
-        flash[:notice].should == I18n.t('notices.saved')
+        expect(flash[:notice]).to eq I18n.t('notices.saved')
       end
     end
 
@@ -136,12 +136,12 @@ describe AirportDistancesController do
 
       it 'renders edit' do
         put 'update', put_params
-        response.should render_template('edit')
+        expect(response).to render_template('edit')
       end
 
       it 'assigns @airport_distance' do
         put 'update', put_params
-        assigns(:airport_distance).should == airport_distance
+        expect(assigns(:airport_distance)).to eq airport_distance
       end
     end
   end
@@ -161,13 +161,13 @@ describe AirportDistancesController do
     it 'redirects to index' do
       AirportDistance.stub(:find).and_return(airport_distance)
       delete 'destroy', { 'id' => '1' }
-      response.should redirect_to(action: 'index')
+      expect(response).to redirect_to(action: 'index')
     end
 
     it 'sets a notice' do
       AirportDistance.stub(:find).and_return(airport_distance)
       delete 'destroy', { 'id' => '1' }
-      flash[:notice].should == I18n.t('notices.deleted')
+      expect(flash[:notice]).to eq I18n.t('notices.deleted')
     end
   end
 end

@@ -20,20 +20,20 @@ describe Country do
 
     it "returns all countries that have resorts" do
       Country.all.each do |country|
-        Country.with_resorts.should include(country) unless country.resorts.empty?
+        expect(Country.with_resorts).to include(country) unless country.resorts.empty?
       end
     end
 
     def create_4_countries
       4.times do |x|
-        c = Country.create!(:name => "Country #{x+1}", :iso_3166_1_alpha_2 => "#{x+1}")
+        c = Country.create!(name: "Country #{x+1}", iso_3166_1_alpha_2: "#{x+1}")
         @country_ids << c.id
       end
     end
 
     def create_3_resorts
       3.times do |x|
-        r = Resort.create!(:name => "Resort #{x+1}", :country_id => @country_ids[rand(4)])
+        r = Resort.create!(name: "Resort #{x+1}", country_id: @country_ids[rand(4)])
       end
     end
   end

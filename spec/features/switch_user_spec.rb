@@ -7,6 +7,6 @@ feature 'Switch user' do
     user = FactoryGirl.create(:user, first_name: 'RegularUser')
     sign_in_as_admin
     visit switch_user_path(user)
-    page.should have_content 'Welcome back, RegularUser'
+    expect(page).to have_content 'Welcome back, RegularUser'
   end
 end

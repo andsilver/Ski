@@ -22,7 +22,7 @@ describe BannerPricesController do
         banner_prices = [BannerPrice.new]
         BannerPrice.stub(:all).and_return(banner_prices)
         get 'index'
-        assigns(:banner_prices).should eq(banner_prices)
+        expect(assigns(:banner_prices)).to eq(banner_prices)
       end
     end
 
@@ -33,16 +33,16 @@ describe BannerPricesController do
       end
 
       it 'assigns @banner_price' do
-        banner_price = BannerPrice.new(:price => 10)
+        banner_price = BannerPrice.new(price: 10)
         BannerPrice.stub(:new).and_return(banner_price)
         get 'new'
-        assigns(:banner_price).should eq(banner_price)
+        expect(assigns(:banner_price)).to eq(banner_price)
       end
     end
 
     describe 'POST create' do
       let(:banner_price) { mock_model(BannerPrice).as_null_object }
-      let(:params) { { :banner_price => { 'current_banner_number' => '1', 'price' => '10'} } }
+      let(:params) { { banner_price: { 'current_banner_number' => '1', 'price' => '10'} } }
 
       before do
         BannerPrice.stub(:new).and_return(banner_price)
@@ -60,12 +60,12 @@ describe BannerPricesController do
 
         it 'sets a flash[:notice] message' do
           post 'create', params
-          flash[:notice].should eq("Created.")
+          expect(flash[:notice]).to eq("Created.")
         end
 
         it 'redirects to the banner prices page' do
           post 'create', params
-          response.should redirect_to(banner_prices_path)
+          expect(response).to redirect_to(banner_prices_path)
         end
       end
 
@@ -76,12 +76,12 @@ describe BannerPricesController do
 
         it 'assigns @banner_price' do
           post 'create', params
-          assigns(:banner_price).should eq(banner_price)
+          expect(assigns(:banner_price)).to eq(banner_price)
         end
 
         it 'renders the new template' do
           post 'create', params
-          response.should render_template('new')
+          expect(response).to render_template('new')
         end
       end
     end
@@ -89,19 +89,19 @@ describe BannerPricesController do
     describe 'GET edit' do
       it 'finds the banner price' do
         BannerPrice.should_receive(:find).with('1')
-        get 'edit', :id => '1'
+        get 'edit', id: '1'
       end
 
       it 'assigns @banner_price' do
-        bp = BannerPrice.new(:price => 20)
+        bp = BannerPrice.new(price: 20)
         BannerPrice.stub(:find).with('1').and_return(bp)
-        get 'edit', :id => '1'
-        assigns(:banner_price).should eq(bp)
+        get 'edit', id: '1'
+        expect(assigns(:banner_price)).to eq(bp)
       end
     end
 
     describe 'PUT update' do
-      let(:params) { { :id => '1', :banner_price => { 'current_banner_number' => '1', 'price' => '10'} } }
+      let(:params) { { id: '1', banner_price: { 'current_banner_number' => '1', 'price' => '10'} } }
       let(:banner_price) { mock_model(BannerPrice).as_null_object }
 
       before do
@@ -120,12 +120,12 @@ describe BannerPricesController do
 
         it 'redirects to the banner prices page' do
           put 'update', params
-          response.should redirect_to(banner_prices_path)
+          expect(response).to redirect_to(banner_prices_path)
         end
 
         it 'sets a flash[:notice] message' do          
           put 'update', params
-          flash[:notice].should eq('Saved.')
+          expect(flash[:notice]).to eq('Saved.')
         end
       end
 
@@ -136,12 +136,12 @@ describe BannerPricesController do
 
         it 'assigns @banner_price' do
           put 'update', params
-          assigns(:banner_price).should eq(banner_price)
+          expect(assigns(:banner_price)).to eq(banner_price)
         end
 
         it 'renders the edit template' do
           put 'update', params
-          response.should render_template('edit')
+          expect(response).to render_template('edit')
         end
       end
     end
@@ -155,22 +155,22 @@ describe BannerPricesController do
 
       it 'finds the banner price' do
         BannerPrice.should_receive(:find).with('1')
-        delete 'destroy', :id => '1'
+        delete 'destroy', id: '1'
       end      
 
       it 'destroys the banner price' do
         banner_price.should_receive(:destroy)
-        delete 'destroy', :id => '1'
+        delete 'destroy', id: '1'
       end
 
       it 'redirects to the banner prices page' do
-        delete 'destroy', :id => '1'
-        response.should redirect_to(banner_prices_path)
+        delete 'destroy', id: '1'
+        expect(response).to redirect_to(banner_prices_path)
       end
 
       it 'sets a flash[:notice] message' do          
-        delete 'destroy', :id => '1'
-        flash[:notice].should eq('Deleted.')
+        delete 'destroy', id: '1'
+        expect(flash[:notice]).to eq('Deleted.')
       end
     end
   end

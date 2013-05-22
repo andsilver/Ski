@@ -5,13 +5,13 @@ describe Category do
     category = Category.new
     category.name = "category_names.internet_cafe"
     category.id = 1
-    category.to_param.should == "1-internet-cafes"
+    expect(category.to_param).to eq "1-internet-cafes"
   end
 
   it 'prevents deletion with associated directory adverts' do
     category = FactoryGirl.create(:category)
     da = FactoryGirl.create(:directory_advert, category_id: category.id)
     da.save!
-    lambda { category.destroy }.should raise_error(ActiveRecord::DeleteRestrictionError)
+    expect { category.destroy }.to raise_error(ActiveRecord::DeleteRestrictionError)
   end
 end

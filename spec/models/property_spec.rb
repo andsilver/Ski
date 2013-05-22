@@ -14,8 +14,8 @@ describe Property do
 
   describe '.accommodation_type_description' do
     it "returns either 'Chalet' or 'Apartment'" do
-      Property.accommodation_type_description(Property::ACCOMMODATION_TYPE_CHALET).should == 'Chalet'
-      Property.accommodation_type_description(Property::ACCOMMODATION_TYPE_APARTMENT).should == 'Apartment'
+      expect(Property.accommodation_type_description(Property::ACCOMMODATION_TYPE_CHALET)).to eq 'Chalet'
+      expect(Property.accommodation_type_description(Property::ACCOMMODATION_TYPE_APARTMENT)).to eq 'Apartment'
     end
   end
 
@@ -23,9 +23,9 @@ describe Property do
     it "returns either 'Chalet' or 'Apartment' for the property object" do
       p = Property.new
       p.accommodation_type = Property::ACCOMMODATION_TYPE_CHALET
-      p.accommodation_type_description.should == 'Chalet'
+      expect(p.accommodation_type_description).to eq 'Chalet'
       p.accommodation_type = Property::ACCOMMODATION_TYPE_APARTMENT
-      p.accommodation_type_description.should == 'Apartment'
+      expect(p.accommodation_type_description).to eq 'Apartment'
     end
   end
 
@@ -67,29 +67,29 @@ describe Property do
 
   describe '#for_rent?' do
     it 'returns true when listing_type is LISTING_TYPE_FOR_RENT' do
-      property = Property.new(:listing_type => Property::LISTING_TYPE_FOR_RENT)
-      property.for_rent?.should be_true
+      property = Property.new(listing_type: Property::LISTING_TYPE_FOR_RENT)
+      expect(property.for_rent?).to be_true
     end
 
     it 'returns false when listing_type is anything else' do
-      property = Property.new(:listing_type => Property::LISTING_TYPE_FOR_SALE)
-      property.for_rent?.should be_false
-      property = Property.new(:listing_type => Property::LISTING_TYPE_HOTEL)
-      property.for_rent?.should be_false
+      property = Property.new(listing_type: Property::LISTING_TYPE_FOR_SALE)
+      expect(property.for_rent?).to be_false
+      property = Property.new(listing_type: Property::LISTING_TYPE_HOTEL)
+      expect(property.for_rent?).to be_false
     end
   end
 
   describe '#for_sale?' do
     it 'returns true when listing_type is LISTING_TYPE_FOR_SALE' do
-      property = Property.new(:listing_type => Property::LISTING_TYPE_FOR_SALE)
-      property.for_sale?.should be_true
+      property = Property.new(listing_type: Property::LISTING_TYPE_FOR_SALE)
+      expect(property.for_sale?).to be_true
     end
   end
 
   describe '#hotel?' do
     it 'returns true when listing_type is LISTING_TYPE_HOTEL' do
-      property = Property.new(:listing_type => Property::LISTING_TYPE_HOTEL)
-      property.hotel?.should be_true
+      property = Property.new(listing_type: Property::LISTING_TYPE_HOTEL)
+      expect(property.hotel?).to be_true
     end
   end
 
@@ -131,11 +131,11 @@ describe Property do
     it "returns a sorted array of months from Property Base Prices" do
       PropertyBasePrice.delete_all
       PropertyBasePrice.create!([
-        {:number_of_months => 3,  :price => 55},
-        {:number_of_months => 12, :price => 149},
-        {:number_of_months => 6,  :price => 89}
+        {number_of_months: 3,  price: 55},
+        {number_of_months: 12, price: 149},
+        {number_of_months: 6,  price: 89}
       ])
-      property.valid_months.should == [3, 6, 12]
+      expect(property.valid_months).to eq [3, 6, 12]
     end
   end
 
@@ -145,14 +145,14 @@ describe Property do
     context "when property is for sale" do
       it "returns 3" do
         property.listing_type = Property::LISTING_TYPE_FOR_SALE
-        property.default_months.should == 3
+        expect(property.default_months).to eq 3
       end
     end
 
     context "when property is for rent" do
       it "returns 12" do
         property.listing_type = Property::LISTING_TYPE_FOR_RENT
-        property.default_months.should == 12
+        expect(property.default_months).to eq 12
       end
     end
   end
@@ -164,7 +164,7 @@ describe Property do
       context "when the description is blank" do
         it "leaves the strapline blank" do
           property.tidy_name_and_strapline
-          property.strapline.should eq('')
+          expect(property.strapline).to eq('')
         end
       end
 
@@ -172,7 +172,7 @@ describe Property do
         it "leaves sets the strapline to the first 255 chars of description" do
           property.description = 'x' * 256
           property.tidy_name_and_strapline
-          property.strapline.should eq('x' * 255)
+          expect(property.strapline).to eq('x' * 255)
         end
       end
     end
@@ -181,31 +181,31 @@ describe Property do
       it "truncates strapline to 255 chars" do
         property.strapline = 'x' * 256
         property.tidy_name_and_strapline
-        property.strapline.should eq('x' * 255)
+        expect(property.strapline).to eq('x' * 255)
       end
     end
 
     it "truncates name to 50 chars" do
       property.name = 'x' * 51
       property.tidy_name_and_strapline
-      property.name.should eq('x' * 50)
+      expect(property.name).to eq('x' * 50)
     end
   end
 
   describe '#calculate_late_availability' do
     it 'returns true if it has no Interhome accommodation' do
-      Property.new.calculate_late_availability([]).should be_true
+      expect(Property.new.calculate_late_availability([])).to be_true
     end
 
     it 'returns the value of the Interhome accommodation availability' do
       available = mock_model(InterhomeAccommodation, available_to_check_in_on_dates?: true)
       p = Property.new
       p.interhome_accommodation = available
-      p.calculate_late_availability([]).should be_true
+      expect(p.calculate_late_availability([])).to be_true
 
       unavailable = mock_model(InterhomeAccommodation, available_to_check_in_on_dates?: false)
       p.interhome_accommodation = unavailable
-      p.calculate_late_availability([]).should be_false
+      expect(p.calculate_late_availability([])).to be_false
     end
   end
 end

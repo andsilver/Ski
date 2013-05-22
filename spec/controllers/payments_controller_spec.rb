@@ -29,12 +29,12 @@ describe PaymentsController do
     context 'when FuturePay' do
       it 'sets the FuturePay ID' do
         payment.should_receive(:futurepay_id=).with('1234')
-        post 'worldpay_callback', :futurePayId => '1234'
+        post 'worldpay_callback', futurePayId: '1234'
       end
 
       context 'when in test mode' do
-        let(:params) { {:futurePayId => '1234', :testMode => '100', :cartId => '1',
-          :transStatus => 'Y', :callbackPW => 'secret'} }
+        let(:params) { {futurePayId: '1234', testMode: '100', cartId: '1',
+          transStatus: 'Y', callbackPW: 'secret'} }
 
         before do
           website.stub(:worldpay_test_mode).and_return(true)

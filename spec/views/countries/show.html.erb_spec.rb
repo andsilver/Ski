@@ -10,7 +10,7 @@ describe 'countries/show' do
     assign(:country, france)
     assign(:featured_properties, [])
     render
-    rendered.should have_content('Avoriaz')
-    rendered.should_not have_content('Tignes')
+    expect(view.content_for(:links_and_search)).to have_content('Avoriaz')
+    expect(view.content_for(:links_and_search)).to_not have_content('Tignes')
   end
 end

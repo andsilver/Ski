@@ -17,7 +17,7 @@ describe BlogPostsController do
       posts = BlogPost.new
       BlogPost.stub(:visible_posts).and_return(posts)
       get 'feed', format: 'xml'
-      assigns('blog_posts').should == posts
+      expect(assigns('blog_posts')).to eq posts
     end
   end
 end

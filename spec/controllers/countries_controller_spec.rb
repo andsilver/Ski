@@ -19,7 +19,7 @@ describe CountriesController do
         countries = [mock_country]
         Country.should_receive(:order).with('name').and_return(countries)
         get 'index'
-        assigns(:countries).should == countries
+        expect(assigns(:countries)).to eq countries
       end
     end
 
@@ -27,7 +27,7 @@ describe CountriesController do
       it 'assigns a new instance of Country to @country' do
         Country.should_receive(:new).and_return(mock_country)
         get 'new'
-        assigns(:country).should == mock_country
+        expect(assigns(:country)).to eq mock_country
       end
     end
 

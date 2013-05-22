@@ -8,24 +8,24 @@ describe User do
       user = users(:alice)
       window_advert = Advert.create!(window: true, user_id: user.id, expires_at: Time.zone.now + 1.hour)
       non_window_advert = Advert.create!(window: false, user_id: user.id, expires_at: Time.zone.now + 1.hour)
-      user.empty_windows.should include(window_advert)
-      user.empty_windows.should_not include(non_window_advert)
+      expect(user.empty_windows).to include(window_advert)
+      expect(user.empty_windows).to_not include(non_window_advert)
     end
 
     it 'returns empty windows' do
       user = users(:alice)
       empty_window_advert = Advert.create!(window: true, property_id: nil, user_id: user.id, expires_at: Time.zone.now + 1.hour)
       full_window_advert = Advert.create!(window: true, property_id: 123, user_id: user.id, expires_at: Time.zone.now + 1.hour)
-      user.empty_windows.should include(empty_window_advert)
-      user.empty_windows.should_not include(full_window_advert)
+      expect(user.empty_windows).to include(empty_window_advert)
+      expect(user.empty_windows).to_not include(full_window_advert)
     end
 
     it 'returns windows that have not yet expired' do
       user = users(:alice)
       unexpired_window_advert = Advert.create!(window: true, user_id: user.id, expires_at: Time.zone.now + 1.hour)
       expired_window_advert = Advert.create!(window: true, user_id: user.id, expires_at: Time.zone.now - 1.hour)
-      user.empty_windows.should include(unexpired_window_advert)
-      user.empty_windows.should_not include(expired_window_advert)
+      expect(user.empty_windows).to include(unexpired_window_advert)
+      expect(user.empty_windows).to_not include(expired_window_advert)
     end
   end
 
@@ -46,14 +46,14 @@ describe User do
 
   describe '#advertises_through_windows?' do
     it 'returns false if the user has no role' do
-      User.new.advertises_through_windows?.should be_false
+      expect(User.new.advertises_through_windows?).to be_false
     end
 
     it "returns the value of the role's advertises_through_windows?" do
       role = mock_model(Role, :advertises_through_windows? => true)
       user = User.new
       user.stub(:role).and_return(role)
-      user.advertises_through_windows?.should be_true
+      expect(user.advertises_through_windows?).to be_true
     end
   end
 
@@ -61,13 +61,13 @@ describe User do
     it "returns true when there are one or more properties for rent" do
       user = User.new
       user.stub(:properties_for_rent).and_return([:a_property])
-      user.has_properties_for_rent?.should be_true
+      expect(user.has_properties_for_rent?).to be_true
     end
 
     it "returns false when there are 0 properties for rent" do
       user = User.new
       user.stub(:properties_for_rent).and_return([])
-      user.has_properties_for_rent?.should be_false
+      expect(user.has_properties_for_rent?).to be_false
     end
   end
 
@@ -75,13 +75,13 @@ describe User do
     it "returns true when there are one or more properties for sale" do
       user = User.new
       user.stub(:properties_for_sale).and_return([:a_property])
-      user.has_properties_for_sale?.should be_true
+      expect(user.has_properties_for_sale?).to be_true
     end
 
     it "returns false when there are 0 properties for sale" do
       user = User.new
       user.stub(:properties_for_sale).and_return([])
-      user.has_properties_for_sale?.should be_false
+      expect(user.has_properties_for_sale?).to be_false
     end
   end
 
@@ -95,45 +95,45 @@ describe User do
     it 'returns true if the VAT number is blank and the country is in the EU' do
       user = User.new(vat_number: '')
       user.stub(:billing_country).and_return(uk)
-      user.pays_vat?.should be_true
+      expect(user.pays_vat?).to be_true
       user.stub(:billing_country).and_return(france)
-      user.pays_vat?.should be_true
+      expect(user.pays_vat?).to be_true
     end
 
     it 'returns false if the VAT number is given and the country is in the EU, not UK' do
       user = User.new(vat_number: '123')
       user.stub(:billing_country).and_return(france)
-      user.pays_vat?.should be_false
+      expect(user.pays_vat?).to be_false
     end
 
     it 'returns false if the country is not in the EU' do
       user = User.new(vat_number: '')
       user.stub(:billing_country).and_return(us)
-      user.pays_vat?.should be_false
+      expect(user.pays_vat?).to be_false
       user.vat_number = '123'
-      user.pays_vat?.should be_false
+      expect(user.pays_vat?).to be_false
     end
 
     it 'returns true if country is United Kingdom' do
       user = User.new(vat_number: '')
       user.stub(:billing_country).and_return(uk)
-      user.pays_vat?.should be_true
+      expect(user.pays_vat?).to be_true
       user.vat_number = '123'
-      user.pays_vat?.should be_true
+      expect(user.pays_vat?).to be_true
     end
 
     it 'returns false if billing country is UK but VAT country is France' do
       user = User.new(vat_number: '123')
       user.stub(:billing_country).and_return(uk)
       user.stub(:vat_country).and_return(france)
-      user.pays_vat?.should be_false
+      expect(user.pays_vat?).to be_false
     end
 
     it 'returns true if billing country is US but VAT country is UK' do
       user = User.new(vat_number: '123')
       user.stub(:billing_country).and_return(us)
       user.stub(:vat_country).and_return(uk)
-      user.pays_vat?.should be_true
+      expect(user.pays_vat?).to be_true
     end
   end
 
@@ -143,12 +143,12 @@ describe User do
 
     it 'returns vat_country if not nil' do
       user = User.new(vat_country: uk, billing_country: france)
-      user.country_for_checking_vat.should eq uk
+      expect(user.country_for_checking_vat).to eq uk
     end
 
     it 'returns billing_country if vat_country is nil' do
       user = User.new(vat_country: nil, billing_country: france)
-      user.country_for_checking_vat.should eq france
+      expect(user.country_for_checking_vat).to eq france
     end
   end
 
@@ -172,10 +172,10 @@ describe User do
       u = User.new
       u.stub(:properties).and_return([p_new, p_live])
       u.stub(:directory_adverts).and_return([d_new, d_live])
-      u.new_advertisables.should include(p_new)
-      u.new_advertisables.should include(d_new)
-      u.new_advertisables.should_not include(p_live)
-      u.new_advertisables.should_not include(d_live)
+      expect(u.new_advertisables).to include(p_new)
+      expect(u.new_advertisables).to include(d_new)
+      expect(u.new_advertisables).to_not include(p_live)
+      expect(u.new_advertisables).to_not include(d_live)
     end
   end
 
@@ -187,7 +187,7 @@ describe User do
         u = User.new
         u.coupon = coupon
         u.remove_expired_coupon
-        u.coupon.should be_nil
+        expect(u.coupon).to be_nil
       end
 
       it 'saves' do
@@ -205,7 +205,7 @@ describe User do
         u = User.new
         u.coupon = coupon
         u.remove_expired_coupon
-        u.coupon.should == coupon
+        expect(u.coupon).to equal coupon
       end
 
       it 'does not save' do

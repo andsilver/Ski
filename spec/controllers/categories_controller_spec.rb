@@ -18,7 +18,7 @@ describe CategoriesController do
 
     it "assigns @category" do
       get :new
-      assigns[:category].should equal(category)
+      expect(assigns[:category]).to equal(category)
     end
   end
 
@@ -37,12 +37,12 @@ describe CategoriesController do
 
       it "sets a flash[:notice] message" do
         post :create, params
-        flash[:notice].should eq("Created.")
+        expect(flash[:notice]).to eq("Created.")
       end
 
       it "redirects to the categories page" do
         post :create, params
-        response.should redirect_to(categories_path)
+        expect(response).to redirect_to(categories_path)
       end
     end
 
@@ -53,12 +53,12 @@ describe CategoriesController do
 
       it "assigns @category" do
         post :create, params
-        assigns[:category].should eq(category)
+        expect(assigns[:category]).to eq(category)
       end
 
       it "renders the new template" do
         post :create, params
-        response.should render_template("new")
+        expect(response).to render_template('new')
       end
     end
   end
@@ -82,12 +82,12 @@ describe CategoriesController do
 
       it 'sets a flash[:notice] message' do
         post 'destroy', id: 1
-        flash[:notice].should == 'Deleted.'
+        expect(flash[:notice]).to eq 'Deleted.'
       end
 
       it 'redirects to the categories page' do
         delete 'destroy', id: 1
-        response.should redirect_to(categories_path)
+        expect(response).to redirect_to(categories_path)
       end
     end
   end

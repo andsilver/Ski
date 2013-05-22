@@ -12,8 +12,8 @@ describe Image do
           file_data.stub(:original_filename).and_return('apple.banana.JPEG')
           i = Image.new
           i.image = file_data
-          i.determine_filename.should eq('image.jpeg')
-          i.filename.should eq('image.jpeg')
+          expect(i.determine_filename).to eq('image.jpeg')
+          expect(i.filename).to eq('image.jpeg')
         end
       end
 
@@ -22,8 +22,8 @@ describe Image do
           file_data.stub(:respond_to?).with('original_filename').and_return(false)
           i = Image.new
           i.image = file_data
-          i.determine_filename.should eq('image.jpg')
-          i.filename.should eq('image.jpg')
+          expect(i.determine_filename).to eq('image.jpg')
+          expect(i.filename).to eq('image.jpg')
         end
       end
     end
@@ -32,15 +32,15 @@ describe Image do
       it "sets its filename to image.jpg" do
         i = Image.new
         i.source_url = 'http://www.example.org/image.png'
-        i.determine_filename.should eq('image.jpg')
-        i.filename.should eq('image.jpg')
+        expect(i.determine_filename).to eq('image.jpg')
+        expect(i.filename).to eq('image.jpg')
       end
     end
 
     context "when neither file data nor source_url supplied" do
       it "raises an exception" do
         i = Image.new
-        lambda {i.determine_filename}.should raise_error(RuntimeError)
+        expect {i.determine_filename}.to raise_error(RuntimeError)
       end
     end
   end
@@ -96,20 +96,20 @@ describe Image do
       i = Image.new
       i.source_url = 'http://www.example.org/image.jpeg'
       FileTest.stub(:exists?).and_return(false)
-      i.needs_downloading?.should be_true
+      expect(i.needs_downloading?).to be_true
     end
 
     it "returns false if the file exists" do
       i = Image.new
       i.source_url = 'http://www.example.org/image.jpeg'
       FileTest.stub(:exists?).and_return(true)
-      i.needs_downloading?.should be_false
+      expect(i.needs_downloading?).to be_false
     end
 
     it "returns false if the source URL is blank" do
       i = Image.new
       FileTest.stub(:exists?).and_return(true)
-      i.needs_downloading?.should be_false
+      expect(i.needs_downloading?).to be_false
     end
   end
 end

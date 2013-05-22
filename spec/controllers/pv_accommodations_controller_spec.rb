@@ -32,13 +32,13 @@ describe PvAccommodationsController do
       it 'redirects to index' do
         PierreEtVacances::AccommodationImporter.stub(:new).and_return(importer)
         post 'import_accommodations'
-        response.should redirect_to(action: 'index')
+        expect(response).to redirect_to(action: 'index')
       end
 
       it 'sets a flash notice' do
         PierreEtVacances::AccommodationImporter.stub(:new).and_return(importer)
         post 'import_accommodations'
-        flash[:notice].should == 'Pierre et Vacances accommodations have been imported.'
+        expect(flash[:notice]).to eq 'Pierre et Vacances accommodations have been imported.'
       end
     end
   end

@@ -9,12 +9,12 @@ describe Resort do
     resort = Resort.new
     resort.name = "Italian Alps"
     resort.id = 2
-    resort.to_param.should == "2-italian-alps"
+    expect(resort.to_param).to eq "2-italian-alps"
   end
 
   describe '#to_s' do
     it 'returns its name' do
-      Resort.new(name: 'Chamonix').to_s.should == 'Chamonix'
+      expect(Resort.new(name: 'Chamonix').to_s).to eq 'Chamonix'
     end
   end
 
@@ -22,13 +22,13 @@ describe Resort do
     it 'returns true if the page exists' do
       r = Resort.new
       r.stub(:page).and_return(Page.new)
-      r.has_page?('a-page').should be_true
+      expect(r.has_page?('a-page')).to be_true
     end
 
     it 'returns false if the page does not exist' do
       r = Resort.new
       r.stub(:page).and_return(nil)
-      r.has_page?('a-page').should be_false
+      expect(r.has_page?('a-page')).to be_false
     end
   end
 
@@ -45,7 +45,7 @@ describe Resort do
     it 'returns the corresponding page path' do
       r = Resort.new
       r.stub(:to_param).and_return('resort-param')
-      r.page_path('a-page').should == '/resorts/resort-param/a-page'
+      expect(r.page_path('a-page')).to eq '/resorts/resort-param/a-page'
     end
   end
 end
