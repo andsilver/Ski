@@ -15,6 +15,10 @@ def add_banner_advert_to_basket(options = {})
   click_button 'Save'
 end
 
+def sign_in_as_admin
+  sign_in_with('tony@mychaletfinder.com', 'secret')
+end
+
 def sign_in_as_emily_evans
   sign_in_with('emily@mychaletfinder.com', 'secret')
 end
