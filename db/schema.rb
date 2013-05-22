@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130521112420) do
+ActiveRecord::Schema.define(version: 20130522173500) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -564,6 +564,16 @@ ActiveRecord::Schema.define(version: 20130521112420) do
   end
 
   add_index "pv_vacancies", ["destination_code", "apartment_code"], name: "index_pv_vacancies_on_destination_code_and_apartment_code", using: :btree
+
+  create_table "regions", force: true do |t|
+    t.integer  "country_id"
+    t.string   "name",       null: false
+    t.text     "info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "regions", ["country_id"], name: "index_regions_on_country_id", using: :btree
 
   create_table "resorts", force: true do |t|
     t.integer  "country_id",             default: 0,     null: false
