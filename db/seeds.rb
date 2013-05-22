@@ -9,6 +9,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Property.destroy_all
+PropertyBasePrice.destroy_all
 Resort.destroy_all
 DirectoryAdvert.destroy_all
 Category.destroy_all
@@ -431,6 +432,8 @@ images = Image.create([
   { filename: 'chalet29.jpg', source_url: image_source_url },
   { filename: 'chalet30.jpg', source_url: image_source_url }
   ])
+
+PropertyBasePrice.create!(number_of_months: 12, price: 150)
 
 properties = Property.create!([
   { resort: chamonix, user: alice, name: "Alpen Lounge",      address: '123 street', sleeping_capacity: 6,   metres_from_lift: 2500, weekly_rent_price: 1750, currency: euros, image_id:  1, listing_type: Property::LISTING_TYPE_FOR_RENT },
