@@ -2,15 +2,8 @@ require 'spec_helper'
 
 describe Currency do
   describe '.sterling_in_euros' do
-    it 'finds a currency with code GBP' do
-      Currency.should_receive(:find_by_code).with('GBP')
-      Currency.sterling_in_euros
-    end
-
     context 'when GBP currency exists' do
-      before do
-        Currency.stub(:find_by_code).and_return(Currency.new(in_euros: 1.5))
-      end
+      before { FactoryGirl.create(:currency, code: 'GBP', in_euros: 1.5) }
 
       it 'returns the amount of GBP in Euros' do
         expect(Currency.sterling_in_euros).to eq 1.5
@@ -18,10 +11,8 @@ describe Currency do
     end
 
     context 'when GBP currency is missing' do
-      before { Currency.stub(:find_by_code).and_return(nil) }
-
-      it 'returns 0' do
-        expect(Currency.sterling_in_euros).to eq 0
+      it 'returns nil' do
+        expect(Currency.sterling_in_euros).to be_nil
       end
     end
   end
