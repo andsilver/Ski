@@ -2,6 +2,7 @@ class Resort < ActiveRecord::Base
   include RelatedPages
 
   belongs_to :country
+  belongs_to :region, inverse_of: :resorts
 
   has_many :properties, dependent: :nullify
   has_many :order_lines

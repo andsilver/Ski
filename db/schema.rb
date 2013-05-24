@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130522173500) do
+ActiveRecord::Schema.define(version: 20130524160501) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -630,10 +630,12 @@ ActiveRecord::Schema.define(version: 20130522173500) do
     t.text     "piste_map_content"
     t.boolean  "summer_only",            default: false, null: false
     t.integer  "directory_advert_count", default: 0,     null: false
+    t.integer  "region_id"
   end
 
   add_index "resorts", ["country_id"], name: "index_resorts_on_country_id", using: :btree
   add_index "resorts", ["featured"], name: "index_resorts_on_featured", using: :btree
+  add_index "resorts", ["region_id"], name: "index_resorts_on_region_id", using: :btree
   add_index "resorts", ["visible"], name: "index_resorts_on_visible", using: :btree
 
   create_table "roles", force: true do |t|
