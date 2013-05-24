@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= form_for @resort do |f| %>
+<%= form_for [:admin, @resort] do |f| %>
 <div class="form-horizontal">
   <div class="control-group">
     <%= f.label :name, t('name'), class: 'control-label' %>

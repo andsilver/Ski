@@ -7,6 +7,7 @@ MySkiChalet::Application.routes.draw do
 
   namespace :admin do
     resources :regions, except: [:show]
+    resources :resorts, except: [:show]
   end
 
   resources :buying_guides
@@ -26,7 +27,7 @@ MySkiChalet::Application.routes.draw do
   get "resorts/:id/resort-guide" => "resorts#resort_guide", as: :resort_guide
   get "resorts/:id/summer-holidays" => "resorts#summer_holidays", as: :summer_holidays
   get "resorts/:id/how-to-get-there" => "resorts#how_to_get_there", as: :how_to_get_there
-  resources :resorts do
+  resources :resorts, only: [:show] do
     get 'featured', on: :collection
     member do
       get 'resort-guide', action: 'resort_guide'

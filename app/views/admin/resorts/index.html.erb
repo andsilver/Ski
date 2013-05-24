@@ -3,7 +3,7 @@
 </div>
 
 <p>
-  <%= link_to 'Add new resort', new_resort_path, class: 'btn' %>
+  <%= link_to 'Add new resort', new_admin_resort_path, class: 'btn' %>
 </p>
 <table class="table table-bordered table-striped">
 <% @countries.each do |country| %>
@@ -14,8 +14,8 @@
 <tr>
   <td><%= link_to resort.name, resort %></td>
   <td>
-    <%= edit_button(resort) %>
-    <%= delete_button(resort) %>
+    <%= edit_button([:admin, resort]) %>
+    <%= delete_button([:admin, resort]) %>
   </td>
 </tr>
 <% end %>

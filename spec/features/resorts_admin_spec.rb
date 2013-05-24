@@ -6,7 +6,7 @@ feature 'Resorts admin' do
   scenario 'Add resort to region from resort page' do
     FactoryGirl.create(:resort, name: 'Bowness-on-Windermere', country: countries(:united_kingdom))
     sign_in_as_admin
-    visit resorts_path
+    visit admin_resorts_path
     click_link 'Edit Bowness-on-Windermere'
     select 'Lake Windermere', from: 'Region'
     click_button 'Save'
