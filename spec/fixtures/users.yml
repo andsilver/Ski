@@ -1,5 +1,4 @@
 alice:
-  id: 1
   first_name: Alice
   last_name: Adams
   email: alice@mychaletfinder.com
@@ -8,13 +7,12 @@ alice:
   description: An estate agent
   billing_street: 1 Main Avenue
   billing_city: Winchester
-  billing_country_id: 5
+  billing_country: united_kingdom
   terms_and_conditions: true
-  role_id: 1 # Estate agent
+  role: estate_agent
   business_name: 'Alice Properties'
 
 bob:
-  id: 2
   first_name: Bob
   last_name: Brown
   email: bob@mychaletfinder.com
@@ -23,12 +21,11 @@ bob:
   description: A property developer
   billing_street: 10 Pound Walk
   billing_city: Manchester
-  billing_country_id: 5
+  billing_country: united_kingdom
   terms_and_conditions: true
-  role_id: 2
+  role: property_developer
 
 dave:
-  id: 3
   first_name: Dave
   last_name: Davies
   email: dave@mychaletfinder.com
@@ -37,12 +34,11 @@ dave:
   description: A property owner
   billing_street: Restover Lodge
   billing_city: Doncaster
-  billing_country_id: 5
+  billing_country: united_kingdom
   terms_and_conditions: true
-  role_id: 3
+  role: property_owner
 
 emily:
-  id: 5
   first_name: Emily
   last_name: Evans
   email: emily@mychaletfinder.com
@@ -51,12 +47,11 @@ emily:
   description: A bar owner
   billing_street: Restover Lodge
   billing_city: Doncaster
-  billing_country_id: 5
+  billing_country: united_kingdom
   terms_and_conditions: true
-  role_id: 5 # Other business
+  role: other_business
 
 tony:
-  id: 4
   first_name: Tony
   last_name: Taccone
   email: tony@mychaletfinder.com
@@ -65,6 +60,6 @@ tony:
   description: An administrator
   billing_street: Restover Lodge
   billing_city: Doncaster
-  billing_country_id: 5
+  billing_country: united_kingdom
   terms_and_conditions: true
-  role_id: 4
+  role: administrator

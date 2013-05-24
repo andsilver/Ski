@@ -1,5 +1,4 @@
 estate_agent:
-  id: 1
   name: Estate agent
   admin: false
   select_on_signup: true
@@ -11,7 +10,6 @@ estate_agent:
   advertises_through_windows: true
 
 property_developer:
-  id: 2
   name: Property developer
   admin: false
   select_on_signup: true
@@ -21,7 +19,6 @@ property_developer:
   advertises_through_windows: true
 
 property_owner:
-  id: 3
   name: Property owner
   admin: false
   select_on_signup: true
@@ -32,7 +29,6 @@ property_owner:
   advertises_through_windows: false
 
 other_business:
-  id: 5
   name: Other business
   admin: false
   select_on_signup: true
@@ -43,7 +39,6 @@ other_business:
   advertises_through_windows: false
 
 administrator:
-  id: 4
   name: Administrator
   admin: true
   select_on_signup: false

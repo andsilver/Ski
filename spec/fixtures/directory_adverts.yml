@@ -1,7 +1,7 @@
 monkey_bar:
-  category_id: 1 # bars
-  resort_id: 2 # Chamonix
-  user_id: 5 # Emily (Other business)
+  category: bars
+  resort: chamonix
+  user: emily # (Other business)
   business_name: "Monkey Bar"
   business_address: "Somewhere in Chamonix"
   strapline: "Monkey prides itself on evenings with great happy hours and delicious pub food"

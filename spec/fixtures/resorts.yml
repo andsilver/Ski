@@ -1,12 +1,10 @@
 st_anton:
-  id: 1
-  country_id: 1 # Austria
+  country: austria
   name: St Anton
   visible: 1
 
 chamonix:
-  id: 2
-  country_id: 2 # France
+  country: france
   name: Chamonix
   introduction: "Chamonix, with a population of approximately 10,000"
   visible: 1
@@ -16,19 +14,16 @@ chamonix:
   hotel_count: 1
 
 italian_alps:
-  id: 3
-  country_id: 3 # Italy
+  country: italy
   name: Italian Alps
   visible: 1
 
 davos:
-  id: 4
-  country_id: 4 # Switzerland
+  country: switzerland
   name: Davos
   visible: 1
 
 an_invisible_resort:
-  id: 5
-  country_id: 6 # A Country Without Visible Resorts
+  country: a_country_without_visible_resorts
   name: An Invisible Resort
   visible: 0

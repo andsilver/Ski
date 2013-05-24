@@ -1,5 +1,4 @@
 bellagio:
-  id: 1
-  country_id: 3 # Italy
+  country: italy
   name: Bellagio
   info: Bellagio is situated at the tip of the peninsula...
