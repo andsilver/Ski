@@ -6,7 +6,8 @@ def valid_property attributes
     address: '74400',
     listing_type: Property::LISTING_TYPE_FOR_SALE,
     distance_from_town_centre_m: 100,
-    metres_from_lift: 100
+    metres_from_lift: 100,
+    currency: currencies(:euros)
   }
 
   Property.new defaults.merge(attributes)
@@ -26,8 +27,8 @@ Given /^there are (\d+) new developments advertised$/ do |how_many|
     # as default sort order is "Price low to high"
     p = valid_property name: "New development #{d+1}",
       new_development: true, sale_price: (100 - d.to_i), publicly_visible: true
-    p.save
-    Advert.create(user_id: p.user_id, property_id: p.id)
+    p.save!
+    Advert.create!(user_id: p.user_id, property_id: p.id)
   end
   resorts(:chamonix).new_development_count = how_many
   resorts(:chamonix).save
