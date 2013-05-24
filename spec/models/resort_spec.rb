@@ -43,9 +43,21 @@ describe Resort do
 
   describe '#page_path' do
     it 'returns the corresponding page path' do
-      r = Resort.new
-      r.stub(:to_param).and_return('resort-param')
-      expect(r.page_path('a-page')).to eq '/resorts/resort-param/a-page'
+      r = Resort.new(name: 'A Resort')
+      expect(r.page_path('a-page')).to eq '/resorts/-a-resort/a-page'
+    end
+  end
+
+  describe '#handle_name_change' do
+    it 'updates the paths of affected pages' do
+      require 'securerandom'
+      name_pre = SecureRandom.hex
+      name_post = SecureRandom.hex
+      r = FactoryGirl.create(:resort, name: name_pre)
+      r.create_page('summer-holidays')
+      r.name = name_post
+      r.save
+      expect(r.page('summer-holidays').path).to match(name_post)
     end
   end
 end

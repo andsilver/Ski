@@ -1,4 +1,6 @@
 class Country < ActiveRecord::Base
+  include RelatedPages
+
   belongs_to :image, dependent: :destroy
 
   has_many :regions, -> { order 'name' }, inverse_of: :country
@@ -72,5 +74,14 @@ class Country < ActiveRecord::Base
 
   def sales_order_lines
     paid_order_lines.keep_if {|ol| ol.advert && ol.advert.property && ol.advert.property.for_sale?}
+  end
+
+  def page_title(page_name)
+    key = 'countries_controller.titles.' + page_name.gsub('-', '_')
+    title = I18n.t(key, country: name, default: page_name)
+  end
+
+  def self.page_names
+    ['lakes-and-mountains']
   end
 end

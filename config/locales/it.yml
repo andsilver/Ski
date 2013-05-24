@@ -124,6 +124,9 @@ it:
   countries:
     country: 'Country'
     select_country: 'Select Country'
+  countries_controller:
+    titles:
+      lakes_and_mountains: 'Lakes and Mountains in %{country}'
   county: State / county
   currencies_controller:
     exchange_rates_updated: 'Exchange rates updated.'
