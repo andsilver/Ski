@@ -7,6 +7,23 @@
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <script src="/bootstrap/js/bootstrap.min.js"></script>
+  <script src="//rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js"></script>
+  <style>
+  .editor {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    height: 300px;
+    margin-bottom: 10px;
+  }
+  .editor-textarea, .form-horizontal .editor-textarea {
+    display: none;
+  }
+  </style>
 </head>
 <body>
   <div style="height:60px;">&nbsp;</div>

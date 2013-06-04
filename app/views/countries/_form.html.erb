@@ -41,11 +41,11 @@
 </p>
 <div class="field">
   <%= f.label :info %>
-  <%= f.text_area :info %>
+  <%= editor(f, :info, :html) %>
 </div>
 <div class="field">
   <%= f.label :banner_advert_html, 'Banner advert HTML' %>
-  <%= f.text_area :banner_advert_html %>
+  <%= editor(f, :banner_advert_html, :html) %>
 </div>
 <div class="form-actions">
   <%= f.submit(class: 'btn btn-primary') %>

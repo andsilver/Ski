@@ -12,10 +12,10 @@
 
 <%= form_for @category do |f| %>
 <div class="field">
-  <%= f.label :name, t('name') %><br>
+  <%= f.label :name, t('name') %>
   <%= f.text_field :name %>
 </div>
-<div class="field">
+<div class="form-actions">
   <%= f.submit t('save') %>
 </div>
 <% end %>

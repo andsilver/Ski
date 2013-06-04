@@ -111,6 +111,25 @@ module ApplicationHelper
     class: 'btn'
   end
 
+  def editor(form, attribute, mode)
+    textarea_id = "##{form.object_name}_#{attribute}"
+    editor_id = "editor_#{attribute}"
+    form_classes = ".new_#{form.object_name}, .edit_#{form.object_name}"
+    form.text_area(attribute, class: 'editor-textarea') +
+    content_tag('div', form.object.send(attribute), id: editor_id, class: 'editor') +
+    javascript_tag(
+      "var #{editor_id} = ace.edit('#{editor_id}');
+  #{editor_id}.setTheme('ace/theme/chrome');
+  #{editor_id}.getSession().setMode('ace/mode/#{mode}');
+  #{editor_id}.getSession().setTabSize(2);
+  #{editor_id}.getSession().setUseSoftTabs(true);
+  $('#{form_classes}').submit(function() {
+    $('#{textarea_id}').val(#{editor_id}.getSession().getValue());
+  });
+  "
+    )
+  end
+
   protected
 
     def object_title(object)

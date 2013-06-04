@@ -57,13 +57,13 @@
   <div class="control-group">
     <%= f.label :introduction, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_area :introduction %>
+      <%= editor(f, :introduction, :html) %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :info, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_area :info %>
+      <%= editor(f, :info, :html) %>
     </div>
   </div>
   <div class="control-group">

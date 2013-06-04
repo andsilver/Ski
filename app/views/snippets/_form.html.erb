@@ -10,7 +10,7 @@
   </div>
 <% end -%>
 
-<%= form_for(@snippet, html: {class: 'well'}) do |form| %>
+<%= form_for(@snippet) do |form| %>
 
 <%= form.label :locale %>
 <%= form.text_field :locale, class: 'span1', placeholder: 'en' %>
@@ -19,8 +19,10 @@
 <%= form.text_field :name %>
 
 <%= form.label :snippet %>
-<%= form.text_area :snippet, class: 'span9' %>
+<%= editor(form, :snippet, :html) %>
 
-<br><%= form.button class: 'btn btn-primary', type: 'submit' %>
+<div class="form-actions">
+  <%= form.submit class: 'btn btn-primary' %>
+</div>
 
 <% end %>

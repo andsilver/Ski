@@ -28,14 +28,15 @@
   <%= f.text_area :keywords, rows: 2 %>
 
   <%= f.label :content %>
-  <%= f.text_area :content %>
+  <%= editor(f, :content, :html) %>
 
   <%= f.label :footer %>
   <%= select("page", "footer_id", (Footer.all.collect {|f| [ f.name, f.id ] }).sort, {prompt: 'Choose footer'}) %>
 
   <%= f.label :banner_advert_html, 'Banner advert HTML' %>
-  <%= f.text_area :banner_advert_html, rows: 6 %>
-<div class="field">
-  <%= f.submit class: 'btn btn-primary' %>
-</div>
+  <%= editor(f, :banner_advert_html, :html) %>
+
+  <div class="form-actions">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
 <% end %>

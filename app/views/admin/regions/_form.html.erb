@@ -4,8 +4,8 @@
 <%= f.label :country_id %>
 <%= country_select('region') %>
 <%= f.label :info %>
-<%= f.text_area :info, rows: 6, class: 'input-xxlarge' %>
-<p>
+<%= editor(f, :info, :html) %>
+<div class="form-actions">
   <%= f.submit class: 'btn btn-primary' %>
-</p>
+</div>
 <% end %>

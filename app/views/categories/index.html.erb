@@ -1,14 +1,14 @@
 <%= page_header 'Categories' %>
 <p>
-  <%= link_to 'Add new category', new_category_path %>
+  <%= link_to 'Add new category', new_category_path, class: 'btn' %>
 </p>
 
 <table class="table table-bordered">
 <% @categories.each do |category| %>
   <tr>
     <td><%= category.name %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Delete', category, title: "Delete #{category.name}", data: { confirm: t('are_you_sure') }, method: :delete %></td>
+    <td><%= edit_button(category) %></td>
+    <td><%= delete_button(category) %></td>
   </tr>
 <% end %>
 </table>
