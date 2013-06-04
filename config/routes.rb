@@ -55,8 +55,8 @@ MySkiChalet::Application.routes.draw do
   get "tools/rental-prices" => "rental_prices#index"
   get "tools/rental-prices/results" => "rental_prices#results"
 
+  resources :categories, except: [:show]
   get "categories/:id/:resort_id" => "categories#show", as: :show_category
-  resources :categories
 
   get "sign_in" => "sessions#new"
   get "sign_out" => "sessions#destroy"
