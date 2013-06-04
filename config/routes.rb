@@ -6,8 +6,9 @@ MySkiChalet::Application.routes.draw do
   # root 'welcome#index'
 
   namespace :admin do
-    resources :regions, except: [:show]
-    resources :resorts, except: [:show]
+    resources :blog_posts, except: [:show]
+    resources :regions,    except: [:show]
+    resources :resorts,    except: [:show]
   end
 
   resources :buying_guides
