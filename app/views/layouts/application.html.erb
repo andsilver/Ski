@@ -63,6 +63,13 @@
     </ul>
   </nav>
   <a href="<%= root_path %>" title="Home" id="logo"><%= image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation')) %></a>
+  <nav id="main-menu" role="navigation">
+    <ul>
+<% HolidayType.all.each do |ht| -%>
+      <li><%= link_to ht.name, ht %></li>
+<% end -%>
+    </ul>
+  </nav>
 </header>
 <div id="column_headings">
 

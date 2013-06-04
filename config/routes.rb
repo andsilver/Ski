@@ -77,6 +77,8 @@ MySkiChalet::Application.routes.draw do
     end
   end
 
+  resources :holiday_types, only: [:show], path: 'holidays'
+
   resources :adverts do
     collection do
       post 'update_basket_contents'
