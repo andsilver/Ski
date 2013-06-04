@@ -7,7 +7,7 @@
   </tr>
 <% rst.rows.each do |row| -%>
   <tr>
-    <td><%= link_to row[0], row[0].name %></td>
+    <td><%= link_to row[0], resort_path(row[0]) %></td>
     <td><%= row[1] %>m</td>
     <td><%= row[2] %>m</td>
     <td><%= row[3] %>km<sup>2</sup></td>
