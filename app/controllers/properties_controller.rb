@@ -77,8 +77,8 @@ class PropertiesController < ApplicationController
       @conditions << params[:board_basis]
     end
 
-    @properties = Property.paginate(page: params[:page], order: order,
-      conditions: @conditions)
+    find_properties(order)
+
     render 'browse'
   end
 
@@ -94,8 +94,8 @@ class PropertiesController < ApplicationController
     @search_filters = [:garage, :parking, :garden]
 
     filter_conditions
+    find_properties(order)
 
-    @properties = Property.paginate(page: params[:page], order: order, conditions: @conditions)
     render "browse"
   end
 
@@ -110,9 +110,8 @@ class PropertiesController < ApplicationController
     @search_filters = [:garage, :parking, :garden]
 
     filter_conditions
+    find_properties(order)
 
-    @properties = Property.paginate(page: params[:page], order: order,
-      conditions: @conditions)
     render "browse"
   end
 
@@ -129,9 +128,13 @@ class PropertiesController < ApplicationController
     @search_filters = []
 
     filter_conditions
+    find_properties(order)
 
-    @properties = Property.paginate(page: params[:page], order: order, conditions: @conditions)
     render "browse"
+  end
+
+  def find_properties(order)
+    @properties = Property.where(@conditions).order(order).paginate(page: params[:page])
   end
 
   def new
