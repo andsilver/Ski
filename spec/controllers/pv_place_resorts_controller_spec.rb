@@ -27,7 +27,7 @@ describe PvPlaceResortsController do
 
       it 'redirects to the edit resort page' do
         post 'create', params
-        expect(response).to redirect_to(edit_resort_path(id: '1'))
+        expect(response).to redirect_to(edit_admin_resort_path(id: '1'))
       end
 
       context 'when the P&V place resort saves successfully' do
@@ -73,7 +73,7 @@ describe PvPlaceResortsController do
 
       it 'redirects to the edit resort page' do
         delete 'destroy', id: '1'
-        expect(response).to redirect_to(edit_resort_path(id: '2'))
+        expect(response).to redirect_to(edit_admin_resort_path(id: '2'))
       end
 
       it 'sets a flash[:notice] message' do          
