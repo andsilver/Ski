@@ -24,6 +24,22 @@ nav {
   text-decoration: none;
 }
 
+#main-menu a.ski-holidays:hover {
+  border-bottom-color: #009fe3;
+}
+
+#main-menu a.lakes-and-mountains:hover {
+  border-bottom-color: #008d36;
+}
+
+#main-menu a.summer-villas:hover {
+  border-bottom-color: #f9b233;
+}
+
+#main-menu a.city-breaks:hover {
+  border-bottom-color: #e6332a;
+}
+
 .count {
   color: #fff;
   background: #f00;

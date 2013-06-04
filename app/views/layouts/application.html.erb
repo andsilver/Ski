@@ -66,7 +66,7 @@
   <nav id="main-menu" role="navigation">
     <ul>
 <% HolidayType.all.each do |ht| -%>
-      <li><%= link_to ht.name, ht %></li>
+      <li><%= link_to ht.name, ht, class: ht.slug %></li>
 <% end -%>
     </ul>
   </nav>
