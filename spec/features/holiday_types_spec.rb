@@ -8,4 +8,15 @@ feature "Holiday types" do
     expect(page).to have_content('Ski Holidays')
     expect(page).to have_content('Lakes & Mountains')
   end
+
+  scenario "Holiday type page shows content" do
+    Page.create!(
+      path: '/holidays/ski-holidays',
+      title: 'Ski Holidays',
+      content: 'Ski holiday content'
+    )
+    visit root_path
+    click_link 'Ski Holidays'
+    expect(page).to have_content('Ski holiday content')
+  end
 end
