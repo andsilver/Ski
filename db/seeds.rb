@@ -8,6 +8,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+HolidayType.destroy_all
 Property.destroy_all
 PropertyBasePrice.destroy_all
 Resort.destroy_all
@@ -18,6 +19,13 @@ Role.delete_all
 Currency.destroy_all
 
 website = Website.create!
+
+HolidayType.create!([
+  { name: 'Ski Holidays',      slug: 'ski-holidays' },
+  { name: 'Lakes & Mountains', slug: 'lakes-and-mountains' },
+  { name: 'Summer Villas',     slug: 'summer-villas' },
+  { name: 'City Breaks',       slug: 'city-breaks' }
+])
 
 euros = Currency.create!(
   name: 'Euro',

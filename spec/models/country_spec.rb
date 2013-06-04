@@ -37,4 +37,12 @@ describe Country do
       end
     end
   end
+
+  describe '.page_names' do
+    it 'returns an array of HolidayType slugs' do
+      FactoryGirl.create(:holiday_type, slug: 'page-1')
+      FactoryGirl.create(:holiday_type, slug: 'page-2')
+      expect(Country.page_names).to eq ['page-1', 'page-2']
+    end
+  end
 end

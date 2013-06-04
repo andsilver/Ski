@@ -82,6 +82,6 @@ class Country < ActiveRecord::Base
   end
 
   def self.page_names
-    ['lakes-and-mountains']
+    HolidayType.all.map { |ht| ht.slug }
   end
 end
