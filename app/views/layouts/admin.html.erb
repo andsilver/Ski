@@ -111,9 +111,6 @@
                 <li<%= ' class="active"'.html_safe if current_page? snippets_path %>>
                   <%= link_to 'Snippets', snippets_path %> 
                 </li>
-                <li<%= ' class="active"'.html_safe if current_page? countries_path %>>
-                  <%= link_to 'Countries', countries_path %> 
-                </li>
                 <li<%= ' class="active"'.html_safe if current_page? buying_guides_path %>>
                   <%= link_to 'Buying Guides', buying_guides_path %>
                 </li>
@@ -122,6 +119,12 @@
                 </li>
                 <li<%= ' class="active"'.html_safe if current_page? airport_distances_path %>>
                   <%= link_to 'Airport Distances', airport_distances_path %>
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? admin_holiday_types_path %>>
+                  <%= link_to 'Holiday Types', admin_holiday_types_path %> 
+                </li>
+                <li<%= ' class="active"'.html_safe if current_page? countries_path %>>
+                  <%= link_to 'Countries', countries_path %> 
                 </li>
                 <li<%= ' class="active"'.html_safe if current_page? admin_regions_path %>>
                   <%= link_to 'Regions', admin_regions_path %>

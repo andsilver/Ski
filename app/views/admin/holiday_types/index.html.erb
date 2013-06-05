@@ -1,0 +1,22 @@
+<%= page_header 'Holiday Types' %>
+
+<p>
+  <%= link_to 'New', new_admin_holiday_type_path, class: 'btn' %>
+</p>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th colspan="1">Name</th>
+    <th colspan="2">Slug</th>
+  </tr>
+<% @holiday_types.each do |holiday_type| -%>
+  <tr>
+    <td><%= holiday_type.name %></td>
+    <td><%= holiday_type.slug %></td>
+    <td>
+      <%= edit_button([:admin, holiday_type]) %>
+      <%= delete_button([:admin, holiday_type]) %>
+    </td>
+  </tr>
+<% end -%>
+</table>
