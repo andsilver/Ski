@@ -38,12 +38,7 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li<%= ' class="active"'.html_safe if current_page? guide_path %>>
-                  <%= link_to 'Guide', guide_path, id: 'cms-guide' %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? export_path %>>
-                  <%= link_to 'Export Data', export_path %>
-                </li>
+                <%= admin_menu_links({ 'Guide' => guide_path, 'Export Data' => export_path }) %>
               </ul>
             </li>
             <li class="dropdown">
@@ -51,15 +46,12 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li<%= ' class="active"'.html_safe if current_page? management_information_path %>>
-                  <%= link_to 'Management Information', management_information_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? orders_path %>>
-                  <%= link_to 'Orders', orders_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? payments_path %>>
-                  <%= link_to 'Payments', payments_path %>
-                </li>
+                <%= admin_menu_links({
+                  'Management Information' => management_information_path,
+                  'Orders' => orders_path,
+                  'Payments' => payments_path
+                })
+                %>
               </ul>
             </li>
             <li class="dropdown">
@@ -67,27 +59,16 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li<%= ' class="active"'.html_safe if current_page? directory_price_path %>>
-                  <%= link_to 'Directory Price', directory_price_path %> 
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? banner_prices_path %>>
-                  <%= link_to 'Banner Prices', banner_prices_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? property_base_prices_path %>>
-                  <%= link_to 'Property Base Prices', property_base_prices_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? property_volume_discounts_path %>>
-                  <%= link_to 'Property Volume Discounts', property_volume_discounts_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? window_base_prices_path %>>
-                  <%= link_to 'Window Base Prices', window_base_prices_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? coupons_path %>>
-                  <%= link_to 'Promotion Codes', coupons_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? currencies_path %>>
-                  <%= link_to 'Currencies', currencies_path %>
-                </li>
+                <%= admin_menu_links({
+                  'Directory Price' => directory_price_path,
+                  'Banner Prices' => banner_prices_path,
+                  'Property Base Prices' => property_base_prices_path,
+                  'Property Volume Discounts' => property_volume_discounts_path,
+                  'Window Base Prices' => window_base_prices_path,
+                  'Promotion Codes' => coupons_path,
+                  'Currencies' => currencies_path
+                })
+                %>
               </ul>
             </li>
             <li class="dropdown">
@@ -95,12 +76,7 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li<%= ' class="active"'.html_safe if current_page? users_path %>>
-                  <%= link_to 'Users', users_path %> 
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? roles_path %>>
-                  <%= link_to 'Roles', roles_path %>
-                </li>
+                <%= admin_menu_links({ 'Users' => users_path, 'Roles' => roles_path })%>
               </ul>
             </li>
             <li class="dropdown">
@@ -108,57 +84,27 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li<%= ' class="active"'.html_safe if current_page? snippets_path %>>
-                  <%= link_to 'Snippets', snippets_path %> 
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? buying_guides_path %>>
-                  <%= link_to 'Buying Guides', buying_guides_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? airports_path %>>
-                  <%= link_to 'Airports', airports_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? airport_distances_path %>>
-                  <%= link_to 'Airport Distances', airport_distances_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? admin_holiday_types_path %>>
-                  <%= link_to 'Holiday Types', admin_holiday_types_path %> 
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? countries_path %>>
-                  <%= link_to 'Countries', countries_path %> 
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? admin_regions_path %>>
-                  <%= link_to 'Regions', admin_regions_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? admin_resorts_path %>>
-                  <%= link_to 'Resorts', admin_resorts_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? categories_path %>>
-                  <%= link_to 'Categories', categories_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? blog_posts_path %>>
-                  <%= link_to 'Blog', blog_posts_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? pages_path %>>
-                  <%= link_to 'Page Meta Data', pages_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? alt_attributes_path %>>
-                  <%= link_to 'Alt Attributes', alt_attributes_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? footers_path %>>
-                  <%= link_to 'Footers', footers_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? edit_website_path(@w) %>>
-                  <%= link_to 'Website Misc', edit_website_path(@w) %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? directory_adverts_path %>>
-                  <%= link_to 'Directory & Banner Adverts', directory_adverts_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? properties_path %>>
-                  <%= link_to 'Properties', properties_path %>
-                </li>
-                <li<%= ' class="active"'.html_safe if current_page? pv_accommodations_path %>>
-                  <%= link_to 'Pierre et Vacances', pv_accommodations_path %>
-                </li>
+                <%= admin_menu_links({
+                  'Snippets' => snippets_path,
+                  'Snippets' => snippets_path,
+                  'Buying Guides' => buying_guides_path,
+                  'Airports' => airports_path,
+                  'Airport Distances' => airport_distances_path,
+                  'Holiday Types' => admin_holiday_types_path,
+                  'Countries' => countries_path,
+                  'Regions' => admin_regions_path,
+                  'Resorts' => admin_resorts_path,
+                  'Categories' => categories_path,
+                  'Blog' => blog_posts_path,
+                  'Page Meta Data' => pages_path,
+                  'Alt Attributes' => alt_attributes_path,
+                  'Footers' => footers_path,
+                  'Website Misc' => edit_website_path(@w),
+                  'Directory & Banner Adverts' => directory_adverts_path,
+                  'Properties' => properties_path,
+                  'Pierre et Vacances' => pv_accommodations_path
+                })
+                %>
               </ul>
             </li>
             <li class="dropdown">
