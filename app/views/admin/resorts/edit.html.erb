@@ -79,7 +79,7 @@
   end
   %>
   <% Resort.page_names.each do |n| %>
-  <%= link_to "Edit #{n} page", edit_page_resort_path(@resort, page_name: n), class: 'btn' %>
+  <%= link_to "Edit #{n} page", edit_page_admin_resort_path(@resort, page_name: n), class: 'btn' %>
   <% end %>
 </div>
 

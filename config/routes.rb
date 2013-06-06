@@ -9,7 +9,9 @@ MySkiChalet::Application.routes.draw do
     resources :blog_posts,    except: [:show]
     resources :holiday_types, except: [:show]
     resources :regions,       except: [:show]
-    resources :resorts,       except: [:show]
+    resources :resorts,       except: [:show] do
+      get 'edit_page', on: :member
+    end
   end
 
   resources :buying_guides
@@ -38,7 +40,6 @@ MySkiChalet::Application.routes.draw do
       get 'gallery'
       get 'piste_map'
       get 'piste_map_full_size'
-      get 'edit_page'
     end
   end
 
