@@ -32,7 +32,7 @@
   <section>
   <div id="quick-search">
     <%= form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do %>
-      <span id="mcfs">mychaletfinder search</span>
+      <h3>Search</h3>
       <select id="country_id" name="country_id">
         <option value="">Choose Country</option>
 <% Country.with_visible_resorts.each do |c| -%>

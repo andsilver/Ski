@@ -53,7 +53,7 @@
   </script>
   <div id="quick-search">
     <%= form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do %>
-      <span id="mcfs">last minute search</span>
+      <h3>Last Minute Search</h3>
       <select id="country_id" name="country_id">
         <option value="">Choose Country</option>
 <% Country.with_visible_resorts.each do |c| -%>
