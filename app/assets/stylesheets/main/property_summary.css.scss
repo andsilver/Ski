@@ -1,44 +1,31 @@
 $shade: #8ed8f8;
 
-#property_summaries {
-  float: left;
-  width: 581px;
+.property-summary {
+  clear: both;
+
+  .price span {
+    font-size: 30px;
+    color: #0069AF;
+    margin-bottom: 10px;
+    line-height: 30px;
+  }
 }
 
-.property_summary {
-  background-image: url(/images/property-summary-bg.png);
-  background-position: right top;
-  background-repeat: repeat-y;
-
-  background-image: linear-gradient(left , rgb(255,255,255) 20%, $shade 100%);
-  background-image: -o-linear-gradient(left , rgb(255,255,255) 20%, $shade 100%);
-  background-image: -moz-linear-gradient(left , rgb(255,255,255) 20%, $shade 100%);
-  background-image: -webkit-linear-gradient(left , rgb(255,255,255) 20%, $shade 100%);
-  background-image: -ms-linear-gradient(left , rgb(255,255,255) 20%, $shade 100%);
-
-  background-image: -webkit-gradient(
-  	linear,
-  	left bottom,
-  	right bottom,
-  	color-stop(0.2, rgb(255,255,255)),
-  	color-stop(1, $shade)
-  );
-  border-bottom: 1px solid #68c8e7;
-  padding: 6px 8px 0 12px;
-}
-
-.property_summary h3 {
-  margin: 0;
+.property-summary h3 {
+  background-color: #0069af;
+  font-size: 14px;
   font-weight: normal;
-  font-size: 1.6em;
+  line-height: normal;
+  margin: 0 0 10px 0;
+  padding: 8px 10px;
 }
 
-.property_summary h3 a {
-  color: #00aeef;
+.property-summary h3 a {
+  color: #fff;
   text-decoration: none;
 }
 
-.property_summary p.strapline {
+.property-summary p.strapline {
   margin: 0.5em 0;
 }
 
@@ -46,17 +33,17 @@ $shade: #8ed8f8;
   font-size: 1.3em;
 }
 
-.property_summary .property_thumbnail,
-.property_summary .features,
-.property_summary .actions {
-  margin-top: 0;
+.property-thumbnail, .size-1of4 {
   float: left;
-  width: 120px;
-  padding: 0 8px 0 0;
+  margin: 0;
+  min-height: 149px;
+  width: 149px;
 }
 
-.property_summary .property_thumbnail {
-  width: 173px;
+.property-summary-description {
+  float: left;
+  margin-left: 8px;
+  width: 463px;
 }
 
 .property_summary .features {
@@ -112,4 +99,26 @@ $shade: #8ed8f8;
 
 .property_summary .user_logo {
   margin-right: 8px;
+}
+
+.btn-default {
+  border: none;
+  display: inline-block;
+  padding: 0px 15px;
+  margin: 0px 0px;
+  margin-bottom: 5px;
+  background-color: #0069af;
+  background-image: url('/images/arrowRightWhite.png');
+  background-position: right center;
+  background-repeat: no-repeat;
+  text-decoration: none!important;
+  color: #ededed!important;
+  font-size: 12px;
+  min-height: 30px;
+  min-width: 119px;
+  line-height: 30px;
+  font-family: inherit;
+  vertical-align: middle;
+  text-align: left;
+  cursor: pointer;
 }

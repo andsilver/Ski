@@ -1,4 +1,4 @@
-<div class="property_summary">
+<div class="property-summary">
   <%= render partial: 'properties/user_logo', locals: { property: p } %>
   <%
   if p.interhome_accommodation_id
@@ -9,35 +9,40 @@
     link = p
   end
   %>
-  <h3><%= link_to p.name, link, title: "Read more about #{p.name}" %></h3>
-  <p class="strapline"><%= p.strapline %></p>
-  <p class="property_thumbnail">
-    <% unless p.image.nil? %>
-    <%= link_to(image_tag(p.image.url(120)), link) %>
-    <% end %>
-  </p>
-  <% unless p.features.empty? %>
-  <ul class="features">
-    <% p.features.each do |feature| %>
-    <li><%= feature %></li>
-    <% end %>
-  </ul>
-  <% end %>
-  <div class="actions">
-    <p class="price"><%= p.for_sale? ? "Sale price" : "Weekly price from" %><br>
-      <span><%= p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
-      <% if p.for_sale? %>
-      <br>
-      Property <%= p.floor_area_metres_2 %> m<sup>2</sup><br>
-      Land <%= p.plot_size_metres_2 %> m<sup>2</sup>
-      <% end %>
-    </p>
-<% if p.interhome_accommodation_id -%>
-    <p class="contact_owner"><%= link_to 'More info', link, title: "More info about #{p.name}" %></p>
-<% else -%>
-    <p class="contact_owner"><%= link_to t('enquire'), contact_property_path(p), title: "Enquire about #{p.name}" %></p>
+  <p class="property-thumbnail">
+<% unless p.image.nil? -%>
+    <%= link_to(image_tag(p.image.url(149)), link) %>
 <% end -%>
-    <p class="email_a_friend"><%= link_to t('properties.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}" %></p>
+  </p>
+  <div class="property-summary-description">
+    <h3><%= link_to p.name, link, title: "Read more about #{p.name}" %></h3>
+    <p class="strapline">
+      <%= p.strapline %>
+    </p>
+<% unless p.features.empty? -%>
+    <ul class="features">
+<% p.features.each do |feature| -%>
+      <li><%= feature %></li>
+<% end -%>
+    </ul>
+<% end -%>
+
+    <div class="actions">
+      <p class="price"><%= p.for_sale? ? "Sale price" : "Weekly price from" %><br>
+        <span><%= p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
+        <% if p.for_sale? %>
+        <br>
+        Property <%= p.floor_area_metres_2 %> m<sup>2</sup><br>
+        Land <%= p.plot_size_metres_2 %> m<sup>2</sup>
+        <% end %>
+      </p>
+  <% if p.interhome_accommodation_id -%>
+      <p class="contact_owner btn-default"><%= link_to 'More info', link, title: "More info about #{p.name}" %></p>
+  <% else -%>
+      <p class="contact_owner"><%= link_to t('enquire'), contact_property_path(p), title: "Enquire about #{p.name}", class: 'btn-default' %></p>
+  <% end -%>
+      <p class="email_a_friend"><%= link_to t('properties.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}", class: 'btn-default' %></p>
+    </div>
   </div>
   <%= clear %>
   <% if fav = favourite_for_property(p) %>
