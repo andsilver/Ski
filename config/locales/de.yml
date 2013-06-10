@@ -35,6 +35,17 @@ de:
     remove_from_window: 'Remove From Window'
     renew: 'Renew'
   advertise: 'Advertise'
+  adverts:
+    basket:
+      empty: Your basket is empty.
+      total: Summe
+    my:
+      days_remaining: Days Remaining
+      expires_on: Expires On
+      number_free: Number Free
+      number_in_use: Number in Use
+      purchased_on: Purchased On
+      total: Summe
   adverts_controller:
     add_to_basket: In den Einkaufswagen
     basket:
@@ -44,22 +55,15 @@ de:
       followed_by_11_payments_of: 'Gefolgt von 11 in Höhe von'
       remove: 'Löschen'
       twelve_monthly_payments: 'Zwölf monatliche Zahlungen'
-    basket_empty: Your basket is empty.
     buy_advertising_windows: Buy Advertising Windows
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
     coupon_code_applied: 'You have the following promotion code applied'
-    days_remaining: Days Remaining
-    expires_on: Expires On
     no_coupon_code_applied: 'You have no promotion code applied.'
     notices:
       basket_emptied: Your basket has been emptied.
       basket_updated: Basket updated.
-    number_free: Number Free
-    number_in_use: Number in Use
     place_order: Place Order
-    purchased_on: Purchased On
     subtotal: Subtotal
-    total: Total
     vat: VAT
     windows: Windows
     zero_rated: 'Zero Rated'
@@ -133,7 +137,7 @@ de:
   date:
     formats:
       short: "%d %b %Y"
-  delete: 'Delete'
+  delete: 'Löschen'
   description: 'Description'
   details: 'Details'
   directory: Directory
@@ -144,7 +148,7 @@ de:
     saved: "Your directory advert was successfully updated."
   directory_and_banner_adverts: 'Directory and Banner Adverts'
   duration: Duration
-  edit: Edit
+  edit: Bearbeiten
   email: 'Email'
   email_a_friend_form_controller:
     confirmation: "We've sent your friend an email. Thanks for sharing My Chalet Finder."

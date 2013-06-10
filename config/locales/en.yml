@@ -35,6 +35,17 @@ en:
     remove_from_window: 'Remove From Window'
     renew: 'Renew'
   advertise: 'Advertise'
+  adverts:
+    basket:
+      empty: Your basket is empty.
+      total: Total
+    my:
+      days_remaining: Days Remaining
+      expires_on: Expires On
+      number_free: Number Free
+      number_in_use: Number in Use
+      purchased_on: Purchased On
+      total: Total
   adverts_controller:
     add_to_basket: Add to Basket
     basket:
@@ -44,22 +55,15 @@ en:
       followed_by_11_payments_of: 'Followed by 11 payments of'
       remove: 'Remove'
       twelve_monthly_payments: '12 monthly payments'
-    basket_empty: Your basket is empty.
     buy_advertising_windows: Buy Advertising Windows
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
     coupon_code_applied: 'You have the following promotion code applied'
-    days_remaining: Days Remaining
-    expires_on: Expires On
     no_coupon_code_applied: 'You have no promotion code applied.'
     notices:
       basket_emptied: Your basket has been emptied.
       basket_updated: Basket updated.
-    number_free: Number Free
-    number_in_use: Number in Use
     place_order: Place Order
-    purchased_on: Purchased On
     subtotal: Subtotal
-    total: Total
     vat: VAT
     windows: Windows
     zero_rated: 'Zero Rated'

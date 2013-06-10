@@ -27,7 +27,7 @@ describe 'adverts/basket' do
 
     it 'says basket is empty' do
       render
-      expect(rendered).to have_content(t('adverts_controller.basket_empty'))
+      expect(rendered).to have_content(t('adverts.basket.empty'))
     end
   end
 end
