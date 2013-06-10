@@ -181,6 +181,8 @@ MySkiChalet::Application.routes.draw do
     get 'update_exchange_rates', on: :collection
   end
 
+  resources :regions, only: [:show]
+
   resources :roles do
     get 'sales_pitch', on: :member
   end

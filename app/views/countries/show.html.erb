@@ -28,6 +28,15 @@ $(function() {
   <% end %>
 </div>
 </section>
+
+<section>
+  <h2>Regions</h2>
+  <ul>
+<% @country.regions.each do |region| %>
+    <li><%= link_to region, region %></li>
+<% end %>
+  </ul>
+</section>
 <% end %>
 
 <div id="content-with-side-banners">
