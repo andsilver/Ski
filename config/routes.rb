@@ -9,6 +9,7 @@ MySkiChalet::Application.routes.draw do
     resources :blog_posts,    except: [:show]
     resources :holiday_types, except: [:show]
     resources :regions,       except: [:show]
+    resources :resort_holiday_types, only: [:create, :destroy]
     resources :resorts,       except: [:show] do
       get 'edit_page', on: :member
     end

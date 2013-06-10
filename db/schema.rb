@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130604145634) do
+ActiveRecord::Schema.define(version: 20130610141844) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -581,6 +581,16 @@ ActiveRecord::Schema.define(version: 20130604145634) do
   end
 
   add_index "regions", ["country_id"], name: "index_regions_on_country_id", using: :btree
+
+  create_table "resort_holiday_types", force: true do |t|
+    t.integer  "resort_id"
+    t.integer  "holiday_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resort_holiday_types", ["holiday_type_id"], name: "index_resort_holiday_types_on_holiday_type_id", using: :btree
+  add_index "resort_holiday_types", ["resort_id"], name: "index_resort_holiday_types_on_resort_id", using: :btree
 
   create_table "resorts", force: true do |t|
     t.integer  "country_id",             default: 0,     null: false

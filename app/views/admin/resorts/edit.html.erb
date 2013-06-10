@@ -63,24 +63,56 @@
   </div>
 </div>
 
-<div class="well" id="additional-pages">
-  <h2>Additional Pages / Meta Information</h2>
-  <%
-  {
-    resort_path(@resort) + '' => 'Edit intro meta',
-    resort_path(@resort) + '/resort-guide' => 'Edit guide meta',
-    resort_path(@resort) + '/gallery' => 'Edit gallery meta',
-    resort_path(@resort) + '/piste_map' => 'Edit piste map meta',
-  }.each do |k,v|
-    if(p = Page.find_by_path(k)) %>
-    <%= link_to(v, edit_page_path(p), class: 'btn') %>
-    <%
-    end
-  end
-  %>
-  <% Resort.page_names.each do |n| %>
-  <%= link_to "Edit #{n} page", edit_page_admin_resort_path(@resort, page_name: n), class: 'btn' %>
-  <% end %>
+<div class="row">
+  <div class="span6">
+    <div class="well" id="additional-pages">
+      <h2>Additional Pages / Meta Information</h2>
+      <%
+      {
+        resort_path(@resort) + '' => 'Edit intro meta',
+        resort_path(@resort) + '/resort-guide' => 'Edit guide meta',
+        resort_path(@resort) + '/gallery' => 'Edit gallery meta',
+        resort_path(@resort) + '/piste_map' => 'Edit piste map meta',
+      }.each do |k,v|
+        if(p = Page.find_by_path(k)) %>
+        <%= link_to(v, edit_page_path(p), class: 'btn') %>
+        <%
+        end
+      end
+      %>
+      <% Resort.page_names.each do |n| %>
+      <%= link_to "Edit #{n} page", edit_page_admin_resort_path(@resort, page_name: n), class: 'btn' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="well" id="holiday-types">
+      <h2>Holiday Types</h2>
+      <%= form_for [:admin, ResortHolidayType.new(resort: @resort)] do |f| %>
+      <%= f.hidden_field :resort_id %>
+      <%= f.label :holiday_type_id %>
+      <%= select('resort_holiday_type', 'holiday_type_id',
+      HolidayType.order(:name).collect {|ht| [ ht, ht.id ] },
+      {prompt: 'Select Holiday Type'}) %>
+      <p>
+        <%= f.submit 'Link Holiday Type', class: 'btn' %>
+      </p>
+      <% end %>
+      <% unless @resort.resort_holiday_types.empty? %>
+      <table class="table table-bordered">
+        <tr>
+          <th colspan="2">Holiday type</th>
+        </tr>
+        <% @resort.resort_holiday_types.each do |rht| %>
+        <tr>
+          <td><%= rht.holiday_type %></td>
+          <td><%= delete_button([:admin, rht]) %></td>
+        </tr>
+        <% end %>
+      </table>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <%= render 'form' %>
