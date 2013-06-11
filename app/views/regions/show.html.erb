@@ -1,1 +1,12 @@
+<%= content_for :links_and_search do %>
+<section>
+  <h2>Resorts</h2>
+  <ul>
+<% @region.resorts.each do |resort| -%>
+    <li><%= link_to resort, resort %></li>
+<% end -%>
+  </ul>
+</section>
+<% end %>
+
 <%= raw @region.info %>
