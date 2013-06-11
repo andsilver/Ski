@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Regions' do
-  fixtures :regions, :websites
+  fixtures :regions, :resorts, :websites
 
   scenario 'Region page shows region info' do
     visit region_path(regions(:rhone_alpes))
