@@ -11,7 +11,7 @@ class Resort < ActiveRecord::Base
 
   has_many :interhome_place_resorts, dependent: :delete_all
   has_many :pv_place_resorts, dependent: :delete_all
-  has_many :resort_holiday_types, dependent: :delete_all
+  has_many :holiday_type_brochures, dependent: :delete_all, as: :brochurable
 
   scope :featured, -> { where('featured = 1').order('name') }
   scope :visible, -> { where('visible = 1').order('name') }

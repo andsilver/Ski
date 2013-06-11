@@ -32,7 +32,8 @@ feature 'Resorts admin' do
 
   scenario 'Unlink holiday type' do
     bow
-    ResortHolidayType.create!(resort: bow, holiday_type: holiday_types(:lakes_and_mountains))
+    brochure = bow.holiday_type_brochures.build(holiday_type: holiday_types(:lakes_and_mountains))
+    brochure.save
     sign_in_as_admin
     visit edit_admin_resort_path(bow)
     within '#holiday-types table' do
