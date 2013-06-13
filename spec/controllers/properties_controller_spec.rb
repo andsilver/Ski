@@ -45,16 +45,16 @@ describe PropertiesController do
     let(:properties) { mock(ActiveRecord::Relation).as_null_object }
 
     before do
-      Property.stub(:paginate).and_return(properties)
+      Property.stub_chain(:where, :order).and_return(properties)
     end
 
     it "finds paginated properties" do
-      Property.should_receive(:paginate)
+      properties.should_receive(:paginate)
       get :new_developments, resort_id: '1'
     end
 
     it "finds new developments" do
-      Property.should_receive(:paginate).with(hash_including(conditions: ["publicly_visible = 1 AND resort_id = ? AND new_development = 1", "1"]))
+      Property.should_receive(:where).with(["publicly_visible = 1 AND resort_id = ? AND new_development = 1", "1"]).and_return(properties)
       get :new_developments, resort_id: '1'
     end
 

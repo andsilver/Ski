@@ -133,10 +133,6 @@ class PropertiesController < ApplicationController
     render "browse"
   end
 
-  def find_properties(order)
-    @properties = Property.where(@conditions).order(order).paginate(page: params[:page])
-  end
-
   def new
     default_page_title t('properties.titles.new')
     @heading_a = render_to_string(partial: 'new_property_heading').html_safe
@@ -472,6 +468,10 @@ class PropertiesController < ApplicationController
   end
 
   protected
+
+  def find_properties(order)
+    @properties = Property.where(@conditions).order(order).paginate(page: params[:page])
+  end
 
   def show_shared
     rent_or_sale = @property.for_sale? ? t('for_sale') : t('for_rent')
