@@ -20,6 +20,11 @@ en:
             email:
               taken: ' address has already been taken by an existing customer, please choose another'
   address: 'Address'
+  admin:
+    regions:
+      index:
+        region: Region
+        regions: Regions
   advert_start_date: Advert Start Date
   advert_end_date: Advert End Date
   advert_status: 'Advert Status'

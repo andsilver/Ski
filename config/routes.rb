@@ -7,19 +7,20 @@ MySkiChalet::Application.routes.draw do
 
   namespace :admin do
     resources :blog_posts,    except: [:show]
+    resources :coupons,       except: [:show]
+    resources :footers,       except: [:show]
     resources :holiday_types, except: [:show]
     resources :regions,       except: [:show]
     resources :holiday_type_brochures, only: [:create, :destroy]
     resources :resorts,       except: [:show] do
       get 'edit_page', on: :member
     end
+    resources :snippets,      except: [:show]
   end
 
   resources :buying_guides
 
   resources :countries
-
-  resources :snippets
 
   get 'late-availability' => 'late_availability#index'
 
@@ -175,8 +176,6 @@ MySkiChalet::Application.routes.draw do
     post 'worldpay_callback', on: :collection
   end
 
-  resources :coupons
-
   resources :currencies do
     get 'update_exchange_rates', on: :collection
   end
@@ -194,8 +193,6 @@ MySkiChalet::Application.routes.draw do
   resources :pages
 
   resources :alt_attributes
-
-  resources :footers
 
   resources :blog_posts do
     get 'feed', on: :collection

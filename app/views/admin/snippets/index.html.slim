@@ -1,0 +1,19 @@
+= page_header 'Snippets'
+
+p Snippets are bits of text and HTML that are displayed around the website. They are identified by their name and are set up by your web developer so that you can change the content at any time.
+
+p= new_button([:admin, Snippet])
+
+- unless @snippets.empty?
+  table#snippets.table.table-bordered.table-striped
+    thead
+      tr
+        th Name
+        th Actions
+    tbody
+      - @snippets.each do |snippet|
+        tr
+          td= "#{snippet.name} (#{snippet.locale})"
+          td
+            =' edit_button([:admin, snippet])
+            = delete_button([:admin, snippet])

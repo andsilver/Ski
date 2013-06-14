@@ -286,6 +286,7 @@ DEPENDENCIES
   sdoc
   shoulda-matchers (~> 1.4.2)
   simplecov
+  slim
   spork-rails!
   spreadsheet (= 0.6.5.4)
   sqlite3

@@ -105,6 +105,13 @@ module ApplicationHelper
     title: "Edit #{object_title(object)}"
   end
 
+  def new_button(type)
+    link_to '<i class="icon-plus"></i> New'.html_safe,
+    new_polymorphic_path(type),
+    class: 'btn',
+    title: "New #{object_title(type)}"
+  end
+
   def view_button(object)
     link_to '<i class="icon-eye-open"></i> View'.html_safe,
     object,

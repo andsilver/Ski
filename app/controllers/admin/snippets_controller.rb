@@ -1,6 +1,6 @@
-class SnippetsController < ApplicationController
+class Admin::SnippetsController < ApplicationController
   before_filter :admin_required
-  before_filter :find_snippet, only: [:edit, :update, :destroy]
+  before_filter :set_snippet, only: [:edit, :update, :destroy]
   before_filter :no_browse_menu
 
   layout 'admin'
@@ -17,7 +17,7 @@ class SnippetsController < ApplicationController
     @snippet = Snippet.new(snippet_params)
 
     if @snippet.save
-      redirect_to snippets_path, notice: 'Saved.'
+      redirect_to admin_snippets_path, notice: 'Saved.'
     else
       render action: 'new'
     end
@@ -25,7 +25,7 @@ class SnippetsController < ApplicationController
 
   def update
     if @snippet.update_attributes(snippet_params)
-      redirect_to snippets_path, notice: 'Saved.'
+      redirect_to admin_snippets_path, notice: 'Saved.'
     else
       render action: 'edit'
     end
@@ -33,16 +33,16 @@ class SnippetsController < ApplicationController
 
   def destroy
     @snippet.destroy
-    redirect_to snippets_path, notice: 'Snippet deleted.'
+    redirect_to admin_snippets_path, notice: 'Snippet deleted.'
   end
 
   protected
 
-  def find_snippet
-    @snippet = Snippet.find_by_id(params[:id])
-  end
+    def set_snippet
+      @snippet = Snippet.find_by_id(params[:id])
+    end
 
-  def snippet_params
-    params.require(:snippet).permit(:locale, :name, :snippet)
-  end
+    def snippet_params
+      params.require(:snippet).permit(:locale, :name, :snippet)
+    end
 end

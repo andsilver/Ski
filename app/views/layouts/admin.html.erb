@@ -61,13 +61,13 @@
               </a>
               <ul class="dropdown-menu">
                 <%= admin_menu_links({
-                  'Directory Price' => directory_price_path,
                   'Banner Prices' => banner_prices_path,
+                  'Currencies' => currencies_path,
+                  'Directory Price' => directory_price_path,
+                  'Promotion Codes' => admin_coupons_path,
                   'Property Base Prices' => property_base_prices_path,
                   'Property Volume Discounts' => property_volume_discounts_path,
-                  'Window Base Prices' => window_base_prices_path,
-                  'Promotion Codes' => coupons_path,
-                  'Currencies' => currencies_path
+                  'Window Base Prices' => window_base_prices_path
                 })
                 %>
               </ul>
@@ -86,8 +86,7 @@
               </a>
               <ul class="dropdown-menu">
                 <%= admin_menu_links({
-                  'Snippets' => snippets_path,
-                  'Snippets' => snippets_path,
+                  'Snippets' => admin_snippets_path,
                   'Buying Guides' => buying_guides_path,
                   'Airports' => airports_path,
                   'Airport Distances' => airport_distances_path,
@@ -99,7 +98,7 @@
                   'Blog' => blog_posts_path,
                   'Page Meta Data' => pages_path,
                   'Alt Attributes' => alt_attributes_path,
-                  'Footers' => footers_path,
+                  'Footers' => admin_footers_path,
                   'Website Misc' => edit_website_path(@w),
                   'Directory & Banner Adverts' => directory_adverts_path,
                   'Properties' => properties_path,

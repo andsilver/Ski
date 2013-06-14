@@ -1,7 +1,7 @@
-class CouponsController < ApplicationController
+class Admin::CouponsController < ApplicationController
   before_filter :admin_required
   before_filter :no_browse_menu
-  before_filter :find_coupon, only: [:edit, :update]
+  before_filter :set_coupon, only: [:edit, :update]
 
   layout 'admin'
 
@@ -17,7 +17,7 @@ class CouponsController < ApplicationController
     @coupon = Coupon.new(coupon_params)
 
     if @coupon.save
-      redirect_to(coupons_path, notice: t('notices.created'))
+      redirect_to(admin_coupons_path, notice: t('notices.created'))
     else
       render 'new'
     end
@@ -28,7 +28,7 @@ class CouponsController < ApplicationController
 
   def update
     if @coupon.update_attributes(coupon_params)
-      redirect_to(coupons_path, notice: t('notices.saved'))
+      redirect_to(admin_coupons_path, notice: t('notices.saved'))
     else
       render 'edit'
     end
@@ -36,11 +36,11 @@ class CouponsController < ApplicationController
 
   protected
 
-  def find_coupon
-    @coupon = Coupon.find(params[:id])
-  end
+    def set_coupon
+      @coupon = Coupon.find(params[:id])
+    end
 
-  def coupon_params
-    params.require(:coupon).permit(:code, :expires_on, :number_of_adverts, :percentage_off)
-  end
+    def coupon_params
+      params.require(:coupon).permit(:code, :expires_on, :number_of_adverts, :percentage_off)
+    end
 end
