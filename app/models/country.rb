@@ -11,6 +11,8 @@ class Country < ActiveRecord::Base
   has_many :users, foreign_key: 'billing_country_id'
   has_one :buying_guide, dependent: :delete
 
+  has_many :holiday_type_brochures, dependent: :delete_all, as: :brochurable
+
   scope :with_resorts, -> { where('id IN (SELECT DISTINCT(country_id) FROM resorts)').order('name') }
   scope :with_visible_resorts, -> { where('id IN (SELECT DISTINCT(country_id) FROM resorts WHERE visible=1)').order('name') }
   scope :popular_billing_countries, -> { order('popular_billing_country DESC, name ASC') }

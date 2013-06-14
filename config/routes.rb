@@ -7,6 +7,7 @@ MySkiChalet::Application.routes.draw do
 
   namespace :admin do
     resources :blog_posts,    except: [:show]
+    resources :countries,     except: [:show]
     resources :coupons,       except: [:show]
     resources :footers,       except: [:show]
     resources :holiday_types, except: [:show]
@@ -20,7 +21,7 @@ MySkiChalet::Application.routes.draw do
 
   resources :buying_guides
 
-  resources :countries
+  resources :countries, only: [:show]
 
   get 'late-availability' => 'late_availability#index'
 

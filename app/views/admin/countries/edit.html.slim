@@ -1,0 +1,22 @@
+= page_header 'Edit Country'
+
+#holiday-types.well
+  h2 Holiday Types
+  = form_for [:admin, HolidayTypeBrochure.new] do |f|
+    = hidden_field_tag :country_id, @country.id
+
+    = f.label :holiday_type_id
+    = select('holiday_type_brochure', 'holiday_type_id', HolidayType.order(:name).collect {|ht| [ ht, ht.id ] }, {prompt: 'Select Holiday Type'})
+
+    p= f.submit 'Link Holiday Type', class: 'btn'
+
+  - unless @country.holiday_type_brochures.empty?
+    table.table.table-bordered
+      tr
+        th colspan="2" Holiday type
+      - @country.holiday_type_brochures.each do |htb|
+        tr
+          td= htb.holiday_type
+          td= delete_button([:admin, htb])
+
+= render 'form'
