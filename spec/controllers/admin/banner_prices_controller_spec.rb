@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BannerPricesController do
+describe Admin::BannerPricesController do
   let(:website) { mock_model(Website).as_null_object }
 
   before do
@@ -65,7 +65,7 @@ describe BannerPricesController do
 
         it 'redirects to the banner prices page' do
           post 'create', params
-          expect(response).to redirect_to(banner_prices_path)
+          expect(response).to redirect_to(admin_banner_prices_path)
         end
       end
 
@@ -120,7 +120,7 @@ describe BannerPricesController do
 
         it 'redirects to the banner prices page' do
           put 'update', params
-          expect(response).to redirect_to(banner_prices_path)
+          expect(response).to redirect_to(admin_banner_prices_path)
         end
 
         it 'sets a flash[:notice] message' do          
@@ -165,7 +165,7 @@ describe BannerPricesController do
 
       it 'redirects to the banner prices page' do
         delete 'destroy', id: '1'
-        expect(response).to redirect_to(banner_prices_path)
+        expect(response).to redirect_to(admin_banner_prices_path)
       end
 
       it 'sets a flash[:notice] message' do          

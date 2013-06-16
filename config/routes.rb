@@ -6,6 +6,7 @@ MySkiChalet::Application.routes.draw do
   # root 'welcome#index'
 
   namespace :admin do
+    resources :banner_prices, except: [:show]
     resources :blog_posts,    except: [:show]
     resources :countries,     except: [:show]
     resources :coupons,       except: [:show]
@@ -125,7 +126,6 @@ MySkiChalet::Application.routes.draw do
   get 'accommodation/:permalink' => 'properties#show_interhome', as: :interhome_property
   get 'holiday-rentals/:permalink' => 'properties#show_pv', as: :pv_property
 
-  resources :banner_prices
   resources :property_base_prices
   resources :property_volume_discounts
   resources :window_base_prices
