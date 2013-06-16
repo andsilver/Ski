@@ -6,18 +6,19 @@ MySkiChalet::Application.routes.draw do
   # root 'welcome#index'
 
   namespace :admin do
-    resources :banner_prices, except: [:show]
-    resources :blog_posts,    except: [:show]
-    resources :countries,     except: [:show]
-    resources :coupons,       except: [:show]
-    resources :footers,       except: [:show]
-    resources :holiday_types, except: [:show]
-    resources :regions,       except: [:show]
+    resources :airport_distances, except: [:show]
+    resources :banner_prices,     except: [:show]
+    resources :blog_posts,        except: [:show]
+    resources :countries,         except: [:show]
+    resources :coupons,           except: [:show]
+    resources :footers,           except: [:show]
+    resources :holiday_types,     except: [:show]
+    resources :regions,           except: [:show]
     resources :holiday_type_brochures, only: [:create, :destroy]
-    resources :resorts,       except: [:show] do
+    resources :resorts,           except: [:show] do
       get 'edit_page', on: :member
     end
-    resources :snippets,      except: [:show]
+    resources :snippets,          except: [:show]
   end
 
   resources :buying_guides
@@ -48,7 +49,6 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :airports
-  resources :airport_distances
 
   resources :airport_transfers do
     collection do

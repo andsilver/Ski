@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AirportDistancesController do
+describe Admin::AirportDistancesController do
   let(:website) { mock_model(Website).as_null_object }
   let(:current_user) { mock_model(User).as_null_object }
   let(:airport_distance) { mock_model(AirportDistance).as_null_object }
