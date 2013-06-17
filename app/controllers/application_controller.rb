@@ -96,7 +96,6 @@ class ApplicationController < ActionController::Base
   end
 
   def page_defaults
-    @browse_menu = true
     @footer_box = ''
     page = Page.find_by_path(request.path)
     if page
@@ -113,10 +112,6 @@ class ApplicationController < ActionController::Base
   def use_default_footer
     footer = Footer.find_by_name('Default')
     @footer_box = footer.content unless footer.nil?
-  end
-
-  def no_browse_menu
-    @browse_menu = false
   end
 
   def user_required

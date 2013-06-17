@@ -1,6 +1,5 @@
 class ResortsController < ApplicationController
   before_action :set_resort, only: [:directory, :feature, :gallery, :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide, :show, :summer_holidays]
-  before_action :no_browse_menu, except: [:show, :feature, :directory, :how_to_get_there, :resort_guide, :summer_holidays]
   before_action :find_featured_properties, only: [:show, :summer_holidays]
 
   def show

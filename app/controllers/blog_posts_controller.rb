@@ -1,6 +1,5 @@
 class BlogPostsController < ApplicationController
   before_action :set_blog_post, only: [:show]
-  before_action :no_browse_menu
 
   def blog
     @heading_a = t('blog_posts_controller.blog_heading')

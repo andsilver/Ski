@@ -1,6 +1,5 @@
 class PropertyVolumeDiscountsController < ApplicationController
   before_filter :admin_required
-  before_filter :no_browse_menu
   before_filter :find_property_volume_discount, only: [:edit, :update, :destroy]
 
   layout 'admin'

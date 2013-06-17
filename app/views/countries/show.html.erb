@@ -38,6 +38,15 @@ $(function() {
 <% end %>
   </ul>
 </section>
+
+<section>
+  <h2>Resorts</h2>
+  <ul>
+<% @country.visible_resorts.each do |resort| %>
+    <li><%= link_to_with_count resort, resort, resort.property_count %></li>
+<% end %>
+  </ul>
+</section>
 <% end %>
 
 <div id="content-with-side-banners">

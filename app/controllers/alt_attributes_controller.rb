@@ -1,7 +1,6 @@
 class AltAttributesController < ApplicationController
   before_filter :admin_required
   before_filter :find_alt_attribute, only: [:edit, :update, :show, :destroy]
-  before_filter :no_browse_menu
 
   layout 'admin'
 

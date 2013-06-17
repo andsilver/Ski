@@ -1,8 +1,6 @@
 class PropertiesController < ApplicationController
   include SpamProtection
 
-  before_filter :no_browse_menu, except: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-
   before_filter :user_required, except: [
     :index, :quick_search,
     :browse_for_rent, :browse_for_sale,

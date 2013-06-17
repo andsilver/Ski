@@ -1,8 +1,6 @@
 # coding: utf-8
 
 class ImagesController < ApplicationController
-  before_filter :no_browse_menu
-
   before_filter :find_object, only: [:new, :edit, :create]
 
   def index

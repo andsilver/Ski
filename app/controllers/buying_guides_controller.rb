@@ -3,7 +3,6 @@ class BuyingGuidesController < ApplicationController
   layout 'admin', except: [:show]
 
   before_filter :find_buying_guide, only: [:edit, :update, :show, :destroy]
-  before_filter :no_browse_menu
 
   def index
     @buying_guides = BuyingGuide.all

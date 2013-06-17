@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :no_browse_menu
-
   before_filter :user_required, only: [:first_advert, :show, :edit, :update]
   before_filter :find_user, only: [:forgot_password_new, :forgot_password_change, :destroy]
   before_filter :find_current_user_or_selected_user, only: [:edit, :update]

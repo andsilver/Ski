@@ -3,7 +3,6 @@ class PagesController < ApplicationController
   layout 'admin', except: [:show]
 
   before_filter :find_page, only: [:edit, :update, :destroy]
-  before_filter :no_browse_menu
 
   def index
     @pages = Page.order('path')

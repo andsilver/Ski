@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  before_filter :no_browse_menu
   before_filter :admin_required, only: [:switch_user]
 
   def new

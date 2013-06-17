@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_filter :user_required
-  before_filter :no_browse_menu
   before_filter :require_order_from_session, only: [:select_payment_method, :latest_receipt]
   before_filter :find_order, only: [:receipt, :invoice]
 

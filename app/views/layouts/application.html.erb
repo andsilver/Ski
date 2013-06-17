@@ -40,7 +40,7 @@
   </script>
 <% end -%>
 </head>
-<body class="<%= 'browse_menu ' if @browse_menu %><%= @body_classes %>">
+<body class="<%= @body_classes %>">
 <div id="wrapper">
 <header role="banner">
   <nav id="session">
@@ -72,41 +72,6 @@
   </nav>
 </header>
 <div id="column_headings">
-
-<% if @browse_menu
-  @country = @resort.country unless @resort.nil?
-%>
-<nav>
-  <div class="btn-group">
-    <button class="btn"<%= raw " onclick=\"window.location = '#{country_path(@country)}'\"" if @country %>><%= @country ? @country.name : 'Choose Country' %></button>
-    <button class="btn dropdown-toggle" data-toggle="dropdown">
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <% Country.with_visible_resorts.each do |c| %>
-      <li><a href="<%= country_path(c) %>"><%= c.name %> (<%= c.property_count %>)</a></li>
-      <% end %>
-    </ul>
-  </div>
-<% if @country %>
-  <div class="btn-group">
-    <button class="btn"<%= raw " onclick=\"window.location = '#{resort_path(@resort)}'\"" if @resort %>><%= @resort ? @resort.name : 'Choose Resort' %></button>
-    <button class="btn dropdown-toggle" data-toggle="dropdown">
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <% @country.visible_resorts.each do |r| %>
-      <li><a href="<%= resort_path(r) %>"><%= r.name %> (<%= r.property_count %>)</a></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-</nav>
-<% end %>
-
-
-
-
   <h1><%= @heading_a %></h1>
 </div>
 

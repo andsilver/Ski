@@ -3,7 +3,6 @@ class RolesController < ApplicationController
   layout 'admin', except: [:sales_pitch]
 
   before_filter :find_role, only: [:edit, :update]
-  before_filter :no_browse_menu
 
   def index
     @roles = Role.all

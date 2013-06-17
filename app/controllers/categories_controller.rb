@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-  before_filter :no_browse_menu, except: [:show]
   before_filter :admin_required, except: [:show]
   layout 'admin', except: [:show]
 

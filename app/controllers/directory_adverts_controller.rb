@@ -5,7 +5,6 @@ class DirectoryAdvertsController < ApplicationController
     [160, 200]
   ]
 
-  before_filter :no_browse_menu
   before_filter :user_required, except: [:show, :click]
   before_filter :admin_required, only: [:index]
   layout 'admin', only: [:index]

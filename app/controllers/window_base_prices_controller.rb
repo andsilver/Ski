@@ -1,6 +1,5 @@
 class WindowBasePricesController < ApplicationController
   before_filter :admin_required
-  before_filter :no_browse_menu
   before_filter :find_window_base_price, only: [:edit, :update, :destroy]
 
   layout 'admin'

@@ -3,7 +3,6 @@ class Admin::BlogPostsController < ApplicationController
   layout 'admin'
 
   before_action :set_blog_post, only: [:edit, :update]
-  before_action :no_browse_menu
 
   def index
     @blog_posts = BlogPost.order('created_at DESC')

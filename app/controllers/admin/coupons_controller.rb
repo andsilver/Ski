@@ -1,6 +1,5 @@
 class Admin::CouponsController < ApplicationController
   before_filter :admin_required
-  before_filter :no_browse_menu
   before_filter :set_coupon, only: [:edit, :update]
 
   layout 'admin'
