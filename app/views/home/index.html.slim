@@ -1,0 +1,8 @@
+= content_for :links_and_search do
+  = render 'quick_search'
+
+  section
+    h2 Countries
+    ul
+      - Country.with_visible_resorts.each do |country|
+        li= link_to country, country
