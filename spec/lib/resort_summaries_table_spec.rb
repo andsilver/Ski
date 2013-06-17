@@ -6,8 +6,8 @@ describe ResortSummariesTable do
   end
 
   let(:country) { FactoryGirl.create(:country) }
-  let(:resort_x) { Resort.create!(name: 'X', altitude_m: 1600, top_lift_m: 2100, ski_area_km: 1200) }
-  let(:resort_y) { Resort.create!(name: 'Y') }
+  let(:resort_x) { Resort.create!(name: 'X', altitude_m: 1600, top_lift_m: 2100, ski_area_km: 1200, visible: true) }
+  let(:resort_y) { Resort.create!(name: 'Y', visible: true) }
 
   describe '#headers' do
     it 'returns an array of headers' do
@@ -20,6 +20,12 @@ describe ResortSummariesTable do
       country.resorts << resort_x
       country.resorts << resort_y
       expect(rst(country).rows.count).to eq 2
+    end
+
+    it 'excludes invisible resorts' do
+      country.resorts << resort_x
+      country.resorts << Resort.create!(name: 'Z', visible: false)
+      expect(rst(country).rows.count).to eq 1
     end
 
     it 'returns resort in cell 0' do
