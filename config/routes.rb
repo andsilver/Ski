@@ -86,6 +86,8 @@ MySkiChalet::Application.routes.draw do
 
   resources :holiday_types, only: [:show], path: 'holidays'
 
+  get ':place_type/:place_id/holidays/:holiday_type_slug' => 'holiday_type_brochures#show'
+
   resources :adverts do
     collection do
       post 'update_basket_contents'
