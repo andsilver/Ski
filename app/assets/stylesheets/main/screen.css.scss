@@ -261,25 +261,6 @@ td.numeric, th.numeric {
   text-align: right;
 }
 
-table.grid {
-  background: #fff;
-  border-collapse: collapse;
-  border: 1px solid #ccc;
-  clear: left;
-}
-
-.grid td, .grid th {
-  padding: 0.4em 0.8em;
-}
-
-.grid td {
-  border-top: 1px solid #ccc;
-}
-
-.grid tr:hover {
-  background: yellow;
-}
-
 input[type=text] .LV_invalid_field,
 input[type=email] .LV_invalid_field {
   border: 1px solid #f00;
