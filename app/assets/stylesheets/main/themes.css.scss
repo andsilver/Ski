@@ -1,0 +1,27 @@
+#main-menu a.ski-holidays:hover {
+  border-bottom-color: #009fe3;
+}
+
+#main-menu a.lakes-and-mountains:hover {
+  border-bottom-color: #008d36;
+}
+
+#main-menu a.summer-villas:hover {
+  border-bottom-color: #f9b233;
+}
+
+#main-menu a.city-breaks:hover {
+  border-bottom-color: #e6332a;
+}
+
+.ski-holidays #col-left section,
+.ski-holidays .header-title,
+.ski-holidays h2,
+.ski-holidays .btnDefault,
+.ski-holidays table tr th {
+  background-color: #009fe3;
+}
+
+.ski-holidays .theme-color, .ski-holidays a, .ski-holidays .price {
+  color: #009fe3;
+}

@@ -1,0 +1,65 @@
+.header-image {
+  position: relative;
+}
+
+.header-text {
+  font-size: 18px;
+  line-height: 18px;
+  color: #ffffff;
+  padding: 10px;
+  margin: 0px;
+}
+
+.header-title, h2 {
+  display: block;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #0069af;
+  z-index: 10;
+}
+
+.header-title {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+}
+
+.layout-element:first-child {
+  margin-left: 0 !important;
+}
+
+.layout-element {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  position: relative;
+  min-height: 10px;
+}
+
+.size-1of1 .header-text {
+  position: absolute;
+  bottom: 5px;
+}
+
+p, label {
+  font-size: 13px;
+  line-height: 15px;
+  margin: 0 0 5px 0;
+}
+
+.size-1of1 .header-text-cont {
+  top: 5px;
+  width: 40%;
+  height: 260px;
+}
+
+.header-text-cont {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: block;
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  z-index: 8;
+}

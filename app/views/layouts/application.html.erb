@@ -160,13 +160,15 @@
   </section>
   <% end %>
 </div>
-<div id="content" role="main">
+<div id="content" role="main" class="<%= 'wide' unless content_for? :advertising %>">
   <%= flash_notice %>
   <%= yield %>
 </div>
+<% if content_for? :advertising %>
 <div id="advertising">
   <%= yield :advertising %>
 </div>
+<% end %>
 
   <footer role="contentinfo">
     <%= render 'shared/footer_box' %>
