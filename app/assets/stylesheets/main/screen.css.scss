@@ -93,6 +93,10 @@ a img {
       display: block;
       padding: 5px;
       text-decoration: none;
+
+      span {
+        float: right;
+      }
     }
 
     a:hover {

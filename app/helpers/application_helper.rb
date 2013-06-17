@@ -137,6 +137,12 @@ module ApplicationHelper
     )
   end
 
+  def link_to_with_count(text, object, count)
+    link_to(raw(
+      h(text.to_s) + content_tag(:span, "(#{count})")
+    ), object)
+  end
+
   protected
 
     def object_title(object)

@@ -5,7 +5,7 @@
     h2 Countries
     ul
       - Country.with_visible_resorts.each do |country|
-        li= link_to country, country
+        li= link_to_with_count(country, country, country.property_count)
 
 .ski-holidays.size-1of1.layout-element
   .header-image
