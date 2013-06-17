@@ -1,0 +1,77 @@
+de:
+  admin:
+    airport_distances:
+      edit:
+        title: Edit Airport Distance
+      index:
+        title: Airport Distances
+      new:
+        title: New Airport Distance
+    banner_prices:
+      edit:
+        title: Edit Banner Price
+      index:
+        title: Banner Prices
+      new:
+        title: New Banner Price
+    blog_posts:
+      edit:
+        title: Edit Post
+      index:
+        title: Blog
+      new:
+        title: New Post
+    countries:
+      edit:
+        title: Edit Country
+      index:
+        title: Countries
+      new:
+        title: New Country
+    coupons:
+      edit:
+        title: Edit Promotion Code
+      index:
+        title: Promotion Codes
+      new:
+        title: New Promotion Code
+    footers:
+      edit:
+        title: Edit Footer
+      index:
+        title: Footers
+      new:
+        title: New Footer
+    holiday_types:
+      edit:
+        title: Edit Holiday Type
+      index:
+        title: Holiday Types
+      new:
+        title: New Holiday Type
+    regions:
+      edit:
+        title: Edit Region
+      index:
+        region: Region
+        title: Regions
+      new:
+        title: New Region
+    resorts:
+      edit:
+        title: Edit Resort
+      index:
+        title: Resorts
+      new:
+        title: New Resort
+    snippets:
+      edit:
+        title: Edit Snippet
+      index:
+        help_text: Snippets are bits of text and HTML that are displayed around the website. They are identified by their name and are set up by your web developer so that you can change the content at any time.
+        title: Snippets
+      new:
+        title: New Snippet
+    users:
+      index:
+        title: Users
