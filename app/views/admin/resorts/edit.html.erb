@@ -86,32 +86,7 @@
     </div>
   </div>
   <div class="span6">
-    <div class="well" id="holiday-types">
-      <h2>Holiday Types</h2>
-      <%= form_for [:admin, HolidayTypeBrochure.new] do |f| %>
-      <%= hidden_field_tag :resort_id, @resort.id %>
-      <%= f.label :holiday_type_id %>
-      <%= select('holiday_type_brochure', 'holiday_type_id',
-      HolidayType.order(:name).collect {|ht| [ ht, ht.id ] },
-      {prompt: 'Select Holiday Type'}) %>
-      <p>
-        <%= f.submit 'Link Holiday Type', class: 'btn' %>
-      </p>
-      <% end %>
-      <% unless @resort.holiday_type_brochures.empty? %>
-      <table class="table table-bordered">
-        <tr>
-          <th colspan="2">Holiday type</th>
-        </tr>
-        <% @resort.holiday_type_brochures.each do |htb| %>
-        <tr>
-          <td><%= htb.holiday_type %></td>
-          <td><%= delete_button([:admin, htb]) %></td>
-        </tr>
-        <% end %>
-      </table>
-      <% end %>
-    </div>
+    <%= render partial: 'admin/holiday_types/link', locals: { object: @resort } %>
   </div>
 </div>
 

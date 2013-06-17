@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Regions admin' do
-  fixtures :countries, :regions, :roles, :users, :websites
+  fixtures :countries, :holiday_types, :regions, :roles, :users, :websites
 
   scenario 'List regions' do
     FactoryGirl.create(:region, name: 'Alsace')
@@ -40,5 +40,25 @@ feature 'Regions admin' do
     click_link 'Delete Alsace'
     expect(page).to have_content I18n.t('notices.deleted')
     expect(page).not_to have_content 'Alsace'
+  end
+
+  scenario 'Link holiday type' do
+    sign_in_as_admin
+    visit edit_admin_region_path(regions(:rhone_alpes))
+    select 'Lakes & Mountains', from: 'Holiday type'
+    click_button 'Link Holiday Type'
+    expect(page.find('#holiday-types table')).to have_content('Lakes & Mountains')
+  end
+
+  scenario 'Unlink holiday type' do
+    brochure = regions(:rhone_alpes).holiday_type_brochures.build(holiday_type: holiday_types(:lakes_and_mountains))
+    brochure.save
+    sign_in_as_admin
+    visit edit_admin_region_path(regions(:rhone_alpes))
+    within '#holiday-types table' do
+      click_link 'Delete'
+    end
+    expect(page).to have_content 'Deleted'
+    expect(page).not_to have_css('#holiday-types table')
   end
 end
