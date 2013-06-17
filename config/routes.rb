@@ -19,6 +19,7 @@ MySkiChalet::Application.routes.draw do
       get 'edit_page', on: :member
     end
     resources :snippets,          except: [:show]
+    resources :users, only: [:index, :destroy]
   end
 
   resources :buying_guides
@@ -73,7 +74,7 @@ MySkiChalet::Application.routes.draw do
   get "advertise" => "users#show"
   get "first_advert" => "users#first_advert"
   get "my/details" => "users#edit", as: :my_details
-  resources :users do
+  resources :users, except: [:index, :destroy] do
     collection do
       get 'forgot_password'
       post 'forgot_password_change'
