@@ -4,6 +4,10 @@ class HolidayType < ActiveRecord::Base
 
   has_many :holiday_type_brochures, dependent: :delete_all
 
+  def country_brochures
+    holiday_type_brochures.where(brochurable_type: 'Country')
+  end
+
   def to_param
     slug
   end
