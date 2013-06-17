@@ -1,4 +1,5 @@
-= page_header t('coupons')
+= content_for :title, t('.title')
+= page_header t('.title')
 p= new_button([:admin, Coupon])
 
 - if @coupons.empty?

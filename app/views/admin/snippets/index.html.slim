@@ -1,6 +1,7 @@
-= page_header 'Snippets'
+= content_for :title, t('.title')
+= page_header t('.title')
 
-p Snippets are bits of text and HTML that are displayed around the website. They are identified by their name and are set up by your web developer so that you can change the content at any time.
+p= t('.help_text')
 
 p= new_button([:admin, Snippet])
 

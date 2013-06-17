@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title><%= @page_title ? @page_title + " - My Chalet Finder" : "My Chalet Finder" %></title>
+  <title>
+    <% if content_for? :title %>
+      <%= yield :title %>
+      -
+    <% end %>
+    My Chalet Finder Admin  
+  </title>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
@@ -95,7 +101,7 @@
                   'Regions' => admin_regions_path,
                   'Resorts' => admin_resorts_path,
                   'Categories' => categories_path,
-                  'Blog' => blog_posts_path,
+                  'Blog' => admin_blog_posts_path,
                   'Page Meta Data' => pages_path,
                   'Alt Attributes' => alt_attributes_path,
                   'Footers' => admin_footers_path,

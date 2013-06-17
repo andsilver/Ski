@@ -1,7 +1,5 @@
-.page-header
-  h1
-    =' link_to 'CMS', cms_path
-    | &rarr; Airport Distances
+= content_for :title, t('.title')
+= page_header t('.title')
 
 p= new_button [:admin, AirportDistance]
 
