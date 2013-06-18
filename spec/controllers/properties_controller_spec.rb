@@ -50,16 +50,16 @@ describe PropertiesController do
 
     it "finds paginated properties" do
       properties.should_receive(:paginate)
-      get :new_developments, resort_id: '1'
+      get :new_developments, resort_slug: 'chamonix'
     end
 
     it "finds new developments" do
       Property.should_receive(:where).with(["publicly_visible = 1 AND resort_id = ? AND new_development = 1", "1"]).and_return(properties)
-      get :new_developments, resort_id: '1'
+      get :new_developments, resort_slug: 'chamonix'
     end
 
     it "assigns @properties" do
-      get :new_developments, resort_id: '1'
+      get :new_developments, resort_slug: 'chamonix'
       expect(assigns[:properties]).to equal(properties)
     end
   end

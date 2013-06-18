@@ -6,8 +6,10 @@ class Region < ActiveRecord::Base
   validates :country_id, presence: true
   validates :name, length: { maximum: 100 }, presence: true, uniqueness: { scope: :country }
 
+  validates :slug, presence: true, uniqueness: true
+
   def to_param
-    "#{id}-#{name.parameterize}"
+    slug
   end
 
   def to_s

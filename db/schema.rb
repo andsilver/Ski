@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130611171606) do
+ActiveRecord::Schema.define(version: 20130618171217) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -133,7 +133,10 @@ ActiveRecord::Schema.define(version: 20130611171606) do
     t.integer  "image_id"
     t.text     "banner_advert_html"
     t.integer  "property_count",          default: 0,     null: false
+    t.string   "slug",                                    null: false
   end
+
+  add_index "countries", ["slug"], name: "index_countries_on_slug", using: :btree
 
   create_table "coupons", force: true do |t|
     t.string   "code"
@@ -589,9 +592,11 @@ ActiveRecord::Schema.define(version: 20130611171606) do
     t.text     "info"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug",       null: false
   end
 
   add_index "regions", ["country_id"], name: "index_regions_on_country_id", using: :btree
+  add_index "regions", ["slug"], name: "index_regions_on_slug", using: :btree
 
   create_table "resorts", force: true do |t|
     t.integer  "country_id",             default: 0,     null: false
@@ -649,11 +654,13 @@ ActiveRecord::Schema.define(version: 20130611171606) do
     t.boolean  "summer_only",            default: false, null: false
     t.integer  "directory_advert_count", default: 0,     null: false
     t.integer  "region_id"
+    t.string   "slug",                                   null: false
   end
 
   add_index "resorts", ["country_id"], name: "index_resorts_on_country_id", using: :btree
   add_index "resorts", ["featured"], name: "index_resorts_on_featured", using: :btree
   add_index "resorts", ["region_id"], name: "index_resorts_on_region_id", using: :btree
+  add_index "resorts", ["slug"], name: "index_resorts_on_slug", using: :btree
   add_index "resorts", ["visible"], name: "index_resorts_on_visible", using: :btree
 
   create_table "roles", force: true do |t|

@@ -6,7 +6,7 @@ section
         option value="" Choose Country
         = options_for_select(Country.with_visible_resorts.map {|c| [c, c.id]})
       br
-      select#resort_id name="resort_id"
+      select#resort_id name="resort_slug"
         option value="" Choose Resort
         option value="" Choose Country First &uarr;
       br

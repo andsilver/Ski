@@ -19,8 +19,10 @@ class Resort < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, scope: :country_id
 
+  validates :slug, presence: true, uniqueness: true
+
   def to_param
-    "#{id}-#{name.parameterize}"
+    slug
   end
 
   def area_type

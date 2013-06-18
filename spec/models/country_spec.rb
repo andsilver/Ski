@@ -26,7 +26,7 @@ describe Country do
 
     def create_4_countries
       4.times do |x|
-        c = Country.create!(name: "Country #{x+1}", iso_3166_1_alpha_2: "#{x+1}")
+        c = Country.create!(name: "Country #{x+1}", iso_3166_1_alpha_2: "#{x+1}", slug: "country-#{x+1}")
         @country_ids << c.id
       end
     end
@@ -35,6 +35,12 @@ describe Country do
       3.times do |x|
         r = Resort.create!(name: "Resort #{x+1}", country_id: @country_ids[rand(4)])
       end
+    end
+  end
+
+  describe '#to_param' do
+    it 'returns its slug' do
+      expect(Country.new(slug: 'slug').to_param).to eq 'slug'
     end
   end
 

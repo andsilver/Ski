@@ -20,10 +20,12 @@ class Country < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_uniqueness_of :iso_3166_1_alpha_2
 
+  validates :slug, presence: true, uniqueness: true
+
   liquid_methods :name
 
   def to_param
-    "#{id}-#{name.parameterize}"
+    slug
   end
 
   def to_s

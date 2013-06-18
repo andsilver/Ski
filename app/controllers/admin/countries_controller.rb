@@ -70,6 +70,6 @@ class Admin::CountriesController < ApplicationController
     end
 
     def country_params
-      params.require(:country).permit(:banner_advert_html, :image_id, :in_eu, :info, :iso_3166_1_alpha_2, :name, :popular_billing_country)
+      params.require(:country).permit(:banner_advert_html, :image_id, :in_eu, :info, :iso_3166_1_alpha_2, :name, :popular_billing_country, :slug)
     end
 end

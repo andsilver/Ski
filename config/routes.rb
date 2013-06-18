@@ -30,11 +30,11 @@ MySkiChalet::Application.routes.draw do
   get 'late-availability' => 'late_availability#index'
 
   get 'properties/search' => 'properties#quick_search'
-  get "resorts/:resort_id/properties/rent" => "properties#browse_for_rent", as: :resort_property_rent
-  get "resorts/:resort_id/properties/sale" => "properties#browse_for_sale", as: :resort_property_sale
-  get "resorts/:resort_id/properties/new-developments" => "properties#new_developments",
+  get "resorts/:resort_slug/properties/rent" => "properties#browse_for_rent", as: :resort_property_rent
+  get "resorts/:resort_slug/properties/sale" => "properties#browse_for_sale", as: :resort_property_sale
+  get "resorts/:resort_slug/properties/new-developments" => "properties#new_developments",
     as: :resort_property_new_developments
-  get "resorts/:resort_id/properties/hotels" => "properties#browse_hotels", as: :resort_property_hotels
+  get "resorts/:resort_slug/properties/hotels" => "properties#browse_hotels", as: :resort_property_hotels
   get "resorts/:id/resort-guide" => "resorts#resort_guide", as: :resort_guide
   get "resorts/:id/summer-holidays" => "resorts#summer_holidays", as: :summer_holidays
   get "resorts/:id/how-to-get-there" => "resorts#how_to_get_there", as: :how_to_get_there
@@ -87,7 +87,7 @@ MySkiChalet::Application.routes.draw do
 
   resources :holiday_types, only: [:show], path: 'holidays'
 
-  get ':place_type/:place_id/holidays/:holiday_type_slug' => 'holiday_type_brochures#show', as: :holiday_type_brochure
+  get ':place_type/:place_slug/holidays/:holiday_type_slug' => 'holiday_type_brochures#show', as: :holiday_type_brochure
 
   resources :adverts do
     collection do

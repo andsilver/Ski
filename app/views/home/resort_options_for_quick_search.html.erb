@@ -1,10 +1,10 @@
-<select id="resort_id" name="resort_id">
+<select id="resort_slug" name="resort_slug">
   <option value="">Choose Resort</option>
 <% if @resorts.empty? -%>
   <option value="">Choose Country First &uarr;</option>
 <% else -%>
 <% @resorts.each do |resort| -%>
-  <option value="<%= resort.id %>"><%= resort %></option>
+  <option value="<%= resort.slug %>"><%= resort %></option>
 <% end -%>
 <% end -%>
 </select>

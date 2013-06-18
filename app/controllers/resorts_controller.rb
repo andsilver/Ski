@@ -52,7 +52,7 @@ class ResortsController < ApplicationController
   protected
 
     def set_resort
-      @resort = Resort.find_by(id: params[:id])
+      @resort = Resort.find_by(slug: params[:id])
       not_found if !@resort || !@resort.visible?
     end
 

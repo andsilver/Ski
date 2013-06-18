@@ -21,6 +21,6 @@ class HolidayTypeBrochuresController < ApplicationController
   protected
 
     def find_brochurable
-      params[:place_type].classify.constantize.find_by(id: params[:place_id])
+      params[:place_type].classify.constantize.find_by(slug: params[:place_slug])
     end
 end

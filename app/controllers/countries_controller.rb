@@ -13,7 +13,7 @@ class CountriesController < ApplicationController
   protected
 
     def set_country
-      @country = Country.find(params[:id])
+      @country = Country.find_by(slug: params[:id])
     end
 
     def protect_country

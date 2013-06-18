@@ -13,10 +13,10 @@ $(function() {
   <h2>Search</h2>
 <div id="quick-search">
   <%= form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do %>
-    <select id="resort_id" name="resort_id">
+    <select id="resort_slug" name="resort_slug">
       <option value="">Choose Resort</option>
       <% @country.visible_resorts.each do |resort| %>
-      <option value="<%= resort.id %>"><%= resort.name %></option>
+      <option value="<%= resort.slug %>"><%= resort.name %></option>
       <% end %>
     </select>
     <br>

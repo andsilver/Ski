@@ -2,7 +2,7 @@ module RelatedPages
   extend ActiveSupport::Concern
 
   included do
-    after_save :handle_name_change
+    after_save :handle_slug_change
     before_destroy :destroy_pages
   end
 
@@ -18,15 +18,15 @@ module RelatedPages
     Page.create(path: page_path(page_name), title: page_title(page_name))
   end
 
-  def page_path(page_name, object_name = nil)
-    object_name ||= name
-    "/#{self.class.to_s.pluralize.downcase}/#{id}-#{object_name.parameterize}/#{page_name}"
+  def page_path(page_name, object_slug = nil)
+    object_slug ||= slug
+    "/#{self.class.to_s.pluralize.downcase}/#{object_slug}/#{page_name}"
   end
 
-  def handle_name_change
-    if name_changed?
+  def handle_slug_change
+    if slug_changed?
       page_names.each do |page_name|
-        p = Page.find_by_path(page_path(page_name, name_was))
+        p = Page.find_by_path(page_path(page_name, slug_was))
         if p
           p.path = page_path(page_name)
           p.save

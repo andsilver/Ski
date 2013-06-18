@@ -9,15 +9,15 @@ describe ResortsController do
     controller.stub(:admin?).and_return(false)
   end
 
-  describe "GET show" do
-    it "finds a resort" do
-      Resort.should_receive(:find_by).with(id: '1')
-      get :show, id: '1'
+  describe 'GET show' do
+    it 'finds a resort by its slug' do
+      Resort.should_receive(:find_by).with(slug: 'chamonix')
+      get :show, id: 'chamonix'
     end
 
-    it "assigns @resort" do
+    it 'assigns @resort' do
       Resort.stub(:find_by).and_return(resort)
-      get :show, id: '1'
+      get :show, id: 'chamonix'
       expect(assigns[:resort]).to equal(resort)
     end
   end
