@@ -13,4 +13,12 @@ class Region < ActiveRecord::Base
   def to_s
     name
   end
+
+  def resort_brochures(holiday_type_id)
+    HolidayTypeBrochure
+      .where(holiday_type_id: holiday_type_id, brochurable_type: 'Resort')
+      .joins('INNER JOIN resorts ON resorts.id = holiday_type_brochures.brochurable_id')
+      .where(resorts: { region_id: id })
+      .order('resorts.name ASC')
+  end
 end
