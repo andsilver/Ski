@@ -9,6 +9,7 @@ MySkiChalet::Application.routes.draw do
     resources :airport_distances, except: [:show]
     resources :banner_prices,     except: [:show]
     resources :blog_posts,        except: [:show]
+    resources :buying_guides,     except: [:show]
     resources :countries,         except: [:show]
     resources :coupons,           except: [:show]
     resources :footers,           except: [:show]
@@ -22,7 +23,7 @@ MySkiChalet::Application.routes.draw do
     resources :users, only: [:index, :destroy]
   end
 
-  resources :buying_guides
+  resources :buying_guides, only: [:show]
 
   resources :countries, only: [:show]
 

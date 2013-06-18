@@ -1,0 +1,15 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+p= new_button [:admin, BuyingGuide]
+
+table.table.table-striped.table-bordered
+  tr
+    th Country
+    th Actions
+  - @buying_guides.each do |buying_guide|
+    tr
+      td= link_to buying_guide.country.name, buying_guide
+      td
+        =' edit_button [:admin, buying_guide]
+        = delete_button [:admin, buying_guide]
