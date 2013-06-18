@@ -30,6 +30,16 @@ class Country < ActiveRecord::Base
     name
   end
 
+  def resort_brochures(holiday_type_id)
+    HolidayTypeBrochure
+      .where(holiday_type_id: holiday_type_id, brochurable_type: 'Resort')
+      .joins('INNER JOIN resorts ON resorts.id = holiday_type_brochures.brochurable_id')
+      .where(resorts: { country_id: id })
+      .order('resorts.name ASC')
+  end
+
+  alias_method :child_brochures, :resort_brochures
+
   def featured_properties(limit)
     Property.order('RAND()').limit(limit).where(country_id: id, publicly_visible: true)
   end
