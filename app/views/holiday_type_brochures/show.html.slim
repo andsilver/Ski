@@ -1,3 +1,6 @@
+= content_for :theme do
+  = @holiday_type.slug
+
 = content_for :links_and_search do
   = render partial: 'brochure_list', locals: { heading: t('.regions'), method: :region_brochures }
   = render partial: 'brochure_list', locals: { heading: t('.resorts'), method: :resort_brochures }

@@ -41,7 +41,7 @@
 <% end -%>
 </head>
 <body class="<%= @body_classes %>">
-<div id="wrapper">
+<div id="wrapper" class="<%= "#{yield :theme}-theme" if content_for? :theme %>">
 <header role="banner">
   <nav id="session">
     <ul>
@@ -74,7 +74,6 @@
 <div id="column_headings">
   <h1><%= @heading_a %></h1>
 </div>
-
 <div id="links-and-search">
   <%= yield :links_and_search %>
   <% if @resort %>
