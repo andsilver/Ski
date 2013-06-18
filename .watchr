@@ -21,6 +21,10 @@ watch('app/(.*)\.erb') do |match|
   run_spec %{spec/#{match[1]}.erb_spec.rb}
 end
 
+watch('app/(.*)\.slim') do |match|
+  run_spec %{spec/#{match[1]}.slim_spec.rb}
+end
+
 watch('app/(.*/.*)\.rb') do |match|
   run_spec %{spec/#{match[1]}_spec.rb}
 end

@@ -1,3 +1,12 @@
+- if @holiday_type.errors.any?
+  .alert.alert-error
+    h2
+      =' pluralize(@holiday_type.errors.count, "error")
+      | prohibited this holiday type from being saved:
+    ul
+      - @holiday_type.errors.full_messages.each do |msg|
+        li= msg
+
 = form_for([:admin, @holiday_type]) do |f|
   = f.label :name
   = f.text_field :name
