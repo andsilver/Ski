@@ -27,6 +27,52 @@ describe Admin::ResortsController do
     end
   end
 
+  describe 'POST create' do
+    let(:resort) { mock_model(Resort).as_null_object }
+    let(:params) { { resort: { 'name' => 'Morzine' } } }
+
+    before do
+      Resort.stub(:new).and_return(resort)
+    end
+
+    it 'instantiates a new resort with the given params' do
+      Resort.should_receive(:new).with(params[:resort])
+      post 'create', params
+    end
+
+    context 'when the resort saves successfully' do
+      before do
+        resort.stub(:save).and_return(true)
+      end
+
+      it 'sets a flash[:notice] message' do
+        post 'create', params
+        expect(flash[:notice]).to eq("Created.")
+      end
+
+      it 'redirects to the resorts page' do
+        post 'create', params
+        expect(response).to redirect_to(admin_resorts_path)
+      end
+    end
+
+    context 'when the resort fails to save' do
+      before do
+        resort.stub(:save).and_return(false)
+      end
+
+      it 'assigns @resort' do
+        post 'create', params
+        expect(assigns(:resort)).to eq(resort)
+      end
+
+      it 'renders the new template' do
+        post 'create', params
+        expect(response).to render_template('new')
+      end
+    end
+  end
+
   describe 'GET edit' do
     let(:interhome_place_resort) { InterhomePlaceResort.new }
     let(:pv_place_resort) { PvPlaceResort.new }

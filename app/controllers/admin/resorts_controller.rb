@@ -17,7 +17,7 @@ class Admin::ResortsController < ApplicationController
 
     if @resort.save
       session[:last_country_id] = @resort.country_id
-      redirect_to(resorts_path, notice: t('notices.created'))
+      redirect_to(admin_resorts_path, notice: t('notices.created'))
     else
       render action: 'new'
     end
