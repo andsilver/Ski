@@ -649,7 +649,7 @@ class PropertiesController < ApplicationController
   def resort_conditions
     if @resort
       @conditions = ["publicly_visible = 1 AND resort_id = ?"]
-      @conditions << params[:resort_id]
+      @conditions << @resort.id
     else
       @conditions = ["publicly_visible = 1"]
     end

@@ -8,7 +8,7 @@ describe PropertiesController do
 
   before do
     Website.stub(:first).and_return(website)
-    Resort.stub(:find_by_id).and_return(resort)
+    Resort.stub(:find_by).and_return(resort)
     non_admin_role.stub(:admin?).and_return(false)
   end
 
@@ -54,7 +54,7 @@ describe PropertiesController do
     end
 
     it "finds new developments" do
-      Property.should_receive(:where).with(["publicly_visible = 1 AND resort_id = ? AND new_development = 1", "1"]).and_return(properties)
+      Property.should_receive(:where).with(["publicly_visible = 1 AND resort_id = ? AND new_development = 1", resort.id]).and_return(properties)
       get :new_developments, resort_slug: 'chamonix'
     end
 
