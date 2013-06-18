@@ -31,14 +31,12 @@ class Country < ActiveRecord::Base
   end
 
   def resort_brochures(holiday_type_id)
-    HolidayTypeBrochure
-      .where(holiday_type_id: holiday_type_id, brochurable_type: 'Resort')
-      .joins('INNER JOIN resorts ON resorts.id = holiday_type_brochures.brochurable_id')
-      .where(resorts: { country_id: id })
-      .order('resorts.name ASC')
+    child_brochures(holiday_type_id, Resort)
   end
 
-  alias_method :child_brochures, :resort_brochures
+  def region_brochures(holiday_type_id)
+    child_brochures(holiday_type_id, Region)
+  end
 
   def featured_properties(limit)
     Property.order('RAND()').limit(limit).where(country_id: id, publicly_visible: true)
@@ -96,4 +94,15 @@ class Country < ActiveRecord::Base
   def self.page_names
     HolidayType.all.map { |ht| ht.slug }
   end
+
+  private
+
+    def child_brochures(holiday_type_id, klass)
+      table = klass.to_s.tableize
+      HolidayTypeBrochure
+        .where(holiday_type_id: holiday_type_id, brochurable_type: klass.to_s)
+        .joins("INNER JOIN #{table} ON #{table}.id = holiday_type_brochures.brochurable_id")
+        .where(table => { country_id: id })
+        .order("#{table}.name ASC")
+    end
 end

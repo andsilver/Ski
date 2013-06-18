@@ -186,6 +186,8 @@ fr:
   holiday_type_brochures:
     show:
       heading: '%{holiday_type} in %{place}'
+      regions: Regions
+      resorts: Resorts
   home: Accueil
   home_controller:
     news_flash: 'Dernières Nouvelles'

@@ -1,0 +1,6 @@
+- if @brochurable.respond_to? method
+    section
+      h2= heading
+      ul
+        - @brochurable.public_send(method, @holiday_type.id).each do |brochure|
+          li= link_to brochure.brochurable, holiday_type_brochure_path(brochure.brochurable.class.to_s.tableize, brochure.brochurable, @holiday_type.slug)
