@@ -40,7 +40,7 @@ class Admin::RegionsController < ApplicationController
   protected
 
     def find_region
-      @region = Region.find(params[:id])
+      @region = Region.find_by(slug: params[:id])
     end
 
     def region_params

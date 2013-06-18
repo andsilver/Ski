@@ -55,7 +55,7 @@ class Admin::ResortsController < ApplicationController
   protected
 
     def set_resort
-      @resort = Resort.find_by(id: params[:id])
+      @resort = Resort.find_by(slug: params[:id])
       redirect_to(admin_resorts_path, notice: t('resorts_controller.not_found')) unless @resort
     end
 
