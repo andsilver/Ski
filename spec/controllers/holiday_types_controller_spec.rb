@@ -19,5 +19,14 @@ describe HolidayTypesController do
       get 'show', { 'id' => 'slug' }
       expect(assigns('holiday_type')).to eq ht
     end
+
+    context 'when holiday type not found' do
+      before { HolidayType.stub(:find_by).and_return(nil) }
+
+      it 'renders 404' do
+        get 'show', { 'id' => 'slug' }
+        expect(response.status).to eq 404
+      end
+    end
   end
 end
