@@ -10,8 +10,9 @@ class HolidayType < ActiveRecord::Base
 
   def visible_country_brochures
     holiday_type_brochures
-      .where(['brochurable_type = ? AND brochurable_id IN (SELECT DISTINCT(country_id) FROM resorts WHERE visible = 1)',
-        'Country'])
+      .where(brochurable_type: 'Country')
+      .joins('INNER JOIN countries ON countries.id = brochurable_id AND countries.id IN (SELECT DISTINCT(country_id) FROM resorts WHERE visible = 1)')
+      .order('countries.name')
   end
 
   def to_param
