@@ -33,7 +33,7 @@ describe Country do
 
     def create_3_resorts
       3.times do |x|
-        r = Resort.create!(name: "Resort #{x+1}", country_id: @country_ids[rand(4)])
+        r = Resort.create!(name: "Resort #{x+1}", country_id: @country_ids[rand(4)], slug: "resort-#{x+1}")
       end
     end
   end

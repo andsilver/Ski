@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe SnippetsController do
+describe Admin::SnippetsController do
 end

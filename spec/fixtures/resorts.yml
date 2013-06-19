@@ -2,6 +2,7 @@ st_anton:
   country: austria
   name: St Anton
   visible: 1
+  slug: st-anton
 
 chamonix:
   country: france
@@ -13,18 +14,22 @@ chamonix:
   for_rent_count: 1
   for_sale_count: 1
   hotel_count: 1
+  slug: chamonix
 
 italian_alps:
   country: italy
   name: Italian Alps
   visible: 1
+  slug: italian-alps
 
 davos:
   country: switzerland
   name: Davos
   visible: 1
+  slug: davos
 
 an_invisible_resort:
   country: a_country_without_visible_resorts
   name: An Invisible Resort
   visible: 0
+  slug: an-invisible-resort

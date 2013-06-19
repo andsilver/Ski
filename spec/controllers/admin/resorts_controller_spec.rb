@@ -78,8 +78,8 @@ describe Admin::ResortsController do
     let(:pv_place_resort) { PvPlaceResort.new }
 
     it 'finds a resort' do
-      Resort.should_receive(:find_by).with(id: '1')
-      get 'edit', id: '1'
+      Resort.should_receive(:find_by).with(slug: 'chamonix')
+      get 'edit', id: 'chamonix'
     end
 
     context 'when resort is found' do

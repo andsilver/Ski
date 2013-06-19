@@ -5,8 +5,8 @@ describe 'countries/show' do
 
   it "displays the country's visible resorts in the quick search form" do
     france = countries(:france)
-    france.resorts << Resort.create!(name: 'Avoriaz', visible: true)
-    france.resorts << Resort.create!(name: 'Tignes', visible: false)
+    france.resorts << Resort.create!(name: 'Avoriaz', visible: true, slug: 'avoriaz')
+    france.resorts << Resort.create!(name: 'Tignes', visible: false, slug: 'tignes')
     assign(:country, france)
     assign(:featured_properties, [])
     render

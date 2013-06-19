@@ -15,6 +15,7 @@ feature 'Regions admin' do
     visit admin_regions_path
     click_link 'New'
     fill_in 'Name',   with: 'Alsace'
+    fill_in 'Slug',   with: 'alsace'
     select  'France', from: 'Country'
     fill_in 'Info',   with: 'The fifth-smallest of the 27 regions of France'
     click_button 'Create Region'
