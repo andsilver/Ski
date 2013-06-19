@@ -5,7 +5,7 @@
   section
     h2= @holiday_type
     ul
-      - @holiday_type.country_brochures.each do |brochure|
+      - @holiday_type.visible_country_brochures.each do |brochure|
        li= link_to brochure.brochurable, holiday_type_brochure_path('countries', brochure.brochurable, @holiday_type.slug)
 
 = raw @page_content

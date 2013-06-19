@@ -8,6 +8,12 @@ class HolidayType < ActiveRecord::Base
     holiday_type_brochures.where(brochurable_type: 'Country')
   end
 
+  def visible_country_brochures
+    holiday_type_brochures
+      .where(['brochurable_type = ? AND brochurable_id IN (SELECT DISTINCT(country_id) FROM resorts WHERE visible = 1)',
+        'Country'])
+  end
+
   def to_param
     slug
   end
