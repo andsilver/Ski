@@ -1,4 +1,5 @@
 class Country < ActiveRecord::Base
+  include Brochures
   include RelatedPages
 
   belongs_to :image, dependent: :destroy
@@ -10,8 +11,6 @@ class Country < ActiveRecord::Base
   has_many :order_lines, -> { includes :order }
   has_many :users, foreign_key: 'billing_country_id'
   has_one :buying_guide, dependent: :delete
-
-  has_many :holiday_type_brochures, dependent: :delete_all, as: :brochurable
 
   scope :with_resorts, -> { where('id IN (SELECT DISTINCT(country_id) FROM resorts)').order('name') }
   scope :with_visible_resorts, -> { where('id IN (SELECT DISTINCT(country_id) FROM resorts WHERE visible=1)').order('name') }

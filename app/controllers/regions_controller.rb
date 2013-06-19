@@ -1,5 +1,5 @@
 class RegionsController < ApplicationController
   def show
-    @region = Region.find(params[:id])
+    @region = Region.find_by(slug: params[:id])
   end
 end
