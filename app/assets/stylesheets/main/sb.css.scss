@@ -37,6 +37,15 @@
   min-height: 10px;
 }
 
+.size-1of2 {
+  width: 305px;
+  float: left;
+}
+
+.wide .size-1of2 {
+  width: 390px;
+}
+
 .size-1of1 .header-text {
   position: absolute;
   bottom: 5px;

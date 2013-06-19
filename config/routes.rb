@@ -216,6 +216,7 @@ MySkiChalet::Application.routes.draw do
 
   get "contact" => "home#contact"
   get "privacy" => "home#privacy"
+  get 'style-guide' => 'home#style_guide', as: :style_guide
   get "terms" => "home#terms"
   get 'sitemap.xml' => 'application#sitemap', as:  'sitemap', :format => 'xml'
   get 'restart' => 'application#restart', as: 'restart'
