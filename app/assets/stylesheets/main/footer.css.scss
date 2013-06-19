@@ -1,14 +1,16 @@
 footer p {
   padding-top: 8px;
-  font-size: 1.2em;
+  font-size: 11px;
 }
 
-footer {
+footer[role=contentinfo] {
   color: #fff;
   clear: both;
-  padding: 20px;
-  width: 956px;
   margin: 0 auto;
+  padding: 20px;
+  text-transform: uppercase;
+  width: 956px;
+
   background-color: #333;
   background-image: linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
   background-image: -o-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
