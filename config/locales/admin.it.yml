@@ -7,6 +7,13 @@ it:
         title: Airport Distances
       new:
         title: New Airport Distance
+    airports:
+      edit:
+        title: Edit Airport
+      index:
+        title: Airport
+      new:
+        title: New Airport
     banner_prices:
       edit:
         title: Edit Banner Price
@@ -57,6 +64,9 @@ it:
       new:
         title: New Holiday Type
     regions:
+      destroy:
+        title: Cannot Delete Resort
+        explanation: This resort has properties. Would you like to delete all properties or reassign them to another resort?
       edit:
         title: Edit Region
       index:

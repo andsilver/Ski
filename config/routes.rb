@@ -7,6 +7,7 @@ MySkiChalet::Application.routes.draw do
 
   namespace :admin do
     resources :airport_distances, except: [:show]
+    resources :airports,          except: [:show]
     resources :banner_prices,     except: [:show]
     resources :blog_posts,        except: [:show]
     resources :buying_guides,     except: [:show]
@@ -52,8 +53,6 @@ MySkiChalet::Application.routes.draw do
       get 'piste_map_full_size'
     end
   end
-
-  resources :airports
 
   resources :airport_transfers do
     collection do

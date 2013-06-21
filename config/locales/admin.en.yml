@@ -7,6 +7,13 @@ en:
         title: Airport Distances
       new:
         title: New Airport Distance
+    airports:
+      edit:
+        title: Edit Airport
+      index:
+        title: Airport
+      new:
+        title: New Airport
     banner_prices:
       edit:
         title: Edit Banner Price
