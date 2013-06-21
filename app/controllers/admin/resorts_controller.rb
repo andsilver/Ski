@@ -1,6 +1,6 @@
 class Admin::ResortsController < ApplicationController
   before_action :admin_required
-  before_action :set_resort, only: [:edit, :update, :destroy, :edit_page]
+  before_action :set_resort, only: [:edit, :update, :destroy, :edit_page, :destroy_properties]
   layout 'admin'
 
   def index
@@ -40,8 +40,10 @@ class Admin::ResortsController < ApplicationController
   end
 
   def destroy
-    @resort.destroy
-    redirect_to(admin_resorts_path, notice: t('notices.deleted'))
+    unless @resort.properties.any?
+      @resort.destroy
+      redirect_to(admin_resorts_path, notice: t('notices.deleted'))
+    end
   end
 
   def edit_page
@@ -50,6 +52,11 @@ class Admin::ResortsController < ApplicationController
       @resort.create_page(page_name) unless @resort.has_page?(page_name)
       redirect_to edit_page_path(@resort.page(page_name))
     end
+  end
+
+  def destroy_properties
+    @resort.properties.destroy_all
+    redirect_to admin_resorts_path, notice: "Properties deleted."
   end
 
   protected

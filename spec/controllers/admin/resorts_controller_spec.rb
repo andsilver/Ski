@@ -112,22 +112,66 @@ describe Admin::ResortsController do
   end
 
   describe "DELETE destroy" do
-    it "destroys a resort" do
-      Resort.stub(:find_by).and_return(resort)
-      resort.should_receive(:destroy)
-      delete :destroy, id: 'chamonix'
+    context 'when resort has no properties' do
+      before do
+        Resort.stub(:find_by).and_return(resort)
+        resort.stub_chain([:properties, :any?]).and_return(false)
+      end
+
+      it 'destroys the resort' do
+        resort.should_receive(:destroy)
+        delete :destroy, id: 'chamonix'
+      end
+
+      it 'redirects to the resorts index' do
+        delete :destroy, id: 'chamonix'
+        expect(response).to redirect_to(admin_resorts_path)
+      end
+
+      it 'sets a flash notice' do
+        delete :destroy, id: 'chamonix'
+        expect(flash[:notice]).to eq I18n.t('notices.deleted')
+      end
     end
 
-    it "redirects to the resorts index" do
-      Resort.stub(:find_by).and_return(resort)
-      delete :destroy, id: 'chamonix'
-      expect(response).to redirect_to(admin_resorts_path)
+    context 'when resort has properties' do
+      before do
+        Resort.stub(:find_by).and_return(resort)
+        resort.stub_chain([:properties, :any?]).and_return(true)
+      end
+
+      it 'renders' do
+        delete :destroy, id: 'chamonix'
+        expect(response).to render_template('destroy')
+      end
+    end
+  end
+
+  describe 'POST destroy_properties' do
+    it 'finds the resort' do
+      Resort.should_receive(:find_by).with(slug: 'chamonix').and_return(resort)
+      post 'destroy_properties', id: 'chamonix'
     end
 
-    it 'sets a flash notice' do
-      Resort.stub(:find_by).and_return(resort)
-      delete :destroy, id: 'chamonix'
-      expect(flash[:notice]).to eq I18n.t('notices.deleted')
+    context 'when the resort is found' do
+      before { Resort.stub(:find_by).and_return(resort) }
+
+      it 'destroys each property' do
+        properties = mock(ActiveRecord::Relation)
+        resort.stub(:properties).and_return(properties)
+        properties.should_receive(:destroy_all)
+        post 'destroy_properties', id: 'chamonix'
+      end
+
+      it 'redirects to the resorts index' do
+        post 'destroy_properties', id: 'chamonix'
+        expect(response).to redirect_to(admin_resorts_path)
+      end
+
+      it 'sets a flash notice' do
+        post 'destroy_properties', id: 'chamonix'
+        expect(flash[:notice]).to eq('Properties deleted.')
+      end
     end
   end
 end

@@ -1,0 +1,6 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+p= t('.explanation')
+
+= form_tag(destroy_properties_admin_resort_path(@resort), method: 'post') do
+  = submit_tag 'Delete Properties', class: 'btn btn-danger'

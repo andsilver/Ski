@@ -17,7 +17,10 @@ MySkiChalet::Application.routes.draw do
     resources :regions,           except: [:show]
     resources :holiday_type_brochures, only: [:create, :destroy]
     resources :resorts,           except: [:show] do
-      get 'edit_page', on: :member
+      member do
+        get 'edit_page'
+        post 'destroy_properties'
+      end
     end
     resources :snippets,          except: [:show]
     resources :users, only: [:index, :destroy]

@@ -12,6 +12,25 @@ feature 'Resorts admin' do
     expect(page).to have_content 'Deleted.'
   end
 
+  scenario 'Delete a resort with properties' do
+    bow
+    FactoryGirl.create(:property, resort: bow)
+    sign_in_as_admin
+    visit admin_resorts_path
+    click_link 'Delete Bowness-on-Windermere'
+    expect(page).to have_content I18n.t('admin.resorts.destroy.explanation')
+  end
+
+  scenario 'Delete properties after deleting resort' do
+    bow
+    FactoryGirl.create(:property, resort: bow)
+    sign_in_as_admin
+    visit admin_resorts_path
+    click_link 'Delete Bowness-on-Windermere'
+    click_button 'Delete Properties'
+    expect(bow.properties.any?).to be_false
+  end
+
   scenario 'Add resort to region from resort page' do
     bow
     sign_in_as_admin

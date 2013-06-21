@@ -5,7 +5,7 @@ class Resort < ActiveRecord::Base
   belongs_to :country
   belongs_to :region, inverse_of: :resorts
 
-  has_many :properties, dependent: :nullify
+  has_many :properties, dependent: :restrict_with_exception
   has_many :order_lines
   has_many :airport_distances, -> { order 'distance_km ASC' }, dependent: :delete_all
   has_many :airport_transfers, dependent: :delete_all
