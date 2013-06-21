@@ -46,9 +46,24 @@
   width: 390px;
 }
 
+.size-1of3 {
+  width: 200px;
+  float: left;
+}
+
+.wide .size-1of3 {
+  width: 258px;
+  margin-left: 8px;
+}
+
 .size-1of1 .header-text {
   position: absolute;
   bottom: 5px;
+}
+
+.size-1of3 .header-text, .size-2of3 .header-text, .size-1of4 .header-text {
+  font-size: 14px;
+  line-height: 16px;
 }
 
 p, label {
