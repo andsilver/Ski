@@ -41,7 +41,7 @@ class Admin::ResortsController < ApplicationController
 
   def destroy
     @resort.destroy
-    redirect_to(admin_resorts_path)
+    redirect_to(admin_resorts_path, notice: t('notices.deleted'))
   end
 
   def edit_page

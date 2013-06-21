@@ -115,13 +115,19 @@ describe Admin::ResortsController do
     it "destroys a resort" do
       Resort.stub(:find_by).and_return(resort)
       resort.should_receive(:destroy)
-      delete :destroy, id: '1'
+      delete :destroy, id: 'chamonix'
     end
 
     it "redirects to the resorts index" do
       Resort.stub(:find_by).and_return(resort)
-      delete :destroy, id: '1'
+      delete :destroy, id: 'chamonix'
       expect(response).to redirect_to(admin_resorts_path)
+    end
+
+    it 'sets a flash notice' do
+      Resort.stub(:find_by).and_return(resort)
+      delete :destroy, id: 'chamonix'
+      expect(flash[:notice]).to eq I18n.t('notices.deleted')
     end
   end
 end

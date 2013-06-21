@@ -3,6 +3,15 @@ require 'spec_helper'
 feature 'Resorts admin' do
   fixtures :countries, :holiday_types, :regions, :roles, :users, :websites
 
+  scenario 'Delete a resort' do
+    bow
+    sign_in_as_admin
+    visit admin_resorts_path
+    click_link 'Delete Bowness-on-Windermere'
+    expect(page).to_not have_content 'Bowness-on-Windermere'
+    expect(page).to have_content 'Deleted.'
+  end
+
   scenario 'Add resort to region from resort page' do
     bow
     sign_in_as_admin
