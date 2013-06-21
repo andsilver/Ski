@@ -42,7 +42,7 @@ $(function() {
 <section>
   <h2>Resorts</h2>
   <ul>
-<% @country.visible_resorts.each do |resort| %>
+<% @country.visible_resorts.where(region_id: nil).each do |resort| %>
     <li><%= link_to_with_count resort, resort, resort.property_count %></li>
 <% end %>
   </ul>

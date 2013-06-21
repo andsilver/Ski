@@ -3,7 +3,7 @@
 
 = content_for :links_and_search do
   = render partial: 'brochure_list', locals: { heading: t('.regions'), method: :region_brochures }
-  = render partial: 'brochure_list', locals: { heading: t('.resorts'), method: :resort_brochures }
+  = render partial: 'brochure_list', locals: { heading: t('.resorts'), method: :resort_without_region_brochures }
 
 h1= t('.heading', place: @brochurable, holiday_type: @holiday_type)
 = raw @page_content

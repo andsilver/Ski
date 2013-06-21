@@ -31,12 +31,18 @@ class Country < ActiveRecord::Base
     name
   end
 
+  def region_brochures(holiday_type_id)
+    child_brochures(holiday_type_id, Region)
+  end
+
   def resort_brochures(holiday_type_id)
     child_brochures(holiday_type_id, Resort)
   end
 
-  def region_brochures(holiday_type_id)
-    child_brochures(holiday_type_id, Region)
+  # Returns a list of resort brochures for this country. Resorts that belong
+  # to regions are excluded.
+  def resort_without_region_brochures(holiday_type_id)
+    resort_brochures(holiday_type_id).where('resorts' => { region_id: nil })
   end
 
   def featured_properties(limit)
