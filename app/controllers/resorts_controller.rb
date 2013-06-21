@@ -53,7 +53,11 @@ class ResortsController < ApplicationController
 
     def set_resort
       @resort = Resort.find_by(slug: params[:id])
-      not_found if !@resort || !@resort.visible?
+      if admin?
+        redirect_to(admin_resorts_path, notice: t('resorts_controller.not_found')) unless @resort
+      else
+        not_found if !@resort || !@resort.visible?
+      end
     end
 
     def find_featured_properties
