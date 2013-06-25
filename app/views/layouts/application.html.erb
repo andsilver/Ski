@@ -110,11 +110,11 @@
         href="<%= directory_resort_path(@resort) %>"
         title="<%= @resort.name %> directory"><%= t('directory') %> (<%= @resort.directory_advert_count %>)</a></li>
   <% end -%>
-  <% unless @resort.summer_only? -%>
+  <% if @resort.ski? && !@resort.summer_only? -%>
       <li <%= 'class="active"'.html_safe if current_page?(piste_map_resort_path(@resort)) %>><%= link_to I18n.t('piste_map'), piste_map_resort_path(@resort), title: "#{@resort.name} piste maps" %></li>
   <% end -%>
       <li <%= 'class="active"'.html_safe if current_page?(gallery_resort_path(@resort)) %>><%= link_to t('gallery'), gallery_resort_path(@resort), title: "Photos of #{@resort.name}" %></li>
-  <% unless @resort.summer_only? -%>
+  <% if @resort.ski? && !@resort.summer_only? -%>
       <li <%= 'class="active"'.html_safe if current_page?(summer_holidays_path(@resort)) %>><%= link_to t('resorts_controller.summer_holidays'), summer_holidays_path(@resort), title: "Summer holidays in #{@resort.name}" %></li>
   <% end -%>
   <% if @resort.has_page?('how-to-get-there') -%>

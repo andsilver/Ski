@@ -42,6 +42,10 @@ class Resort < ActiveRecord::Base
     airport_distances.any? ? airport_distances.first.airport : nil
   end
 
+  def ski?
+    holiday_types.any? { |ht| ht.slug == 'ski-holidays' }
+  end
+
   def to_s
     name
   end

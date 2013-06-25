@@ -8,38 +8,8 @@
   <p class="more_detail" style="width: 30%; float: right;">
     <%= link_to "#{@resort.name} Resort Guide", resort_guide_path(@resort) %>
   </p>
-<table>
-  <tr>
-    <th><%= t('resorts_controller.facts.altitude') %></th>
-    <td><%= @resort.altitude_m %>m</td>
-  </tr>
-  <tr>
-    <th><%= t('resorts_controller.facts.top_lift') %></th>
-    <td><%= @resort.top_lift_m %>m</td>
-  </tr>
-  <tr>
-    <th><%= t('resorts_controller.facts.family') %></th>
-    <td><%= star_rating(@resort.family) %></td>
-  </tr>
-  <tr>
-    <th><%= t('resorts_controller.facts.beginner') %></th>
-    <td><%= star_rating(@resort.beginner) %></td>
-  </tr>
-  <tr>
-    <th><%= t('resorts_controller.facts.intermediate') %></th>
-    <td><%= star_rating(@resort.intermediate) %></td>
-  </tr>
-  <tr>
-    <th><%= t('resorts_controller.facts.expert') %></th>
-    <td><%= star_rating(@resort.expert) %></td>
-  </tr>
-  <tr>
-    <th><%= t('resorts_controller.facts.nearest_airport') %></th>
-    <td><% unless (ad = @resort.airport_distances.first).nil? %>
-      <%= ad.airport.name %> (<%= ad.distance_km %>km)
-    <% end %></td>
-  </tr>
-</table>
+
+<%= render 'ski_facts_short' if @resort.ski? %>
 
 <%= render 'shared/featured_properties' %>
 

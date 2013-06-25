@@ -1,0 +1,23 @@
+table
+  tr
+    th= t('resorts_controller.facts.altitude')
+    td= "#{@resort.altitude_m}m"
+  tr
+    th= t('resorts_controller.facts.top_lift')
+    td= "#{@resort.top_lift_m}m"
+  tr
+    th= t('resorts_controller.facts.family')
+    td= star_rating(@resort.family)
+  tr
+    th= t('resorts_controller.facts.beginner')
+    td= star_rating(@resort.beginner)
+  tr
+    th= t('resorts_controller.facts.intermediate')
+    td= star_rating(@resort.intermediate)
+  tr
+    th= t('resorts_controller.facts.expert')
+    td= star_rating(@resort.expert)
+  - unless (ad = @resort.airport_distances.first).nil?
+    tr
+      th= t('resorts_controller.facts.nearest_airport')
+      td= "#{ad.airport.name} (#{ad.distance_km}km)"

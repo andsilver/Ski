@@ -6,7 +6,7 @@
 <%= raw @resort.info %>
 <% end %>
 
-<%= render 'resort_facts' unless @resort.summer_only? %>
+<%= render 'ski_facts_long' if @resort.ski? && !@resort.summer_only? %>
 
 <% unless @resort.visiting.blank? %>
 <% if @resort.summer_only? -%>

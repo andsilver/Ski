@@ -59,4 +59,22 @@ describe Resort do
       expect(r.page('summer-holidays').path).to match(slug_post)
     end
   end
+
+  describe '#ski?' do
+    it 'returns false when it has no ski-holidays holiday type' do
+      expect(resort_with_holiday_type('city-breaks').ski?).to be_false
+    end
+
+    it 'returns true when it has a ski-holidays holiday type' do
+      expect(resort_with_holiday_type('ski-holidays').ski?).to be_true
+    end
+
+    def resort_with_holiday_type(slug)
+      r = FactoryGirl.create(:resort)
+      ht = HolidayType.create!(name: 'X', slug: slug)
+      r.holiday_type_brochures.build(holiday_type: ht)
+      r.save
+      r
+    end
+  end
 end
