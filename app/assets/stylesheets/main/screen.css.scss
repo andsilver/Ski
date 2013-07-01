@@ -607,3 +607,16 @@ textarea.narrow {
   background: #4bc0f6;
   color: #ffffff;
 }
+
+#header-images {
+  overflow: hidden;
+}
+
+#header-images, #header-images img {
+  height: 270px;
+  width: 620px;
+}
+
+.wide #header-images, .wide #header-images img {
+  width: 790px;
+}

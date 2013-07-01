@@ -39,6 +39,15 @@
 
   </script>
 <% end -%>
+<script>
+$(function() {
+  $('#header-images').cycle({
+    fx: 'fade',
+    speed: 1500,
+    timeout: 3000
+  });
+});
+</script>
 </head>
 <body class="<%= @body_classes %>">
 <div id="wrapper" class="<%= "#{yield :theme}-theme" if content_for? :theme %>">
@@ -126,6 +135,13 @@
 </div>
 <div id="content" role="main" class="<%= 'wide' unless content_for? :advertising %>">
   <%= flash_notice %>
+<% unless header_image_urls.empty? -%>
+  <div id="header-images">
+    <% header_image_urls.each do |url| -%>
+    <img src="<%= url %>" alt="<%= alt_attribute(url, 'My Chalet Finder Ski Accommodation') %>">
+    <% end %>
+  </div>
+<% end -%>
   <%= yield %>
 </div>
 <% if content_for? :advertising %>

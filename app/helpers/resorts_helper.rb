@@ -85,10 +85,6 @@ module ResortsHelper
       end
     end
 
-    if urls.empty?
-      urls << '/images/chamonix.jpg'
-    end
-
     urls.map! {|u| u.gsub(' ', '%20')}
     urls
   end
