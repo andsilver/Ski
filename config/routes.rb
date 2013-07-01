@@ -225,7 +225,7 @@ MySkiChalet::Application.routes.draw do
   get 'precompile_assets' => 'application#precompile_assets', as: 'precompile_assets'
 
   get 'home/resort_options_for_quick_search' => 'home#resort_options_for_quick_search'
-  root to: 'home#index'
+  root 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
