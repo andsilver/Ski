@@ -367,6 +367,7 @@ bob = User.create!(
   role: property_developer)
 
 chamonix = Resort.create!(country_id: france, name: 'Chamonix',
+  slug: 'chamonix',
   altitude_m: 1035,
   top_lift_m: 3842,
   ski_area_km: 550,
@@ -380,19 +381,19 @@ Airport.destroy_all
 geneva = Airport.create!(name: 'Geneva', code: 'GVA', country_id: france)
 AirportDistance.create!(airport_id: geneva.id, resort_id: chamonix.id, distance_km: 90)
 
-Resort.create([
-  { country_id: austria, name: 'Alpbach' },
-  { country_id: austria, name: 'Bad Gastein' },
-  { country_id: austria, name: 'St Anton' },
-  { country_id: austria, name: 'Tyrol' },
-  { country_id: austria, name: 'Westendorf' },
-  { country_id: france, name: 'Avoriaz' },
-  { country_id: france, name: 'Bernex' },
-  { country_id: france, name: 'La Tania' },
-  { country_id: france, name: 'Morzine' },
-  { country_id: italy, name: 'Cervinia' },
-  { country_id: italy, name: 'Dolomites' },
-  { country_id: italy, name: 'Italian Alps' },
+Resort.create!([
+  { country_id: austria, name: 'Alpbach',      slug: 'alphach' },
+  { country_id: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
+  { country_id: austria, name: 'St Anton',     slug: 'st-anton' },
+  { country_id: austria, name: 'Tyrol',        slug: 'tyrol' },
+  { country_id: austria, name: 'Westendorf',   slug: 'westendorf' },
+  { country_id: france,  name: 'Avoriaz',      slug: 'avoriaz' },
+  { country_id: france,  name: 'Bernex',       slug: 'bernex' },
+  { country_id: france,  name: 'La Tania',     slug: 'la-tania' },
+  { country_id: france,  name: 'Morzine',      slug: 'morzine' },
+  { country_id: italy,   name: 'Cervinia',     slug: 'cervinia' },
+  { country_id: italy,   name: 'Dolomites',    slug: 'dolomites' },
+  { country_id: italy,   name: 'Italian Alps', slug: 'italian-alps' },
 ])
 
 bars = Category.create!(name: 'Bars')
