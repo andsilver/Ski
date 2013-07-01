@@ -17,6 +17,7 @@ Category.destroy_all
 User.destroy_all
 Role.delete_all
 Currency.destroy_all
+Payment.delete_all
 
 website = Website.create!
 
@@ -492,7 +493,7 @@ directory_advert.user_id = alice.id
 directory_advert.save!
 
 Order.destroy_all
-Order.create!(
+order = Order.create!(
   user_id: alice.id,
   email: alice.email,
   name: alice.first_name,
@@ -500,5 +501,11 @@ Order.create!(
   country_id: alice.billing_country.id,
   phone: '+44.1234567890',
   status: Order::PAYMENT_RECEIVED,
-  total: 0
+  total: 50
+)
+
+Payment.create!(
+  order: order,
+  service_provider: 'WorldPay',
+  amount: '50'
 )
