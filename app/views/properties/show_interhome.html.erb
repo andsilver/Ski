@@ -21,7 +21,7 @@
   }
 
   $(function() {
-    $('#property_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
+    $('#property-thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
 
     $('#location').click(function() {
       $('#location-modal').modal('show');
@@ -79,7 +79,7 @@
 <% end %>
 
 <% unless @property.image.nil? %>
-<p class="thumbnails" id="property_thumbnails">
+<p class="thumbnails" id="property-thumbnails">
 <% @property.images.each do |i| %>
 <a href="#pic_<%= i.id %>"><%= image_tag(i.sized_url(135, :height), alt: "Photo of #{@property.name}") %></a>
 <% end %>

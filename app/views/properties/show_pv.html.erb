@@ -21,7 +21,7 @@
   }
 
   $(function() {
-    $('#property_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
+    $('#property-thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
 
     $('#location').click(function() {
       $('#location-modal').modal('show');
@@ -60,7 +60,7 @@
 <% end %>
 <% end %>
 
-<p class="thumbnails" id="property_thumbnails">
+<p class="thumbnails" id="property-thumbnails">
 <% @accommodation.photo_array.each_with_index do |i, idx| %>
 <a href="#pic_<%= idx %>"><%= image_tag(i, alt: "Photo of #{@property.name}") %></a>
 <% end %>

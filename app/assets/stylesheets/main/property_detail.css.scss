@@ -1,5 +1,9 @@
 #property {
-  width: 720px;
+  width: 620px;
+
+  img {
+    max-width: 620px;
+  }
 }
 
 #features {
@@ -15,9 +19,9 @@
 }
 
 #features .column {
-  width: 160px;
+  width: 140px;
   float: left;
-  padding-right: 20px;
+  padding-right: 15px;
   line-height: 1.5em;
 }
 
@@ -68,8 +72,8 @@ p.thumbnails {
   margin-right: 3px;
 }
 
-p#property_thumbnails {
-  width: 720px;
+p#property-thumbnails {
+  width: 620px;
   height: 155px;
   overflow: auto;
   white-space: nowrap; 
