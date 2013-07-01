@@ -11,7 +11,7 @@ module RelatedPages
   end
 
   def page(page_name)
-    Page.find_by_path(page_path(page_name))
+    Page.find_by(path: page_path(page_name))
   end
 
   def create_page(page_name)
@@ -36,7 +36,7 @@ module RelatedPages
   end
 
   def destroy_pages
-    page_names.each {|n| page.destroy if has_page?(n)}
+    page_names.each {|n| page(n).destroy if has_page?(n)}
   end
 
   def page_names
