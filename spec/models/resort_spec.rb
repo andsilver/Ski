@@ -35,7 +35,7 @@ describe Resort do
     it 'finds the page with the corresponding path' do
       r = Resort.new
       r.should_receive(:page_path).with('a-page').and_return('/path/to/a-page')
-      Page.should_receive(:find_by_path).with('/path/to/a-page')
+      Page.should_receive(:find_by).with(path: '/path/to/a-page')
       r.page('a-page')
     end
   end

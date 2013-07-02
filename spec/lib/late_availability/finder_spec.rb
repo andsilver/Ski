@@ -17,7 +17,7 @@ module LateAvailability
     end
 
     def create_featured_late_availability_property!
-      @resort ||= Resort.create!(name: 'late availability resort')
+      @resort ||= FactoryGirl.create(:resort)
       @currency ||= Currency.create!(name: 'sterling', code: 'gbp', in_euros: 1)
 
       Property.create!(

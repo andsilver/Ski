@@ -35,6 +35,7 @@ describe Currency do
 
   describe '.exchange_rates_url' do
     it 'returns a Yahoo! URL with a param for each currency in our system' do
+      Currency.delete_all
       FactoryGirl.create(:currency, code: 'GBP')
       FactoryGirl.create(:currency, code: 'USD')
       expect(Currency.exchange_rates_url).to eq(
