@@ -8,6 +8,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Page.destroy_all
 HolidayType.destroy_all
 Property.destroy_all
 PropertyBasePrice.destroy_all
@@ -20,6 +21,10 @@ Currency.destroy_all
 Payment.delete_all
 
 website = Website.create!
+
+Page.create!([
+  { path: '/pages/about', title: 'About' }
+])
 
 HolidayType.create!([
   { name: 'Ski Holidays',      slug: 'ski-holidays' },
