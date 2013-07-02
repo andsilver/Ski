@@ -40,6 +40,7 @@
 <%= clear %>
 <% end %>
 
+<% unless @property.hotel? -%>
 <h2><%= I18n.t('features') %></h2>
 
 <div id="features">
@@ -120,6 +121,7 @@
   </div>
   <%= clear %>
 </div>
+<% end -%>
 
 <% unless @property.description.nil? %>
 <h2><%= I18n.t('description') %></h2>
