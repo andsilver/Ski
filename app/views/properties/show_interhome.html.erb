@@ -1,45 +1,13 @@
+<%= render partial: 'google_map',
+    locals: { lat: @accommodation.geodata_lat, lng: @accommodation.geodata_lng } %>
 <script>
-  var map;
-  var marker;
-
-  function showMap() {
-    <% unless @accommodation.geodata_lat.empty? %>
-    var latlng = new google.maps.LatLng(<%= @accommodation.geodata_lat %>, <%= @accommodation.geodata_lng %>);
-    var myOptions = {
-      zoom: 16,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    map = new google.maps.Map(document.getElementById("map_canvas"),
-      myOptions);
-    marker = new google.maps.Marker({
-      position: latlng,
-      map: map,
-      title:"<%= @property.name %>"
-    });
-    <% end %>
-  }
-
   $(function() {
     $('#property-thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
-
-    $('#location').click(function() {
-      $('#location-modal').modal('show');
-      // prevent the default action, e.g., following a link
-      return false;
-    });
-
-    $('#location-modal').on('shown', function() {
-      google.maps.event.trigger(map, 'resize');
-      map.setCenter(marker.getPosition());
-    });
 
     $('.availability-Q').click(function() {
       var win = window.open('<%= contact_property_path(@property) %>', '_blank');
       win.focus();
     });
-
-    showMap();
 	});
 </script>
 <div id="content-with-side-banners">

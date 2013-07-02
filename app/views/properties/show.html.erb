@@ -1,40 +1,8 @@
+<%= render partial: 'google_map',
+    locals: { lat: @property.latitude, lng: @property.longitude } %>
 <script>
-  var map;
-  var marker;
-
-  function showMap() {
-    <% unless @property.latitude.empty? %>
-    var latlng = new google.maps.LatLng(<%= @property.latitude %>, <%= @property.longitude %>);
-    var myOptions = {
-      zoom: 16,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    map = new google.maps.Map(document.getElementById("map_canvas"),
-      myOptions);
-    marker = new google.maps.Marker({
-      position: latlng,
-      map: map,
-      title:"<%= @property.name %>"
-    });
-    <% end %>
-  }
-
   $(function() {
     $('#property-thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
-
-    $('#location').click(function() {
-      $('#location-modal').modal('show');
-      // prevent the default action, e.g., following a link
-      return false;
-    });
-
-    $('#location-modal').on('shown', function() {
-      google.maps.event.trigger(map, 'resize');
-      map.setCenter(marker.getPosition());
-    });
-
-    showMap();
 	});
 </script>
 <div id="content-with-side-banners">
