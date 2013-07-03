@@ -1,6 +1,6 @@
 class CountriesController < ApplicationController
-  before_filter :set_country, only: [:show]
-  before_filter :protect_country, only: [:show]
+  before_action :set_country, only: [:show]
+  before_action :protect_country, only: [:show]
 
   def show
     @heading_a = @country.name
@@ -14,6 +14,7 @@ class CountriesController < ApplicationController
 
     def set_country
       @country = Country.find_by(slug: params[:id])
+      not_found unless @country
     end
 
     def protect_country
