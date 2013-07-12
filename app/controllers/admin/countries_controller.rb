@@ -40,7 +40,7 @@ class Admin::CountriesController < ApplicationController
     default_page_title(@heading_a)
     @banner_advert_html ||= @country.banner_advert_html
 
-    @featured_properties = @country.featured_properties(12)
+    @featured_properties = @country.featured_properties(9)
   end
 
   def destroy
