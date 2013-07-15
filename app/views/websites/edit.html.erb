@@ -30,6 +30,9 @@
   <%= f.label :resources_banner_html %>
   <%= editor(f, :resources_banner_html, :html) %>
 
+  <%= f.label :sidebar_html %>
+  <%= editor(f, :sidebar_html, :html) %>
+
 	<label for="website_blog_visible_true">Blog visible?</label>
 	<label class="radio">
     <%= f.radio_button :blog_visible, true %>

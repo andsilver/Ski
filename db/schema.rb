@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130715105433) do
+ActiveRecord::Schema.define(version: 20130715181442) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -762,6 +762,7 @@ ActiveRecord::Schema.define(version: 20130715105433) do
     t.decimal  "vat_rate",                           precision: 4, scale: 2, default: 20.0,  null: false
     t.text     "resources_banner_html"
     t.string   "featured_properties_ids",                                    default: "",    null: false
+    t.text     "sidebar_html"
   end
 
   create_table "window_base_prices", force: true do |t|

@@ -132,6 +132,7 @@ $(function() {
     </ul>
   </section>
   <% end %>
+  <%= raw @w.sidebar_html %>
 </div>
 <div id="content" role="main" class="<%= 'wide' unless content_for? :advertising %>">
   <%= flash_notice %>

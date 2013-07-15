@@ -32,7 +32,8 @@ class WebsitesController < ApplicationController
     params.require(:website).permit(
       :blog_visible, :contact_details, :directory_advert_price,
       :featured_property_ids, :home_content, :privacy_policy,
-      :resources_banner_html, :start_page_content, :skip_payment, :terms,
+      :resources_banner_html, :sidebar_html, :start_page_content,
+      :skip_payment, :terms,
       :vat_rate, :worldpay_active, :worldpay_installation_id,
       :worldpay_payment_response_password, :worldpay_test_mode
     )
