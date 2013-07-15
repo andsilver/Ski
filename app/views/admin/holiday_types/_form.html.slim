@@ -12,5 +12,8 @@
   = f.text_field :name
   = f.label :slug
   = f.text_field :slug
+  label.checkbox
+    = f.check_box :visible_on_menu
+    | Visible on menu?
   .form-actions
     = f.submit class: 'btn btn-primary'

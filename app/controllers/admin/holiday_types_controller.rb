@@ -44,6 +44,6 @@ class Admin::HolidayTypesController < ApplicationController
     end
 
     def holiday_type_params
-      params.require(:holiday_type).permit(:name, :slug)
+      params.require(:holiday_type).permit(:name, :slug, :visible_on_menu)
     end
 end

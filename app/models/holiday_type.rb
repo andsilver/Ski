@@ -4,6 +4,8 @@ class HolidayType < ActiveRecord::Base
 
   has_many :holiday_type_brochures, dependent: :delete_all
 
+  scope :on_menu, -> { where(visible_on_menu: true) }
+
   def country_brochures
     holiday_type_brochures.where(brochurable_type: 'Country')
   end

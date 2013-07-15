@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130618171217) do
+ActiveRecord::Schema.define(version: 20130715105433) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -231,10 +231,11 @@ ActiveRecord::Schema.define(version: 20130618171217) do
   add_index "holiday_type_brochures", ["holiday_type_id"], name: "index_holiday_type_brochures_on_holiday_type_id", using: :btree
 
   create_table "holiday_types", force: true do |t|
-    t.string   "name",       null: false
-    t.string   "slug",       null: false
+    t.string   "name",                           null: false
+    t.string   "slug",                           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "visible_on_menu", default: true, null: false
   end
 
   create_table "images", force: true do |t|
