@@ -734,6 +734,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
+    convert_square_feet_to_square_metres
     params.require(:property).permit(:accommodation_type, :address, :balcony,
       :board_basis, :cave,
       :children_welcome, :currency_id, :description, :disabled,
@@ -746,5 +747,18 @@ class PropertiesController < ApplicationController
       :plot_size_metres_2, :postcode, :resort_id, :sale_price,
       :sauna, :short_stays, :ski_in_ski_out, :sleeping_capacity, :smoking,
       :star_rating, :strapline, :terrace, :tv, :weekly_rent_price, :wifi)
+  end
+
+  def convert_square_feet_to_square_metres
+    if params[:floor_area_unit] == 'f'
+      params[:property][:floor_area_metres_2] = to_square_metres(params[:property][:floor_area_metres_2])
+    end
+    if params[:plot_area_unit] == 'f'
+      params[:property][:plot_size_metres_2] = to_square_metres(params[:property][:plot_size_metres_2])
+    end
+  end
+
+  def to_square_metres(square_feet)
+    (square_feet.to_f * 0.09290304).round.to_s
   end
 end

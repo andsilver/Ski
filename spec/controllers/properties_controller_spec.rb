@@ -113,6 +113,17 @@ describe PropertiesController do
         property.stub(:save).and_return(true)
       end
 
+      context "when submitting in square feet" do
+        it "converts square feet to square metres" do
+          Property.should_receive(:new).with({
+            "floor_area_metres_2"=>"93",
+            "name"=>"A Property",
+            "plot_size_metres_2"=>"186"
+          })
+          post 'create', { id: 1, property: {name: 'A Property', floor_area_metres_2: '1000', plot_size_metres_2: '2000'}, floor_area_unit: 'f', plot_area_unit: 'f' }
+        end
+      end
+
       context "when advertising through windows" do
         pending
       end

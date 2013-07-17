@@ -105,4 +105,12 @@ module PropertiesHelper
     return false unless params[:additional_service]
     return params[:additional_service][code] == value.to_s
   end
+
+  def area_select(name, target)
+    select_tag(
+      name,
+      '<option value="m">square metres</option><option value="f">square feet</option>'.html_safe,
+      { data: { target: target }, class: 'area-unit' }
+    )    
+  end
 end

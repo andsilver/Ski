@@ -140,12 +140,36 @@ $(function() {
         </div>
       </div>
 
+      <style>
+      .area-unit {
+        width: 140px;
+      }
+      </style>
+      <script>
+      $(function() {
+        $('.area-unit').change(function() {
+          var sq_m_to_f = 10.7639104
+            , sq_f_to_m = 0.09290304
+            , input = $("#" + $(this).data('target'))
+            , area = input.val();
+
+          if($(this).val() == 'm') {
+            area = sq_f_to_m * area;
+          } else {
+            area = sq_m_to_f * area;
+          }
+
+          input.val(Math.round(area));
+        });
+      });
+      </script>
+
       <% if @property.for_rent? or @property.for_sale? %>
       <div class="control-group">
         <%= f.label :floor_area_metres_2, t('floor_area'), class: 'control-label' %>
         <div class="controls">
           <%= f.number_field :floor_area_metres_2 %>
-          square metres
+          <%= area_select 'floor_area_unit', :property_floor_area_metres_2 %>
         </div>
       </div>
       <% end %>
@@ -155,7 +179,7 @@ $(function() {
         <%= f.label :plot_size_metres_2, t('plot_size'), class: 'control-label' %>
         <div class="controls">
           <%= f.number_field :plot_size_metres_2 %>
-          square metres
+          <%= area_select 'plot_area_unit', :property_plot_size_metres_2 %>
         </div>
       </div>
       <% end %>
