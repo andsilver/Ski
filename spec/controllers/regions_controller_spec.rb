@@ -21,6 +21,21 @@ describe RegionsController do
       expect(assigns[:region]).to equal(region)
     end
 
+    context 'when region found' do
+      before { Region.stub(:find_by).and_return(region) }
+
+      it 'gets featured properties for the region' do
+        region.should_receive(:featured_properties)
+        get :show, id: 'lake-como'
+      end
+
+      it 'assigns @featured_properties' do
+        region.stub(:featured_properties).and_return(:featured_properties)
+        get :show, id: 'lake-como'
+        expect(assigns(:featured_properties)).to eq :featured_properties
+      end
+    end
+
     context 'when region not found' do
       it 'renders 404' do
         get :show, id: 'lake-como'

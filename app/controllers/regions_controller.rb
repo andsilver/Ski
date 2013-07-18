@@ -1,6 +1,10 @@
 class RegionsController < ApplicationController
   def show
     @region = Region.find_by(slug: params[:id])
-    not_found unless @region
+    if @region
+      @featured_properties = @region.featured_properties(9)
+    else
+      not_found
+    end
   end
 end

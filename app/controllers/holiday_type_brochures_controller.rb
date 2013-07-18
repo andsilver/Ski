@@ -9,6 +9,7 @@ class HolidayTypeBrochuresController < ApplicationController
         brochurable_type: @brochurable.class.to_s,
         holiday_type_id: @holiday_type.id
       )
+      @featured_properties = @brochure.featured_properties(9)
     elsif @brochurable
       redirect_to @brochurable, notice: 'That information is missing.'
     elsif @holiday_type

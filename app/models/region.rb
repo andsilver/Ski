@@ -24,4 +24,8 @@ class Region < ActiveRecord::Base
       .where(resorts: { region_id: id })
       .order('resorts.name ASC')
   end
+
+  def featured_properties(limit)
+    Property.order('RAND()').limit(limit).where(region_id: id, publicly_visible: true)
+  end
 end
