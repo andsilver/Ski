@@ -357,6 +357,9 @@ fr:
     accommodation_type: Type d'hébergement
     choose_a_window: Choose a Window
     email_a_friend: Envoyer à un ami
+    featured:
+      sale_price: 'Sale price %{price}'
+      weekly_price_from: 'From %{price} weekly'
     features:
       balcony: Balcon
       bed_and_breakfast: 'Bed & breakfast'
@@ -421,7 +424,6 @@ fr:
       new: Nouvelle Propriété
       new_developments: "Développements Nouvelle Propriété à %{resort}"
       show: "%{property_name} - Chalet / Appartement %{rent_or_sale} à %{resort}, %{country}"
-    weekly_price_from: 'Weekly price from'
   receipts: Recettes
   registration: Enregistrement
   resort: 'Station'

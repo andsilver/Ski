@@ -7,22 +7,22 @@ $(document).ready(function() {
 <div id="featured-properties" class="carousel slide">
   <div class="carousel-inner">
     <div class="item active">
-      <ul class="thumbnails">
+      <div class="clear-fix">
         <%= featured_properties(@featured_properties[0..(num/3 -1)]) %>
-      </ul>
+      </div>
     </div>
     <div class="item">
-      <ul class="thumbnails">
+      <div class="clear-fix">
         <%= featured_properties(@featured_properties[(num/3)..(num * 2/3 - 1)]) %>
-      </ul>
+      </div>
     </div>
     <div class="item">
-      <ul class="thumbnails">
+      <div class="clear-fix">
         <%= featured_properties(@featured_properties[(num * 2/3)..(num - 1)]) %>
-      </ul>
+      </div>
     </div>
   </div>
   <!-- Carousel nav -->
-  <a class="carousel-control left" href="#featured_properties" data-slide="prev">&lsaquo;</a>
-  <a class="carousel-control right" href="#featured_properties" data-slide="next">&rsaquo;</a>
+  <a class="carousel-control left" href="#featured-properties" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#featured-properties" data-slide="next">&rsaquo;</a>
 </div>
