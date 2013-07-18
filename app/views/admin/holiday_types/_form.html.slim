@@ -15,5 +15,7 @@
   label.checkbox
     = f.check_box :visible_on_menu
     | Visible on menu?
+  = f.label :sidebar_html
+  = editor(f, :sidebar_html, :html)
   .form-actions
     = f.submit class: 'btn btn-primary'
