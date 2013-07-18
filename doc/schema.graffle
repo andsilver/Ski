@@ -3847,7 +3847,7 @@ visible}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{1305.9817490683815, 407.83950260199072}, {15, 24}}</string>
+			<string>{{1306.2501466722752, 411.57467700300828}, {15, 24}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -3924,8 +3924,8 @@ visible}</string>
 			<integer>567</integer>
 			<key>Points</key>
 			<array>
-				<string>{1379.3548229458024, 426.95712800675483}</string>
-				<string>{1302.0995792602539, 407.7150501763291}</string>
+				<string>{1379.3513483255554, 428.57125328934575}</string>
+				<string>{1302.0995792602539, 411.8258251367559}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -4049,7 +4049,7 @@ visible}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{1309.5275358798788, 367.58788667828048}, {15, 24}}</string>
+			<string>{{1309.8902682809787, 370.21349720910518}, {15, 24}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -4127,7 +4127,7 @@ visible}</string>
 			<key>Points</key>
 			<array>
 				<string>{1379.8399999999999, 361.45598999999999}</string>
-				<string>{1302.0995792602539, 372.62615835965215}</string>
+				<string>{1302.0995792602539, 375.88317108497648}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -4523,7 +4523,7 @@ price}</string>
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{1329.2211079139843, 437.79198303732466}, {15, 24}}</string>
+			<string>{{1329.3582850313715, 442.3473666323934}, {15, 24}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -4600,8 +4600,8 @@ price}</string>
 			<integer>550</integer>
 			<key>Points</key>
 			<array>
-				<string>{1520, 520.4991134717767}</string>
-				<string>{1302.0995792602539, 424.72907654114977}</string>
+				<string>{1520, 521.47040760181346}</string>
+				<string>{1302.0995792602539, 429.97603530951073}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -4990,7 +4990,7 @@ sidebar_html}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{1123.4196476196289, 42.463012726562511}, {178.679931640625, 710}}</string>
+					<string>{{1123.4196476196289, 42.463012726562511}, {178.679931640625, 724}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -5073,7 +5073,8 @@ terrace\
 star_rating\
 interhome_accommodation_id\
 late_availability\
-pv_accommodation_id}</string>
+pv_accommodation_id\
+region_id}</string>
 					</dict>
 					<key>TextPlacement</key>
 					<integer>0</integer>
@@ -8128,7 +8129,7 @@ vat_number}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2013-07-18 09:52:01 +0000</string>
+	<string>2013-07-18 12:10:09 +0000</string>
 	<key>Modifier</key>
 	<string>Ian Fleeton</string>
 	<key>NotesVisible</key>
@@ -8209,7 +8210,7 @@ vat_number}</string>
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{0, 47}, {1280, 720}}</string>
+		<string>{{113, 58}, {1280, 720}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -8223,7 +8224,7 @@ vat_number}</string>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{1092, 0}, {1145, 581}}</string>
+		<string>{{1092, 336}, {1145, 581}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>

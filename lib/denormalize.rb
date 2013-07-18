@@ -11,6 +11,7 @@ class Denormalize
         country_id = p.resort.country_id
         p.publicly_visible = publicly_visible
         p.country_id = country_id
+        p.region_id = p.resort.region_id
         p.normalise_prices
         p.late_availability = p.calculate_late_availability(LateAvailability.next_three_saturdays)
         p.save
