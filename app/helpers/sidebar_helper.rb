@@ -8,7 +8,7 @@ module SidebarHelper
   end
 
   def holiday_type_sidebar_html
-    require 'Set'
+    require 'set'
     holiday_types = Set.new
     holiday_types << @holiday_type if @holiday_type
     [@country, @region, @resort].each do |place|
