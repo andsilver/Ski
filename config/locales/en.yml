@@ -497,7 +497,7 @@ en:
   resort_options:
     hotels: Hotels
     new_developments: New Build
-    resort_info: Resort Info
+    resort_info: Resort Summary
   roles:
     administrator: Administrator
     advertiser: Advertiser
