@@ -1,3 +1,4 @@
+<% unless @featured_properties.empty? -%>
 <% num = @featured_properties.count -%>
 <script>
 $(document).ready(function() {
@@ -26,3 +27,4 @@ $(document).ready(function() {
   <a class="carousel-control left" href="#featured-properties" data-slide="prev">&lsaquo;</a>
   <a class="carousel-control right" href="#featured-properties" data-slide="next">&rsaquo;</a>
 </div>
+<% end -%>

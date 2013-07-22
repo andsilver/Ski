@@ -50,7 +50,7 @@ $(function() {
 <% end %>
 
 <div id="content-with-side-banners">
-  <% featured_properties = @featured_properties.empty? ? '' : render('shared/featured_properties') %>
+<% featured_properties = render('shared/featured_properties') -%>
   <%= raw Liquid::Template.parse(@country.info).render(
   'featured_properties' => featured_properties,
   'resort_summaries_table' => render('resort_summaries_table')

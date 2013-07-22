@@ -11,5 +11,5 @@
 </section>
 <% end %>
 
-<% featured_properties = @featured_properties.empty? ? '' : render('shared/featured_properties') -%>
+<% featured_properties = render('shared/featured_properties') -%>
 <%= raw Liquid::Template.parse(@region.info).render('featured_properties' => featured_properties) %>

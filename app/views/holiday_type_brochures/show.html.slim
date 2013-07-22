@@ -6,5 +6,5 @@
   = render partial: 'brochure_list', locals: { heading: t('.resorts'), method: :resort_without_region_brochures }
 
 h1= t('.heading', place: @brochurable, holiday_type: @holiday_type)
-- featured_properties = @featured_properties.empty? ? '' : render('shared/featured_properties')
+- featured_properties = render('shared/featured_properties')
 = raw Liquid::Template.parse(@page_content).render('featured_properties' => featured_properties)
