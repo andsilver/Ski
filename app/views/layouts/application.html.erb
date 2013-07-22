@@ -90,6 +90,7 @@ $(function() {
     <ul id="resort-nav">
       <li <%= 'class="active"'.html_safe if current_page?(resort_path(@resort)) %>><%=
         link_to t('resort_options.resort_info'), resort_path(@resort), title: "#{@resort.name} resort information" %></li>
+      <li <%= 'class="active"'.html_safe if current_page?(resort_guide_path(@resort)) %>><%= link_to t('.resort_guide'), resort_guide_path(@resort), title: "#{@resort.name} resort guide" %></li>
   <% unless @resort.for_rent_count == 0 -%>
       <li <%= 'class="active"'.html_safe if current_page?(resort_property_rent_path(@resort)) %>><a
         title="Property for rent in <%= @resort.name %>"

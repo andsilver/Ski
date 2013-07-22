@@ -278,6 +278,9 @@ en:
   late_availability_controller:
     titles:
       index: 'Late Availability - Last Minute Ski Accommodation'
+  layouts:
+    application:
+      resort_guide: 'Resort Guide'
   main_image: 'Main image'
   map: Map
   mobile: Mobile

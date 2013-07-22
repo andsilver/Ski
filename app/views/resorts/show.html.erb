@@ -5,10 +5,6 @@
 <% end %>
 
 <div id="content-with-side-banners">
-  <p class="more_detail" style="width: 30%; float: right;">
-    <%= link_to "#{@resort.name} Resort Guide", resort_guide_path(@resort) %>
-  </p>
-
 <%= render 'ski_facts_short' if @resort.ski? %>
 
 <%= render 'shared/featured_properties' %>
