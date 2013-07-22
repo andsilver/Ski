@@ -275,7 +275,7 @@ de:
     titles:
       index: 'Late Availability - Last Minute Ski Accommodation'
   layouts:
-    application:
+    resort_nav:
       resort_guide: 'Skigebiet Informationen'
   main_image: 'Main image'
   map: Map
