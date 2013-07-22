@@ -2,6 +2,7 @@ class Property < ActiveRecord::Base
   include AdvertBehaviours
 
   belongs_to :user
+  belongs_to :country
   belongs_to :region
   belongs_to :resort
   belongs_to :image
