@@ -1,5 +1,6 @@
 class Region < ActiveRecord::Base
   include Brochures
+  include RelatedPages
 
   belongs_to :country, inverse_of: :regions
   has_many :resorts, inverse_of: :region, dependent: :nullify
@@ -8,6 +9,15 @@ class Region < ActiveRecord::Base
   validates :name, length: { maximum: 100 }, presence: true, uniqueness: { scope: :country }
 
   validates :slug, presence: true, uniqueness: true
+
+  def self.page_names
+    ['how-to-get-there']
+  end
+
+  def page_title(page_name)
+    key = 'regions_controller.titles.' + page_name.gsub('-', '_')
+    title = I18n.t(key, region: name, default: page_name)
+  end
 
   def to_param
     slug

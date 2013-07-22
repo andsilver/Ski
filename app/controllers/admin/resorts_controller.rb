@@ -3,6 +3,10 @@ class Admin::ResortsController < ApplicationController
   before_action :set_resort, only: [:edit, :update, :destroy, :edit_page, :destroy_properties]
   layout 'admin'
 
+  include EditRelatedPages
+  def klass; Region; end
+  def object; @region; end
+
   def index
     @countries = Country.with_resorts
   end
@@ -43,14 +47,6 @@ class Admin::ResortsController < ApplicationController
     unless @resort.properties.any?
       @resort.destroy
       redirect_to(admin_resorts_path, notice: t('notices.deleted'))
-    end
-  end
-
-  def edit_page
-    page_name = params[:page_name]
-    if Resort.page_names.include?(page_name)
-      @resort.create_page(page_name) unless @resort.has_page?(page_name)
-      redirect_to edit_page_path(@resort.page(page_name))
     end
   end
 

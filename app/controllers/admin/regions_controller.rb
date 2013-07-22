@@ -1,7 +1,11 @@
 class Admin::RegionsController < ApplicationController
   before_action :admin_required
-  before_action :find_region, only: [:edit, :update, :destroy]
+  before_action :find_region, only: [:edit, :update, :destroy, :edit_page]
   layout 'admin'
+
+  include EditRelatedPages
+  def klass; Region; end
+  def object; @region; end
 
   def index
     @regions = Region.order('name')
