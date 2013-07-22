@@ -189,9 +189,6 @@ fr:
       regions: Regions
       resorts: Resorts
   home: Accueil
-  home_controller:
-    news_flash: 'Dernières Nouvelles'
-    resort_guide: 'Guide de Station de Ski'
   hotels: Hotels
   images_controller:
     banner_image: 'Banner Image'

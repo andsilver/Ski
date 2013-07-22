@@ -189,9 +189,6 @@ it:
       regions: Regions
       resorts: Resorts
   home: Home
-  home_controller:
-    news_flash: 'Ultime Notizie'
-    resort_guide: 'Sciistica Guida'
   hotels: Hotels
   images_controller:
     banner_image: 'Banner Image'

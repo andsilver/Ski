@@ -190,9 +190,6 @@ en:
       regions: Regions
       resorts: Resorts
   home: Home
-  home_controller:
-    news_flash: 'News Flash'
-    resort_guide: 'Resort Guide'
   hotels: Hotels
   images_controller:
     banner_image: 'Banner Image'

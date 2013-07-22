@@ -189,9 +189,6 @@ de:
       regions: Regions
       resorts: Resorts
   home: Home
-  home_controller:
-    news_flash: 'Informationen'
-    resort_guide: 'Skigebiet Informationen'
   hotels: Hotels
   images_controller:
     banner_image: 'Banner Image'
