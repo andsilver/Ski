@@ -9,7 +9,7 @@ describe RegionsController do
     controller.stub(:admin?).and_return(false)
   end
 
-  describe 'GET show' do
+  shared_examples "a user of a region" do
     it 'finds a region by its slug' do
       Region.should_receive(:find_by).with(slug: 'lake-como')
       get :show, id: 'lake-como'
@@ -42,5 +42,13 @@ describe RegionsController do
         expect(response.status).to eq 404
       end
     end
+  end
+
+  describe 'GET show' do
+    it_behaves_like "a user of a region"
+  end
+
+  describe 'GET how_to_get_there' do
+    it_behaves_like "a user of a region"
   end
 end

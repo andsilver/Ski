@@ -192,6 +192,7 @@ MySkiChalet::Application.routes.draw do
   end
 
   resources :regions, only: [:show]
+  get 'regions/:id/how-to-get-there' => 'regions#how_to_get_there', as: :how_to_get_to_region
 
   resources :roles do
     get 'sales_pitch', on: :member

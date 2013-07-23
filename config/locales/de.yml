@@ -275,6 +275,8 @@ de:
     titles:
       index: 'Late Availability - Last Minute Ski Accommodation'
   layouts:
+    region_nav:
+      how_to_get_there: 'How to Get There'
     resort_nav:
       resort_guide: 'Skigebiet Informationen'
   main_image: 'Main image'
@@ -425,6 +427,9 @@ de:
       new_developments: "New Property Developments in %{resort}"
       show: "%{property_name} - Chalet / Apartment %{rent_or_sale} in %{resort}, %{country}"
   receipts: Receipts
+  regions:
+    how_to_get_there:
+      heading: 'How to Get There'
   registration: Registration
   resort: 'Resort'
   resorts: 'Resorts'

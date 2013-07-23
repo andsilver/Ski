@@ -85,6 +85,7 @@ $(function() {
 </div>
 <div id="links-and-search">
   <%= yield :links_and_search %>
+  <%= render 'layouts/region_nav' if @region %>
   <%= render 'layouts/resort_nav' if @resort %>
   <%= raw sidebar_html %>
 </div>
