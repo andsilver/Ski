@@ -5,6 +5,9 @@
   = f.text_field :slug
   = f.label :country_id
   = country_select('region')
+  label.checkbox
+    = f.check_box :visible
+    | Visible
   = f.label :info
   = editor(f, :info, :html)
   .form-actions

@@ -398,7 +398,7 @@ sidebar_html}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{581, 363.21804809570312}, {93.28912353515625, 80}}</string>
+					<string>{{581, 363.21804809570312}, {93.28912353515625, 94}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -436,7 +436,8 @@ sidebar_html}</string>
 country_id\
 name\
 info\
-slug}</string>
+slug\
+visible}</string>
 					</dict>
 					<key>TextPlacement</key>
 					<integer>0</integer>
@@ -8129,7 +8130,7 @@ vat_number}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2013-07-18 12:10:09 +0000</string>
+	<string>2013-07-29 14:02:23 +0000</string>
 	<key>Modifier</key>
 	<string>Ian Fleeton</string>
 	<key>NotesVisible</key>
@@ -8210,7 +8211,7 @@ vat_number}</string>
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{113, 58}, {1280, 720}}</string>
+		<string>{{-19, 58}, {1280, 720}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -8224,7 +8225,7 @@ vat_number}</string>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{1092, 336}, {1145, 581}}</string>
+		<string>{{569, 293}, {1145, 581}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>

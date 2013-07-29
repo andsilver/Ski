@@ -18,6 +18,7 @@ feature 'Regions admin' do
     fill_in 'Slug',   with: 'alsace'
     select  'France', from: 'Country'
     fill_in 'Info',   with: 'The fifth-smallest of the 27 regions of France'
+    check 'Visible'
     click_button 'Create Region'
     expect(page).to have_content I18n.t('notices.created')
     expect(page).to have_content 'Alsace'
