@@ -109,7 +109,7 @@ class Country < ActiveRecord::Base
       HolidayTypeBrochure
         .where(holiday_type_id: holiday_type_id, brochurable_type: klass.to_s)
         .joins("INNER JOIN #{table} ON #{table}.id = holiday_type_brochures.brochurable_id")
-        .where(table => { country_id: id })
+        .where(table => { country_id: id, visible: true })
         .order("#{table}.name ASC")
     end
 end

@@ -52,4 +52,29 @@ describe Country do
       expect(Country.page_names).to eq ['page-1', 'page-2']
     end
   end
+
+  describe '#region_brochures' do
+    let(:ht) { FactoryGirl.create(:holiday_type) }
+    let(:country) { FactoryGirl.create(:country) }
+
+    it 'returns brochures for child regions with specified holiday type' do
+      region = FactoryGirl.create(:region, country: country)
+      country.holiday_type_brochures.build(holiday_type: ht)
+      region_brochure = region.holiday_type_brochures.build(holiday_type: ht)
+      country.save
+      region.save
+
+      country.region_brochures(ht.id).to_a.should eq [region_brochure]
+    end
+
+    it 'excludes invisible resorts' do
+      region = FactoryGirl.create(:region, country: country, visible: false)
+      country.holiday_type_brochures.build(holiday_type: ht)
+      region_brochure = region.holiday_type_brochures.build(holiday_type: ht)
+      country.save
+      region.save
+
+      country.region_brochures(ht.id).to_a.should eq []
+    end
+  end
 end

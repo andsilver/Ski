@@ -31,7 +31,7 @@ class Region < ActiveRecord::Base
     HolidayTypeBrochure
       .where(holiday_type_id: holiday_type_id, brochurable_type: 'Resort')
       .joins('INNER JOIN resorts ON resorts.id = holiday_type_brochures.brochurable_id')
-      .where(resorts: { region_id: id })
+      .where(resorts: { region_id: id, visible: true })
       .order('resorts.name ASC')
   end
 

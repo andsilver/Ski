@@ -12,4 +12,29 @@ describe Region do
       expect(Region.new(name: 'Lake Como').to_s).to eq 'Lake Como'
     end
   end
+
+  describe '#resort_brochures' do
+    let(:ht) { FactoryGirl.create(:holiday_type) }
+    let(:region) { FactoryGirl.create(:region) }
+
+    it 'returns brochures for child resorts with specified holiday type' do
+      resort = FactoryGirl.create(:resort, region: region)
+      region.holiday_type_brochures.build(holiday_type: ht)
+      resort_brochure = resort.holiday_type_brochures.build(holiday_type: ht)
+      region.save
+      resort.save
+
+      region.resort_brochures(ht.id).to_a.should eq [resort_brochure]
+    end
+
+    it 'excludes invisible resorts' do
+      resort = FactoryGirl.create(:resort, region: region, visible: false)
+      region.holiday_type_brochures.build(holiday_type: ht)
+      resort_brochure = resort.holiday_type_brochures.build(holiday_type: ht)
+      region.save
+      resort.save
+
+      region.resort_brochures(ht.id).to_a.should eq []
+    end
+  end
 end
