@@ -7,23 +7,25 @@
 
   = render 'ski_facts_long' if @resort.ski? && !@resort.summer_only?
 
+  - template_params = {'featured_properties' => render('shared/featured_properties')}
+
   - unless @resort.visiting.blank?
     - if @resort.summer_only?
       h2= t('resorts_controller.detail.visiting', resort: @resort)
     - else
       h2= t('resorts_controller.detail.skiing_in', resort: @resort)
-    = raw @resort.visiting
+    = lt(@resort.visiting, template_params)
 
   - unless @resort.owning_a_property_in.blank?
     h2= t('resorts_controller.detail.owning_a_property_in', resort: @resort)
-    = raw @resort.owning_a_property_in
+    = lt(@resort.owning_a_property_in, template_params)
 
   - unless @resort.living_in.blank?
     h2= t('resorts_controller.detail.living_in', resort: @resort)
-    = raw @resort.living_in
+    = lt(@resort.living_in, template_params)
 
   - unless @resort.insider_view.blank?
     h2= t('resorts_controller.detail.insider_view', resort: @resort)
-    = raw @resort.insider_view
+    = lt(@resort.insider_view, template_params)
 
 = render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort)

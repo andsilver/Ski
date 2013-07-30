@@ -6,10 +6,10 @@
 
 #content-with-side-banners
   = render 'ski_facts_short' if @resort.ski?
-  = render 'shared/featured_properties'
+  - featured_properties = render('shared/featured_properties')
 
   - unless @resort.introduction.blank?
-    = raw @resort.introduction
+    = lt(@resort.introduction, 'featured_properties' => featured_properties)
 
   - unless @resort.weather_code.blank?
     #weather_code= raw @resort.weather_code

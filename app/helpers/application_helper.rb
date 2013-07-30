@@ -143,6 +143,10 @@ module ApplicationHelper
     ), object)
   end
 
+  def lt(template, params)
+    raw Liquid::Template.parse(template).render(params)
+  end
+
   protected
 
     def object_title(object)

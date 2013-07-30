@@ -9,7 +9,20 @@ describe ResortsController do
     controller.stub(:admin?).and_return(false)
   end
 
+  shared_examples 'a featured properties finder' do |action, params|
+    before do
+      Resort.stub(:find_by).and_return(mock_model(Resort, visible: true).as_null_object)
+    end
+
+    it 'assigns @featured_properties' do
+      get action, params
+      expect(assigns(:featured_properties)).to_not be_nil
+    end
+  end
+
   describe 'GET show' do
+    it_behaves_like 'a featured properties finder', :show, id: 'chamonix'
+
     it 'finds a resort by its slug' do
       Resort.should_receive(:find_by).with(slug: 'chamonix')
       get :show, id: 'chamonix'
@@ -20,5 +33,9 @@ describe ResortsController do
       get :show, id: 'chamonix'
       expect(assigns[:resort]).to equal(resort)
     end
+  end
+
+  describe 'GET resort_guide' do
+    it_behaves_like 'a featured properties finder', :resort_guide, id: 'chamonix'
   end
 end
