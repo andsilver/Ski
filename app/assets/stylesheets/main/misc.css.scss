@@ -19,16 +19,24 @@
   background: #005CAB;
 }
 
+.ski-levels h3 {
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: normal;
+  padding: 7px;
+}
+
 .ski-levels .beginner h3 {
-  color: green;
+  background-color: #007c00;
 }
 
 .ski-levels .intermediate h3 {
-  color: red;
+  background-color: #c00;
 }
 
 .ski-levels .advanced h3 {
-  color: black;
+  background-color: #000;
 }
 
 .image-left {
