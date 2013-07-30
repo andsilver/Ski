@@ -1,0 +1,57 @@
+table
+  tr
+    th colspan="2"= "#{t('resorts_controller.detail.key_information')} (#{@resort.area_type})"
+  tr
+    td= t('resorts_controller.facts.altitude')
+    td= "#{@resort.altitude_m}m"
+  tr
+    td= t('resorts_controller.facts.top_lift')
+    td= "#{@resort.top_lift_m}m"
+  tr
+    td= t('resorts_controller.facts.family')
+    td= star_rating @resort.family
+  tr
+    td= t('resorts_controller.facts.beginner')
+    td= star_rating @resort.beginner
+  tr
+    td= t('resorts_controller.facts.intermediate')
+    td= star_rating @resort.intermediate
+  tr
+    td= t('resorts_controller.facts.expert')
+    td= star_rating @resort.expert
+  tr
+    td= t('resorts_controller.facts.ski_area')
+    td= "#{@resort.ski_area_km}km<sup>2</sup>".html_safe
+  tr
+    td= t('resorts_controller.facts.longest_run')
+    td= "#{@resort.longest_run_km}km"
+  tr
+    td= t('resorts_controller.facts.off_piste')
+    td= star_rating @resort.off_piste
+  tr
+    td= t('resorts_controller.facts.cross_country')
+    td= "#{@resort.cross_country_km}km"
+  tr
+    td= t('resorts_controller.facts.season')
+    td= @resort.season
+  tr
+    td= t('resorts_controller.facts.snowboard_parks')
+    td= @resort.snowboard_parks
+  tr
+    td= t('resorts_controller.facts.heli_skiing')
+    td= tick_cross_unknown @resort.heli_skiing
+  tr
+    td= t('resorts_controller.facts.summer_skiing')
+    td= tick_cross_unknown(@resort.summer_skiing)
+  tr
+    td= t('resorts_controller.facts.glacier_skiing')
+    td= tick_cross_unknown(@resort.glacier_skiing)
+  tr
+    td= t('resorts_controller.facts.babysitting_services')
+    td= tick_cross_unknown(@resort.babysitting_services)
+  tr
+    td= t('resorts_controller.facts.creche')
+    td= tick_cross_unknown(@resort.creche)
+  tr
+    td= t('resorts_controller.facts.apres_ski')
+    td= @resort.apres_ski

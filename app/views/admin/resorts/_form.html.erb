@@ -10,6 +10,15 @@
   </div>
 <% end %>
 
+<p>
+  Use the codes:
+</p>
+
+<ul>
+  <li><code>{{ featured_properties }}</code> to embed featured properties</li>
+  <li><code>{{ ski_facts_long }}</code> to embed a large table of ski resort facts</li>
+</ul>
+
 <%= form_for [:admin, @resort] do |f| %>
 <div class="form-horizontal">
   <div class="control-group">
@@ -91,9 +100,6 @@
     </div>
   </div>
 </div>
-<p>
-  Use the code <code>{{ featured_properties }}</code> to embed featured properties.
-</p>
 <div class="form-horizontal">
   <div class="control-group">
     <%= f.label :living_in, class: 'control-label' %>

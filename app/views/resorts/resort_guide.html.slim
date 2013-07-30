@@ -6,9 +6,9 @@
   - unless @resort.info.blank?
     = raw @resort.info
 
-  = render 'ski_facts_long' if @resort.ski? && !@resort.summer_only?
-
-  - template_params = {'featured_properties' => render('shared/featured_properties')}
+  - ski_facts_long = (@resort.ski? && !@resort.summer_only?) ? render('ski_facts_long') : ''
+  - featured_properties = render('shared/featured_properties')
+  - template_params = {'featured_properties' => featured_properties, 'ski_facts_long' => ski_facts_long}
 
   - unless @resort.visiting.blank?
     - if @resort.summer_only?
