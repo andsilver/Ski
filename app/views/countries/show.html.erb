@@ -30,14 +30,16 @@ $(function() {
 </div>
 </section>
 
+<% unless @country.visible_regions.empty? -%>
 <section>
   <h2>Regions</h2>
   <ul>
-<% @country.regions.each do |region| %>
+<% @country.visible_regions.each do |region| %>
     <li><%= link_to region, region %></li>
 <% end %>
   </ul>
 </section>
+<% end -%>
 
 <section>
   <h2>Resorts</h2>

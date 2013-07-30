@@ -5,6 +5,7 @@ class Country < ActiveRecord::Base
   belongs_to :image, dependent: :destroy
 
   has_many :regions, -> { order 'name' }, inverse_of: :country
+  has_many :visible_regions, -> { where(visible: true).order('name') }, class_name: 'Region'
   has_many :resorts, -> { order 'name' }
   has_many :visible_resorts, -> { where(visible: true).order('name') }, class_name: 'Resort'
   has_many :orders
