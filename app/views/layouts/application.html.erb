@@ -41,12 +41,24 @@
 <% end -%>
 <script>
 $(function() {
+  pageLoad();
+});
+
+$(document).bind('page:load', function() {
+  pageLoad();
+});
+
+function pageLoad() {
+  cycleHeaderImages();
+}
+
+function cycleHeaderImages() {
   $('#header-images').cycle({
     fx: 'fade',
     speed: 1500,
     timeout: 3000
   });
-});
+}
 </script>
 </head>
 <body class="<%= @body_classes %>">
