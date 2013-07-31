@@ -8,6 +8,9 @@ table
     td= t('resorts_controller.facts.top_lift')
     td= "#{@resort.top_lift_m}m"
   tr
+    td= t('resorts_controller.facts.piste_length')
+    td= @resort.piste_length_km
+  tr
     td= t('resorts_controller.facts.family')
     td= star_rating(@resort.family)
   tr
