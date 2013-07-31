@@ -471,9 +471,10 @@ en:
       longest_run: Longest run
       mountain_restaurants: Mountain restaurants
       nearest_airport: Nearest airport
+      piste_length: Piste (km)
       railways: Railways
       red: Red
-      ski_area: Ski area
+      ski_area: Ski area (acre)
       slope_direction: Slope direction
       snowboard_parks: Snowboard parks
       top_lift: Top lift

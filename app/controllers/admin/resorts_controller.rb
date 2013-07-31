@@ -75,7 +75,8 @@ class Admin::ResortsController < ApplicationController
         :info, :insider_view, :intermediate,
         :introduction, :living_in, :local_area, :longest_run_km,
         :mountain_restaurants, :name, :off_piste, :owning_a_property_in,
-        :piste_map_content, :railways, :red, :region_id, :season, :ski_area_km,
+        :piste_length_km,
+        :piste_map_content, :railways, :red, :region_id, :season, :ski_area_acre,
         :slope_direction, :slug, :snowboard_parks, :summer_only,
         :summer_skiing, :top_lift_m, :weather_code, :visible, :visiting)
     end

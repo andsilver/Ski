@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130729140240) do
+ActiveRecord::Schema.define(version: 20130731124534) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -611,7 +611,7 @@ ActiveRecord::Schema.define(version: 20130729140240) do
     t.text     "info"
     t.integer  "altitude_m"
     t.integer  "top_lift_m"
-    t.integer  "ski_area_km"
+    t.integer  "piste_length_km"
     t.integer  "black"
     t.integer  "red"
     t.integer  "blue"
@@ -660,6 +660,7 @@ ActiveRecord::Schema.define(version: 20130729140240) do
     t.integer  "directory_advert_count", default: 0,     null: false
     t.integer  "region_id"
     t.string   "slug",                                   null: false
+    t.integer  "ski_area_acre"
   end
 
   add_index "resorts", ["country_id"], name: "index_resorts_on_country_id", using: :btree

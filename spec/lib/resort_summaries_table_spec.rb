@@ -6,12 +6,12 @@ describe ResortSummariesTable do
   end
 
   let(:country) { FactoryGirl.create(:country) }
-  let(:resort_x) { Resort.create!(name: 'X', altitude_m: 1600, top_lift_m: 2100, ski_area_km: 1200, visible: true, slug: 'x') }
+  let(:resort_x) { Resort.create!(name: 'X', altitude_m: 1600, top_lift_m: 2100, piste_length_km: 1200, visible: true, slug: 'x') }
   let(:resort_y) { Resort.create!(name: 'Y', visible: true, slug: 'y') }
 
   describe '#headers' do
     it 'returns an array of headers' do
-      expect(rst.headers).to eq ['Resort', 'Altitude', 'Top lift', 'Ski area', 'Nearest airport', 'Distance']
+      expect(rst.headers).to eq ['Resort', 'Altitude', 'Top lift', 'Piste (km)', 'Nearest airport', 'Distance']
     end
   end
 
@@ -45,7 +45,7 @@ describe ResortSummariesTable do
 
     it 'returns ski area in cell 3' do
       country.resorts << resort_x
-      expect(rst(country).rows.first[3]).to eq resort_x.ski_area_km
+      expect(rst(country).rows.first[3]).to eq resort_x.piste_length_km
     end
 
     it 'returns nearest airport name in cell 4' do
