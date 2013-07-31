@@ -118,6 +118,13 @@ module ApplicationHelper
     class: 'btn'
   end
 
+  def copy_button(object)
+    link_to '<i class="icon-plus-sign"></i> Copy'.html_safe,
+    polymorphic_path(object, {action: :copy}),
+    data: { method: :get},
+    class: 'btn', title: "Copy #{object_title(object)}"
+  end
+
   def editor(form, attribute, mode)
     textarea_id = "##{form.object_name}_#{attribute}"
     editor_id = "editor_#{attribute}"

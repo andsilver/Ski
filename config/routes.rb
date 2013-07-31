@@ -202,7 +202,9 @@ MySkiChalet::Application.routes.draw do
   resources :websites
   get 'cms/directory-price' => 'websites#edit_prices', as: :directory_price
 
-  resources :pages
+  resources :pages do
+    get 'copy', on: :member
+  end
 
   resources :alt_attributes
 

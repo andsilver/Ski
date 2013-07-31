@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_filter :admin_required, except: [:show]
   layout 'admin', except: [:show]
 
-  before_filter :find_page, only: [:edit, :update, :destroy]
+  before_action :find_page, only: [:edit, :update, :destroy, :copy]
 
   def index
     @pages = Page.order('path')
@@ -42,6 +42,11 @@ class PagesController < ApplicationController
     @page = Page.find_by_path("/pages/#{params[:id]}")
     not_found and return unless show_page?
     @content = Liquid::Template.parse(@page.content).render('buying_guides' => BuyingGuide.all)
+  end
+
+  def copy
+    @page = @page.dup
+    render 'new'
   end
 
   protected

@@ -41,4 +41,28 @@ describe PagesController do
       get 'show', id: 'slug'
     end
   end
+
+  describe 'GET copy' do
+    it 'finds the page' do
+      Page.should_receive(:find).with('1').and_return(page)
+      get 'copy', id: '1'
+    end
+
+    context 'when the page is found' do
+      let(:page) { mock_model(Page).as_null_object }
+
+      it 'duplicates the page' do
+        Page.stub(:find).and_return(FactoryGirl.create(:page, title: 'xyzzy'))
+        get 'copy', id: '1'
+        expect(assigns(:page).title).to eq 'xyzzy'
+        expect(assigns(:page).new_record?).to be_true
+      end
+
+      it 'renders the new template' do
+        Page.stub(:find).and_return(page)
+        get 'copy', id: '1'
+        expect(response).to render_template('new')
+      end
+    end
+  end
 end
