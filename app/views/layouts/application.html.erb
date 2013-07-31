@@ -50,6 +50,7 @@ $(document).bind('page:load', function() {
 
 function pageLoad() {
   cycleHeaderImages();
+  animateMarker();
 }
 
 function cycleHeaderImages() {
@@ -58,6 +59,10 @@ function cycleHeaderImages() {
     speed: 1500,
     timeout: 3000
   });
+}
+
+function animateMarker() {
+  $("#marker").delay(1000).animate({"top":"45px"}, 500, "easeOutBounce");
 }
 </script>
 </head>
@@ -83,6 +88,7 @@ function cycleHeaderImages() {
 <% end -%>
     </ul>
   </nav>
+  <img src="/images/marker.svg" alt="Marker" id="marker">
   <a href="<%= root_path %>" title="Home" id="logo"><%= image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation')) %></a>
   <nav id="main-menu" role="navigation">
     <ul>
