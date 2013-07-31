@@ -109,6 +109,13 @@ a img {
   float: left;
   min-height: 10px;
   width: 620px;
+
+  ul {
+    font-size: 13px;
+    list-style-type: disc;
+    margin-bottom: 5px;
+    margin-left: 15px;
+  }
 }
 
 #content.wide {
