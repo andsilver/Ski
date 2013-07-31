@@ -18,3 +18,7 @@ div#intro {
 .footer_box {
   border-bottom: 1px solid #CCC;
 }
+
+.hide-from-legacy {
+  display: none;
+}
