@@ -98,9 +98,7 @@ function animateMarker() {
     </ul>
   </nav>
 </header>
-<div id="column_headings">
-  <h1><%= @heading_a %></h1>
-</div>
+<%= render 'layouts/breadcrumbs_and_heading' %>
 <div id="links-and-search">
   <%= yield :links_and_search %>
   <%= render 'layouts/region_nav' if @region %>

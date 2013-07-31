@@ -81,7 +81,7 @@
     <td width="40%">
 <div class="field">
 <% if @directory_advert.new_record? -%>
-  <%= f.label :resort_id, t('resorts') %>
+  <%= f.label :resort_id, t('.resorts') %>
   <%= select("directory_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort,
   {}, {multiple: true, size: 10}) %>
 <% else -%>

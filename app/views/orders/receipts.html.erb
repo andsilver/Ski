@@ -1,6 +1,7 @@
 <%= render 'users/advertising_options' %>
 
-<h1><%= link_to t('advertise'), advertise_path %> &rarr; Receipts</h1>
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('advertise') => advertise_path}, 'Receipts') %>
+
 <% if @orders.empty? %>
 <p>You have no receipts.</p>
 <% else %>

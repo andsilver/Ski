@@ -1,10 +1,10 @@
-= content_for :theme do
-  = @holiday_type.slug
+= content_for :theme, @holiday_type.slug
+
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({'Home' => root_path}, t('.heading', place: @brochurable, holiday_type: @holiday_type))
 
 = content_for :links_and_search do
   = render partial: 'brochure_list', locals: { heading: t('.regions'), method: :region_brochures }
   = render partial: 'brochure_list', locals: { heading: t('.resorts'), method: :resort_without_region_brochures }
 
-h1= t('.heading', place: @brochurable, holiday_type: @holiday_type)
 - featured_properties = render('shared/featured_properties')
 = raw Liquid::Template.parse(@page_content).render('featured_properties' => featured_properties)

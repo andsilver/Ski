@@ -5,18 +5,18 @@ class ResortsController < ApplicationController
   def show
     default_page_title t('resorts_controller.titles.show', resort: @resort, country: @resort.country)
     default_meta_description(resort: @resort, country: @resort.country)
-    @heading_a = t('resorts_controller.resort_information_heading', resort: @resort)
+    @heading = t('resorts_controller.resort_information_heading', resort: @resort)
   end
 
   def resort_guide
     default_page_title t('resorts_controller.titles.resort_guide', resort: @resort, country: @resort.country)
     default_meta_description(resort: @resort, country: @resort.country)
-    @heading_a = render_to_string(partial: 'detail_heading').html_safe
+    @heading = t('resorts_controller.detail.more_detail')
   end
 
   def directory
-    @heading_a = t('resorts_controller.titles.directory', resort: @resort, country: @resort.country)
-    default_page_title @heading_a
+    @heading = t('resorts_controller.titles.directory', resort: @resort, country: @resort.country)
+    default_page_title @heading
     default_meta_description(resort: @resort, country: @resort.country)
     @categories = Category.order('name')
   end
@@ -28,7 +28,7 @@ class ResortsController < ApplicationController
   def piste_map
     default_page_title t('resorts_controller.titles.piste_map', resort: @resort, country: @resort.country)
     default_meta_description(resort: @resort, country: @resort.country)
-    @heading_a = render_to_string(partial: 'piste_map_heading').html_safe
+    @heading = t('piste_map')
   end
 
   def piste_map_full_size
@@ -40,7 +40,7 @@ class ResortsController < ApplicationController
 
   def gallery
     default_page_title t('resorts_controller.titles.gallery', resort: @resort, country: @resort.country)
-    @heading_a = render_to_string(partial: 'gallery_heading').html_safe
+    @heading = t('gallery')
   end
 
   def feature; end

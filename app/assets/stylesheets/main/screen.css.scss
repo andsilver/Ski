@@ -147,12 +147,18 @@ a img {
 }
 
 #column_headings {
-  margin-bottom: 15px;
-}
+  min-height: 15px;
 
-#column_headings h1 {
-  line-height: 30px;
-  margin: 0;
+  .breadcrumb {
+    background: #fff;
+    margin-bottom: 0;
+  }
+
+  h1 {
+    font-size: 13px;
+    line-height: 15px;
+    margin: 0;
+  }
 }
 
 .field, li, p, td, th {

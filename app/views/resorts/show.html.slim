@@ -1,8 +1,8 @@
-= content_for :theme do
-   = @resort.theme
+= content_for :theme, @resort.theme
 
-= content_for :links_and_search do
-  = render 'search_form'
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@resort.breadcrumbs, @heading)
+
+= content_for :links_and_search, render('search_form')
 
 #content-with-side-banners
   - ski_facts_short = @resort.ski? ? render('ski_facts_short') : ''

@@ -1,2 +1,5 @@
 <%= render 'advertising_options' %>
+
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@breadcrumbs, @heading) %>
+
 <%= render 'form', submit_label: 'save' %>

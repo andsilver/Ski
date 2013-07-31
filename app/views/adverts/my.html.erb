@@ -1,7 +1,6 @@
 <%= render 'users/advertising_options' %>
 
-<h1><%= link_to I18n.t('advertise'), advertise_path %> &rarr;
-  <%= I18n.t('my_adverts') %></h1>
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('advertise') => advertise_path}, t('my_adverts')) %>
 
 <% if @current_user.advertises_through_windows? %>
   <h2><%= t('my_windows') %></h2>

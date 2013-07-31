@@ -477,8 +477,23 @@ class PropertiesController < ApplicationController
       property_name: @property.name, rent_or_sale: rent_or_sale,
       resort: @property.resort, country: @property.resort.country)
     @resort = @property.resort
-    @heading_a = render_to_string(partial: 'show_property_heading').html_safe
     default_meta_description(resort: @resort, strapline: @property.strapline[0..130])
+
+    @breadcrumbs = {
+      @property.resort.country.name => @property.resort.country,
+      @property.resort.name => @property.resort
+    }
+    if @property.new_development?
+      @breadcrumbs[t('view.properties._show_property_heading.new_developments')] = resort_property_new_developments_path(@property.resort)
+    elsif @property.for_sale?
+      @breadcrumbs[t('for_sale')] = resort_property_sale_path(@property.resort)
+    elsif @property.for_rent?
+      @breadcrumbs[t('for_rent')] = resort_property_rent_path(@property.resort)
+    elsif @property.hotel?
+      @breadcrumbs[t('hotels')] =  resort_property_hotels_path(@property.resort)
+    end
+
+    @heading = @property.name
   end
 
   def process_row(row)

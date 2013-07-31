@@ -141,7 +141,9 @@ it:
   description: 'Description'
   details: 'Details'
   directory: Directory
-  directory_adverts: 'Directory Adverts'
+  directory_adverts:
+    form:
+      resorts: 'Resorts'
   directory_adverts_controller:
     added_to_basket: 'Your directory advert has been added to your basket.'
     created: "Your directory advert was successfully created."
@@ -432,7 +434,11 @@ it:
       heading: 'How to Get There'
   registration: Registration
   resort: 'Resort'
-  resorts: 'Resorts'
+  resorts:
+    how_to_get_there:
+      heading: 'How to Get There'
+    summer_holidays:
+      heading: 'Summer Holidays'
   resorts_controller:
     detail:
       an_introduction_to: "An Introduction to %{resort}"

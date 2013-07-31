@@ -154,6 +154,14 @@ module ApplicationHelper
     raw Liquid::Template.parse(template).render(params)
   end
 
+  def breadcrumbs_and_heading(breadcrumbs, heading)
+    content_tag(:ul,
+      breadcrumbs.map {|k,v| content_tag(:li, link_to(k,v)) + content_tag(:li, content_tag(:span, '/', class: 'divider')) }.join.html_safe +
+      content_tag(:li, content_tag(:h1, heading), class: 'active'),
+      class: 'breadcrumb'
+    )
+  end
+
   protected
 
     def object_title(object)

@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
   def show
     default_page_title t('advertise')
-    @heading_a = t('users.advertiser_account', name: @current_user.name)
   end
 
   def new
@@ -42,9 +41,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @heading_a = admin? ?
-      render_to_string(partial: 'edit_admin_heading', locals: {user: @user}).html_safe :
-      render_to_string(partial: 'edit_user_heading').html_safe
+    if admin?
+      @breadcrumbs = { 'CMS' => cms_path, 'Users' => users_path }
+      @heading = @user.name
+    else
+      @breadcrumbs = { t('advertise') => advertise_path }
+      @heading = t('users.my_details.my_details')
+    end
   end
 
   def update
