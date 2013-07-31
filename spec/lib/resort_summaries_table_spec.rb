@@ -6,12 +6,12 @@ describe ResortSummariesTable do
   end
 
   let(:country) { FactoryGirl.create(:country) }
-  let(:resort_x) { Resort.create!(name: 'X', altitude_m: 1600, top_lift_m: 2100, ski_area_km: 1200) }
+  let(:resort_x) { Resort.create!(name: 'X', altitude_m: 1600, top_lift_m: 2100) }
   let(:resort_y) { Resort.create!(name: 'Y') }
 
   describe '#headers' do
     it 'returns an array of headers' do
-      rst.headers.should == ['Resort', 'Altitude', 'Top lift', 'Ski area', 'Nearest airport', 'Distance']
+      rst.headers.should == ['Resort', 'Altitude', 'Top lift', 'Nearest airport', 'Distance']
     end
   end
 
@@ -37,21 +37,16 @@ describe ResortSummariesTable do
       rst(country).rows.first[2].should eq resort_x.top_lift_m
     end
 
-    it 'returns ski area in cell 3' do
-      country.resorts << resort_x
-      rst(country).rows.first[3].should eq resort_x.ski_area_km
-    end
-
-    it 'returns nearest airport name in cell 4' do
+    it 'returns nearest airport name in cell 3' do
       country.resorts << resort_x
       create_airport
-      rst(country).rows.first[4].should eq 'Robin Hood Airport'
+      rst(country).rows.first[3].should eq 'Robin Hood Airport'
     end
 
-    it 'returns nearest airport distance in cell 5' do
+    it 'returns nearest airport distance in cell 4' do
       country.resorts << resort_x
       create_airport
-      rst(country).rows.first[5].should eq 100
+      rst(country).rows.first[4].should eq 100
     end
 
     def create_airport

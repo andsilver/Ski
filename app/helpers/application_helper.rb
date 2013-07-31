@@ -37,7 +37,7 @@ module ApplicationHelper
   end
 
   def md(text)
-    RDiscount.new(text).to_html.html_safe
+    text ? RDiscount.new(text).to_html.html_safe : ''
   end
 
   def required_field
