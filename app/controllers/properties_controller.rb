@@ -29,7 +29,7 @@ class PropertiesController < ApplicationController
 
   def quick_search
     default_page_title t('properties.titles.browse_for_rent', resort: @resort)
-    @heading_a = render_to_string(partial: 'browse_property_heading').html_safe
+    browse_property_heading
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
@@ -57,7 +57,7 @@ class PropertiesController < ApplicationController
 
   def browse_for_rent
     default_page_title t('properties.titles.browse_for_rent', resort: @resort)
-    @heading_a = render_to_string(partial: 'browse_property_heading').html_safe
+    browse_property_heading
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
@@ -83,7 +83,7 @@ class PropertiesController < ApplicationController
   def browse_for_sale
     @for_sale = true
     default_page_title t('properties.titles.browse_for_sale', resort: @resort)
-    @heading_a = render_to_string(partial: 'browse_property_heading').html_safe
+    browse_property_heading
 
     order = for_sale_selected_order
 
@@ -100,7 +100,8 @@ class PropertiesController < ApplicationController
   def new_developments
     @for_sale = true
     default_page_title t('properties.titles.new_developments', resort: @resort.name)
-    @heading_a = t(:new_developments)
+    @breadcrumbs = {@resort.name => @resort}
+    @heading = t(:new_developments)
     @conditions[0] += " AND new_development = 1"
 
     order = for_sale_selected_order
@@ -116,7 +117,8 @@ class PropertiesController < ApplicationController
   def browse_hotels
     @for_sale = false
     default_page_title t('properties.titles.hotels', resort: @resort)
-    @heading_a = t('resort_options.hotels')
+    @breadcrumbs = {@resort.name => @resort}
+    @heading = t('resort_options.hotels')
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "star_rating DESC" ])
@@ -775,5 +777,15 @@ class PropertiesController < ApplicationController
 
   def to_square_metres(square_feet)
     (square_feet.to_f * 0.09290304).round.to_s
+  end
+
+  def browse_property_heading
+    @breadcrumbs = {}
+    if @resort
+      @breadcrumbs[@resort.name] = @resort
+    end
+    @heading = "Ski Accommodation, Chalets &amp; Apartments for ".html_safe
+    @heading += @for_sale ? "Sale" : "Rent"
+    @heading += " in #{@resort.name}" if @resort
   end
 end
