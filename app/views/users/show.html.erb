@@ -1,15 +1,2 @@
-<style scoped>
-a[rel=popover] {
-  width: 200px;
-}
-</style>
-<%= render 'advertising_options' %>
-<%= user_action(my_adverts_path, t('my_adverts'), t('users.my_adverts.description')) %>
-<%= user_action(my_details_path, t('users.my_details.my_details'), t('users.my_details.description')) %>
-<%= user_action(receipts_orders_path, t('receipts'), t('users.receipts.description')) %>
-<%= user_action(my_enquiries_path, t('my_enquiries'), t('users.my_enquiries.description')) %>
-<script>
-$('a[rel=popover]').popover();
-</script>
 
-<%= clear %>
+<%= render 'advertising_options' %>
