@@ -1,0 +1,3 @@
+ul
+  - Resort.featured.each do |resort|
+    li= link_to resort.name, feature_resort_path(resort)

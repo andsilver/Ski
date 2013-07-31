@@ -1,0 +1,9 @@
+= content_for :links_and_search do
+  = render 'search_form'
+
+#content-with-side-banners
+  - unless @page_content.blank?
+    - featured_properties = render('shared/featured_properties')
+    = raw Liquid::Template.parse(@page_content).render('featured_properties' => featured_properties)
+
+= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort)
