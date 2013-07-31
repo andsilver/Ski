@@ -7,9 +7,14 @@ table
   tr
     td= t('resorts_controller.facts.top_lift')
     td= "#{@resort.top_lift_m}m"
-  tr
-    td= t('resorts_controller.facts.piste_length')
-    td= @resort.piste_length_km
+  - unless @resort.piste_length_km.nil?
+    tr
+      td= t('resorts_controller.facts.piste_length')
+      td= @resort.piste_length_km
+  - unless @resort.ski_area_acre.nil?
+    tr
+      td= t('resorts_controller.facts.ski_area')
+      td= @resort.ski_area_acre
   tr
     td= t('resorts_controller.facts.family')
     td= star_rating(@resort.family)
