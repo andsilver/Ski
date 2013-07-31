@@ -1,3 +1,5 @@
+= content_for :theme, @region.theme
+
 h2= t('.heading')
 - unless @page_content.blank?
   = raw Liquid::Template.parse(@page_content).render()
