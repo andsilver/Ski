@@ -3,7 +3,8 @@ module CountriesHelper
     select(
       object, 'country_id',
       Country.order('name').collect {|c| [ c.name, c.id ] },
-      { prompt: t('countries.select_country') }
+      { prompt: t('countries.select_country') },
+      class: 'form-control'
     )
   end
 end

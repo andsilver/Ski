@@ -8,14 +8,18 @@
         li= msg
 
 = form_for([:admin, @holiday_type]) do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.label :slug
-  = f.text_field :slug
-  label.checkbox
-    = f.check_box :visible_on_menu
-    | Visible on menu?
-  = f.label :sidebar_html
-  = editor(f, :sidebar_html, :html)
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :slug
+    = f.text_field :slug, class: 'form-control'
+  .checkbox
+    label
+      = f.check_box :visible_on_menu
+      | Visible on menu?
+  .form-group
+    = f.label :sidebar_html
+    = editor(f, :sidebar_html, :html)
   .form-actions
     = f.submit class: 'btn btn-primary'

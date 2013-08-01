@@ -23,14 +23,12 @@ $(function() {
 <%= form_for @property do |f| %>
 <%= f.hidden_field :listing_type %>
 
-<div id="panel_1">
-
   <div class="well">
     <div class="form-horizontal">
-      <div class="control-group">
-        <%= f.label :name, t('property_name'), class: 'control-label' %>
-        <div class="controls">
-          <%= f.text_field :name %> <%= required_field %>
+      <div class="form-group">
+        <%= f.label :name, t('property_name'), class: 'control-label col-lg-2' %> <%= required_field %>
+        <div class="col-lg-4">
+          <%= f.text_field :name, class: 'form-control' %>
         </div>
       </div>
     </div>
@@ -38,7 +36,7 @@ $(function() {
 
   <% unless @property.new_record? %>
   <div class="well">
-    <h2>Images</h2>
+    <legend>Images</legend>
     <p>
       <%= link_to 'Add or remove images for this property', new_image_path %>
       (changes made on this page will not be saved)
@@ -73,25 +71,25 @@ $(function() {
 
   <div class="well">
     <div class="form-horizontal">
-      <div class="control-group">
-        <%= f.label :resort_id, I18n.t('resort'), class: 'control-label' %>
-        <div class="controls">
-          <%= select("property", "resort_id", (Resort.where(visible: true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: t('properties.select_resort')}) %> <%= required_field %>
+      <div class="form-group">
+        <%= f.label :resort_id, I18n.t('resort'), class: 'control-label col-lg-4' %> <%= required_field %>
+        <div class="col-lg-6">
+          <%= select("property", "resort_id", (Resort.where(visible: true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: t('properties.select_resort')}, class: 'form-control') %>
         </div>
       </div>
       <% if @property.hotel? %>
-      <div class="control-group">
-        <%= f.label :star_rating, t('properties.star_rating'), class: 'control-label' %>
-        <div class="controls">
+      <div class="form-group">
+        <%= f.label :star_rating, t('properties.star_rating'), class: 'control-label col-lg-2' %>
+        <div class="col-lg-6">
           <%= select("property", "star_rating", Range.new(1, 5).collect {|sr| [pluralize(sr, 'star'), sr]}, {prompt: 'Choose'}) %>
         </div>
       </div>
       <% end %>
       <% if @property.for_sale? or @property.for_rent? %>
-      <div class="control-group">
-        <%= f.label :accommodation_type, t('properties.accommodation_type'), class: 'control-label' %>
-        <div class="controls">
-          <select id="property_accommodation_type" name="property[accommodation_type]">
+      <div class="form-group">
+        <%= f.label :accommodation_type, t('properties.accommodation_type'), class: 'control-label col-lg-4' %>
+        <div class="col-lg-6">
+          <select id="property_accommodation_type" name="property[accommodation_type]" class="form-control">
             <% [Property::ACCOMMODATION_TYPE_CHALET, Property::ACCOMMODATION_TYPE_APARTMENT].each do |value| -%>
             <option value="<%= value %>"<%= ' selected="selected"' if @property.accommodation_type==value %>><%= Property.accommodation_type_description(value) %></option>
             <% end %>
@@ -103,40 +101,40 @@ $(function() {
       <input id="property_accommodation_type" name="property[accommodation_type]"
       type="hidden" value="<%= Property::ACCOMMODATION_TYPE_CHALET %>">
       <% end %>
-      <div class="control-group">
-        <%= f.label :distance_from_town_centre_m, 'Distance from town centre', class: 'control-label' %>
-        <div class="controls">
-          <%= select 'property', 'distance_from_town_centre_m', distance_options, {prompt: 'Choose', class: 'narrow'} %>
+      <div class="form-group">
+        <%= f.label :distance_from_town_centre_m, 'Distance from town centre', class: 'control-label col-lg-4' %>
+        <div class="col-lg-2">
+          <%= select 'property', 'distance_from_town_centre_m', distance_options, {prompt: 'Choose'}, class: 'form-control' %>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :metres_from_lift, t('nearest_lift'), class: 'control-label' %>
-        <div class="controls">
-          <%= select 'property', 'metres_from_lift', distance_options, {prompt: 'Choose', class: 'narrow'} %>
+      <div class="form-group">
+        <%= f.label :metres_from_lift, t('nearest_lift'), class: 'control-label col-lg-4' %>
+        <div class="col-lg-2">
+          <%= select 'property', 'metres_from_lift', distance_options, {prompt: 'Choose'}, class: 'form-control' %>
         </div>
       </div>
 
-      <div class="control-group">
-        <%= f.label :number_of_bedrooms, t('number_of_bedrooms'), class: 'control-label' %>
-        <div class="controls">
-          <%= select("property", "number_of_bedrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'narrow') %>
+      <div class="form-group">
+        <%= f.label :number_of_bedrooms, t('number_of_bedrooms'), class: 'control-label col-lg-4' %>
+        <div class="col-lg-2">
+          <%= select("property", "number_of_bedrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'form-control') %>
         </div>
       </div>
 
       <% if @property.for_rent? %>
-      <div class="control-group">
-        <%= f.label :sleeping_capacity, t('sleeping_capacity'), class: 'control-label' %>
-        <div class="controls">
-          <%= select("property", "sleeping_capacity", ((1..30).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'narrow') %>
+      <div class="form-group">
+        <%= f.label :sleeping_capacity, t('sleeping_capacity'), class: 'control-label col-lg-4' %>
+        <div class="col-lg-2">
+          <%= select("property", "sleeping_capacity", ((1..30).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'form-control') %>
         </div>
       </div>
       <% end %>
 
-      <div class="control-group">
-        <%= f.label :number_of_bathrooms, t('number_of_bathrooms'), class: 'control-label' %>
-        <div class="controls">
-          <%= select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'narrow') %>
+      <div class="form-group">
+        <%= f.label :number_of_bathrooms, t('number_of_bathrooms'), class: 'control-label col-lg-4' %>
+        <div class="col-lg-2">
+          <%= select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'form-control') %>
         </div>
       </div>
 
@@ -165,19 +163,21 @@ $(function() {
       </script>
 
       <% if @property.for_rent? or @property.for_sale? %>
-      <div class="control-group">
-        <%= f.label :floor_area_metres_2, t('floor_area'), class: 'control-label' %>
-        <div class="controls">
-          <%= f.number_field :floor_area_metres_2 %>
+      <div class="form-group">
+        <%= f.label :floor_area_metres_2, t('floor_area'), class: 'control-label col-lg-4' %>
+        <div class="col-lg-2">
+          <%= f.number_field :floor_area_metres_2, class: 'form-control' %>
+        </div>
+        <div class="col-lg-2">
           <%= area_select 'floor_area_unit', :property_floor_area_metres_2 %>
         </div>
       </div>
       <% end %>
 
       <% if @property.for_sale? %>
-      <div class="control-group">
-        <%= f.label :plot_size_metres_2, t('plot_size'), class: 'control-label' %>
-        <div class="controls">
+      <div class="form-group">
+        <%= f.label :plot_size_metres_2, t('plot_size'), class: 'control-label col-lg-2' %>
+        <div class="col-lg-6">
           <%= f.number_field :plot_size_metres_2 %>
           <%= area_select 'plot_area_unit', :property_plot_size_metres_2 %>
         </div>
@@ -188,22 +188,23 @@ $(function() {
   </div><!--.well-->
 
   <div class="well">
+    <legend>Features</legend>
     <div class="form-horizontal">
       <% if @property.for_rent? %>
-      <div class="control-group">
-        <%= f.label :tv, t('properties.features.tv'), class: 'control-label' %>
-        <div class="controls">
-          <select id="property_tv" name="property[tv]">
+      <div class="form-group">
+        <%= f.label :tv, t('properties.features.tv'), class: 'control-label col-lg-2' %>
+        <div class="col-lg-6">
+          <select id="property_tv" name="property[tv]" class="form-control">
             <% [Property::TV_NO, Property::TV_YES, Property::TV_FREEVIEW, Property::TV_SATELLITE].each do |value| %>
             <option value="<%= value %>"<%= ' selected="selected"' if @property.tv==value %>><%= Property.tv_description(value) %></option>
             <% end %>
           </select>
         </div>
       </div>
-      <div class="control-group">
-        <%= f.label :board_basis, t('properties.features.board_basis'), class: 'control-label' %>
-        <div class="controls">
-          <select id="property_board_basis" name="property[board_basis]">
+      <div class="form-group">
+        <%= f.label :board_basis, t('properties.features.board_basis'), class: 'control-label col-lg-2' %>
+        <div class="col-lg-6">
+          <select id="property_board_basis" name="property[board_basis]" class="form-control">
             <% [Property::BOARD_BASIS_SELF_CATERING, Property::BOARD_BASIS_BED_AND_BREAKFAST, Property::BOARD_BASIS_HALF_BOARD, Property::BOARD_BASIS_FULL_BOARD].each do |value| %>
             <option value="<%= value %>"<%= ' selected="selected"' if @property.board_basis==value %>><%= Property.board_basis_description(value) %></option>
             <% end %>
@@ -212,10 +213,10 @@ $(function() {
       </div>
       <% end %>
 
-      <div class="control-group">
-        <%= f.label :parking, t('properties.features.parking'), class: 'control-label' %>
-        <div class="controls">
-          <select id="property_parking" name="property[parking]">
+      <div class="form-group">
+        <%= f.label :parking, t('properties.features.parking'), class: 'control-label col-lg-2' %>
+        <div class="col-lg-6">
+          <select id="property_parking" name="property[parking]" class="form-control">
             <% [Property::PARKING_NO, Property::PARKING_ON_STREET, Property::PARKING_OFF_STREET, Property::PARKING_GARAGE].each do |value| %>
             <option value="<%= value %>"<%= ' selected="selected"' if @property.parking==value %>><%= Property.parking_description(value) %></option>
             <% end %>
@@ -306,23 +307,22 @@ $(function() {
   </div>
 </div>
 
-</div><!--#panel_1-->
-
-<div id="panel_2">
-
 <div class="well">
+  <legend>Price</legend>
   <div class="form-horizontal">
-    <div class="control-group">
+    <div class="form-group">
 <% if @property.for_sale? %>
-      <%= f.label :sale_price, I18n.t('sale_price'), class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :sale_price %>
+      <%= f.label :sale_price, I18n.t('sale_price'), class: 'control-label col-lg-4' %>
+      <div class="col-lg-2">
+        <%= f.text_field :sale_price, class: 'form-control' %>
 <% else %>
-      <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price'), class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :weekly_rent_price %>
+      <%= f.label :weekly_rent_price, I18n.t('weekly_rent_price'), class: 'control-label col-lg-4' %>
+      <div class="col-lg-2">
+        <%= f.text_field :weekly_rent_price, class: 'form-control' %>
 <% end %>
-        <%= select("property", "currency_id", (Currency.order('code').collect {|c| [ c.code, c.id ] }).sort, {prompt: 'Select Currency'}, class: 'narrow') %>
+      </div>
+      <div class="col-lg-2">
+        <%= select("property", "currency_id", (Currency.order('code').collect {|c| [ c.code, c.id ] }).sort, {prompt: 'Select Currency'}, class: 'form-control') %>
       </div>
     </div>
   </div>
@@ -330,39 +330,49 @@ $(function() {
 <%= clear %>
 
 <div class="well">
-  <%= f.label :address, t('address') %>
-  <%= f.text_area :address, class: 'narrow' %> <%= required_field %>
-
-  <%= f.label :postcode, t('postcode') %>
-  <%= f.text_field :postcode %>
+  <legend>Address</legend>
+  <div class="form-group">
+    <%= f.label :address, t('address') %> <%= required_field %>
+    <%= f.text_area :address, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :postcode, t('postcode') %>
+    <%= f.text_field :postcode, class: 'form-control' %>
+  </div>
 </div>
 
-<div class="modal hide fade" id="strapline-example-modal">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3><%= t('properties.strapline_example') %></h3>
-  </div>
-  <div class="modal-body">
-    <p><%= t('properties.strapline_example_content') %></p>
+<div class="modal fade" id="strapline-example-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><%= t('properties.strapline_example') %></h4>
+      </div>
+      <div class="modal-body">
+        <p><%= t('properties.strapline_example_content') %></p>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="well">
-  <%= f.label :strapline, t('strapline') %>
-  <%= f.text_area :strapline, class: 'narrow' %>
-  <div class="placeholder">
-    <%= I18n.t('strapline_placeholder') %> <a href="#" id="strapline_example"><%= t('example') %></a>
+  <legend>Describe your property for potential customers</legend>
+  <div class="form-group">
+    <%= f.label :strapline, t('strapline') %>
+    <%= f.text_area :strapline, class: 'form-control' %>
   </div>
-
-  <%= f.label :description, t('description') %>
-  <%= f.text_area :description, class: 'narrow' %>
+  <p class="help-block">
+    <%= I18n.t('strapline_placeholder') %> <a href="#" id="strapline_example"><%= t('example') %></a>
+  </p>
+  <div class="form-group">
+    <%= f.label :description, t('description') %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
 </div>
-
-</div><!--#panel_2-->
 
 <%= clear %>
 
-<div class="field">
+<div class="form-actions">
   <%= f.submit I18n.t('save'), class: 'btn btn-primary' %>
 </div>
 <% end %>

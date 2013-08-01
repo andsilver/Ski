@@ -155,6 +155,7 @@ a img {
   }
 
   h1 {
+    display: inline;
     font-size: 13px;
     line-height: 15px;
     margin: 0;
@@ -210,6 +211,14 @@ h2 {
 
 h3, h4, h5 {
   font-size: 1.4em;
+}
+
+h4.modal-title {
+  font-size: 18px;
+}
+
+.accordion-heading h2 {
+  font-size: 24px;
 }
 
 .h1 {

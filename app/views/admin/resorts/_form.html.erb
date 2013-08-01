@@ -21,311 +21,316 @@
 
 <%= form_for [:admin, @resort] do |f| %>
 <div class="form-horizontal">
-  <div class="control-group">
-    <%= f.label :name, t('name'), class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, t('name'), class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :name, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :slug, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :slug %>
+  <div class="form-group">
+    <%= f.label :slug, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :slug, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :country_id, t('countries.country'), class: 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :country_id, t('countries.country'), class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
       <%= country_select('resort') %>
     </div>
   </div>
 <% unless @resort.new_record? -%>
-<div class="control-group">
-  <%= f.label :region_id, class: 'control-label' %>
-  <div class="controls">
+<div class="form-group">
+  <%= f.label :region_id, class: 'control-label col-lg-2' %>
+  <div class="col-lg-6">
     <%= region_select(@resort) %>
   </div>
 </div>
 <% end -%>
-  <div class="control-group">
-    <div class="controls">
+  <div class="form-group">
+    <div class="col-lg-6">
       <label class="checkbox"><%= f.check_box :visible %> Visible</label>
     </div>
   </div>
-  <div class="control-group">
-    <div class="controls">
+  <div class="form-group">
+    <div class="col-lg-6">
       <label class="checkbox"><%= f.check_box :featured %> Featured</label>
     </div>
   </div>
-  <div class="control-group">
-    <div class="controls">
+  <div class="form-group">
+    <div class="col-lg-6">
       <label class="checkbox"><%= f.check_box :summer_only %> Summer only</label>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :local_area, 'Applies to', class: 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :local_area, 'Applies to', class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
       <%= f.select(:local_area, [["Local area", true], ["Whole area", false]],
-        {selected: @resort.local_area}) %>
+        {selected: @resort.local_area}, class: 'form-control') %>
     </div>
   </div>
   <p>
     Use the code <code>{{ ski_facts_short }}</code> to embed a small table of ski resort facts.
   </p>
-  <div class="control-group">
-    <%= f.label :introduction, class: 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :introduction, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
       <%= editor(f, :introduction, :html) %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :info, class: 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :info, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
       <%= editor(f, :info, :html) %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :feature, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :feature %>
+  <div class="form-group">
+    <%= f.label :feature, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_area :feature, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :visiting, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :visiting %>
+  <div class="form-group">
+    <%= f.label :visiting, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_area :visiting, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :owning_a_property_in, t('resorts_controller.detail.owning_a_property_in', resort: @resort), class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :owning_a_property_in %>
+  <div class="form-group">
+    <%= f.label :owning_a_property_in, t('resorts_controller.detail.owning_a_property_in', resort: @resort), class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_area :owning_a_property_in, class: 'form-control' %>
     </div>
   </div>
 </div>
 <div class="form-horizontal">
-  <div class="control-group">
-    <%= f.label :living_in, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :living_in %>
+  <div class="form-group">
+    <%= f.label :living_in, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_area :living_in, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :insider_view, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :insider_view %>
+  <div class="form-group">
+    <%= f.label :insider_view, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_area :insider_view, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :gallery_content, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :gallery_content %>
+  <div class="form-group">
+    <%= f.label :gallery_content, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_area :gallery_content, class: 'form-control' %>
     </div>
   </div>
   <p>
     Use the code <code>{{ piste_table }}</code> to embed a table of piste map information.
   </p>
-  <div class="control-group">
-    <%= f.label :piste_map_content, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :piste_map_content %>
+  <div class="form-group">
+    <%= f.label :piste_map_content, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_area :piste_map_content, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :weather_code, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :weather_code %>
+  <div class="form-group">
+    <%= f.label :weather_code, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_area :weather_code, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :altitude_m, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :altitude_m %>
+  <div class="form-group">
+    <%= f.label :altitude_m, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :altitude_m, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :top_lift_m, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :top_lift_m %>
+  <div class="form-group">
+    <%= f.label :top_lift_m, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :top_lift_m, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :ski_area_acre, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :ski_area_acre %>
+  <div class="form-group">
+    <%= f.label :ski_area_acre, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :ski_area_acre, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :piste_length_km, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :piste_length_km %>
+  <div class="form-group">
+    <%= f.label :piste_length_km, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :piste_length_km, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :black, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :black %>
+  <div class="form-group">
+    <%= f.label :black, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :black, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :red, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :red %>
+  <div class="form-group">
+    <%= f.label :red, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :red, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :blue, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :blue %>
+  <div class="form-group">
+    <%= f.label :blue, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :blue, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :green, t('resorts_controller.facts.green'), class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :green %>
+  <div class="form-group">
+    <%= f.label :green, t('resorts_controller.facts.green'), class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :green, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :longest_run_km, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :longest_run_km %>
+  <div class="form-group">
+    <%= f.label :longest_run_km, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :longest_run_km, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :drags, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :drags %>
+  <div class="form-group">
+    <%= f.label :drags, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :drags, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :chair, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :chair %>
+  <div class="form-group">
+    <%= f.label :chair, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :chair, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :gondola, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :gondola %>
+  <div class="form-group">
+    <%= f.label :gondola, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :gondola, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :cable_car, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :cable_car %>
+  <div class="form-group">
+    <%= f.label :cable_car, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :cable_car, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :funicular, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :funicular %>
+  <div class="form-group">
+    <%= f.label :funicular, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :funicular, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :railways, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :railways %>
+  <div class="form-group">
+    <%= f.label :railways, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :railways, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :slope_direction, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :slope_direction %>
+  <div class="form-group">
+    <%= f.label :slope_direction, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :slope_direction, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :snowboard_parks, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :snowboard_parks %>
+  <div class="form-group">
+    <%= f.label :snowboard_parks, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :snowboard_parks, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :cross_country_km, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :cross_country_km %>
+  <div class="form-group">
+    <%= f.label :cross_country_km, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :cross_country_km, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :mountain_restaurants, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :mountain_restaurants %>
+  <div class="form-group">
+    <%= f.label :mountain_restaurants, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :mountain_restaurants, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :season, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :season %>
+  <div class="form-group">
+    <%= f.label :season, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :season, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :glacier_skiing, class: 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :glacier_skiing, class: 'control-label col-lg-2' %>
+    <div class="col-lg-2">
       <%= f.select(:glacier_skiing, [["Yes", true], ["No", false]],
-        {include_blank: true, selected: @resort.glacier_skiing.to_s}) %>
+        {include_blank: true, selected: @resort.glacier_skiing.to_s},
+        class: 'form-control') %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :beginner, class: 'control-label' %>
-    <div class="controls">
-      <%= f.select(:beginner, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
+  <div class="form-group">
+    <%= f.label :beginner, class: 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.select(:beginner, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
+      {}, { class: 'form-control' }) %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :intermediate, class: 'control-label' %>
-    <div class="controls">
-      <%= f.select(:intermediate, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
+  <div class="form-group">
+    <%= f.label :intermediate, class: 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.select(:intermediate, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
+      {}, { class: 'form-control' }) %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :expert, class: 'control-label' %>
-    <div class="controls">
-      <%= f.select(:expert, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
+  <div class="form-group">
+    <%= f.label :expert, class: 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.select(:expert, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
+      {}, { class: 'form-control' }) %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :off_piste, class: 'control-label' %>
-    <div class="controls">
-      <%= f.select(:off_piste, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
+  <div class="form-group">
+    <%= f.label :off_piste, class: 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.select(:off_piste, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
+      {}, { class: 'form-control' }) %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :apres_ski, class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :apres_ski %>
+  <div class="form-group">
+    <%= f.label :apres_ski, class: 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :apres_ski, class: 'form-control' %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :family, class: 'control-label' %>
-    <div class="controls">
-      <%= f.select(:family, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]) %>
+  <div class="form-group">
+    <%= f.label :family, class: 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.select(:family, [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], {}, { class: 'form-control' }) %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :creche, class: 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :creche, class: 'control-label col-lg-2' %>
+    <div class="col-lg-2">
       <%= f.select(:creche, [["Yes", true], ["No", false]],
-        {include_blank: true, selected: @resort.creche.to_s}) %>
+        {include_blank: true, selected: @resort.creche.to_s}, class: 'form-control') %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :babysitting_services, class: 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :babysitting_services, class: 'control-label col-lg-2' %>
+    <div class="col-lg-2">
       <%= f.select(:babysitting_services, [["Yes", true], ["No", false]],
-        {include_blank: true, selected: @resort.babysitting_services.to_s}) %>
+        {include_blank: true, selected: @resort.babysitting_services.to_s}, class: 'form-control') %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :summer_skiing, class: 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :summer_skiing, class: 'control-label col-lg-2' %>
+    <div class="col-lg-2">
       <%= f.select(:summer_skiing, [["Yes", true], ["No", false]],
-        {include_blank: true, selected: @resort.summer_skiing.to_s}) %>
+        {include_blank: true, selected: @resort.summer_skiing.to_s}, class: 'form-control') %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :heli_skiing, class: 'control-label' %>
-    <div class="controls">
+  <div class="form-group">
+    <%= f.label :heli_skiing, class: 'control-label col-lg-2' %>
+    <div class="col-lg-2">
       <%= f.select(:heli_skiing, [["Yes", true], ["No", false]],
-        {include_blank: true, selected: @resort.heli_skiing.to_s}) %>
+        {include_blank: true, selected: @resort.heli_skiing.to_s}, class: 'form-control') %>
     </div>
   </div>
 </div>

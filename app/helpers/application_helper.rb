@@ -101,28 +101,28 @@ module ApplicationHelper
   def edit_button(object)
     link_to '<i class="icon-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),
-    class: 'btn',
+    class: 'btn btn-default',
     title: "Edit #{object_title(object)}"
   end
 
   def new_button(type)
     link_to '<i class="icon-plus"></i> New'.html_safe,
     new_polymorphic_path(type),
-    class: 'btn',
+    class: 'btn btn-default',
     title: "New #{object_title(type)}"
   end
 
   def view_button(object)
     link_to '<i class="icon-eye-open"></i> View'.html_safe,
     object,
-    class: 'btn'
+    class: 'btn btn-default'
   end
 
   def copy_button(object)
     link_to '<i class="icon-plus-sign"></i> Copy'.html_safe,
     polymorphic_path(object, {action: :copy}),
     data: { method: :get},
-    class: 'btn', title: "Copy #{object_title(object)}"
+    class: 'btn btn-default', title: "Copy #{object_title(object)}"
   end
 
   def editor(form, attribute, mode)
@@ -156,7 +156,7 @@ module ApplicationHelper
 
   def breadcrumbs_and_heading(breadcrumbs, heading)
     content_tag(:ul,
-      breadcrumbs.map {|k,v| content_tag(:li, link_to(k,v)) + content_tag(:li, content_tag(:span, '/', class: 'divider')) }.join.html_safe +
+      breadcrumbs.map {|k,v| content_tag(:li, link_to(k,v)) }.join.html_safe +
       content_tag(:li, content_tag(:h1, heading), class: 'active'),
       class: 'breadcrumb'
     )

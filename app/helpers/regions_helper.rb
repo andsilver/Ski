@@ -3,7 +3,8 @@ module RegionsHelper
     select(
       'resort', 'region_id',
       resort.country.regions.collect {|r| [ r.name, r.id ] },
-      { include_blank: 'None' }
+      { include_blank: 'None' },
+      class: 'form-control'
     )
   end
 end

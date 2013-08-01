@@ -310,5 +310,6 @@
 }
 
 #arrival-datepicker input {
+  font-size: 12px;
   width: 179px;
 }

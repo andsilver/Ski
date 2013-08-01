@@ -9,6 +9,6 @@
     #additional-pages.well
       h2 Additional Pages
       - Region.page_names.each do |n|
-        = link_to "Edit #{n} page", edit_page_admin_region_path(@region, page_name: n), class: 'btn'
+        = link_to "Edit #{n} page", edit_page_admin_region_path(@region, page_name: n), class: 'btn btn-default'
 
 = render 'form'

@@ -11,27 +11,41 @@
 <% end %>
 
 <%= form_for @page do |f| %>
-  <%= f.label :path %>
-  <%= f.text_field :path %>
+  <div class="form-group">
+    <%= f.label :path %>
+    <%= f.text_field :path, class: 'form-control' %>
+  </div>
 
-  <label class="checkbox">
-    <%= f.check_box :visible %> Visible
-  </label>
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :visible %> Visible
+    </label>
+  </div>
 
-  <%= f.label :title %>
-  <%= f.text_field :title, class: 'span5' %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'span5 form-control' %>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_area :description, rows: 3 %>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 3, class: 'form-control' %>
+  </div>
 
-  <%= f.label :keywords %>
-  <%= f.text_area :keywords, rows: 2 %>
+  <div class="form-group">
+    <%= f.label :keywords %>
+    <%= f.text_area :keywords, rows: 2, class: 'form-control' %>
+  </div>
 
-  <%= f.label :content %>
-  <%= editor(f, :content, :html) %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= editor(f, :content, :html) %>
+  </div>
 
-  <%= f.label :footer %>
-  <%= select("page", "footer_id", (Footer.all.collect {|f| [ f.name, f.id ] }).sort, {prompt: 'Choose footer'}) %>
+  <div class="form-group">
+    <%= f.label :footer %>
+    <%= select("page", "footer_id", (Footer.all.collect {|f| [ f.name, f.id ] }).sort, {prompt: 'Choose footer'}, class: 'form-control') %>
+  </div>
 
   <%= f.label :banner_advert_html, 'Banner advert HTML' %>
   <%= editor(f, :banner_advert_html, :html) %>
