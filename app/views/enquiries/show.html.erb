@@ -1,11 +1,8 @@
 <%= render 'users/advertising_options' %>
-<h1>
-  <a href="/enquiries/my">My Email Enquiries</a>
-  &rarr;
-  View Enquiry
-</h1>
 
-<table class="table table-bordered table-striped">
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('advertise') => advertise_path, t('my_enquiries') => my_enquiries_path}, 'View Enquiry') %>
+
+<table>
   <tr>
     <th>From</th>
     <td><%= @enquiry.name %> &lt;<%= mail_to(@enquiry.email) %>&gt;</td>
