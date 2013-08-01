@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>
-    <% if content_for? :title %>
+    <% if !@page_title.blank? %>
+    <%= @page_title %> -
+    <% elsif content_for? :title %>
     <%= yield :title %> -
-    <% else %>
-    <%= @page_title ? @page_title + ' - ' : '' %>
     <% end  %>
     My Chalet Finder
   </title>
