@@ -1,10 +1,11 @@
 - if @brochurable.respond_to? method
+  - brochures = @brochurable.public_send(method, @holiday_type.id)
+  - unless brochures.empty?
     section
       h2= heading
       ul
-        - @brochurable.public_send(method, @holiday_type.id).each do |brochure|
+        - brochures.each do |brochure|
           - if brochure.brochurable.class == Country
             li= link_to brochure.brochurable, holiday_type_brochure_path(brochure.brochurable.class.to_s.tableize, brochure.brochurable, @holiday_type.slug)
           - else
             li= link_to brochure.brochurable, brochure.brochurable
-          
