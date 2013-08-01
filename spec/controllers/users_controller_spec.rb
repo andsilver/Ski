@@ -9,15 +9,6 @@ describe UsersController do
     User.stub(:new).and_return(user)
   end
 
-  describe 'GET show' do
-    it 'mentions the user\'s name in the heading' do
-      u = mock_model(User, {name: 'Jane'})
-      controller.stub(:current_user).and_return(u)
-      get 'show'
-      expect(assigns(:heading_a)).to match('Jane')
-    end
-  end
-
   describe "GET new" do
     it "instantiates a new user" do
       User.should_receive(:new)
@@ -143,6 +134,19 @@ describe UsersController do
   end
 
   describe "GET edit" do
+    context 'when admin' do
+      before do
+        controller.stub(:signed_in?).and_return(true)
+        controller.stub(:admin?).and_return(true)
+      end
+
+      it 'mentions the user\'s name in the heading' do
+        u = mock_model(User, {name: 'Jane'})
+        User.stub(:find).and_return(u)
+        get 'edit', id: '1'
+        expect(assigns(:heading)).to eq('Jane')
+      end
+    end
   end
 
   describe 'PUT update' do
