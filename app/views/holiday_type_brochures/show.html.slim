@@ -1,6 +1,6 @@
 = content_for :theme, @holiday_type.slug
 
-= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({'Home' => root_path}, t('.heading', place: @brochurable, holiday_type: @holiday_type))
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home') => root_path}, t('.heading', place: @brochurable, holiday_type: @holiday_type))
 
 = content_for :links_and_search do
   = render partial: 'brochure_list', locals: { heading: t('.regions'), method: :region_brochures }

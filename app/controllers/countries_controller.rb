@@ -3,8 +3,7 @@ class CountriesController < ApplicationController
   before_action :protect_country, only: [:show]
 
   def show
-    @heading_a = @country.name
-    default_page_title(@heading_a)
+    default_page_title(@country.name)
     @banner_advert_html ||= @country.banner_advert_html
 
     @featured_properties = @country.featured_properties(9)

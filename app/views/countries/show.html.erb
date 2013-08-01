@@ -1,3 +1,5 @@
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home') => root_path}, @country.name) %>
+
 <%= content_for :links_and_search do %>
 <script>
 $(function() {
