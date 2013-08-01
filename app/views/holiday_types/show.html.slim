@@ -1,3 +1,5 @@
+= content_for :title, t('.title', holiday_type: @holiday_type)
+
 = content_for :theme, @holiday_type.slug
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home') => root_path}, @holiday_type)

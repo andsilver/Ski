@@ -2,7 +2,14 @@
 <html class="no-js" lang="<%= @lang %>">
 <head>
   <meta charset="utf-8">
-  <title><%= @page_title ? @page_title + " - My Chalet Finder" : "My Chalet Finder" %></title>
+  <title>
+    <% if content_for? :title %>
+    <%= yield :title %> -
+    <% else %>
+    <%= @page_title ? @page_title + ' - ' : '' %>
+    <% end  %>
+    My Chalet Finder
+  </title>
 <% unless @meta_description.blank? -%>
   <meta name="description" content="<%= @meta_description %>">
 <% end -%>

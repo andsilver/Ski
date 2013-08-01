@@ -191,6 +191,9 @@ en:
       heading: '%{holiday_type} in %{place}'
       regions: Regions
       resorts: Resorts
+  holiday_types:
+    show:
+      title: '%{holiday_type}'
   home: Home
   hotels: Hotels
   images_controller:
@@ -434,6 +437,7 @@ en:
     how_to_get_there:
       heading: 'How to Get There'
     show:
+      title: '%{region} Region Information'
       heading: 'Region Information'
   registration: Registration
   resort: 'Resort'
