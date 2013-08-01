@@ -1,15 +1,9 @@
+<%= content_for :title, 'Find Airport Transfers' %>
+
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({}, 'Find Airport Transfers') %>
+
 <div id="search_options">
-  <%= form_tag action: 'results' do %>
-  <p>
-    Choose which airport and resort you want to travel between and we'll
-    find you the airport transfer companies with those connections.
-  </p>
-  <label>To/from airport</label>
-  <%= select("airport_transfer_search", "airport_id", (Airport.all.collect {|a| [ a.name, a.id ] }).sort, prompt: 'Choose Airport') %>
-  <label>To/from resort</label>
-  <%= select("airport_transfer_search", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, prompt: 'Choose Resort') %>
-  <br><%= submit_tag 'Find Transfers', class: 'btn btn-primary' %>
-  <% end %>
+  <%= render 'search_form' %>
 </div>
 <div id="airport_transfers">
   <% if defined? @results %>

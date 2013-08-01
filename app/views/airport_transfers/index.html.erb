@@ -1,3 +1,7 @@
+<%= content_for :title, t('airport_transfers_controller.titles.index') %>
+
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({}, t('airport_transfers_controller.titles.index')) %>
+
 <style scoped>
 select.wide {
   width: 520px;
@@ -12,17 +16,16 @@ select.wide {
 </p>
 <div class="well">
   <%= form_tag(action: 'create') do %>
-  <div class="row">
-    <div class="span5">
-      <h3>Airport</h3>
-      <%= select("transfers", "airport_id", (Airport.all.collect {|a| [ a.name, a.id ] }).sort) %>
-    </div>
-    <div class="span7">
-      <h3>Resort(s)</h3>
-      <%= select("transfers", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort,
-{}, {multiple: true, size: 10, class: 'wide'}) %>
-    </div>
+  <div class="form-group">
+    <label for="transfers_airport_id">Airport</label>
+    <%= select("transfers", "airport_id", (Airport.all.collect {|a| [ a.name, a.id ] }).sort, {}, class: 'form-control') %>
   </div>
+  <div class="form-group">
+    <label for="transfers_resort_id">Resort(s)</label>
+    <%= select("transfers", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort,
+{}, {multiple: true, size: 10, class: 'form-control'}) %>
+  </div>
+
   <%= submit_tag 'Add Connection(s)', class: 'btn btn-primary' %>
   <% end %>
 </div>

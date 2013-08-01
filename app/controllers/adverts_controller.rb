@@ -22,7 +22,6 @@ class AdvertsController < ApplicationController
   end
 
   def basket
-    default_page_title(I18n.t('basket'))
   end
 
   def update_basket_contents
@@ -114,7 +113,6 @@ class AdvertsController < ApplicationController
   end
 
   def buy_windows
-    @heading_a = render_to_string(partial: 'buy_windows_heading').html_safe
     @window_base_prices = WindowBasePrice.order('quantity')
   end
 
