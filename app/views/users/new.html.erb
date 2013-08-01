@@ -1,3 +1,5 @@
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({}, t('sign_up')) %>
+
 <%= render partial: 'shared/steps', locals: { step: 1 } %>
 
 <% if @user.role %>

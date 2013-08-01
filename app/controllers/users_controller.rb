@@ -13,7 +13,6 @@ class UsersController < ApplicationController
 
   def new
     default_page_title t('sign_up')
-    @heading_a = t 'sign_up'
     @user = User.new
   end
 
@@ -112,7 +111,6 @@ class UsersController < ApplicationController
   private
 
   def stage_one
-    @heading_a = t 'sign_up'
     @user = User.new(user_params)
     @role = Role.find_by_id(params[:user][:role_id])
     if @role && @role.select_on_signup?
