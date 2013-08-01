@@ -45,6 +45,6 @@ class WindowBasePricesController < ApplicationController
   end
 
   def windows_base_price_params
-    params.require(:windows_base_price).permit(:price, :quantity)
+    params.require(:window_base_price).permit(:price, :quantity)
   end
 end
