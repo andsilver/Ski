@@ -5,6 +5,7 @@
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home') => root_path}, @holiday_type)
 
 = content_for :links_and_search do
+  = render 'home/quick_search'
   section
     h2= @holiday_type
     ul
