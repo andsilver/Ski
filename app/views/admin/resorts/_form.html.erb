@@ -74,52 +74,52 @@
   </p>
   <div class="form-group">
     <%= f.label :introduction, class: 'control-label col-lg-2' %>
-    <div class="col-lg-6">
+    <div class="col-lg-9">
       <%= editor(f, :introduction, :html) %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :info, class: 'control-label col-lg-2' %>
-    <div class="col-lg-6">
+    <div class="col-lg-9">
       <%= editor(f, :info, :html) %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :feature, class: 'control-label col-lg-2' %>
-    <div class="col-lg-6">
-      <%= f.text_area :feature, class: 'form-control' %>
+    <div class="col-lg-9">
+      <%= editor(f, :feature, :html) %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :visiting, class: 'control-label col-lg-2' %>
-    <div class="col-lg-6">
-      <%= f.text_area :visiting, class: 'form-control' %>
+    <div class="col-lg-9">
+      <%= editor(f, :visiting, :html) %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :owning_a_property_in, t('resorts_controller.detail.owning_a_property_in', resort: @resort), class: 'control-label col-lg-2' %>
-    <div class="col-lg-6">
-      <%= f.text_area :owning_a_property_in, class: 'form-control' %>
+    <div class="col-lg-9">
+      <%= editor(f, :owning_a_property_in, :html) %>
     </div>
   </div>
 </div>
 <div class="form-horizontal">
   <div class="form-group">
     <%= f.label :living_in, class: 'control-label col-lg-2' %>
-    <div class="col-lg-6">
-      <%= f.text_area :living_in, class: 'form-control' %>
+    <div class="col-lg-9">
+      <%= editor(f, :living_in, :html) %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :insider_view, class: 'control-label col-lg-2' %>
-    <div class="col-lg-6">
-      <%= f.text_area :insider_view, class: 'form-control' %>
+    <div class="col-lg-9">
+      <%= editor(f, :insider_view, :html) %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :gallery_content, class: 'control-label col-lg-2' %>
-    <div class="col-lg-6">
-      <%= f.text_area :gallery_content, class: 'form-control' %>
+    <div class="col-lg-9">
+      <%= editor(f, :gallery_content, :html) %>
     </div>
   </div>
   <p>
@@ -127,14 +127,14 @@
   </p>
   <div class="form-group">
     <%= f.label :piste_map_content, class: 'control-label col-lg-2' %>
-    <div class="col-lg-6">
-      <%= f.text_area :piste_map_content, class: 'form-control' %>
+    <div class="col-lg-9">
+      <%= editor(f, :piste_map_content, :html) %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :weather_code, class: 'control-label col-lg-2' %>
-    <div class="col-lg-6">
-      <%= f.text_area :weather_code, class: 'form-control' %>
+    <div class="col-lg-9">
+      <%= editor(f, :weather_code, :html) %>
     </div>
   </div>
   <div class="form-group">
