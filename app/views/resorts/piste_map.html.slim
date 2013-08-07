@@ -11,7 +11,7 @@
     - @images.each do |i|
       - t = piste_map(@resort, i)
       p
-        a href="#{piste_map_full_size_resort_path(@resort)}?map=<%= i %>"
+        a href="#{piste_map_full_size_resort_path(@resort)}?map=#{URI.escape(i)}"
           img src="#{t}" alt="Piste map for #{@resort}"
     = clear
 
