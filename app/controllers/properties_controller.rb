@@ -491,7 +491,7 @@ class PropertiesController < ApplicationController
       @property.resort.name => @property.resort
     }
     if @property.new_development?
-      @breadcrumbs[t('view.properties._show_property_heading.new_developments')] = resort_property_new_developments_path(@property.resort)
+      @breadcrumbs[t('new_developments')] = resort_property_new_developments_path(@property.resort)
     elsif @property.for_sale?
       @breadcrumbs[t('for_sale')] = resort_property_sale_path(@property.resort)
     elsif @property.for_rent?

@@ -292,7 +292,7 @@ fr:
   my_details_saved: 'Your details have been saved.'
   name: 'Nom'
   nearest_lift: 'Nearest lift'
-  new_developments: 'New Developments'
+  new_developments: 'Nouveaux Développements'
   notices:
     added: Added.
     admin_required: You need to be logged in as an administrator to do that.
