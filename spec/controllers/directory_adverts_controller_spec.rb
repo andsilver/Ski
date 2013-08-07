@@ -60,7 +60,6 @@ describe DirectoryAdvertsController do
 
       before do
         DirectoryAdvert.stub(:find_by_id).and_return(directory_advert)
-        directory_advert.stub(:current_advert).and_return(advert)
         directory_advert.stub(:category).and_return(category)
         directory_advert.stub(:resort).and_return(resort)
         resort.stub(:country).and_return(country)
@@ -80,9 +79,21 @@ describe DirectoryAdvertsController do
         get 'show', { id: 1 }
       end
 
-      it "records a view" do
-        advert.should_receive(:record_view)
-        get 'show', { id: 1 }
+      context 'with a current advert' do
+        before { directory_advert.stub(:current_advert).and_return(advert) }
+
+        it 'records a view' do
+          advert.should_receive(:record_view)
+          get 'show', { id: 1 }
+        end
+      end
+
+      context 'without a current advert' do
+        before { directory_advert.stub(:current_advert).and_return(nil) }
+
+        it 'does not try and record a view' do
+          get 'show', { id: '1' }
+        end
       end
     end
 

@@ -24,12 +24,14 @@ class DirectoryAdvertsController < ApplicationController
 
   def show
     @directory_advert = DirectoryAdvert.find_by_id(params[:id])
-    if @directory_advert.nil? || @directory_advert.current_advert.nil?
+    if @directory_advert.nil?
+      not_found
+    elsif @directory_advert.current_advert.nil? && !admin?
       not_found
     else
       default_page_title("#{@directory_advert.business_name}, #{t(@directory_advert.category.name)} in #{@directory_advert.resort.name}, #{@directory_advert.resort.country.name}")
       @heading_a = render_to_string(partial: 'show_directory_advert_heading').html_safe
-      @directory_advert.current_advert.record_view
+      @directory_advert.current_advert.record_view if @directory_advert.current_advert
     end
   end
 
