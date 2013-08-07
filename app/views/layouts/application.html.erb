@@ -101,7 +101,12 @@ function animateMarker() {
   <nav id="main-menu" role="navigation">
     <ul>
 <% HolidayType.on_menu.each do |ht| -%>
-      <li><%= link_to ht.name, ht, class: ht.slug %></li>
+      <li class="mega-parent <%= ht.slug %>">
+        <%= link_to ht.name, ht %>
+        <div class="mega-menu">
+          <%= raw ht.mega_menu_html %>
+        </div>
+      </li>
 <% end -%>
     </ul>
   </nav>

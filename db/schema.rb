@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130731124534) do
+ActiveRecord::Schema.define(version: 20130807191941) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -237,6 +237,7 @@ ActiveRecord::Schema.define(version: 20130731124534) do
     t.datetime "updated_at"
     t.boolean  "visible_on_menu", default: true, null: false
     t.text     "sidebar_html"
+    t.text     "mega_menu_html"
   end
 
   create_table "images", force: true do |t|

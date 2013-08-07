@@ -2,26 +2,62 @@ nav {
   display: block;
 }
 
-#main-menu ul {
+#main-menu > ul {
   list-style: none;
   margin: 98px 0 0 15px;
 }
 
-#main-menu li {
+#main-menu ul > li {
   float: left;
   margin-right: 2px;
 }
 
-#main-menu a {
+#main-menu > ul > li > a {
   background-color: rgba(0, 0, 0, 0.3);
   border-bottom: 4px solid #000;
   color: #ffffff;
   display: inline-block;
   font-size: 12px;
   line-height: 28px;
-  min-width: 140px;
+  min-width: 160px;
   padding: 0 10px;
   text-decoration: none;
+}
+
+.mega-menu {
+  border-top: 3px solid #fff;
+  display: none;
+  min-height: 50px;
+  width: 646px;
+  position: absolute;
+  background: #ccc;
+  left: 55px;
+  z-index: 12;
+
+  ul {
+    float: left;
+    list-style: none;
+    margin-right: 2px;
+    padding: 10px;
+    width: 160px;
+
+    li {
+      width: 140px;
+
+      a {
+        color: #fff;
+        display: block;
+      }
+    }
+  }
+
+  ul:last-child {
+    margin-right: 0;
+  }
+}
+
+.mega-parent:hover > .mega-menu {
+  display: block;
 }
 
 .count {
