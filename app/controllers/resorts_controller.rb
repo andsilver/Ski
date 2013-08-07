@@ -33,7 +33,6 @@ class ResortsController < ApplicationController
 
   def piste_map_full_size
     default_meta_description(resort: @resort, country: @resort.country)
-    @heading_a = render_to_string(partial: 'piste_map_heading').html_safe
     @map = params[:map]
     render layout: nil
   end
