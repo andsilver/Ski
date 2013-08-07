@@ -15,7 +15,7 @@ function getQuickSearchResorts() {
   return false;
 }
 
-$(function() {
+function quickSearch() {
   if($('#quick-search').length) {    
     $('#country_id').change(getQuickSearchResorts);
     $('#quick-search form').submit(function() {
@@ -28,4 +28,4 @@ $(function() {
       getQuickSearchResorts();
     }
   }
-});
+}
