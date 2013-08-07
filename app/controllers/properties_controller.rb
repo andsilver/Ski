@@ -243,8 +243,13 @@ class PropertiesController < ApplicationController
   end
 
   def update_day_of_month_select
-    @year = params[:year_month][0..3].to_i
-    @month = params[:year_month][5..6].to_i
+    if params[:year_month]
+      @year = params[:year_month][0..3].to_i
+      @month = params[:year_month][5..6].to_i
+    else
+      @year = Time.now.year
+      @month = Time.now.month
+    end
     render layout: false
   end
 
