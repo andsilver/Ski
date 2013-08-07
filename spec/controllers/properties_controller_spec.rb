@@ -94,6 +94,32 @@ describe PropertiesController do
     end
   end
 
+  describe 'GET update_day_of_month_select' do
+    context 'when params[:year_month] is set' do
+      it 'sets @year to the first four digits of year_month' do
+        get 'update_day_of_month_select', year_month: '2012-13'
+        expect(assigns(:year)).to eq(2012)
+      end
+
+      it 'sets @month to the 6th and 7th digits of year_month' do
+        get 'update_day_of_month_select', year_month: '2012-13'
+        expect(assigns(:month)).to eq(13)
+      end
+    end
+
+    context 'when params[:year_month] is missing' do
+      it 'sets @year to the current year' do
+        get 'update_day_of_month_select'
+        expect(assigns(:year)).to eq(Time.now.year)
+      end
+
+      it 'sets @month to the current month' do
+        get 'update_day_of_month_select'
+        expect(assigns(:month)).to eq(Time.now.month)
+      end
+    end
+  end
+
   describe "POST create" do
     let(:current_user) { mock_model(User).as_null_object }
     let(:role) { mock_model(Role).as_null_object }
