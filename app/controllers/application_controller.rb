@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :admin_required, only: [:restart, :precompile_assets]
 
+  rescue_from ActionView::MissingTemplate, with: :render_html
+
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, with: :render_error
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -181,4 +183,14 @@ class ApplicationController < ActionController::Base
   def owned_or_admin?(object)
     admin? || (signed_in? && object.user_id == current_user.id)
   end
+
+  private
+
+    def render_html(exception)
+      if request.format != 'html'
+        render formats: [:html]
+      else
+        raise exception
+      end
+    end
 end
