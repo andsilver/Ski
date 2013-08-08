@@ -197,7 +197,8 @@ module Interhome
 
     def import_details?(d)
       return true if d.kind_of?(Hash) # Details unspecified
-      'BCDFHRSV'.include?(d)
+      'ABCDFHRSV'.include?(d)
+      # A: apart- hotel
       # B: bungalow
       # C: chalet
       # D: divers
