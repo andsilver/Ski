@@ -1,2 +1,4 @@
-*/10 * * * * ~/myskichalet/denormalize.sh
-0 3 * * * ~/myskichalet/interhome.sh
+# m h  dom mon dow   command
+*/30 * * * * ~/railsapps/dev/myskichalet/denormalize.sh
+0 3 * * * ~/railsapps/dev/myskichalet/interhome.sh
+0 1 * * * ~/railsapps/dev/myskichalet/cache_unavailability.sh
