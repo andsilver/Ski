@@ -138,15 +138,7 @@ function animateMarker() {
 
   <footer role="contentinfo">
     <%= render 'shared/footer_box' %>
-    <p>
-      &copy;<%= Time.now.year %> My Holiday Home Ventures Limited
-      |
-      <%= link_to I18n.t(:privacy), privacy_path %>
-      |
-      <%= link_to I18n.t(:terms), terms_path %>
-      |
-      <%= link_to I18n.t(:contact), contact_path %>
-      <br>
+    <p class="locales">
       <a href="http://en.mychaletfinder.com<%= request.env['REQUEST_URI'] %>">English</a>
       |
       <a href="http://fr.mychaletfinder.com<%= request.env['REQUEST_URI'] %>">Français</a>
@@ -155,23 +147,12 @@ function animateMarker() {
       |
       <a href="http://it.mychaletfinder.com<%= request.env['REQUEST_URI'] %>">Italiano</a>
     </p>
+    <hr>
+    <p id="copyright">
+      &copy;<%= Time.now.year %> My Holiday Home Ventures Limited
+    </p>
   </footer>
 </div><!--#wrapper-->
-
-<nav id="legacy-menu" role="navigation">
-  <ul>
-    <li><a href="/pages/resources">Resources</a></li>
-<% if @w.blog_visible? -%>
-    <li><%= link_to t('blog_posts_controller.blog'), blog_path %></li>
-<% end -%>
-    <li><a id="advertise_link" href="/welcome/advertiser"><%= t('advertise') %></a></li>
-  </ul>
-</nav>
-<div id="social">
-  <a id="blogger" title="Blogger" href="http://mychaletfinder.blogspot.com">Blogger</a>
-  <a id="twitter" title="Twitter" href="https://twitter.com/#!/MyChaletFinder">Twitter</a>
-  <a id="facebook" title="Facebook" href="http://www.facebook.com/MyChaletFinder">Facebook</a>
-</div>
 
 </body>
 </html>
