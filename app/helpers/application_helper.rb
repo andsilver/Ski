@@ -157,7 +157,7 @@ module ApplicationHelper
   def breadcrumbs_and_heading(breadcrumbs, heading)
     content_tag(:ul,
       breadcrumbs.map {|k,v| content_tag(:li, link_to(k,v)) }.join.html_safe +
-      content_tag(:li, content_tag(:h1, heading), class: 'active'),
+      content_tag(:li, heading, class: 'active'),
       class: 'breadcrumb'
     )
   end
