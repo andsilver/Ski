@@ -17,7 +17,7 @@ gem 'exception_notification', git: 'git://github.com/smartinez87/exception_notif
 gem 'liquid'
 gem 'aws-sdk'
 gem 'sanitize'
-gem 'slim'
+gem 'slim', '~> 2.0.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
