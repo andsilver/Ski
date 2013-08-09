@@ -92,11 +92,14 @@ a img {
       background-color: #f7f7f7;
       color: #1d1d1b;
       display: block;
-      padding: 5px;
+      padding: 5px 30px 5px 5px;
+      position: relative;
       text-decoration: none;
 
       span {
-        float: right;
+        position: absolute;
+        right: 5px;
+        top: 5px;
       }
     }
 
