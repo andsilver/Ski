@@ -79,21 +79,21 @@ function animateMarker() {
 <header role="banner">
   <nav id="session">
     <ul>
-      <li><%= link_to t('favourites.favourites'), favourites_path, rel: 'nofollow' %></li>
+      <li><%= link_to '<i class="icon-heart"></i> '.html_safe + t('favourites.favourites'), favourites_path, rel: 'nofollow' %></li>
 <% if signed_in? -%>
 <% if @current_user.has_adverts_in_basket? -%>
-      <li><a href="<%= basket_path %>"><%= t 'basket' %> <span class="count"><%= @current_user.adverts_in_basket.count %></span></a><i class="icon-caret-right"></i></li>
+      <li><a href="<%= basket_path %>"><%= '<i class="icon-shopping-cart"></i> '.html_safe + t('basket') %> <span class="count"><%= @current_user.adverts_in_basket.count %></span></a><i class="icon-caret-right"></i></li>
 <% elsif session[:windows_in_basket] -%>
-      <li><a href="<%= basket_path %>"><%= t 'basket' %> <span class="count">1</span></a><i class="icon-caret-right"></i></li>
+      <li><a href="<%= basket_path %>"><%= '<i class="icon-shopping-cart"></i> '.html_safe + t('basket') %> <span class="count">1</span></a><i class="icon-caret-right"></i></li>
 <% end -%>
-      <li><%= link_to t('account'), advertise_path %><i class="icon-caret-right"></i></li>
-      <li><%= link_to t('sign_out'), sign_out_path %><i class="icon-caret-right"></i></li>
+      <li><%= link_to '<i class="icon-user"></i> '.html_safe + t('account'), advertise_path %><i class="icon-caret-right"></i></li>
+      <li><%= link_to '<i class="icon-signout"></i> '.html_safe + t('sign_out'), sign_out_path %><i class="icon-caret-right"></i></li>
 <% else -%>
-      <li><%= link_to t('sign_in'), sign_in_path %><i class="icon-caret-right"></i></li>
-      <li><%= link_to t('sign_up'), sign_up_path, id: 'sign-up' %><i class="icon-caret-right"></i></li>
+      <li><%= link_to '<i class="icon-signin"></i> '.html_safe + t('sign_in'), sign_in_path %><i class="icon-caret-right"></i></li>
+      <li><%= link_to '<i class="icon-user"></i> '.html_safe + t('sign_up'), sign_up_path, id: 'sign-up' %><i class="icon-caret-right"></i></li>
 <% end -%>
 <% if admin? -%>
-      <li><%= link_to 'CMS', cms_path %><i class="icon-caret-right"></i></li>
+      <li><%= link_to '<i class="icon-edit"></i> '.html_safe + 'CMS', cms_path %><i class="icon-caret-right"></i></li>
 <% end -%>
     </ul>
   </nav>
