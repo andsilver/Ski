@@ -37,6 +37,15 @@ module PropertiesHelper
     t(key, price: price)
   end
 
+  def featured_property_alt_attribute(p)
+    keys = {
+      Property::LISTING_TYPE_FOR_RENT => '.alt_for_rent',
+      Property::LISTING_TYPE_FOR_SALE => '.alt_for_sale',
+      Property::LISTING_TYPE_HOTEL => '.alt_hotel'
+    }
+    t(keys[p.listing_type], resort: p.resort)
+  end
+
   def distance_options
     [
       ["< 100m", 100],

@@ -1,6 +1,6 @@
 <a href="<%= property_path(p) %>" class="layout-element size-1of3">
   <% unless p.image.nil? %>
-  <%= image_tag(p.image.url(258)) %>
+  <%= image_tag(p.image.url(258), alt: featured_property_alt_attribute(p)) %>
   <% end %>
   <p class="header-title"><%= featured_property_price_message(p) %></p>
   <div class="header-text-cont">

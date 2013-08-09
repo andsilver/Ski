@@ -366,6 +366,9 @@ en:
     choose_a_window: Choose a Window
     email_a_friend: Email a friend
     featured:
+      alt_for_rent: '%{resort} accommodation chalets for rent in %{resort} apartments to rent in %{resort} holiday homes to rent in %{resort}'
+      alt_for_sale: '%{resort} accommodation chalets for sale in %{resort} apartments to buy in %{resort} holiday homes to buy in %{resort}'
+      alt_hotel: '%{resort} accommodation - hotels in %{resort}'
       sale_price: 'Sale price %{price}'
       weekly_price_from: 'From %{price} weekly'
     features:
