@@ -6,12 +6,20 @@
   background-color: #009fe3;
 }
 
+.ski-holidays h3 {
+  border-color: #009fe3;
+}
+
 #main-menu li.lakes-and-mountains a:hover {
   border-bottom-color: #008d36;
 }
 
 .lakes-and-mountains > .mega-menu {
   background-color: #008d36;
+}
+
+.lakes-and-mountains h3 {
+  border-color: #008d36;
 }
 
 #main-menu li.summer-villas a:hover {
@@ -22,6 +30,10 @@
   background-color: #f9b233;
 }
 
+.summer-villas h3 {
+  border-color: #f9b233;
+}
+
 #main-menu li.city-breaks a:hover {
   border-bottom-color: #e6332a;
 }
@@ -30,7 +42,11 @@
   background-color: #e6332a;
 }
 
-.ski-holidays-theme #links-and-search section, .ski-holidays-theme .header-title, .ski-holidays-theme h2, .ski-holidays-theme .btnDefault, .ski-holidays-theme table tr th {
+.city-breaks h3 {
+  border-color: #e6332a;
+}
+
+.ski-holidays-theme #links-and-search section, .ski-holidays-theme .header-title, .ski-holidays-theme h3, .ski-holidays-theme .btnDefault, .ski-holidays-theme table tr th {
   background-color:#009fe3;
 }
 
@@ -51,7 +67,7 @@
   background-color:#ccecf9;
 }
 
-.lakes-and-mountains-theme #links-and-search section, .lakes-and-mountains-theme .header-title, .lakes-and-mountains-theme h2, .lakes-and-mountains-theme .btnDefault, .lakes-and-mountains-theme table tr th {
+.lakes-and-mountains-theme #links-and-search section, .lakes-and-mountains-theme .header-title, .lakes-and-mountains-theme h3, .lakes-and-mountains-theme .btnDefault, .lakes-and-mountains-theme table tr th {
   background-color:#008D36;
 }
 
@@ -72,7 +88,7 @@
   background-color:#cdf9de;
 }
 
-.summer-villas-theme #links-and-search section, .summer-villas-theme .header-title, .summer-villas-theme h2, .summer-villas-theme .btnDefault, .summer-villas-theme table tr th {
+.summer-villas-theme #links-and-search section, .summer-villas-theme .header-title, .summer-villas-theme h3, .summer-villas-theme .btnDefault, .summer-villas-theme table tr th {
   background-color:#F9B233;
 }
 
@@ -93,7 +109,7 @@
   background-color:#f9e9cc;
 }
 
-.city-breaks-theme #links-and-search section, .city-breaks-theme .header-title, .city-breaks-theme h2, .city-breaks-theme .btnDefault, .city-breaks-theme table tr th {
+.city-breaks-theme #links-and-search section, .city-breaks-theme .header-title, .city-breaks-theme h3, .city-breaks-theme .btnDefault, .city-breaks-theme table tr th {
   background-color:#E6332A;
 }
 
@@ -112,12 +128,4 @@
 .city-breaks-theme table {
   border-bottom-color:#E6332A;
   background-color:#f9cecc;
-}
-
-.ski-holidays-theme, .lakes-and-mountains-theme, .summer-villas-theme, .city-breaks-theme {
-  h2 {
-    color: #fff;
-    margin-top: 0;
-    padding: 8px 10px;
-  }
 }
