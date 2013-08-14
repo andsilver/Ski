@@ -10,10 +10,9 @@
     My Chalet Finder Admin  
   </title>
   <%= csrf_meta_tags %>
-  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <%= stylesheet_link_tag    "application-admin", media: "screen", "data-turbolinks-track" => true %>
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <script src="/bootstrap/js/bootstrap.min.js"></script>
   <script src="//rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js"></script>
   <style>
   .editor {

@@ -26,6 +26,6 @@ module MySkiChalet
     # config.i18n.default_locale = :de
 
     config.autoload_paths += Dir["#{config.root}/lib"]
-    config.assets.precompile += %w( application-home.css application-main.css application-print.css )
+    config.assets.precompile += %w( application-admin.css application-home.css application-main.css application-print.css )
   end
 end
