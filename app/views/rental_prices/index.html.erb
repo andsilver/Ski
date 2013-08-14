@@ -1,4 +1,4 @@
-<div id="search_options">
+<div id="search-options">
   <%= form_tag action: 'results' do %>
   <p>
     Choose which resort you want to search and specify the sleeping capacity
@@ -6,9 +6,13 @@
     average rental prices.
   </p>
   <label>Resort</label>
-  <%= select("rental_prices_search", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, prompt: 'Choose Resort') %>
-  <label>Sleeping capacity</label>
-  <input name="rental_prices_search[sleeping_capacity]" value="<%= @rental_prices_search.sleeping_capacity %>" class="span1">
+  <div class="form-group">
+    <%= select("rental_prices_search", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, { prompt: 'Choose Resort' }, class: 'form-control') %>
+  </div>
+  <div class="form-group">
+    <label>Sleeping capacity</label>
+    <input name="rental_prices_search[sleeping_capacity]" value="<%= @rental_prices_search.sleeping_capacity %>" class="form-control">
+  </div>
   <br><%= submit_tag 'Find Rental Prices', class: 'btn btn-primary' %>
   <% end %>
 </div>

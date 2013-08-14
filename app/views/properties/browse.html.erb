@@ -11,19 +11,19 @@
 <%= content_for :links_and_search do %>
 <script>
 $(function() {
-  $('#search_options input, #search_options select').change(function() {
-    $('#search_options form').submit();
+  $('#search-options input, #search-options select').change(function() {
+    $('#search-options form').submit();
   });
 });
 </script>
 <section>
-<div id="search_options">
+<div id="search-options">
 <%= form_tag request.path, method: 'get' do %>
 <% if @resort -%>
 <input type="hidden" name="resort_id" value="<%= @resort.id %>">
 <% end -%>
 <p>
-  <select id="sort_method" name="sort_method">
+  <select id="sort_method" name="sort_method" class="form-control">
 <% if @for_sale %>
     <option<%= ' selected' if params[:sort_method]=='normalised_sale_price DESC' %> value="normalised_sale_price DESC">Price high to low</option>
     <option<%= ' selected' if params[:sort_method]=='normalised_sale_price ASC' %> value="normalised_sale_price ASC">Price low to high</option>
@@ -45,7 +45,7 @@ $(function() {
   </select>
 <% unless @for_sale -%>
   <%= render 'sleeps_select' %>
-  <select id="board_basis" name="board_basis">
+  <select id="board_basis" name="board_basis" class="form-control">
     <option value="-1">Any board basis</option>
     <% [Property::BOARD_BASIS_SELF_CATERING, Property::BOARD_BASIS_BED_AND_BREAKFAST, Property::BOARD_BASIS_HALF_BOARD, Property::BOARD_BASIS_FULL_BOARD].each do |value| %>
     <option value="<%= value %>"<%= ' selected="selected"' if params[:board_basis]==value.to_s %>><%= Property.board_basis_description(value) %></option>
@@ -53,11 +53,10 @@ $(function() {
   </select>
   <%= render 'home/arrival_datepicker' %>
 <% end -%>
-  <br>
   <%= raw property_search_filters @search_filters %>
 </p>
 <% end %>
-</div><!--#search_options-->
+</div><!--#search-options-->
 </section>
 <% end %>
 

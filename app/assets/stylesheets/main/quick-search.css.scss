@@ -1,4 +1,4 @@
-#quick-search {
+#quick-search, #search-options {
   select, span {
     margin-bottom: 3px;
   }
@@ -16,11 +16,19 @@
     font-size: 11px;
     display: inline-block;
   }
+
+  .checkbox {
+    color: #fff;
+    font-weight: normal;
+    padding-left: 30px;
+  }
 }
 
 #links-and-search {
-  #quick-search .form-control {
-    height: 32px;
+  #quick-search, #search-options {
+    .form-control {
+      height: 32px;
+    }
   }
 
   #arrival-datepicker input {
