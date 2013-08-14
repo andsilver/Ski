@@ -321,6 +321,14 @@ it:
     sign_in_required: Please sign in or sign up first.
   number_of_bathrooms: 'Number of bathrooms'
   number_of_bedrooms: 'Number of bedrooms'
+  orders:
+    receipts:
+      amount: 'Amount'
+      heading: 'Receipts'
+      invoice_pdf: 'Invoice (PDF)'
+      no_receipts: 'You have no receipts.'
+      order_number: 'Order number'
+      when_placed: 'When placed'
   orders_controller:
     no_order_found: "We couldn't find an order for you."
     receipt_not_found: "We couldn't find that order."

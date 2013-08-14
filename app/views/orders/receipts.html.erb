@@ -1,24 +1,26 @@
+<%= content_for :title, t('.heading') %>
+
 <%= render 'users/advertising_options' %>
 
-<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('advertise') => advertise_path}, 'Receipts') %>
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('advertise') => advertise_path}, t('.heading')) %>
 
 <% if @orders.empty? %>
-<p>You have no receipts.</p>
+<p><%= t('.no_receipts') %></p>
 <% else %>
 <table id="receipts">
   <thead>
     <tr>
-      <th>Order number</th>
-      <th>Invoice (PDF)</th>
-      <th>When placed</th>
-      <th>Amount</th>
+      <th><%= t('.order_number') %></th>
+      <th><%= t('.invoice_pdf') %></th>
+      <th><%= t('.when_placed') %></th>
+      <th><%= t('.amount') %></th>
     </tr>
   </thead>
   <tbody>
   <% @orders.each do |order| %>
     <tr>
       <td><%= link_to order.order_number, receipt_order_path(order.id) %></td>
-      <td><%= link_to 'Invoice (PDF)', invoice_order_path(order.id) %></td>
+      <td><%= link_to t('.invoice_pdf'), invoice_order_path(order.id) %></td>
       <td><%= l(order.created_at, format: :short) %></td>
       <td><%= euros_from_cents(order.total) %></td>
     </tr>
