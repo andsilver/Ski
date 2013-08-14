@@ -276,6 +276,22 @@ it:
       winterwalkingpath: Winter walking path
       wlan: WLAN
   last_name: Last name
+  late_availability:
+    index:
+      action: 'Search for last minute accommodation for your ski holidays or summer vacation.'
+      choose_country: 'Choose Country'
+      choose_country_first: 'Choose Country First ↑'
+      choose_resort: 'Choose Resort'
+      featured_properties: 'Featured Last Minute Properties'
+      form_heading: 'Last Minute Search'
+      heading: 'Late Availability'
+      intro: 'Still not booked your accommodation for your ski holidays? Use our search tool that will help you find what you are looking for quickly.  Our chalet rentals, apartments to rent and other holiday rental accommodation lists are updated every day so you can be assured you will only see what is currently available.'
+      other_searches: 'Other Accommodation Searches'
+      search_1_text: 'Easter ski holidays'
+      search_2_text: 'End of season ski holidays'
+      search_3_text: 'Summer Ski Holidays'
+      search_4_text: 'Lapland & Santa holidays'
+      search_5_text: 'Christmas Ski Holidays'
   late_availability_controller:
     titles:
       index: 'Late Availability - Last Minute Ski Accommodation'

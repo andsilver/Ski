@@ -7,4 +7,23 @@
     text-align: right;
     padding-right: 2px;
   }
+
+  #arrival-datepicker {
+    margin-bottom: 10px;
+  }
+
+  #arrival-datepicker input {
+    font-size: 11px;
+    display: inline-block;
+  }
+}
+
+#links-and-search {
+  #quick-search .form-control {
+    height: 32px;
+  }
+
+  #arrival-datepicker input {
+    width: 125px;
+  }
 }

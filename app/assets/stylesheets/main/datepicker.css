@@ -308,8 +308,3 @@
 .datepicker td + td + td + td + td + td + td.day {
   font-weight: bold;
 }
-
-#arrival-datepicker input {
-  font-size: 12px;
-  width: 179px;
-}
