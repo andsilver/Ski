@@ -5,9 +5,9 @@ class HolidayTypeBrochure < ActiveRecord::Base
   validates :brochurable_id, presence: true, uniqueness: { scope: [:holiday_type, :brochurable_type] }
   validates :holiday_type, presence: true
 
-  def featured_properties(limit)
+  def featured_properties(how_many)
     Property.order('RAND()')
-      .limit(9)
+      .limit(how_many)
       .where(publicly_visible: true, brochurable_type.foreign_key.to_sym => brochurable.id)
       .where(resort_matches_holiday_type)
   end
