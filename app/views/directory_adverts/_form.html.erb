@@ -22,11 +22,13 @@
         You can have either a directory listing on its own or
         a banner advert which includes a free directory listing.
       </p>
-      <div class="field">
+      <div class="form-group">
         <label class="radio">
           <%= f.radio_button :is_banner_advert, false, class: 'radio' %>
       	  Directory advert only (<%= euros(Website.first.directory_advert_price) %> each)
         </label>
+      </div>
+      <div class="form-group">
         <label class="radio">
           <%= f.radio_button :is_banner_advert, true, class: 'radio' %>
       	  Banner advert with free directory advert
