@@ -144,6 +144,9 @@ it:
   directory_adverts:
     form:
       resorts: 'Resorts'
+    new:
+      heading: 'New Directory Advert'
+      title: 'New Directory Advert'
   directory_adverts_controller:
     added_to_basket: 'Your directory advert has been added to your basket.'
     created: "Your directory advert was successfully created."

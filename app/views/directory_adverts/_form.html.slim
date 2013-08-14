@@ -1,0 +1,191 @@
+= render partial: 'shared/steps', locals: { step: 4 }
+
+- if @directory_advert.errors.any?
+  #error_explanation
+    h2
+      => pluralize(@directory_advert.errors.count, "error")
+      | prohibited this directory advert from being saved:
+
+    ul
+      - @directory_advert.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for(@directory_advert, html: {multipart: true}) do |f|
+
+  - unless @directory_advert.currently_advertised?
+    .well
+      .row
+        .col-md-8
+          h2 Type of Advert
+          p You can have either a directory listing on its own or a banner advert which includes a free directory listing.
+
+          .form-group
+            label.radio
+              = f.radio_button :is_banner_advert, false, class: 'radio'
+      	      = "Directory advert only (#{euros(Website.first.directory_advert_price)} each)"
+
+          .form-group
+            label.radio
+              = f.radio_button :is_banner_advert, true, class: 'radio'
+              | Banner advert with free directory advert
+        .col-md-4
+          h2 Banner Advert Prices
+          table style="background: #fff;"
+            tr
+              th Banner Number
+              th Price Each
+            - BannerPrice.order('current_banner_number').each do |p|
+              tr
+                td= p.current_banner_number
+                td= euros(p.price)
+
+
+  .well
+    - if @directory_advert.banner_image
+      p style="float:right;"
+        img src="#{@directory_advert.banner_image.url}"
+
+    h2 Images
+    p Your directory image can be a logo or a photograph that represents your business. It can be any size.<br>Your banner image must be sized to 160 pixels wide and 200 pixels tall.
+
+    .form-group
+      label for="image" Directory image (.jpeg, .jpg, .gif, .png)
+      = file_field_tag 'image'
+
+    .form-group
+      label for="banner_image" Banner image (.jpeg, .jpg, .gif, .png)
+      = file_field_tag 'banner_image'
+
+  .well
+    .row
+      .col-md-5
+        .form-group
+          - if @directory_advert.new_record?
+            = f.label :resort_id, t('.resorts')
+            = select("directory_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {}, {multiple: true, size: 10, class: 'form-control'})
+          - else
+            = f.label :resort_id, t('resort')
+            = select("directory_advert", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: 'Select Resort'}, class: 'form-control')
+
+      .col-md-7
+        p
+          strong Example
+          br
+          | France &gt; Chamonix
+          - if @directory_advert.new_record?
+            br
+            br
+            | Tip:
+            br
+            | On Windows hold down Ctrl to select multiple resorts
+            br
+            | On Mac hold down Cmd
+    .row
+      .col-md-5
+        .form-group
+          = f.label :category_id, t('category')
+          = required_field
+          = select("directory_advert", "category_id", (Category.all.collect {|c| [ t(c.name), c.id ] }).sort, {prompt: 'Select Category'}, class: 'form-control')
+      .col-md-7
+        p
+          br
+          br
+          | Taxis
+
+    .row
+      .col-md-5
+        .form-group
+          = f.label :business_name
+          = required_field
+          = f.text_field :business_name, class: 'form-control'
+      .col-md-7
+        p
+          br
+          br
+          | Alpha Taxis
+    .row
+      .col-md-5
+        .form-group
+          = f.label :business_address
+          = required_field
+          = f.text_area :business_address, class: 'form-control'
+
+      .col-md-7
+        p
+          br
+          br
+          | 123 Rue Nord
+          br
+          | Chamonix
+
+    .row
+      .col-md-5
+        .form-group
+          = f.label :postcode, t('postcode')
+          = f.text_field :postcode, class: 'form-control'
+      .col-md-7
+        p
+          br
+          br
+          | 74400
+
+    .row
+      .col-md-5
+        .form-group
+          = f.label :phone, t('phone')
+          = f.text_field :phone, class: 'form-control'
+        p.help-block Please include the country calling code.
+      .col-md-7
+        p
+          br
+          br
+          | +33.1234567890
+
+    .row
+      .col-md-5
+        .form-group
+          = f.label :url, 'Website address (URL)'
+          = f.url_field :url, class: 'form-control', placeholder: 'http://www.example.org'
+        p.help-block If you have a banner advert, this is also where the visitor will be sent when they click your banner
+      .col-md-7
+        p
+          br
+          br
+          | http://www.example.org
+
+    .row
+      .col-md-5
+        .form-group
+          = f.label :strapline
+          = required_field
+          = f.text_area :strapline, class: 'form-control'
+      .col-md-7
+        p
+          br
+          br
+          | A short description of your business (maximum of 255 characters)
+
+    .row
+      .col-md-5
+        .form-group
+          = f.label :description
+          = f.text_area :description, class: 'form-control'
+      .col-md-7
+        p
+          br
+          br
+          | A more detailed description of your business
+
+    .row
+      .col-md-5
+        .form-group
+          = f.label :opening_hours
+          = f.text_area :opening_hours, class: 'form-control'
+      .col-md-7
+        p
+          br
+          br
+          | Monday-Saturday: All day<br>Sunday: Midnight to 8pm
+
+    .form-group
+      = f.submit(t('save'), class: 'btn btn-large btn-primary')
