@@ -627,7 +627,6 @@ fr:
       description: "Advertise your business within our resort pages."
       new_directory_advert: New Directory/Banner Advert
     no_account_yet: "N'avez-vous pas un compte?"
-    or: Ou
     password_changed: 'Your password has been changed'
     receipts:
       description: 'View and print off receipts for orders that you have placed here.'
