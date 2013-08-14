@@ -1,0 +1,13 @@
+- content_for :title, t('.heading')
+
+- content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home') => root_path}, t('.heading'))
+
+- content_for :links_and_search, render('home/quick_search')
+
+h1= t('.heading')
+
+- if @properties.empty?
+  p= t('.no_favourites')
+- else
+  - @properties.each do |p|
+    = render partial: 'properties/property_summary', locals: {p: p}

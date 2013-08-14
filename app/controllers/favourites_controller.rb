@@ -3,7 +3,6 @@ class FavouritesController < ApplicationController
 
   def index
     @properties = @unregistered_user.favourite_properties
-    @heading_a = t('favourites.favourites')
   end
 
   def create
