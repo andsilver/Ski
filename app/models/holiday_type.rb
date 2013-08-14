@@ -24,4 +24,10 @@ class HolidayType < ActiveRecord::Base
   def to_s
     name
   end
+
+  def featured_properties(how_many)
+    Property.order('RAND()')
+      .limit(how_many)
+      .where(['resort_id IN (SELECT brochurable_id FROM holiday_type_brochures WHERE holiday_type_id = ? AND brochurable_type = "Resort")', id])
+  end
 end
