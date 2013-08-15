@@ -1,0 +1,13 @@
+- @country.holiday_type_brochures.each do |brochure|
+  .clear-fix
+    div class="size-2of3 layout-element #{brochure.holiday_type.slug}-theme"
+      = link_to holiday_type_brochure_path('countries', brochure.brochurable, brochure.holiday_type.slug) do
+        img src="/images/#{brochure.holiday_type.slug}.jpg" alt="Title in here"
+        p.header-title= t('holiday_type_brochures.show.heading', holiday_type: brochure.holiday_type, place: @country)
+    .size-1of3.layout-element
+      table
+        tr
+          th Resorts
+        - @country.resort_brochures(brochure.holiday_type.id).each do |rb|
+          tr
+            td= link_to rb.brochurable, rb.brochurable

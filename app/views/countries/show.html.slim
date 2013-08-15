@@ -29,6 +29,7 @@
 
 #content-with-side-banners
   - featured_properties = render('shared/featured_properties')
-  = raw Liquid::Template.parse(@country.info).render('featured_properties' => featured_properties, 'resort_summaries_table' => render('resort_summaries_table'))
+  - holiday_links = render('holiday_links')
+  = raw Liquid::Template.parse(@country.info).render('featured_properties' => featured_properties, 'holiday_links' => holiday_links, 'resort_summaries_table' => render('resort_summaries_table'))
 
 = content_for :advertising, render(partial: 'directory_adverts/banners', object: [])

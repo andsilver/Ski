@@ -33,7 +33,7 @@
   = f.label :iso_3166_1_alpha_2, 'ISO 3166-1 Alpha 2'
   = f.text_field :iso_3166_1_alpha_2, maxlength: 2, class: 'span1'
 
-  p= "Use <code>{{ featured_properties }}</code> to embed featured properties and <code>{{ resort_summaries_table }}</code> to embed a resort summaries table.".html_safe
+  p= "Use <code>{{ featured_properties }}</code> to embed featured properties, <code>{{ holiday_links }}</code> for holiday links and <code>{{ resort_summaries_table }}</code> to embed a resort summaries table.".html_safe
 
   = f.label :info
   = editor(f, :info, :html)
