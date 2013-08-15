@@ -24,7 +24,7 @@ function quickSearch() {
         return false;
       }
     });
-    if($('#country_id').val() != '') {
+    if($('#country_id').length && $('#country_id').val() != '') {
       getQuickSearchResorts();
     }
   }
