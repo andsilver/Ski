@@ -133,7 +133,8 @@ module Interhome
       property.user_id = @user.id
       property.resort_id = resort_id
       property.name = accommodation.name.blank? ? accommodation.code : accommodation.name
-      property.strapline = accommodation.inside_description[0..254]
+      property.strapline = accommodation.inside_description
+      property.tidy_name_and_strapline
       property.address = address
       property.latitude = accommodation.geodata_lat
       property.longitude = accommodation.geodata_lng

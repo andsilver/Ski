@@ -277,14 +277,16 @@ class Property < ActiveRecord::Base
     for_sale? ? 3 : 12
   end
 
+  include ActionView::Helpers::TextHelper
+
   # Truncates the property name to 50 characters and the strapline to 255
   # characters. If the strapline is blank then the first 255 characters
   # of the description are used as the strapline.
   def tidy_name_and_strapline
     if strapline.blank?
-      self.strapline = description.blank? ? '' : description[0..254]
+      self.strapline = description.blank? ? '' : truncate(description, length: 255, separator: ' ')
     else
-      self.strapline = strapline[0..254]
+      self.strapline = truncate(strapline, length: 255, separator: ' ')
     end
     self.name = name[0..49]
   end

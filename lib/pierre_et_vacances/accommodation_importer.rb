@@ -109,7 +109,8 @@ module PierreEtVacances
       property.user_id = @user.id
       property.resort_id = resort_id
       property.name = accommodation.name.blank? ? accommodation.code : accommodation.name
-      property.strapline = accommodation.accroche_liste[0..254]
+      property.strapline = accommodation.accroche_liste
+      property.tidy_name_and_strapline
       property.address = address
       property.latitude = accommodation.latitude
       property.longitude = accommodation.longitude

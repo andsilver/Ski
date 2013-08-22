@@ -169,19 +169,19 @@ describe Property do
       end
 
       context "when the description is not blank" do
-        it "leaves sets the strapline to the first 255 chars of description" do
+        it "leaves sets the strapline to the first 252 chars of description with an elipsis" do
           property.description = 'x' * 256
           property.tidy_name_and_strapline
-          expect(property.strapline).to eq('x' * 255)
+          expect(property.strapline).to eq('x' * 252 + '...')
         end
       end
     end
 
     context "when the strapline is not blank" do
-      it "truncates strapline to 255 chars" do
+      it "truncates strapline to 252 chars with an elipsis" do
         property.strapline = 'x' * 256
         property.tidy_name_and_strapline
-        expect(property.strapline).to eq('x' * 255)
+        expect(property.strapline).to eq('x' * 252 + '...')
       end
     end
 
