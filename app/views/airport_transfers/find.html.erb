@@ -15,7 +15,7 @@
     </p>
     <% else %>
     <% @results.each do |r| %>
-    <div class="property_summary airport_transfer">
+    <div class="property-summary airport_transfer">
       <p class="airport_thumbnail"><%= image_tag(r.banner_image.url, alt: r.business_name) unless r.image.nil? %></p>
       <h3><a href="<%= r.url %>"><%= r.business_name %> #<%= r.id %></a></h3>
       <p class="strapline">

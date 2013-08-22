@@ -15,7 +15,10 @@
 <% end -%>
   </p>
   <div class="property-summary-description">
-    <h3><%= link_to p.name, link, title: "Read more about #{p.name}" %></h3>
+    <h3>
+      <%= link_to p.name, link, title: "Read more about #{p.name}" %>
+      <% unless p.hotel? %>&middot; <%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
+    </h3>
     <p class="strapline">
       <%= p.strapline %>
     </p>
@@ -30,11 +33,11 @@
         <% end %>
       </p>
   <% if p.interhome_accommodation_id -%>
-      <p class="contact_owner"><%= link_to 'More info', link, title: "More info about #{p.name}", class: ' btn-property' %></p>
+      <p class="contact_owner btn-property"><%= link_to 'More info', link, title: "More info about #{p.name}" %><i class="icon-caret-right"></i></p>
   <% else -%>
-      <p class="contact_owner"><%= link_to t('enquire'), contact_property_path(p), title: "Enquire about #{p.name}", class: 'btn-property' %></p>
+      <p class="contact_owner btn-property"><%= link_to t('enquire'), contact_property_path(p), title: "Enquire about #{p.name}" %><i class="icon-caret-right"></i></p>
   <% end -%>
-      <p class="email_a_friend"><%= link_to t('properties.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}", class: 'btn-property' %></p>
+      <p class="email_a_friend btn-property"><%= link_to t('properties.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}" %><i class="icon-caret-right"></i></p>
     </div>
   </div>
   <%= clear %>

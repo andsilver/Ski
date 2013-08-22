@@ -55,77 +55,42 @@ $shade: #8ed8f8;
   float: left;
   margin-left: 8px;
   width: 463px;
-}
 
-.property_summary .actions {
-  width: 120px;
-}
+  .strapline {
+    float: left;
+    width: 335px;
+  }
 
-.property_summary .price {
-  text-align: right;
-  margin-top: 0;
-  font-size: 1.3em;
-}
+  .actions {
+    float: right;
+    width: 120px;
+  }
 
-.property_summary .price span {
-  font-size: 1.6em;
-}
-
-.property_summary p.contact_owner,
-.property_summary p.email_a_friend {
-  margin: 0.5em 0;
-}
-
-.property_summary .contact_owner a,
-.property_summary .email_a_friend a,
-.more_detail a {
-  text-decoration: none;
-  color: #fff;
-  background: #00b3f0;
-  background-image: url(/images/tiny-button-arrow.png);
-  background-repeat: no-repeat;
-  background-position: 4px 6px;
-  font-size: 0.9em;
-  border: 2px solid #00529c;
-  display: block;
-  border-radius: 6px;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  text-transform: lowercase;
-  text-align: right;
-  padding: 3px 5px;
-}
-
-.property_summary .contact_owner a:hover,
-.property_summary .email_a_friend a:hover,
-.more_detail a:hover,
-.chunky_button a:hover {
-  color: #fff;
-  background: #00529c;
-}
-
-.property_summary .user_logo {
-  margin-right: 8px;
+  .price {
+    color: #999;
+    text-transform: lowercase;
+  }
 }
 
 .btn-property {
-  border: none;
-  display: inline-block;
-  padding: 0px 15px;
-  margin: 0px 0px;
-  margin-bottom: 5px;
   background-color: #0069af;
-  background-image: url('/images/arrowRightWhite.png');
-  background-position: right center;
-  background-repeat: no-repeat;
-  text-decoration: none!important;
-  color: #ededed!important;
-  font-size: 12px;
-  min-height: 30px;
-  min-width: 119px;
+  color: #ededed;
   line-height: 30px;
-  font-family: inherit;
-  vertical-align: middle;
-  text-align: left;
-  cursor: pointer;
+  margin: 0 0 5px 0;
+  padding: 0px 10px 0 15px;
+
+  a {
+    border: none;
+    color: #ededed!important;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    min-height: 30px;
+    min-width: 85px;
+    font-family: inherit;
+    vertical-align: middle;
+    text-align: left;
+    text-decoration: none!important;
+    width: 85px;
+  }
 }

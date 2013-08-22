@@ -451,6 +451,8 @@ fr:
       wifi: WiFi
     no_matching_resorts: "Il n'ya pas de propriétés annoncées à cette station de ski qui correspondent à vos critères de recherche."
     place_in_window: 'Place in Window'
+    property_summary:
+      sleeps: Sleeps
     select_resort: Sélectionnez une station
     star_rating: Nombre d'étoiles
     strapline_example: Slogan Par Exemple

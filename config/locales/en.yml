@@ -452,6 +452,8 @@ en:
       wifi: WiFi
     no_matching_properties: There are no properties advertised at this resort that match your search criteria.
     place_in_window: 'Place in Window'
+    property_summary:
+      sleeps: Sleeps
     select_resort: Select resort
     star_rating: Star rating
     strapline_example: Strapline Example
