@@ -187,31 +187,6 @@ class Property < ActiveRecord::Base
     pp.price_in_cents
   end
 
-  def features
-    f = []
-    bedrooms = "#{I18n.t('bedrooms')}: #{number_of_bedrooms}"
-    bedrooms += " (#{I18n.t('sleeps')} #{sleeping_capacity})" if for_rent?
-    f << board_basis_description if for_rent?
-    f << bedrooms
-    f << "#{I18n.t('nearest_lift')}: #{metres_from_lift}m" unless metres_from_lift == 0
-    f << I18n.t('properties.features.pets') if pets? && for_rent?
-    f << I18n.t('properties.features.smoking') if smoking? && for_rent?
-    f << tv_description if for_rent? && tv != TV_NO
-    f << I18n.t('properties.features.wifi') if wifi? && for_rent?
-    f << I18n.t('properties.features.disabled') if disabled?
-    f << I18n.t('properties.features.fully_equipped_kitchen') if fully_equipped_kitchen?
-    f << I18n.t('properties.features.cave') if cave?
-    f << I18n.t('properties.features.garden') if garden?
-    f << I18n.t('properties.features.indoor_swimming_pool') if indoor_swimming_pool?
-    f << I18n.t('properties.features.outdoor_swimming_pool') if outdoor_swimming_pool?
-    f << I18n.t('properties.features.sauna') if sauna?
-    f << I18n.t('properties.features.hot_tub') if hot_tub?
-    f << I18n.t('properties.filters.ski_in_ski_out') if ski_in_ski_out?
-    f << I18n.t('properties.filters.long_term_lets_available') if long_term_lets_available?
-    f << parking_description unless parking == PARKING_NO
-    f
-  end
-
   # Snaps distances (from town centre and from lift) to the closest
   # VALID_DISTANCE.
   def adjust_distances_if_needed
