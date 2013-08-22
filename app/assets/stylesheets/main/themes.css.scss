@@ -2,7 +2,7 @@
   border-bottom-color: #009fe3;
 }
 
-.ski-holidays > .mega-menu {
+.ski-holidays > .mega-menu, .ski-holidays-theme .btn-property {
   background-color: #009fe3;
 }
 
@@ -10,11 +10,15 @@
   border-color: #009fe3;
 }
 
+.ski-holidays-theme .property-summary .price span {
+  color: #009fe3;
+}
+
 #main-menu li.lakes-and-mountains a:hover {
   border-bottom-color: #008d36;
 }
 
-.lakes-and-mountains > .mega-menu {
+.lakes-and-mountains > .mega-menu, .lakes-and-mountains-theme .btn-property {
   background-color: #008d36;
 }
 
@@ -22,11 +26,15 @@
   border-color: #008d36;
 }
 
+.lakes-and-mountains-theme .property-summary .price span {
+  color: #008d36;
+}
+
 #main-menu li.summer-villas a:hover {
   border-bottom-color: #f9b233;
 }
 
-.summer-villas > .mega-menu {
+.summer-villas > .mega-menu, .summer-villas-theme .btn-property {
   background-color: #f9b233;
 }
 
@@ -34,16 +42,24 @@
   border-color: #f9b233;
 }
 
+.summer-villas-theme .property-summary .price span {
+  color: #f9b233;
+}
+
 #main-menu li.city-breaks a:hover {
   border-bottom-color: #e6332a;
 }
 
-.city-breaks > .mega-menu {
+.city-breaks > .mega-menu, .city-breaks-theme .btn-property {
   background-color: #e6332a;
 }
 
 .city-breaks-theme h2 {
   border-color: #e6332a;
+}
+
+.city-breaks-theme .property-summary .price span {
+  color: #e6332a;
 }
 
 .ski-holidays-theme #links-and-search section, .ski-holidays-theme .header-title, .ski-holidays-theme h3, .ski-holidays-theme .btnDefault, .ski-holidays-theme table tr th {

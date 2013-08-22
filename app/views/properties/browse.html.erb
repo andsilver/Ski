@@ -1,6 +1,8 @@
 <%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@breadcrumbs, @heading) %>
 
 <% if @resort -%>
+<%= content_for :theme, @resort.theme %>
+
 <script>
   $(function() {
     $.cookie('quick_search_resort_id', '<%= @resort.id %>', { path: '/' });
