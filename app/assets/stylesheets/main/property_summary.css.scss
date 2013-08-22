@@ -40,8 +40,19 @@ $shade: #8ed8f8;
   width: 149px;
 }
 
+.property-thumbnail {
+  overflow: hidden;
+
+  span {
+    display: block;
+    margin-left: -175px; /* - (1/2 width - 1/2 of 149) */
+    text-align: center;
+    width: 500px; /* sufficiently wide */
+  }
+}
+
 #content-with-side-banners .property-thumbnail img {
-  max-width: 149px;
+  max-height: 165px;
 }
 
 .property-summary-description {

@@ -11,7 +11,7 @@
   %>
   <p class="property-thumbnail">
 <% unless p.image.nil? -%>
-    <%= link_to(image_tag(p.image.url(149)), link) %>
+    <span><%= link_to(image_tag(p.image.sized_url(165, :height)), link) %></span>
 <% end -%>
   </p>
   <div class="property-summary-description">
