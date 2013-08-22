@@ -30,7 +30,7 @@
         <% end %>
       </p>
   <% if p.interhome_accommodation_id -%>
-      <p class="contact_owner btn-property"><%= link_to 'More info', link, title: "More info about #{p.name}" %></p>
+      <p class="contact_owner"><%= link_to 'More info', link, title: "More info about #{p.name}", class: ' btn-property' %></p>
   <% else -%>
       <p class="contact_owner"><%= link_to t('enquire'), contact_property_path(p), title: "Enquire about #{p.name}", class: 'btn-property' %></p>
   <% end -%>
