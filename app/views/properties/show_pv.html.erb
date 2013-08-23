@@ -16,7 +16,7 @@
 <% if fav = favourite_for_property(@property) %>
 <%= form_for(fav, method: :delete) do |f| %>
 <p>
-  <%= f.submit t('favourites.remove'), class: 'btn btn-large' %>
+  <%= f.submit t('favourites.remove'), class: 'btn btn-large btn-default' %>
 </p>
 <% end %>
 <% else %>
@@ -24,7 +24,7 @@
 <%= form_for @favourite do |f| %>
 <%= f.hidden_field :property_id %>
 <p>
-  <button type="submit" class="btn btn-primary btn-large"><i class='icon-heart icon-white'></i>
+  <button type="submit" class="btn btn-primary btn-large btn-property"><i class='icon-heart icon-white'></i>
   <%= t('favourites.add') %></button>
 </p>
 <% end %>
@@ -67,7 +67,7 @@
 
 <p>
 <% unless @property.latitude.empty? -%>
-  <a href="#" id="location" class="btn btn-primary btn-large"><i class="icon-map-marker icon-white"></i> Location</a>
+  <a href="#" id="location" class="btn btn-primary btn-large btn-property"><i class="icon-map-marker icon-white"></i> Location</a>
 <% end -%>
 </p>
 
