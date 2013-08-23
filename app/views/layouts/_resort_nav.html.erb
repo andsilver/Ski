@@ -29,3 +29,14 @@
   <% end -%>
     </ul>
   </section>
+
+<% if @resort.region && @resort.region.visible_resorts.any? -%>
+  <section>
+    <h2><%= @resort.region.name %></h2>
+    <ul>
+<% @resort.region.visible_resorts.each do |resort| -%>
+      <li><%= link_to_with_count resort, resort, resort.property_count %></li>
+<% end -%>
+    </ul>
+  </section>
+<% end -%>
