@@ -251,7 +251,7 @@ class Property < ActiveRecord::Base
   # :call-seq:
   #   calculate_late_availability(array_of_dates) -> boolean
   def calculate_late_availability(dates_to_consider)
-    interhome_accommodation ? interhome_accommodation.available_to_check_in_on_dates?(dates_to_consider) : true
+    interhome_accommodation ? interhome_accommodation.available_to_check_in_on_dates?(dates_to_consider) : !for_sale?
   end
 
   def cache_unavailability(dates)

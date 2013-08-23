@@ -193,8 +193,16 @@ describe Property do
   end
 
   describe '#calculate_late_availability' do
-    it 'returns true if it has no Interhome accommodation' do
-      expect(Property.new.calculate_late_availability([])).to be_true
+    context 'when not Interhome accommodation' do
+      it 'returns true if the property is not for sale' do
+        p = Property.new(listing_type: Property::LISTING_TYPE_FOR_RENT)
+        expect(p.calculate_late_availability([])).to be_true
+      end
+
+      it 'returns false if the property is for sale' do
+        p = Property.new(listing_type: Property::LISTING_TYPE_FOR_SALE)
+        expect(p.calculate_late_availability([])).to be_false
+      end
     end
 
     it 'returns the value of the Interhome accommodation availability' do
