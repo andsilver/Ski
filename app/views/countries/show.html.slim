@@ -21,6 +21,7 @@
         - @country.visible_regions.each do |region|
           li= link_to_with_count region, region, region.property_count
 
+  - if @country.visible_resorts.where(region_id: nil).any?
     section
       h2 Resorts
       ul
