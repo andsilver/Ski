@@ -3,7 +3,9 @@ class RegionsController < ApplicationController
 
   def show; end
 
-  def how_to_get_there; end
+  def how_to_get_there
+    return not_found if @page_content.blank?
+  end
 
   private
 

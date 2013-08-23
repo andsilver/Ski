@@ -2,5 +2,4 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@region.breadcrumbs, t('.heading'))
 
-- unless @page_content.blank?
-  = raw Liquid::Template.parse(@page_content).render()
+= raw Liquid::Template.parse(@page_content).render()

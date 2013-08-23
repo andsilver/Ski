@@ -50,5 +50,25 @@ describe RegionsController do
 
   describe 'GET how_to_get_there' do
     it_behaves_like "a user of a region"
+
+    context 'when region found' do
+      before { Region.stub(:find_by).and_return(region) }
+
+      context 'when @page_content is set' do
+        before { controller.instance_variable_set(:@page_content, 'some content') }
+
+        it 'renders 200' do
+          get :how_to_get_there, id: 'lake-como'
+          expect(response.status).to eq 200
+        end
+      end
+
+      context 'when @page_content is blank' do
+        it 'renders 404' do
+          get :how_to_get_there, id: 'lake-como'
+          expect(response.status).to eq 404
+        end
+      end
+    end
   end
 end
