@@ -2,7 +2,7 @@
   border-bottom-color: #009fe3;
 }
 
-.ski-holidays > .mega-menu, .ski-holidays-theme .btn-property {
+.ski-holidays > .mega-menu, .ski-holidays-theme .btn-property, .ski-holidays-theme .btn-primary {
   background-color: #009fe3;
 }
 
@@ -18,7 +18,7 @@
   border-bottom-color: #008d36;
 }
 
-.lakes-and-mountains > .mega-menu, .lakes-and-mountains-theme .btn-property {
+.lakes-and-mountains > .mega-menu, .lakes-and-mountains-theme .btn-property, .lakes-and-mountains-theme .btn-primary {
   background-color: #008d36;
 }
 
@@ -34,7 +34,7 @@
   border-bottom-color: #f9b233;
 }
 
-.summer-villas > .mega-menu, .summer-villas-theme .btn-property {
+.summer-villas > .mega-menu, .summer-villas-theme .btn-property, .summer-villas-theme .btn-primary {
   background-color: #f9b233;
 }
 
@@ -50,7 +50,7 @@
   border-bottom-color: #e6332a;
 }
 
-.city-breaks > .mega-menu, .city-breaks-theme .btn-property {
+.city-breaks > .mega-menu, .city-breaks-theme .btn-property, .city-breaks-theme .btn-primary {
   background-color: #e6332a;
 }
 
@@ -144,4 +144,9 @@
 .city-breaks-theme table {
   border-bottom-color:#E6332A;
   background-color:#f9cecc;
+}
+
+.btn-primary {
+  border: none;
+  color: #fff !important;
 }
