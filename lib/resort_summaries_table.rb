@@ -17,7 +17,7 @@ class ResortSummariesTable
   end
 
   def rows
-    rows = []
-    @country.visible_resorts.map {|r| [r, r.altitude_m, r.top_lift_m, r.piste_length_km, r.nearest_airport ? r.nearest_airport.name : nil, r.airport_distances.any? ? r.airport_distances.first.distance_km : nil ]}
+    ski_resorts = @country.visible_resorts.select {|r| r.ski?}
+    ski_resorts.map {|r| [r, r.altitude_m, r.top_lift_m, r.piste_length_km, r.nearest_airport ? r.nearest_airport.name : nil, r.airport_distances.any? ? r.airport_distances.first.distance_km : nil ]}
   end
 end
