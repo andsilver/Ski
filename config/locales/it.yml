@@ -198,7 +198,11 @@ it:
   holiday_types:
     show:
       title: '%{holiday_type}'
-  home: Home
+  home:
+    terms:
+      heading: 'Terms and Conditions'
+      title: 'Terms and Conditions'
+  home_page: 'Home'
   hotels: Hotels
   images_controller:
     banner_image: 'Banner Image'

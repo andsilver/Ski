@@ -1,6 +1,6 @@
 = content_for :theme, @holiday_type.slug
 
-= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home') => root_path, @holiday_type => @holiday_type}, t('.heading', place: @brochurable, holiday_type: @holiday_type))
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home_page') => root_path, @holiday_type => @holiday_type}, t('.heading', place: @brochurable, holiday_type: @holiday_type))
 
 = content_for :links_and_search do
   = render 'home/quick_search'
