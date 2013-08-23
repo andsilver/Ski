@@ -39,6 +39,11 @@ class Denormalize
       country.property_count = country.visible_resorts.inject(0) {|c, r| c + r.property_count}
       country.save
     end
+
+    Region.all.each do |region|
+      region.property_count = region.visible_resorts.inject(0) {|sum, r| sum + r.property_count}
+      region.save
+    end
   end
 
   def self.count_properties(resort, attribute, value)

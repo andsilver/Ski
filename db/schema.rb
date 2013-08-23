@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130807191941) do
+ActiveRecord::Schema.define(version: 20130823112602) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -592,12 +592,13 @@ ActiveRecord::Schema.define(version: 20130807191941) do
 
   create_table "regions", force: true do |t|
     t.integer  "country_id"
-    t.string   "name",                      null: false
+    t.string   "name",                          null: false
     t.text     "info"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug",                      null: false
-    t.boolean  "visible",    default: true, null: false
+    t.string   "slug",                          null: false
+    t.boolean  "visible",        default: true, null: false
+    t.integer  "property_count", default: 0,    null: false
   end
 
   add_index "regions", ["country_id"], name: "index_regions_on_country_id", using: :btree

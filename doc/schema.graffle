@@ -399,7 +399,7 @@ mega_menu_html}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{581, 363.21804809570312}, {93.28912353515625, 94}}</string>
+					<string>{{581, 363.21804809570312}, {93.28912353515625, 108}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -438,7 +438,8 @@ country_id\
 name\
 info\
 slug\
-visible}</string>
+visible\
+property_count}</string>
 					</dict>
 					<key>TextPlacement</key>
 					<integer>0</integer>
@@ -8132,7 +8133,7 @@ vat_number}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2013-08-23 09:58:15 +0000</string>
+	<string>2013-08-23 11:25:29 +0000</string>
 	<key>Modifier</key>
 	<string>Ian Fleeton</string>
 	<key>NotesVisible</key>
@@ -8227,7 +8228,7 @@ vat_number}</string>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{563, 0}, {1145, 581}}</string>
+		<string>{{67, 0}, {1145, 581}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>

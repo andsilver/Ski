@@ -19,6 +19,10 @@ class Region < ActiveRecord::Base
     title = I18n.t(key, region: name, default: page_name)
   end
 
+  def visible_resorts
+    resorts.where(visible: true)
+  end
+
   def to_param
     slug
   end
