@@ -4,6 +4,9 @@
 
 #content-with-side-banners
 
+  - template_params = { 'piste_table' => render('piste_table') }
+  = lt(@resort.piste_map_content, template_params)
+
   - resort_images(@resort, 'piste-maps')
   - if @images.empty?
     p= t('resorts_controller.piste_map.no_piste_maps')
@@ -14,8 +17,5 @@
         a href="#{piste_map_full_size_resort_path(@resort)}?map=#{URI.escape(i)}"
           img src="#{t}" alt="Piste map for #{@resort}"
     = clear
-
-  - template_params = { 'piste_table' => render('piste_table') }
-  = lt(@resort.piste_map_content, template_params)
 
 = render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort)
