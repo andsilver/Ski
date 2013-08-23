@@ -36,6 +36,8 @@ class Property < ActiveRecord::Base
   before_validation :adjust_distances_if_needed
   before_save :geocode, :normalise_prices, :properties_for_rent_cannot_be_new_developments
 
+  delegate :theme, to: :resort
+
   cattr_reader :per_page
   @@per_page = 10
   @@perform_geocode = PERFORM_GEOCODE
