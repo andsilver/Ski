@@ -9,7 +9,7 @@
   <h2>Resorts</h2>
   <ul>
 <% @region.resorts.each do |resort| -%>
-    <li><%= link_to resort, resort %></li>
+    <li><%= link_to_with_count resort, resort, resort.property_count %></li>
 <% end -%>
   </ul>
 </section>
