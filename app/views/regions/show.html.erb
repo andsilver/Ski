@@ -5,6 +5,7 @@
 <%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@region.breadcrumbs, t('.heading')) %>
 
 <%= content_for :links_and_search do %>
+<% if @region.visible_resorts.any? -%>
 <section>
   <h2>Resorts</h2>
   <ul>
@@ -13,6 +14,7 @@
 <% end -%>
   </ul>
 </section>
+<% end -%>
 <% end %>
 
 <% featured_properties = render('shared/featured_properties') -%>
