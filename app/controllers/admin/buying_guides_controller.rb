@@ -27,7 +27,7 @@ class Admin::BuyingGuidesController < ApplicationController
 
   def update
     if @buying_guide.update_attributes(buying_guide_params)
-      redirect_to(edit_buying_guide_path(@buying_guide), notice: t('notices.saved'))
+      redirect_to(edit_admin_buying_guide_path(@buying_guide), notice: t('notices.saved'))
     else
       render 'edit'
     end
