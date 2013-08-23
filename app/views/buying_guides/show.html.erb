@@ -1,30 +1,10 @@
-<div class="resource_page">
-  <h2>Buying Guide - <%= @buying_guide.country.name %></h2>
-  <div class="content">
+<%= content_for :title, "Buying Guide for #{@buying_guide.country}" %>
+
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home') => root_path}, "Buying Guide - #{@buying_guide.country.name}") %>
+
+<%= raw @buying_guide.content %>
 
 <% unless @featured_properties.empty? -%>
 <h2>Featured Properties</h2>
-<% @featured_properties.each do |p| -%>
-
-<div class="featured_property">
-  <h2><%= p.resort %></h2>
-  <p class="thumbnail">
-    <% unless p.image.nil? %>
-    <%= link_to(image_tag(p.image.url(144)), p) %>
-    <% end %>
-  </p>
-  <p class="price"><%= p.for_sale? ? "Sale price" : "Weekly price from" %><br>
-    <span><%= p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
-  </p>
-</div>
-
+<%= render 'shared/featured_properties' %>
 <% end -%>
-<% end -%>
-
-
-    <article>
-<%= raw @buying_guide.content %>
-    </article>
-  </div>
-</div>
-

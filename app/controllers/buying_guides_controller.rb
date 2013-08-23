@@ -2,9 +2,7 @@ class BuyingGuidesController < ApplicationController
   before_action :set_buying_guide
 
   def show
-    @heading_a = "Buying Guide for #{@buying_guide.country}"
-    default_page_title(@heading_a)
-    @featured_properties = @buying_guide.country.featured_properties(5)
+    @featured_properties = @buying_guide.country.featured_properties(9)
   end
 
   protected
