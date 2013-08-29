@@ -213,7 +213,8 @@ h1 {
   font-size: 22px;
 }
 
-h2 {
+h2, #property h3 {
+  background-color: transparent;
   border-bottom: 1px solid #ccc;
   color: #646464;
   font-size: 18px;
