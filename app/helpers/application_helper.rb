@@ -150,6 +150,12 @@ module ApplicationHelper
     ), object)
   end
 
+  def nav_link(path, title, link_text)
+    opts = current_page?(path) ? {class: 'active'} : {}
+
+    content_tag(:li, link_to(h(link_text), path, title: title), opts)
+  end
+
   def lt(template, params)
     raw Liquid::Template.parse(template).render(params)
   end
