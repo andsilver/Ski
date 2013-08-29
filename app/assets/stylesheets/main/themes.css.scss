@@ -6,7 +6,9 @@
   background-color: #009fe3;
 }
 
-.ski-holidays-theme h2 {
+.ski-holidays-theme h2,
+.ski-holidays-theme #features,
+.ski-holidays-theme #features p.divider {
   border-color: #009fe3;
 }
 
@@ -22,7 +24,9 @@
   background-color: #008d36;
 }
 
-.lakes-and-mountains-theme h2 {
+.lakes-and-mountains-theme h2,
+.lakes-and-mountains-theme #features,
+.lakes-and-mountains-theme #features p.divider {
   border-color: #008d36;
 }
 
@@ -38,7 +42,9 @@
   background-color: #f9b233;
 }
 
-.summer-villas-theme h2 {
+.summer-villas-theme h2,
+.summer-villas-theme #features,
+.summer-villas-theme #features p.divider {
   border-color: #f9b233;
 }
 
@@ -54,7 +60,9 @@
   background-color: #e6332a;
 }
 
-.city-breaks-theme h2 {
+.city-breaks-theme h2,
+.city-breaks-theme #features,
+.city-breaks-theme #features p.divider {
   border-color: #e6332a;
 }
 
@@ -70,7 +78,8 @@
   background-color:#009fe3!important;
 }
 
-.ski-holidays-theme #links-and-search section ul li a {
+.ski-holidays-theme #links-and-search section ul li a,
+.ski-holidays-theme #features {
   background-color:#b2e2f7;
 }
 
@@ -91,7 +100,8 @@
   background-color:#008D36!important;
 }
 
-.lakes-and-mountains-theme #links-and-search section ul li a {
+.lakes-and-mountains-theme #links-and-search section ul li a,
+.lakes-and-mountains-theme #features {
   background-color:#b4f4cc;
 }
 
@@ -112,7 +122,8 @@
   background-color:#F9B233!important;
 }
 
-.summer-villas-theme #links-and-search section ul li a {
+.summer-villas-theme #links-and-search section ul li a,
+.summer-villas-theme #features {
   background-color:#f6dfb6;
 }
 
@@ -133,7 +144,8 @@
   background-color:#E6332A!important;
 }
 
-.city-breaks-theme #links-and-search section ul li a {
+.city-breaks-theme #links-and-search section ul li a,
+.city-breaks-theme #features {
   background-color:#f7b2b2;
 }
 

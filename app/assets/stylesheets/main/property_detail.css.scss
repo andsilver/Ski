@@ -7,22 +7,28 @@
 }
 
 #features {
-  border-top: 1px solid #00aeef;
-  border-bottom: 1px solid #00aeef;
-  background-image: url(/images/features-bg.png);
-  padding: 12px 0;
-  font-size: 1.3em;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  font-size: 13px;
+  margin: 10px 0;
+  padding: 10px 0;
+
+  p.divider {
+    clear: left;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .column {
+    width: 140px;
+    float: left;
+    padding-left: 7px;
+    padding-right: 8px;
+    line-height: 1.5em;
+  }
 }
 
 .interhome-features .column:nth-child(4n+5) {
   clear: left;
-}
-
-#features .column {
-  width: 140px;
-  float: left;
-  padding-right: 15px;
-  line-height: 1.5em;
 }
 
 .ticked_feature, .unticked_feature {
@@ -41,11 +47,6 @@
 
 .unticked_feature {
   background-image: url(/images/unticked-feature.png);
-}
-
-#features p.divider {
-  clear: left;
-  border-bottom: 1px solid #00aeef;
 }
 
 h1.property_name {
