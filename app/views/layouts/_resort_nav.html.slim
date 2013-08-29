@@ -22,3 +22,10 @@ section
     ul
       - @resort.region.visible_resorts.each do |resort|
         li= link_to_with_count resort, resort, resort.property_count
+
+- if @resort.same_theme_regions.any?
+  section
+    h2 Regions
+    ul
+      - @resort.same_theme_regions.each do |brochure|
+        li= link_to brochure.brochurable, holiday_type_brochure_path('regions', brochure.brochurable, @resort.theme)
