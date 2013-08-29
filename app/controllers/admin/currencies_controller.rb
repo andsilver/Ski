@@ -1,6 +1,6 @@
-class CurrenciesController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_currency, only: [:edit, :update]
+class Admin::CurrenciesController < ApplicationController
+  before_action :admin_required
+  before_action :find_currency, only: [:edit, :update]
 
   layout 'admin'
 
@@ -16,7 +16,7 @@ class CurrenciesController < ApplicationController
     @currency = Currency.new(currency_params)
 
     if @currency.save
-      redirect_to(currencies_path, notice: t('notices.created'))
+      redirect_to(admin_currencies_path, notice: t('notices.created'))
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class CurrenciesController < ApplicationController
 
   def update
     if @currency.update_attributes(currency_params)
-      redirect_to(currencies_path, notice: t('notices.saved'))
+      redirect_to(admin_currencies_path, notice: t('notices.saved'))
     else
       render 'edit'
     end
@@ -35,7 +35,7 @@ class CurrenciesController < ApplicationController
 
   def update_exchange_rates
     Currency.update_exchange_rates
-    redirect_to currencies_path, notice: t('currencies_controller.exchange_rates_updated')
+    redirect_to admin_currencies_path, notice: t('currencies_controller.exchange_rates_updated')
   end
 
   protected
@@ -45,6 +45,6 @@ class CurrenciesController < ApplicationController
   end
 
   def currency_params
-    params.require(:currenct).permit(:code, :in_euros, :name, :pre, :unit)
+    params.require(:currency).permit(:code, :in_euros, :name, :pre, :unit)
   end
 end

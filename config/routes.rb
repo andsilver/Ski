@@ -12,6 +12,11 @@ MySkiChalet::Application.routes.draw do
     resources :blog_posts,        except: [:show]
     resources :buying_guides,     except: [:show]
     resources :countries,         except: [:show]
+    resources :currencies,        except: [:show] do
+      collection do
+        get 'update_exchange_rates'
+      end
+    end
     resources :coupons,           except: [:show]
     resources :footers,           except: [:show]
     resources :holiday_types,     except: [:show]
@@ -184,10 +189,6 @@ MySkiChalet::Application.routes.draw do
   resources :payments do
     get  'complete_payment_not_required', on: :collection
     post 'worldpay_callback', on: :collection
-  end
-
-  resources :currencies do
-    get 'update_exchange_rates', on: :collection
   end
 
   resources :regions, only: [:show]
