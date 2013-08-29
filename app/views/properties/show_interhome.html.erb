@@ -10,9 +10,8 @@
       var win = window.open('<%= contact_property_path(@property) %>', '_blank');
       win.focus();
     });
-	});
+  });
 </script>
-<div id="content-with-side-banners">
 <div id="property">
 <%= render partial: 'user_logo', locals: { property: @property } %>
 <div class="thumbnail abta">
@@ -27,7 +26,7 @@
   (<%= @property.interhome_accommodation.interhome_place.name %>)
 <% end -%>
 </h1>
-<p class="property_id"><%= I18n.t('property_id') %>: <span><%= @property.id %></span></p>
+<%= render partial: 'price_and_id', locals: { property: @property } %>
 
 <% if fav = favourite_for_property(@property) %>
 <%= form_for(fav, method: :delete) do |f| %>
@@ -98,5 +97,4 @@ features = @accommodation.features.split(',')
 <%= clear %>
 
 </div><!--#property-->
-</div>
 <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>

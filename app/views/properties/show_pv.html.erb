@@ -7,12 +7,10 @@
     $('#property-thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
 	});
 </script>
-<div id="content-with-side-banners">
 <div id="property">
   <%= render partial: 'user_logo', locals: { property: @property } %>
 <h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %></h1>
-<p class="property_id"><%= I18n.t('property_id') %>: <span><%= @property.id %></span></p>
-
+<%= render partial: 'price_and_id', locals: { property: @property } %>
 <% if fav = favourite_for_property(@property) %>
 <%= form_for(fav, method: :delete) do |f| %>
 <p>
@@ -80,5 +78,4 @@
 <%= clear %>
 
 </div><!--#property-->
-</div>
 <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>
