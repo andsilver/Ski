@@ -1,7 +1,7 @@
 section
   #quick-search
     = form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do
-      h2 Search
+      h2 Accommodation Search
       select#country_id.form-control name="country_id"
         option value="" Choose Country
         = options_for_select(Country.with_visible_resorts.map {|c| [c, c.id]})
