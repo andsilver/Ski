@@ -10,7 +10,8 @@
     h2= @holiday_type
     ul
       - @holiday_type.visible_country_brochures.each do |brochure|
-       li= link_to brochure.brochurable, holiday_type_brochure_path('countries', brochure.brochurable, @holiday_type.slug)
+        - country = brochure.brochurable
+        li= link_to_with_count country, holiday_type_brochure_path('countries', country, @holiday_type.slug), country.property_count_for_holiday_type(@holiday_type)
 
 - @featured_properties = @holiday_type.featured_properties(9)
 - featured_properties = render('shared/featured_properties')

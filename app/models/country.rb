@@ -103,6 +103,10 @@ class Country < ActiveRecord::Base
     HolidayType.all.map { |ht| ht.slug }
   end
 
+  def property_count_for_holiday_type(ht)
+    resort_brochures(ht.id).inject(0) {|sum, rb| sum + rb.brochurable.property_count}
+  end
+
   private
 
     def child_brochures(holiday_type_id, klass)

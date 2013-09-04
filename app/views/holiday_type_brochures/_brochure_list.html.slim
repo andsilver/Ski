@@ -5,7 +5,8 @@
       h2= heading
       ul
         - brochures.each do |brochure|
-          - if brochure.brochurable.class == Country
-            li= link_to brochure.brochurable, holiday_type_brochure_path(brochure.brochurable.class.to_s.tableize, brochure.brochurable, @holiday_type.slug)
+          - place = brochure.brochurable
+          - if place.class == Country
+            li= link_to_with_count place, holiday_type_brochure_path(place.class.to_s.tableize, place, @holiday_type.slug), place.property_count_for_holiday_type(@holiday_type)
           - else
-            li= link_to brochure.brochurable, brochure.brochurable
+            li= link_to_with_count place, place, place.property_count
