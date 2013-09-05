@@ -7,10 +7,10 @@
   p= t('resorts_controller.gallery.no_photos')
 - else
   #gallery_thumbnails.thumbnails
-  - @images.each do |i|
-    - t = gallery_thumbnail(@resort, i)
-    a href="#pic_#{Digest::MD5.hexdigest(t)}"
-      img src="#{t}" alt="Photo of #{@resort}"
+    - @images.each do |i|
+      - t = gallery_thumbnail(@resort, i)
+      a href="#pic_#{Digest::MD5.hexdigest(t)}"
+        img src="#{t}" alt="Photo of #{@resort}"
   = clear
 
   - @images.each do |i|
