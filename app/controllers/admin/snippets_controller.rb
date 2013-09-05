@@ -38,7 +38,7 @@ class Admin::SnippetsController < ApplicationController
   protected
 
     def set_snippet
-      @snippet = Snippet.find_by_id(params[:id])
+      @snippet = Snippet.find_by(params[:id])
     end
 
     def snippet_params

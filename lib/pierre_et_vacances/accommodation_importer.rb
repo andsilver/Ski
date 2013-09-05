@@ -66,7 +66,7 @@ module PierreEtVacances
 
       accommodation.save
 
-      if ppr = PvPlaceResort.find_by_pv_place_code(accommodation.place_code)
+      if ppr = PvPlaceResort.find_by(pv_place_code: accommodation.place_code)
         create_property(accommodation, ppr.resort_id, accommodation.address_1)
       end
     end
@@ -97,7 +97,7 @@ module PierreEtVacances
     end
 
     def create_property(accommodation, resort_id, address)
-      property = Property.find_by_pv_accommodation_id(accommodation.id)
+      property = Property.find_by(pv_accommodation_id: accommodation.id)
       if property
         # delete the advert; we'll create a new one shortly
         property.current_advert.delete if property.current_advert

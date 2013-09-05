@@ -39,7 +39,7 @@ class PagesController < ApplicationController
   end
 
   def show
-    @page = Page.find_by_path("/pages/#{params[:id]}")
+    @page = Page.find_by(path: "/pages/#{params[:id]}")
     not_found and return unless show_page?
     @content = Liquid::Template.parse(@page.content).render('buying_guides' => BuyingGuide.all)
   end

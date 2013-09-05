@@ -7,7 +7,7 @@ describe AdvertsController do
   before do
     Website.stub(:first).and_return(website)
     session[:user] = 1
-    User.stub(:find_by_id).and_return(current_user)
+    User.stub(:find_by).and_return(current_user)
   end
 
   describe 'GET my' do
@@ -120,7 +120,7 @@ describe AdvertsController do
 
     it "deletes a previous unpaid order, if any" do
       session[:order_id] = 1
-      Order.stub(:find_by_id).and_return(order)
+      Order.stub(:find_by).with(id: 1).and_return(order)
       order.stub(:status).and_return(Order::WAITING_FOR_PAYMENT)
       order.should_receive(:destroy)
 

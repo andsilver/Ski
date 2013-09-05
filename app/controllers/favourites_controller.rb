@@ -14,7 +14,7 @@ class FavouritesController < ApplicationController
   end
 
   def destroy
-    @favourite = Favourite.find_by_id(params[:id])
+    @favourite = Favourite.find_by(id: params[:id])
     if @favourite
       if @favourite.unregistered_user.id == @unregistered_user.id
         @favourite.destroy

@@ -62,7 +62,7 @@ describe RolesController do
     let(:role) { mock_model(Role).as_null_object }
 
     it "finds the role by its SEO param" do
-      Role.should_receive(:find_by_name).with('property developer')
+      Role.should_receive(:find_by).with(name: 'property developer')
       get 'sales_pitch', role: 'property-developer'
     end
 
@@ -72,7 +72,7 @@ describe RolesController do
 
     context "when the role does not exist" do
       it "renders not found" do
-        Role.stub(:find_by_name).and_return(nil)
+        Role.stub(:find_by).and_return(nil)
         put 'sales_pitch', role: 'property-developer'
         expect(response.status).to eql 404
       end

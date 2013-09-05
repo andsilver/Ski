@@ -7,7 +7,7 @@ describe Admin::AirportsController do
   before do
     Website.stub(:first).and_return(website)
     session[:user] = 1
-    User.stub(:find_by_id).and_return(current_user)
+    User.stub(:find_by).and_return(current_user)
   end
 
   describe 'GET index' do

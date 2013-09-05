@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @role = Role.find_by_id(params[:user][:role_id])
+    @role = Role.find_by(id: params[:user][:role_id])
     if @role && @role.select_on_signup?
       @user.role_id = @role.id
     end
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
     default_page_title t('users.email_sent')
     @heading_a = t('users.email_sent')
 
-    @user = User.find_by_email(params[:email])
+    @user = User.find_by(email: params[:email])
     if @user.nil?
       flash[:notice] = "There is no user registered with that email address"
       redirect_to action: 'forgot_password'

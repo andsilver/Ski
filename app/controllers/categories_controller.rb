@@ -64,7 +64,7 @@ class CategoriesController < ApplicationController
   end
 
   def find_category
-    @category = Category.find_by_id(params[:id])
+    @category = Category.find_by(id: params[:id])
     redirect_to(:root, notice: t('categories_controller.not_found')) unless @category
   end
 

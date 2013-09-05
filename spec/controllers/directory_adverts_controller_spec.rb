@@ -7,7 +7,7 @@ describe DirectoryAdvertsController do
   before do
     Website.stub(:first).and_return(website)
     session[:user] = 1
-    User.stub(:find_by_id).and_return(current_user)
+    User.stub(:find_by).and_return(current_user)
   end
 
   describe "GET index" do
@@ -48,7 +48,7 @@ describe DirectoryAdvertsController do
     let(:directory_advert) { mock_model(DirectoryAdvert).as_null_object }
 
     it "finds a directory advert specified by param[:id]" do
-      DirectoryAdvert.should_receive(:find_by_id).with("1")
+      DirectoryAdvert.should_receive(:find_by).with(id: '1')
       get 'show', id: '1'
     end
 
@@ -59,7 +59,7 @@ describe DirectoryAdvertsController do
       let(:country) { mock_model(Country).as_null_object }
 
       before do
-        DirectoryAdvert.stub(:find_by_id).and_return(directory_advert)
+        DirectoryAdvert.stub(:find_by).and_return(directory_advert)
         directory_advert.stub(:category).and_return(category)
         directory_advert.stub(:resort).and_return(resort)
         resort.stub(:country).and_return(country)
@@ -99,7 +99,7 @@ describe DirectoryAdvertsController do
 
     context "when the advert is not found" do
       before do
-        DirectoryAdvert.stub(:find_by_id).and_return(nil)
+        DirectoryAdvert.stub(:find_by).and_return(nil)
       end
 
       it "renders not found" do

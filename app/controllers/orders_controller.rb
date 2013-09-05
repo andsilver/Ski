@@ -53,9 +53,9 @@ class OrdersController < ApplicationController
 
   def find_order
     if admin?
-      @order = Order.find_by_id(params[:id])
+      @order = Order.find_by(id: params[:id])
     else
-      @order = Order.find_by_id_and_user_id(params[:id], @current_user.id)
+      @order = Order.find_by(id: params[:id], user_id: @current_user.id)
     end
 
     if @order.nil?

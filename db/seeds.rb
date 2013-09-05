@@ -289,10 +289,10 @@ countries = Country.create([
   { name: 'Zimbabwe',              iso_3166_1_alpha_2: 'ZW' }
   ])
 
-austria = Country.find_by_name('Austria').id
-france = Country.find_by_name('France').id
-italy = Country.find_by_name('Italy').id
-united_kingdom = Country.find_by_name('United Kingdom').id
+austria = Country.find_by(name: 'Austria').id
+france = Country.find_by(name: 'France').id
+italy = Country.find_by(name: 'Italy').id
+united_kingdom = Country.find_by(name: 'United Kingdom').id
 
 admin = Role.create!(
   name: 'Administrator',

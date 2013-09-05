@@ -7,7 +7,7 @@ class InterhomePlaceResort < ActiveRecord::Base
   # :call-seq:
   #   name -> string
   def name
-    ip = InterhomePlace.find_by_code(interhome_place_code)
+    ip = InterhomePlace.find_by(code: interhome_place_code)
     ip ? ip.full_name : "#{interhome_place_code} (missing)"
   end
 end

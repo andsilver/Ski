@@ -90,16 +90,16 @@ class ApplicationController < ActionController::Base
 
   def initialize_user
     @current_user = current_user
-    @unregistered_user = UnregisteredUser.find_by_id(session[:unregistered_user])
+    @unregistered_user = UnregisteredUser.find_by(id: session[:unregistered_user])
   end
 
   def current_user
-    User.find_by_id(session[:user])
+    User.find_by(id: session[:user])
   end
 
   def page_defaults
     @footer_box = ''
-    page = Page.find_by_path(request.path)
+    page = Page.find_by(path: request.path)
     if page
       @page_title = page.title
       @meta_description = page.description

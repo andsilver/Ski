@@ -23,7 +23,7 @@ class DirectoryAdvertsController < ApplicationController
   end
 
   def show
-    @directory_advert = DirectoryAdvert.find_by_id(params[:id])
+    @directory_advert = DirectoryAdvert.find_by(id: params[:id])
     if @directory_advert.nil?
       not_found
     elsif @directory_advert.current_advert.nil? && !admin?
@@ -143,7 +143,7 @@ class DirectoryAdvertsController < ApplicationController
   end
 
   def find_directory_advert_for_current_user
-    @directory_advert = DirectoryAdvert.find_by_id_and_user_id(params[:id], @current_user.id)
+    @directory_advert = DirectoryAdvert.find_by(id: params[:id], user_id: @current_user.id)
     not_found unless @directory_advert
   end
 

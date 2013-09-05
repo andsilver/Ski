@@ -11,7 +11,7 @@ describe Admin::BuyingGuidesController do
 
   describe 'PATCH update' do
     context 'when buying guide found' do
-      before { BuyingGuide.stub(:find_by_id).and_return(buying_guide) }     
+      before { BuyingGuide.stub(:find_by).and_return(buying_guide) }     
 
       context 'when update succeeds' do
         before { buying_guide.stub(:update_attributes).and_return(true) }

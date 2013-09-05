@@ -75,7 +75,7 @@
         resort_path(@resort) + '/gallery' => 'Edit gallery meta',
         resort_path(@resort) + '/piste_map' => 'Edit piste map meta',
       }.each do |k,v|
-        if(p = Page.find_by_path(k)) %>
+        if(p = Page.find_by(path: k)) %>
         <%= link_to(v, edit_page_path(p), class: 'btn btn-default') %>
         <%
         end

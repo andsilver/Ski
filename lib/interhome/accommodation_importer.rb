@@ -29,7 +29,7 @@ module Interhome
     def import_accommodation(a)
       return unless import_details?(a['details'][0])
 
-      accommodation = InterhomeAccommodation.find_by_code(a['code'][0])
+      accommodation = InterhomeAccommodation.find_by(code: a['code'][0])
       if accommodation
         # ensure the updated_at timestamp is updated
         # the save later won't touch the database if all attributes remain unchanged
@@ -71,7 +71,7 @@ module Interhome
       accommodation.save
 
       place = accommodation.interhome_place
-      if place && ipr = InterhomePlaceResort.find_by_interhome_place_code(place.code)
+      if place && ipr = InterhomePlaceResort.find_by(interhome_place_code: place.code)
         import_pictures(accommodation, a)
         delete_old_pictures(accommodation)
         create_property(accommodation, ipr.resort_id, place.name)
@@ -86,7 +86,7 @@ module Interhome
       return unless a['pictures']
       a['pictures'][0]['picture'].each do |p|
         url = p['url'][0]
-        picture = InterhomePicture.find_by_interhome_accommodation_id_and_url(accommodation.id, url)
+        picture = InterhomePicture.find_by(interhome_accommodation_id: accommodation.id, url: url)
         if picture
           picture.touch
         else
@@ -102,12 +102,12 @@ module Interhome
     # Delete old pictures that have been imported before but aren't mentioned
     # in the current XML file.
     def delete_old_pictures(accommodation)
-      property = Property.find_by_interhome_accommodation_id(accommodation.id)
+      property = Property.find_by(interhome_accommodation_id: accommodation.id)
       return unless property
 
       accommodation.interhome_pictures.each do |picture|
         if picture.updated_at < @import_start_time
-          image = Image.find_by_property_id_and_source_url(property.id, picture.url)
+          image = Image.find_by(property_id: property.id, source_url: picture.url)
           if image
             if image.property.image_id == image.id
               image.property.image_id = nil
@@ -121,7 +121,7 @@ module Interhome
     end
 
     def create_property(accommodation, resort_id, address)
-      property = Property.find_by_interhome_accommodation_id(accommodation.id)
+      property = Property.find_by(interhome_accommodation_id: accommodation.id)
       if property
         # delete the advert; we'll create a new one shortly
         property.current_advert.delete if property.current_advert
@@ -163,7 +163,7 @@ module Interhome
       end
 
       accommodation.interhome_pictures.each do |picture|
-        image = Image.find_by_property_id_and_source_url(property.id, picture.url)
+        image = Image.find_by(property_id: property.id, source_url: picture.url)
 
         if image.nil?
           image = Image.new

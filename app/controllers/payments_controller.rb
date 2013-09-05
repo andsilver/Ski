@@ -68,7 +68,7 @@ class PaymentsController < ApplicationController
   protected
 
   def complete_order
-    order = Order.find_by_order_number(@payment.cart_id)
+    order = Order.find_by(order_number: @payment.cart_id)
     raise "Order not found for #{@payment.cart_id}" unless order
     update_order order
   end

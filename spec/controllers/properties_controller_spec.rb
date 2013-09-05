@@ -69,7 +69,7 @@ describe PropertiesController do
 
     before do
       session[:user] = 1
-      User.stub(:find_by_id).and_return(current_user)
+      User.stub(:find_by).and_return(current_user)
       current_user.stub(:role).and_return(non_admin_role)
       Property.stub(:new).and_return(property)
     end
@@ -128,7 +128,7 @@ describe PropertiesController do
     before do
       session[:user] = 1
       Advert.stub(:create_for)
-      User.stub(:find_by_id).and_return(current_user)
+      User.stub(:find_by).and_return(current_user)
       current_user.stub(:role).and_return(role)
       Property.stub(:new).and_return(property)
       property.stub(:user_id).and_return(1)
@@ -174,7 +174,7 @@ describe PropertiesController do
 
   describe "GET show" do
     it "finds a property" do
-      Property.should_receive(:find_by_id).with("1")
+      Property.should_receive(:find_by).with(id: '1')
       get :show, id: '1'
     end
 
@@ -185,7 +185,7 @@ describe PropertiesController do
       let(:property_owner) { mock_model(User).as_null_object }
 
       before do
-        Property.stub(:find_by_id).and_return(property)
+        Property.stub(:find_by).and_return(property)
         Enquiry.stub(:new).and_return(enquiry)
         property.stub(:resort).and_return(resort)
         property.stub(:user).and_return(property_owner)
@@ -239,7 +239,7 @@ describe PropertiesController do
 
     context "when a property is not found" do
       before do
-        Property.stub(:find_by_id).and_return(nil)
+        Property.stub(:find_by).and_return(nil)
       end
 
       it "renders not found" do
@@ -250,12 +250,12 @@ describe PropertiesController do
   end
 
   def find_a_property_belonging_to_the_current_user
-    Property.should_receive(:find_by_id_and_user_id).with("1", anything())
+    Property.should_receive(:find_by).with(id: '1', user_id: anything())
   end
 
   def signed_in_user
     session[:user] = 1
-    User.stub(:find_by_id).and_return(current_user)
+    User.stub(:find_by).and_return(current_user)
 
     current_user.stub(:role).and_return(non_admin_role)
   end
@@ -275,7 +275,7 @@ describe PropertiesController do
 
     context "when a valid_property is found" do
       before do
-        Property.stub(:find_by_id_and_user_id).and_return(property)
+        Property.stub(:find_by).and_return(property)
       end
 
       it "assigns @property" do
@@ -286,7 +286,7 @@ describe PropertiesController do
 
     context "when a valid_property is not found" do
       before do
-        Property.stub(:find_by_id_and_user_id).and_return(nil)
+        Property.stub(:find_by).and_return(nil)
       end
 
       it "renders not found" do
@@ -316,7 +316,7 @@ describe PropertiesController do
       let(:property) { mock_model(Property).as_null_object }
 
       before do
-        Property.stub(:find_by_id_and_user_id).and_return(property)
+        Property.stub(:find_by).and_return(property)
       end
 
       context "when the property updates successfully" do
@@ -355,7 +355,7 @@ describe PropertiesController do
 
     context "when a valid property is not found" do
       before do
-        Property.stub(:find_by_id_and_user_id).and_return(nil)
+        Property.stub(:find_by).and_return(nil)
       end
 
       it "renders not found" do
@@ -373,17 +373,17 @@ describe PropertiesController do
     end
 
     it "finds the user's property" do
-      Property.should_receive(:find_by_id_and_user_id)
+      Property.should_receive(:find_by)
       post 'place_in_window', id: '1'
     end
 
     context "when the user's property is found" do
       before do
-        Property.stub(:find_by_id_and_user_id).and_return(property)
+        Property.stub(:find_by).and_return(property)
       end
 
       it "finds the user's advert" do
-        Advert.should_receive(:find_by_id_and_user_id)
+        Advert.should_receive(:find_by)
         post 'place_in_window', id: '1'
       end
 
@@ -391,7 +391,7 @@ describe PropertiesController do
         let(:advert) { mock_model(Advert).as_null_object }
 
         before do
-          Advert.stub(:find_by_id_and_user_id).and_return(advert)
+          Advert.stub(:find_by).and_return(advert)
           advert.stub(:window?).and_return(true)
         end
 

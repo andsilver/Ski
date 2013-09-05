@@ -26,7 +26,7 @@ describe UsersController do
     let(:params) { { user: { "name" => "Carey", "role_id" => "1" }} }
 
     before do
-      Role.stub(:find_by_id).and_return(role)
+      Role.stub(:find_by).and_return(role)
     end
 
     it "instantiates a new user with the given cleansed params" do
@@ -35,7 +35,7 @@ describe UsersController do
     end
 
     it "finds the selected role" do
-      Role.should_receive(:find_by_id).with("1")
+      Role.should_receive(:find_by).with(id: '1')
       post :create, params
     end
 

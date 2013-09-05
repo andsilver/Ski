@@ -26,7 +26,7 @@ module RelatedPages
   def handle_slug_change
     if slug_changed?
       page_names.each do |page_name|
-        p = Page.find_by_path(page_path(page_name, slug_was))
+        p = Page.find_by(path: page_path(page_name, slug_was))
         if p
           p.path = page_path(page_name)
           p.save

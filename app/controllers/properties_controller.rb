@@ -161,7 +161,7 @@ class PropertiesController < ApplicationController
   end
 
   def show_interhome
-    @accommodation = InterhomeAccommodation.find_by_permalink(params[:permalink])
+    @accommodation = InterhomeAccommodation.find_by(permalink: params[:permalink])
     not_found and return if @accommodation.nil?
     @property = @accommodation.property
 
@@ -178,7 +178,7 @@ class PropertiesController < ApplicationController
   end
 
   def show_pv
-    @accommodation = PvAccommodation.find_by_permalink(params[:permalink])
+    @accommodation = PvAccommodation.find_by(permalink: params[:permalink])
     not_found and return if @accommodation.nil?
     @property = @accommodation.property
 
@@ -193,7 +193,7 @@ class PropertiesController < ApplicationController
   end
 
   def check_interhome_booking
-    @accommodation = InterhomeAccommodation.find_by_permalink(params[:permalink])
+    @accommodation = InterhomeAccommodation.find_by(permalink: params[:permalink])
     check_in = params[:interhome_booking][:arrival_month] + '-' + '%02d' % params[:interhome_booking][:arrival_day]
     begin
       check_in_date = Date.new(check_in[0..3].to_i, check_in[5..6].to_i, check_in[8..9].to_i)
@@ -274,7 +274,7 @@ class PropertiesController < ApplicationController
     @client_booking = Interhome::WebServices.request('ClientBooking', details)
 
     details[:booking_id] = @client_booking.booking_id
-    details[:property] = InterhomeAccommodation.find_by_permalink(params[:permalink]).property
+    details[:property] = InterhomeAccommodation.find_by(permalink: params[:permalink]).property
     details[:permalink] = params[:permalink]
     details[:total] = @price_detail.total
     InterhomeNotifier.booking_confirmation(details).deliver
@@ -347,7 +347,7 @@ class PropertiesController < ApplicationController
   end
 
   def place_in_window
-    advert = Advert.find_by_id_and_user_id(params[:advert_id], @current_user.id)
+    advert = Advert.find_by(id: params[:advert_id], user_id: @current_user.id)
     if advert && advert.window?
       if advert.expired?
         redirect_to({action: 'choose_window'}, notice: 'That window has expired.')
@@ -405,7 +405,7 @@ class PropertiesController < ApplicationController
   end
 
   def pericles_import
-    default_resort = Resort.find_by_id(params[:resort_id])
+    default_resort = Resort.find_by(id: params[:resort_id])
     unless default_resort
       redirect_to new_pericles_import_properties_path, notice: 'Please select a default resort.'
       return
@@ -433,7 +433,7 @@ class PropertiesController < ApplicationController
       end
       puts p_p
       puts '-------'
-      property = Property.find_by_user_id_and_pericles_id(@current_user.id, p_p.pericles_id)
+      property = Property.find_by(user_id: @current_user.id, pericles_id: p_p.pericles_id)
       property ||= new_import_property
 
       new_record = property.new_record?
@@ -514,7 +514,7 @@ class PropertiesController < ApplicationController
 
     @total_read += 1
 
-    property = Property.find_by_user_id_and_name(@current_user.id, row[@mapping['name']])
+    property = Property.find_by(user_id: @current_user.id, name: row[@mapping['name']])
     property ||= new_import_property
 
     new_record = property.new_record?
@@ -637,7 +637,7 @@ class PropertiesController < ApplicationController
   end
 
   def find_property
-    @property = Property.find_by_id(params[:id])
+    @property = Property.find_by(id: params[:id])
     not_found unless @property
   end
 
@@ -645,7 +645,7 @@ class PropertiesController < ApplicationController
     if admin?
       @property = Property.find(params[:id])
     else
-      @property = Property.find_by_id_and_user_id(params[:id], @current_user.id)
+      @property = Property.find_by(id: params[:id], user_id: @current_user.id)
     end
     not_found unless @property
   end

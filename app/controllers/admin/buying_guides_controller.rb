@@ -41,7 +41,7 @@ class Admin::BuyingGuidesController < ApplicationController
   protected
 
     def set_buying_guide
-      @buying_guide = BuyingGuide.find_by_id(params[:id])
+      @buying_guide = BuyingGuide.find_by(id: params[:id])
       redirect_to(buying_guides_path) unless @buying_guide
     end
 

@@ -13,7 +13,7 @@ describe EnquiriesController do
 
       before do
         session[:user] = 1
-        User.stub(:find_by_id).and_return(current_user)
+        User.stub(:find_by).and_return(current_user)
       end
 
       it "finds enquiries belonging to the current user" do

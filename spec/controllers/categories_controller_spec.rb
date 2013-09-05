@@ -68,12 +68,12 @@ describe CategoriesController do
 
   describe 'DELETE destroy' do
     it 'finds the category' do
-      Category.should_receive(:find_by_id).with('1')
+      Category.should_receive(:find_by).with(id: '1')
       delete 'destroy', id: 1
     end
 
     context 'when the category is found' do
-      before { Category.stub(:find_by_id).and_return(category) }
+      before { Category.stub(:find_by).and_return(category) }
 
       it 'destroys the category' do
         category.should_receive(:destroy)

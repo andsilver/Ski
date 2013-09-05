@@ -22,7 +22,7 @@ feature 'Advertise Properties' do
   scenario 'Advertise a new property for rent' do
     create_a_new_property_for_rent
 
-    property = Property.find_by_name('Chalet Des Sapins')
+    property = Property.find_by(name: 'Chalet Des Sapins')
     expect(property).to_not be_nil
 
     expect(current_path).to eq new_image_path

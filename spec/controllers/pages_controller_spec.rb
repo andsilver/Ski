@@ -37,7 +37,7 @@ describe PagesController do
   describe 'GET show' do
     it 'finds the page by path' do
       # received twice and found the first time by ApplicationController#page_defaults
-      Page.should_receive(:find_by_path).with('/pages/slug').twice.and_return(page(content: ''))
+      Page.should_receive(:find_by).with(path: '/pages/slug').twice.and_return(page(content: ''))
       get 'show', id: 'slug'
     end
   end

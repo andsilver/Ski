@@ -36,7 +36,7 @@ module Interhome
     def import_vacancy(v)
       vacancy = InterhomeVacancy.new
       vacancy.accommodation_code = v['code'][0]
-      accommodation = InterhomeAccommodation.find_by_code(vacancy.accommodation_code)
+      accommodation = InterhomeAccommodation.find_by(code: vacancy.accommodation_code)
       return unless accommodation
 
       vacancy.interhome_accommodation_id = accommodation.id
