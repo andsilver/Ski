@@ -28,8 +28,8 @@ feature "Holiday types" do
     countries(:a_country_without_visible_resorts).save!
 
     visit holiday_type_path(holiday_types(:ski_holidays))
-    expect(page.find('#links-and-search')).to have_content('France')
-    expect(page.find('#links-and-search')).not_to have_content('Italy')
-    expect(page.find('#links-and-search')).not_to have_content('A Country Without Visible Resorts')
+    expect(page.find('#links-and-search li')).to have_content('France')
+    expect(page.find('#links-and-search li')).not_to have_content('Italy')
+    expect(page.find('#links-and-search li')).not_to have_content('A Country Without Visible Resorts')
   end
 end
