@@ -2,11 +2,6 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@resort.breadcrumbs, @heading)
 
-javascript:
-  $(document).ready(function() {
-    $('#gallery_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
-  });
-
 - resort_images(@resort, 'gallery')
 - if @images.empty?
   p= t('resorts_controller.gallery.no_photos')

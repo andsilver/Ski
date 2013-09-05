@@ -37,6 +37,7 @@ function pageLoad() {
   cycleHeaderImages();
   animateMarker();
   quickSearch();
+  galleryZoom();
 }
 
 function cycleHeaderImages() {
@@ -49,6 +50,10 @@ function cycleHeaderImages() {
 
 function animateMarker() {
   $("#marker").delay(1000).animate({"top":"45px"}, 500, "easeOutBounce");
+}
+
+function galleryZoom() {
+  $('#gallery_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
 }
 </script>
 </head>
