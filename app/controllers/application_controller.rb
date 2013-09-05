@@ -112,7 +112,7 @@ class ApplicationController < ActionController::Base
   end
 
   def use_default_footer
-    footer = Footer.find_by_name('Default')
+    footer = Footer.find_by(name: 'Default')
     @footer_box = footer.content unless footer.nil?
   end
 
