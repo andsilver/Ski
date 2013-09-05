@@ -389,6 +389,8 @@ de:
     saved: "Your property advert details have been saved."
   properties:
     accommodation_type: Accommodation type
+    browse:
+      distance_from_lift: 'Distance from lift'
     choose_a_window: Choose a Window
     email_a_friend: Email a friend
     featured:
