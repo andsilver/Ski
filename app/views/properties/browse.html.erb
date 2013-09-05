@@ -34,7 +34,6 @@ $(function() {
     <option<%= ' selected' if params[:sort_method]=='normalised_weekly_rent_price ASC' %> value="normalised_weekly_rent_price ASC">Price low to high</option>
 <% end %>
     <option<%= ' selected' if params[:sort_method]=='metres_from_lift ASC' %> value="metres_from_lift ASC">Distance from lift</option>
-    <option<%= ' selected' if params[:sort_method]=='metres_from_town ASC' %> value="metres_from_town ASC">Distance from town</option>
 <% if @for_sale %>
     <option<%= ' selected' if params[:sort_method]=='number_of_bathrooms ASC' %> value="number_of_bathrooms ASC">Number of bathrooms</option>
 <% else %>
