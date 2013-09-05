@@ -15,7 +15,7 @@ javascript:
   - @images.each do |i|
     - t = gallery_thumbnail(@resort, i)
     a href="#pic_#{Digest::MD5.hexdigest(t)}"
-      img src="<%= t %>" alt="Photo of #{@resort}"
+      img src="#{t}" alt="Photo of #{@resort}"
   = clear
 
   - @images.each do |i|
