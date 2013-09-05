@@ -1,6 +1,18 @@
 require 'spec_helper'
 
 describe Region do
+  describe '#airport_distances' do
+    it 'returns airport distances for all child resorts' do
+      region = FactoryGirl.create(:region)
+      r1 = FactoryGirl.create(:resort, region: region)
+      ad1 = FactoryGirl.create(:airport_distance, resort: r1)
+      r2 = FactoryGirl.create(:resort, region: region)
+      ad2 = FactoryGirl.create(:airport_distance, resort: r2)
+      expect(region.airport_distances).to include(ad1)
+      expect(region.airport_distances).to include(ad2)
+    end
+  end
+
   describe '#to_param' do
     it 'returns its slug' do
       expect(Region.new(slug: 'slug').to_param).to eq 'slug'

@@ -4,17 +4,7 @@
 
 #content-with-side-banners
   h2= t('resorts_controller.detail.how_to_get_there')
-  - unless @resort.airport_distances.empty?
-    table#airport-distances
-      tr
-        th Airport
-        th.numeric Distance
-      - @resort.airport_distances.each do |ad|
-        tr
-          td= ad.airport.name
-          td.numeric= "#{ad.distance_km}km"
-      tr
-        td colspan="2" style="text-align: center;"= link_to 'Airport Transfers &rarr;'.html_safe, find_airport_transfers_path, class: 'btn btn-primary'
+  = render 'airport_distances/table', airport_distances: @resort.airport_distances
 
   - unless @page_content.blank?
     = raw Liquid::Template.parse(@page_content).render()

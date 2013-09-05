@@ -4,6 +4,7 @@ class Region < ActiveRecord::Base
 
   belongs_to :country, inverse_of: :regions
   has_many :resorts, -> { order 'name' }, inverse_of: :region, dependent: :nullify
+  has_many :airport_distances, through: :resorts
 
   validates :country_id, presence: true
   validates :name, length: { maximum: 100 }, presence: true, uniqueness: { scope: :country }
