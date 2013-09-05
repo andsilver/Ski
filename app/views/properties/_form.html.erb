@@ -50,7 +50,7 @@ $(function() {
 
   <% if @current_user.role.flag_new_development? or @property.for_rent? %>
   <div class="well">
-    <% if @current_user.role.flag_new_development? %>
+    <% if @current_user.role.flag_new_development? && !@property.for_rent? %>
     <label class="checkbox">
       <%= f.check_box :new_development %>
       <%= t('properties.features.new_development') %>
