@@ -92,8 +92,8 @@ de:
     users:
       index:
         title: Users
-		window_base_prices:
-			edit:
-				title: Edit Window Base Price
-			new:
-				title: New Window Base Price
+    window_base_prices:
+      edit:
+        title: Edit Window Base Price
+      new:
+        title: New Window Base Price
