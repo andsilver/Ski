@@ -128,4 +128,8 @@ module PropertiesHelper
       { data: { target: target }, class: 'area-unit' }
     )    
   end
+
+  def sort_method
+    params[:sort_method]
+  end
 end

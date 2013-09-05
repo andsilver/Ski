@@ -10,4 +10,4 @@ h1= t('.heading')
   p= t('.no_favourites')
 - else
   - @properties.each do |p|
-    = render partial: 'properties/property_summary', locals: {p: p}
+    = render partial: 'properties/property_summary', locals: {p: p.decorate}

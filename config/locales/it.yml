@@ -452,6 +452,7 @@ it:
     no_matching_properties: There are no properties advertised at this resort that match your search criteria.
     place_in_window: 'Place in Window'
     property_summary:
+      nearest_lift: 'Nearest lift'
       sleeps: Sleeps
     select_resort: Select resort
     star_rating: Star rating
