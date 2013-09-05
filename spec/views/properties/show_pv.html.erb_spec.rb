@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'properties/show_pv' do
   it 'displays the booking iframe' do
-    property = Property.new
+    property = FactoryGirl.create(:property)
     pv_accommodation = PvAccommodation.new(price_table_url: 'http://example.org')
     assign(:property, property)
     assign(:accommodation, pv_accommodation)
