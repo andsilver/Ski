@@ -92,7 +92,7 @@ GEM
       nokogiri (>= 1.5.0)
     curb (0.8.4)
     daemons (1.1.9)
-    database_cleaner (1.0.0.RC1)
+    database_cleaner (1.1.1)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     eventmachine (1.0.3)
@@ -265,7 +265,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   cucumber-rails
   curb
-  database_cleaner (= 1.0.0.RC1)
+  database_cleaner
   exception_notification!
   factory_girl_rails
   google-analytics-turbolinks

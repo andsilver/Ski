@@ -80,7 +80,7 @@ group :test do
   gem 'spork-rails', github: 'A-gen/spork-rails'
   gem "shoulda-matchers", "~> 1.4.2" # temporary hold for require cannot load such file -- rspec
   gem 'cucumber-rails', require: false
-  gem 'database_cleaner', '1.0.0.RC1'
+  gem 'database_cleaner'
   gem "capybara"
   gem 'launchy'
   gem "railroad", "0.5.0"
