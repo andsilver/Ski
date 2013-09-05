@@ -4,8 +4,8 @@ class Admin::ResortsController < ApplicationController
   layout 'admin'
 
   include EditRelatedPages
-  def klass; Region; end
-  def object; @region; end
+  def klass; Resort; end
+  def object; @resort; end
 
   def index
     @countries = Country.with_resorts
