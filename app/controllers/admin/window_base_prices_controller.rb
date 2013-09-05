@@ -1,4 +1,4 @@
-class WindowBasePricesController < ApplicationController
+class Admin::WindowBasePricesController < ApplicationController
   before_filter :admin_required
   before_filter :find_window_base_price, only: [:edit, :update, :destroy]
 
@@ -16,7 +16,7 @@ class WindowBasePricesController < ApplicationController
     @window_base_price = WindowBasePrice.new(windows_base_price_params)
 
     if @window_base_price.save
-      redirect_to(window_base_prices_path, notice: t('notices.created'))
+      redirect_to(admin_window_base_prices_path, notice: t('notices.created'))
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class WindowBasePricesController < ApplicationController
 
   def update
     if @window_base_price.update_attributes(windows_base_price_params)
-      redirect_to(window_base_prices_path, notice: t('notices.saved'))
+      redirect_to(admin_window_base_prices_path, notice: t('notices.saved'))
     else
       render 'edit'
     end
@@ -35,7 +35,7 @@ class WindowBasePricesController < ApplicationController
 
   def destroy
     @window_base_price.destroy
-    redirect_to(window_base_prices_path, notice: t('notices.deleted'))
+    redirect_to(admin_window_base_prices_path, notice: t('notices.deleted'))
   end
 
   protected

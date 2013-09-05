@@ -34,6 +34,7 @@ MySkiChalet::Application.routes.draw do
     end
     resources :snippets,          except: [:show]
     resources :users, only: [:index, :destroy]
+    resources :window_base_prices, except: [:show]
   end
 
   resources :buying_guides, only: [:show]
@@ -142,7 +143,6 @@ MySkiChalet::Application.routes.draw do
 
   resources :property_base_prices
   resources :property_volume_discounts
-  resources :window_base_prices
 
   resources :directory_adverts do
     member do
