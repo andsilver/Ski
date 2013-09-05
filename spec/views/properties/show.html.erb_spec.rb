@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'properties/show' do
+  before { assign(:breadcrumbs, {}) }
+
   it 'shows a table of features' do
     assign(:property, FactoryGirl.create(:property))
     render
