@@ -1,6 +1,6 @@
 module SidebarHelper
   def sidebar_html
-    holiday_type_sidebar_html || website_sidebar_html
+    @page_sidebar_html || holiday_type_sidebar_html || website_sidebar_html
   end
 
   def website_sidebar_html

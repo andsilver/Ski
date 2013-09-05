@@ -60,6 +60,6 @@ class PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit(:banner_advert_html, :content, :description, :footer_id, :keywords, :path, :title, :visible)
+    params.require(:page).permit(:banner_advert_html, :content, :description, :footer_id, :keywords, :path, :sidebar_snippet_name, :title, :visible)
   end
 end

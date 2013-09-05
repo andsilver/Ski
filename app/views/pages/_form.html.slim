@@ -39,5 +39,9 @@
     = f.label :banner_advert_html, 'Banner advert HTML'
     = editor(f, :banner_advert_html, :html)
 
+  .form-group
+    = f.label :sidebar_snippet_name
+    = select('page', 'sidebar_snippet_name', Snippet.select('DISTINCT(snippets.name)').order('name').collect {|s| [ s.name, s.name ] }, {include_blank: 'No sidebar snippet'}, class: 'form-control')
+
   .form-actions
     = f.submit class: 'btn btn-primary'
