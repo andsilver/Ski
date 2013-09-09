@@ -30,15 +30,3 @@ hotel_le_chamonix:
   currency: euros
   star_rating: 4
   publicly_visible: 1
-
-new_development:
-  resort: chamonix
-  user: bob
-  name: New Development
-  listing_type: 1 # For sale
-  sale_price: 215000
-  currency: euros
-  description: "A shiny new development."
-  publicly_visible: 1
-  new_development: 1
-
