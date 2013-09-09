@@ -1,45 +1,64 @@
 module Interhome
   class Importer
-    def self.import(opts = {})
-      opts = {
+    def initialize(opts = {})
+      @opts = {
         skip_ftp: false,
         skip_places: false,
         skip_prices: false,
         max_xml_files: 0
       }.merge(opts)
+    end
 
-      unless opts[:skip_places]
-        @interhome_place_importer = PlaceImporter.new
-        @interhome_place_importer.ftp_get unless opts[:skip_ftp]
-        @interhome_place_importer.import
-      end
+    def skip_ftp?
+      @opts[:skip_ftp]
+    end
 
-      unless opts[:skip_prices]
-        @interhome_price_importer = PriceImporter.new('2048', 7)
-        @interhome_price_importer.ftp_get unless opts[:skip_ftp]
-        filenames = @interhome_price_importer.split_xml(opts[:max_xml_files])
-        @interhome_price_importer.import(filenames)
-      end
+    def import
+      import_places unless @opts[:skip_places]
 
-      @interhome_description_importer = DescriptionImporter.new('InterhomeInsideDescription')
-      @interhome_description_importer.ftp_get unless opts[:skip_ftp]
-      filenames = @interhome_description_importer.split_xml(opts[:max_xml_files])
-      @interhome_description_importer.import(filenames)
+      import_prices unless @opts[:skip_prices]
 
-      @interhome_description_importer = DescriptionImporter.new('InterhomeOutsideDescription')
-      @interhome_description_importer.ftp_get unless opts[:skip_ftp]
-      filenames = @interhome_description_importer.split_xml(opts[:max_xml_files])
-      @interhome_description_importer.import(filenames)
+      import_descriptions('InterhomeInsideDescription')
 
-      @interhome_accommodation_importer = AccommodationImporter.new
-      @interhome_accommodation_importer.ftp_get unless opts[:skip_ftp]
-      filenames = @interhome_accommodation_importer.split_xml(opts[:max_xml_files])
-      @interhome_accommodation_importer.import(filenames, true)
+      import_descriptions('InterhomeOutsideDescription')
 
-      @interhome_vacancy_importer = VacancyImporter.new
-      @interhome_vacancy_importer.ftp_get unless opts[:skip_ftp]
-      filenames = @interhome_vacancy_importer.split_xml(opts[:max_xml_files])
-      @interhome_vacancy_importer.import(filenames)
+      import_accommodation
+
+      import_vacancies
+    end
+
+    def import_places
+      importer = PlaceImporter.new
+      importer.ftp_get unless skip_ftp?
+      importer.import
+    end
+
+    def import_prices
+      importer = PriceImporter.new('2048', 7)
+      importer.ftp_get unless skip_ftp?
+      filenames = importer.split_xml(@opts[:max_xml_files])
+      importer.import(filenames)
+    end
+
+    def import_descriptions(class_name)
+      importer = DescriptionImporter.new(class_name)
+      importer.ftp_get unless skip_ftp?
+      filenames = importer.split_xml(@opts[:max_xml_files])
+      importer.import(filenames)
+    end
+
+    def import_accommodation
+      importer = AccommodationImporter.new
+      importer.ftp_get unless skip_ftp?
+      filenames = importer.split_xml(@opts[:max_xml_files])
+      importer.import(filenames, true)
+    end
+
+    def import_vacancies
+      importer = VacancyImporter.new
+      importer.ftp_get unless skip_ftp?
+      filenames = importer.split_xml(@opts[:max_xml_files])
+      importer.import(filenames)
     end
   end
 end
