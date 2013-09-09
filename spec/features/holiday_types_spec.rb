@@ -3,6 +3,10 @@ require 'spec_helper'
 feature "Holiday types" do
   fixtures :countries, :holiday_types, :resorts, :websites
 
+  after(:each) do
+    [Country, HolidayType, Resort, Website].each { |c| c.delete_all }
+  end
+
   scenario "Holiday types show in main menu" do
     visit root_path
     expect(page).to have_content('Ski Holidays')

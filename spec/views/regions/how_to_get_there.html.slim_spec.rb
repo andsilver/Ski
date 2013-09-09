@@ -1,11 +1,8 @@
 require 'spec_helper'
 
 describe 'regions/how_to_get_there' do
-  fixtures :countries, :regions
-
   before do
-    rhone_alpes = regions(:rhone_alpes)
-    assign(:region, rhone_alpes)
+    assign(:region, FactoryGirl.create(:region))
   end
 
   it 'displays the page content' do

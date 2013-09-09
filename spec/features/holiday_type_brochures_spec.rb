@@ -1,18 +1,21 @@
 require 'spec_helper'
 
 feature "Holiday type brochures" do
-  fixtures :countries, :holiday_types, :websites
+  fixtures :websites
+
+  let(:france) { FactoryGirl.create(:country) }
+  let(:ski_holidays) { FactoryGirl.create(:holiday_type) }
 
   scenario "Holiday type page lists child resorts" do
-    countries(:france).holiday_type_brochures.build(holiday_type_id: holiday_types(:ski_holidays).id)
-    countries(:france).save
+    france.holiday_type_brochures.build(holiday_type_id: ski_holidays.id)
+    france.save
 
-    FactoryGirl.create(:resort, name: 'Flaine', country: countries(:france))
-    morzine = FactoryGirl.create(:resort, name: 'Morzine', country: countries(:france))
-    morzine.holiday_type_brochures.build(holiday_type_id: holiday_types(:ski_holidays).id)
+    FactoryGirl.create(:resort, name: 'Flaine', country: france)
+    morzine = FactoryGirl.create(:resort, name: 'Morzine', country: france)
+    morzine.holiday_type_brochures.build(holiday_type_id: ski_holidays.id)
     morzine.save
 
-    visit holiday_type_brochure_path('countries', countries(:france), holiday_types(:ski_holidays).slug)
+    visit holiday_type_brochure_path('countries', france, ski_holidays.slug)
     expect(page.find('#links-and-search')).to have_content('Morzine')
     expect(page.find('#links-and-search')).not_to have_content('Flaine')
   end
