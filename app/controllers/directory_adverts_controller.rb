@@ -1,5 +1,3 @@
-# coding: utf-8
-
 class DirectoryAdvertsController < ApplicationController
   VALID_BANNER_SIZES = [
     [160, 200]

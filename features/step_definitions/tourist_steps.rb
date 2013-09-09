@@ -1,5 +1,3 @@
-# coding: utf-8
-
 Given /^there are bars advertised in Chamonix$/ do
   da = DirectoryAdvert.create!(
     category_id: categories(:bars).id,

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 class ImagesController < ApplicationController
   before_filter :find_object, only: [:new, :edit, :create]
 
