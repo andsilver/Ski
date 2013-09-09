@@ -7,6 +7,15 @@ describe ImagesController do
     Website.stub(:first).and_return(website)
   end
 
+  describe 'GET index' do
+    it 'assigns all images belonging to the current user to @images' do
+      user = mock_model(User, images: :images)
+      controller.stub(:current_user).and_return(user)
+      get 'index'
+      expect(assigns(:images)).to eq :images
+    end
+  end
+
   describe 'DELETE destroy' do
     let(:image) { mock_model(Image).as_null_object }
 
