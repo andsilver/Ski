@@ -1,0 +1,5 @@
+select#board_basis.form-control name="board_basis"
+  option value="-1" Any board basis
+  - [Property::BOARD_BASIS_SELF_CATERING, Property::BOARD_BASIS_BED_AND_BREAKFAST, Property::BOARD_BASIS_HALF_BOARD, Property::BOARD_BASIS_FULL_BOARD].each do |value|
+    - if @resort.nil? || @resort.properties.where(board_basis: value, publicly_visible: true).any?
+      = content_tag(:option, Property.board_basis_description(value), value: value, selected: params[:board_basis]==value.to_s)

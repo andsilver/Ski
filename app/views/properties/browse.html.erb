@@ -48,12 +48,7 @@ $(function() {
   </select>
 <% unless @for_sale -%>
   <%= render 'sleeps_select' %>
-  <select id="board_basis" name="board_basis" class="form-control">
-    <option value="-1">Any board basis</option>
-    <% [Property::BOARD_BASIS_SELF_CATERING, Property::BOARD_BASIS_BED_AND_BREAKFAST, Property::BOARD_BASIS_HALF_BOARD, Property::BOARD_BASIS_FULL_BOARD].each do |value| %>
-    <option value="<%= value %>"<%= ' selected="selected"' if params[:board_basis]==value.to_s %>><%= Property.board_basis_description(value) %></option>
-    <% end %>
-  </select>
+  <%= render 'board_basis_select' %>
   <%= render 'home/arrival_datepicker' %>
 <% end -%>
   <%= raw property_search_filters @search_filters %>
