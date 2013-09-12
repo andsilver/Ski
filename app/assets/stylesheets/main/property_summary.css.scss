@@ -3,13 +3,6 @@ $shade: #8ed8f8;
 .property-summary {
   clear: both;
   margin-bottom: 10px;
-
-  .price span {
-    font-size: 30px;
-    color: #0069AF;
-    margin-bottom: 10px;
-    line-height: 30px;
-  }
 }
 
 .property-summary h3 {
@@ -67,7 +60,7 @@ $shade: #8ed8f8;
     width: 120px;
   }
 
-  .price {
+  .additional-info {
     color: #999;
     text-transform: lowercase;
   }

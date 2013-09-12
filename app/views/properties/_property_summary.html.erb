@@ -19,20 +19,21 @@
       <%= link_to p.name, link, title: "Read more about #{p.name}" %>
       <% unless p.hotel? %>&middot; <%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
       <% if sort_method == 'metres_from_lift ASC' %>&middot; <%= t('.nearest_lift' )%> <%= p.nearest_lift %><% end %>
+      &middot;
+      <%= p.for_sale? ? "Sale price" : "Weekly price from" %>
+      <%= p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %>
     </h3>
     <p class="strapline">
       <%= p.strapline %>
     </p>
 
     <div class="actions">
-      <p class="price"><%= p.for_sale? ? "Sale price" : "Weekly price from" %><br>
-        <span><%= p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
-        <% if p.for_sale? %>
-        <br>
+      <% if p.for_sale? %>
+      <p class="additional-info">
         Property <%= p.floor_area_metres_2 %> m<sup>2</sup><br>
         Land <%= p.plot_size_metres_2 %> m<sup>2</sup>
-        <% end %>
       </p>
+      <% end %>
   <% if p.interhome_accommodation_id -%>
       <p class="contact_owner btn-property"><%= link_to 'More info', link, title: "More info about #{p.name}" %><i class="icon-caret-right"></i></p>
   <% else -%>
