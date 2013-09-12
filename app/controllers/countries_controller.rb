@@ -13,6 +13,13 @@ class CountriesController < ApplicationController
 
     def set_country
       @country = Country.find_by(slug: params[:id])
+
+      # Handle legacy country URLs
+      if !@country
+        @country = Country.find_by(id: params[:id])
+        redirect_to(@country, status: 301) and return if @country
+      end
+
       not_found unless @country
     end
 

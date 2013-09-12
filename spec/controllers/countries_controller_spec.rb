@@ -14,12 +14,35 @@ describe CountriesController do
       get 'show', id: 'france'
     end
 
-    context 'when the country is not found' do
-      before { Country.stub(:find_by).and_return(nil) }
+    context 'when country not found by slug' do
+      before do
+        Country.stub(:find_by).with(slug: 'france').and_return nil
+      end
 
-      it 'renders 404' do
-        get 'show', id: 'france'
-        expect(response.status).to eq 404
+      it 'finds a country by its ID' do
+        Country.should_receive(:find_by).with(id: 'france')
+        get :show, id: 'france'
+      end
+
+      context 'when country found by its ID' do
+        before do
+          Country.should_receive(:find_by).with(id: 'france').and_return country
+        end
+
+        it 'permanently redirects to that country' do
+          get :show, id: 'france'
+          expect(response).to redirect_to country
+          expect(response.status).to eq 301
+        end
+      end
+
+      context 'when the country is not found' do
+        before { Country.stub(:find_by).and_return(nil) }
+
+        it 'renders 404' do
+          get 'show', id: 'france'
+          expect(response.status).to eq 404
+        end
       end
     end
   end
