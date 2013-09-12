@@ -1,5 +1,5 @@
 # Run coverage with:
-# RUN_COVERAGE=true rspec spec --no-drb
+# RUN_COVERAGE=true bundle exec rspec spec --no-drb
 if(ENV["RUN_COVERAGE"])
   require 'simplecov'
   SimpleCov.start 'rails' do
