@@ -28,4 +28,5 @@ section
     h2 Regions
     ul
       - @resort.same_theme_regions.each do |brochure|
-        li= link_to brochure.brochurable, holiday_type_brochure_path('regions', brochure.brochurable, @resort.theme)
+        - region = brochure.brochurable
+        li= link_to_with_count region, region, region.property_count
