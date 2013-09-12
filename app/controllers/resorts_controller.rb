@@ -52,6 +52,13 @@ class ResortsController < ApplicationController
 
     def set_resort
       @resort = Resort.find_by(slug: params[:id])
+
+      # Handle legacy resort URLs
+      if !@resort
+        @resort = Resort.find_by(id: params[:id])
+        redirect_to(@resort, status: 301) and return if @resort
+      end
+
       if admin?
         redirect_to(admin_resorts_path, notice: t('resorts_controller.not_found')) unless @resort
       else

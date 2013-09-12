@@ -24,8 +24,31 @@ describe ResortsController do
     it_behaves_like 'a featured properties finder', :show, id: 'chamonix'
 
     it 'finds a resort by its slug' do
-      Resort.should_receive(:find_by).with(slug: 'chamonix')
+      Resort.should_receive(:find_by).with(slug: 'chamonix').and_return(Resort.new)
       get :show, id: 'chamonix'
+    end
+
+    context 'when resort not found by slug' do
+      before do
+        Resort.stub(:find_by).with(slug: 'chamonix').and_return nil
+      end
+
+      it 'finds a resort by its ID' do
+        Resort.should_receive(:find_by).with(id: 'chamonix')
+        get :show, id: :chamonix
+      end
+
+      context 'when resort found by its ID' do
+        before do
+          Resort.should_receive(:find_by).with(id: 'chamonix').and_return resort
+        end
+
+        it 'permanently redirects to that resort' do
+          get :show, id: 'chamonix'
+          expect(response).to redirect_to resort
+          expect(response.status).to eq 301
+        end
+      end
     end
 
     it 'assigns @resort' do
