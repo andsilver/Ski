@@ -16,6 +16,7 @@ class PropertiesController < ApplicationController
   before_filter :set_resort, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
   before_filter :require_resort, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
   before_filter :resort_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_filter :holiday_type_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
   before_filter :find_property, only: [:show, :contact, :email_a_friend]
 
@@ -677,6 +678,13 @@ class PropertiesController < ApplicationController
       @conditions << @resort.id
     else
       @conditions = ["publicly_visible = 1"]
+    end
+  end
+
+  def holiday_type_conditions
+    if params[:holiday_type_id]
+      @conditions[0] += " AND resort_id IN(SELECT brochurable_id FROM holiday_type_brochures WHERE brochurable_type = 'Resort' AND holiday_type_id = ?)"
+      @conditions << params[:holiday_type_id]
     end
   end
 
