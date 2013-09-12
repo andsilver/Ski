@@ -652,6 +652,9 @@ class PropertiesController < ApplicationController
 
   def set_resort
     @resort = Resort.find_by(slug: params[:resort_slug])
+    if params[:resort_id]
+      @resort ||= Resort.find_by(id: params[:resort_id])
+    end
   end
 
   def require_resort
