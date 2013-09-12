@@ -5,6 +5,11 @@ describe Resort do
   it { should have_many(:interhome_place_resorts) }
   it { should respond_to(:summer_only?) }
 
+  before do
+    # Accommodate leaky fixtures
+    HolidayType.destroy_all
+  end
+
   describe '#to_param' do
     it 'returns its slug' do
       expect(Resort.new(slug: 'slug').to_param).to eq 'slug'
