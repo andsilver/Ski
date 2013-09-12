@@ -199,6 +199,14 @@ de:
     show:
       title: '%{holiday_type}'
   home:
+    quick_search:
+      choose_country: 'Choose Country'
+      choose_country_first: 'Choose Country First ↑'
+      choose_holiday: 'Choose Holiday'
+      choose_holiday_first: 'Choose Holiday First ↑'
+      choose_resort: 'Choose Resort'
+      heading: 'Accommodation Search'
+      search: 'Search'
     terms:
       heading: 'Terms and Conditions'
       title: 'Terms and Conditions'

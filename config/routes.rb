@@ -231,6 +231,7 @@ MySkiChalet::Application.routes.draw do
   get 'restart' => 'application#restart', as: 'restart'
   get 'precompile_assets' => 'application#precompile_assets', as: 'precompile_assets'
 
+  get 'home/country_options_for_quick_search' => 'home#country_options_for_quick_search'
   get 'home/resort_options_for_quick_search' => 'home#resort_options_for_quick_search'
   root 'home#index'
 
