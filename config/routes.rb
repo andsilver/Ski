@@ -125,11 +125,6 @@ MySkiChalet::Application.routes.draw do
       get  'rent'
       get  'sale'
       get  'current_time'
-      get  'import_documentation'
-      get  'new_import'
-      post 'import'
-      get  'new_pericles_import'
-      post 'pericles_import'
 
       post 'check_interhome_booking'
       get 'update_day_of_month_select'
@@ -142,6 +137,13 @@ MySkiChalet::Application.routes.draw do
   get 'holiday-rentals/:permalink' => 'properties#show_pv', as: :pv_property
 
   resources :property_base_prices
+
+  post 'property_importer/import'
+  get  'property_importer/import_documentation'
+  get  'property_importer/new_import'
+  get  'property_importer/new_pericles_import'
+  post 'property_importer/pericles_import'
+
   resources :property_volume_discounts
 
   resources :directory_adverts do
