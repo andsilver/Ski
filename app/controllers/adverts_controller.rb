@@ -1,6 +1,6 @@
 class AdvertsController < ApplicationController
-  before_filter :user_required
-  before_filter :prepare_basket, only: [:basket, :place_order]
+  before_action :user_required
+  before_action :prepare_basket, only: [:basket, :place_order]
 
   def my
     @window_groups = WindowGroups.new

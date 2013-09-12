@@ -1,5 +1,5 @@
 class PvPlaceResortsController < ApplicationController
-  before_filter :admin_required
+  before_action :admin_required
 
   def create
     if PvPlaceResort.new(pv_place_resort_params).save

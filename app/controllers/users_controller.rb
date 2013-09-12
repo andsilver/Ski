@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :user_required, only: [:first_advert, :show, :edit, :update]
-  before_filter :find_user, only: [:forgot_password_new, :forgot_password_change, :destroy]
-  before_filter :find_current_user_or_selected_user, only: [:edit, :update]
+  before_action :user_required, only: [:first_advert, :show, :edit, :update]
+  before_action :find_user, only: [:forgot_password_new, :forgot_password_change, :destroy]
+  before_action :find_current_user_or_selected_user, only: [:edit, :update]
 
   def first_advert
     default_page_title t('users.first_advert')

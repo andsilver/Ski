@@ -1,7 +1,7 @@
 class PropertiesController < ApplicationController
   include SpamProtection
 
-  before_filter :user_required, except: [
+  before_action :user_required, except: [
     :index, :quick_search,
     :browse_for_rent, :browse_for_sale,
     :new_developments, :browse_hotels, :contact,
@@ -11,16 +11,16 @@ class PropertiesController < ApplicationController
     :update_day_of_month_select,
     :import_documentation]
 
-  before_filter :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
+  before_action :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
-  before_filter :set_resort, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_filter :require_resort, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_filter :resort_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_filter :holiday_type_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_action :set_resort, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_action :require_resort, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_action :resort_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_action :holiday_type_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
-  before_filter :find_property, only: [:show, :contact, :email_a_friend]
+  before_action :find_property, only: [:show, :contact, :email_a_friend]
 
-  before_filter :admin_required, only: [:index]
+  before_action :admin_required, only: [:index]
   layout 'admin', only: [:index]
 
   def index

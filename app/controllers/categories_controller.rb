@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
-  before_filter :admin_required, except: [:show]
+  before_action :admin_required, except: [:show]
   layout 'admin', except: [:show]
 
-  before_filter :find_resort, only: [:show]
-  before_filter :find_category, only: [:edit, :update, :show, :destroy]
+  before_action :find_resort, only: [:show]
+  before_action :find_category, only: [:edit, :update, :show, :destroy]
 
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]
 

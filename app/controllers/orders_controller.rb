@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
-  before_filter :user_required
-  before_filter :require_order_from_session, only: [:select_payment_method, :latest_receipt]
-  before_filter :find_order, only: [:receipt, :invoice]
+  before_action :user_required
+  before_action :require_order_from_session, only: [:select_payment_method, :latest_receipt]
+  before_action :find_order, only: [:receipt, :invoice]
 
-  before_filter :admin_required, only: [:index, :show, :destroy]
+  before_action :admin_required, only: [:index, :show, :destroy]
   layout 'admin', only: [:index, :show, :destroy]
 
   def index

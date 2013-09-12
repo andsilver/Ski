@@ -1,8 +1,8 @@
 class RolesController < ApplicationController
-  before_filter :admin_required, except: [:sales_pitch]
+  before_action :admin_required, except: [:sales_pitch]
   layout 'admin', except: [:sales_pitch]
 
-  before_filter :find_role, only: [:edit, :update]
+  before_action :find_role, only: [:edit, :update]
 
   def index
     @roles = Role.all

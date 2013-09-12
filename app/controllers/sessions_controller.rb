@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_filter :admin_required, only: [:switch_user]
+  before_action :admin_required, only: [:switch_user]
 
   def new
   end

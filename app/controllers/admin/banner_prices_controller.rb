@@ -1,7 +1,7 @@
 class Admin::BannerPricesController < ApplicationController
-  before_filter :admin_required
+  before_action :admin_required
 
-  before_filter :set_banner_price, only: [:edit, :update, :destroy]
+  before_action :set_banner_price, only: [:edit, :update, :destroy]
 
   layout 'admin'
 

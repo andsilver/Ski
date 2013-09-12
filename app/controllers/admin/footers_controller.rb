@@ -1,6 +1,6 @@
 class Admin::FootersController < ApplicationController
-  before_filter :admin_required
-  before_filter :set_footer, only: [:edit, :update, :destroy]
+  before_action :admin_required
+  before_action :set_footer, only: [:edit, :update, :destroy]
 
   layout 'admin'
 

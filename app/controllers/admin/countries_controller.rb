@@ -1,8 +1,8 @@
 class Admin::CountriesController < ApplicationController
-  before_filter :admin_required
+  before_action :admin_required
   layout 'admin'
 
-  before_filter :set_country, only: [:edit, :update, :destroy]
+  before_action :set_country, only: [:edit, :update, :destroy]
 
   def index
     @countries = Country.order('name')

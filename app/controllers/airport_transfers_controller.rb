@@ -1,7 +1,7 @@
 AirportTransferSearch = Struct.new(:airport_id, :resort_id)
 
 class AirportTransfersController < ApplicationController
-  before_filter :user_required, except: [:find, :results, :skilifts]
+  before_action :user_required, except: [:find, :results, :skilifts]
 
   def index
     @airport_transfers = @current_user.airport_transfers

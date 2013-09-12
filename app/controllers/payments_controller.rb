@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, only: [:worldpay_callback]
+  skip_before_action :verify_authenticity_token, only: [:worldpay_callback]
 
-  before_filter :admin_required, only: [:index, :show]
+  before_action :admin_required, only: [:index, :show]
   layout 'admin', only: [:index, :show]
 
   FAILURE_MESSAGE = 'Some information was incorrect and your payment may not have gone through properly. Please contact us.'

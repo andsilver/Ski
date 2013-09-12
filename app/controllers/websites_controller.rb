@@ -1,6 +1,6 @@
 class WebsitesController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_website, only: [:edit, :edit_prices, :update]
+  before_action :admin_required
+  before_action :find_website, only: [:edit, :edit_prices, :update]
 
   layout 'admin'
 

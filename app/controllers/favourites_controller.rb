@@ -1,5 +1,5 @@
 class FavouritesController < ApplicationController
-  before_filter :unregistered_user_required
+  before_action :unregistered_user_required
 
   def index
     @properties = @unregistered_user.favourite_properties

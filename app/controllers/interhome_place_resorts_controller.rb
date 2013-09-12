@@ -1,5 +1,5 @@
 class InterhomePlaceResortsController < ApplicationController
-  before_filter :admin_required
+  before_action :admin_required
 
   def create
     if InterhomePlaceResort.new(interhome_place_resort_params).save

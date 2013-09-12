@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
 
   helper_method :admin?, :signed_in?
 
-  before_filter :initialize_website, :set_locale, :initialize_user, :page_defaults
+  before_action :initialize_website, :set_locale, :initialize_user, :page_defaults
 
-  before_filter :admin_required, only: [:restart, :precompile_assets]
+  before_action :admin_required, only: [:restart, :precompile_assets]
 
   rescue_from ActionView::MissingTemplate, with: :render_html
 

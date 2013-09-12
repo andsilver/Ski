@@ -1,6 +1,6 @@
 class AltAttributesController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_alt_attribute, only: [:edit, :update, :show, :destroy]
+  before_action :admin_required
+  before_action :find_alt_attribute, only: [:edit, :update, :show, :destroy]
 
   layout 'admin'
 

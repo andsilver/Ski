@@ -1,6 +1,6 @@
 class PropertyVolumeDiscountsController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_property_volume_discount, only: [:edit, :update, :destroy]
+  before_action :admin_required
+  before_action :find_property_volume_discount, only: [:edit, :update, :destroy]
 
   layout 'admin'
 

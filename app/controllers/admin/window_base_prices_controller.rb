@@ -1,6 +1,6 @@
 class Admin::WindowBasePricesController < ApplicationController
-  before_filter :admin_required
-  before_filter :find_window_base_price, only: [:edit, :update, :destroy]
+  before_action :admin_required
+  before_action :find_window_base_price, only: [:edit, :update, :destroy]
 
   layout 'admin'
 

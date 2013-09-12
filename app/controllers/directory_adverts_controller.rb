@@ -3,11 +3,11 @@ class DirectoryAdvertsController < ApplicationController
     [160, 200]
   ]
 
-  before_filter :user_required, except: [:show, :click]
-  before_filter :admin_required, only: [:index]
+  before_action :user_required, except: [:show, :click]
+  before_action :admin_required, only: [:index]
   layout 'admin', only: [:index]
-  before_filter :find_directory_advert_for_current_user, only: [:edit, :update, :advertise_now]
-  before_filter :set_cache_buster, only: [:new, :create]
+  before_action :find_directory_advert_for_current_user, only: [:edit, :update, :advertise_now]
+  before_action :set_cache_buster, only: [:new, :create]
 
   def index
     @directory_adverts = DirectoryAdvert.all

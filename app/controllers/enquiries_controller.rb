@@ -1,7 +1,7 @@
 class EnquiriesController < ApplicationController
   include SpamProtection
 
-  before_filter :user_required, only: [:my, :show]
+  before_action :user_required, only: [:my, :show]
 
   def my
     @enquiries = @current_user.enquiries

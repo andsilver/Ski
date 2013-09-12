@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_filter :find_object, only: [:new, :edit, :create]
+  before_action :find_object, only: [:new, :edit, :create]
 
   def index
     @images = @current_user.images

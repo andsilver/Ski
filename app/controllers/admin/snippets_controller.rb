@@ -1,6 +1,6 @@
 class Admin::SnippetsController < ApplicationController
-  before_filter :admin_required
-  before_filter :set_snippet, only: [:edit, :update, :destroy]
+  before_action :admin_required
+  before_action :set_snippet, only: [:edit, :update, :destroy]
 
   layout 'admin'
 

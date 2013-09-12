@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :admin_required, except: [:show]
+  before_action :admin_required, except: [:show]
   layout 'admin', except: [:show]
 
   before_action :find_page, only: [:edit, :update, :destroy, :copy]

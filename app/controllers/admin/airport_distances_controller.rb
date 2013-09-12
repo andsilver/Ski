@@ -1,6 +1,6 @@
 class Admin::AirportDistancesController < ApplicationController
-  before_filter :admin_required
-  before_filter :set_airport_distance, only: [:edit, :update, :destroy]
+  before_action :admin_required
+  before_action :set_airport_distance, only: [:edit, :update, :destroy]
 
   layout 'admin'
 

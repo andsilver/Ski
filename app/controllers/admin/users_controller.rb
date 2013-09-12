@@ -1,8 +1,8 @@
 class Admin::UsersController < ApplicationController
-  before_filter :admin_required
+  before_action :admin_required
   layout 'admin'
 
-  before_filter :set_user, only: [:destroy]
+  before_action :set_user, only: [:destroy]
 
   def index
     @users = User.order('email')
