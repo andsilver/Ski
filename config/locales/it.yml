@@ -400,6 +400,9 @@ it:
     browse:
       distance_from_lift: 'Distance from lift'
     choose_a_window: Choose a Window
+    contact:
+      heading: 'Enquire about %{property}'
+      title: 'Enquire about %{property} in %{resort}, %{country}'
     email_a_friend: Email a friend
     featured:
       alt_for_rent: '%{resort} accommodation chalets for rent in %{resort} apartments to rent in %{resort} holiday homes to rent in %{resort}'

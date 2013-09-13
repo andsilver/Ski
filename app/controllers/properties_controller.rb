@@ -10,14 +10,14 @@ class PropertiesController < ApplicationController
     :interhome_payment_success, :interhome_payment_failure,
     :update_day_of_month_select]
 
+  before_action :find_property, only: [:show, :contact, :email_a_friend]
+
   before_action :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
   before_action :set_resort, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
   before_action :require_resort, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
   before_action :resort_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
   before_action :holiday_type_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-
-  before_action :find_property, only: [:show, :contact, :email_a_friend]
 
   before_action :admin_required, only: [:index]
   layout 'admin', only: [:index]
@@ -282,11 +282,14 @@ class PropertiesController < ApplicationController
   end
 
   def contact
-    default_page_title "Enquire About #{@property.name} in #{@property.resort}, #{@property.resort.country}"
-    @heading_a = render_to_string(partial: 'contact_heading').html_safe
+    @breadcrumbs = { @resort => @resort }
+    if @property.for_sale?
+      @breadcrumbs[t('for_sale')] = resort_property_sale_path(@property.resort)
+    else
+      @breadcrumbs[t('for_rent')] = resort_property_rent_path(@property.resort)
+    end
 
-    @enquiry = Enquiry.new
-    @enquiry.property_id = @property.id
+    @enquiry = Enquiry.new(property: @property)
   end
 
   def email_a_friend
@@ -401,7 +404,11 @@ class PropertiesController < ApplicationController
 
   def find_property
     @property = Property.find_by(id: params[:id])
-    not_found unless @property
+    if @property
+      @resort = @property.resort
+    else
+      not_found
+    end
   end
 
   def find_property_for_user

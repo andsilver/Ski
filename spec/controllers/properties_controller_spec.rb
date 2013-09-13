@@ -172,6 +172,31 @@ describe PropertiesController do
     end
   end
 
+  describe 'GET contact' do
+    def get_contact
+      get :contact, id: '1'      
+    end
+
+    it 'finds a property' do
+      Property.should_receive(:find_by).with(id: '1')
+      get_contact
+    end
+
+    it "assigns @resort from the property's resort" do
+      property.stub(:resort).and_return(resort)
+      Property.stub(:find_by).and_return(property)
+      get_contact
+      expect(assigns(:resort)).to eq resort
+    end
+
+    it 'assigns a new @enquiry linked to the property' do
+      Property.stub(:find_by).and_return(property)
+      get_contact
+      expect(assigns(:enquiry)).to be
+      expect(assigns(:enquiry).property).to eq property
+    end
+  end
+
   describe "GET show" do
     it "finds a property" do
       Property.should_receive(:find_by).with(id: '1')
