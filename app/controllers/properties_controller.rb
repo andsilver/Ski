@@ -288,6 +288,7 @@ class PropertiesController < ApplicationController
     else
       @breadcrumbs[t('for_rent')] = resort_property_rent_path(@property.resort)
     end
+    @breadcrumbs[@property] = @property
 
     @enquiry = Enquiry.new(property: @property)
   end
