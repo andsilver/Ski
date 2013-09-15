@@ -386,10 +386,8 @@ class PropertiesController < ApplicationController
     @resort = @property.resort
     default_meta_description(resort: @resort, strapline: @property.strapline[0..130])
 
-    @breadcrumbs = {
-      @property.resort.country.name => @property.resort.country,
-      @property.resort.name => @property.resort
-    }
+    @breadcrumbs = @resort.breadcrumbs
+
     if @property.new_development?
       @breadcrumbs[t('new_developments')] = resort_property_new_developments_path(@property.resort)
     elsif @property.for_sale?
