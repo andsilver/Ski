@@ -1,3 +1,5 @@
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@breadcrumbs, @heading) %>
+
 <%= content_for :theme, @property.theme %>
 
 <%= render partial: 'google_map',
