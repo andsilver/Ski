@@ -1,6 +1,20 @@
 #quick-search, #search-options {
-  select, span {
+  select {
+    -webkit-appearance: none;
+    background-image: image-url('down-arrow.png');
+    background-repeat: no-repeat;
+    background-position: 140px -10px;
     margin-bottom: 3px;
+  }
+
+  select:hover {
+    background-position: 140px 11px;
+  }
+
+  select, #arrival-datepicker input {
+    border-radius: 0;
+    border: none;
+    padding: 5px 10px;
   }
 
   p {
@@ -21,6 +35,14 @@
     color: #fff;
     font-weight: normal;
     padding-left: 30px;
+  }
+
+  .add-on {
+    border: none;
+    border-radius: 0;
+    font-size: 18px;
+    height: 32px;
+    width: 42px;
   }
 }
 

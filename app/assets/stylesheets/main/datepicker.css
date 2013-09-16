@@ -297,11 +297,6 @@
   height: 16px;
 }
 
-.datepicker td, .datepicker th {
-  font-size: 14px;
-  line-height: 1.4em;
-}
-
 .datepicker td + td + td + td + td + td + td.day {
   font-weight: bold;
 }

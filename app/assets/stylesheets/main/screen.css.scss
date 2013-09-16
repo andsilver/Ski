@@ -14,7 +14,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-p, input, button, select, textarea {
+h1, h2, h3, p, input, button, select, textarea {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -163,7 +163,7 @@ a img {
   }
 }
 
-.field, li, p, td, th {
+.field, .form-control, li, p, td, th {
   font-size: 13px;
   line-height: 15px;
 }
