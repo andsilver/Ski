@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :currency do
-    code 'GBP'
+    sequence(:code) { |n| "AB#{n}" }
   end
 end

@@ -24,7 +24,7 @@ module PropertiesHelper
   def featured_properties(properties)
     html = ''
     unless properties.nil?
-      properties.each do |p|
+      properties[0..2].each do |p|
         html += render partial: 'properties/featured', locals: {p: p}
       end
     end

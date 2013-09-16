@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :property do
-    name              'My Castle'
+    sequence(:name) { |n| "Property #{n}" }
     address           '123 Street'
     publicly_visible  true
     association       :resort
