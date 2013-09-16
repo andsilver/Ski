@@ -494,7 +494,6 @@ en:
       heading: 'Summer Holidays'
   resorts_controller:
     detail:
-      an_introduction_to: "An Introduction to %{resort}"
       how_to_get_there: "How to Get There"
       insider_view: "%{resort}: The MyChaletFinder.com Insider View"
       key_information: "Key Information"
@@ -502,8 +501,6 @@ en:
       local_area: Local Area
       more_detail: "Resort Guide"
       owning_a_property_in: "%{resort} Accommodation"
-      skiing_in: "Skiing in %{resort}"
-      visiting: "Visiting %{resort}"
       whole_area: Whole Area
     facts:
       altitude: Altitude

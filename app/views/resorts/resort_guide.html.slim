@@ -5,7 +5,6 @@
 = content_for :links_and_search, render('search_form')
 
 #content-with-side-banners
-  h2= t('resorts_controller.detail.an_introduction_to', resort: @resort)
   - unless @resort.info.blank?
     = raw @resort.info
 
@@ -14,10 +13,6 @@
   - template_params = {'featured_properties' => featured_properties, 'ski_facts_long' => ski_facts_long}
 
   - unless @resort.visiting.blank?
-    - if @resort.summer_only?
-      h2= t('resorts_controller.detail.visiting', resort: @resort)
-    - else
-      h2= t('resorts_controller.detail.skiing_in', resort: @resort)
     = lt(@resort.visiting, template_params)
 
   - unless @resort.owning_a_property_in.blank?
