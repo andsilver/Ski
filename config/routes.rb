@@ -149,7 +149,7 @@ MySkiChalet::Application.routes.draw do
   resources :directory_adverts do
     member do
       post 'advertise_now'
-      get  'click'
+      post 'click'
     end
   end
 
