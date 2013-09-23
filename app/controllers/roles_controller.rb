@@ -36,8 +36,6 @@ class RolesController < ApplicationController
   def sales_pitch
     @role = Role.find_by(name: params[:role].gsub('-', ' '))
     not_found and return unless @role
-    @heading_a = "#{t(@role.localisation_key)} Information"
-    default_page_title(@heading_a)
   end
 
   protected

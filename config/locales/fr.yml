@@ -571,6 +571,8 @@ fr:
     property_developers: Property developers
     property_owner: Property owner
     property_owners: Property owners
+    sales_pitch:
+      title: '%{role} Information'
   sale_price: 'Prix de vente'
   save: 'Enregistrer'
   sessions_controller:
