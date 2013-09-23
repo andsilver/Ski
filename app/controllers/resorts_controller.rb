@@ -44,7 +44,10 @@ class ResortsController < ApplicationController
 
   def feature; end
 
-  def summer_holidays; end
+  def summer_holidays
+    # Hide temporarily - issue #147
+    not_found unless admin?
+  end
 
   def how_to_get_there; end
 
