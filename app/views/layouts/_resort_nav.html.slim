@@ -6,7 +6,8 @@ section
     = resort_link_with_count(resort_property_sale_path(@resort), "Property for sale in #{@resort.name}", t('for_sale'), @resort.for_sale_count)
     = resort_link_with_count(resort_property_new_developments_path(@resort), "New property developments in #{@resort.name}", t('resort_options.new_developments'), @resort.new_development_count)
     = resort_link_with_count(resort_property_hotels_path(@resort), "Hotels in #{@resort.name}", t('resort_options.hotels'), @resort.hotel_count)
-    = resort_link_with_count(directory_resort_path(@resort), "#{@resort.name} directory", t('directory'), @resort.directory_advert_count)
+    / hide temporarily - issue #150
+    / resort_link_with_count(directory_resort_path(@resort), "#{@resort.name} directory", t('directory'), @resort.directory_advert_count)
 
     - if @resort.ski? && !@resort.summer_only?
       = nav_link(piste_map_resort_path(@resort), "#{@resort.name} piste maps", t('piste_map'))
