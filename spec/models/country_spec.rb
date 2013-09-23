@@ -77,4 +77,20 @@ describe Country do
       country.region_brochures(ht.id).to_a.should eq []
     end
   end
+
+  describe '#themes' do
+    it 'returns an array of slugs for each associated holiday type' do
+      country = FactoryGirl.create(:country)
+      city = FactoryGirl.create(:holiday_type, slug: 'city')
+      lakes = FactoryGirl.create(:holiday_type, slug: 'lakes')
+      ski = FactoryGirl.create(:holiday_type, slug: 'ski')
+      country.holiday_type_brochures.build(holiday_type: lakes)
+      country.holiday_type_brochures.build(holiday_type: ski)
+      country.save
+
+      expect(country.themes).not_to include('city')
+      expect(country.themes).to include('lakes')
+      expect(country.themes).to include('ski')
+    end
+  end
 end
