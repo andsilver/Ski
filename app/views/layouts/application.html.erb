@@ -84,6 +84,7 @@ function galleryZoom() {
   <a href="<%= root_path %>" title="Home" id="logo"><%= image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation')) %></a>
   <nav id="main-menu" role="navigation">
     <ul>
+      <li><a>&nbsp;</a></li>
 <% HolidayType.on_menu.each do |ht| -%>
       <li class="mega-parent <%= ht.slug %>">
         <%= link_to ht.name, ht %>
@@ -92,6 +93,7 @@ function galleryZoom() {
         </div>
       </li>
 <% end -%>
+      <li><a>&nbsp;</a></li>
     </ul>
   </nav>
 </header>
