@@ -16,13 +16,6 @@
 </script>
 <div id="property">
 <%= render partial: 'user_logo', locals: { property: @property } %>
-<div class="thumbnail abta">
-  <img src="/images/abta.png" alt="ABTA Member">
-  The tour operator<br>
-  (Interhome) is an<br>
-  ABTA Member<br>
-  ABTA No. L7890
-</div>
 <h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %>
 <% unless @property.interhome_accommodation.interhome_place.nil? -%>
   (<%= @property.interhome_accommodation.interhome_place.name %>)
