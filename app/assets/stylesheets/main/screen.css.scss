@@ -152,7 +152,7 @@ a img {
   }
 }
 
-.field, .form-control, li, p, td, th {
+.field, .form-control, li, p, th {
   font-size: 13px;
   line-height: 15px;
 }
@@ -218,6 +218,12 @@ h3 {
   font-weight: normal;
   margin-bottom: 10px;
   padding: 8px 10px;
+}
+
+h4 {
+  color: #6f6f6f;;
+  font-size: 16px;
+  font-weight: normal;
 }
 
 pre {
