@@ -1,0 +1,26 @@
+- if @currency.errors.any?
+  #error_explanation
+    h2= "#{pluralize(@currency.errors.count, "error")} prohibited this currency from being saved:"
+    ul
+      - @currency.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for @currency do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name
+  .form-group
+    = f.label :unit
+    = f.text_field :unit
+  .form-group
+    label.checkbox
+      = f.check_box :pre
+      | Unit goes before the number
+  .form-group
+    = f.label :code
+    = f.text_field :code
+  .form-group
+    = f.label :in_euros
+    = f.text_field :in_euros
+  .form-group
+    = f.submit class: 'btn btn-primary'

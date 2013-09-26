@@ -1,0 +1,12 @@
+= form_for [:admin, @banner_price] do |f|
+  .form-group
+    = f.label :current_banner_number
+    = f.number_field :current_banner_number, class: 'form-control'
+
+  .form-group
+    = f.label :price
+    =' f.number_field :price, class: 'form-control'
+    | EUR
+
+  .form-actions
+    = f.submit class: 'btn btn-primary'

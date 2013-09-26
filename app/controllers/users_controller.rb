@@ -1,13 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :no_browse_menu
-  before_filter :admin_required, only: [:index, :destroy]
-  before_filter :user_required, only: [:first_advert, :show, :edit, :update]
-  before_filter :find_user, only: [:forgot_password_new, :forgot_password_change, :destroy]
-  before_filter :find_current_user_or_selected_user, only: [:edit, :update]
-
-  def index
-    @users = User.order('email')
-  end
+  before_action :user_required, only: [:first_advert, :show, :edit, :update]
+  before_action :find_user, only: [:forgot_password_new, :forgot_password_change, :destroy]
+  before_action :find_current_user_or_selected_user, only: [:edit, :update]
 
   def first_advert
     default_page_title t('users.first_advert')
@@ -15,19 +9,16 @@ class UsersController < ApplicationController
 
   def show
     default_page_title t('advertise')
-    @heading_a = t('users.advertiser_account', name: @current_user.name)
   end
 
   def new
     default_page_title t('sign_up')
-    @heading_a = t 'sign_up'
     @user = User.new
   end
 
   def create
-    @heading_a = t 'sign_up'
     @user = User.new(user_params)
-    @role = Role.find_by_id(params[:user][:role_id])
+    @role = Role.find_by(id: params[:user][:role_id])
     if @role && @role.select_on_signup?
       @user.role_id = @role.id
     end
@@ -48,9 +39,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @heading_a = admin? ?
-      render_to_string(partial: 'edit_admin_heading', locals: {user: @user}).html_safe :
-      render_to_string(partial: 'edit_user_heading').html_safe
+    if admin?
+      @breadcrumbs = { 'CMS' => cms_path, 'Users' => users_path }
+      @heading = @user.name
+    else
+      @breadcrumbs = { t('advertise') => advertise_path }
+      @heading = t('users.my_details.my_details')
+    end
   end
 
   def update
@@ -86,7 +81,7 @@ class UsersController < ApplicationController
     default_page_title t('users.email_sent')
     @heading_a = t('users.email_sent')
 
-    @user = User.find_by_email(params[:email])
+    @user = User.find_by(email: params[:email])
     if @user.nil?
       flash[:notice] = "There is no user registered with that email address"
       redirect_to action: 'forgot_password'

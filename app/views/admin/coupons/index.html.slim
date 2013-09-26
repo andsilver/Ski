@@ -1,0 +1,23 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+p= new_button([:admin, Coupon])
+
+- if @coupons.empty?
+  p There are no promotion codes set up yet.
+- else
+  table.table.table-bordered.table-striped
+    thead
+      tr
+        th
+        th # Adverts
+        th % Off
+        th Expires On
+        th Actions
+    tbody
+      - @coupons.each do |coupon|
+        tr
+          td= coupon.code
+          td class="numeric"= coupon.number_of_adverts
+          td class="numeric"= coupon.percentage_off
+          td= coupon.expires_on
+          td= edit_button([:admin, coupon])

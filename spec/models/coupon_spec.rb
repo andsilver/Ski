@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Coupon do
   before do
-    Coupon.create!(:code => 'TEST', :number_of_adverts => 1)
+    Coupon.create!(code: 'TEST', number_of_adverts: 1)
   end
 
   # ActiveRecord

@@ -26,9 +26,9 @@
   <label class="checkbox"><%= f.check_box :has_a_website %> Has a website</label>
 
   <%= f.label :sales_pitch %>
-  <%= f.text_area :sales_pitch %>
+  <%= editor(f, :sales_pitch, :html) %>
 
-<div class="field">
+<div class="form-actions">
   <%= f.submit class: 'btn btn-primary' %>
 </div>
 <% end %>

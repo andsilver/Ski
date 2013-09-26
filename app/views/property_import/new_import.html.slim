@@ -1,0 +1,12 @@
+- unless flash[:errors].blank?
+  ul
+    - flash[:errors].each do |error|
+      li= error
+
+= form_tag import_properties_path, multipart: true do
+  .field
+    label for="file" ZIP file
+    = file_field_tag 'file'
+
+  .field
+    = submit_tag 'Upload and Import'

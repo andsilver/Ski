@@ -1,0 +1,20 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+p= new_button([:admin, Footer])
+
+- if @footers.empty?
+  p There are no footers set up yet.
+- else
+  table.table.table-bordered
+    thead
+      tr
+        th Name
+        th Actions
+    tbody
+      - @footers.each do |footer|
+        tr
+          td= footer.name
+          td
+            =' edit_button([:admin, footer])
+            = delete_button([:admin, footer])

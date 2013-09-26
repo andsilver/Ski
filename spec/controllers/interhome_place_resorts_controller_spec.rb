@@ -14,7 +14,7 @@ describe InterhomePlaceResortsController do
 
     describe 'POST create' do
       let(:interhome_place_resort) { mock_model(InterhomePlaceResort).as_null_object }
-      let(:params) { { :interhome_place_resort => { 'resort_id' => '1', 'interhome_place_code' => 'AD_1_1450'} } }
+      let(:params) { { interhome_place_resort: { 'resort_id' => '1', 'interhome_place_code' => 'AD_1_1450'} } }
 
       before do
         InterhomePlaceResort.stub(:new).and_return(interhome_place_resort)
@@ -27,7 +27,7 @@ describe InterhomePlaceResortsController do
 
       it 'redirects to the edit resort page' do
         post 'create', params
-        response.should redirect_to(edit_resort_path(:id => '1'))
+        expect(response).to redirect_to(edit_admin_resort_path(id: '1'))
       end
 
       context 'when the Interhome place resort saves successfully' do
@@ -37,7 +37,7 @@ describe InterhomePlaceResortsController do
 
         it 'sets a flash[:notice] message' do
           post 'create', params
-          flash[:notice].should eq("Created.")
+          expect(flash[:notice]).to eq("Created.")
         end
       end
 
@@ -48,7 +48,7 @@ describe InterhomePlaceResortsController do
 
         it 'sets a flash[:notice] message' do
           post 'create', params
-          flash[:notice].should eq("Could not link that Interhome place to this resort.")
+          expect(flash[:notice]).to eq("Could not link that Interhome place to this resort.")
         end
       end
     end
@@ -63,22 +63,22 @@ describe InterhomePlaceResortsController do
 
       it 'finds the Interhome place resort' do
         InterhomePlaceResort.should_receive(:find).with('1')
-        delete 'destroy', :id => '1'
+        delete 'destroy', id: '1'
       end      
 
       it 'destroys the Interhome place resort' do
         interhome_place_resort.should_receive(:destroy)
-        delete 'destroy', :id => '1'
+        delete 'destroy', id: '1'
       end
 
       it 'redirects to the edit resort page' do
-        delete 'destroy', :id => '1'
-        response.should redirect_to(edit_resort_path(:id => '2'))
+        delete 'destroy', id: '1'
+        expect(response).to redirect_to(edit_admin_resort_path(id: '2'))
       end
 
       it 'sets a flash[:notice] message' do          
-        delete 'destroy', :id => '1'
-        flash[:notice].should eq('Unlinked.')
+        delete 'destroy', id: '1'
+        expect(flash[:notice]).to eq('Unlinked.')
       end
     end
   end

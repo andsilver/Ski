@@ -1,0 +1,37 @@
+<% unless lat.empty? -%>
+<script>
+  var map;
+  var marker;
+
+  function showMap() {
+    var latlng = new google.maps.LatLng(<%= lat %>, <%= lng %>);
+    var myOptions = {
+      zoom: 16,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"),
+      myOptions);
+    marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title:"<%= @property.name %>"
+    });
+  }
+
+  $(function() {
+    $('#location').click(function() {
+      $('#location-modal').modal('show');
+      // prevent the default action, e.g., following a link
+      return false;
+    });
+
+    $('#location-modal').on('shown', function() {
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(marker.getPosition());
+    });
+
+    showMap();
+  });
+</script>
+<% end -%>

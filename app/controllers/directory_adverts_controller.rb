@@ -1,15 +1,13 @@
-# coding: utf-8
-
 class DirectoryAdvertsController < ApplicationController
   VALID_BANNER_SIZES = [
     [160, 200]
   ]
 
-  before_filter :no_browse_menu
-  before_filter :user_required, except: [:show, :click]
-  before_filter :admin_required, only: [:index]
-  before_filter :find_directory_advert_for_current_user, only: [:edit, :update, :advertise_now]
-  before_filter :set_cache_buster, only: [:new, :create]
+  before_action :user_required, except: [:show, :click]
+  before_action :admin_required, only: [:index]
+  layout 'admin', only: [:index]
+  before_action :find_directory_advert_for_current_user, only: [:edit, :update, :advertise_now]
+  before_action :set_cache_buster, only: [:new, :create]
 
   def index
     @directory_adverts = DirectoryAdvert.all
@@ -23,13 +21,15 @@ class DirectoryAdvertsController < ApplicationController
   end
 
   def show
-    @directory_advert = DirectoryAdvert.find_by_id(params[:id])
-    if @directory_advert.nil? || @directory_advert.current_advert.nil?
+    @directory_advert = DirectoryAdvert.find_by(id: params[:id])
+    if @directory_advert.nil?
+      not_found
+    elsif @directory_advert.current_advert.nil? && !admin?
       not_found
     else
       default_page_title("#{@directory_advert.business_name}, #{t(@directory_advert.category.name)} in #{@directory_advert.resort.name}, #{@directory_advert.resort.country.name}")
       @heading_a = render_to_string(partial: 'show_directory_advert_heading').html_safe
-      @directory_advert.current_advert.record_view
+      @directory_advert.current_advert.record_view if @directory_advert.current_advert
     end
   end
 
@@ -141,7 +141,7 @@ class DirectoryAdvertsController < ApplicationController
   end
 
   def find_directory_advert_for_current_user
-    @directory_advert = DirectoryAdvert.find_by_id_and_user_id(params[:id], @current_user.id)
+    @directory_advert = DirectoryAdvert.find_by(id: params[:id], user_id: @current_user.id)
     not_found unless @directory_advert
   end
 

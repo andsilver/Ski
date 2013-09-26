@@ -7,9 +7,9 @@ feature 'My Adverts' do
     sign_in_as_emily_evans
     add_banner_advert_to_basket
     visit '/my/adverts'
-    page.should have_content 'Directory and Banner Adverts'
+    expect(page).to have_content 'Directory and Banner Adverts'
     click_button 'Delete all new adverts'
-    page.should have_content 'All new adverts have been deleted.'
-    page.should_not have_content 'Directory and Banner Adverts'
+    expect(page).to have_content 'All new adverts have been deleted.'
+    expect(page).not_to have_content 'Directory and Banner Adverts'
   end
 end

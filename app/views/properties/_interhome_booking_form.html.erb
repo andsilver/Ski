@@ -171,36 +171,48 @@ $(function() {
   });
 });
 </script>
-<div class="modal hide fade" id="checking">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Checking...</h3>
-  </div>
-  <div class="modal-body">
-    <p>We're checking the availability, prices and options for your selection...</p>
-    <div class="progress progress-striped active">
-      <div class="bar" style="width: 100%;"></div>
+<div class="modal fade" id="checking">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Checking...</h3>
+      </div>
+      <div class="modal-body">
+        <p>We're checking the availability, prices and options for your selection...</p>
+        <div class="progress progress-striped active">
+          <div class="progress-bar" style="width: 100%;"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="modal hide fade" id="retry_modal">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Oops</h3>
-  </div>
-  <div class="modal-body">
-    <p>An error occurred. Please <a id="retry">try again</a>.</p>
+<div class="modal fade" id="retry_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Oops</h3>
+      </div>
+      <div class="modal-body">
+        <p>An error occurred. Please <a id="retry">try again</a>.</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="modal hide fade" id="unavailable">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Property unavailable</h3>
-  </div>
-  <div class="modal-body">
-    <p>The property is unavailable for the dates you have requested.</p>
+<div class="modal fade" id="unavailable">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Property unavailable</h3>
+      </div>
+      <div class="modal-body">
+        <p>The property is unavailable for the dates you have requested.</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -292,19 +304,19 @@ end
             <%= select('interhome_booking', 'duration', booking_durations) %>
             <h3>Travellers</h3>
             <div class="row">
-              <div class="span2">
+              <div class="col-lg-3">
                 <label>
                   Adults
                   <input type="text" id="interhome_booking_adults" name="interhome_booking[adults]" value="<%= @interhome_booking.adults %>" class="span1">
                 </label>
               </div>
-              <div class="span3">
+              <div class="col-lg-4">
                 <label>
                   Children (3-12 years)
                   <input type="text" id="interhome_booking_children" name="interhome_booking[children]" value="<%= @interhome_booking.children %>" class="span1">
                 </label>
               </div>
-              <div class="span3">
+              <div class="col-lg-4">
                 <label>
                   Babies (0-2 years)
                   <input type="text" id="interhome_booking_babies" name="interhome_booking[babies]" value="<%= @interhome_booking.babies %>" class="span1">

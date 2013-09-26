@@ -10,5 +10,6 @@ FactoryGirl.define do
   factory :country do
     name
     iso_3166_1_alpha_2
+    sequence(:slug) { |n| "country-#{n}" }
   end
 end

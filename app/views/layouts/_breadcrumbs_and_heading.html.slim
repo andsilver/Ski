@@ -1,0 +1,5 @@
+#column_headings
+  - if @heading_a
+    h1= @heading_a
+  - else
+    = yield :breadcrumbs_and_heading

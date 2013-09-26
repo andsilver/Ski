@@ -1,0 +1,30 @@
+- if @holiday_type.errors.any?
+  .alert.alert-error
+    h2
+      =' pluralize(@holiday_type.errors.count, "error")
+      | prohibited this holiday type from being saved:
+    ul
+      - @holiday_type.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for([:admin, @holiday_type]) do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :slug
+    = f.text_field :slug, class: 'form-control'
+  .checkbox
+    label
+      = f.check_box :visible_on_menu
+      | Visible on menu?
+  .form-group
+    = f.label :sidebar_html
+    = editor(f, :sidebar_html, :html)
+  p.help-block Mega-menus are made up of 1 to 4 unordered lists of normal links.
+  pre= '<ul><li><a href="#">Top left link</a></li><li><a href="#">Bottom left link</a></li></ul>' + "\n" + '<ul><li><a href="#">Top second link</a></li><li><a href="#">Bottom second link</a></li></ul>'
+  .form-group
+    = f.label :mega_menu_html
+    = editor(f, :mega_menu_html, :html)
+  .form-actions
+    = f.submit class: 'btn btn-primary'

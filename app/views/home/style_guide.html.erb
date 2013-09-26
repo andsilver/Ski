@@ -1,0 +1,358 @@
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({'CMS' => cms_path}, 'Style Guide') %>
+
+<h1>Style Guide</h1>
+
+<h2>Headings</h2>
+
+<pre>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;</pre>
+
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+
+<h2>Unordered Lists</h2>
+<pre>&lt;ul&gt;
+  &lt;li&gt;Avoriaz&lt;/li&gt;
+  &lt;li&gt;Bisanna 1500&lt;/li&gt;
+  &lt;li&gt;Chamonix&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+<ul>
+  <li>Avoriaz</li>
+  <li>Bisanna 1500</li>
+  <li>Chamonix</li>
+</ul>
+
+<h2>Header Image</h2>
+
+<p>
+  The theme class <code>ski-holidays-theme</code> can be omitted to use the
+  page's overall holiday type theme.
+</p>
+
+<pre>&lt;div class="clear-fix"&gt;
+  &lt;div class="ski-holidays-theme size-1of1 layout-element"&gt;
+    &lt;div class="header-image"&gt;
+      &lt;img alt="Ski holidays" src="/images/chalet.jpg"&gt;
+      &lt;p class="header-title"&gt;Ski Holidays Featured Resorts&lt;/p&gt;
+      &lt;div class="header-text-cont"&gt;
+        &lt;p class="header-text"&gt;
+          &lt;span class="theme-color"&gt;Villars Gryon&lt;/span&gt;
+          &lt;br&gt;
+          Europe's leading summer and winter ski holidays search website
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<div class="clear-fix">
+  <div class="ski-holidays-theme size-1of1 layout-element">
+    <div class="header-image">
+      <img alt="Ski holidays" src="/images/chalet.jpg">
+      <p class="header-title">Ski Holidays Featured Resorts</p>
+      <div class="header-text-cont">
+        <p class="header-text"><span class="theme-color">Villars Gryon</span>
+          <br>Europe's leading summer and winter ski holidays search website
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Ticks and Crosses</h2>
+
+<p>
+  The tick and cross characters are not on the keyboard so you will want to
+  copy and paste this HTML.
+</p>
+
+<pre>&lt;span class="tick"&gt;✔&lt;/span&gt;
+&lt;span class="cross"&gt;✘&lt;/span&gt;</pre>
+
+<span class="tick">✔</span>
+<span class="cross">✘</span>
+
+<h2>Table with Vertical Headings</h2>
+
+<pre>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Heading&lt;/th&gt;
+    &lt;td&gt;Data&lt;/td&gt;
+    &lt;td&gt;Data&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Heading&lt;/th&gt;
+    &lt;td&gt;Data&lt;/td&gt;
+    &lt;td&gt;Data&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+
+<table>
+  <tr>
+    <th>Heading</th>
+    <td>Data</td>
+    <td>Data</td>
+  </tr>
+  <tr>
+    <th>Heading</th>
+    <td>Data</td>
+    <td>Data</td>
+  </tr>
+</table>
+
+<h2>Table with Horizontal Headings</h2>
+
+<pre>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Heading&lt;/th&gt;
+    &lt;th&gt;Heading&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Data&lt;/td&gt;
+    &lt;td&gt;Data&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Data&lt;/td&gt;
+    &lt;td&gt;Data&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+
+<table>
+  <tr>
+    <th>Heading</th>
+    <th>Heading</th>
+  </tr>
+  <tr>
+    <td>Data</td>
+    <td>Data</td>
+  </tr>
+  <tr>
+    <td>Data</td>
+    <td>Data</td>
+  </tr>
+</table>
+
+<h2>Two Columns</h2>
+
+<pre>&lt;div class="clear-fix"&gt;
+  &lt;div class="size-1of2 layout-element"&gt;
+    &lt;p&gt;Column 1&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="size-1of2 layout-element"&gt;
+    &lt;p&gt;Column 2&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<div class="clear-fix">
+  <div class="size-1of2 layout-element">
+    <p>Column 1</p>
+  </div>
+  <div class="size-1of2 layout-element">
+    <p>Column 2</p>
+  </div>
+</div>
+
+<h2>Three Columns with Linked Images</h2>
+
+<pre>&lt;div class="clear-fix"&gt;
+  &lt;a class="summer-villas-theme size-1of3 layout-element" href="/holidays/summer-villas"&gt;
+    &lt;img alt="Summer Villas" src="/images/img1of3-wide.png"&gt;
+    &lt;p class="header-title"&gt;Summer Villas&lt;/p&gt;
+    &lt;div class="header-text-cont"&gt;
+      &lt;p class="header-text"&gt;From budget to 5-star deluxe in the best regions&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+
+  &lt;a class="city-breaks-theme size-1of3 layout-element" href="/holidays/city-breaks"&gt;
+    &lt;img alt="City Breaks" src="/images/img1of3-wide.png"&gt;
+    &lt;p class="header-title"&gt;City Breaks&lt;/p&gt;
+    &lt;div class="header-text-cont"&gt;
+      &lt;p class="header-text"&gt;From budget to 5-star deluxe in the best regions&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+
+  &lt;a class="lakes-and-mountains-theme size-1of3 layout-element" href="/holidays/lakes-and-mountains"&gt;
+    &lt;img alt="Lakes &amp; Mountains" src="/images/img1of3-wide.png"&gt;
+    &lt;p class="header-title"&gt;Lakes &amp; Mountains&lt;/p&gt;
+    &lt;div class="header-text-cont"&gt;
+      &lt;p class="header-text"&gt;From budget to 5-star deluxe in the best regions&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</pre>
+
+<div class="clear-fix">
+  <a class="summer-villas-theme size-1of3 layout-element" href="/holidays/summer-villas">
+    <img alt="Summer Villas" src="/images/img1of3-wide.png">
+    <p class="header-title">Summer Villas</p>
+    <div class="header-text-cont">
+      <p class="header-text">From budget to 5-star deluxe in the best regions</p>
+    </div>
+  </a>
+
+  <a class="city-breaks-theme size-1of3 layout-element" href="/holidays/city-breaks">
+    <img alt="City Breaks" src="/images/img1of3-wide.png">
+    <p class="header-title">City Breaks</p>
+    <div class="header-text-cont">
+      <p class="header-text">From budget to 5-star deluxe in the best regions</p>
+    </div>
+  </a>
+
+  <a class="lakes-and-mountains-theme size-1of3 layout-element" href="/holidays/lakes-and-mountains">
+    <img alt="Lakes &amp; Mountains" src="/images/img1of3-wide.png">
+    <p class="header-title">Lakes &amp; Mountains</p>
+    <div class="header-text-cont">
+      <p class="header-text">From budget to 5-star deluxe in the best regions</p>
+    </div>
+  </a>
+</div>
+
+<h2>Narrow and Wide Columns</h2>
+
+<p>
+  You can put all kinds of content in either column.
+  The example here uses a simple paragraph.
+  You could put an image in one column and text in the other.
+  Swap the <code>size-2of3</code> and <code>size-1of3</code> classes to
+  position the wider column to the right.
+</p>
+
+<pre>&lt;div class="clear-fix"&gt;
+  &lt;div class="size-2of3 layout-element"&gt;
+    &lt;p&gt;Wide column&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="size-1of3 layout-element"&gt;
+    &lt;p&gt;Narrow column&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<div class="clear-fix">
+  <div class="size-2of3 layout-element">
+    <p>Wide column</p>
+  </div>
+  <div class="size-1of3 layout-element">
+    <p>Narrow column</p>
+  </div>
+</div>
+
+<h2>Narrow and Wide Columns with Images</h2>
+
+<pre>&lt;div class="clear-fix"&gt;
+  &lt;div class="size-2of3 layout-element"&gt;
+    &lt;img src="/images/img2of3-wide.png" alt="Title in here"&gt;
+    &lt;p class="header-title"&gt;Solaria (Davos)&lt;/p&gt;
+
+    &lt;div class="header-text-cont"&gt;
+      &lt;p class="header-text"&gt;From budget to 5-star deluxe in the best regions&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="size-1of3 layout-element"&gt;
+    &lt;img src="/images/img1of3-wide.png" alt="Title in here"&gt;
+    &lt;p class="header-title"&gt;Solaria (Davos)&lt;/p&gt;
+
+    &lt;div class="header-text-cont"&gt;
+      &lt;p class="header-text"&gt;From budget to 5-star deluxe in the best regions&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<div class="clear-fix">
+  <div class="size-2of3 layout-element">
+    <img src="/images/img2of3-wide.png" alt="Title in here">
+    <p class="header-title">Solaria (Davos)</p>
+
+    <div class="header-text-cont">
+      <p class="header-text">From budget to 5-star deluxe in the best regions</p>
+    </div>
+  </div>
+  <div class="size-1of3 layout-element">
+    <img src="/images/img1of3-wide.png" alt="Title in here">
+    <p class="header-title">Solaria (Davos)</p>
+
+    <div class="header-text-cont">
+      <p class="header-text">From budget to 5-star deluxe in the best regions</p>
+    </div>
+  </div>
+</div>
+
+<h2>Sidebar HTML</h2>
+
+<p>
+  This is sample code for the HTML that appears on the left hand sidebar.
+  Additional sidebar HTML can be added for holidays type and the overall website in the CMS.
+  There is no preview for this sample code.
+</p>
+
+<pre>&lt;section&gt;
+  &lt;h2&gt;Heading&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/link/to/somewhere"&gt;Link text&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;</pre>
+
+<h2>Ski Skill Levels</h2>
+
+<p>
+  These are intended for the ski resort guide content.
+  Use them within a 50% wide column.
+</p>
+
+<pre>&lt;div class="ski-levels"&gt;
+  &lt;div class="beginner"&gt;
+    &lt;h3&gt;Beginner&lt;/h3&gt;
+    &lt;p&gt;Beginners...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="intermediate"&gt;
+    &lt;h3&gt;Intermediate&lt;/h3&gt;
+    &lt;p&gt;Intermediates...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="advanced"&gt;
+    &lt;h3&gt;Advanced&lt;/h3&gt;
+    &lt;p&gt;Advanced...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="cross-country"&gt;
+    &lt;h3&gt;Cross-country&lt;/h3&gt;
+    &lt;p&gt;Cross-country...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="snowboarding"&gt;
+    &lt;h3&gt;Snowboarding&lt;/h3&gt;
+    &lt;p&gt;Snowboarding...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<div class="ski-levels">
+  <div class="beginner">
+    <h3>Beginner</h3>
+    <p>Beginners...</p>
+  </div>
+  <div class="intermediate">
+    <h3>Intermediate</h3>
+    <p>Intermediates...</p>
+  </div>
+  <div class="advanced">
+    <h3>Advanced</h3>
+    <p>Advanced...</p>
+  </div>
+  <div class="cross-country">
+    <h3>Cross-Country</h3>
+    <p>Cross-country...</p>
+  </div>
+  <div class="snowboarding">
+    <h3>Snowboarding</h3>
+    <p>Snowboarding...</p>
+  </div>
+</div>
+
+<h2>Hiding Content from New and Legacy Websites</h2>
+
+<pre>&lt;div class="hide-from-legacy"&gt;
+  Some content that you only want to show on the newest versions of the 
+  website. This content will be hidden on the legacy website.
+&lt;/div&gt;</pre>
+
+<pre>&lt;div class="hide-from-new"&gt;
+  Some content that you only want to show on the legacy version of the 
+  website. This content will be hidden on the new website.
+&lt;/div&gt;</pre>

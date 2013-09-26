@@ -1,0 +1,30 @@
+= content_for :theme, @resort.theme
+
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@resort.breadcrumbs, @heading)
+
+= content_for :links_and_search, render('search_form')
+
+#content-with-side-banners
+  - unless @resort.info.blank?
+    = raw @resort.info
+
+  - ski_facts_long = (@resort.ski? && !@resort.summer_only?) ? render('ski_facts_long') : ''
+  - featured_properties = render('shared/featured_properties')
+  - template_params = {'featured_properties' => featured_properties, 'ski_facts_long' => ski_facts_long}
+
+  - unless @resort.visiting.blank?
+    = lt(@resort.visiting, template_params)
+
+  - unless @resort.owning_a_property_in.blank?
+    h2= t('resorts_controller.detail.owning_a_property_in', resort: @resort)
+    = lt(@resort.owning_a_property_in, template_params)
+
+  - unless @resort.living_in.blank?
+    h2= t('resorts_controller.detail.living_in', resort: @resort)
+    = lt(@resort.living_in, template_params)
+
+  - unless @resort.insider_view.blank?
+    h2= t('resorts_controller.detail.insider_view', resort: @resort)
+    = lt(@resort.insider_view, template_params)
+
+= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort)

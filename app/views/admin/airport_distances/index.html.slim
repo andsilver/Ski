@@ -1,0 +1,27 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+p= new_button [:admin, AirportDistance]
+
+- if @airport_distances.empty?
+  p There are no airport distances set up yet.
+- else
+  table.table.table-bordered.table-striped
+    thead
+      tr
+        th Resort
+        th Airport
+        th Distance
+        th Actions
+
+    tbody
+      - @airport_distances.each do |airport_distance|
+        tr
+          td= airport_distance.resort.name
+          td= airport_distance.airport.name
+          td
+            =' airport_distance.distance_km
+            | km
+          td
+            =' edit_button [:admin, airport_distance]
+            = delete_button [:admin, airport_distance]

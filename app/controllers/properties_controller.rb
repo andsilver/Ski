@@ -1,27 +1,26 @@
 class PropertiesController < ApplicationController
   include SpamProtection
 
-  before_filter :no_browse_menu, except: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-
-  before_filter :user_required, except: [
+  before_action :user_required, except: [
     :index, :quick_search,
     :browse_for_rent, :browse_for_sale,
     :new_developments, :browse_hotels, :contact,
     :email_a_friend, :current_time, :show,
     :show_interhome, :show_pv, :check_interhome_booking,
     :interhome_payment_success, :interhome_payment_failure,
-    :update_day_of_month_select,
-    :import_documentation]
+    :update_day_of_month_select]
 
-  before_filter :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
+  before_action :find_property, only: [:show, :contact, :email_a_friend]
 
-  before_filter :find_resort, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_filter :require_resort, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_filter :resort_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_action :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
-  before_filter :find_property, only: [:show, :contact, :email_a_friend]
+  before_action :set_resort, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_action :require_resort, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_action :resort_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  before_action :holiday_type_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
 
-  before_filter :admin_required, only: [:index]
+  before_action :admin_required, only: [:index]
+  layout 'admin', only: [:index]
 
   def index
     default_page_title 'Properties'
@@ -30,7 +29,7 @@ class PropertiesController < ApplicationController
 
   def quick_search
     default_page_title t('properties.titles.browse_for_rent', resort: @resort)
-    @heading_a = render_to_string(partial: 'browse_property_heading').html_safe
+    browse_property_heading
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
@@ -58,7 +57,7 @@ class PropertiesController < ApplicationController
 
   def browse_for_rent
     default_page_title t('properties.titles.browse_for_rent', resort: @resort)
-    @heading_a = render_to_string(partial: 'browse_property_heading').html_safe
+    browse_property_heading
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
@@ -76,15 +75,15 @@ class PropertiesController < ApplicationController
       @conditions << params[:board_basis]
     end
 
-    @properties = Property.paginate(page: params[:page], order: order,
-      conditions: @conditions)
+    find_properties(order)
+
     render 'browse'
   end
 
   def browse_for_sale
     @for_sale = true
     default_page_title t('properties.titles.browse_for_sale', resort: @resort)
-    @heading_a = render_to_string(partial: 'browse_property_heading').html_safe
+    browse_property_heading
 
     order = for_sale_selected_order
 
@@ -93,15 +92,16 @@ class PropertiesController < ApplicationController
     @search_filters = [:garage, :parking, :garden]
 
     filter_conditions
+    find_properties(order)
 
-    @properties = Property.paginate(page: params[:page], order: order, conditions: @conditions)
     render "browse"
   end
 
   def new_developments
     @for_sale = true
     default_page_title t('properties.titles.new_developments', resort: @resort.name)
-    @heading_a = t(:new_developments)
+    @breadcrumbs = {@resort.name => @resort}
+    @heading = t(:new_developments)
     @conditions[0] += " AND new_development = 1"
 
     order = for_sale_selected_order
@@ -109,16 +109,16 @@ class PropertiesController < ApplicationController
     @search_filters = [:garage, :parking, :garden]
 
     filter_conditions
+    find_properties(order)
 
-    @properties = Property.paginate(page: params[:page], order: order,
-      conditions: @conditions)
     render "browse"
   end
 
   def browse_hotels
     @for_sale = false
     default_page_title t('properties.titles.hotels', resort: @resort)
-    @heading_a = t('resort_options.hotels')
+    @breadcrumbs = {@resort.name => @resort}
+    @heading = t('resort_options.hotels')
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "star_rating DESC" ])
@@ -128,8 +128,8 @@ class PropertiesController < ApplicationController
     @search_filters = []
 
     filter_conditions
+    find_properties(order)
 
-    @properties = Property.paginate(page: params[:page], order: order, conditions: @conditions)
     render "browse"
   end
 
@@ -161,7 +161,7 @@ class PropertiesController < ApplicationController
   end
 
   def show_interhome
-    @accommodation = InterhomeAccommodation.find_by_permalink(params[:permalink])
+    @accommodation = InterhomeAccommodation.find_by(permalink: params[:permalink])
     not_found and return if @accommodation.nil?
     @property = @accommodation.property
 
@@ -178,7 +178,7 @@ class PropertiesController < ApplicationController
   end
 
   def show_pv
-    @accommodation = PvAccommodation.find_by_permalink(params[:permalink])
+    @accommodation = PvAccommodation.find_by(permalink: params[:permalink])
     not_found and return if @accommodation.nil?
     @property = @accommodation.property
 
@@ -193,7 +193,7 @@ class PropertiesController < ApplicationController
   end
 
   def check_interhome_booking
-    @accommodation = InterhomeAccommodation.find_by_permalink(params[:permalink])
+    @accommodation = InterhomeAccommodation.find_by(permalink: params[:permalink])
     check_in = params[:interhome_booking][:arrival_month] + '-' + '%02d' % params[:interhome_booking][:arrival_day]
     begin
       check_in_date = Date.new(check_in[0..3].to_i, check_in[5..6].to_i, check_in[8..9].to_i)
@@ -274,7 +274,7 @@ class PropertiesController < ApplicationController
     @client_booking = Interhome::WebServices.request('ClientBooking', details)
 
     details[:booking_id] = @client_booking.booking_id
-    details[:property] = InterhomeAccommodation.find_by_permalink(params[:permalink]).property
+    details[:property] = InterhomeAccommodation.find_by(permalink: params[:permalink]).property
     details[:permalink] = params[:permalink]
     details[:total] = @price_detail.total
     InterhomeNotifier.booking_confirmation(details).deliver
@@ -282,11 +282,15 @@ class PropertiesController < ApplicationController
   end
 
   def contact
-    default_page_title "Enquire About #{@property.name} in #{@property.resort}, #{@property.resort.country}"
-    @heading_a = render_to_string(partial: 'contact_heading').html_safe
+    @breadcrumbs = { @resort => @resort }
+    if @property.for_sale?
+      @breadcrumbs[t('for_sale')] = resort_property_sale_path(@property.resort)
+    else
+      @breadcrumbs[t('for_rent')] = resort_property_rent_path(@property.resort)
+    end
+    @breadcrumbs[@property] = @property
 
-    @enquiry = Enquiry.new
-    @enquiry.property_id = @property.id
+    @enquiry = Enquiry.new(property: @property)
   end
 
   def email_a_friend
@@ -347,7 +351,7 @@ class PropertiesController < ApplicationController
   end
 
   def place_in_window
-    advert = Advert.find_by_id_and_user_id(params[:advert_id], @current_user.id)
+    advert = Advert.find_by(id: params[:advert_id], user_id: @current_user.id)
     if advert && advert.window?
       if advert.expired?
         redirect_to({action: 'choose_window'}, notice: 'That window has expired.')
@@ -368,111 +372,11 @@ class PropertiesController < ApplicationController
     redirect_to my_adverts_path, notice: t('properties_controller.removed_from_window')
   end
 
-  def new_import
-  end
-
-  def import
-    cleanup_import 'No file uploaded' and return if params[:file].nil?
-
-    @file = params[:file]
-    @path = "#{Rails.root.to_s}/public/up/users/#{@current_user.id}/properties_upload"
-    FileUtils.makedirs(@path)
-    zip_filename = "#{@path}/properties.zip"
-    File.open(zip_filename, "wb") { |file| file.write(@file.read) }
-    zip_result = system("unzip -jo #{zip_filename} -d #{@path}")
-    cleanup_import "Error extracting ZIP file" and return unless zip_result
-
-    csv_filename = "#{@path}/properties.csv"
-    cleanup_import "Could not find properties.csv in ZIP file" and return unless File.exists?(csv_filename)
-
-    require 'csv'
-
-    @total_read = @newly_imported = @updated = @failed = 0
-    flash[:errors] = []
-
-    csv = File.open(csv_filename, 'rb')
-    @parsed_file = defined?(CSV::Reader) ? CSV::Reader.parse(csv) : CSV.parse(csv)
-
-    @parsed_file.each do |row|
-      begin
-        process_row(row)
-      rescue RuntimeError => e
-        cleanup_import(e) and return
-      end
-    end
-
-    cleanup_import "Total read: #{@total_read}, Newly imported: #{@newly_imported}, Updated: #{@updated}, Failed: #{@failed}"
-  end
-
-  def pericles_import
-    default_resort = Resort.find_by_id(params[:resort_id])
-    unless default_resort
-      redirect_to new_pericles_import_properties_path, notice: 'Please select a default resort.'
-      return
-    end
-
-    @path = "#{Rails.root.to_s}/public/up/users/#{@current_user.id}/properties_upload"
-    xml_filename = "#{@path}/mbiarve.XML"
-
-    require 'xmlsimple'
-
-    @total_read = @newly_imported = @updated = @failed = 0
-    flash[:errors] = []
-
-    xml_file = File.open(xml_filename, 'rb')
-    xml = XmlSimple.xml_in(xml_file)
-    xml_file.close
-    xml['BIEN'].each do |property_xml|
-      @total_read += 1
-      begin
-        p_p = PericlesProperty.new(property_xml)
-      rescue RuntimeError => e
-        @failed += 1
-        flash[:errors] << "Property with NO_ASP=#{property_xml['NO_ASP'][0]} failed: #{e}"
-        next
-      end
-      puts p_p
-      puts '-------'
-      property = Property.find_by_user_id_and_pericles_id(@current_user.id, p_p.pericles_id)
-      property ||= new_import_property
-
-      new_record = property.new_record?
-      p_p.prepare_property(property)
-      property.tidy_name_and_strapline
-      property.resort_id = default_resort.id
-
-      p(property)
-      puts '-------'
-
-      if property.save
-        GC.start if property.id % 50 == 0
-        if new_record
-          @newly_imported += 1
-        else
-          @updated += 1
-        end
-      else
-        if @failed < 5
-          error = "Problem with property in with NO_ASP=#{p_p.pericles_id}:"
-          property.errors.full_messages.each do |msg|
-            error += " [#{msg}]"
-          end
-          flash[:errors] << error
-        else
-          flash[:errors] << "Also NO_ASP=#{p_p.pericles_id}"
-        end
-        @failed += 1
-      end
-
-      process_imported_pericles_images(p_p, property) if new_record
-
-    end
-
-    redirect_to new_pericles_import_properties_path,
-      notice: "Total read: #{@total_read}, Newly imported: #{@newly_imported}, Updated: #{@updated}, Failed: #{@failed}"
-  end
-
   protected
+
+  def find_properties(order)
+    @properties = Property.where(@conditions).order(order).paginate(page: params[:page])
+  end
 
   def show_shared
     rent_or_sale = @property.for_sale? ? t('for_sale') : t('for_rent')
@@ -480,159 +384,46 @@ class PropertiesController < ApplicationController
       property_name: @property.name, rent_or_sale: rent_or_sale,
       resort: @property.resort, country: @property.resort.country)
     @resort = @property.resort
-    @heading_a = render_to_string(partial: 'show_property_heading').html_safe
     default_meta_description(resort: @resort, strapline: @property.strapline[0..130])
-  end
 
-  def process_row(row)
-    if @mapping.nil?
-      @mapping = csv_mapping_from_header(row)
-      %w(resort_id name address description for_sale).each do |required|
-        raise "CSV missing required field: #{required}" if @mapping[required].nil?
-      end
-      return
+    @breadcrumbs = @resort.breadcrumbs
+
+    if @property.new_development?
+      @breadcrumbs[t('new_developments')] = resort_property_new_developments_path(@property.resort)
+    elsif @property.for_sale?
+      @breadcrumbs[t('for_sale')] = resort_property_sale_path(@property.resort)
+    elsif @property.for_rent?
+      @breadcrumbs[t('for_rent')] = resort_property_rent_path(@property.resort)
+    elsif @property.hotel?
+      @breadcrumbs[t('hotels')] =  resort_property_hotels_path(@property.resort)
     end
 
-    @total_read += 1
-
-    property = Property.find_by_user_id_and_name(@current_user.id, row[@mapping['name']])
-    property ||= new_import_property
-
-    new_record = property.new_record?
-
-    Property.importable_attributes.each do |attribute|
-      unless @mapping[attribute].nil? || attribute == 'images'
-        unless row[@mapping[attribute]].blank?
-          property[attribute] = row[@mapping[attribute]]
-          puts "#{attribute} = #{property[attribute]}"
-        end
-      end
-    end
-
-    property.tidy_name_and_strapline
-
-    if property.save
-      GC.start if property.id % 50 == 0
-      if new_record
-        @newly_imported += 1
-      else
-        @updated +=1
-      end
-    else
-      if @failed < 5
-        error = "Problem with property in row #{@total_read + 1}:"
-        property.errors.full_messages.each do |msg|
-          error += " [#{msg}]"
-        end
-        flash[:errors] << error
-      else
-        flash[:errors] << "Also row #{@total_read + 1}"
-      end
-      @failed += 1
-    end
-
-    if new_record and @mapping['images']
-      process_imported_images(property, row[@mapping['images']])
-    end
-  end
-
-  def new_import_property
-    property = Property.new
-    property.user_id = @current_user.id
-    property.distance_from_town_centre_m = property.metres_from_lift = 0
-    property
-  end
-
-  def process_imported_images(property, images)
-    return if images.nil?
-
-    image_filenames = images.split('|')
-    first = true
-    image_filenames.each do |filename|
-      filename.strip!
-      puts "processing image: #{filename}"
-
-      image = nil
-      if filename[0..3]=="http"
-        image = Image.new(source_url: filename)
-      else
-        filename = File.basename(filename)
-        path = "#{@path}/#{filename}"
-        if File.exists? path
-          file = File.open(path)
-          image = Image.new
-          image.image = file
-          file.close
-        end
-      end
-
-      unless image.nil?
-        image.user_id = property.user_id
-        image.property_id = property.id
-        image.save
-        if first
-          property.image_id = image.id
-          property.save
-          first = false
-        end
-      end
-    end
-  end
-
-  def process_imported_pericles_images(pericles_property, property)
-    first = true
-    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'].each do |letter|
-      filename = "#{pericles_property.company_code}-#{pericles_property.site_code}-#{pericles_property.pericles_id}-#{letter}.jpg"
-      puts "processing image: #{filename}"
-      path = "#{@path}/#{filename}"
-      if File.exists? path
-        file = File.open(path)
-        image = Image.new
-        image.image = file
-        image.user_id = property.user_id
-        image.property_id = property.id
-        image.save
-        if first
-          property.image_id = image.id
-          property.save
-          first = false
-        end
-        file.close
-      end
-    end
-  end
-
-  def cleanup_import notice
-    FileUtils.rm_rf(@path) unless @path.nil?
-    redirect_to new_import_properties_path, notice: notice
-  end
-
-  def csv_mapping_from_header(row)
-    mapping = Hash.new
-    row.each_with_index do |header, pos|
-      puts "looking at: #{header}"
-      mapping[header] = pos if Property.importable_attributes.include? header
-    end
-    puts mapping
-    mapping
+    @heading = @property.name
   end
 
   def find_property
-    @property = Property.find_by_id(params[:id])
-    not_found unless @property
+    @property = Property.find_by(id: params[:id])
+    if @property
+      @resort = @property.resort
+    else
+      not_found
+    end
   end
 
   def find_property_for_user
     if admin?
       @property = Property.find(params[:id])
     else
-      @property = Property.find_by_id_and_user_id(params[:id], @current_user.id)
+      @property = Property.find_by(id: params[:id], user_id: @current_user.id)
     end
     not_found unless @property
   end
 
-  def find_resort
-    @resort = Resort.find_by_id(params[:resort_id])
+  def set_resort
+    @resort = Resort.find_by(slug: params[:resort_slug])
+    if params[:resort_id]
+      @resort ||= Resort.find_by(id: params[:resort_id])
+    end
   end
 
   def require_resort
@@ -652,9 +443,16 @@ class PropertiesController < ApplicationController
   def resort_conditions
     if @resort
       @conditions = ["publicly_visible = 1 AND resort_id = ?"]
-      @conditions << params[:resort_id]
+      @conditions << @resort.id
     else
       @conditions = ["publicly_visible = 1"]
+    end
+  end
+
+  def holiday_type_conditions
+    if params[:holiday_type_id]
+      @conditions[0] += " AND resort_id IN(SELECT brochurable_id FROM holiday_type_brochures WHERE brochurable_type = 'Resort' AND holiday_type_id = ?)"
+      @conditions << params[:holiday_type_id]
     end
   end
 
@@ -737,6 +535,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
+    convert_square_feet_to_square_metres
     params.require(:property).permit(:accommodation_type, :address, :balcony,
       :board_basis, :cave,
       :children_welcome, :currency_id, :description, :disabled,
@@ -749,5 +548,28 @@ class PropertiesController < ApplicationController
       :plot_size_metres_2, :postcode, :resort_id, :sale_price,
       :sauna, :short_stays, :ski_in_ski_out, :sleeping_capacity, :smoking,
       :star_rating, :strapline, :terrace, :tv, :weekly_rent_price, :wifi)
+  end
+
+  def convert_square_feet_to_square_metres
+    if params[:floor_area_unit] == 'f'
+      params[:property][:floor_area_metres_2] = to_square_metres(params[:property][:floor_area_metres_2])
+    end
+    if params[:plot_area_unit] == 'f'
+      params[:property][:plot_size_metres_2] = to_square_metres(params[:property][:plot_size_metres_2])
+    end
+  end
+
+  def to_square_metres(square_feet)
+    (square_feet.to_f * 0.09290304).round.to_s
+  end
+
+  def browse_property_heading
+    @breadcrumbs = {}
+    if @resort
+      @breadcrumbs[@resort.name] = @resort
+    end
+    @heading = "Ski Accommodation, Chalets &amp; Apartments for ".html_safe
+    @heading += @for_sale ? "Sale" : "Rent"
+    @heading += " in #{@resort.name}" if @resort
   end
 end

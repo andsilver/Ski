@@ -1,0 +1,7 @@
+p
+  = property.for_sale? ? 'Sale price ' : 'Weekly price from '
+  strong= property.for_sale? ? format_currency(property.sale_price, property.currency) : format_currency(property.weekly_rent_price, property.currency)
+p.property_id
+  = I18n.t('property_id')
+  = ': '
+  span= @property.id

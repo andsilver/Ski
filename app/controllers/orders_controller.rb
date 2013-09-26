@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
-  before_filter :user_required
-  before_filter :no_browse_menu
-  before_filter :require_order_from_session, only: [:select_payment_method, :latest_receipt]
-  before_filter :find_order, only: [:receipt, :invoice]
+  before_action :user_required
+  before_action :require_order_from_session, only: [:select_payment_method, :latest_receipt]
+  before_action :find_order, only: [:receipt, :invoice]
 
-  before_filter :admin_required, only: [:index, :show, :destroy]
+  before_action :admin_required, only: [:index, :show, :destroy]
+  layout 'admin', only: [:index, :show, :destroy]
 
   def index
     @orders = Order.order('created_at DESC')
@@ -53,9 +53,9 @@ class OrdersController < ApplicationController
 
   def find_order
     if admin?
-      @order = Order.find_by_id(params[:id])
+      @order = Order.find_by(id: params[:id])
     else
-      @order = Order.find_by_id_and_user_id(params[:id], @current_user.id)
+      @order = Order.find_by(id: params[:id], user_id: @current_user.id)
     end
 
     if @order.nil?

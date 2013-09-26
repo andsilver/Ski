@@ -5,14 +5,14 @@ feature 'Late Availability' do
 
   scenario 'Visit the page' do
     visit '/late-availability'
-    page.should have_content 'Late Availability'
+    expect(page).to have_content 'Late Availability'
   end
 
   scenario 'Featured late availability properties' do
     setup_late_availability_properties(8)
     visit '/late-availability'
-    page.should have_content 'Featured Last Minute Properties'
-    8.times {|x| page.should have_content "Sleeps #{x}"}
+    expect(page).to have_content 'Featured Last Minute Properties'
+    8.times {|x| expect(page).to have_content "Sleeps #{x}"}
   end
 
   def setup_late_availability_properties(how_many)
@@ -22,8 +22,8 @@ feature 'Late Availability' do
   end
 
   def create_property(attributes)
-    @country ||= Country.create!(name: 'Country')
-    @resort ||= Resort.create!(name: 'Resort', country_id: @country.id)
+    @country ||= FactoryGirl.create(:country)
+    @resort ||= FactoryGirl.create(:resort, country: @country)
     @currency ||= Currency.create!(name: 'sterling', code: 'gbp', in_euros: 1)
 
     attributes = {

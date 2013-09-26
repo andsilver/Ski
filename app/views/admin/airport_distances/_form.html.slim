@@ -1,0 +1,23 @@
+- if @airport_distance.errors.any?
+  #error_explanation
+    h2
+      =' pluralize(@airport_distance.errors.count, "error")
+      | prohibited this airport distance from being saved:
+
+    ul
+    - @airport_distance.errors.full_messages.each do |msg|
+      li= msg
+
+= form_for [:admin, @airport_distance] do |f|
+  = f.label :resort_id, t('resort')
+  = select("airport_distance", "resort_id", (Resort.where(visible: true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: t('properties.select_resort')})
+
+  = f.label :airport_id, t('airport')
+  = select("airport_distance", "airport_id", (Airport.all.collect {|a| [ a.code + ' ' + a.name, a.id ] }).sort, {prompt: 'Select Airport'})
+
+  = f.label :distance_km
+  =' f.number_field :distance_km
+  | km
+
+  .form-actions
+    = f.submit class: 'btn btn-primary'

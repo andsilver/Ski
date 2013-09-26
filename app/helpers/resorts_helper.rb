@@ -85,10 +85,6 @@ module ResortsHelper
       end
     end
 
-    if urls.empty?
-      urls << '/images/chamonix.jpg'
-    end
-
     urls.map! {|u| u.gsub(' ', '%20')}
     urls
   end
@@ -119,5 +115,13 @@ module ResortsHelper
 
   def pv_place_codes
     ActiveRecord::Base.connection.execute("SELECT DISTINCT(CONCAT_WS('-', iso_3166_1, iso_3166_2, onu)) FROM `pv_accommodations`").map{|c| c[0]}.sort
+  end
+
+  def resort_link_with_count(path, title, link_text, count)
+    return if count == 0
+
+    opts = current_page?(path) ? {class: 'active'} : {}
+
+    content_tag(:li, link_to(h(link_text) + content_tag(:span, "(#{count})"), path, title: title), opts)
   end
 end

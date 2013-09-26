@@ -1,10 +1,11 @@
-<h1><%= link_to t('advertise'), advertise_path %> &rarr;
-  <%= t('my_enquiries') %></h1>
+<%= render 'users/advertising_options' %>
+
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('advertise') => advertise_path}, t('my_enquiries')) %>
 
 <% if @enquiries.empty? %>
 <p>You have no enquiries.</p>
 <% else %>
-<table class="table table-bordered">
+<table>
   <thead>
     <tr>
       <th>From</th>
@@ -12,6 +13,7 @@
       <th><%= t('phone') %></th>
       <th><%= t('enquiries_controller.date_of_arrival') %></th>
       <th><%= t('enquiries_controller.date_of_departure') %></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>

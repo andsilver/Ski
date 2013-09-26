@@ -1,30 +1,29 @@
 austria:
-  id: 1
   name: Austria
   iso_3166_1_alpha_2: AU
+  slug: austria
 
 france:
-  id: 2
   name: France
   iso_3166_1_alpha_2: FR
+  slug: france
 
 italy:
-  id: 3
   name: Italy
   iso_3166_1_alpha_2: IT
+  slug: italy
 
 switzerland:
-  id: 4
   name: Switzerland
   iso_3166_1_alpha_2: CH
+  slug: switzerland
 
 united_kingdom:
-  id: 5
   name: United Kingdom
   iso_3166_1_alpha_2: GB
+  slug: united-kingdom
 
 a_country_without_visible_resorts:
-  id: 6
   name: A Country Without Visible Resorts
   iso_3166_1_alpha_2: XA
-
+  slug: a-country-without-visible-resorts

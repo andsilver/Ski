@@ -6,18 +6,18 @@ module LateAvailability
       it 'returns at most 5 properties when limit is 5' do
         6.times { create_featured_late_availability_property! }
         finder = Finder.new
-        finder.find_featured(limit: 5).length.should == 5
+        expect(finder.find_featured(limit: 5).length).to eq 5
       end
 
       it 'returns all late availability properties when limit is unset' do
         6.times { create_featured_late_availability_property! }
         finder = Finder.new
-        finder.find_featured().length.should == 6
+        expect(finder.find_featured().length).to eq 6
       end
     end
 
     def create_featured_late_availability_property!
-      @resort ||= Resort.create!(name: 'late availability resort')
+      @resort ||= FactoryGirl.create(:resort)
       @currency ||= Currency.create!(name: 'sterling', code: 'gbp', in_euros: 1)
 
       Property.create!(

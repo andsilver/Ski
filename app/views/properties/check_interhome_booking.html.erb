@@ -3,7 +3,7 @@
   <h3>The property is unavailable for the dates you have requested.</h3>
 <% else -%>
   <div style="padding: 10px; background: #fff;">
-  <table class="table">
+  <table>
     <tr>
       <td>Travel period</td>
       <td style="text-align: right;"><%= l(Date.parse(@availability.start_date), format: :long) %>&#8211;<%= l(Date.parse(@availability.end_date), format: :long) %></td>

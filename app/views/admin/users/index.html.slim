@@ -1,0 +1,26 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+p= new_button User
+
+table.table.table-condensed.table-bordered
+  thead
+    tr
+      th Name
+      th Role
+      th Email
+      th Admin
+      th Switch User
+      th Actions
+
+  tbody
+    - @users.each do |u|
+      tr
+        td= u.name
+        td= u.role.name
+        td= mail_to u.email, u.email
+        td= tick u.role.admin?
+        td= link_to 'Switch User', switch_user_path(u.id), class: 'btn btn-default', data: { 'no-turbolink' => true }
+        td
+          =' edit_button u
+          = delete_button([:admin, u])

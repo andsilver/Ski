@@ -1,14 +1,14 @@
 advert_for_alpen_lounge:
-  id: 1
-  property_id: 1
+  property: alpen_lounge
   expires_at: 2030-01-01 00:00:00
+  user: bob
 
 advert_for_chalet_alaska:
-  id: 2
-  property_id: 2
+  property: chalet_alaska
   expires_at: 2030-01-01 00:00:00
+  user: bob
 
 advert_for_hotel_le_chamonix:
-  id: 3
-  property_id: 3
+  property: hotel_le_chamonix
   expires_at: 2030-01-01 00:00:00
+  user: bob

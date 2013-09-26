@@ -19,7 +19,7 @@ class Basket
 
     line = BasketLine.new
     line.description = "#{quantity} property windows"
-    line.price = WindowBasePrice.find_by_quantity(quantity).price * 100
+    line.price = WindowBasePrice.find_by(quantity: quantity).price * 100
     line.windows = quantity
     @lines << line
   end

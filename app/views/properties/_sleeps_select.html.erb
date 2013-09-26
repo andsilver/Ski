@@ -1,4 +1,4 @@
-  <select id="sleeps" name="sleeps">
+  <select id="sleeps" name="sleeps" class="form-control">
     <option value="">Sleeps</option>
     <% [1, 2, 3, 4, 5, 6, 8, 10].each do |sleeps| %>
     <option value="<%= sleeps %>"<%= ' selected' if params[:sleeps] == sleeps.to_s %>>Sleeps <%= sleeps %><%= '+' if sleeps == 10 %></option>

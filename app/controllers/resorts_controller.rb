@@ -1,66 +1,22 @@
 class ResortsController < ApplicationController
-  before_filter :admin_required, except: [:directory, :feature, :featured, :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide, :gallery, :show, :summer_holidays]
-  before_filter :find_resort, only: [:destroy, :directory, :edit, :edit_page, :feature, :gallery, :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide, :show, :summer_holidays, :update]
-  before_filter :no_browse_menu, except: [:show, :feature, :directory, :how_to_get_there, :resort_guide, :summer_holidays]
-  before_filter :find_featured_properties, only: [:show, :summer_holidays]
-
-  def index
-    @countries = Country.with_resorts
-  end
-
-  def new
-    @resort = Resort.new
-    @resort.country_id = session[:last_country_id] unless session[:last_country_id].nil?
-  end
-
-  def create
-    @resort = Resort.new(resort_params)
-
-    if @resort.save
-      session[:last_country_id] = @resort.country_id
-      redirect_to(resorts_path, notice: t('notices.created'))
-    else
-      render action: 'new'
-    end
-  end
-
-  def edit
-    set_image_mode
-
-    @interhome_place_resort = InterhomePlaceResort.new(resort_id: @resort.id)
-    @pv_place_resort = PvPlaceResort.new(resort_id: @resort.id)
-  end
-
-  def update
-    if @resort.update_attributes(resort_params)
-      redirect_to(edit_resort_path(@resort), notice: t('notices.saved'))
-    else
-      @interhome_place_resort = InterhomePlaceResort.new(resort_id: @resort.id)
-      render action: 'edit'
-    end
-  end
+  before_action :set_resort, only: [:directory, :feature, :gallery, :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide, :show, :summer_holidays]
+  before_action :find_featured_properties, only: [:resort_guide, :show, :summer_holidays]
 
   def show
     default_page_title t('resorts_controller.titles.show', resort: @resort, country: @resort.country)
     default_meta_description(resort: @resort, country: @resort.country)
-    @heading_a = t('resorts_controller.resort_information_heading', resort: @resort)
-  end
-
-  def destroy
-    @resort.destroy
-
-    redirect_to(resorts_url)
+    @heading = t('resorts_controller.resort_information_heading', resort: @resort)
   end
 
   def resort_guide
     default_page_title t('resorts_controller.titles.resort_guide', resort: @resort, country: @resort.country)
     default_meta_description(resort: @resort, country: @resort.country)
-    @heading_a = render_to_string(partial: 'detail_heading').html_safe
+    @heading = t('resorts_controller.detail.more_detail')
   end
 
   def directory
-    @heading_a = t('resorts_controller.titles.directory', resort: @resort, country: @resort.country)
-    default_page_title @heading_a
+    @heading = t('resorts_controller.titles.directory', resort: @resort, country: @resort.country)
+    default_page_title @heading
     default_meta_description(resort: @resort, country: @resort.country)
     @categories = Category.order('name')
   end
@@ -72,68 +28,48 @@ class ResortsController < ApplicationController
   def piste_map
     default_page_title t('resorts_controller.titles.piste_map', resort: @resort, country: @resort.country)
     default_meta_description(resort: @resort, country: @resort.country)
-    @heading_a = render_to_string(partial: 'piste_map_heading').html_safe
+    @heading = t('piste_map')
   end
 
   def piste_map_full_size
     default_meta_description(resort: @resort, country: @resort.country)
-    @heading_a = render_to_string(partial: 'piste_map_heading').html_safe
     @map = params[:map]
     render layout: nil
   end
 
   def gallery
     default_page_title t('resorts_controller.titles.gallery', resort: @resort, country: @resort.country)
-    @heading_a = render_to_string(partial: 'gallery_heading').html_safe
+    @heading = t('gallery')
   end
 
-  def feature
-  end
+  def feature; end
 
   def summer_holidays
+    # Hide temporarily - issue #147
+    not_found unless admin?
   end
 
-  def edit_page
-    page_name = params[:page_name]
-    if Resort.page_names.include?(page_name)
-      @resort.create_page(page_name) unless @resort.has_page?(page_name)
-      redirect_to edit_page_path(@resort.page(page_name))
-    end
-  end
-
-  def how_to_get_there
-  end
+  def how_to_get_there; end
 
   protected
 
-  def find_resort
-    @resort = Resort.find_by_id(params[:id])
-    if admin?
-      redirect_to(resorts_path, notice: t('resorts_controller.not_found')) unless @resort
-    else
-      not_found if !@resort || !@resort.visible?
+    def set_resort
+      @resort = Resort.find_by(slug: params[:id])
+
+      # Handle legacy resort URLs
+      if !@resort
+        @resort = Resort.find_by(id: params[:id])
+        redirect_to(@resort, status: 301) and return if @resort
+      end
+
+      if admin?
+        redirect_to(admin_resorts_path, notice: t('resorts_controller.not_found')) unless @resort
+      else
+        not_found if !@resort || !@resort.visible?
+      end
     end
-  end
 
-  def set_image_mode
-    session[:image_mode] = 'resort'
-    session[:resort_id] = @resort.id
-  end
-
-  def find_featured_properties
-    @featured_properties = Property.order('RAND()').limit(12).where(publicly_visible: true, resort_id: @resort.id)
-  end
-
-  def resort_params
-    params.require(:resort).permit(:altitude_m, :apres_ski, :babysitting_services, :beginner,
-      :black, :blue, :cable_car, :chair, :country_id, :creche,
-      :cross_country_km, :drags, :expert, :family, :feature, :featured, :funicular,
-      :gallery_content, :glacier_skiing, :gondola, :green, :heli_skiing,
-      :info, :insider_view, :intermediate,
-      :introduction, :living_in, :local_area, :longest_run_km,
-      :mountain_restaurants, :name, :off_piste, :owning_a_property_in,
-      :piste_map_content, :railways, :red, :season,
-      :slope_direction, :snowboard_parks, :summer_only,
-      :summer_skiing, :top_lift_m, :weather_code, :visible, :visiting)
-  end
+    def find_featured_properties
+      @featured_properties = Property.order('RAND()').limit(9).where(publicly_visible: true, resort_id: @resort.id)
+    end
 end

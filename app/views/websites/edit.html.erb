@@ -1,6 +1,6 @@
-<%= render 'cms/menu' %>
-<div class="cms">
-<h1><%= link_to 'CMS', cms_path %> &rarr; Edit Miscellaneous Website Details</h1>
+<div class="page-header">
+  <h1><%= link_to 'CMS', cms_path %> &rarr; Edit Miscellaneous Website Details</h1>
+</div>
 
 <% if @website.errors.any? %>
   <div id="error_explanation">
@@ -16,19 +16,22 @@
 
 <%= form_for @website do |f| %>
   <%= f.label :home_content %>
-  <%= f.text_area :home_content %>
+  <%= editor(f, :home_content, :html) %>
 
   <%= f.label :contact_details %>
-  <%= f.text_area :contact_details %>
+  <%= editor(f, :contact_details, :html) %>
 
   <%= f.label :terms %>
-  <%= f.text_area :terms %>
+  <%= editor(f, :terms, :html) %>
 
   <%= f.label :privacy_policy %>
-  <%= f.text_area :privacy_policy %>
+  <%= editor(f, :privacy_policy, :html) %>
 
   <%= f.label :resources_banner_html %>
-  <%= f.text_area :resources_banner_html %>
+  <%= editor(f, :resources_banner_html, :html) %>
+
+  <%= f.label :sidebar_html %>
+  <%= editor(f, :sidebar_html, :html) %>
 
 	<label for="website_blog_visible_true">Blog visible?</label>
 	<label class="radio">
@@ -81,8 +84,7 @@
 	<%= f.label :worldpay_payment_response_password, 'Payment response password' %>
 	<%= f.text_field :worldpay_payment_response_password %>
 
-<div class="field">
+<div class="form-actions">
   <%= f.submit class: 'btn btn-primary' %>
 </div>
 <% end %>
-</div>

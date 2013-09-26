@@ -12,8 +12,8 @@ describe Image do
           file_data.stub(:original_filename).and_return('apple.banana.JPEG')
           i = Image.new
           i.image = file_data
-          i.determine_filename.should eq('image.jpeg')
-          i.filename.should eq('image.jpeg')
+          expect(i.determine_filename).to eq('image.jpeg')
+          expect(i.filename).to eq('image.jpeg')
         end
       end
 
@@ -22,8 +22,8 @@ describe Image do
           file_data.stub(:respond_to?).with('original_filename').and_return(false)
           i = Image.new
           i.image = file_data
-          i.determine_filename.should eq('image.jpg')
-          i.filename.should eq('image.jpg')
+          expect(i.determine_filename).to eq('image.jpg')
+          expect(i.filename).to eq('image.jpg')
         end
       end
     end
@@ -32,8 +32,8 @@ describe Image do
       it "sets its filename to image.jpg" do
         i = Image.new
         i.source_url = 'http://www.example.org/image.png'
-        i.determine_filename.should eq('image.jpg')
-        i.filename.should eq('image.jpg')
+        expect(i.determine_filename).to eq('image.jpg')
+        expect(i.filename).to eq('image.jpg')
       end
     end
 

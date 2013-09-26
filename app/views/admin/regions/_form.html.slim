@@ -1,0 +1,14 @@
+= form_for([:admin, @region]) do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.label :slug
+  = f.text_field :slug
+  = f.label :country_id
+  = country_select('region')
+  label.checkbox
+    = f.check_box :visible
+    | Visible
+  = f.label :info
+  = editor(f, :info, :html)
+  .form-actions
+    = f.submit class: 'btn btn-primary'

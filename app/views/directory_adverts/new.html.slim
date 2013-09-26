@@ -1,0 +1,14 @@
+= content_for :title, t('.title')
+
+= render 'users/advertising_options'
+
+h1= t('.heading')
+
+- if @current_user.directory_advert_in_basket
+  p.warning
+    | You are creating a new directory advert.
+      It seems you already have a directory advert in your basket.
+      Did you mean to edit
+      #{link_to 'that one', edit_directory_advert_path(@current_user.directory_advert_in_basket)}?
+
+= render 'form'

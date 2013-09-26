@@ -9,18 +9,18 @@ describe Role do
       role.advertises_properties_for_rent = true
       role.advertises_properties_for_sale = false
       role.advertises_generally = false
-      role.only_advertises_properties_for_rent?.should be_true
+      expect(role.only_advertises_properties_for_rent?).to be_true
 
       role.advertises_properties_for_rent = false
-      role.only_advertises_properties_for_rent?.should be_false
+      expect(role.only_advertises_properties_for_rent?).to be_false
 
       role.advertises_properties_for_rent = true
       role.advertises_properties_for_sale = true
-      role.only_advertises_properties_for_rent?.should be_false
+      expect(role.only_advertises_properties_for_rent?).to be_false
 
       role.advertises_properties_for_sale = true
       role.advertises_generally = true
-      role.only_advertises_properties_for_rent?.should be_false
+      expect(role.only_advertises_properties_for_rent?).to be_false
     end
   end
 
@@ -30,18 +30,18 @@ describe Role do
       role.advertises_properties_for_sale = true
       role.advertises_properties_for_rent = false
       role.advertises_generally = false
-      role.only_advertises_properties_for_sale?.should be_true
+      expect(role.only_advertises_properties_for_sale?).to be_true
 
       role.advertises_properties_for_sale = false
-      role.only_advertises_properties_for_sale?.should be_false
+      expect(role.only_advertises_properties_for_sale?).to be_false
 
       role.advertises_properties_for_sale = true
       role.advertises_properties_for_rent = true
-      role.only_advertises_properties_for_sale?.should be_false
+      expect(role.only_advertises_properties_for_sale?).to be_false
 
       role.advertises_properties_for_rent = true
       role.advertises_generally = true
-      role.only_advertises_properties_for_sale?.should be_false
+      expect(role.only_advertises_properties_for_sale?).to be_false
     end
   end
 
@@ -49,19 +49,19 @@ describe Role do
     it "prepends 'roles.'" do
       role = Role.new
       role.name = "admin"
-      role.localisation_key.should =="roles.admin"
+      expect(role.localisation_key).to eq 'roles.admin'
     end
 
     it "downcases letters" do
       role = Role.new
       role.name = "Admin"
-      role.localisation_key.should =="roles.admin"
+      expect(role.localisation_key).to eq 'roles.admin'
     end
 
     it "substitutes spaces with underscores" do
       role = Role.new
       role.name = "letting agent"
-      role.localisation_key.should =="roles.letting_agent"
+      expect(role.localisation_key).to eq 'roles.letting_agent'
     end
   end
 end

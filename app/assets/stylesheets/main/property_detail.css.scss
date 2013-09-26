@@ -1,24 +1,34 @@
 #property {
-  width: 720px;
+  width: 620px;
+
+  img {
+    max-width: 620px;
+  }
 }
 
 #features {
-  border-top: 1px solid #00aeef;
-  border-bottom: 1px solid #00aeef;
-  background-image: url(/images/features-bg.png);
-  padding: 12px 0;
-  font-size: 1.3em;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  font-size: 13px;
+  margin: 10px 0;
+  padding: 10px 0;
+
+  p.divider {
+    clear: left;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .column {
+    width: 140px;
+    float: left;
+    padding-left: 7px;
+    padding-right: 8px;
+    line-height: 1.5em;
+  }
 }
 
 .interhome-features .column:nth-child(4n+5) {
   clear: left;
-}
-
-#features .column {
-  width: 160px;
-  float: left;
-  padding-right: 20px;
-  line-height: 1.5em;
 }
 
 .ticked_feature, .unticked_feature {
@@ -39,19 +49,8 @@
   background-image: url(/images/unticked-feature.png);
 }
 
-#features p.divider {
-  clear: left;
-  border-bottom: 1px solid #00aeef;
-}
-
-h1.property_name {
-  font-weight: normal;
-  text-transform: none;
-  font-size: 1.6em;
-}
-
 .property_name span {
-  color: #00aeef;
+  color: #999;
 }
 
 #map_canvas {
@@ -68,8 +67,8 @@ p.thumbnails {
   margin-right: 3px;
 }
 
-p#property_thumbnails {
-  width: 720px;
+p#property-thumbnails {
+  width: 620px;
   height: 155px;
   overflow: auto;
   white-space: nowrap; 
@@ -82,13 +81,6 @@ p#property_thumbnails {
 p#property_main_image {
   float: left;
   width: 400px;
-}
-
-.abta {
-  float: right;
-  margin-top: 10px;
-  text-align: center;
-  font-size: 12px;
 }
 
 #pv-booking {

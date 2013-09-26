@@ -12,18 +12,18 @@
 
 <%= form_for @property_volume_discount do |f| %>
 <div class="field">
-  <%= f.label :current_property_number %><br>
-  <%= f.text_field :current_property_number %>
+  <%= f.label :current_property_number %>
+  <%= f.number_field :current_property_number %>
 </div>
 <div class="field">
-  <%= f.label :discount_percentage %><br>
-  <%= f.text_field :discount_percentage %> %
+  <%= f.label :discount_percentage %>
+  <%= f.number_field :discount_percentage %> %
 </div>
 <div class="field">
-  <%= f.label :discount_amount %><br>
-  <%= f.text_field :discount_amount %> EUR
+  <%= f.label :discount_amount %>
+  <%= f.number_field :discount_amount %> EUR
 </div>
 <div class="field">
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary' %>
 </div>
 <% end %>

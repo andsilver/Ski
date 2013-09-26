@@ -9,15 +9,6 @@ describe UsersController do
     User.stub(:new).and_return(user)
   end
 
-  describe 'GET show' do
-    it 'mentions the user\'s name in the heading' do
-      u = mock_model(User, {name: 'Jane'})
-      controller.stub(:current_user).and_return(u)
-      get 'show'
-      assigns(:heading_a).should match('Jane')
-    end
-  end
-
   describe "GET new" do
     it "instantiates a new user" do
       User.should_receive(:new)
@@ -26,16 +17,16 @@ describe UsersController do
 
     it "assigns @user" do
       get :new
-      assigns[:user].should equal(user)
+      expect(assigns[:user]).to equal(user)
     end
   end
 
   describe "POST create" do
     let(:role) { mock_model(Role).as_null_object }
-    let(:params) { { :user => { "name" => "Carey", "role_id" => "1" }} }
+    let(:params) { { user: { "name" => "Carey", "role_id" => "1" }} }
 
     before do
-      Role.stub(:find_by_id).and_return(role)
+      Role.stub(:find_by).and_return(role)
     end
 
     it "instantiates a new user with the given cleansed params" do
@@ -44,7 +35,7 @@ describe UsersController do
     end
 
     it "finds the selected role" do
-      Role.should_receive(:find_by_id).with("1")
+      Role.should_receive(:find_by).with(id: '1')
       post :create, params
     end
 
@@ -78,7 +69,7 @@ describe UsersController do
 
       it "sets a flash[:notice] message" do
         post :create, params
-        flash[:notice].should eq("Your account was successfully created.")
+        expect(flash[:notice]).to eq("Your account was successfully created.")
       end
 
       context "when the user's role only advertises for sale" do
@@ -89,7 +80,7 @@ describe UsersController do
 
         it "redirects to the new property for sale page" do
           post :create, params
-          response.should redirect_to(new_property_path(:listing_type => Property::LISTING_TYPE_FOR_SALE))
+          expect(response).to redirect_to(new_property_path(listing_type: Property::LISTING_TYPE_FOR_SALE))
         end
       end
 
@@ -101,7 +92,7 @@ describe UsersController do
 
         it "redirects to the new property for rent page" do
           post :create, params
-          response.should redirect_to(new_property_path(:listing_type => Property::LISTING_TYPE_FOR_RENT))
+          expect(response).to redirect_to(new_property_path(listing_type: Property::LISTING_TYPE_FOR_RENT))
         end
       end
 
@@ -113,7 +104,7 @@ describe UsersController do
 
         it "redirects to the first advert page" do
           post :create, params
-          response.should redirect_to(first_advert_path)
+          expect(response).to redirect_to(first_advert_path)
         end
       end
     end
@@ -125,17 +116,30 @@ describe UsersController do
 
       it "assigns @user" do
         post :create, params
-        assigns[:user].should eq(user)
+        expect(assigns[:user]).to eq(user)
       end
 
       it "renders the new template" do
         post :create, params
-        response.should render_template("new")
+        expect(response).to render_template('new')
       end
     end
   end
 
   describe "GET edit" do
+    context 'when admin' do
+      before do
+        controller.stub(:signed_in?).and_return(true)
+        controller.stub(:admin?).and_return(true)
+      end
+
+      it 'mentions the user\'s name in the heading' do
+        u = mock_model(User, {name: 'Jane'})
+        User.stub(:find).and_return(u)
+        get 'edit', id: '1'
+        expect(assigns(:heading)).to eq('Jane')
+      end
+    end
   end
 
   describe 'PUT update' do
@@ -153,12 +157,12 @@ describe UsersController do
 
         it 'redirects to users index' do
           put 'update', update_params
-          response.should redirect_to(users_path)
+          expect(response).to redirect_to(users_path)
         end
 
         it 'sets a notice' do
           put 'update', update_params
-          flash.notice.should eq I18n.t('notices.saved')
+          expect(flash.notice).to eq I18n.t('notices.saved')
         end
       end
 
@@ -167,12 +171,12 @@ describe UsersController do
 
         it 'redirects to My Details' do
           put 'update', update_params
-          response.should redirect_to(my_details_path)
+          expect(response).to redirect_to(my_details_path)
         end
 
         it 'sets a notice' do
           put 'update', update_params
-          flash.notice.should eq I18n.t('my_details_saved')
+          expect(flash.notice).to eq I18n.t('my_details_saved')
         end
       end
     end

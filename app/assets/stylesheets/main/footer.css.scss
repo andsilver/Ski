@@ -1,50 +1,62 @@
 footer p {
   padding-top: 8px;
-  font-size: 1.2em;
+  font-size: 11px;
 }
 
-footer {
+footer[role=contentinfo] {
+  border-top: 10px solid whitesmoke;
   color: #fff;
   clear: both;
-  padding: 20px;
-  width: 956px;
-  margin: 0 auto;
+  margin: 0;
+  padding: 15px;
+  text-transform: uppercase;
+  width: 1000px;
+
   background-color: #333;
-  background-image: linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
-  background-image: -o-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
-  background-image: -moz-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
-  background-image: -webkit-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
-  background-image: -ms-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(68,68,68) 100%);
+  background-image: linear-gradient(bottom, rgb(34,34,34) 19%, rgb(128,128,128) 100%);
+  background-image: -o-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(128,128,128) 100%);
+  background-image: -moz-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(128,128,128) 100%);
+  background-image: -webkit-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(128,128,128) 100%);
+  background-image: -ms-linear-gradient(bottom, rgb(34,34,34) 19%, rgb(128,128,128) 100%);
 
   background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
     color-stop(0.19, rgb(34,34,34)),
-    color-stop(1, rgb(68,68,68))
+    color-stop(1, rgb(128,128,128))
   );
 
   a, a:hover {
     color: #fff;
   }
+
+  hr {
+    margin: 10px 0 5px 0;
+  }
+
+  #copyright {
+    text-transform: none;
+  }
 }
 
-.footer_box {
-  -moz-column-count: 4;
-  -webkit-column-count: 4;
-  column-count: 4;
-  -moz-column-gap: 20px;
-  -webkit-column-gap: 20px;
-  column-gap: 20px;
+.footer-box {
+  padding-bottom: 15px;
 
   ul {
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 194px;
   }
 
   li {
     list-style: none;
-    font-size: 14px;
+    font-size: 11px;
+    font-weight: bold;
+
+    a {
+      font-weight: normal;
+    }
   }
 }

@@ -1,8 +1,18 @@
-header {
+header[role=banner] {
+  background: #0069af; /* Old browsers */
+  background: -moz-linear-gradient(top, #0069af 0%, #14142c 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0069af), color-stop(100%,#14142c)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #0069af 0%,#14142c 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #0069af 0%,#14142c 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #0069af 0%,#14142c 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #0069af 0%,#14142c 100%); /* W3C */
+  height: 160px;
+  width: 1000px;
+  position: relative;
+}
+
+#marker {
   position: absolute;
-  background: #000;
-  background: rgba(0, 0, 0, 0.6);
-  width: 996px;
-  height: 56px;
-  z-index: 2;
+  left: 235px;
+  top: -70px;
 }

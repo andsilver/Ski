@@ -1,47 +1,9 @@
 #featured-properties {
-  .thumbnail {
-    background: #fff;
-    text-align: center;
-  }
+  margin: 10px 0;
 
-  ul {
-    padding-left: 73px;
-  }
-
-  .thumbnail div {
-    height: 120px;
-    width: 144px;
-    text-align: center;
-    overflow: hidden;
-  }
-
-  .thumbnails > li {
-    width: 154px;
-    overflow: hidden;
-  }
-
-  .thumbnail {
-    height: 210px;
-  }
-
-  a {
-    color: #333;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #005580;
-    text-decoration: underline;
-  }
-
-  p {
-    font-size: 13px;
-    line-height: 18px;
-    margin: 0;
-  }
-
-  .resort-name {
-    font-weight: bold;
+  img {
+    width: 200px;
+    height: 163px;
   }
 
   .carousel-control {
@@ -53,4 +15,9 @@
     color: #fff;
     text-decoration: none;
   }
+}
+
+.wide #featured-properties img {
+  width: 258px;
+  height: 210px;
 }

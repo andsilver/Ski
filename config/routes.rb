@@ -3,25 +3,56 @@ MySkiChalet::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root to: 'welcome#index'
-  resources :buying_guides
+  # root 'welcome#index'
 
-  resources :countries
+  namespace :admin do
+    resources :airport_distances, except: [:show]
+    resources :airports,          except: [:show]
+    resources :banner_prices,     except: [:show]
+    resources :blog_posts,        except: [:show]
+    resources :buying_guides,     except: [:show]
+    resources :countries,         except: [:show]
+    resources :currencies,        except: [:show] do
+      collection do
+        get 'update_exchange_rates'
+      end
+    end
+    resources :coupons,           except: [:show]
+    resources :footers,           except: [:show]
+    resources :holiday_types,     except: [:show]
+    resources :regions,           except: [:show] do
+      member do
+        get 'edit_page'
+      end
+    end
+    resources :holiday_type_brochures, only: [:create, :destroy]
+    resources :resorts,           except: [:show] do
+      member do
+        get 'edit_page'
+        post 'destroy_properties'
+      end
+    end
+    resources :snippets,          except: [:show]
+    resources :users, only: [:index, :destroy]
+    resources :window_base_prices, except: [:show]
+  end
 
-  resources :snippets
+  resources :buying_guides, only: [:show]
+
+  resources :countries, only: [:show]
 
   get 'late-availability' => 'late_availability#index'
 
   get 'properties/search' => 'properties#quick_search'
-  get "resorts/:resort_id/properties/rent" => "properties#browse_for_rent", as: :resort_property_rent
-  get "resorts/:resort_id/properties/sale" => "properties#browse_for_sale", as: :resort_property_sale
-  get "resorts/:resort_id/properties/new-developments" => "properties#new_developments",
+  get "resorts/:resort_slug/properties/rent" => "properties#browse_for_rent", as: :resort_property_rent
+  get "resorts/:resort_slug/properties/sale" => "properties#browse_for_sale", as: :resort_property_sale
+  get "resorts/:resort_slug/properties/new-developments" => "properties#new_developments",
     as: :resort_property_new_developments
-  get "resorts/:resort_id/properties/hotels" => "properties#browse_hotels", as: :resort_property_hotels
+  get "resorts/:resort_slug/properties/hotels" => "properties#browse_hotels", as: :resort_property_hotels
   get "resorts/:id/resort-guide" => "resorts#resort_guide", as: :resort_guide
   get "resorts/:id/summer-holidays" => "resorts#summer_holidays", as: :summer_holidays
   get "resorts/:id/how-to-get-there" => "resorts#how_to_get_there", as: :how_to_get_there
-  resources :resorts do
+  resources :resorts, only: [:show] do
     get 'featured', on: :collection
     member do
       get 'resort-guide', action: 'resort_guide'
@@ -30,12 +61,8 @@ MySkiChalet::Application.routes.draw do
       get 'gallery'
       get 'piste_map'
       get 'piste_map_full_size'
-      get 'edit_page'
     end
   end
-
-  resources :airports
-  resources :airport_distances
 
   resources :airport_transfers do
     collection do
@@ -48,8 +75,8 @@ MySkiChalet::Application.routes.draw do
   get "tools/rental-prices" => "rental_prices#index"
   get "tools/rental-prices/results" => "rental_prices#results"
 
+  resources :categories, except: [:show]
   get "categories/:id/:resort_id" => "categories#show", as: :show_category
-  resources :categories
 
   get "sign_in" => "sessions#new"
   get "sign_out" => "sessions#destroy"
@@ -60,7 +87,7 @@ MySkiChalet::Application.routes.draw do
   get "advertise" => "users#show"
   get "first_advert" => "users#first_advert"
   get "my/details" => "users#edit", as: :my_details
-  resources :users do
+  resources :users, except: [:index, :destroy] do
     collection do
       get 'forgot_password'
       post 'forgot_password_change'
@@ -68,6 +95,10 @@ MySkiChalet::Application.routes.draw do
       post 'forgot_password_send'
     end
   end
+
+  resources :holiday_types, only: [:show], path: 'holidays'
+
+  get ':place_type/:place_slug/holidays/:holiday_type_slug' => 'holiday_type_brochures#show', as: :holiday_type_brochure
 
   resources :adverts do
     collection do
@@ -94,11 +125,6 @@ MySkiChalet::Application.routes.draw do
       get  'rent'
       get  'sale'
       get  'current_time'
-      get  'import_documentation'
-      get  'new_import'
-      post 'import'
-      get  'new_pericles_import'
-      post 'pericles_import'
 
       post 'check_interhome_booking'
       get 'update_day_of_month_select'
@@ -110,23 +136,32 @@ MySkiChalet::Application.routes.draw do
   get 'accommodation/:permalink' => 'properties#show_interhome', as: :interhome_property
   get 'holiday-rentals/:permalink' => 'properties#show_pv', as: :pv_property
 
-  resources :banner_prices
   resources :property_base_prices
+
+  post 'property_importer/import'
+  get  'property_importer/import_documentation'
+  get  'property_importer/new_import'
+  get  'property_importer/new_pericles_import'
+  post 'property_importer/pericles_import'
+
   resources :property_volume_discounts
-  resources :window_base_prices
 
   resources :directory_adverts do
-    post 'advertise_now', :on => :member
-    get  'click',         :on => :member
+    member do
+      post 'advertise_now'
+      post 'click'
+    end
   end
 
   resources :enquiries do
-    get 'current_time', :on => :collection
-    get 'my', :on => :collection
+    collection do
+      get 'current_time'
+      get 'my'
+    end
   end
 
   resources :email_a_friend_form do
-    post 'current_time', :on => :collection
+    post 'current_time', on: :collection
   end
   get "email_a_friend_form/1" => "email_a_friend_form#create"
 
@@ -158,11 +193,8 @@ MySkiChalet::Application.routes.draw do
     post 'worldpay_callback', on: :collection
   end
 
-  resources :coupons
-
-  resources :currencies do
-    get 'update_exchange_rates', on: :collection
-  end
+  resources :regions, only: [:show]
+  get 'regions/:id/how-to-get-there' => 'regions#how_to_get_there', as: :how_to_get_to_region
 
   resources :roles do
     get 'sales_pitch', on: :member
@@ -172,11 +204,11 @@ MySkiChalet::Application.routes.draw do
   resources :websites
   get 'cms/directory-price' => 'websites#edit_prices', as: :directory_price
 
-  resources :pages
+  resources :pages do
+    get 'copy', on: :member
+  end
 
   resources :alt_attributes
-
-  resources :footers
 
   resources :blog_posts do
     get 'feed', on: :collection
@@ -195,13 +227,15 @@ MySkiChalet::Application.routes.draw do
 
   get "contact" => "home#contact"
   get "privacy" => "home#privacy"
+  get 'style-guide' => 'home#style_guide', as: :style_guide
   get "terms" => "home#terms"
   get 'sitemap.xml' => 'application#sitemap', as:  'sitemap', :format => 'xml'
   get 'restart' => 'application#restart', as: 'restart'
   get 'precompile_assets' => 'application#precompile_assets', as: 'precompile_assets'
 
+  get 'home/country_options_for_quick_search' => 'home#country_options_for_quick_search'
   get 'home/resort_options_for_quick_search' => 'home#resort_options_for_quick_search'
-  root to: 'home#index'
+  root 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -240,6 +274,13 @@ MySkiChalet::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
+
+  # Example resource route with concerns:
+  #   concern :toggleable do
+  #     post 'toggle'
+  #   end
+  #   resources :posts, concerns: :toggleable
+  #   resources :photos, concerns: :toggleable
 
   # Example resource route within a namespace:
   #   namespace :admin do

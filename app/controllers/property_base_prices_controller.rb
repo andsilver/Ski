@@ -1,7 +1,8 @@
 class PropertyBasePricesController < ApplicationController
-  before_filter :admin_required
-  before_filter :no_browse_menu
-  before_filter :find_property_base_price, only: [:edit, :update, :destroy]
+  before_action :admin_required
+  before_action :find_property_base_price, only: [:edit, :update, :destroy]
+
+  layout 'admin'
 
   def index
     @property_base_prices = PropertyBasePrice.order('number_of_months')

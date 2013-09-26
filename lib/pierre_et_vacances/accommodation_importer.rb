@@ -1,5 +1,3 @@
-# coding: utf-8
-
 require 'xmlsimple'
 
 module PierreEtVacances
@@ -66,7 +64,7 @@ module PierreEtVacances
 
       accommodation.save
 
-      if ppr = PvPlaceResort.find_by_pv_place_code(accommodation.place_code)
+      if ppr = PvPlaceResort.find_by(pv_place_code: accommodation.place_code)
         create_property(accommodation, ppr.resort_id, accommodation.address_1)
       end
     end
@@ -97,7 +95,7 @@ module PierreEtVacances
     end
 
     def create_property(accommodation, resort_id, address)
-      property = Property.find_by_pv_accommodation_id(accommodation.id)
+      property = Property.find_by(pv_accommodation_id: accommodation.id)
       if property
         # delete the advert; we'll create a new one shortly
         property.current_advert.delete if property.current_advert
@@ -109,7 +107,8 @@ module PierreEtVacances
       property.user_id = @user.id
       property.resort_id = resort_id
       property.name = accommodation.name.blank? ? accommodation.code : accommodation.name
-      property.strapline = accommodation.accroche_liste[0..254]
+      property.strapline = accommodation.accroche_liste
+      property.tidy_name_and_strapline
       property.address = address
       property.latitude = accommodation.latitude
       property.longitude = accommodation.longitude

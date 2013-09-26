@@ -1,2 +1,4 @@
-*/10 * * * * ~/myskichalet/denormalize.sh
-0 3 * * * ~/myskichalet/interhome.sh
+# m h  dom mon dow   command
+*/30 * * * * /bin/bash -c 'export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)"; ~/railsapps/dev/myskichalet/denormalize.sh'
+0 3 * * * /bin/bash -c 'export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)"; ~/railsapps/dev/myskichalet/interhome.sh'
+0 1 * * * /bin/bash -c 'export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)"; ~/railsapps/dev/myskichalet/cache_unavailability.sh'

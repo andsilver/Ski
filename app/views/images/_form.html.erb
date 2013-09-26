@@ -36,7 +36,7 @@
 
 <ul class="thumbnails">
 <% @object.images.each do |i| %>
-  <li><div class="image_thumbnail"><%= link_to image_tag(i.url(64)), edit_image_path(i) %></div></li>
+  <li><div class="image_thumbnail"><%= link_to image_tag(i.url(64)), edit_image_path(i) %></div> <%= delete_button(i) %></li>
 <% end %>
 </ul>
 

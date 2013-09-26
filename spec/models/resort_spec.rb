@@ -5,16 +5,20 @@ describe Resort do
   it { should have_many(:interhome_place_resorts) }
   it { should respond_to(:summer_only?) }
 
-  it "has an SEO-friendly to_param" do
-    resort = Resort.new
-    resort.name = "Italian Alps"
-    resort.id = 2
-    resort.to_param.should == "2-italian-alps"
+  before do
+    # Accommodate leaky fixtures
+    HolidayType.destroy_all
+  end
+
+  describe '#to_param' do
+    it 'returns its slug' do
+      expect(Resort.new(slug: 'slug').to_param).to eq 'slug'
+    end
   end
 
   describe '#to_s' do
     it 'returns its name' do
-      Resort.new(name: 'Chamonix').to_s.should == 'Chamonix'
+      expect(Resort.new(name: 'Chamonix').to_s).to eq 'Chamonix'
     end
   end
 
@@ -22,13 +26,13 @@ describe Resort do
     it 'returns true if the page exists' do
       r = Resort.new
       r.stub(:page).and_return(Page.new)
-      r.has_page?('a-page').should be_true
+      expect(r.has_page?('a-page')).to be_true
     end
 
     it 'returns false if the page does not exist' do
       r = Resort.new
       r.stub(:page).and_return(nil)
-      r.has_page?('a-page').should be_false
+      expect(r.has_page?('a-page')).to be_false
     end
   end
 
@@ -36,16 +40,46 @@ describe Resort do
     it 'finds the page with the corresponding path' do
       r = Resort.new
       r.should_receive(:page_path).with('a-page').and_return('/path/to/a-page')
-      Page.should_receive(:find_by_path).with('/path/to/a-page')
+      Page.should_receive(:find_by).with(path: '/path/to/a-page')
       r.page('a-page')
     end
   end
 
   describe '#page_path' do
     it 'returns the corresponding page path' do
-      r = Resort.new
-      r.stub(:to_param).and_return('resort-param')
-      r.page_path('a-page').should == '/resorts/resort-param/a-page'
+      r = Resort.new(slug: 'a-resort')
+      expect(r.page_path('a-page')).to eq '/resorts/a-resort/a-page'
+    end
+  end
+
+  describe '#handle_slug_change' do
+    it 'updates the paths of affected pages' do
+      require 'securerandom'
+      slug_pre = SecureRandom.hex
+      slug_post = SecureRandom.hex
+      r = FactoryGirl.create(:resort, slug: slug_pre)
+      r.create_page('summer-holidays')
+      r.slug = slug_post
+      r.save
+      expect(r.page('summer-holidays').path).to match(slug_post)
+    end
+  end
+
+  describe '#ski?' do
+    it 'returns false when it has no ski-holidays holiday type' do
+      expect(resort_with_holiday_type('city-breaks').ski?).to be_false
+    end
+
+    it 'returns true when it has a ski-holidays holiday type' do
+      expect(resort_with_holiday_type('ski-holidays').ski?).to be_true
+    end
+
+    def resort_with_holiday_type(slug)
+      r = FactoryGirl.create(:resort)
+      ht = HolidayType.create!(name: 'X', slug: slug)
+      r.holiday_type_brochures.build(holiday_type: ht)
+      r.save
+      r
     end
   end
 end

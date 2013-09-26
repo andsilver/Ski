@@ -1,0 +1,11 @@
+= page_header 'View Payment'
+table.table.table-bordered.table-striped
+  tr
+    th When
+    td= @payment.created_at
+  tr
+    th Amount
+    td= @payment.amount
+  tr
+    th Service Provider
+    td= @payment.service_provider

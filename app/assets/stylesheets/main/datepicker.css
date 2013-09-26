@@ -73,9 +73,6 @@
   text-align: center;
   width: 20px;
   height: 20px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
   border: none;
 }
 .table-striped .datepicker table tr td,
@@ -300,15 +297,6 @@
   height: 16px;
 }
 
-.datepicker td, .datepicker th {
-  font-size: 16px;
-  line-height: 1.4em;
-}
-
 .datepicker td + td + td + td + td + td + td.day {
   font-weight: bold;
-}
-
-#arrival-datepicker input {
-  width: 179px;
 }

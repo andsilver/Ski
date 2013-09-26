@@ -8,8 +8,8 @@ module Interhome
     describe '#initialize' do
       it 'sets @sales_office and @days from its parameters' do
         ipi = PriceImporter.new(sales_office, days)
-        ipi.sales_office.should == sales_office
-        ipi.days.should == days
+        expect(ipi.sales_office).to eq sales_office
+        expect(ipi.days).to eq days
       end
     end
 
@@ -29,7 +29,7 @@ module Interhome
 
     describe '#import' do
       it 'deletes all Interhome prices for @days days' do
-        InterhomePrice.should_receive(:delete_all).with(:days => days)
+        InterhomePrice.should_receive(:delete_all).with(days: days)
         PriceImporter.new(sales_office, days).import([])
       end
 

@@ -41,7 +41,7 @@ describe Advert do
 
   describe ".new_for" do
     it "returns an Advert" do
-      Advert.new_for(Property.new({:user_id => 1})).is_a?(Advert).should be_true
+      expect(Advert.new_for(Property.new({user_id: 1})).is_a?(Advert)).to be_true
     end
   end
 
@@ -57,13 +57,13 @@ describe Advert do
     it 'returns true when expired_at is earlier than the current time' do
       a = valid_advert
       a.expires_at = Time.now - 1.minute
-      a.expired?.should be_true
+      expect(a.expired?).to be_true
     end
 
     it 'returns false expired_at is later than the current time' do
       a = valid_advert
       a.expires_at = Time.now + 1.minute
-      a.expired?.should be_false
+      expect(a.expired?).to be_false
     end
   end
 
@@ -75,26 +75,26 @@ describe Advert do
     it "returns :property when the object is a Property" do
       a = valid_advert
       a.property = Property.new
-      a.virtual_type.should eq(:property)
+      expect(a.virtual_type).to eq(:property)
     end
 
     it "returns :directory_advert when the object is a DirectoryAdvert but not a banner advert" do
       a = valid_advert
       a.directory_advert = DirectoryAdvert.new
       a.directory_advert.is_banner_advert = false
-      a.virtual_type.should eq(:directory_advert)
+      expect(a.virtual_type).to eq(:directory_advert)
     end
 
     it "returns :banner_advert when the object is a DirectoryAdvert and a banner advert" do
       a = valid_advert
       a.directory_advert = DirectoryAdvert.new
       a.directory_advert.is_banner_advert = true
-      a.virtual_type.should eq(:banner_advert)
+      expect(a.virtual_type).to eq(:banner_advert)
     end
 
     it "returns nil when none of the above apply" do
       a = valid_advert
-      a.virtual_type.should be_nil
+      expect(a.virtual_type).to be_nil
     end
   end
 
@@ -114,14 +114,14 @@ describe Advert do
         property.stub(:resort).and_return(resort)
         resort.stub(:name).and_return('Chamonix')
         property.stub(:basket_advert_type_description).and_return('Property')
-        a.to_s.should == "My Chalet (Chamonix Property)"
+        expect(a.to_s).to eq "My Chalet (Chamonix Property)"
       end
     end
 
     context "when it has no object" do
       it "returns to_s from its superclass" do
         a = valid_advert
-        a.to_s[0..8].should == '#<Advert:'
+        expect(a.to_s[0..8]).to eq '#<Advert:'
       end
     end
   end
@@ -135,14 +135,14 @@ describe Advert do
         a = valid_advert
         a.stub(:object).and_return(property)
         property.should_receive(:price).with(a, 1).and_return(price_of_property)
-        a.price(1).should equal(price_of_property)
+        expect(a.price(1)).to equal(price_of_property)
       end
     end
 
     context "when it has no object" do
       it "returns 0" do
         a = valid_advert
-        a.price(1).should equal(0)
+        expect(a.price(1)).to equal(0)
       end
     end
   end
@@ -155,7 +155,7 @@ describe Advert do
     it "increases the number of views by one" do
       a = valid_advert
       a.record_view
-      a.views.should equal(1)
+      expect(a.views).to equal(1)
     end
 
     it "saves itself" do
@@ -171,7 +171,7 @@ describe Advert do
       a.starts_at = Time.zone.now - (1.year + 1.day)
       a.months = 12
       a.expires_at = Time.zone.now - 1.day
-      a.old?.should be_true
+      expect(a.old?).to be_true
     end
 
     it 'returns false if the starts_at + number of months is in the future' do
@@ -179,7 +179,7 @@ describe Advert do
       a.starts_at = Time.zone.now - (1.day)
       a.months = 12
       a.expires_at = Time.zone.now + (1.year - 1.day)
-      a.old?.should be_false
+      expect(a.old?).to be_false
     end
 
     it 'returns false regardless of starts_at if expires_at is in the future' do
@@ -187,11 +187,11 @@ describe Advert do
       a.starts_at = Time.zone.now - (1.year + 1.day)
       a.months = 12
       a.expires_at = Time.zone.now + 1.hour
-      a.old?.should be_false
+      expect(a.old?).to be_false
     end
   end
 
   def valid_advert
-    Advert.new(:user_id => 1)
+    Advert.new(user_id: 1)
   end
 end

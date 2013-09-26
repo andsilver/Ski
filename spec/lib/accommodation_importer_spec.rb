@@ -48,8 +48,8 @@ describe AccommodationImporter do
     it 'finds the Euro currency and user by email' do
       i = AccommodationImporter.new
       i.stub(:user_email).and_return('somebody@example.org')
-      User.should_receive(:find_by_email).with('somebody@example.org').and_return(true)
-      Currency.should_receive(:find_by_code).with('EUR').and_return(true)
+      User.should_receive(:find_by).with(email: 'somebody@example.org').and_return(true)
+      Currency.should_receive(:find_by).with(code: 'EUR').and_return(true)
       i.setup
     end
   end

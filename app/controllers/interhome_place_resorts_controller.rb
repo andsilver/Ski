@@ -1,5 +1,5 @@
 class InterhomePlaceResortsController < ApplicationController
-  before_filter :admin_required
+  before_action :admin_required
 
   def create
     if InterhomePlaceResort.new(interhome_place_resort_params).save
@@ -7,18 +7,18 @@ class InterhomePlaceResortsController < ApplicationController
     else
       notice = 'Could not link that Interhome place to this resort.'
     end
-    redirect_to edit_resort_path(id: params[:interhome_place_resort][:resort_id]), notice: notice
+    redirect_to edit_admin_resort_path(id: params[:interhome_place_resort][:resort_id]), notice: notice
   end
 
   def destroy
     @interhome_place_resort = InterhomePlaceResort.find(params[:id])
     @interhome_place_resort.destroy
-    redirect_to edit_resort_path(id: @interhome_place_resort.resort_id), notice: 'Unlinked.'
+    redirect_to edit_admin_resort_path(id: @interhome_place_resort.resort_id), notice: 'Unlinked.'
   end
 
   protected
 
-  def interhome_place_resort_params
-    params.require(:interhome_place_resort).permit(:interhome_place_code, :resort_id)
-  end
+    def interhome_place_resort_params
+      params.require(:interhome_place_resort).permit(:interhome_place_code, :resort_id)
+    end
 end

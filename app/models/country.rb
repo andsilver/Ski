@@ -1,6 +1,11 @@
 class Country < ActiveRecord::Base
+  include Brochures
+  include RelatedPages
+
   belongs_to :image, dependent: :destroy
 
+  has_many :regions, -> { order 'name' }, inverse_of: :country
+  has_many :visible_regions, -> { where(visible: true).order('name') }, class_name: 'Region'
   has_many :resorts, -> { order 'name' }
   has_many :visible_resorts, -> { where(visible: true).order('name') }, class_name: 'Resort'
   has_many :orders
@@ -15,14 +20,30 @@ class Country < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_uniqueness_of :iso_3166_1_alpha_2
 
+  validates :slug, presence: true, uniqueness: true
+
   liquid_methods :name
 
   def to_param
-    "#{id}-#{name.parameterize}"
+    slug
   end
 
   def to_s
     name
+  end
+
+  def region_brochures(holiday_type_id)
+    child_brochures(holiday_type_id, Region)
+  end
+
+  def resort_brochures(holiday_type_id)
+    child_brochures(holiday_type_id, Resort)
+  end
+
+  # Returns a list of resort brochures for this country. Resorts that belong
+  # to regions are excluded.
+  def resort_without_region_brochures(holiday_type_id)
+    resort_brochures(holiday_type_id).where('resorts' => { region_id: nil })
   end
 
   def featured_properties(limit)
@@ -72,4 +93,28 @@ class Country < ActiveRecord::Base
   def sales_order_lines
     paid_order_lines.keep_if {|ol| ol.advert && ol.advert.property && ol.advert.property.for_sale?}
   end
+
+  def page_title(page_name)
+    key = 'countries_controller.titles.' + page_name.gsub('-', '_')
+    title = I18n.t(key, country: name, default: page_name)
+  end
+
+  def self.page_names
+    HolidayType.all.map { |ht| ht.slug }
+  end
+
+  def property_count_for_holiday_type(ht)
+    resort_brochures(ht.id).inject(0) {|sum, rb| sum + rb.brochurable.property_count}
+  end
+
+  private
+
+    def child_brochures(holiday_type_id, klass)
+      table = klass.to_s.tableize
+      HolidayTypeBrochure
+        .where(holiday_type_id: holiday_type_id, brochurable_type: klass.to_s)
+        .joins("INNER JOIN #{table} ON #{table}.id = holiday_type_brochures.brochurable_id")
+        .where(table => { country_id: id, visible: true })
+        .order("#{table}.name ASC")
+    end
 end

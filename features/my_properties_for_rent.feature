@@ -22,31 +22,6 @@ Feature: My Properties for Rent
     When I follow "Advertise a Property for Rent"
     Then I should be on the new property page
 
-  Scenario: Advertisers can create a new property for rent
-    Given I am signed in as a property owner
-    And I am on the new property page
-    When I fill in the following:
-      | Property name             | Chalet Des Sapins              |
-      | Strapline                 | Excellent facilities, sleeps 4 |
-      | Address                   | 74400                          |
-      | Weekly rental price from  | 1650                           |
-    And I select "< 800m" from "Distance from town centre"
-    And I select "< 500m" from "Nearest lift"
-    And I select "France > Chamonix" from "Resort"
-    And I select "4" from "Sleeping capacity"
-    And I select "2" from "Number of bedrooms"
-    And I select "Freeview" from "TV"
-    And I select "No parking" from "Parking"
-    And I check "Pets allowed"
-    And I check "Smoking allowed"
-    And I check "WiFi"
-    And I check "Disabled access"
-    And I check "Fully equipped kitchen"
-    And I press "Save"
-    Then my new property for rent has been saved
-    And I should be on the new image page
-    And I should see "Your property advert was successfully created."
-
   Scenario: Advertisers see error messages when property details are invalid
     Given I am signed in
     And I am on the new property page

@@ -1,7 +1,7 @@
 RentalPricesSearch = Struct.new(:resort_id, :sleeping_capacity)
 
 class RentalPricesController < ApplicationController
-  before_filter :no_browse_menu, :set_heading_and_title
+  before_action :set_heading_and_title
 
   def index
     @rental_prices_search = RentalPricesSearch.new

@@ -16,7 +16,7 @@ module PierreEtVacances
       it "returns the most recent summer property XML filename from the FTP server" do
         FTP.should_receive(:property_filename).with(:summer).and_return('EN_PV_AA_E13_GENERAL_11Feb2013.xml')
         i = PierreEtVacances::AccommodationImporter.new
-        i.xml_filename.should eq 'EN_PV_AA_E13_GENERAL_11Feb2013.xml'
+        expect(i.xml_filename).to eq 'EN_PV_AA_E13_GENERAL_11Feb2013.xml'
       end
     end
 

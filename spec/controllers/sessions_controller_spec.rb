@@ -33,19 +33,19 @@ describe SessionsController do
 
       it "sets session[:user]" do
         post :create
-        session[:user].should eq(user.id)
+        expect(session[:user]).to eq(user.id)
       end
 
       it "welcomes the user back" do
         post :create
-        flash[:notice].should =~ /Welcome back, /
+        expect(flash[:notice]).to match /Welcome back, /
       end
 
       context "when user is an admin" do
         it "redirects to the cms page" do
           role.stub(:admin?).and_return(true)
           post :create
-          response.should redirect_to cms_path
+          expect(response).to redirect_to cms_path
         end
       end
 
@@ -53,7 +53,7 @@ describe SessionsController do
         it "redirects to the advertise page" do
           role.stub(:admin?).and_return(false)
           post :create
-          response.should redirect_to advertise_path
+          expect(response).to redirect_to advertise_path
         end
       end
     end
@@ -65,12 +65,12 @@ describe SessionsController do
 
       it "informs the user" do
         post :create
-        flash[:notice].should =~ /Your sign in attempt failed/
+        expect(flash[:notice]).to match /Your sign in attempt failed/
       end
 
       it "redirects to the sign in page" do
         post :create
-        response.should redirect_to sign_in_path
+        expect(response).to redirect_to sign_in_path
       end
     end
   end
@@ -83,7 +83,7 @@ describe SessionsController do
 
     it "redirects to the home page" do
       delete :destroy
-      response.should redirect_to root_path
+      expect(response).to redirect_to root_path
     end
   end
 
@@ -92,7 +92,7 @@ describe SessionsController do
       controller.stub(:admin?).and_return(false)
       User.stub(:find).and_return(mock_model(User).as_null_object)
       get 'switch_user', user_id: '1'
-      response.should redirect_to sign_in_path
+      expect(response).to redirect_to sign_in_path
     end
   end
 end

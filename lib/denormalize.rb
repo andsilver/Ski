@@ -11,6 +11,7 @@ class Denormalize
         country_id = p.resort.country_id
         p.publicly_visible = publicly_visible
         p.country_id = country_id
+        p.region_id = p.resort.region_id
         p.normalise_prices
         p.late_availability = p.calculate_late_availability(LateAvailability.next_three_saturdays)
         p.save
@@ -37,6 +38,11 @@ class Denormalize
     Country.with_visible_resorts.each do |country|
       country.property_count = country.visible_resorts.inject(0) {|c, r| c + r.property_count}
       country.save
+    end
+
+    Region.all.each do |region|
+      region.property_count = region.visible_resorts.inject(0) {|sum, r| sum + r.property_count}
+      region.save
     end
   end
 

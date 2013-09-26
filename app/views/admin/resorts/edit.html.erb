@@ -1,0 +1,94 @@
+<%= content_for :title, t('.title') %>
+<%= page_header t('.title') %>
+
+<div class="row">
+  <div class="span6">
+    <div class="well">
+      <legend>Interhome Places</legend>
+      <%= form_for(@interhome_place_resort) do |f| %>
+      <div class="form-group">
+        <%= f.hidden_field :resort_id %>
+        <%= f.label :interhome_place_code, 'Interhome place' %>
+        <%= select("interhome_place_resort", "interhome_place_code",
+        InterhomePlace.order('full_name').collect {|ip| [ ip.full_name, ip.code ] },
+        {prompt: 'Select Interhome place'},
+        class: 'form-control') %>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'Link Interhome place to this resort', class: 'btn btn-default' %>
+      </div>
+      <% end %>
+      <% if @resort.interhome_place_resorts.empty? %>
+      <p>
+        There are no Interhome places represented by this resort.
+      </p>
+      <% else %>
+      <ul>
+        <% @resort.interhome_place_resorts.each do |ipr| %>
+        <li>
+          <%= ipr.name %>
+          <%= link_to 'Unlink', ipr, confirm: t('are_you_sure'), method: :delete, class: 'btn btn-danger' %>
+        </li>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="well">
+      <legend>Pierre et Vacances Places</legend>
+      <%= form_for(@pv_place_resort) do |f| %>
+      <%= f.hidden_field :resort_id %>
+      <%= f.label :pv_place_code, 'P&V place code' %>
+      <%= select("pv_place_resort", "pv_place_code",
+      pv_place_codes.collect {|p| [ p, p ] },
+      {prompt: 'Select P&V place'},
+      class: 'form-control') %>
+      <div>
+        <%= f.submit 'Link P&V place to this resort', class: 'btn btn-default' %>
+      </div>
+      <% end %>
+      <% if @resort.pv_place_resorts.empty? %>
+      <p>
+        There are no P&amp;V places represented by this resort.
+      </p>
+      <% else %>
+      <ul>
+        <% @resort.pv_place_resorts.each do |pr| %>
+        <li>
+          <%= pr.pv_place_code %>
+          <%= link_to 'Unlink', pr, confirm: t('are_you_sure'), method: :delete, class: 'btn btn-default' %>
+        </li>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <div class="well" id="additional-pages">
+      <legend>Additional Pages / Meta Information</legend>
+      <%
+      {
+        resort_path(@resort) + '' => 'Edit intro meta',
+        resort_path(@resort) + '/resort-guide' => 'Edit guide meta',
+        resort_path(@resort) + '/gallery' => 'Edit gallery meta',
+        resort_path(@resort) + '/piste_map' => 'Edit piste map meta',
+      }.each do |k,v|
+        if(p = Page.find_by(path: k)) %>
+        <%= link_to(v, edit_page_path(p), class: 'btn btn-default') %>
+        <%
+        end
+      end
+      %>
+      <% Resort.page_names.each do |n| %>
+      <%= link_to "Edit #{n} page", edit_page_admin_resort_path(@resort, page_name: n), class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="span6">
+    <%= render partial: 'admin/holiday_types/link', locals: { object: @resort } %>
+  </div>
+</div>
+
+<%= render 'form' %>
