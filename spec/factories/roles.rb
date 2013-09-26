@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :role do
-    name                           'General advertiser'
+    sequence(:name) { |n| "General advertiser #{n}" }
     admin                          false
     select_on_signup               true
     advertises_generally           true

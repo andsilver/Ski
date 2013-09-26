@@ -1,7 +1,6 @@
 class AdvertsController < ApplicationController
-  before_filter :no_browse_menu
-  before_filter :user_required
-  before_filter :prepare_basket, only: [:basket, :place_order]
+  before_action :user_required
+  before_action :prepare_basket, only: [:basket, :place_order]
 
   def my
     @window_groups = WindowGroups.new
@@ -23,8 +22,6 @@ class AdvertsController < ApplicationController
   end
 
   def basket
-    @heading_a = I18n.t('basket')
-    default_page_title(@heading_a)
   end
 
   def update_basket_contents
@@ -46,7 +43,7 @@ class AdvertsController < ApplicationController
 
   def place_order
     # Delete previous unpaid order, if any
-    if session[:order_id] && @order = Order.find_by_id(session[:order_id])
+    if session[:order_id] && @order = Order.find_by(id: session[:order_id])
       @order.destroy if @order.status == Order::WAITING_FOR_PAYMENT
     end
 
@@ -107,7 +104,7 @@ class AdvertsController < ApplicationController
   end
 
   def destroy
-    @advert = Advert.find_by_id_and_user_id_and_starts_at(params[:id], @current_user.id, nil)
+    @advert = Advert.find_by(id: params[:id], user_id: @current_user.id, starts_at: nil)
     if @advert
       @advert.destroy
       notice = t('notices.advert_removed')
@@ -116,7 +113,6 @@ class AdvertsController < ApplicationController
   end
 
   def buy_windows
-    @heading_a = render_to_string(partial: 'buy_windows_heading').html_safe
     @window_base_prices = WindowBasePrice.order('quantity')
   end
 
@@ -152,7 +148,7 @@ class AdvertsController < ApplicationController
   end
 
   def apply_coupon_code
-    coupon = Coupon.find_by_code(params[:code])
+    coupon = Coupon.find_by(code: params[:code])
     if coupon
       if coupon.expired?
         notice = I18n.t('coupons_controller.coupon_code_expired')
@@ -170,7 +166,7 @@ class AdvertsController < ApplicationController
   def update_durations
     params[:months].each_pair do |id,months|
       months = months.to_i
-      advert = Advert.find_by_id_and_user_id(id, @current_user.id)
+      advert = Advert.find_by(id: id, user_id: @current_user.id)
       if advert
         if advert.object.valid_months.include? months
           advert.months = months

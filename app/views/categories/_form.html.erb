@@ -11,11 +11,11 @@
 <% end %>
 
 <%= form_for @category do |f| %>
-<div class="field">
-  <%= f.label :name, t('name') %><br>
-  <%= f.text_field :name %>
+<div class="form-group">
+  <%= f.label :name, t('name') %>
+  <%= f.text_field :name, class: 'form-control' %>
 </div>
-<div class="field">
-  <%= f.submit t('save') %>
+<div class="form-actions">
+  <%= f.submit t('save'), class: 'btn btn-primary' %>
 </div>
 <% end %>

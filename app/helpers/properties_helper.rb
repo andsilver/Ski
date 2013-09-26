@@ -24,11 +24,26 @@ module PropertiesHelper
   def featured_properties(properties)
     html = ''
     unless properties.nil?
-      properties.each do |p|
+      properties[0..2].each do |p|
         html += render partial: 'properties/featured', locals: {p: p}
       end
     end
     raw html
+  end
+
+  def featured_property_price_message(p)
+    price = p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency)
+    key = p.for_sale? ? '.sale_price' : '.weekly_price_from'
+    t(key, price: price)
+  end
+
+  def featured_property_alt_attribute(p)
+    keys = {
+      Property::LISTING_TYPE_FOR_RENT => '.alt_for_rent',
+      Property::LISTING_TYPE_FOR_SALE => '.alt_for_sale',
+      Property::LISTING_TYPE_HOTEL => '.alt_hotel'
+    }
+    t(keys[p.listing_type], resort: p.resort)
   end
 
   def distance_options
@@ -104,5 +119,17 @@ module PropertiesHelper
   def additional_service_matched?(code, value)
     return false unless params[:additional_service]
     return params[:additional_service][code] == value.to_s
+  end
+
+  def area_select(name, target)
+    select_tag(
+      name,
+      '<option value="m">square metres</option><option value="f">square feet</option>'.html_safe,
+      { data: { target: target }, class: 'area-unit' }
+    )    
+  end
+
+  def sort_method
+    params[:sort_method]
   end
 end

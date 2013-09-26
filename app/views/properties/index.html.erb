@@ -1,29 +1,26 @@
-<%= render 'cms/menu' %>
-<div class="cms">
-  <h1>Properties</h1>
-  <%= will_paginate @properties %>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>User</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
+<%= page_header 'Properties' %>
+<%= will_paginate @properties %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>User</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
 <% @properties.each do |property| -%>
-      <tr>
-        <td><%= property.id %></td>
-        <td><%= property.name %></td>
-        <td><%= property.user.name if property.user %></td>
-        <td>
-          <%= link_to 'Edit', edit_property_path(property) %>
-          <%= link_to 'View', property_path(property) %>
-          <%= link_to 'Delete', property_path(property), method: :delete, confirm: t('are_you_sure') %>
-        </td>
-      </tr>
+    <tr>
+      <td><%= property.id %></td>
+      <td><%= property.name %></td>
+      <td><%= property.user.name if property.user %></td>
+      <td>
+        <%= edit_button(property) %>
+        <%= view_button(property) %>
+        <%= delete_button(property) %>
+      </td>
+    </tr>
 <% end -%>
-    </tbody>
-  </table>
-</div>
+  </tbody>
+</table>

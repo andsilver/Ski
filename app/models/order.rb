@@ -15,7 +15,7 @@ class Order < ActiveRecord::Base
   PAYMENT_NOT_REQUIRED  = 4
 
   def self.from_session session
-    session[:order_id] ? find_by_id(session[:order_id]) : nil
+    session[:order_id] ? find_by(id: session[:order_id]) : nil
   end
 
   def status_description
@@ -40,7 +40,7 @@ class Order < ActiveRecord::Base
     (4..10).each do |length|
       self.order_number = Time.now.strftime("%Y%m%d-")
       length.times {self.order_number += alpha[rand 36]}
-      existing_order = Order.find_by_order_number(order_number)
+      existing_order = Order.find_by(order_number: order_number)
       return if existing_order.nil?
     end
   end

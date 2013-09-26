@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module ApplicationHelper
   def flash_notice
     notice = ''
@@ -94,18 +92,83 @@ module ApplicationHelper
     object,
     data: { confirm: 'Are you sure?' },
     method: :delete,
-    class: 'btn btn-danger'
+    class: 'btn btn-danger',
+    title: "Delete #{object_title(object)}"
   end
 
   def edit_button(object)
     link_to '<i class="icon-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),
-    class: 'btn'
+    class: 'btn btn-default',
+    title: "Edit #{object_title(object)}"
+  end
+
+  def new_button(type)
+    link_to '<i class="icon-plus"></i> New'.html_safe,
+    new_polymorphic_path(type),
+    class: 'btn btn-default',
+    title: "New #{object_title(type)}"
   end
 
   def view_button(object)
     link_to '<i class="icon-eye-open"></i> View'.html_safe,
     object,
-    class: 'btn btn-mini'
+    class: 'btn btn-default'
   end
+
+  def copy_button(object)
+    link_to '<i class="icon-plus-sign"></i> Copy'.html_safe,
+    polymorphic_path(object, {action: :copy}),
+    data: { method: :get},
+    class: 'btn btn-default', title: "Copy #{object_title(object)}"
+  end
+
+  def editor(form, attribute, mode)
+    textarea_id = "##{form.object_name}_#{attribute}"
+    editor_id = "editor_#{attribute}"
+    form_classes = ".new_#{form.object_name}, .edit_#{form.object_name}"
+    form.text_area(attribute, class: 'editor-textarea') +
+    content_tag('div', form.object.send(attribute), id: editor_id, class: 'editor') +
+    javascript_tag(
+      "var #{editor_id} = ace.edit('#{editor_id}');
+  #{editor_id}.setTheme('ace/theme/chrome');
+  #{editor_id}.getSession().setMode('ace/mode/#{mode}');
+  #{editor_id}.getSession().setTabSize(2);
+  #{editor_id}.getSession().setUseSoftTabs(true);
+  $('#{form_classes}').submit(function() {
+    $('#{textarea_id}').val(#{editor_id}.getSession().getValue());
+  });
+  "
+    )
+  end
+
+  def link_to_with_count(text, object, count)
+    link_to(raw(
+      h(text.to_s) + content_tag(:span, "(#{count})")
+    ), object)
+  end
+
+  def nav_link(path, title, link_text)
+    opts = current_page?(path) ? {class: 'active'} : {}
+
+    content_tag(:li, link_to(h(link_text), path, title: title), opts)
+  end
+
+  def lt(template, params)
+    raw Liquid::Template.parse(template).render(params)
+  end
+
+  def breadcrumbs_and_heading(breadcrumbs, heading)
+    content_tag(:ul,
+      breadcrumbs.map {|k,v| content_tag(:li, link_to(k,v)) }.join.html_safe +
+      content_tag(:li, heading, class: 'active'),
+      class: 'breadcrumb'
+    )
+  end
+
+  protected
+
+    def object_title(object)
+      object.instance_of?(Array) ? object.last : object
+    end
 end

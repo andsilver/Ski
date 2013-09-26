@@ -1,6 +1,7 @@
 class CmsController < ApplicationController
-  before_filter :admin_required
-  before_filter :no_browse_menu
+  before_action :admin_required
+
+  layout 'admin'
 
   def index
     @heading_a = t('cms_controller.cms')

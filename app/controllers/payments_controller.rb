@@ -1,9 +1,8 @@
 class PaymentsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, only: [:worldpay_callback]
+  skip_before_action :verify_authenticity_token, only: [:worldpay_callback]
 
-  before_filter :admin_required, only: [:index, :show]
-
-  before_filter :no_browse_menu
+  before_action :admin_required, only: [:index, :show]
+  layout 'admin', only: [:index, :show]
 
   FAILURE_MESSAGE = 'Some information was incorrect and your payment may not have gone through properly. Please contact us.'
 
@@ -69,7 +68,7 @@ class PaymentsController < ApplicationController
   protected
 
   def complete_order
-    order = Order.find_by_order_number(@payment.cart_id)
+    order = Order.find_by(order_number: @payment.cart_id)
     raise "Order not found for #{@payment.cart_id}" unless order
     update_order order
   end

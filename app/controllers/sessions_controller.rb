@@ -1,10 +1,7 @@
 class SessionsController < ApplicationController
-  before_filter :no_browse_menu
-  before_filter :admin_required, only: [:switch_user]
+  before_action :admin_required, only: [:switch_user]
 
   def new
-    default_page_title t('sign_in')
-    @heading_a = t('sign_in')
   end
 
   def create

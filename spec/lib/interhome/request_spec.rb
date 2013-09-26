@@ -6,7 +6,7 @@ module Interhome
       it 'stores and makes accessible the details of the request' do
         details = { foo: 'bar' }
         ir = Request.new(details)
-        ir.details.should == details
+        expect(ir.details).to eq details
       end
     end
   end

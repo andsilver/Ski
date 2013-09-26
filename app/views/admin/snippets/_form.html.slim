@@ -1,0 +1,25 @@
+- if @snippet.errors.any?
+  .alert.alert-error
+    h2
+      =' pluralize(@snippet.errors.count, "error")
+      | prohibited this snippet from being saved:
+    ul
+      - @snippet.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for([:admin, @snippet]) do |form|
+
+  .form-group
+    = form.label :locale
+    = form.text_field :locale, class: 'form-control', placeholder: 'en'
+
+  .form-group
+    = form.label :name
+    = form.text_field :name, class: 'form-control'
+
+  .form-group
+    = form.label :snippet
+    = editor(form, :snippet, :html)
+
+  .form-actions
+    = form.submit class: 'btn btn-primary'

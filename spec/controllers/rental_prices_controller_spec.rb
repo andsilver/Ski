@@ -11,7 +11,7 @@ describe RentalPricesController do
     context 'when params[:rental_prices_search] is missing' do
       it 'redirects to index' do
         get 'results'
-        response.should redirect_to(action: 'index')
+        expect(response).to redirect_to(action: 'index')
       end
     end
   end

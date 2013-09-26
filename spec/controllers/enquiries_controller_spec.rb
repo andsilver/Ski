@@ -13,7 +13,7 @@ describe EnquiriesController do
 
       before do
         session[:user] = 1
-        User.stub(:find_by_id).and_return(current_user)
+        User.stub(:find_by).and_return(current_user)
       end
 
       it "finds enquiries belonging to the current user" do
@@ -25,14 +25,14 @@ describe EnquiriesController do
         enquiries = [Enquiry.new]
         current_user.stub(:enquiries).and_return(enquiries)
         get :my
-        assigns(:enquiries).should eq(enquiries)
+        expect(assigns(:enquiries)).to eq(enquiries)
       end
     end
 
     context "when not signed in" do
       it "redirects to the sign in page" do
         get :my
-        response.should redirect_to(sign_in_path)
+        expect(response).to redirect_to(sign_in_path)
       end
     end
   end
@@ -48,7 +48,7 @@ describe EnquiriesController do
 
     it "finds a property" do
       Property.should_receive(:find).with("1")
-      post :create, :enquiry => { :property_id => "1" }
+      post :create, enquiry: { property_id: '1' }
     end
   end
 
@@ -63,7 +63,7 @@ describe EnquiriesController do
 
       it "sets session[:enquiry_token] with a secretly hashed current time" do
         post :current_time
-        session[:enquiry_token].should eq(Digest::SHA1.hexdigest("--#{time_to_i}--#{MySkiChalet::Application.config.secret_token}--"))
+        expect(session[:enquiry_token]).to eq(Digest::SHA1.hexdigest("--#{time_to_i}--#{MySkiChalet::Application.config.secret_token}--"))
       end
     end
   end

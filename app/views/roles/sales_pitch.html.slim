@@ -1,0 +1,5 @@
+- title = t('.title', role: t(@role.localisation_key))
+= content_for :title, title
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home_page') => root_path}, title)
+
+= raw @role.sales_pitch

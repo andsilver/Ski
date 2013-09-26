@@ -1,0 +1,20 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+p= t('.help_text')
+
+p= new_button([:admin, Snippet])
+
+- unless @snippets.empty?
+  table#snippets.table.table-bordered.table-striped
+    thead
+      tr
+        th Name
+        th Actions
+    tbody
+      - @snippets.each do |snippet|
+        tr
+          td= "#{snippet.name} (#{snippet.locale})"
+          td
+            =' edit_button([:admin, snippet])
+            = delete_button([:admin, snippet])

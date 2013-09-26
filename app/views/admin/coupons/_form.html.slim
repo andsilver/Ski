@@ -1,0 +1,31 @@
+- if @coupon.errors.any?
+  .alert.alert-error
+    h2
+      =' pluralize(@coupon.errors.count, "error")
+      | prohibited this promotion code from being saved:
+
+    ul
+      - @coupon.errors.full_messages.each do |msg|
+        li= msg
+
+p Promotion codes apply to property, banner and directory adverts but do not
+  | apply to windows. To discount windows you will need to use the user price
+  | override feature.
+
+
+= form_for [:admin, @coupon] do |f|
+  = f.label :code
+  = f.text_field :code
+
+  = f.label :number_of_adverts
+  = f.number_field :number_of_adverts
+
+  = f.label :percentage_off
+  = f.number_field :percentage_off
+  | %
+
+  = f.label :expires_on
+  = f.date_select :expires_on, include_blank: true, order: [:day, :month, :year]
+
+  .form-actions
+    = f.submit class: 'btn btn-primary'

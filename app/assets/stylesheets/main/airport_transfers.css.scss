@@ -8,8 +8,8 @@
     top: 20px;
     left: 20px;
     width: 600px;
-    height: 200px;
-    padding: 0 20px;
+    height: 250px;
+    padding: 10px 20px;
   }
 
   .search-panel {
@@ -28,7 +28,7 @@
   .search {
     color: #fff;
 
-    label {
+    label, legend {
       color: #fff;
     }
   }

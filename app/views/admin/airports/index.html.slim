@@ -1,0 +1,23 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+p= new_button [:admin, Airport]
+
+- if @airports.empty?
+  p There are no airports set up yet.
+- else
+  table.table.table-bordered.table-striped
+    thead
+      tr
+        th Name
+        th Code
+        th Country
+        th Delete
+
+    tbody
+      - @airports.each do |airport|
+        tr
+          td= link_to airport.name, edit_admin_airport_path(airport)
+          td= airport.code
+          td= airport.country.name
+          td= delete_button([:admin, airport])

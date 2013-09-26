@@ -3,5 +3,9 @@ input#code {
 }
 
 #coupon_box {
- background: #f3f3f3;
+  background: #ddd;
+  color: #000;
+  input {
+   float: left;
+  }
 }

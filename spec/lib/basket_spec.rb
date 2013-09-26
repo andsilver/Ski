@@ -5,7 +5,7 @@ describe Basket do
   describe '#initialize' do
     it 'sets @lines to an empty array' do
       b = Basket.new(user: FactoryGirl.build(:user))
-      b.lines.should eq []
+      expect(b.lines).to eq []
     end
   end
 
@@ -43,7 +43,7 @@ describe Basket do
 
       it 'creates a price override describing the override amount' do
         b.apply_price_override
-        b.lines.first.order_description.should eq 'Price override €10'
+        expect(b.lines.first.order_description).to eq 'Price override €10'
       end
     end
   end
@@ -60,7 +60,7 @@ describe Basket do
       l3.price = -2
 
       b.lines = [l1, l2, l3]
-      b.subtotal.should eq 5
+      expect(b.subtotal).to eq 5
     end
   end
 end

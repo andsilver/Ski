@@ -1,0 +1,33 @@
+table
+  tr
+    th colspan="2"= "#{t('resorts_controller.detail.key_information')} (#{@resort.area_type})"
+  tr
+    td= t('resorts_controller.facts.altitude')
+    td= "#{@resort.altitude_m}m"
+  tr
+    td= t('resorts_controller.facts.top_lift')
+    td= "#{@resort.top_lift_m}m"
+  - unless @resort.piste_length_km.nil?
+    tr
+      td= t('resorts_controller.facts.piste_length')
+      td= @resort.piste_length_km
+  - unless @resort.ski_area_acre.nil?
+    tr
+      td= t('resorts_controller.facts.ski_area')
+      td= @resort.ski_area_acre
+  tr
+    td= t('resorts_controller.facts.family')
+    td= star_rating(@resort.family)
+  tr
+    td= t('resorts_controller.facts.beginner')
+    td= star_rating(@resort.beginner)
+  tr
+    td= t('resorts_controller.facts.intermediate')
+    td= star_rating(@resort.intermediate)
+  tr
+    td= t('resorts_controller.facts.expert')
+    td= star_rating(@resort.expert)
+  - unless (ad = @resort.airport_distances.first).nil?
+    tr
+      td= t('resorts_controller.facts.nearest_airport')
+      td= "#{ad.airport.name} (#{ad.distance_km}km)"

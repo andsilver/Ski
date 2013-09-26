@@ -1,9 +1,8 @@
 class FavouritesController < ApplicationController
-  before_filter :unregistered_user_required
+  before_action :unregistered_user_required
 
   def index
     @properties = @unregistered_user.favourite_properties
-    @heading_a = t('favourites.favourites')
   end
 
   def create
@@ -15,7 +14,7 @@ class FavouritesController < ApplicationController
   end
 
   def destroy
-    @favourite = Favourite.find_by_id(params[:id])
+    @favourite = Favourite.find_by(id: params[:id])
     if @favourite
       if @favourite.unregistered_user.id == @unregistered_user.id
         @favourite.destroy

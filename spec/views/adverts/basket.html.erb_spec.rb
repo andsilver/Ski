@@ -18,7 +18,7 @@ describe 'adverts/basket' do
 
     it 'shows an Empty Basket button' do
       render
-      rendered.should have_selector('input[name=empty_basket]')
+      expect(rendered).to have_selector('input[name=empty_basket]')
     end
   end
 
@@ -27,7 +27,7 @@ describe 'adverts/basket' do
 
     it 'says basket is empty' do
       render
-      rendered.should have_content(t('adverts_controller.basket_empty'))
+      expect(rendered).to have_content(t('adverts.basket.empty'))
     end
   end
 end

@@ -7,8 +7,9 @@ require "action_mailer/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
-# Assets should be precompiled for production (so we don't need the gems loaded then)
-Bundler.require(*Rails.groups(assets: %w(development test)))
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(:default, Rails.env)
 
 module MySkiChalet
   class Application < Rails::Application
@@ -25,6 +26,6 @@ module MySkiChalet
     # config.i18n.default_locale = :de
 
     config.autoload_paths += Dir["#{config.root}/lib"]
-    config.assets.precompile += %w( application-home.css application-main.css application-print.css )
+    config.assets.precompile += %w( application-admin.css application-home.css application-main.css application-print.css )
   end
 end

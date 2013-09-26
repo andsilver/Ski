@@ -1,0 +1,16 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+p= new_button([:admin, HolidayType])
+
+table.table.table-bordered.table-striped
+  tr
+    th colspan="1" Name
+    th colspan="2" Slug
+  - @holiday_types.each do |holiday_type|
+    tr
+      td= holiday_type.name
+      td= holiday_type.slug
+      td
+        =' edit_button([:admin, holiday_type])
+        = delete_button([:admin, holiday_type])

@@ -1,0 +1,26 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+p= new_button [:admin, Country]
+
+- if @countries.empty?
+  p There are no countries set up yet.
+- else
+  table.table.table-bordered.table-condensed
+    thead
+      tr
+        th Name
+        th ISO 3166-1 Alpha 2
+        th Popular Billing Country?
+        th In the EU?
+        th Actions
+    tbody
+      - @countries.each do |country|
+        tr
+          td= country
+          td= country.iso_3166_1_alpha_2
+          td= tick country.popular_billing_country?
+          td= tick country.in_eu?
+          td
+            =' edit_button [:admin, country]
+            = delete_button country

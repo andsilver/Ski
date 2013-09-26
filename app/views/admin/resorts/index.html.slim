@@ -1,0 +1,14 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+p= new_button([:admin, Resort])
+
+table.table.table-bordered.table-striped
+  - @countries.each do |country|
+    tr
+      th colspan="2"= country.name
+    - country.resorts.each do |resort|
+      tr
+        td= link_to resort.name, resort
+        td
+         =' edit_button([:admin, resort])
+         = delete_button([:admin, resort])

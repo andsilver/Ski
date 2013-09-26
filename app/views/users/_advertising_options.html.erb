@@ -1,3 +1,11 @@
+<%= content_for :links_and_search do %>
+<section>
+  <h2>Advertising Options</h2>
+  <ul>
+<%= user_action(my_adverts_path, t('my_adverts'), t('users.my_adverts.description')) %>
+<%= user_action(my_details_path, t('users.my_details.my_details'), t('users.my_details.description')) %>
+<%= user_action(receipts_orders_path, t('receipts'), t('users.receipts.description')) %>
+<%= user_action(my_enquiries_path, t('my_enquiries'), t('users.my_enquiries.description')) %>
 <% if @current_user.advertises_through_windows? %>
 <%= user_action(buy_windows_adverts_path,
   t('adverts_controller.buy_advertising_windows'),
@@ -27,4 +35,8 @@
 <%= user_action(new_directory_advert_path,
   t('users.new_directory_advert.new_directory_advert'),
   t('users.new_directory_advert.description')) %>
+<% end %>
+  </ul>
+</section>
+
 <% end %>

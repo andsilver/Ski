@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1><%= link_to 'CMS', cms_path %> &rarr; Window Base Prices</h1>
+</div>
+<p>
+  <%= link_to 'New', new_window_base_price_path, class: 'btn' %>
+</p>
+<% if @window_base_prices.empty? %>
+<p>There are no window base prices set up yet.</p>
+<% else %>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @window_base_prices.each do |window_base_price| %>
+    <tr>
+      <td class="numeric"><%= link_to window_base_price.quantity, edit_window_base_price_path(window_base_price) %></td>
+      <td class="numeric price"><%= window_base_price.price %> EUR</td>
+      <td><%= link_to 'Delete', window_base_price, confirm: t('are_you_sure'), method: :delete, class: 'btn btn-danger' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

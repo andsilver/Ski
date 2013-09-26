@@ -22,7 +22,7 @@ describe LateAvailabilityController do
       LateAvailability::Finder.stub(:new).and_return(finder)
       finder.stub(:find_featured).and_return(featured)
       get 'index'
-      assigns(:featured_properties).should eq(featured)
+      expect(assigns(:featured_properties)).to eq(featured)
     end
   end
 end

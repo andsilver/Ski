@@ -1,16 +1,14 @@
-          <li>
-            <a href="<%= property_path(p) %>" class="thumbnail">
-              <div>
-                <% unless p.image.nil? %>
-                <%= image_tag(p.image.url(144)) %>
-                <% end %>
-              </div>
-              <p class="resort-name"><%= p.resort %></p>
-<% if p.for_rent? -%>
-              <p class="sleeps">Sleeps <%= p.sleeping_capacity %></p>
-<% end -%>
-              <p class="price"><%= p.for_sale? ? t('sale_price') : t('properties.weekly_price_from') %><br>
-                <span><%= p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency) %></span>
-              </p>
-            </a>
-          </li>
+<a href="<%= property_path(p) %>" class="layout-element size-1of3" title="<%= p.name %>">
+  <% unless p.image.nil? %>
+  <%= image_tag(p.image.url(258), alt: featured_property_alt_attribute(p)) %>
+  <% end %>
+  <p class="header-title"><%= featured_property_price_message(p) %></p>
+  <div class="header-text-cont">
+    <p class="header-text">
+      <%= p.resort %>
+      <% if p.for_rent? -%>
+        <span class="sleeps">&middot; Sleeps <%= p.sleeping_capacity %></span>
+      <% end -%>
+      </p>
+  </div>
+</a>

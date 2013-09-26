@@ -1,0 +1,23 @@
+= page_header 'Currencies'
+p
+  = link_to 'New Currency', new_currency_path, class: 'btn'
+  = link_to 'Update Exchange Rates', update_exchange_rates_currencies_path, class: 'btn'
+- if @currencies.empty?
+  p There are no currencies set up yet.
+- else
+  table.table.table-bordered.table-striped
+    thead
+      tr
+        th Name
+        th Unit
+        th Unit before number?
+        th Code
+        th In Euros
+    tbody
+      - @currencies.each do |currency|
+        tr
+          td= link_to currency.name, edit_currency_path(currency)
+          td= currency.unit
+          td= tick_cross(currency.pre)
+          td= currency.code
+          td.numeric= currency.in_euros

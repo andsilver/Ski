@@ -1,11 +1,15 @@
 class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   helper_method :admin?, :signed_in?
 
-  before_filter :initialize_website, :set_locale, :initialize_user, :page_defaults
+  before_action :initialize_website, :set_locale, :initialize_user, :page_defaults
 
-  before_filter :admin_required, only: [:restart, :precompile_assets]
+  before_action :admin_required, only: [:restart, :precompile_assets]
+
+  rescue_from ActionView::MissingTemplate, with: :render_html
 
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, with: :render_error
@@ -86,35 +90,31 @@ class ApplicationController < ActionController::Base
 
   def initialize_user
     @current_user = current_user
-    @unregistered_user = UnregisteredUser.find_by_id(session[:unregistered_user])
+    @unregistered_user = UnregisteredUser.find_by(id: session[:unregistered_user])
   end
 
   def current_user
-    User.find_by_id(session[:user])
+    User.find_by(id: session[:user])
   end
 
   def page_defaults
-    @browse_menu = true
     @footer_box = ''
-    page = Page.find_by_path(request.path)
+    page = Page.find_by(path: request.path)
     if page
       @page_title = page.title
       @meta_description = page.description
       @page_content = page.content
       @footer_box = page.footer.content unless page.footer.nil?
       @banner_advert_html = page.banner_advert_html unless page.banner_advert_html.blank?
+      @page_sidebar_html = page.sidebar_html(@lang)
     end
 
     use_default_footer if @footer_box.blank?
   end
 
   def use_default_footer
-    footer = Footer.find_by_name('Default')
+    footer = Footer.find_by(name: 'Default')
     @footer_box = footer.content unless footer.nil?
-  end
-
-  def no_browse_menu
-    @browse_menu = false
   end
 
   def user_required
@@ -181,4 +181,14 @@ class ApplicationController < ActionController::Base
   def owned_or_admin?(object)
     admin? || (signed_in? && object.user_id == current_user.id)
   end
+
+  private
+
+    def render_html(exception)
+      if request.format != 'html'
+        render formats: [:html]
+      else
+        raise exception
+      end
+    end
 end

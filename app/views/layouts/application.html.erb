@@ -2,132 +2,161 @@
 <html class="no-js" lang="<%= @lang %>">
 <head>
   <meta charset="utf-8">
-  <%= render "shared/page_meta" %>
+  <title>
+    <% if !@page_title.blank? %>
+    <%= @page_title %> -
+    <% elsif content_for? :title %>
+    <%= yield :title %> -
+    <% end  %>
+    My Chalet Finder
+  </title>
+<% unless @meta_description.blank? -%>
+  <meta name="description" content="<%= @meta_description %>">
+<% end -%>
   <meta name="alexaVerifyID" content="0IVBlNZ4wkIe-rLrsQkQNVUS9to">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <%= stylesheet_link_tag    "application-main", media: "screen", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag    "application-print", media: 'print', "data-turbolinks-track" => true %>
   <link rel="stylesheet" href="/extra.css">
+  <!-- TradeDoubler site verification 1980597 -->
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <script src="/bootstrap/js/bootstrap.min.js"></script>
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyCdlkrru2ofKjgTYPgyL7Mhgd6--0Ka8ok&amp;sensor=false"></script>
   <%= csrf_meta_tags %>
-  <%= render 'shared/google' %>
-  <%= render 'shared/typekit' %>
-  <script>
-  $(function() {
-    $('#header_images').cycle({
-      fx: 'fade',
-      speed: 1500,
-      timeout: 3000
-    });
+  <meta name="google-site-verification" content="<%= t('google.site_verification') %>">
+<script>
+$(function() {
+  pageLoad();
+});
+
+$(document).bind('page:load', function() {
+  pageLoad();
+});
+
+function pageLoad() {
+  cycleHeaderImages();
+  animateMarker();
+  quickSearch();
+  galleryZoom();
+}
+
+function cycleHeaderImages() {
+  $('#header-images').cycle({
+    fx: 'fade',
+    speed: 1500,
+    timeout: 3000
   });
-  </script>
+}
+
+function animateMarker() {
+  $("#marker").delay(1000).animate({"top":"45px"}, 500, "easeOutBounce");
+}
+
+function galleryZoom() {
+  $('#gallery_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
+}
+</script>
 </head>
-<body class="<%= 'browse_menu ' if @browse_menu %><%= @body_classes %>">
-<div id="wrapper">
-<%= render "shared/main_menu" %>
+<body class="<%= @body_classes %>">
+<div id="wrapper" class="<%= "#{yield :theme}-theme" if content_for? :theme %>">
 <header role="banner">
-  <a href="/" title="Home" id="logo"><img src="/images/my-chalet-finder-logo-3.png" alt="<%= alt_attribute('/images/my-chalet-finder-logo-3.png', 'My Chalet Finder Ski Accommodation') %>"></a>
-  <%= render "shared/social" %>
+  <nav id="session">
+    <ul>
+      <li><%= link_to '<i class="icon-heart"></i> '.html_safe + t('favourites.favourites'), favourites_path, rel: 'nofollow' %></li>
+<% if signed_in? -%>
+<% if @current_user.has_adverts_in_basket? -%>
+      <li><a href="<%= basket_path %>"><%= '<i class="icon-shopping-cart"></i> '.html_safe + t('basket') %> <span class="count"><%= @current_user.adverts_in_basket.count %></span></a><i class="icon-caret-right"></i></li>
+<% elsif session[:windows_in_basket] -%>
+      <li><a href="<%= basket_path %>"><%= '<i class="icon-shopping-cart"></i> '.html_safe + t('basket') %> <span class="count">1</span></a><i class="icon-caret-right"></i></li>
+<% end -%>
+      <li><%= link_to '<i class="icon-user"></i> '.html_safe + t('account'), advertise_path %><i class="icon-caret-right"></i></li>
+      <li><%= link_to '<i class="icon-signout"></i> '.html_safe + t('sign_out'), sign_out_path %><i class="icon-caret-right"></i></li>
+<% else -%>
+      <li><%= link_to '<i class="icon-signin"></i> '.html_safe + t('sign_in'), sign_in_path %><i class="icon-caret-right"></i></li>
+      <li><%= link_to '<i class="icon-user"></i> '.html_safe + t('sign_up'), sign_up_path, id: 'sign-up' %><i class="icon-caret-right"></i></li>
+<% end -%>
+<% if admin? -%>
+      <li><%= link_to '<i class="icon-edit"></i> '.html_safe + 'CMS', cms_path %><i class="icon-caret-right"></i></li>
+<% end -%>
+    </ul>
+  </nav>
+  <img src="/images/marker.svg" alt="Marker" id="marker">
+  <a href="<%= root_path %>" title="Home" id="logo"><%= image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation')) %></a>
+  <nav id="main-menu" role="navigation">
+    <ul>
+      <li><a>&nbsp;</a></li>
+<% HolidayType.on_menu.each do |ht| -%>
+      <li class="mega-parent <%= ht.slug %>">
+        <%= link_to ht.name, ht %>
+        <div class="mega-menu">
+          <%= raw ht.mega_menu_html %>
+        </div>
+      </li>
+<% end -%>
+      <li><a>&nbsp;</a></li>
+    </ul>
+  </nav>
 </header>
-<div id="header_images">
-  <% header_image_urls.each do |url| -%>
-  <img src="<%= url %>" alt="<%= alt_attribute(url, 'My Chalet Finder Ski Accommodation') %>">
-  <% end %>
+<%= render 'layouts/breadcrumbs_and_heading' %>
+<div id="links-and-search">
+  <%= yield :links_and_search %>
+  <%= render 'layouts/region_nav' if @region %>
+  <%= render 'layouts/resort_nav' if @resort %>
+  <%= raw sidebar_html %>
 </div>
-<div id="column_headings">
-
-<% if @browse_menu
-  @country = @resort.country unless @resort.nil?
-%>
-<nav>
-  <div class="btn-group">
-    <button class="btn"<%= raw " onclick=\"window.location = '#{country_path(@country)}'\"" if @country %>><%= @country ? @country.name : 'Choose Country' %></button>
-    <button class="btn dropdown-toggle" data-toggle="dropdown">
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <% Country.with_visible_resorts.each do |c| %>
-      <li><a href="<%= country_path(c) %>"><%= c.name %> (<%= c.property_count %>)</a></li>
-      <% end %>
-    </ul>
+<div id="content" role="main" class="<%= 'wide' unless content_for? :advertising %>">
+  <%= flash_notice %>
+<% unless header_image_urls.empty? -%>
+  <div id="header-images">
+    <% header_image_urls.each do |url| -%>
+    <img src="<%= url %>" alt="<%= alt_attribute(url, 'My Chalet Finder Ski Accommodation') %>">
+    <% end %>
   </div>
-<% if @country %>
-  <div class="btn-group">
-    <button class="btn"<%= raw " onclick=\"window.location = '#{resort_path(@resort)}'\"" if @resort %>><%= @resort ? @resort.name : 'Choose Resort' %></button>
-    <button class="btn dropdown-toggle" data-toggle="dropdown">
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <% @country.visible_resorts.each do |r| %>
-      <li><a href="<%= resort_path(r) %>"><%= r.name %> (<%= r.property_count %>)</a></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-<% if @resort %>
-  <ul class="nav nav-pills" id="resort-nav">
-    <li <%= 'class="active"'.html_safe if current_page?(resort_path(@resort)) %>><%=
-      link_to t('resort_options.resort_info'), resort_path(@resort), title: "#{@resort.name} resort information" %></li>
-<% unless @resort.for_rent_count == 0 -%>
-    <li <%= 'class="active"'.html_safe if current_page?(resort_property_rent_path(@resort)) %>><a
-      title="Property for rent in <%= @resort.name %>"
-      href="<%= resort_property_rent_path(@resort) %>"><%=
-      t('views.layouts.application.resort_nav.for_rent') %> (<%= @resort.for_rent_count %>)</a></li>
 <% end -%>
-<% unless @resort.for_sale_count == 0 -%>
-    <li <%= 'class="active"'.html_safe if current_page?(resort_property_sale_path(@resort)) %>><a
-      title="Property for sale in <%= @resort.name %>"
-      href="<%= resort_property_sale_path(@resort) %>"><%=
-      t('for_sale') %> (<%= @resort.for_sale_count %>)</a></li>
-<% end -%>
-<% unless @resort.new_development_count == 0 -%>
-    <li <%= 'class="active"'.html_safe if current_page?(resort_property_new_developments_path(@resort)) %>><a
-      title="New property developments in <%= @resort.name %>"
-      href="<%= resort_property_new_developments_path(@resort) %>"><%=
-      t('resort_options.new_developments') %> (<%= @resort.new_development_count %>)</a></li>
-<% end -%>
-<% unless @resort.hotel_count == 0 -%>
-    <li <%= 'class="active"'.html_safe if current_page?(resort_property_hotels_path(@resort)) %>><a
-      title="Hotels in <%= @resort.name %>"
-      href="<%= resort_property_hotels_path(@resort) %>"><%=
-      t('resort_options.hotels') %> (<%= @resort.hotel_count %>)</a></li>
-<% end -%>
-<% unless @resort.directory_advert_count == 0 -%>
-    <li <%= 'class="active"'.html_safe if current_page?(directory_resort_path(@resort)) %>><a
-      href="<%= directory_resort_path(@resort) %>"
-      title="<%= @resort.name %> directory"><%= t('directory') %> (<%= @resort.directory_advert_count %>)</a></li>
-<% end -%>
-<% unless @resort.summer_only? -%>
-    <li <%= 'class="active"'.html_safe if current_page?(piste_map_resort_path(@resort)) %>><%= link_to I18n.t('piste_map'), piste_map_resort_path(@resort), title: "#{@resort.name} piste maps" %></li>
-<% end -%>
-    <li <%= 'class="active"'.html_safe if current_page?(gallery_resort_path(@resort)) %>><%= link_to t('gallery'), gallery_resort_path(@resort), title: "Photos of #{@resort.name}" %></li>
-<% unless @resort.summer_only? -%>
-    <li <%= 'class="active"'.html_safe if current_page?(summer_holidays_path(@resort)) %>><%= link_to t('resorts_controller.summer_holidays'), summer_holidays_path(@resort), title: "Summer holidays in #{@resort.name}" %></li>
-<% end -%>
-<% if @resort.has_page?('how-to-get-there') -%>
-    <li <%= 'class="active"'.html_safe if current_page?(how_to_get_there_path(@resort)) %>><%= link_to 'How to Get There', how_to_get_there_path(@resort) %></li>
-<% end -%>
-  </ul>
-<% end %>
-</nav>
-<% end %>
-
-
-
-
-  <h1><%= @heading_a %></h1>
+  <%= yield %>
 </div>
-
-<div id="content" role="main">
-<%= flash_notice %>
-<%= yield %>
+<% if content_for? :advertising %>
+<div id="advertising">
+  <%= yield :advertising %>
 </div>
+<% end %>
 
-<%= render 'shared/footer' %>
+  <footer role="contentinfo">
+    <%= render 'shared/footer_box' %>
+    <p class="locales">
+      <a href="http://en.mychaletfinder.com<%= request.env['REQUEST_URI'] %>">English</a>
+      |
+      <a href="http://fr.mychaletfinder.com<%= request.env['REQUEST_URI'] %>">Français</a>
+      |
+      <a href="http://de.mychaletfinder.com<%= request.env['REQUEST_URI'] %>">Deutsch</a>
+      |
+      <a href="http://it.mychaletfinder.com<%= request.env['REQUEST_URI'] %>">Italiano</a>
+    </p>
+    <hr>
+    <p id="copyright">
+      &copy;<%= Time.now.year %> My Holiday Home Ventures Limited
+    </p>
+  </footer>
 </div><!--#wrapper-->
+<% if Rails.env == 'production' -%>
+<script>
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '<%= t('google.web_property_id') %>']);
+  _gaq.push(['_trackPageview']);
+<% unless @advertiser_web_property_id.blank? -%>
+  _gaq.push(['_setAccount', '<%= @advertiser_web_property_id %>']);
+  _gaq.push(['_setDomainName', 'mychaletfinder.com']);
+  _gaq.push(['_trackPageview']);
+<% end -%>
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<% end -%>
 </body>
 </html>

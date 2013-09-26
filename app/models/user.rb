@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :adverts_in_basket, -> { where starts_at: nil }, class_name: 'Advert'
 
   # TODO: these should probably exclude expired windows
-  has_many :windows, -> { where window: true }, class_name: 'Advert', order: "expires_at DESC"
+  has_many :windows, -> { where(window: true).order('expires_at DESC') }, class_name: 'Advert'
 
   has_many :properties, dependent: :destroy
   has_many :properties_for_rent, -> { where listing_type: Property::LISTING_TYPE_FOR_RENT }, class_name: 'Property'
@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(email, pass)
-    user = find_by_email(email)
+    user = find_by(email: email)
     user && user.authenticated?(pass) ? user : nil
   end
 

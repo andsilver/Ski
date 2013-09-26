@@ -12,8 +12,8 @@ describe Image do
           file_data.stub(:original_filename).and_return('apple.banana.JPEG')
           i = Image.new
           i.image = file_data
-          i.determine_filename.should eq('image.jpeg')
-          i.filename.should eq('image.jpeg')
+          expect(i.determine_filename).to eq('image.jpeg')
+          expect(i.filename).to eq('image.jpeg')
         end
       end
 
@@ -22,8 +22,8 @@ describe Image do
           file_data.stub(:respond_to?).with('original_filename').and_return(false)
           i = Image.new
           i.image = file_data
-          i.determine_filename.should eq('image.jpg')
-          i.filename.should eq('image.jpg')
+          expect(i.determine_filename).to eq('image.jpg')
+          expect(i.filename).to eq('image.jpg')
         end
       end
     end
@@ -32,84 +32,55 @@ describe Image do
       it "sets its filename to image.jpg" do
         i = Image.new
         i.source_url = 'http://www.example.org/image.png'
-        i.determine_filename.should eq('image.jpg')
-        i.filename.should eq('image.jpg')
+        expect(i.determine_filename).to eq('image.jpg')
+        expect(i.filename).to eq('image.jpg')
       end
     end
 
     context "when neither file data nor source_url supplied" do
       it "raises an exception" do
         i = Image.new
-        lambda {i.determine_filename}.should raise_error(RuntimeError)
+        expect {i.determine_filename}.to raise_error(RuntimeError)
       end
     end
   end
 
   describe "#url" do
-    it "downloads the image from the source URL if needed" do
-      i = Image.new
-      i.should_receive(:download_from_source_if_needed)
-      i.url
+    it "returns the source URL if it's a remote image" do
+      i = Image.new(source_url: 'http://www.example.org/image.jpg')
+      i.stub(:remote_image?).and_return(true)
+      expect(i.url).to eq 'http://www.example.org/image.jpg'
     end
   end
 
   describe "#sized_url" do
-    it "downloads the image from the source URL if needed" do
-      i = Image.new
+    it "returns the source URL if it's a remote image" do
+      i = Image.new(source_url: 'http://www.example.org/image.jpg')
       i.stub(:filename).and_return('image.jpg')
-      i.should_receive(:download_from_source_if_needed)
-      i.sized_url(100, :longest_side)
+      i.stub(:remote_image?).and_return(true)
+      expect(i.sized_url(100, :longest_side)).to eq 'http://www.example.org/image.jpg'
     end
   end
 
-  describe "#download_from_source_if_needed" do
-    context "when the image does not exist and source_url is set" do
-      it "downloads the image from source" do
-        FileTest.stub(:exists?).and_return(false)
-        i = Image.new
-        i.source_url = 'http://example.org'
-        i.should_receive(:download_from_source)
-        i.download_from_source_if_needed
-      end
-    end
-
-    context "when the image exists" do
-      it "does nothing" do
-        FileTest.stub(:exists?).and_return(true)
-        i = Image.new
-        i.should_not_receive(:download_from_source)
-        i.download_from_source_if_needed
-      end
-    end
-
-    context "when the source_url is not set" do
-      it "does nothing" do
-        i = Image.new
-        i.should_not_receive(:download_from_source)
-        i.download_from_source_if_needed
-      end
-    end
-  end
-
-  describe "#needs_downloading?" do
+  describe "#remote_image?" do
     it "returns true if the file doesn't exist and the source URL is not blank" do
       i = Image.new
       i.source_url = 'http://www.example.org/image.jpeg'
       FileTest.stub(:exists?).and_return(false)
-      i.needs_downloading?.should be_true
+      expect(i.remote_image?).to be_true
     end
 
     it "returns false if the file exists" do
       i = Image.new
       i.source_url = 'http://www.example.org/image.jpeg'
       FileTest.stub(:exists?).and_return(true)
-      i.needs_downloading?.should be_false
+      expect(i.remote_image?).to be_false
     end
 
     it "returns false if the source URL is blank" do
       i = Image.new
       FileTest.stub(:exists?).and_return(true)
-      i.needs_downloading?.should be_false
+      expect(i.remote_image?).to be_false
     end
   end
 end

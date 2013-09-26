@@ -1,11 +1,9 @@
 AirportTransferSearch = Struct.new(:airport_id, :resort_id)
 
 class AirportTransfersController < ApplicationController
-  before_filter :no_browse_menu
-  before_filter :user_required, except: [:find, :results, :skilifts]
+  before_action :user_required, except: [:find, :results, :skilifts]
 
   def index
-    default_page_title(@heading_a = t('airport_transfers_controller.titles.index'))
     @airport_transfers = @current_user.airport_transfers
   end
 
@@ -29,14 +27,10 @@ class AirportTransfersController < ApplicationController
   end
 
   def find
-    @heading_a = 'Find Airport Transfers'
-    default_page_title(@heading_a)
     @airport_transfer_search = AirportTransferSearch.new
   end
 
   def results
-    @heading_a = 'Find Airport Transfers'
-    default_page_title(@heading_a)
     airport_id, resort_id = params[:airport_transfer_search][:airport_id],
       params[:airport_transfer_search][:resort_id]
 

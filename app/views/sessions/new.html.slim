@@ -1,0 +1,25 @@
+= content_for :title, t('sign_in')
+
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home_page') => root_path}, t('sign_in'))
+
+h1= t('sign_in')
+
+.clear-fix
+  .size-1of2.layout-element
+    .well
+      h2= t 'users.sign_in_to_access_your_account'
+      = form_tag action: 'create' do
+        .form-group
+          label for="email"= t('email')
+          = text_field_tag :email, params[:email], class: 'form-control'
+        .form-group
+          label for="password"= t('password')
+          = password_field_tag :password, params[:password], class: 'form-control'
+        p= submit_tag t('sign_in'), class: 'btn btn-primary'
+      p#forgot_your_password
+        = link_to t('users.forgot_your_password'), {controller: 'users', action: 'forgot_password'}, class: 'btn btn-small btn-default'
+
+  .size-1of2.layout-element
+    .well
+      h2= t 'users.no_account_yet'
+      p= link_to t('users.register_to_advertise'), sign_up_path

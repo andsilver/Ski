@@ -35,6 +35,17 @@ de:
     remove_from_window: 'Remove From Window'
     renew: 'Renew'
   advertise: 'Advertise'
+  adverts:
+    basket:
+      empty: Your basket is empty.
+      total: Summe
+    my:
+      days_remaining: Days Remaining
+      expires_on: Expires On
+      number_free: Number Free
+      number_in_use: Number in Use
+      purchased_on: Purchased On
+      total: Summe
   adverts_controller:
     add_to_basket: In den Einkaufswagen
     basket:
@@ -44,22 +55,15 @@ de:
       followed_by_11_payments_of: 'Gefolgt von 11 in Höhe von'
       remove: 'Löschen'
       twelve_monthly_payments: 'Zwölf monatliche Zahlungen'
-    basket_empty: Your basket is empty.
     buy_advertising_windows: Buy Advertising Windows
     by_pressing_place_order_you_agree_to_the_terms_and_conditions: 'By pressing Place Order you acknowledge that you have read, understood and agree to be bound by the terms and conditions.'
     coupon_code_applied: 'You have the following promotion code applied'
-    days_remaining: Days Remaining
-    expires_on: Expires On
     no_coupon_code_applied: 'You have no promotion code applied.'
     notices:
       basket_emptied: Your basket has been emptied.
       basket_updated: Basket updated.
-    number_free: Number Free
-    number_in_use: Number in Use
     place_order: Place Order
-    purchased_on: Purchased On
     subtotal: Subtotal
-    total: Total
     vat: VAT
     windows: Windows
     zero_rated: 'Zero Rated'
@@ -77,7 +81,6 @@ de:
   business: Business
   business_details: Business Details
   categories_controller:
-    categories: 'Categories'
     not_found: 'That category does not exist.'
   category: 'Category'
   category_names:
@@ -125,24 +128,32 @@ de:
   countries:
     country: 'Country'
     select_country: 'Select Country'
+  countries_controller:
+    titles:
+      lakes_and_mountains: 'Lakes and Mountains in %{country}'
   county: State / county
   currencies_controller:
     exchange_rates_updated: 'Exchange rates updated.'
   date:
     formats:
       short: "%d %b %Y"
-  delete: 'Delete'
+  delete: 'Löschen'
   description: 'Description'
   details: 'Details'
   directory: Directory
-  directory_adverts: 'Directory Adverts'
+  directory_adverts:
+    form:
+      resorts: 'Resorts'
+    new:
+      heading: 'New Directory Advert'
+      title: 'New Directory Advert'
   directory_adverts_controller:
     added_to_basket: 'Your directory advert has been added to your basket.'
     created: "Your directory advert was successfully created."
     saved: "Your directory advert was successfully updated."
   directory_and_banner_adverts: 'Directory and Banner Adverts'
   duration: Duration
-  edit: Edit
+  edit: Bearbeiten
   email: 'Email'
   email_a_friend_form_controller:
     confirmation: "We've sent your friend an email. Thanks for sharing My Chalet Finder."
@@ -162,7 +173,9 @@ de:
   favourites:
     add: Add to Favourites
     added: Property has been added to your favourites.
-    favourites: Favourites
+    index:
+      heading: 'Favourites'
+      no_favourites: 'You have not added any favourite properties yet.'
     remove: Remove from Favourites
     removed: Property has been removed from your favourites.
   featured_accommodation: 'Empfohlene Unterkunft'
@@ -177,10 +190,27 @@ de:
   google:
     site_verification: lqULaLa4Fubz6zh09WjcMwZHUGPb7SnTz38rxtkcRHY
     web_property_id: UA-22451896-4
-  home: Home
-  home_controller:
-    news_flash: 'Informationen'
-    resort_guide: 'Skigebiet Informationen'
+  holiday_type_brochures:
+    show:
+      heading: '%{holiday_type} in %{place}'
+      regions: Regions
+      resorts: Resorts
+  holiday_types:
+    show:
+      title: '%{holiday_type}'
+  home:
+    quick_search:
+      choose_country: 'Choose Country'
+      choose_country_first: 'Choose Country First ↑'
+      choose_holiday: 'Choose Holiday'
+      choose_holiday_first: 'Choose Holiday First ↑'
+      choose_resort: 'Choose Resort'
+      heading: 'Accommodation Search'
+      search: 'Search'
+    terms:
+      heading: 'Terms and Conditions'
+      title: 'Terms and Conditions'
+  home_page: 'Home'
   hotels: Hotels
   images_controller:
     banner_image: 'Banner Image'
@@ -263,9 +293,24 @@ de:
       winterwalkingpath: Winter walking path
       wlan: WLAN
   last_name: Last name
+  late_availability:
+    index:
+      action: 'Search for last minute accommodation for your ski holidays or summer vacation.'
+      choose_country: 'Choose Country'
+      choose_country_first: 'Choose Country First ↑'
+      choose_resort: 'Choose Resort'
+      featured_properties: 'Featured Last Minute Properties'
+      form_heading: 'Last Minute Search'
+      heading: 'Late Availability'
+      intro: 'Still not booked your accommodation for your ski holidays? Use our search tool that will help you find what you are looking for quickly.  Our chalet rentals, apartments to rent and other holiday rental accommodation lists are updated every day so you can be assured you will only see what is currently available.'
   late_availability_controller:
     titles:
       index: 'Late Availability - Last Minute Ski Accommodation'
+  layouts:
+    region_nav:
+      how_to_get_there: 'How to Get There'
+    resort_nav:
+      resort_guide: 'Skigebiet Informationen'
   main_image: 'Main image'
   map: Map
   mobile: Mobile
@@ -285,6 +330,14 @@ de:
     sign_in_required: Please sign in or sign up first.
   number_of_bathrooms: 'Number of bathrooms'
   number_of_bedrooms: 'Number of bedrooms'
+  orders:
+    receipts:
+      amount: 'Amount'
+      heading: 'Receipts'
+      invoice_pdf: 'Invoice (PDF)'
+      no_receipts: 'You have no receipts.'
+      order_number: 'Order number'
+      when_placed: 'When placed'
   orders_controller:
     no_order_found: "We couldn't find an order for you."
     receipt_not_found: "We couldn't find that order."
@@ -344,8 +397,19 @@ de:
     saved: "Your property advert details have been saved."
   properties:
     accommodation_type: Accommodation type
+    browse:
+      distance_from_lift: 'Distance from lift'
     choose_a_window: Choose a Window
+    contact:
+      heading: 'Enquire about %{property}'
+      title: 'Enquire about %{property} in %{resort}, %{country}'
     email_a_friend: Email a friend
+    featured:
+      alt_for_rent: '%{resort} accommodation chalets for rent in %{resort} apartments to rent in %{resort} holiday homes to rent in %{resort}'
+      alt_for_sale: '%{resort} accommodation chalets for sale in %{resort} apartments to buy in %{resort} holiday homes to buy in %{resort}'
+      alt_hotel: '%{resort} accommodation - hotels in %{resort}'
+      sale_price: 'Sale price %{price}'
+      weekly_price_from: 'From %{price} weekly'
     features:
       balcony: Balcony
       bed_and_breakfast: 'Bed & breakfast'
@@ -398,6 +462,9 @@ de:
       wifi: WiFi
     no_matching_properties: There are no properties advertised at this resort that match your search criteria.
     place_in_window: 'Place in Window'
+    property_summary:
+      nearest_lift: 'Nearest lift'
+      sleeps: Sleeps
     select_resort: Select resort
     star_rating: Sterne
     strapline_example: Strapline Example
@@ -410,14 +477,22 @@ de:
       new: New Property
       new_developments: "New Property Developments in %{resort}"
       show: "%{property_name} - Chalet / Apartment %{rent_or_sale} in %{resort}, %{country}"
-    weekly_price_from: 'Weekly price from'
   receipts: Receipts
+  regions:
+    how_to_get_there:
+      heading: 'How to Get There'
+    show:
+      title: '%{region} Region Information'
+      heading: 'Region Information'
   registration: Registration
   resort: 'Resort'
-  resorts: 'Resorts'
+  resorts:
+    how_to_get_there:
+      heading: 'How to Get There'
+    summer_holidays:
+      heading: 'Summer Holidays'
   resorts_controller:
     detail:
-      an_introduction_to: "An Introduction to %{resort}"
       how_to_get_there: "How to Get There"
       insider_view: "%{resort}: The MyChaletFinder.com Insider View"
       key_information: "Key Information"
@@ -425,8 +500,6 @@ de:
       local_area: Local Area
       more_detail: "More Detail"
       owning_a_property_in: "%{resort} Accommodation"
-      skiing_in: "Skiing in %{resort}"
-      visiting: "Visiting %{resort}"
       whole_area: Whole Area
     facts:
       altitude: Altitude
@@ -498,6 +571,8 @@ de:
     property_developers: Property developers
     property_owner: Property owner
     property_owners: Property owners
+    sales_pitch:
+      title: '%{role} Information'
   sale_price: 'Sale price'
   save: 'Save'
   sessions_controller:
@@ -568,7 +643,6 @@ de:
       description: "Advertise your business within our resort pages."
       new_directory_advert: New Directory/Banner Advert
     no_account_yet: "Don’t have an account yet?"
-    or: Or
     password_changed: 'Your password has been changed'
     receipts:
       description: 'View and print off receipts for orders that you have placed here.'

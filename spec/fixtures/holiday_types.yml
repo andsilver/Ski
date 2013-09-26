@@ -1,0 +1,15 @@
+ski_holidays:
+  name: 'Ski Holidays'
+  slug: ski-holidays
+
+lakes_and_mountains:
+  name: 'Lakes & Mountains'
+  slug: lakes-and-mountains
+
+summer_villas:
+  name: 'Summer Villas'
+  slug: summer-villas
+
+city_breaks:
+  name: 'City Breaks'
+  slug: city-breaks

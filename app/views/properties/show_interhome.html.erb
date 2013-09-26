@@ -1,68 +1,32 @@
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@breadcrumbs, @heading) %>
+
+<%= content_for :theme, @property.theme %>
+
+<%= render partial: 'google_map',
+    locals: { lat: @accommodation.geodata_lat, lng: @accommodation.geodata_lng } %>
 <script>
-  var map;
-  var marker;
-
-  function showMap() {
-    <% unless @accommodation.geodata_lat.empty? %>
-    var latlng = new google.maps.LatLng(<%= @accommodation.geodata_lat %>, <%= @accommodation.geodata_lng %>);
-    var myOptions = {
-      zoom: 16,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    map = new google.maps.Map(document.getElementById("map_canvas"),
-      myOptions);
-    marker = new google.maps.Marker({
-      position: latlng,
-      map: map,
-      title:"<%= @property.name %>"
-    });
-    <% end %>
-  }
-
   $(function() {
-    $('#property_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
-
-    $('#location').click(function() {
-      $('#location-modal').modal('show');
-      // prevent the default action, e.g., following a link
-      return false;
-    });
-
-    $('#location-modal').on('shown', function() {
-      google.maps.event.trigger(map, 'resize');
-      map.setCenter(marker.getPosition());
-    });
+    $('#property-thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
 
     $('.availability-Q').click(function() {
       var win = window.open('<%= contact_property_path(@property) %>', '_blank');
       win.focus();
     });
-
-    showMap();
-	});
+  });
 </script>
-<div id="content-with-side-banners">
 <div id="property">
 <%= render partial: 'user_logo', locals: { property: @property } %>
-<div class="thumbnail abta">
-  <img src="/images/abta.png" alt="ABTA Member">
-  The tour operator<br>
-  (Interhome) is an<br>
-  ABTA Member<br>
-  ABTA No. L7890
-</div>
 <h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %>
 <% unless @property.interhome_accommodation.interhome_place.nil? -%>
   (<%= @property.interhome_accommodation.interhome_place.name %>)
 <% end -%>
 </h1>
-<p class="property_id"><%= I18n.t('property_id') %>: <span><%= @property.id %></span></p>
+<%= render partial: 'price_and_id', locals: { property: @property } %>
 
 <% if fav = favourite_for_property(@property) %>
 <%= form_for(fav, method: :delete) do |f| %>
 <p>
-  <%= f.submit t('favourites.remove'), class: 'btn btn-large' %>
+  <%= f.submit t('favourites.remove'), class: 'btn btn-large btn-default' %>
   <%= render 'location_button' %>
 </p>
 <% end %>
@@ -71,7 +35,7 @@
 <%= form_for @favourite do |f| %>
 <%= f.hidden_field :property_id %>
 <p>
-  <button type="submit" class="btn btn-primary btn-large"><i class='icon-heart icon-white'></i>
+  <button type="submit" class="btn btn-primary btn-large btn-property"><i class='icon-heart icon-white'></i>
   <%= t('favourites.add') %></button>
   <%= render 'location_button' %>
 </p>
@@ -79,7 +43,7 @@
 <% end %>
 
 <% unless @property.image.nil? %>
-<p class="thumbnails" id="property_thumbnails">
+<p class="thumbnails" id="property-thumbnails">
 <% @property.images.each do |i| %>
 <a href="#pic_<%= i.id %>"><%= image_tag(i.sized_url(135, :height), alt: "Photo of #{@property.name}") %></a>
 <% end %>
@@ -128,7 +92,4 @@ features = @accommodation.features.split(',')
 <%= clear %>
 
 </div><!--#property-->
-</div>
-<div id="side-banners">
-  <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>
-</div>
+<%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>

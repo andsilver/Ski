@@ -1,79 +1,29 @@
 class CountriesController < ApplicationController
-  before_filter :admin_required, except: [:show]
-  before_filter :find_country, only: [:edit, :update, :show, :destroy]
-  before_filter :protect_country, only: [:show]
-  before_filter :no_browse_menu, except: [:show]
-
-  def index
-    @countries = Country.order('name')
-  end
-
-  def new
-    @country = Country.new
-  end
-
-  def create
-    @country = Country.new(country_params)
-
-    if @country.save
-      set_image_mode
-      redirect_to(new_image_path, notice: t('notices.created'))
-    else
-      render 'new'
-    end
-  end
-
-  def edit
-    set_image_mode
-  end
-
-  def update
-    if @country.update_attributes(country_params)
-      redirect_to(edit_country_path(@country), notice: t('notices.saved'))
-    else
-      render 'edit'
-    end
-  end
+  before_action :set_country, only: [:show]
+  before_action :protect_country, only: [:show]
 
   def show
-    @heading_a = @country.name
-    default_page_title(@heading_a)
+    default_page_title(@country.name)
     @banner_advert_html ||= @country.banner_advert_html
 
-    @featured_properties = @country.featured_properties(12)
-  end
-
-  def destroy
-    @errors = []
-    @errors << "This country has orders associated with it. " unless @country.orders.empty?
-    @errors << "This country has order lines associated with it. " unless @country.order_lines.empty?
-    @errors << "This country has resorts associated with it. " unless @country.resorts.empty?
-    @errors << "This country has users associated with it. " unless @country.users.empty?
-    if @errors.empty?
-      #@country.destroy
-      redirect_to countries_path, notice: t('notices.deleted')
-    else
-      redirect_to countries_path, notice: "This country could not be deleted because: " +
-        @errors.join
-    end
+    @featured_properties = @country.featured_properties(9)
   end
 
   protected
 
-  def find_country
-    @country = Country.find(params[:id])
-  end
+    def set_country
+      @country = Country.find_by(slug: params[:id])
 
-  def protect_country
-    not_found if @country.visible_resorts.empty? and !admin?
-  end
+      # Handle legacy country URLs
+      if !@country
+        @country = Country.find_by(id: params[:id])
+        redirect_to(@country, status: 301) and return if @country
+      end
 
-  def set_image_mode
-    session[:image_mode] = 'country'
-    session[:country_id] = @country.id
-  end
+      not_found unless @country
+    end
 
-  def country_params
-    params.require(:country).permit(:banner_advert_html, :image_id, :in_eu, :info, :iso_3166_1_alpha_2, :name, :popular_billing_country)
-  end
+    def protect_country
+      not_found if @country.visible_resorts.empty? and !admin?
+    end
 end

@@ -6,88 +6,59 @@ describe ResortsController do
 
   before do
     Website.stub(:first).and_return(website)
-    controller.stub(:admin?).and_return(true)
+    controller.stub(:admin?).and_return(false)
   end
 
-  describe "GET index" do
-    let(:countries) { mock(Array) }
-
+  shared_examples 'a featured properties finder' do |action, params|
     before do
-      Country.stub(:with_resorts).and_return(countries)
+      Resort.stub(:find_by).and_return(mock_model(Resort, visible: true).as_null_object)
     end
 
-    it "finds all countries with resorts" do
-      Country.should_receive(:with_resorts)
-      get :index
-    end
-
-    it "assigns @countries" do
-      get :index
-      assigns[:countries].should equal(countries)
+    it 'assigns @featured_properties' do
+      get action, params
+      expect(assigns(:featured_properties)).to_not be_nil
     end
   end
 
-  describe 'GET edit' do
-    let(:interhome_place_resort) { InterhomePlaceResort.new }
-    let(:pv_place_resort) { PvPlaceResort.new }
+  describe 'GET show' do
+    it_behaves_like 'a featured properties finder', :show, id: 'chamonix'
 
-    it 'finds a resort' do
-      Resort.should_receive(:find_by_id).with('1')
-      get 'edit', :id => '1'
+    it 'finds a resort by its slug' do
+      Resort.should_receive(:find_by).with(slug: 'chamonix').and_return(Resort.new)
+      get :show, id: 'chamonix'
     end
 
-    context 'when resort is found' do
+    context 'when resort not found by slug' do
       before do
-        Resort.stub(:find_by_id).and_return(resort)
+        Resort.stub(:find_by).with(slug: 'chamonix').and_return nil
       end
 
-      it 'creates a new Interhome place resort and sets its resort_id' do
-        InterhomePlaceResort.should_receive(:new).with(:resort_id => resort.id)
-        get 'edit', :id => '1'
+      it 'finds a resort by its ID' do
+        Resort.should_receive(:find_by).with(id: 'chamonix')
+        get :show, id: :chamonix
       end
 
-      it 'assigns(@interhome_place_resort)' do
-        InterhomePlaceResort.stub(:new).and_return(interhome_place_resort)
-        get 'edit', :id => '1'
-        assigns(:interhome_place_resort).should == interhome_place_resort
-      end
+      context 'when resort found by its ID' do
+        before do
+          Resort.should_receive(:find_by).with(id: 'chamonix').and_return resort
+        end
 
-      it 'creates a new P&V place resort and sets its resort_id' do
-        PvPlaceResort.should_receive(:new).with(resort_id: resort.id)
-        get 'edit', id: '1'
+        it 'permanently redirects to that resort' do
+          get :show, id: 'chamonix'
+          expect(response).to redirect_to resort
+          expect(response.status).to eq 301
+        end
       end
+    end
 
-      it 'assigns(@pv_place_resort)' do
-        PvPlaceResort.stub(:new).and_return(pv_place_resort)
-        get 'edit', id: '1'
-        assigns(:pv_place_resort).should == pv_place_resort
-      end
+    it 'assigns @resort' do
+      Resort.stub(:find_by).and_return(resort)
+      get :show, id: 'chamonix'
+      expect(assigns[:resort]).to equal(resort)
     end
   end
 
-  describe "GET show" do
-    it "finds a resort" do
-      Resort.should_receive(:find_by_id).with("1")
-      get :show, :id => "1"
-    end
-
-    it "assigns @resort" do
-      Resort.stub(:find_by_id).and_return(resort)
-      get :show, :id => "1"
-      assigns[:resort].should equal(resort)
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys a resort" do
-      Resort.stub(:find_by_id).and_return(resort)
-      resort.should_receive(:destroy)
-      delete :destroy, :id => "1"
-    end
-
-    it "redirects to the resorts index" do
-      delete :destroy, :id => "1"
-      response.should redirect_to(resorts_path)
-    end
+  describe 'GET resort_guide' do
+    it_behaves_like 'a featured properties finder', :resort_guide, id: 'chamonix'
   end
 end

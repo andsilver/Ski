@@ -1,35 +1,32 @@
 alpen_lounge:
-  id: 1
-  resort_id: 2 # Chamonix
-  user_id: 2 # Bob
+  resort: chamonix
+  user: bob
   name: Alpen Lounge
   sleeping_capacity: 6
   metres_from_lift: 8000
   number_of_bedrooms: 3
   listing_type: 0 # For rent
   weekly_rent_price: 1200
-  currency_id: 1 # Euros
+  currency: euros
   description: "The Alpen Lounge is a 100 square meter self catering chalet."
   publicly_visible: 1
 
 chalet_alaska:
-  id: 2
-  resort_id: 2 # Chamonix
-  user_id: 2 # Bob
+  resort: chamonix
+  user: bob
   name: Chalet Alaska
   number_of_bedrooms: 4
   listing_type: 1 # For sale
   sale_price: 195000
-  currency_id: 1 # Euros
+  currency: euros
   publicly_visible: 1
 
 hotel_le_chamonix:
-  id: 3
-  resort_id: 2 # Chamonix
-  user_id: 2 # Bob
+  resort: chamonix
+  user: bob
   name: Hotel Le Chamonix
   listing_type: 2 # Hotel
   weekly_rent_price: 700
-  currency_id: 1 # Euros
+  currency: euros
   star_rating: 4
   publicly_visible: 1

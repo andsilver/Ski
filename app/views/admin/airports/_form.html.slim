@@ -1,0 +1,22 @@
+- if @airport.errors.any?
+  .alert.alert-error
+    h2
+      =' pluralize(@airport.errors.count, "error")
+      | prohibited this airport from being saved:
+
+    ul
+      - @airport.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for [:admin, @airport] do |f|
+  = f.label :name
+  = f.text_field :name
+
+  = f.label :code
+  = f.text_field :code
+
+  = f.label :country_id, t('countries.country')
+  = select("airport", "country_id", Country.order('name').collect {|c| [ c.name, c.id ] }, {prompt: t('countries.select_country')})
+
+  .form-actions
+    = f.submit class: 'btn btn-primary'

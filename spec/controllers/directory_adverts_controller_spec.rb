@@ -7,7 +7,7 @@ describe DirectoryAdvertsController do
   before do
     Website.stub(:first).and_return(website)
     session[:user] = 1
-    User.stub(:find_by_id).and_return(current_user)
+    User.stub(:find_by).and_return(current_user)
   end
 
   describe "GET index" do
@@ -48,8 +48,8 @@ describe DirectoryAdvertsController do
     let(:directory_advert) { mock_model(DirectoryAdvert).as_null_object }
 
     it "finds a directory advert specified by param[:id]" do
-      DirectoryAdvert.should_receive(:find_by_id).with("1")
-      get "show", :id => "1"
+      DirectoryAdvert.should_receive(:find_by).with(id: '1')
+      get 'show', id: '1'
     end
 
     context "when the advert is found" do
@@ -59,16 +59,15 @@ describe DirectoryAdvertsController do
       let(:country) { mock_model(Country).as_null_object }
 
       before do
-        DirectoryAdvert.stub(:find_by_id).and_return(directory_advert)
-        directory_advert.stub(:current_advert).and_return(advert)
+        DirectoryAdvert.stub(:find_by).and_return(directory_advert)
         directory_advert.stub(:category).and_return(category)
         directory_advert.stub(:resort).and_return(resort)
         resort.stub(:country).and_return(country)
       end
 
       it "assigns @directory_advert" do
-        get "show", { :id => "1" }
-        assigns[:directory_advert].should equal(directory_advert)
+        get 'show', { id: '1' }
+        expect(assigns[:directory_advert]).to equal(directory_advert)
       end
 
       it "sets the default page title" do
@@ -77,23 +76,35 @@ describe DirectoryAdvertsController do
         resort.stub(:name).and_return("Chamonix")
         country.stub(:name).and_return("France")
         controller.should_receive(:default_page_title).with(anything())
-        get "show", { :id => 1 }
+        get 'show', { id: 1 }
       end
 
-      it "records a view" do
-        advert.should_receive(:record_view)
-        get "show", { :id => 1 }
+      context 'with a current advert' do
+        before { directory_advert.stub(:current_advert).and_return(advert) }
+
+        it 'records a view' do
+          advert.should_receive(:record_view)
+          get 'show', { id: 1 }
+        end
+      end
+
+      context 'without a current advert' do
+        before { directory_advert.stub(:current_advert).and_return(nil) }
+
+        it 'does not try and record a view' do
+          get 'show', { id: '1' }
+        end
       end
     end
 
     context "when the advert is not found" do
       before do
-        DirectoryAdvert.stub(:find_by_id).and_return(nil)
+        DirectoryAdvert.stub(:find_by).and_return(nil)
       end
 
       it "renders not found" do
-        get "show", { :id => 1 }
-        response.status.should eql 404
+        get 'show', { id: 1 }
+        expect(response.status).to eql 404
       end
     end
   end
@@ -128,12 +139,12 @@ describe DirectoryAdvertsController do
 
       it "sets a flash[:notice] message" do
         post_valid
-        flash[:notice].should eq("Your directory advert was successfully created.")
+        expect(flash[:notice]).to eq("Your directory advert was successfully created.")
       end
 
       it "redirects to the basket" do
         post_valid
-        response.should redirect_to(basket_path)
+        expect(response).to redirect_to(basket_path)
       end
     end
 
@@ -144,12 +155,12 @@ describe DirectoryAdvertsController do
 
       it "assigns @directory_advert" do
         post_valid
-        assigns[:directory_advert].should eq(directory_advert)
+        expect(assigns[:directory_advert]).to eq(directory_advert)
       end
 
       it "renders the new template" do
         post_valid
-        response.should render_template("new")
+        expect(response).to render_template('new')
       end
     end
   end
@@ -171,7 +182,7 @@ describe DirectoryAdvertsController do
 
       it 'responds with 404' do
         delete :destroy, id: '1'
-        response.status.should eq 404
+        expect(response.status).to eq 404
       end
     end
 
@@ -180,15 +191,15 @@ describe DirectoryAdvertsController do
 
       it 'destroys a directory advert' do
         directory_advert.should_receive(:destroy)
-        delete :destroy, :id => "1"
+        delete :destroy, id: '1'
       end
 
       context 'when admin' do
         before { controller.stub(:admin?).and_return(true) }
 
         it 'redirects to directory adverts page' do
-          delete :destroy, :id => "1"
-          response.should redirect_to(directory_adverts_path)
+          delete :destroy, id: '1'
+          expect(response).to redirect_to(directory_adverts_path)
         end
       end
 
@@ -196,8 +207,8 @@ describe DirectoryAdvertsController do
         before { controller.stub(:admin?).and_return(false) }
 
         it 'redirects to My Adverts' do
-          delete :destroy, :id => "1"
-          response.should redirect_to(my_adverts_path)
+          delete :destroy, id: '1'
+          expect(response).to redirect_to(my_adverts_path)
         end
       end
     end

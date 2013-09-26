@@ -1,0 +1,13 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+p= new_button([:admin, Region])
+
+table.table.table-bordered.table-striped
+  tr
+    th colspan="2"= t('.region')
+  - @regions.each do |region|
+    tr
+      td= region.name
+      td
+        =' edit_button([:admin, region])
+        = delete_button([:admin, region])

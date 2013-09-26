@@ -2,75 +2,63 @@ nav {
   display: block;
 }
 
-#main-menu {
-  background-color: #005CAB;
-  background-position: right top;
-  background-repeat: no-repeat;
-  height: 24px;
-  border-bottom: 1px solid #fff;
+#main-menu > ul {
+  list-style: none;
+  margin: 98px 0 0 15px;
+  padding: 0;
+}
+
+#main-menu ul > li {
+  float: left;
+  margin-right: 2px;
+}
+
+#main-menu > ul > li > a {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 4px solid #000;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 28px;
+  min-width: 160px;
+  padding: 0 10px;
+  text-decoration: none;
+}
+
+.mega-menu {
+  border-top: 3px solid #fff;
+  display: none;
+  min-height: 50px;
+  width: 646px;
+  position: absolute;
+  background: #ccc;
+  left: 177px;
+  z-index: 12;
 
   ul {
-    margin: 0;
-    padding: 3px 0;
+    float: left;
     list-style: none;
-    height: 18px;
-  }
+    margin-right: 2px;
+    padding: 10px;
+    width: 160px;
 
-  li {
-    font-size: 1.4em;
-    float: right;
-    margin-right: 1px;
-  }
+    li {
+      width: 140px;
 
-  a {
-    display: block;
-    line-height: 18px;
-    text-align: center;
-    color: #fff;
-    text-decoration: none;
-    border-left: 1px solid #fff;
-    padding: 0 20px;
-    width: auto;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  #featured_resorts_link, #advertise_link {
-    padding: 0;
-    width: 140px;
-  }
-
-  .drop {
-    border-top: 1px solid #fff;
-    visibility: hidden;
-    position: absolute;
-    width: 180px;
-    text-align: center;
-    font-size: 1em;
-    text-transform: none;
-    margin-left: -20px;
-    margin-top: 3px;
-    z-index: 10;
-
-    a {
-      line-height: 24px;
-      border: none;
-      background: #222;
-      opacity: 0.9;
-      color: #fff;
-      text-decoration: none;
-      display: block;
-    }
-
-    a:hover {
-      background: #222;
-      opacity: 1;
-      color: #fff;
-      text-decoration: underline;
+      a {
+        color: #fff;
+        display: block;
+      }
     }
   }
+
+  ul:last-child {
+    margin-right: 0;
+  }
+}
+
+.mega-parent:hover > .mega-menu {
+  display: block;
 }
 
 .count {
@@ -87,4 +75,31 @@ nav {
   top: -2px;
   line-height: 1px;
   font-weight: bold;
+}
+
+#session {
+  font-size: 0;
+  margin-right: 15px;
+  text-align: right;
+
+  li {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-bottom: 4px solid #000000;
+    color: #ededed;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 26px;
+    margin-left: 5px;
+    min-width: 145px;
+    text-align: left;
+
+    a {
+      color: #ededed;
+      display: inline-block;
+      margin-right: 2px;
+      padding: 0px 15px 0px 10px;
+      text-decoration: none;
+      width: 110px;
+    }
+  }
 }

@@ -1,0 +1,83 @@
+= content_for :title, t('.title', property: @property, resort: @property.resort, country: @property.country)
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@breadcrumbs, t('.heading', property: @property))
+
+= render 'spam/spam'
+= render partial: '/properties/user_logo', locals: { property: @property }
+
+p= t('enquiries_controller.enquiry_introduction')
+
+= clear
+
+- if @enquiry.errors.any?
+  #error_explanation
+    h2= "#{pluralize(@enquiry.errors.count, "error")} prohibited this enquiry from being sent:"
+    ul
+      - @enquiry.errors.full_messages.each do |msg|
+        li= msg
+
+.well
+  h2= t('enquiries_controller.send_an_email')
+  = form_for @enquiry do |f|
+    = f.hidden_field :property_id
+
+    span#current_time
+    / current time placed here by AJAX request
+
+    .form-group
+      = f.label :name, t('name')
+      = f.text_field :name, placeholder: 'Your name', class: 'form-control'
+
+    .form-group
+      = f.label :email, t('email')
+      = f.email_field :email, placeholder: 'you@example.com', class: 'form-control'
+
+    .form-group
+      = f.label :phone, t('phone')
+      = f.text_field :phone, placeholder: '441234567890', class: 'form-control'
+
+    - if @property.for_rent?
+      javascript:
+        $(function() {
+          $('.date').datepicker({format: 'D d MM yyyy', showOn: 'both', buttonImage: '/images/calendar.png'});
+        });
+
+      .form-group.input-append.date
+        = f.label :date_of_arrival, t('enquiries_controller.date_of_arrival')
+        = f.text_field :date_of_arrival, class: 'form-control'
+        span.add-on.btn.btn-default.btn-mini
+          i.icon-th
+
+      .form-group.input-append.date
+        = f.label :date_of_departure, t('enquiries_controller.date_of_departure')
+        = f.text_field :date_of_departure, class: 'form-control'
+        span.add-on.btn.btn-default.btn-mini
+          i.icon-th
+
+      .form-group
+        = f.label :number_of_adults, t('enquiries_controller.number_of_adults')
+        = select("enquiry", "number_of_adults", (0..10).collect {|n| [ n, n ] }, {prompt: 'Select'}, class: 'form-control')
+
+      .form-group
+        = f.label :number_of_children, t('enquiries_controller.number_of_children')
+        = select("enquiry", "number_of_children", (0..10).collect {|n| [ n, n ] }, {prompt: 'Select'}, class: 'form-control')
+
+      .form-group
+        = f.label :number_of_infants, t('enquiries_controller.number_of_infants')
+        = select("enquiry", "number_of_infants", (0..10).collect {|n| [ n, n ] }, {prompt: 'Select'}, class: 'form-control')
+
+
+    .form-group
+      = f.label :comments, t('enquiries_controller.comments')
+      = f.text_area :comments, class: 'form-control'
+
+    .form-group
+      label.checkbox
+        = f.check_box :permission_to_contact
+        = t('enquiries_controller.permission_to_contact')
+
+    = f.submit 'Send', class: 'btn btn-primary'
+
+.well
+  h2= t('contact_details')
+  p= "#{t('phone')}: #{@property.user.phone}"
+  p= "#{t('mobile')}: #{@property.user.mobile}"

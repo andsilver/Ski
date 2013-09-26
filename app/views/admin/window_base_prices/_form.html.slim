@@ -1,0 +1,18 @@
+- if @window_base_price.errors.any?
+  #error_explanation
+    h2= pluralize(@window_base_price.errors.count, "error")
+    | prohibited this window base price from being saved:
+    ul
+      - @window_base_price.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for @window_base_price do |f|
+  .form-group
+    = f.label :quantity
+    = f.number_field :quantity, class: 'form-control'
+  .form-group
+    = f.label :price
+    = f.number_field :price, class: 'form-control'
+    | EUR
+  .form-group
+    = f.submit class: 'btn btn-primary'

@@ -2,7 +2,7 @@ Feature: Sign Up
 
   As an advertiser
   I want to sign up
-  So that MySkiChalet will remember my details and adverts
+  So that MyChaletFinder will remember my details and adverts
 
   Scenario: Going to the sign up page
     Given I am on the sign in page

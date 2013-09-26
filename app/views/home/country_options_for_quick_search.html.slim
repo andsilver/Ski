@@ -1,0 +1,9 @@
+select#country_id.form-control name="country_id"
+  option value=""= t('home.quick_search.choose_country')
+  - if @countries.empty?
+    option value=""= t('home.quick_search.choose_holiday_first')
+  - else
+    = options_for_select @countries.map { |c| [c, c.id] }
+select#resort_id.form-control name="resort_slug"
+  option value=""= t('home.quick_search.choose_resort')
+  option value=""= t('home.quick_search.choose_country_first')

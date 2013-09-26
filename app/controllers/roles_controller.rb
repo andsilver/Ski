@@ -1,7 +1,8 @@
 class RolesController < ApplicationController
-  before_filter :admin_required, except: [:sales_pitch]
-  before_filter :find_role, only: [:edit, :update]
-  before_filter :no_browse_menu
+  before_action :admin_required, except: [:sales_pitch]
+  layout 'admin', except: [:sales_pitch]
+
+  before_action :find_role, only: [:edit, :update]
 
   def index
     @roles = Role.all
@@ -33,10 +34,8 @@ class RolesController < ApplicationController
   end
 
   def sales_pitch
-    @role = Role.find_by_name(params[:role].gsub('-', ' '))
+    @role = Role.find_by(name: params[:role].gsub('-', ' '))
     not_found and return unless @role
-    @heading_a = "#{t(@role.localisation_key)} Information"
-    default_page_title(@heading_a)
   end
 
   protected

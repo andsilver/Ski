@@ -1,7 +1,7 @@
 #content-with-side-banners {
-  width: 821px;
-  padding: 0 15px 0 0;
-  float: left;
+  img {
+    max-width: 620px;
+  }
 
   .first-third, .last-third {
     width: 247px;
@@ -71,24 +71,5 @@
   .first-third-photo-shadow, .last-third-photo-shadow, .first-third-photo-shadows, .last-third-photo-shadows {
     width: 271px;
     float: left;
-  }
-
-  section h2.coloured {
-    font-size:36px;
-    font-weight:normal;
-    font-style: normal;
-    color:#525c66;
-    letter-spacing: -3px;
-  }
-}
-
-#side-banners {
-  float: left;
-  padding-top: 13px;
-  width: 160px;
-
-  a {
-    margin-bottom: 13px;
-    display: block;
   }
 }

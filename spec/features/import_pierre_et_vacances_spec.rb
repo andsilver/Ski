@@ -10,7 +10,7 @@ feature 'Import Pierre et Vacances' do
     setup_pv_user
     visit '/pv_accommodations'
     click_link 'Import Accommodations'
-    page.should have_content 'Pierre et Vacances accommodations have been imported.'
+    expect(page).to have_content 'Pierre et Vacances accommodations have been imported.'
   end
 
   def sign_in_as_admin

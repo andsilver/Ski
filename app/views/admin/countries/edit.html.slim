@@ -1,0 +1,6 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+= render partial: 'admin/holiday_types/link', locals: { object: @country }
+
+= render 'form'

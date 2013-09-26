@@ -1,0 +1,11 @@
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('advertise') => advertise_path}, t('adverts_controller.buy_advertising_windows'))
+
+= form_tag({ action: 'add_windows_to_basket' }, class: 'well') do
+  .form-group
+    label How many windows would you like to buy?
+    select name="quantity" class="form-control"
+      - @window_base_prices.each do |wbp|
+        option value="<%= wbp.quantity %>"= "#{wbp.quantity} #{t('adverts_controller.windows')} @ #{euros(wbp.price)} (#{euros(wbp.price / wbp.quantity)}  each)"
+  p= submit_tag t('adverts_controller.add_to_basket'), class: 'btn btn-primary'
+
+= render 'shared/worldpay_logos'

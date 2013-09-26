@@ -1,13 +1,13 @@
 class CategoriesController < ApplicationController
-  before_filter :no_browse_menu, except: [:show]
-  before_filter :admin_required, except: [:show]
-  before_filter :find_resort, only: [:show]
-  before_filter :find_category, only: [:edit, :update, :show, :destroy]
+  before_action :admin_required, except: [:show]
+  layout 'admin', except: [:show]
+
+  before_action :find_resort, only: [:show]
+  before_action :find_category, only: [:edit, :update, :show, :destroy]
 
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]
 
   def index
-    @heading_a = t('categories_controller.categories')
     @categories = Category.order('name')
   end
 
@@ -64,7 +64,7 @@ class CategoriesController < ApplicationController
   end
 
   def find_category
-    @category = Category.find_by_id(params[:id])
+    @category = Category.find_by(id: params[:id])
     redirect_to(:root, notice: t('categories_controller.not_found')) unless @category
   end
 

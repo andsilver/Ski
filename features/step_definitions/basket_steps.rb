@@ -8,9 +8,6 @@ Given /^I have adverts in my basket$/ do
 end
 
 Given /^I have a banner advert in my basket$/ do
-  # Make a valid banner price
-  BannerPrice.create!(current_banner_number: 1, price: 10)
-
   d = a_directory_advert(is_banner_advert: true)
   a = Advert.new_for(d)
   a.save!
@@ -22,7 +19,7 @@ def a_directory_advert(opts = {})
     category_id: categories(:bars).id,
     business_name: 'Chambre Dix',
     business_address: '123 av',
-    resort_id: 1,
+    resort: resorts(:st_anton),
     strapline: 'A favourite meeting place for locals and visitors alike'}.merge(opts))
 end
 

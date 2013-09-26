@@ -1,0 +1,11 @@
+lake_windermere:
+  country: united_kingdom
+  name: Lake Windermere
+  info: The largest natural lake in England...
+  slug: 'lake-windermere'
+
+rhone_alpes:
+  country: france
+  name: 'Rhône-Alpes'
+  info: Located on the eastern border...
+  slug: 'rhone-alpes'

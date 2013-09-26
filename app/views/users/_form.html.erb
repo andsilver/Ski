@@ -12,76 +12,77 @@
 
 <%= form_for @user, html: { multipart: true } do |f| %>
 <%= f.hidden_field :role_id %>
-<div id="panel_1">
 <div class="well">
-<h2><%= t('users.your_details') %></h2>
-<div class="field">
-  <%= f.label :first_name, t('first_name') %>
-  <%= f.text_field :first_name %> <%= required_field %>
-</div>
-<div class="field">
-  <%= f.label :last_name, t('last_name') %>
-  <%= f.text_field :last_name %> <%= required_field %>
-</div>
-<div class="field">
-  <%= f.label :email %>
-  <%= f.email_field :email %> <%= required_field %>
-</div>
-<div class="field">
-  <%= f.label :password, t('password') %>
-  <%= f.password_field :password %> <%= required_field if @user.new_record? %>
-</div>
-<div class="field">
-  <%= f.label :phone, t('phone') %>
-  <%= f.text_field :phone %>
-</div>
-<div class="field">
-  <%= f.label :mobile, t('mobile') %>
-  <%= f.text_field :mobile %>
-</div>
+  <legend>
+    <%= t('users.your_details') %>
+  </legend>
+  <div class="form-group">
+    <%= f.label :first_name, t('first_name') %> <%= required_field %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_name, t('last_name') %> <%= required_field %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %> <%= required_field %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, t('password') %> <%= required_field if @user.new_record? %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :phone, t('phone') %>
+    <%= f.text_field :phone, class: 'form-control' %>
+  </div>  
+  <div class="form-group">
+    <%= f.label :mobile, t('mobile') %>
+    <%= f.text_field :mobile, class: 'form-control' %>
+  </div>
 </div>
 
 <% if admin? %>
 <div class="well">
-<h2><%= t 'coupon' %></h2>
-<p>
-  Apply the following coupon code to this user's purchases:
-</p>
-<div class="field">
-  <%= f.label :coupon_id, I18n.t('coupon') %>
-  <%= select("user", "coupon_id", Coupon.all.collect {|c| [ c.code, c.id ] }, {prompt: 'Select Coupon'}) %>
-</div>
-<h2>Price Override</h2>
-<p>
-  Applying a price override to a user will set that user's basket and order
-  net value to the price override amount regardless of what is actually in the
-  order.
-</p>
-<div class="field">
-  <label class="checkbox">
-    <%= f.check_box :apply_price_override %>
-    Apply price override
-  </label>
-</div>
-<div class="field">
-  <%= f.label :price_override %>
-  <%= f.text_field :price_override, class: 'span1' %> EUR
-</div>
+  <legend><%= t 'coupon' %></legend>
+  <p>
+    Apply the following coupon code to this user's purchases:
+  </p>
+  <div class="form-group">
+    <%= f.label :coupon_id, I18n.t('coupon') %>
+    <%= select("user", "coupon_id", Coupon.all.collect {|c| [ c.code, c.id ] }, {prompt: 'Select Coupon'}, class: 'form-control') %>
+  </div>
+  <legend>Price Override</legend>
+  <p>
+    Applying a price override to a user will set that user's basket and order
+    net value to the price override amount regardless of what is actually in the
+    order.
+  </p>
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :apply_price_override %>
+      Apply price override
+    </label>
+  </div>
+  <div class="form-group">
+    <%= f.label :price_override %>
+    <%= f.text_field :price_override, class: 'span1 form-control' %> EUR
+  </div>
 </div>
 <% end %>
 
 <% if @user.role.has_business_details? %>
 <div class="well">
-<h2><%= t('business_details') %></h2>
-<div class="field">
-  <%= f.label :business_name, t('users.business_name') %>
-  <%= f.text_field :business_name %>
-</div>
-<div class="field">
-  <%= f.label :position, t('users.your_position') %>
-  <%= f.text_field :position %>
-</div>
-<script>
+  <legend><%= t('business_details') %></legend>
+  <div class="form-group">
+    <%= f.label :business_name, t('users.business_name') %>
+    <%= f.text_field :business_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :position, t('users.your_position') %>
+    <%= f.text_field :position, class: 'form-control' %>
+  </div>
+  <script>
 $(function() {
   $('#user_vat_country_id').change(function() {
     if($('#user_vat_country_id').val() == '') {
@@ -92,93 +93,72 @@ $(function() {
   });
 });
 </script>
-<div class="field">
-  <%= f.label :vat_country_id, 'EU tax/VAT registration status' %>
-  <%= select('user', 'vat_country_id', Country.where(in_eu: true).order('name').collect {|c| [ "Registered in #{c.name}", c.id ] }, {include_blank: 'Not registered in the EU'}, style: 'width: 275px;') %>
-</div>
-<div id="vat_number" class="field"<%= ' style="display: none;"'.html_safe unless @user.vat_country %>>
-  <%= f.label :vat_number, t('users.vat_number') %>
-  <%= f.text_field :vat_number, placeholder: 'GB123456789' %>
-  <%= required_field %>
-</div>
+  <div class="form-group">
+    <%= f.label :vat_country_id, 'EU tax/VAT registration status' %>
+    <%= select('user', 'vat_country_id', Country.where(in_eu: true).order('name').collect {|c| [ "Registered in #{c.name}", c.id ] }, {include_blank: 'Not registered in the EU'}, style: 'width: 275px;') %>
+  </div>
+  <div id="vat_number" class="form-group"<%= ' style="display: none;"'.html_safe unless @user.vat_country %>>
+    <%= f.label :vat_number, t('users.vat_number') %>
+    <%= f.text_field :vat_number, placeholder: 'GB123456789' %>
+    <%= required_field %>
+  </div>
 </div>
 <% end %>
 
 <% if @user.role.has_a_website? %>
 <div class="well">
-<div class="field">
-  <%= f.label :website, t('users.website') %>
-  <%= f.url_field :website %>
-</div>
-<p>
-  <%= t('users.website_format_tip') %>
-</p>
+  <div class="form-group">
+    <%= f.label :website, t('users.website') %>
+    <%= f.url_field :website, class: 'form-control' %>
+  </div>
+  <p>
+    <%= t('users.website_format_tip') %>
+  </p>
 </div>
 
 <div class="well">
-  <h2>Logo or Photo of Business</h2>
-  <div class="field">
+  <legend>Logo or Photo of Business</legend>
+  <div class="form-group">
   	<label for="image">Image (.jpeg, .jpg, .gif, .png)</label>
-  	<input id="image" name="image" type="file" />
+  	<input id="image" name="image" type="file">
   </div>
 </div>
 <% end %>
 
 <div class="well">
-<% if @user.new_record? %>
-<h2><%= t 'terms' %></h2>
-<div class="field">
-  <label class="checkbox">
-    <%= f.check_box :terms_and_conditions %>
-    <%= t('users.i_accept_terms') %>
-    <%= link_to t('view'), terms_path %>
-  <%= required_field %>
-  </label>
-</div>
-<% end %>
-
-<div class="field">
-  <%= f.submit I18n.t(submit_label), class: 'btn btn-primary btn-large' %>
-</div>
-</div>
-
-</div><!--#panel_1-->
-<div id="panel_2">
-<div class="well">
-<h2><%= t('users.billing_details') %></h2>
-<div class="field">
-  <%= f.label :billing_street, t('users.billing_street') %>
-  <%= f.text_field :billing_street %> <%= required_field %>
-</div>
-<div class="field">
-  <%= f.text_field :billing_locality %>
-</div>
-<div class="field">
-  <%= f.label :billing_city, t('city') %>
-  <%= f.text_field :billing_city %> <%= required_field %>
-</div>
-<div class="field">
-  <%= f.label :billing_county, t('county') %>
-  <%= f.text_field :billing_county %>
-</div>
-<div class="field">
-  <%= f.label :billing_postcode, t('postcode') %>
-  <%= f.text_field :billing_postcode %>
-</div>
-<div class="field">
-  <%= f.label :billing_country_id, t('countries.country') %>
-  <%= select("user", "billing_country_id", Country.popular_billing_countries.collect {|c| [ c.name, c.id ] }, {prompt: t('countries.select_country')}) %>
-  <%= required_field %>
-</div>
+  <legend><%= t('users.billing_details') %></legend>
+  <div class="form-group">
+    <%= f.label :billing_street, t('users.billing_street') %> <%= required_field %>
+    <%= f.text_field :billing_street, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :billing_locality, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :billing_city, t('city') %> <%= required_field %>
+    <%= f.text_field :billing_city, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :billing_county, t('county') %>
+    <%= f.text_field :billing_county, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :billing_postcode, t('postcode') %>
+    <%= f.text_field :billing_postcode, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :billing_country_id, t('countries.country') %> <%= required_field %>
+    <%= select("user", "billing_country_id", Country.popular_billing_countries.collect {|c| [ c.name, c.id ] }, {prompt: t('countries.select_country')}, class: 'form-control') %>
+  </div>
 </div>
 
 <% if @user.role.advertises_generally? %>
 <div class="well">
-<h2><%= @user.role.has_business_details? ? t('users.describe_your_business') : t('users.describe_yourself') %></h2>
-<div class="field">
-  <%= f.label :description, t('description') %>
-  <%= f.text_area :description, class: 'span6' %>
-</div>
+  <h2><%= @user.role.has_business_details? ? t('users.describe_your_business') : t('users.describe_yourself') %></h2>
+  <div class="form-group">
+    <%= f.label :description, t('description') %>
+    <%= f.text_area :description, class: 'span6' %>
+  </div>
 </div>
 <% end %>
 
@@ -192,14 +172,32 @@ $(function() {
     create a new profile for <%= request.domain %>, and enter your Google Web
     Property ID (which looks like UA-00000000-1) below.
   </p>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :google_web_property_id, 'Google Web Property ID' %>
     <%= f.text_field :google_web_property_id, placeholder: 'UA-00000000-1' %>
   </div>
 </div>
 <% end -%>
 
-</div><!--#panel_2-->
+<div class="well">
+<% if @user.new_record? %>
+  <legend><%= t 'terms' %></legend>
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :terms_and_conditions %>
+      <%= t('users.i_accept_terms') %>
+      <%= link_to t('view'), terms_path %>
+    <%= required_field %>
+    </label>
+  </div>
+<% end %>
+
+  <div class="form-group">
+    <%= f.submit I18n.t(submit_label), class: 'btn btn-primary btn-large' %>
+  </div>
+</div>
+
+
 <% end %>
 
 <script>
