@@ -29,4 +29,11 @@ feature 'Contact owner' do
     expect(page).not_to have_content 'Number of children'
     expect(page).not_to have_content 'Number of infants'
   end
+
+  scenario 'I see instructional messages if I omit required information' do
+    visit property_path(properties(:alpen_lounge))
+    click_link 'Enquire'
+    click_button 'Send'
+    expect(page).to have_content 'errors prohibited this enquiry from being sent'
+  end
 end

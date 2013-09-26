@@ -282,14 +282,6 @@ class PropertiesController < ApplicationController
   end
 
   def contact
-    @breadcrumbs = { @resort => @resort }
-    if @property.for_sale?
-      @breadcrumbs[t('for_sale')] = resort_property_sale_path(@property.resort)
-    else
-      @breadcrumbs[t('for_rent')] = resort_property_rent_path(@property.resort)
-    end
-    @breadcrumbs[@property] = @property
-
     @enquiry = Enquiry.new(property: @property)
   end
 
@@ -386,19 +378,8 @@ class PropertiesController < ApplicationController
     @resort = @property.resort
     default_meta_description(resort: @resort, strapline: @property.strapline[0..130])
 
-    @breadcrumbs = @resort.breadcrumbs
-
-    if @property.new_development?
-      @breadcrumbs[t('new_developments')] = resort_property_new_developments_path(@property.resort)
-    elsif @property.for_sale?
-      @breadcrumbs[t('for_sale')] = resort_property_sale_path(@property.resort)
-    elsif @property.for_rent?
-      @breadcrumbs[t('for_rent')] = resort_property_rent_path(@property.resort)
-    elsif @property.hotel?
-      @breadcrumbs[t('hotels')] =  resort_property_hotels_path(@property.resort)
-    end
-
     @heading = @property.name
+    @property = @property.decorate
   end
 
   def find_property
