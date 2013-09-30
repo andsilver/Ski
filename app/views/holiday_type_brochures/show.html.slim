@@ -4,8 +4,8 @@
 
 = content_for :links_and_search do
   = render 'home/quick_search'
-  = render partial: 'brochure_list', locals: { heading: t('.regions'), method: :region_brochures }
-  = render partial: 'brochure_list', locals: { heading: t('.resorts'), method: :resort_brochures }
+  = render partial: 'brochure_list', locals: { heading: t('.regions'), method: :region_brochures, brochurable: @brochurable, holiday_type: @holiday_type }
+  = render partial: 'brochure_list', locals: { heading: t('.resorts'), method: :resort_brochures, brochurable: @brochurable, holiday_type: @holiday_type }
 
 - featured_properties = render('shared/featured_properties')
 = raw Liquid::Template.parse(@page_content).render('featured_properties' => featured_properties)
