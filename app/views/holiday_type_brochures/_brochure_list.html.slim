@@ -1,5 +1,5 @@
-- if @brochurable.respond_to? method
-  - brochures = @brochurable.public_send(method, @holiday_type.id)
+- if brochurable.respond_to? method
+  - brochures = brochurable.public_send(method, holiday_type.id)
   - unless brochures.empty?
     section
       h2= heading
@@ -7,6 +7,6 @@
         - brochures.each do |brochure|
           - place = brochure.brochurable
           - if place.class == Country
-            li= link_to_with_count place, holiday_type_brochure_path(place.class.to_s.tableize, place, @holiday_type.slug), place.property_count_for_holiday_type(@holiday_type)
+            li= link_to_with_count place, holiday_type_brochure_path(place.class.to_s.tableize, place, holiday_type.slug), place.property_count_for_holiday_type(holiday_type)
           - else
             li= link_to_with_count place, place, place.property_count

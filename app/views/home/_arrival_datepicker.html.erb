@@ -8,6 +8,8 @@ $(function() {
     startDate: startOfToday,
     endDate: '+18m',
     todayHighlight: false
+  }).on('changeDate', function(ev) {
+    $(this).datepicker('hide');
   });
 });
 </script>
