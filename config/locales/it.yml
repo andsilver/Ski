@@ -464,7 +464,7 @@ it:
       smoking: Smoking
       tv: TV
       wifi: WiFi
-    no_matching_properties: There are no properties advertised at this resort that match your search criteria.
+    no_matching_properties: 'There are no properties advertised at this resort that match your search criteria. Many holiday rentals only accept arrivals on Saturdays and have a minimum stay of 7 days. If possible and you are flexible with your dates, please try amending your arrival dates and / or duration of your holiday - thank you.'
     place_in_window: 'Place in Window'
     property_summary:
       nearest_lift: 'Nearest lift'
