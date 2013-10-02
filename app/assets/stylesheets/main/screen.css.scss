@@ -569,11 +569,14 @@ iframe {
   }
 }
 
-#airport-distances {
+.airport-distances {
   float: right;
-  margin-left: 15px;
   margin-bottom: 15px;
-  width: 40%;
+  width: 305px;
+}
+
+.wide .airport-distances {
+  width: 390px;
 }
 
 label.filter input {
