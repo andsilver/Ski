@@ -26,7 +26,7 @@
       return false;
     });
 
-    $('#location-modal').on('shown', function() {
+    $('#location-modal').on('shown.bs.modal', function() {
       google.maps.event.trigger(map, 'resize');
       map.setCenter(marker.getPosition());
     });
