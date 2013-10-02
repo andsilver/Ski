@@ -10,7 +10,7 @@
           - @country.visible_resorts.each do |resort|
             option value="#{resort.slug}"= resort.name
         = render 'properties/sleeps_select'
-        = render 'home/arrival_datepicker'
+        = render 'home/datepickers'
         p style="text-align: right;"
           input.btn.btn-large.btn-primary type="submit" value="Search"
 
