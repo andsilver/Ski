@@ -11,7 +11,7 @@
     background-position: 140px 11px;
   }
 
-  select, #arrival-datepicker input {
+  select, .date input {
     border-radius: 0;
     border: none;
     padding: 5px 10px;
@@ -22,13 +22,13 @@
     padding-right: 2px;
   }
 
-  #arrival-datepicker {
-    margin-bottom: 10px;
-  }
+  .date {
+    margin-bottom: 3px;
 
-  #arrival-datepicker input {
-    font-size: 11px;
-    display: inline-block;
+    input {
+      display: inline-block;
+      font-size: 11px;
+    }
   }
 
   .checkbox {
@@ -53,7 +53,7 @@
     }
   }
 
-  #arrival-datepicker input {
+  .date input {
     width: 115px;
   }
 }

@@ -506,14 +506,28 @@ class PropertiesController < ApplicationController
   end
 
   def filter_start_date
-    unless params[:start_date].blank?
+    if params[:start_date].present?
       begin
-        date = Date.parse(params[:start_date])
+        from = Date.parse(params[:start_date])
       rescue
         return
       end
-      @conditions[0] += " AND id NOT IN (SELECT property_id FROM unavailabilities WHERE start_date = ?)"
-      @conditions << date
+
+      if params[:end_date].present?
+        begin
+          to = Date.parse(params[:end_date])
+        rescue
+          to = from + 1.day
+        end
+        return if to == from
+        to, from = from, to if from > to
+      else
+        to = from + 1.day
+      end
+
+      @conditions[0] += " AND id NOT IN (SELECT property_id FROM unavailabilities WHERE start_date IN (?))"
+      dates = *(from...to)
+      @conditions << dates
     end
   end
 

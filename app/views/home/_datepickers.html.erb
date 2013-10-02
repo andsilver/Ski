@@ -3,7 +3,7 @@ $(function() {
   var startOfToday = new Date();
   startOfToday.setHours(0, 0, 0, 0);
 
-  $('#arrival-datepicker').datepicker({
+  $('#arrival-datepicker, #departure-datepicker').datepicker({
     format: 'D d MM yyyy',
     startDate: startOfToday,
     endDate: '+18m',
@@ -15,5 +15,9 @@ $(function() {
 </script>
 <div class="input-append date" id="arrival-datepicker">
   <input type="text" value="<%= params[:start_date] ? params[:start_date] : 'Arrival Date' %>" name="start_date" class="form-control">
+  <span class="add-on btn btn-default btn-mini"><i class="icon-th"></i></span>
+</div>
+<div class="input-append date" id="departure-datepicker">
+  <input type="text" value="<%= params[:end_date] ? params[:end_date] : 'Departure Date' %>" name="end_date" class="form-control">
   <span class="add-on btn btn-default btn-mini"><i class="icon-th"></i></span>
 </div>

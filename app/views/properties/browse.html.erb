@@ -24,7 +24,6 @@ $(function() {
 <% if @resort -%>
 <input type="hidden" name="resort_id" value="<%= @resort.id %>">
 <% end -%>
-<p>
   <select id="sort_method" name="sort_method" class="form-control">
 <% if @for_sale %>
     <option<%= ' selected' if sort_method=='normalised_sale_price DESC' %> value="normalised_sale_price DESC">Price high to low</option>
@@ -49,8 +48,9 @@ $(function() {
 <% unless @for_sale -%>
   <%= render 'sleeps_select' %>
   <%= render 'board_basis_select' %>
-  <%= render 'home/arrival_datepicker' %>
+  <%= render 'home/datepickers' %>
 <% end -%>
+<p>
   <%= raw property_search_filters @search_filters %>
 </p>
 <% end %>
