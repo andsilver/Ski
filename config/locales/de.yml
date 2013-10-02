@@ -199,6 +199,10 @@ de:
     show:
       title: '%{holiday_type}'
   home:
+    datepickers:
+      arrival_date: 'Arrival Date'
+      departure_date: 'Departure Date'
+      help: 'Many properties only accept arrivals on Saturdays and have a minimum stay of 7 nights.'
     quick_search:
       choose_country: 'Choose Country'
       choose_country_first: 'Choose Country First ↑'
