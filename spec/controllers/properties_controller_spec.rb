@@ -48,6 +48,35 @@ describe PropertiesController do
       Property.stub_chain(:where, :order).and_return(properties)
     end
 
+    it 'finds a resort by its slug' do
+      Resort.should_receive(:find_by).with(slug: 'chamonix').and_return(Resort.new)
+      get :new_developments, resort_slug: 'chamonix'
+    end
+
+    context 'when resort not found by slug' do
+      before do
+        Resort.stub(:find_by).with(slug: 'chamonix').and_return nil
+      end
+
+      it 'finds a resort by its ID' do
+        Resort.should_receive(:find_by).with(id: 'chamonix')
+        get :new_developments, resort_slug: :chamonix
+      end
+
+      context 'when resort found by its ID' do
+        before do
+          Resort.should_receive(:find_by).with(id: 'chamonix').and_return resort
+        end
+
+        it 'permanently redirects to the new developments page for the resort slug' do
+          resort.stub(:slug).and_return('slug')
+          get :new_developments, resort_slug: 'chamonix'
+          expect(response).to redirect_to resort_property_new_developments_path(resort_slug: 'slug')
+          expect(response.status).to eq 301
+        end
+      end
+    end
+
     it "finds paginated properties" do
       properties.should_receive(:paginate)
       get :new_developments, resort_slug: 'chamonix'
