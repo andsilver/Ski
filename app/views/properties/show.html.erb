@@ -17,7 +17,7 @@
 <% if fav = favourite_for_property(@property) %>
 <%= form_for(fav, method: :delete) do |f| %>
 <p>
-  <%= f.submit t('favourites.remove'), class: 'btn btn-large btn-default' %>
+  <%= f.submit t('favourites.remove'), class: 'btn btn-large btn-danger' %>
 </p>
 <% end %>
 <% else %>
@@ -131,23 +131,8 @@
 <%= md @property.description %>
 <% end %>
 
-<div class="modal hide fade" id="location-modal">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Location</h3>
-  </div>
-  <div class="modal-body">
-    <div id="map_canvas"></div>
-  </div>
-</div>
-
-<p>
-<% unless @property.latitude.empty? -%>
-  <a href="#" id="location" class="btn btn-primary btn-large btn-property"><i class="icon-map-marker icon-white"></i> Location</a>
-<% end -%>
-
-  <%= link_to t('enquire'), contact_property_path(@property), class: 'btn btn-large btn-primary btn-property' %>
-</p>
+<%= render 'location_button_and_modal' if @property.latitude.present? %>
+<%= link_to t('enquire'), contact_property_path(@property), class: 'btn btn-large btn-primary' %>
 
 <%= clear %>
 
