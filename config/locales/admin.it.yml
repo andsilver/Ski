@@ -64,9 +64,6 @@ it:
       new:
         title: New Holiday Type
     regions:
-      destroy:
-        title: Cannot Delete Resort
-        explanation: This resort has properties. Would you like to delete all properties or reassign them to another resort?
       edit:
         title: Edit Region
       index:
@@ -75,6 +72,9 @@ it:
       new:
         title: New Region
     resorts:
+      destroy:
+        title: Cannot Delete Resort
+        explanation: This resort has properties or directory adverts associated with it. Would you like to delete all properties and directory adverts or reassign them to another resort?
       edit:
         title: Edit Resort
       index:

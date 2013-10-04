@@ -4,3 +4,6 @@ p= t('.explanation')
 
 = form_tag(destroy_properties_admin_resort_path(@resort), method: 'post') do
   = submit_tag 'Delete Properties', class: 'btn btn-danger'
+
+= form_tag(destroy_directory_adverts_admin_resort_path(@resort), method: 'post') do
+  = submit_tag 'Delete Directory Adverts', class: 'btn btn-danger'
