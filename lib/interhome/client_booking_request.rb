@@ -1,4 +1,4 @@
-class Interhome
+module Interhome
   class ClientBookingRequest < Request
     def xml
       as_str = ''
