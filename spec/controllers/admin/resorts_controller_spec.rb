@@ -112,37 +112,55 @@ describe Admin::ResortsController do
   end
 
   describe "DELETE destroy" do
-    context 'when resort has no properties' do
+    context 'when resort found' do
       before do
         Resort.stub(:find_by).and_return(resort)
-        resort.stub_chain([:properties, :any?]).and_return(false)
       end
 
-      it 'destroys the resort' do
-        resort.should_receive(:destroy)
-        delete :destroy, id: 'chamonix'
+      context 'when resort has no properties or directory adverts' do
+        before do
+          resort.stub_chain([:properties, :any?]).and_return(false)
+          resort.stub_chain([:directory_adverts, :any?]).and_return(false)
+        end
+
+        it 'destroys the resort' do
+          resort.should_receive(:destroy)
+          delete :destroy, id: 'chamonix'
+        end
+
+        it 'redirects to the resorts index' do
+          delete :destroy, id: 'chamonix'
+          expect(response).to redirect_to(admin_resorts_path)
+        end
+
+        it 'sets a flash notice' do
+          delete :destroy, id: 'chamonix'
+          expect(flash[:notice]).to eq I18n.t('notices.deleted')
+        end
       end
 
-      it 'redirects to the resorts index' do
-        delete :destroy, id: 'chamonix'
-        expect(response).to redirect_to(admin_resorts_path)
+      context 'when resort has properties' do
+        before do
+          resort.stub_chain([:properties, :any?]).and_return(true)
+          resort.stub_chain([:directory_adverts, :any?]).and_return(false)
+        end
+
+        it 'renders' do
+          delete :destroy, id: 'chamonix'
+          expect(response).to render_template('destroy')
+        end
       end
 
-      it 'sets a flash notice' do
-        delete :destroy, id: 'chamonix'
-        expect(flash[:notice]).to eq I18n.t('notices.deleted')
-      end
-    end
+      context 'when resort has directory adverts' do
+        before do
+          resort.stub_chain([:directory_adverts, :any?]).and_return(true)
+          resort.stub_chain([:properties, :any?]).and_return(false)
+        end
 
-    context 'when resort has properties' do
-      before do
-        Resort.stub(:find_by).and_return(resort)
-        resort.stub_chain([:properties, :any?]).and_return(true)
-      end
-
-      it 'renders' do
-        delete :destroy, id: 'chamonix'
-        expect(response).to render_template('destroy')
+        it 'renders' do
+          delete :destroy, id: 'chamonix'
+          expect(response).to render_template('destroy')
+        end
       end
     end
   end
@@ -171,6 +189,34 @@ describe Admin::ResortsController do
       it 'sets a flash notice' do
         post 'destroy_properties', id: 'chamonix'
         expect(flash[:notice]).to eq('Properties deleted.')
+      end
+    end
+  end
+
+  describe 'POST destroy_directory_adverts' do
+    it 'finds the resort' do
+      Resort.should_receive(:find_by).with(slug: 'chamonix').and_return(resort)
+      post :destroy_directory_adverts, id: 'chamonix'
+    end
+
+    context 'when the resort is found' do
+      before { Resort.stub(:find_by).and_return(resort) }
+
+      it 'destroys each directory advert' do
+        directory_adverts = mock(ActiveRecord::Relation)
+        resort.stub(:directory_adverts).and_return(directory_adverts)
+        directory_adverts.should_receive(:destroy_all)
+        post :destroy_directory_adverts, id: 'chamonix'
+      end
+
+      it 'redirects to the resorts index' do
+        post :destroy_directory_adverts, id: 'chamonix'
+        expect(response).to redirect_to(admin_resorts_path)
+      end
+
+      it 'sets a flash notice' do
+        post :destroy_directory_adverts, id: 'chamonix'
+        expect(flash[:notice]).to eq('Directory adverts deleted.')
       end
     end
   end

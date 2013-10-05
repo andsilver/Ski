@@ -1,6 +1,6 @@
 class Admin::ResortsController < ApplicationController
   before_action :admin_required
-  before_action :set_resort, only: [:edit, :update, :destroy, :edit_page, :destroy_properties]
+  before_action :set_resort, only: [:edit, :update, :destroy, :edit_page, :destroy_properties, :destroy_directory_adverts]
   layout 'admin'
 
   include EditRelatedPages
@@ -44,7 +44,7 @@ class Admin::ResortsController < ApplicationController
   end
 
   def destroy
-    unless @resort.properties.any?
+    unless @resort.properties.any? || @resort.directory_adverts.any?
       @resort.destroy
       redirect_to(admin_resorts_path, notice: t('notices.deleted'))
     end
@@ -53,6 +53,11 @@ class Admin::ResortsController < ApplicationController
   def destroy_properties
     @resort.properties.destroy_all
     redirect_to admin_resorts_path, notice: "Properties deleted."
+  end
+
+  def destroy_directory_adverts
+    @resort.directory_adverts.destroy_all
+    redirect_to admin_resorts_path, notice: "Directory adverts deleted."
   end
 
   protected

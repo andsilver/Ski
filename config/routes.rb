@@ -29,6 +29,7 @@ MySkiChalet::Application.routes.draw do
     resources :resorts,           except: [:show] do
       member do
         get 'edit_page'
+        post 'destroy_directory_adverts'
         post 'destroy_properties'
       end
     end

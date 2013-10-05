@@ -74,7 +74,7 @@ en:
     resorts:
       destroy:
         title: Cannot Delete Resort
-        explanation: This resort has properties. Would you like to delete all properties or reassign them to another resort?
+        explanation: This resort has properties or directory adverts associated with it. Would you like to delete all properties and directory adverts or reassign them to another resort?
       edit:
         title: Edit Resort
       index:
