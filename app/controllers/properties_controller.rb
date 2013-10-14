@@ -11,6 +11,7 @@ class PropertiesController < ApplicationController
     :update_day_of_month_select]
 
   before_action :find_property, only: [:show, :contact, :email_a_friend]
+  before_action :ensure_property_visibility, only: [:show, :contact, :email_a_friend]
 
   before_action :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
@@ -145,9 +146,6 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    not_found and return unless @property.publicly_visible? or admin? or
-      (@current_user && @current_user.id == @property.user_id)
-
     if @property.interhome_accommodation
       flash.keep
       redirect_to "/accommodation/#{@property.interhome_accommodation.permalink}"
@@ -389,6 +387,11 @@ class PropertiesController < ApplicationController
     else
       not_found
     end
+  end
+
+  def ensure_property_visibility
+    not_found unless @property.publicly_visible? or admin? or
+      (@current_user && @current_user.id == @property.user_id)
   end
 
   def find_property_for_user
