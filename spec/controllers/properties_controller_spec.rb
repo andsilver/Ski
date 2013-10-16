@@ -41,12 +41,45 @@ describe PropertiesController do
     end
   end
 
-  describe "GET new_developments" do
+  shared_examples 'a protector of hidden resorts' do |method, action|
+    let(:resort) { FactoryGirl.create(:resort, visible: false) }
+
+    it '404s hidden resorts' do
+      send(method, action, resort_slug: resort.slug)
+      expect(response.status).to eq 404
+    end
+
+    it 'shows hidden resorts to admin' do
+      controller.stub(:admin?).and_return(true)
+      send(method, action, resort_slug: resort.slug)
+      expect(response.status).to eq 200
+    end
+  end
+
+  describe 'GET quick_search' do
+    it_behaves_like 'a protector of hidden resorts', :get, :quick_search
+  end
+
+  describe 'GET browse_for_rent' do
+    it_behaves_like 'a protector of hidden resorts', :get, :browse_for_rent
+  end
+
+  describe 'GET browse_for_sale' do
+    it_behaves_like 'a protector of hidden resorts', :get, :browse_for_sale
+  end
+
+  describe 'GET browse_hotels' do
+    it_behaves_like 'a protector of hidden resorts', :get, :browse_hotels
+  end
+
+  describe 'GET new_developments' do
     let(:properties) { mock(ActiveRecord::Relation).as_null_object }
 
     before do
       Property.stub_chain(:where, :order).and_return(properties)
     end
+
+    it_behaves_like 'a protector of hidden resorts', :get, :new_developments
 
     it 'finds a resort by its slug' do
       Resort.should_receive(:find_by).with(slug: 'chamonix').and_return(Resort.new)

@@ -15,10 +15,13 @@ class PropertiesController < ApplicationController
 
   before_action :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
-  before_action :set_resort, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_action :require_resort, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_action :resort_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_action :holiday_type_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  SEARCH_PAGES = [:browse_for_rent, :browse_for_sale, :browse_hotels, :new_developments, :quick_search]
+
+  before_action :set_resort, only: SEARCH_PAGES
+  before_action :require_resort, only: SEARCH_PAGES - [:quick_search]
+  before_action :protect_hidden_resort, only: SEARCH_PAGES
+  before_action :resort_conditions, only: SEARCH_PAGES
+  before_action :holiday_type_conditions, only: SEARCH_PAGES
 
   before_action :admin_required, only: [:index]
   layout 'admin', only: [:index]
@@ -419,6 +422,10 @@ class PropertiesController < ApplicationController
 
   def require_resort
     not_found unless @resort
+  end
+
+  def protect_hidden_resort
+    not_found if @resort && !@resort.visible? && !admin?
   end
 
   def selected_order(whitelist)
