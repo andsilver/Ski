@@ -25,14 +25,6 @@ section
       - @resort.region.visible_resorts.each do |resort|
         li= link_to_with_count resort, resort, resort.property_count
 
-- if @resort.same_theme_regions.any?
-  section
-    h2 Regions
-    ul
-      - @resort.same_theme_regions.each do |brochure|
-        - region = brochure.brochurable
-        li= link_to_with_count region, region, region.property_count
-
 - holiday_type = @resort.holiday_types.first
 - if holiday_type
   = render partial: 'holiday_type_brochures/brochure_list', locals: { heading: t('.regions'), method: :region_brochures, brochurable: @resort.country, holiday_type: holiday_type }
