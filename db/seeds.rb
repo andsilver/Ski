@@ -369,6 +369,17 @@ bob = User.create!(
   terms_and_conditions: true,
   description: '',
   role: property_developer)
+interhome = User.create!(
+  first_name: 'Interhome',
+  last_name: 'Interhome',
+  email: 'interhome@mychaletfinder.com',
+  password: 'secret',
+  billing_street: '1, High St',
+  billing_city: 'Portsmouth',
+  billing_country_id: united_kingdom,
+  terms_and_conditions: true,
+  description: '',
+  role: estate_agent)
 
 chamonix = Resort.create!(country_id: france, name: 'Chamonix',
   slug: 'chamonix',

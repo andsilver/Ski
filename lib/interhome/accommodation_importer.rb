@@ -177,6 +177,12 @@ module Interhome
         end
       end
 
+      # In case no main picture was set by Interhome
+      if property.image.nil?
+        property.image = property.images.first
+        property.save
+      end
+
       create_advert(property)
     end
 
