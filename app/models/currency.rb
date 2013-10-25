@@ -4,6 +4,10 @@ require 'open-uri'
 class Currency < ActiveRecord::Base
   validates_uniqueness_of :code
 
+  def to_s
+    code
+  end
+
   # Returns the value of one pound sterling in euros at the current exchange
   # rate, or nil if the data is missing.
   def self.sterling_in_euros

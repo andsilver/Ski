@@ -1,7 +1,7 @@
 = page_header 'Currencies'
 p
-  = link_to 'New Currency', new_currency_path, class: 'btn'
-  = link_to 'Update Exchange Rates', update_exchange_rates_currencies_path, class: 'btn'
+  = new_button [:admin, Currency]
+  = link_to 'Update Exchange Rates', update_exchange_rates_admin_currencies_path, class: 'btn'
 - if @currencies.empty?
   p There are no currencies set up yet.
 - else
@@ -13,11 +13,13 @@ p
         th Unit before number?
         th Code
         th In Euros
+        th Actions
     tbody
       - @currencies.each do |currency|
         tr
-          td= link_to currency.name, edit_currency_path(currency)
+          td= currency.name
           td= currency.unit
           td= tick_cross(currency.pre)
           td= currency.code
           td.numeric= currency.in_euros
+          td= edit_button [:admin, currency]
