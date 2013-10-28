@@ -114,6 +114,10 @@ class ApplicationController < ActionController::Base
     use_default_footer if @footer_box.blank?
   end
 
+  def no_header!
+    @no_header = true
+  end
+
   def use_default_footer
     footer = Footer.find_by(name: 'Default')
     @footer_box = footer.content unless footer.nil?

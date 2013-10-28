@@ -10,6 +10,8 @@ class PropertiesController < ApplicationController
     :interhome_payment_success, :interhome_payment_failure,
     :update_day_of_month_select]
 
+  before_action :no_header!, only: [:contact, :email_a_friend, :show, :show_interhome, :show_pierret_et_vacances]
+
   before_action :find_property, only: [:show, :contact, :email_a_friend]
   before_action :ensure_property_visibility, only: [:show, :contact, :email_a_friend]
 
