@@ -38,7 +38,7 @@
   <% else -%>
       <p class="contact_owner btn-property"><%= link_to t('enquire'), contact_property_path(p), title: "Enquire about #{p.name}" %><i class="icon-caret-right"></i></p>
   <% end -%>
-      <p class="email_a_friend btn-property"><%= link_to t('properties.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}" %><i class="icon-caret-right"></i></p>
+      <p class="email_a_friend btn-property"><%= link_to t('.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}" %><i class="icon-caret-right"></i></p>
     </div>
   </div>
   <%= clear %>

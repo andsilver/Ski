@@ -1,0 +1,40 @@
+= content_for :title, t('.title', property: @property, resort: @property.resort, country: @property.country)
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.decorate.contact_breadcrumbs, t('.heading', property: @property))
+
+= render 'spam/spam'
+- if @form.errors.any?
+  #error_explanation
+    h2= "#{pluralize(@form.errors.count, "error")} prohibited this referral from being sent:"
+    ul
+      - @form.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for @form do |f|
+  = f.hidden_field :property_id
+
+  / current time placed here by AJAX request
+  span#current_time
+
+  .row
+    .col-sm-6
+      .panel.panel-default
+        .panel-heading
+          h4.panel-title= t('.heading', property: @property)
+        .panel-body
+          .form-group
+            = f.label :your_name
+            = f.text_field :your_name, class: 'form-control'
+
+          .form-group
+            = f.label :your_email
+            = f.email_field :your_email, class: 'form-control'
+
+          .form-group
+            = f.label :friends_name, "Friend’s name"
+            = f.text_field :friends_name, class: 'form-control'
+
+          .form-group
+            = f.label :friends_email, "Friend’s email"
+            = f.email_field :friends_email, class: 'form-control'
+
+          = f.submit 'Send', class: 'btn btn-primary bt-large'

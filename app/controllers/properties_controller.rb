@@ -287,9 +287,6 @@ class PropertiesController < ApplicationController
   end
 
   def email_a_friend
-    default_page_title t('properties.email_a_friend')
-    @heading_a = render_to_string(partial: 'email_a_friend_heading').html_safe
-
     @form = EmailAFriendForm.new
     @form.property_id = @property.id
   end
