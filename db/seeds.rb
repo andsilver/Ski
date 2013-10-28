@@ -10,8 +10,8 @@ Page.destroy_all
 HolidayType.destroy_all
 Property.destroy_all
 PropertyBasePrice.destroy_all
-Resort.destroy_all
 DirectoryAdvert.destroy_all
+Resort.destroy_all
 Category.destroy_all
 User.destroy_all
 Role.delete_all
