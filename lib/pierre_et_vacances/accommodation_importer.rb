@@ -170,7 +170,22 @@ module PierreEtVacances
     end
 
     def xml_filename
-      @xml_filename ||= FTP.property_filename(:summer)
+      @xml_filename ||= FTP.property_filename(current_season)
+    end
+
+    def current_season
+      season(Date.today)
+    end 
+
+    def season(date)
+      start_of_summer = Date.new(2000, 5, 1).yday
+      start_of_winter = Date.new(2000, 9, 1).yday
+      date = date.yday
+      if start_of_summer <= date && date < start_of_winter
+        :summer
+      else
+        :winter
+      end
     end
 
     def user_email
