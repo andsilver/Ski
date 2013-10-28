@@ -531,6 +531,23 @@ InterhomeVacancy.create!(
   startday: Date.today
 )
 
+les_citronniers = PvAccommodation.create!(
+  property: Property.last,
+  name: 'Les Citronniers',
+  code: '01L',
+  iso_3166_1: 'FR',
+  iso_3166_2: 'FR-06',
+  onu: 'FR-NCE',
+  address_1: '17, rue Partouneaux',
+  address_2: '',
+  town: 'MENTON',
+  postcode: '06500',
+  latitude: '43.77880000',
+  longitude: '7.50567000',
+  price_table_url: 'http://www.pv-holidays.com/gb-en/tabprice/?code=01L&season=SUMMER&currencyCode=EUR',
+  permalink: '01L'
+)
+
 DirectoryAdvert.destroy_all
 
 directory_advert = DirectoryAdvert.new(
