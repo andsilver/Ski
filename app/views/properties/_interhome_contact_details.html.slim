@@ -1,46 +1,58 @@
 h3 Contact information
-label Title
-select#customer_salutation_type name="customer_salutation_type"
-  option value="" -- Choose --
-  option value="Mr" Mr
-  option value="Mrs" Mrs
-  option value="MrAndMrs" Mr and Mrs
-  option value="Blank" None of the above
-= required_field
-label Name
-input#customer_first_name type="text" name="customer_first_name" value="#{params[:customer_first_name]}"
-= required_field
-label Surname
-input#customer_name type="text" name="customer_name" value="#{params[:customer_name]}"
-= required_field
-label Email address
-input#customer_email type="email" name="customer_email" value="#{params[:customer_email]}" = required_field
-label Confirm email address
-input#customer_email_confirmation type="email" name="customer_email_confirmation" value="#{params[:customer_email_confirmation]}"
-= required_field
-label Address
-input#customer_address_street type="text" name="customer_address_street" value="#{params[:customer_address_street]}"
-= required_field
-br
-input#customer_address_additional_street type="text" name="customer_address_additional_street" value="#{params[:customer_address_additional_street]}"
-label City
-input#customer_address_place type="text" name="customer_address_place" value="#{params[:customer_address_place]}"
-= required_field
-label Postcode / ZIP code
-input#customer_address_zip type="text" name="customer_address_zip" value="#{params[:customer_address_zip]}"
-= required_field
-label Country
-select#customer_address_country_code name="customer_address_country_code"
-  option value="" -- Choose --
-  - Country.order('name').each do |c|
-    option value="#{c.iso_3166_1_alpha_2}"= c.name
-= required_field
+.form-group
+  label Title
+  select#customer_salutation_type.form-control name="customer_salutation_type"
+    option value="" -- Choose --
+    option value="Mr" Mr
+    option value="Mrs" Mrs
+    option value="MrAndMrs" Mr and Mrs
+    option value="Blank" None of the above
 
-label.checkbox
-  input#terms_accepted type="checkbox" name="terms_accepted"
-    | I have read and agree to the tour operator&apos;s
-    a< href="/interhome/terms-and-conditions.html" target="_blank"
-      | terms and conditions
+.form-group
+  label Name
+  input#customer_first_name.form-control type="text" name="customer_first_name" value="#{params[:customer_first_name]}"
 
-br
-input.btn.btn-primary type="submit" name="submit" value="Book"
+.form-group
+  label Surname
+  input#customer_name.form-control type="text" name="customer_name" value="#{params[:customer_name]}"
+
+.form-group
+  label Email address
+  input#customer_email.form-control type="email" name="customer_email" value="#{params[:customer_email]}" 
+
+.form-group
+  label Confirm email address
+  input#customer_email_confirmation.form-control type="email" name="customer_email_confirmation" value="#{params[:customer_email_confirmation]}"
+
+.form-group
+  label Address
+  input#customer_address_street.form-control type="text" name="customer_address_street" value="#{params[:customer_address_street]}"
+
+.form-group
+  input#customer_address_additional_street.form-control type="text" name="customer_address_additional_street" value="#{params[:customer_address_additional_street]}"
+  span.help-block Optional
+
+.form-group
+  label City
+  input#customer_address_place.form-control type="text" name="customer_address_place" value="#{params[:customer_address_place]}"
+
+.form-group
+  label Postcode / ZIP code
+  input#customer_address_zip.form-control type="text" name="customer_address_zip" value="#{params[:customer_address_zip]}"
+
+.form-group
+  label Country
+  select#customer_address_country_code.form-control name="customer_address_country_code"
+    option value="" -- Choose --
+    - Country.order('name').each do |c|
+      option value="#{c.iso_3166_1_alpha_2}"= c.name
+
+.checkbox
+  label
+    input#terms_accepted type="checkbox" name="terms_accepted"
+      | I have read and agree to the tour operator&apos;s
+      a< href="/interhome/terms-and-conditions.html" target="_blank"
+        | terms and conditions
+
+.form-group
+  input.btn.btn-primary type="submit" name="submit" value="Book"

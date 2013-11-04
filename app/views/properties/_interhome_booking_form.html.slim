@@ -263,26 +263,36 @@ javascript:
             .well
               input type="hidden" name="permalink" value="#{params[:permalink]}"
               span.trigger-update
-                label Date of arrival
-                span#day-of-month
-                  = select('interhome_booking', 'arrival_day', booking_days(@interhome_booking.arrival_date.month, @interhome_booking.arrival_date.year))
-              = select('interhome_booking', 'arrival_month', booking_months)
+                .form-group
+                  label Date of arrival
+                  .row
+                    .col-xs-3
+                      span#day-of-month
+                        = select('interhome_booking', 'arrival_day', booking_days(@interhome_booking.arrival_date.month, @interhome_booking.arrival_date.year), {}, class: 'form-control')
+                    .col-xs-4
+                      = select('interhome_booking', 'arrival_month', booking_months, {}, class: 'form-control')
               .trigger-update
-                label Duration of stay
-                = select('interhome_booking', 'duration', booking_durations)
+                .form-group
+                  label Duration of stay
+                  .row
+                    .col-xs-3
+                      = select('interhome_booking', 'duration', booking_durations, {}, class: 'form-control')
                 h3 Travellers
                 .row
-                  .col-lg-3
-                    label
-                      | Adults
-                      input#interhome_booking_adults.span1 type="text" name="interhome_booking[adults]" value="#{@interhome_booking.adults}"
-                  .col-lg-4
-                    label
-                      | Children (3-12 years)
-                      input#interhome_booking_children.span1 type="text" name="interhome_booking[children]" value="#{@interhome_booking.children}"
-                  .col-lg-4
-                    label
-                      | Babies (0-2 years)
-                      input#interhome_booking_babies.span1 type="text" name="interhome_booking[babies]" value="#{@interhome_booking.babies}"
+                  .col-xs-4
+                    .form-group
+                      label for="interhome_booking_adults"
+                        | Adults
+                      input#interhome_booking_adults.form-control type="text" name="interhome_booking[adults]" value="#{@interhome_booking.adults}"
+                  .col-xs-4
+                    .form-group
+                      label for="interhome_booking_children"
+                        | Children (3-12 years)
+                      input#interhome_booking_children.form-control type="text" name="interhome_booking[children]" value="#{@interhome_booking.children}"
+                  .col-xs-4
+                    .form-group
+                      label for="interhome_booking_babies"
+                        | Babies (0-2 years)
+                      input#interhome_booking_babies.form-control type="text" name="interhome_booking[babies]" value="#{@interhome_booking.babies}"
               #booking_results
                 p Please select your dates of travel.
