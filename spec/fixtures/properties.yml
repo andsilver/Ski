@@ -10,6 +10,7 @@ alpen_lounge:
   currency: euros
   description: "The Alpen Lounge is a 100 square meter self catering chalet."
   publicly_visible: 1
+  late_availability: false
 
 chalet_alaska:
   resort: chamonix
@@ -20,6 +21,7 @@ chalet_alaska:
   sale_price: 195000
   currency: euros
   publicly_visible: 1
+  late_availability: false
 
 hotel_le_chamonix:
   resort: chamonix
@@ -30,3 +32,4 @@ hotel_le_chamonix:
   currency: euros
   star_rating: 4
   publicly_visible: 1
+  late_availability: false
