@@ -92,6 +92,7 @@ fr:
     cleaners: Nettoyeurs
     creche: Creches
     estate_agents: Agents immobiliers
+    foreign_currency: Foreign currency
     heliskiing: Heliskiing
     home_appliances: Appareils électroménagers
     home_insurance: Assurance habitation
@@ -101,10 +102,11 @@ fr:
     mountain_guide: Guides de montagne
     other: Divers
     outdoor_adventures: Outdoor adventures
+    property_developers: Property developers
     restaurants: Restaurants
     ski_hire: Location de ski
     ski_school: Ski school
-    takeaway: A emporter
+    takeaways: A emporter
     taxi: Taxis
   change: Changer
   checkout: Commander

@@ -92,6 +92,7 @@ de:
     cleaners: Cleaners
     creche: Creches
     estate_agents: Immobilienmakler
+    foreign_currency: Foreign currency
     heliskiing: Heliskiing
     home_appliances: Home appliances
     home_insurance: Home insurance
@@ -101,10 +102,11 @@ de:
     mountain_guide: Mountain guides
     other: Other
     outdoor_adventures: Outdoor adventures
+    property_developers: Property developers
     restaurants: Restaurants
     ski_hire: Ski hire
     ski_school: Ski school
-    takeaway: Takeaways
+    takeaways: Takeaways
     taxi: Taxis
   change: Change
   checkout: Checkout
