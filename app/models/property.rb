@@ -39,7 +39,7 @@ class Property < ActiveRecord::Base
   delegate :theme, to: :resort
 
   cattr_reader :per_page
-  @@per_page = 10
+  @@per_page = 20
   @@perform_geocode = PERFORM_GEOCODE
 
   LISTING_TYPE_FOR_RENT = 0
