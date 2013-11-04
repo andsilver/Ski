@@ -24,12 +24,10 @@ Page.create!([
   { path: '/pages/about', title: 'About' }
 ])
 
-HolidayType.create!([
-  { name: 'Ski Holidays',      slug: 'ski-holidays' },
-  { name: 'Lakes & Mountains', slug: 'lakes-and-mountains' },
-  { name: 'Summer Villas',     slug: 'summer-villas' },
-  { name: 'City Breaks',       slug: 'city-breaks' }
-])
+ski_holidays = HolidayType.create!(name: 'Ski Holidays', slug: 'ski-holidays')
+lakes_and_mountains = HolidayType.create!(name: 'Lakes & Mountains', slug: 'lakes-and-mountains')
+summer_villas = HolidayType.create!(name: 'Summer Villas', slug: 'summer-villas')
+city_breaks = HolidayType.create!(name: 'City Breaks', slug: 'city-breaks')
 
 euros = Currency.create!(
   name: 'Euro',
@@ -292,6 +290,9 @@ france = Country.find_by(name: 'France')
 italy = Country.find_by(name: 'Italy')
 united_kingdom = Country.find_by(name: 'United Kingdom')
 
+france.holiday_type_brochures.build(holiday_type: ski_holidays)
+france.save!
+
 admin = Role.create!(
   name: 'Administrator',
   admin: true,
@@ -391,6 +392,9 @@ chamonix = Resort.create!(country: france, name: 'Chamonix',
   for_rent_count: 25,
   for_sale_count: 5
 )
+
+chamonix.holiday_type_brochures.build(holiday_type: ski_holidays)
+chamonix.save!
 
 Airport.destroy_all
 geneva = Airport.create!(name: 'Geneva', code: 'GVA', country: france)
