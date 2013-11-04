@@ -58,7 +58,7 @@ class PropertiesController < ApplicationController
 
     @properties = Property.paginate(page: params[:page], order: order,
       conditions: @conditions)
-    render 'browse'
+    render :browse, status: search_status
   end
 
   def browse_for_rent
@@ -83,7 +83,7 @@ class PropertiesController < ApplicationController
 
     find_properties(order)
 
-    render 'browse'
+    render :browse, status: search_status
   end
 
   def browse_for_sale
@@ -100,7 +100,7 @@ class PropertiesController < ApplicationController
     filter_conditions
     find_properties(order)
 
-    render "browse"
+    render :browse, status: search_status
   end
 
   def new_developments
@@ -117,7 +117,7 @@ class PropertiesController < ApplicationController
     filter_conditions
     find_properties(order)
 
-    render "browse"
+    render :browse, status: search_status
   end
 
   def browse_hotels
@@ -136,7 +136,7 @@ class PropertiesController < ApplicationController
     filter_conditions
     find_properties(order)
 
-    render "browse"
+    render :browse, status: search_status
   end
 
   def new
@@ -582,5 +582,9 @@ class PropertiesController < ApplicationController
     @heading = "Ski Accommodation, Chalets &amp; Apartments for ".html_safe
     @heading += @for_sale ? "Sale" : "Rent"
     @heading += " in #{@resort.name}" if @resort
+  end
+
+  def search_status
+    @properties.any? ? 200 : 404
   end
 end
