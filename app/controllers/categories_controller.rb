@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  include ResortSetter
+
   before_action :admin_required, except: [:show]
   layout 'admin', except: [:show]
 
@@ -60,7 +62,7 @@ class CategoriesController < ApplicationController
   protected
 
   def find_resort
-    @resort = Resort.find(params[:resort_id])
+    set_resort_with params[:resort_id]
   end
 
   def find_category
