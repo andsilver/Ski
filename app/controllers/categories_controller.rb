@@ -51,6 +51,7 @@ class CategoriesController < ApplicationController
 
     @directory_adverts = DirectoryAdvert.paginate(page: params[:page], order: 'RAND()',
       conditions: @conditions)
+    not_found unless @directory_adverts.any?
   end
 
   def destroy
