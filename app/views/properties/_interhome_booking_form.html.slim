@@ -130,7 +130,7 @@ javascript:
 
   $(function() {
     $(".collapse").collapse({parent: '#accordion', toggle: false});
-    $('td[rel=popover]').popover();
+    $('td[data-toggle=popover]').popover();
 
     $('#booking_form').on('change', '.trigger-update input', submitCheck);
     $('#booking_form').on('change', '.trigger-update select', submitCheck);
@@ -249,8 +249,8 @@ javascript:
                 table.interhome-calendar
                   tr
                     td.availability-Y Available
-                    td.availability-Y-no-check-in rel="popover" data-original-title="No check-in" data-content="Some of our holiday rentals only accept arrivals on certain dates even though the property may be free on other days. Arrival dates are shown on the calendar as the dark green squares."
-                      i class="icon-info-sign icon-white"
+                    td.availability-Y-no-check-in data-toggle="popover" data-original-title="No check-in" data-content="Some of our holiday rentals only accept arrivals on certain dates even though the property may be free on other days. Arrival dates are shown on the calendar as the dark green squares."
+                      i.icon-info-sign.icon-white>
                       | No check-in
                     td.availability-N Unavailable
                     td.availability-Q Booking possible only on request
