@@ -287,10 +287,10 @@ countries = Country.create([
   { name: 'Zimbabwe',              iso_3166_1_alpha_2: 'ZW' }
   ])
 
-austria = Country.find_by(name: 'Austria').id
-france = Country.find_by(name: 'France').id
-italy = Country.find_by(name: 'Italy').id
-united_kingdom = Country.find_by(name: 'United Kingdom').id
+austria = Country.find_by(name: 'Austria')
+france = Country.find_by(name: 'France')
+italy = Country.find_by(name: 'Italy')
+united_kingdom = Country.find_by(name: 'United Kingdom')
 
 admin = Role.create!(
   name: 'Administrator',
@@ -354,7 +354,7 @@ alice = User.create!(
   password: 'secret',
   billing_street: '1, High St',
   billing_city: 'Portsmouth',
-  billing_country_id: united_kingdom,
+  billing_country: united_kingdom,
   terms_and_conditions: true,
   description: '',
   role: admin)
@@ -365,7 +365,7 @@ bob = User.create!(
   password: 'secret',
   billing_street: '2, Main Rd',
   billing_city: 'Newcastle',
-  billing_country_id: united_kingdom,
+  billing_country: united_kingdom,
   terms_and_conditions: true,
   description: '',
   role: property_developer)
@@ -376,12 +376,12 @@ interhome = User.create!(
   password: 'secret',
   billing_street: '1, High St',
   billing_city: 'Portsmouth',
-  billing_country_id: united_kingdom,
+  billing_country: united_kingdom,
   terms_and_conditions: true,
   description: '',
   role: estate_agent)
 
-chamonix = Resort.create!(country_id: france, name: 'Chamonix',
+chamonix = Resort.create!(country: france, name: 'Chamonix',
   slug: 'chamonix',
   altitude_m: 1035,
   top_lift_m: 3842,
@@ -393,22 +393,22 @@ chamonix = Resort.create!(country_id: france, name: 'Chamonix',
 )
 
 Airport.destroy_all
-geneva = Airport.create!(name: 'Geneva', code: 'GVA', country_id: france)
+geneva = Airport.create!(name: 'Geneva', code: 'GVA', country: france)
 AirportDistance.create!(airport_id: geneva.id, resort_id: chamonix.id, distance_km: 90)
 
 Resort.create!([
-  { country_id: austria, name: 'Alpbach',      slug: 'alphach' },
-  { country_id: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
-  { country_id: austria, name: 'St Anton',     slug: 'st-anton' },
-  { country_id: austria, name: 'Tyrol',        slug: 'tyrol' },
-  { country_id: austria, name: 'Westendorf',   slug: 'westendorf' },
-  { country_id: france,  name: 'Avoriaz',      slug: 'avoriaz' },
-  { country_id: france,  name: 'Bernex',       slug: 'bernex' },
-  { country_id: france,  name: 'La Tania',     slug: 'la-tania' },
-  { country_id: france,  name: 'Morzine',      slug: 'morzine' },
-  { country_id: italy,   name: 'Cervinia',     slug: 'cervinia' },
-  { country_id: italy,   name: 'Dolomites',    slug: 'dolomites' },
-  { country_id: italy,   name: 'Italian Alps', slug: 'italian-alps' },
+  { country: austria, name: 'Alpbach',      slug: 'alphach' },
+  { country: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
+  { country: austria, name: 'St Anton',     slug: 'st-anton' },
+  { country: austria, name: 'Tyrol',        slug: 'tyrol' },
+  { country: austria, name: 'Westendorf',   slug: 'westendorf' },
+  { country: france,  name: 'Avoriaz',      slug: 'avoriaz' },
+  { country: france,  name: 'Bernex',       slug: 'bernex' },
+  { country: france,  name: 'La Tania',     slug: 'la-tania' },
+  { country: france,  name: 'Morzine',      slug: 'morzine' },
+  { country: italy,   name: 'Cervinia',     slug: 'cervinia' },
+  { country: italy,   name: 'Dolomites',    slug: 'dolomites' },
+  { country: italy,   name: 'Italian Alps', slug: 'italian-alps' },
 ])
 
 bars = Category.create!(name: 'Bars')
@@ -566,7 +566,7 @@ order = Order.create!(
   email: alice.email,
   name: alice.first_name,
   address: alice.billing_street,
-  country_id: alice.billing_country.id,
+  country: alice.billing_country,
   phone: '+44.1234567890',
   status: Order::PAYMENT_RECEIVED,
   total: 50
