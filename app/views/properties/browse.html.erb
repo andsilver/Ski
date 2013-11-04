@@ -1,5 +1,7 @@
 <%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@breadcrumbs, @heading) %>
 
+<h1><%= @heading %></h1>
+
 <% if @resort -%>
 <%= content_for :theme, @resort.theme %>
 
