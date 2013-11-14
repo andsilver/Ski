@@ -1,8 +1,8 @@
 .footer-box.clear-fix
   ul
     li Help
-    li= link_to I18n.t(:privacy), privacy_path
-    li= link_to I18n.t(:terms), terms_path
+    li= link_to I18n.t(:privacy), privacy_path, rel: 'nofollow'
+    li= link_to I18n.t(:terms), terms_path, rel: 'nofollow'
     li= link_to I18n.t(:contact), contact_path
     li
       a href="/pages/resources" Resources

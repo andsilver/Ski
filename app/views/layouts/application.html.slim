@@ -75,7 +75,7 @@ html.no-js lang="#{@lang}"
                 i.icon-caret-right
             - else
               li
-                = link_to '<i class="icon-signin"></i> '.html_safe + t('sign_in'), sign_in_path
+                = link_to '<i class="icon-signin"></i> '.html_safe + t('sign_in'), sign_in_path, rel: 'nofollow'
                 i.icon-caret-right
               li
                 = link_to '<i class="icon-user"></i> '.html_safe + t('sign_up'), sign_up_path, id: 'sign-up'
