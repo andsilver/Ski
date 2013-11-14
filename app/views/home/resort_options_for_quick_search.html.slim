@@ -3,5 +3,4 @@ select#resort_id.form-control name="resort_slug"
   - if @resorts.empty?
     option value=""= t('home.quick_search.choose_country_first')
   - else
-    - @resorts.each do |resort|
-      = options_for_select @resorts.map { |r| [r, r.slug] }
+    = options_for_select @resorts.map { |r| [r, r.slug] }
