@@ -1,0 +1,57 @@
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@breadcrumbs, @heading)
+
+h1= @heading
+
+- if @resort
+  = content_for :theme, @resort.theme
+
+  javascript:
+    $(function() {
+      $.cookie('quick_search_resort_id', '#{@resort.id}', { path: '/' });
+    });
+
+= content_for :links_and_search do
+  javascript:
+    $(function() {
+      $('#search-options input, #search-options select').change(function() {
+        $('#search-options form').submit();
+      });
+    });
+  section
+    #search-options
+      = form_tag request.path, method: 'get' do
+        - if @resort
+          input type="hidden" name="resort_id" value="#{@resort.id}"
+        select#sort_method.form-control name="sort_method"
+          - if @for_sale
+            = content_tag(:option, 'Price high to low', value: 'normalised_sale_price DESC', selected: sort_method=='normalised_sale_price DESC')
+            = content_tag(:option, 'Price low to high', value: 'normalised_sale_price ASC', selected: sort_method=='normalised_sale_price ASC')
+          - else
+            = content_tag(:option, 'Price high to low', value: 'normalised_weekly_rent_price DESC', selected: sort_method=='normalised_weekly_rent_price DESC')
+            = content_tag(:option, 'Price low to high', value: 'normalised_weekly_rent_price ASC', selected: sort_method=='normalised_weekly_rent_price ASC')
+          - if @resort.try(:ski?)
+            = content_tag(:option, t('.distance_from_lift'), value: 'metres_from_lift ASC', selected: sort_method=='metres_from_lift ASC')
+          - if @for_sale
+            = content_tag(:option, 'Number of bathrooms', value: 'number_of_bathrooms ASC', selected: sort_method=='number_of_bathrooms ASC')
+          - else
+            = content_tag(:option, t('sleeping_capacity'), value: 'sleeping_capacity ASC', selected: sort_method=='sleeping_capacity ASC')
+          = content_tag(:option, 'Number of bedrooms', value: 'number_of_bedrooms ASC', selected: sort_method == 'number_of_bedrooms ASC')
+          - if params[:action] == 'browse_hotels'
+            = content_tag(:option, 'Star rating', value: 'star_rating DESC', selected: sort_method == 'star_rating DESC')
+        - unless @for_sale
+          = render 'sleeps_select'
+          = render 'board_basis_select'
+          = render 'home/datepickers'
+        p= raw property_search_filters @search_filters
+
+#content-with-side-banners
+  #property_summaries
+    - if @properties.empty?
+      p= t('properties.no_matching_properties')
+    - else
+      - @properties.each do |p|
+        = render partial: 'properties/property_summary', locals: {p: p.decorate}
+
+      = will_paginate @properties
+
+= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) if @resort
