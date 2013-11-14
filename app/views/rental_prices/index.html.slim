@@ -1,0 +1,30 @@
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({'Owner Resources' => '/pages/owner-resources'}, 'Find Rental Prices')
+
+- content_for :links_and_search do
+  section
+    h2 Rental Prices
+    = form_tag({action: 'results'}, method: 'get') do
+      .form-group
+        = select("rental_prices_search", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, { prompt: 'Choose Resort' }, class: 'form-control')
+      .form-group
+        label Sleeping capacity
+        input.form-control name="rental_prices_search[sleeping_capacity]" value="#{@rental_prices_search.sleeping_capacity}" placeholder="Sleeping capacity"
+      .form-group
+        = submit_tag 'Find Rental Prices', class: 'btn btn-primary'
+
+h1 Find average rental prices by resort and sleeping capacity
+
+p Choose which resort you want to search and specify the sleeping capacity of your accommodation and we will show you the lowest, highest and average rental prices.
+
+- if defined? @found_resort
+  h2 "Rental prices for accommodation in #{@found_resort} sleeping #{pluralize(@rental_prices_search.sleeping_capacity, 'person')}"
+
+  table
+    tr
+      th Minimum
+      th Maximum
+      th Average
+    tr
+      td= euros @rental_prices_min
+      td= euros @rental_prices_max
+      td= euros @rental_prices_avg
