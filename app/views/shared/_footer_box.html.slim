@@ -7,7 +7,7 @@
     li
       a href="/pages/resources" Resources
     - if @w.blog_visible?
-      li= link_to t('blog_posts_controller.blog'), blog_path
+      li= link_to t('blog_posts_controller.blog'), blog_path, rel: 'nofollow'
     li
       a#advertise_link href="/welcome/advertiser"= t('advertise')
     li
