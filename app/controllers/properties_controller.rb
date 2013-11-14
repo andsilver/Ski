@@ -42,7 +42,10 @@ class PropertiesController < ApplicationController
     @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_FOR_RENT}"
 
     @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :wifi,
-      :disabled, :long_term_lets_available, :short_stays, :ski_in_ski_out]
+      :disabled, :ski_in_ski_out]
+
+    @search_filters <<= :long_term_lets_available if Property.where(resort_id: @resort.id, long_term_lets_available: true).any?
+    @search_filters <<= :short_stays if Property.where(resort_id: @resort.id, short_stays: true).any?
 
     filter_duration
     filter_price_range
