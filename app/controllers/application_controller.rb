@@ -53,7 +53,6 @@ class ApplicationController < ActionController::Base
       '/welcome/property-owner',
     ].collect{|x| 'http://' + domain + x}
     Country.with_visible_resorts.each do |country|
-      @urls << country_url(country)
       country.visible_resorts.each do |resort|
         @urls << resort_url(resort)
         @urls << resort_guide_url(resort)
