@@ -4,7 +4,7 @@ class Property < ActiveRecord::Base
   belongs_to :user
   belongs_to :country
   belongs_to :region
-  belongs_to :resort
+  belongs_to :resort, touch: true
   belongs_to :image
   belongs_to :currency
   belongs_to :interhome_accommodation
