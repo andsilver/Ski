@@ -2,6 +2,7 @@
 
 <%= content_for :theme, @property.theme %>
 
+<% cache [@accommodation, Date.today] do %>
 <%= render partial: 'google_map',
     locals: { lat: @accommodation.geodata_lat, lng: @accommodation.geodata_lng } %>
 <script>
@@ -92,4 +93,5 @@ features = @accommodation.features.split(',')
 <%= clear %>
 
 </div><!--#property-->
+<% end %>
 <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>
