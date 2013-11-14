@@ -11,12 +11,6 @@ h1= @heading
     });
 
 = content_for :links_and_search do
-  javascript:
-    $(function() {
-      $('#search-options input, #search-options select').change(function() {
-        $('#search-options form').submit();
-      });
-    });
   section
     #search-options
       = form_tag request.path, method: 'get' do
@@ -43,6 +37,8 @@ h1= @heading
           = render 'board_basis_select'
           = render 'home/datepickers'
         p= raw property_search_filters @search_filters
+        p
+          = submit_tag 'Refine Search', class: 'btn btn-default'
 
 #content-with-side-banners
   #property_summaries
