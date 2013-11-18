@@ -1,0 +1,7 @@
+= page_header 'Edit Page'
+- unless @page.meta_ok?
+  p Page meta information is not optimal. Check that:
+  ul
+    li Title is 51 characters or less.
+    li Description is present.
+= render 'form'
