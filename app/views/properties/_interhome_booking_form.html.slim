@@ -134,6 +134,21 @@ javascript:
     return false;
   }
 
+  function updateBookingDurationsSelect(nights) {
+    var valuesToSubmit = 'nights=' + nights;
+    $.ajax({
+      url: '/properties/update_booking_durations_select',
+      type: 'GET',
+      data: valuesToSubmit
+    }).success(function(data) {
+      $('#booking-durations').replaceWith(data);
+    }).error(function(data) {
+      $('#booking-durations').replaceWith('<span id="booking-durations"><h2>An error occurred. Please <a id="retry-booking-durations">try again</a>.</h2></div>');
+      $('#retry-booking-durations').click(updateBookingDurationsSelect);
+    });
+    return false;
+  }  
+
   $(function() {
     $(".collapse").collapse({parent: '#accordion', toggle: false});
     $('td[data-toggle=popover]').popover();
@@ -145,6 +160,7 @@ javascript:
     $('.month .availability-Y').click(function() {
       window.selectDay = $(this).data('day');
       $('#interhome_booking_arrival_month').val($(this).data('month'));
+      updateBookingDurationsSelect($(this).data('nights'));
       var new_position = $('#booking_results').offset();
       window.scrollTo(new_position.left, new_position.top);
       $('#interhome_booking_arrival_month').change();
@@ -282,7 +298,8 @@ javascript:
                   label Duration of stay
                   .row
                     .col-xs-3
-                      = select('interhome_booking', 'duration', booking_durations, {}, class: 'form-control')
+                      span#booking-durations
+                        = render partial: 'booking_durations', locals: {nights: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]}
                 h3 Travellers
                 .row
                   .col-xs-4

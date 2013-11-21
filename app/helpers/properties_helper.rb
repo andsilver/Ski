@@ -83,7 +83,7 @@ module PropertiesHelper
     months
   end
 
-  def booking_durations
+  def booking_durations(nights = [])
     [
       ["1 night", 1],
       ["2 nights", 2],
@@ -113,7 +113,7 @@ module PropertiesHelper
       ["26 nights", 26],
       ["27 nights", 27],
       ["4 weeks", 28]
-    ]
+    ].select { |option| nights.include?(option[1]) }
   end
 
   def additional_service_matched?(code, value)

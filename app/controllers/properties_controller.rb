@@ -8,7 +8,7 @@ class PropertiesController < ApplicationController
     :email_a_friend, :current_time, :show,
     :show_interhome, :show_pv, :check_interhome_booking,
     :interhome_payment_success, :interhome_payment_failure,
-    :update_day_of_month_select]
+    :update_booking_durations_select, :update_day_of_month_select]
 
   before_action :no_header!, only: [:contact, :email_a_friend, :show, :show_interhome, :show_pierret_et_vacances]
 
@@ -245,6 +245,11 @@ class PropertiesController < ApplicationController
       @price_detail = Interhome::WebServices.request('PriceDetail', details)
       @additional_services = Interhome::WebServices.request('AdditionalServices', details)
     end
+    render layout: false
+  end
+
+  def update_booking_durations_select
+    @nights = params[:nights].split(',').map { |n| n.to_i }
     render layout: false
   end
 

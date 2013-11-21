@@ -128,6 +128,7 @@ MySkiChalet::Application.routes.draw do
       get  'current_time'
 
       post 'check_interhome_booking'
+      get 'update_booking_durations_select'
       get 'update_day_of_month_select'
       get 'interhome_payment_success'
       get 'interhome_payment_failure'
