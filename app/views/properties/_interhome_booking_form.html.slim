@@ -16,6 +16,7 @@ javascript:
         window.scrollTo(new_position.left, new_position.top);
       } else {
         $('#collapse1').collapse('show');
+        $('#collapse2').collapse('hide');
         var new_position = $('#collapse_heading1').offset();
         window.scrollTo(new_position.left, new_position.top);
         $('#unavailable').modal('show');
