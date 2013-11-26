@@ -244,6 +244,8 @@ class PropertiesController < ApplicationController
     if @availability.available?
       @price_detail = Interhome::WebServices.request('PriceDetail', details)
       @additional_services = Interhome::WebServices.request('AdditionalServices', details)
+    else
+      InterhomeNotifier.unavailability_report(@accommodation, details).deliver
     end
     render layout: false
   end

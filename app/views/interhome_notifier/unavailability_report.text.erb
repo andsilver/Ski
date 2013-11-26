@@ -1,0 +1,20 @@
+Accommodation
+=============
+ID:       <%= @accommodation.id %>
+Code:     <%= @accommodation.code %>
+Updated:  <%= @accommodation.updated_at %>
+
+Vacancy
+=======
+Updated:  <%= @accommodation.interhome_vacancy.updated_at %>
+Startday: <%= @accommodation.interhome_vacancy.startday %>
+Availability:
+<%= @accommodation.interhome_vacancy.availability %>
+Minstay:
+<%= @accommodation.interhome_vacancy.minstay %>
+Changeover:
+<%= @accommodation.interhome_vacancy.changeover %>
+
+Details
+=======
+<%= @details %>
