@@ -30,7 +30,7 @@ class InterhomeVacancy < ActiveRecord::Base
       (1..28).each do |night|
         next_date = date + night.days
         break if availability_on(next_date) != 'Y'
-        if night >= (minstay_on(date) - 1) && check_out_on?(next_date)
+        if night >= (minstay_on(date)) && check_out_on?(next_date)
           nights << night
         end
       end
