@@ -41,6 +41,9 @@ h1= @heading
           = submit_tag 'Refine Search', class: 'btn btn-default'
 
 #content-with-side-banners
+
+  = raw @page_content
+
   #property_summaries
     - if @properties.empty?
       p= t('properties.no_matching_properties')
