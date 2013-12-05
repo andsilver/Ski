@@ -87,6 +87,26 @@ html.no-js lang="#{@lang}"
         img#marker src="/images/marker.svg" alt="Marker"
         a#logo href="#{root_path}" title="Home"
           = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
+        ul#social
+          li.google-plus-one
+            .g-plusone data-annotation="none" data-size="medium"
+            javascript:
+              window.___gcfg = {lang: 'en-GB'};
+
+              (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/platform.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+              })();
+          li
+            a#blogger title="Blogger" href="http://mychaletfinder.blogspot.com"
+              i.icon-rss
+          li
+            a#twitter title="Twitter" href="https://twitter.com/#!/MyChaletFinder"
+              i.icon-twitter
+          li
+            a#facebook title="Facebook" href="http://www.facebook.com/MyChaletFinder"
+              i.icon-facebook
         nav#main-menu role="navigation"
           ul
             li: a &nbsp;

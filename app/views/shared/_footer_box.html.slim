@@ -10,16 +10,4 @@
       li= link_to t('blog_posts_controller.blog'), blog_path, rel: 'nofollow'
     li
       a#advertise_link href="/welcome/advertiser"= t('advertise')
-    li
-      a#blogger title="Blogger" href="http://mychaletfinder.blogspot.com"
-        i.icon-rss
-        =< "Blogger"
-    li
-      a#twitter title="Twitter" href="https://twitter.com/#!/MyChaletFinder"
-        i.icon-twitter
-        =< "Twitter"
-    li
-      a#facebook title="Facebook" href="http://www.facebook.com/MyChaletFinder"
-        i.icon-facebook
-        =< "Facebook"
   = raw @footer_box
