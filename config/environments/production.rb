@@ -78,10 +78,12 @@ MySkiChalet::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.middleware.use ExceptionNotifier,
-    email_prefix: "[MyChaletFinder Error Report] ",
-    sender_address: %{"MyChaletFinder" <noreply@mychaletfinder.com>},
-    exception_recipients: %w{ianfleeton@gmail.com}
+  config.middleware.use ExceptionNotification::Rack,
+    email: {
+      email_prefix: "[MyChaletFinder Error Report] ",
+      sender_address: %{"MyChaletFinder" <noreply@mychaletfinder.com>},
+      exception_recipients: %w{ianfleeton@gmail.com}
+    }
 end
 
 ActionMailer::Base.delivery_method = :sendmail
