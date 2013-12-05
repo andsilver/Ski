@@ -26,7 +26,7 @@ describe ResortSummariesTable do
 
     context 'with ski resorts' do
       before do
-        ski_holidays = FactoryGirl.create(:holiday_type, slug: 'ski-holidays')
+        ski_holidays = HolidayType.find_by(slug: 'ski-holidays') || FactoryGirl.create(:holiday_type, slug: 'ski-holidays')
         [resort_x, resort_y].each {|r| r.holiday_types << ski_holidays}
       end
 
