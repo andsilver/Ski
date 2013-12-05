@@ -26,7 +26,8 @@ describe ResortSummariesTable do
 
     context 'with ski resorts' do
       before do
-        Resort.any_instance.stub(:ski?).and_return(true)
+        ski_holidays = FactoryGirl.create(:holiday_type, slug: 'ski-holidays')
+        [resort_x, resort_y].each {|r| r.holiday_types << ski_holidays}
       end
 
       it 'returns one row per resort' do
