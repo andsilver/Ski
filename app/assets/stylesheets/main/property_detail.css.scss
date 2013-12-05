@@ -53,7 +53,7 @@
   background-image: url(/images/unticked-feature.png);
 }
 
-.property_name span {
+.property_name span:first-child {
   color: #999;
 }
 
