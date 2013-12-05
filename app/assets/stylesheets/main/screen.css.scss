@@ -202,15 +202,14 @@ h1 {
   font-weight: bold;
 }
 
-h1 {
-  font-size: 22px;
+h1, h2, #property h3 {
+  color: #646464;
+  font-size: 18px;
 }
 
 h2, #property h3 {
   background-color: transparent;
   border-bottom: 1px solid #ccc;
-  color: #646464;
-  font-size: 18px;
   margin: 0 0 5px 0;
   padding: 5px 0;
 }
