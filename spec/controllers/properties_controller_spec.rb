@@ -44,15 +44,29 @@ describe PropertiesController do
   shared_examples 'a protector of hidden resorts' do |method, action|
     let(:resort) { FactoryGirl.create(:resort, visible: false) }
 
-    it '404s hidden resorts' do
-      send(method, action, resort_slug: resort.slug)
-      expect(response.status).to eq 404
+    context 'with search results' do
+      before { controller.stub(:search_status).and_return 200 }
+
+      it '404s hidden resorts' do
+        send(method, action, resort_slug: resort.slug)
+        expect(response.status).to eq 404
+      end
+
+      it 'shows hidden resorts to admin' do
+        controller.stub(:admin?).and_return(true)
+        send(method, action, resort_slug: resort.slug)
+        expect(response.status).to eq 200
+      end
     end
 
-    it 'shows hidden resorts to admin' do
-      controller.stub(:admin?).and_return(true)
-      send(method, action, resort_slug: resort.slug)
-      expect(response.status).to eq 200
+    context 'with no search results' do
+      before { controller.stub(:search_status).and_return 404 }
+
+      it '404s even for admin' do
+        controller.stub(:admin?).and_return(true)
+        send(method, action, resort_slug: resort.slug)
+        expect(response.status).to eq 404
+      end
     end
   end
 
