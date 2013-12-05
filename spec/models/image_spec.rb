@@ -5,7 +5,7 @@ describe Image do
 
   describe "#determine_filename" do
     context "when file data is supplied" do
-      let(:file_data) { mock(Object).as_null_object }
+      let(:file_data) { double(Object).as_null_object }
 
       context "when file data responds to original_filename" do
         it "sets its filename to the image.<ext> where <ext> is the lowercased uploaded file extension" do

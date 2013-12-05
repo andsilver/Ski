@@ -5,7 +5,7 @@ require 'zlib'
 module Interhome
   describe FTP do
     describe '.get' do
-      let(:ftp) { mock('Net::FTP').as_null_object }
+      let(:ftp) { double('Net::FTP').as_null_object }
 
       before do
         FTP.stub(:unzip)

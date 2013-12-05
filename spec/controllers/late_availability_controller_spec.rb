@@ -9,7 +9,7 @@ describe LateAvailabilityController do
 
   describe 'GET index' do
     it 'finds 8 featured late availability properties' do
-      finder = mock(LateAvailability::Finder)
+      finder = double(LateAvailability::Finder)
       LateAvailability::Finder.should_receive(:new).and_return(finder)
       finder.should_receive(:find_featured).with(limit: 8)
       get 'index'
@@ -18,7 +18,7 @@ describe LateAvailabilityController do
     it 'assigns @featured_properties' do
       featured = [Property.new]
 
-      finder = mock(LateAvailability::Finder).as_null_object
+      finder = double(LateAvailability::Finder).as_null_object
       LateAvailability::Finder.stub(:new).and_return(finder)
       finder.stub(:find_featured).and_return(featured)
       get 'index'

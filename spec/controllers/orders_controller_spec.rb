@@ -10,7 +10,7 @@ describe OrdersController do
       before { signed_in }
 
       let(:order) { mock_model(Order).as_null_object }
-      let(:invoice) { mock(Invoice, filename: 'test-files/invoice.pdf') }
+      let(:invoice) { double(Invoice, filename: 'test-files/invoice.pdf') }
 
       it 'finds the order' do
         Order.should_receive(:find_by).and_return(order)

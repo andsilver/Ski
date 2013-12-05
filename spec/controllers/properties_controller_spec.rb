@@ -87,7 +87,7 @@ describe PropertiesController do
   end
 
   describe 'GET new_developments' do
-    let(:properties) { mock(ActiveRecord::Relation).as_null_object }
+    let(:properties) { double(ActiveRecord::Relation).as_null_object }
 
     before do
       Property.stub_chain(:where, :order).and_return(properties)
