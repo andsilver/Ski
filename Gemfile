@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 gem 'mysql2'
 gem 'will_paginate'
 gem 'image_science', '1.2.3'
@@ -36,7 +36,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', :platforms => :ruby
-gem 'libv8', '= 3.11.8.4'
+gem 'libv8'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
