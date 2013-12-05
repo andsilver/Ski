@@ -13,8 +13,9 @@ describe InterhomePlaceResortsController do
     end
 
     describe 'POST create' do
+      let(:resort) { FactoryGirl.create(:resort) }
       let(:interhome_place_resort) { mock_model(InterhomePlaceResort).as_null_object }
-      let(:params) { { interhome_place_resort: { 'resort_id' => '1', 'interhome_place_code' => 'AD_1_1450'} } }
+      let(:params) { { interhome_place_resort: { 'interhome_place_code' => 'AD_1_1450', 'resort_id' => resort.id.to_s } } }
 
       before do
         InterhomePlaceResort.stub(:new).and_return(interhome_place_resort)
@@ -22,12 +23,12 @@ describe InterhomePlaceResortsController do
 
       it 'instantiates a new Interhome place resort with the given params' do
         InterhomePlaceResort.should_receive(:new).with(params[:interhome_place_resort])
-        post 'create', params
+        post :create, params
       end
 
       it 'redirects to the edit resort page' do
-        post 'create', params
-        expect(response).to redirect_to(edit_admin_resort_path(id: '1'))
+        post :create, params
+        expect(response).to redirect_to(edit_admin_resort_path(resort))
       end
 
       context 'when the Interhome place resort saves successfully' do
