@@ -1,0 +1,109 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    title
+      - if content_for? :title
+        = yield :title
+        = ' - '
+      | My Chalet Finder Admin  
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application-admin', media: 'screen', 'data-turbolinks-track' => true
+    link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    script src="/ace-src-min-noconflict/ace.js"
+    css:
+      .editor {
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        height: 300px;
+        margin-bottom: 10px;
+      }
+      .editor-textarea, .form-horizontal .editor-textarea {
+        display: none;
+      }
+  body
+    div style="height:60px;" &nbsp;
+    .navbar.navbar-fixed-top
+      .container
+        a.navbar-brand href="/" Home
+        .nav-collapse
+          ul.nav.navbar-nav
+            li.dropdown
+              a.dropdown-toggle href="#" data-toggle="dropdown"
+                | General
+                b.caret
+              ul.dropdown-menu
+                = admin_menu_links({ 'CMS Guide' => guide_path, 'Export Data' => export_path })
+            li.dropdown
+              a.dropdown-toggle href="#" data-toggle="dropdown"
+                | Financial &amp; Analysis
+                b.caret
+              ul.dropdown-menu
+                = admin_menu_links({\
+                  'Management Information' => management_information_path,\
+                  'Orders' => orders_path,\
+                  'Payments' => payments_path\
+                  })
+            li.dropdown
+              a.dropdown-toggle href="#" data-toggle="dropdown"
+                | Pricing
+                b.caret
+              ul.dropdown-menu
+                = admin_menu_links({\
+                  'Banner Prices' => admin_banner_prices_path,\
+                  'Currencies' => admin_currencies_path,\
+                  'Directory Price' => directory_price_path,\
+                  'Promotion Codes' => admin_coupons_path,\
+                  'Property Base Prices' => property_base_prices_path,\
+                  'Property Volume Discounts' => property_volume_discounts_path,\
+                  'Window Base Prices' => admin_window_base_prices_path\
+                  })
+            li.dropdown
+              a.dropdown-toggle href="#" data-toggle="dropdown"
+                | User Management
+                b.caret
+              ul.dropdown-menu
+                = admin_menu_links({ 'Users' => admin_users_path, 'Roles' => roles_path })
+            li.dropdown
+              a.dropdown-toggle href="#" data-toggle="dropdown"
+                | Content
+                b.caret
+              ul.dropdown-menu
+                = admin_menu_links({\
+                  'Snippets' => admin_snippets_path,\
+                  'Buying Guides' => admin_buying_guides_path,\
+                  'Airports' => admin_airports_path,\
+                  'Airport Distances' => admin_airport_distances_path,\
+                  'Holiday Types' => admin_holiday_types_path,\
+                  'Countries' => admin_countries_path,\
+                  'Regions' => admin_regions_path,\
+                  'Resorts' => admin_resorts_path,\
+                  'Categories' => categories_path,\
+                  'Blog' => admin_blog_posts_path,\
+                  'Page Meta Data' => pages_path,\
+                  'Alt Attributes' => alt_attributes_path,\
+                  'Footers' => admin_footers_path,\
+                  'Website Misc' => edit_website_path(@w),\
+                  'Directory & Banner Adverts' => directory_adverts_path,\
+                  'Properties' => properties_path,\
+                  'Pierre et Vacances' => pv_accommodations_path\
+                  })
+            li.dropdown
+              a.dropdown-toggle href="#" data-toggle="dropdown"
+                | Account
+                b.caret
+              ul.dropdown-menu
+                li= link_to t('account'), advertise_path, data: { 'no-turbolinks' => true }
+                li= link_to t('sign_out'), sign_out_path, data: { 'no-turbolinks' => true }
+    .container
+      - if flash[:notice]
+        .alert.alert-info.fade.in
+          a.close data-dismiss="alert" href="#" &times;
+          = flash[:notice]
+      = yield
