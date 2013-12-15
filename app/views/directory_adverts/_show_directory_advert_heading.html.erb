@@ -1,4 +1,3 @@
-<%= link_to @directory_advert.resort.country, country_path(@directory_advert.resort.country) %> &gt;
 <%= link_to @directory_advert.resort, resort_path(@directory_advert.resort) %> &gt;
 <%= link_to t('directory'), directory_resort_path(@directory_advert.resort) %> &gt;
 <%= link_to t(@directory_advert.category.name), category_path(@directory_advert.category, resort_id: @directory_advert.resort.id) %> &gt;

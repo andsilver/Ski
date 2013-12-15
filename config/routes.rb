@@ -40,8 +40,6 @@ MySkiChalet::Application.routes.draw do
 
   resources :buying_guides, only: [:show]
 
-  resources :countries, only: [:show]
-
   get 'late-availability' => 'late_availability#index'
 
   get 'properties/search' => 'properties#quick_search'
