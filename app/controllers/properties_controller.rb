@@ -589,8 +589,15 @@ class PropertiesController < ApplicationController
     if @resort
       @breadcrumbs[@resort.name] = @resort
     end
-    @heading = "Ski Accommodation, Chalets &amp; Apartments for ".html_safe
-    @heading += @for_sale ? "Sale" : "Rent"
+
+    if @resort.try(:ski?)
+      @heading = 'Ski '
+    else
+      @heading = ''
+    end
+
+    @heading += 'Accommodation, Chalets &amp; Apartments for '.html_safe
+    @heading += @for_sale ? 'Sale' : 'Rent'
     @heading += " in #{@resort.name}" if @resort
   end
 
