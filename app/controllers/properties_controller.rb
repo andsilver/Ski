@@ -591,9 +591,9 @@ class PropertiesController < ApplicationController
     end
 
     if @resort.try(:ski?)
-      @heading = 'Ski '
+      @heading = 'Ski '.html_safe
     else
-      @heading = ''
+      @heading = ''.html_safe
     end
 
     @heading += 'Accommodation, Chalets &amp; Apartments for '.html_safe
