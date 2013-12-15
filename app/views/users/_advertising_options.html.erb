@@ -12,7 +12,7 @@
   t('users.buy_advertising_windows.description')) %>
 <% end %>
 <% if @current_user.role.advertises_properties_for_rent? %>
-<%= user_action(new_property_path(listing_tyoe: Property::LISTING_TYPE_FOR_RENT),
+<%= user_action(new_property_path(listing_type: Property::LISTING_TYPE_FOR_RENT),
   t('users.advertise_a_property_for_rent.advertise_a_property_for_rent'), 
   t('users.advertise_a_property_for_rent.description')) %>
 <% end %>
