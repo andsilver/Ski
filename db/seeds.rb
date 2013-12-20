@@ -305,6 +305,9 @@ property_owner = Role.create!(
   name: 'Property owner',
   admin: false,
   select_on_signup: true,
+  advertises_generally: false,
+  advertises_properties_for_rent: true,
+  advertises_properties_for_sale: true,
   flag_new_development: false,
   has_a_website: false
 )
@@ -313,6 +316,8 @@ estate_agent = Role.create!(
   name: 'Estate agent',
   admin: false,
   select_on_signup: true,
+  advertises_properties_for_rent: true,
+  advertises_properties_for_sale: true,
   flag_new_development: true,
   has_a_website: true
 )
@@ -329,6 +334,8 @@ property_developer = Role.create!(
   name: 'Property developer',
   admin: false,
   select_on_signup: true,
+  advertises_properties_for_rent: false,
+  advertises_properties_for_sale: true,
   flag_new_development: true,
   new_development_by_default: true,
   has_a_website: true
@@ -338,6 +345,9 @@ other_business = Role.create!(
   name: 'Other business',
   admin: false,
   select_on_signup: true,
+  advertises_generally: true,
+  advertises_properties_for_rent: false,
+  advertises_properties_for_sale: false,
   flag_new_development: false,
   has_a_website: true
 )
