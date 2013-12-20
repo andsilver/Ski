@@ -164,6 +164,8 @@ class PropertiesController < ApplicationController
 
     show_shared
     @advertiser_web_property_id = @property.user.google_web_property_id unless @property.user.google_web_property_id.blank?
+
+    render :show_hotel if @property.hotel?
   end
 
   def show_interhome

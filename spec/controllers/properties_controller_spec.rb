@@ -299,9 +299,38 @@ describe PropertiesController do
         expect(assigns[:property]).to equal(property)
       end
 
+      context 'when the property is publicly visible' do
+        before do
+          property.stub(:publicly_visible?).and_return(true)
+        end
+
+        context 'when a hotel' do
+          before do
+            property.stub(:hotel?).and_return(true)
+          end
+
+          it 'renders show_hotel' do
+            get :show, id: '1'
+            expect(response).to render_template :show_hotel
+          end
+        end
+        
+        context 'when not a hotel' do
+          before do
+            property.stub(:hotel?).and_return(false)
+          end
+
+          it 'renders show' do
+            get :show, id: '1'
+            expect(response).to render_template :show
+          end
+        end
+      end
+
       context "when the property is not publicly visible" do
         before do
           property.stub(:publicly_visible?).and_return(false)
+          property.stub(:hotel?).and_return(false)
         end
 
         context "when not signed in as admin" do
