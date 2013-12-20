@@ -90,8 +90,8 @@ class Image < ActiveRecord::Base
   end
 
   def sized_url(size, method)
-    if method != :longest_side && method != :height
-      raise ArgumentError.new("method must be :longest_side or :height")
+    unless [:height, :width, :longest_side].include?(method)
+      raise ArgumentError.new("method must be :longest_side, :height or :width")
     end
 
     return source_url if remote_image?
@@ -112,6 +112,10 @@ class Image < ActiveRecord::Base
             end
           elsif(method == :height)
             img.resize(img.width * size / img.height, size) do |thumb|
+              thumb.save path
+            end
+          elsif(method == :width)
+            img.resize(size, img.height * size / img.width) do |thumb|
               thumb.save path
             end
           end
