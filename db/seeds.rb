@@ -392,6 +392,22 @@ interhome = User.create!(
   description: '',
   role: estate_agent)
 
+Resort.create!([
+  { country: austria, name: 'Alpbach',      slug: 'alphach' },
+  { country: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
+  { country: austria, name: 'St Anton',     slug: 'st-anton' },
+  { country: austria, name: 'Tyrol',        slug: 'tyrol' },
+  { country: austria, name: 'Westendorf',   slug: 'westendorf' },
+  { country: france,  name: 'Avoriaz',      slug: 'avoriaz' },
+  { country: france,  name: 'Bernex',       slug: 'bernex' },
+  { country: france,  name: 'La Tania',     slug: 'la-tania' },
+  { country: france,  name: 'Les Houches',  slug: 'les-houches', visible: true },
+  { country: france,  name: 'Morzine',      slug: 'morzine' },
+  { country: italy,   name: 'Cervinia',     slug: 'cervinia' },
+  { country: italy,   name: 'Dolomites',    slug: 'dolomites' },
+  { country: italy,   name: 'Italian Alps', slug: 'italian-alps' },
+])
+
 chamonix = Resort.create!(country: france, name: 'Chamonix',
   slug: 'chamonix',
   altitude_m: 1035,
@@ -406,24 +422,13 @@ chamonix = Resort.create!(country: france, name: 'Chamonix',
 chamonix.holiday_type_brochures.build(holiday_type: ski_holidays)
 chamonix.save!
 
+les_houches = Resort.find_by(slug: 'les-houches')
+les_houches.holiday_type_brochures.build(holiday_type: ski_holidays)
+les_houches.save!
+
 Airport.destroy_all
 geneva = Airport.create!(name: 'Geneva', code: 'GVA', country: france)
 AirportDistance.create!(airport_id: geneva.id, resort_id: chamonix.id, distance_km: 90)
-
-Resort.create!([
-  { country: austria, name: 'Alpbach',      slug: 'alphach' },
-  { country: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
-  { country: austria, name: 'St Anton',     slug: 'st-anton' },
-  { country: austria, name: 'Tyrol',        slug: 'tyrol' },
-  { country: austria, name: 'Westendorf',   slug: 'westendorf' },
-  { country: france,  name: 'Avoriaz',      slug: 'avoriaz' },
-  { country: france,  name: 'Bernex',       slug: 'bernex' },
-  { country: france,  name: 'La Tania',     slug: 'la-tania' },
-  { country: france,  name: 'Morzine',      slug: 'morzine' },
-  { country: italy,   name: 'Cervinia',     slug: 'cervinia' },
-  { country: italy,   name: 'Dolomites',    slug: 'dolomites' },
-  { country: italy,   name: 'Italian Alps', slug: 'italian-alps' },
-])
 
 bars = Category.create!(name: 'Bars')
 
@@ -470,7 +475,8 @@ images = Image.create([
   { filename: 'chalet27.jpg', source_url: image_source_url },
   { filename: 'chalet28.jpg', source_url: image_source_url },
   { filename: 'chalet29.jpg', source_url: image_source_url },
-  { filename: 'chalet30.jpg', source_url: image_source_url }
+  { filename: 'chalet30.jpg', source_url: image_source_url },
+  { filename: 'hotel1.jpg', source_url: image_source_url }
   ])
 
 PropertyBasePrice.create!(number_of_months: 12, price: 150)
@@ -500,13 +506,27 @@ properties = Property.create!([
   { resort: chamonix, user: alice, name: "Chalet Eftikhia" ,  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5900, weekly_rent_price: 1600, currency: euros, image_id: 22, listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Flegere",    address: '123 street', sleeping_capacity: 10,  metres_from_lift: 3400, weekly_rent_price: 1700, currency: euros, image_id: 23, listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Gauthier",   address: '123 street', sleeping_capacity: 16,  metres_from_lift: 4300, weekly_rent_price: 1600, currency: euros, image_id: 24, listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Ghia",       address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, currency: euros, image_id: 25, listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Les Citronniers",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, currency: euros, image_id: 25, listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Grassonnets", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 3500, weekly_rent_price: 1300, currency: euros, image_id: 26, listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Guapa",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, currency: euros, image_id: 27, listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Ibex",       address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, currency: euros, image_id: 28, listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Jomain",     address: '123 street', sleeping_capacity: 18,  metres_from_lift: 10200, weekly_rent_price: 2050, currency: euros, image_id: 29, listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Kushi",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9800, weekly_rent_price: 1500, currency: euros, image_id: 30, listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true }
   ])
+
+hotel = Property.create!({
+  resort: les_houches,
+  user: alice,
+  name: 'Les Granges d’en Haut',
+  address: 'Route des Chavants, 74310 Les Houches',
+  sleeping_capacity: 100,
+  metres_from_lift: 1000,
+  weekly_rent_price: 1050,
+  currency: euros,
+  image_id: 31,
+  listing_type: Property::LISTING_TYPE_HOTEL,
+  publicly_visible: true
+})
 
 InterhomeAccommodation.destroy_all
 interhome_accommodation = InterhomeAccommodation.create!(
@@ -546,7 +566,7 @@ InterhomeVacancy.create!(
 )
 
 les_citronniers = PvAccommodation.create!(
-  property: Property.last,
+  property: Property.find_by(name: 'Les Citronniers'),
   name: 'Les Citronniers',
   code: '01L',
   iso_3166_1: 'FR',
