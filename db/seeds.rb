@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Image.destroy_all
 Page.destroy_all
 HolidayType.destroy_all
 Property.destroy_all
