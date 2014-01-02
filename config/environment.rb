@@ -2,7 +2,7 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the Rails application.
-MySkiChalet::Application.initialize!
+Rails.application.initialize!
 
 # Don't verify certificates.
 ActionMailer::Base.smtp_settings = {
