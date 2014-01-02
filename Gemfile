@@ -82,7 +82,7 @@ end
 group :test do
   gem 'watchr'
   gem 'spork-rails', github: 'A-gen/spork-rails'
-  gem "shoulda-matchers", "~> 1.4.2" # temporary hold for require cannot load such file -- rspec
+  gem 'shoulda-matchers'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem "capybara"
