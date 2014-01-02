@@ -80,7 +80,6 @@ group :test, :development do
 end
 
 group :test do
-  gem "autotest", "4.4.6"
   gem 'watchr'
   gem 'spork-rails', github: 'A-gen/spork-rails'
   gem "shoulda-matchers", "~> 1.4.2" # temporary hold for require cannot load such file -- rspec
