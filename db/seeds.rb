@@ -541,11 +541,10 @@ interhome_accommodation = InterhomeAccommodation.create!(
   floor: 0,
   geodata_lat: '66.073845',
   geodata_lng: '28.929323',
-  name: 'Alpen Lounge',
+  name: 'Holiday House Voltaire',
   pax: 10,
   permalink: 'ch1912-712-1',
   place: '1234',
-  property: Property.first,
   quality: 3,
   region: '1',
   rooms: 3,
@@ -554,6 +553,20 @@ interhome_accommodation = InterhomeAccommodation.create!(
   toilets: 1,
   zip: 'ZIP'
 )
+interhome_property = Property.create!(
+  resort: chamonix,
+  user: alice,
+  name: 'Holiday House Voltaire',
+  address: '123 street',
+  sleeping_capacity: 8,
+  metres_from_lift: 9800, weekly_rent_price: 1500,
+  currency: euros,
+  image_id: 30,
+  listing_type: Property::LISTING_TYPE_FOR_RENT,
+  publicly_visible: true,
+  interhome_accommodation_id: interhome_accommodation.id
+)
+
 InterhomeVacancy.destroy_all
 InterhomeVacancy.create!(
   accommodation_code: 'CH1912.712.1',
