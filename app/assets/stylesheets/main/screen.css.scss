@@ -628,3 +628,59 @@ textarea.narrow {
   margin: 100px 0 50px 0;
   padding: 10px;
 }
+
+.bubblelink {
+  background: #20419B;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.398438) 3px 3px 6px 0px;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  width: 250px;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.bubblelink, .bubblelink:hover {
+  color: #fff;
+}
+
+.bubblelink:hover {
+  background: #005CAB;
+}
+
+.ski-levels h3 {
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: normal;
+  padding: 7px;
+}
+
+.ski-levels .beginner h3 {
+  background-color: #007c00;
+}
+
+.ski-levels .intermediate h3 {
+  background-color: #c00;
+}
+
+.ski-levels .advanced h3 {
+  background-color: #000;
+}
+
+.ski-levels .cross-country h3,
+.ski-levels .snowboarding h3 {
+  background-color: #646464;
+}
+
+.image-left {
+  float: left;
+  margin: 0 15px 15px 0;
+}
+
+.image-right {
+  float: right;
+  margin: 0 0 15px 15px;
+}

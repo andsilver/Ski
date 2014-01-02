@@ -1,3 +1,49 @@
+header[role=banner] {
+  background: #0069af; /* Old browsers */
+  background: -moz-linear-gradient(top, #0069af 0%, #14142c 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0069af), color-stop(100%,#14142c)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #0069af 0%,#14142c 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #0069af 0%,#14142c 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #0069af 0%,#14142c 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #0069af 0%,#14142c 100%); /* W3C */
+  height: 160px;
+  width: 1000px;
+  position: relative;
+}
+
+#marker {
+  position: absolute;
+  left: 235px;
+  top: -70px;
+}
+
+#social {
+  bottom: 53px;
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  position: absolute;
+  right: 15px;
+
+  .google-plus-one {
+    margin-right: 5px;
+  }
+
+  li {
+    display: inline-block;
+    font-size: 22px;
+    margin-left: 5px;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
 footer p {
   padding-top: 8px;
   font-size: 11px;
