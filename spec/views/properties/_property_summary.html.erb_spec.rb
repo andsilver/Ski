@@ -25,6 +25,7 @@ describe 'properties/_property_summary' do
     before do
       property.listing_type = Property::LISTING_TYPE_FOR_RENT
       property.weekly_rent_price = 1500
+      property.sleeping_capacity = 8
     end
 
     it 'displays price in the heading' do
@@ -32,6 +33,23 @@ describe 'properties/_property_summary' do
       within 'h3' do |h3|
         expect(h3).to have_content 'Weekly price from 1,500'
       end
+    end
+
+    it 'displays sleeping capacity' do
+      render 'properties/property_summary', p: property
+      expect(rendered).to have_content('Sleeps 8')
+    end
+  end
+
+  context 'when for sale' do
+    before do
+      property.listing_type = Property::LISTING_TYPE_FOR_SALE
+      property.sale_price = 1_250_000
+    end
+
+    it 'does not show sleeping capacity' do
+      render 'properties/property_summary', p: property
+      expect(rendered).not_to have_content('Sleeps')
     end
   end
 end

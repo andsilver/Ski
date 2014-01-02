@@ -52,6 +52,10 @@ a img {
     margin-bottom: 10px;
     padding: 5px;
 
+    label {
+      color: #fff;
+    }
+
     h2 {
       border: none;
       color: #fff;
@@ -198,15 +202,14 @@ h1 {
   font-weight: bold;
 }
 
-h1 {
-  font-size: 22px;
+h1, h2, #property h3 {
+  color: #646464;
+  font-size: 18px;
 }
 
 h2, #property h3 {
   background-color: transparent;
   border-bottom: 1px solid #ccc;
-  color: #646464;
-  font-size: 18px;
   margin: 0 0 5px 0;
   padding: 5px 0;
 }
@@ -583,24 +586,6 @@ label.filter input {
   display: inline;
 }
 
-#column_headings {
-  nav {
-    padding-top: 10px;
-  }
-
-  .btn-group {
-    float: left;
-  }
-}
-
-#column_headings h1, .nav-pills {
-  clear: left;
-}
-
-.nav-pills li {
-  font-size: 1.4em;
-}
-
 .list-near-image {
   position: relative;
   left: 25px;
@@ -635,4 +620,11 @@ textarea.narrow {
 
 .hide-from-new {
   display: none !important;
+}
+
+.meta {
+  background: #f3f3f3;
+  border: 1px solid #eee;
+  margin: 100px 0 50px 0;
+  padding: 10px;
 }

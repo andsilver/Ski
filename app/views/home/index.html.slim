@@ -1,4 +1,5 @@
 = content_for :links_and_search do
   = render 'quick_search'
 
-= raw Liquid::Template.parse(@w.home_content).render('featured_properties' => render('shared/featured_properties'))
+- cache [@w, Date.today] do
+  = raw Liquid::Template.parse(@w.home_content).render('featured_properties' => render('shared/featured_properties'))

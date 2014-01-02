@@ -1,4 +1,6 @@
 class ResortsController < ApplicationController
+  include ResortSetter
+
   before_action :set_resort, only: [:directory, :feature, :gallery, :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide, :show, :summer_holidays]
   before_action :find_featured_properties, only: [:resort_guide, :show, :summer_holidays]
 
@@ -54,19 +56,7 @@ class ResortsController < ApplicationController
   protected
 
     def set_resort
-      @resort = Resort.find_by(slug: params[:id])
-
-      # Handle legacy resort URLs
-      if !@resort
-        @resort = Resort.find_by(id: params[:id])
-        redirect_to(@resort, status: 301) and return if @resort
-      end
-
-      if admin?
-        redirect_to(admin_resorts_path, notice: t('resorts_controller.not_found')) unless @resort
-      else
-        not_found if !@resort || !@resort.visible?
-      end
+      set_resort_with params[:id]
     end
 
     def find_featured_properties

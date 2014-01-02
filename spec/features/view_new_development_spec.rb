@@ -7,6 +7,6 @@ feature 'View New Development' do
 
   scenario 'Viewing a new development shows a breadcrumb for new developments' do
     visit property_path(new_development)
-    expect(page.find('.breadcrumb li + li + li a')).to have_content('New Developments')
+    expect(page.find('.breadcrumb li + li a')).to have_content('New Developments')
   end
 end

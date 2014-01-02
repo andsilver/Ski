@@ -46,6 +46,8 @@ module ResortsHelper
   def header_image_urls
     urls = []
 
+    return urls if @no_header
+
     if @resort
       if controller.action_name == 'summer_holidays'
         sub_dir = 'summer-headers'

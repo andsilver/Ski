@@ -7,7 +7,7 @@ class InterhomePlaceResortsController < ApplicationController
     else
       notice = 'Could not link that Interhome place to this resort.'
     end
-    redirect_to edit_admin_resort_path(id: params[:interhome_place_resort][:resort_id]), notice: notice
+    redirect_to edit_admin_resort_path(id: Resort.find(params[:interhome_place_resort][:resort_id])), notice: notice
   end
 
   def destroy

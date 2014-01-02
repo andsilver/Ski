@@ -40,8 +40,6 @@ MySkiChalet::Application.routes.draw do
 
   resources :buying_guides, only: [:show]
 
-  resources :countries, only: [:show]
-
   get 'late-availability' => 'late_availability#index'
 
   get 'properties/search' => 'properties#quick_search'
@@ -128,6 +126,7 @@ MySkiChalet::Application.routes.draw do
       get  'current_time'
 
       post 'check_interhome_booking'
+      get 'update_booking_durations_select'
       get 'update_day_of_month_select'
       get 'interhome_payment_success'
       get 'interhome_payment_failure'

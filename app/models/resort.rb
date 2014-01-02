@@ -47,10 +47,6 @@ class Resort < ActiveRecord::Base
     holiday_types.any? { |ht| ht.slug == 'ski-holidays' }
   end
 
-  def same_theme_regions
-    holiday_types.first ? country.region_brochures(holiday_types.first.id) : []
-  end
-
   def to_s
     name
   end

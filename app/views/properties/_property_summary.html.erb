@@ -16,7 +16,7 @@
   <div class="property-summary-description">
     <h3>
       <%= link_to p.name, link, title: "Read more about #{p.name}" %>
-      <% unless p.hotel? %>&middot; <%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
+      <% unless p.hotel? || p.for_sale? %>&middot; <%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
       <% if sort_method == 'metres_from_lift ASC' %>&middot; <%= t('.nearest_lift' )%> <%= p.nearest_lift %><% end %>
       &middot;
       <%= p.for_sale? ? "Sale price" : "Weekly price from" %>
@@ -38,7 +38,7 @@
   <% else -%>
       <p class="contact_owner btn-property"><%= link_to t('enquire'), contact_property_path(p), title: "Enquire about #{p.name}" %><i class="icon-caret-right"></i></p>
   <% end -%>
-      <p class="email_a_friend btn-property"><%= link_to t('properties.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}" %><i class="icon-caret-right"></i></p>
+      <p class="email_a_friend btn-property"><%= link_to t('.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}" %><i class="icon-caret-right"></i></p>
     </div>
   </div>
   <%= clear %>

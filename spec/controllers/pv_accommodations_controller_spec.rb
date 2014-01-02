@@ -9,7 +9,7 @@ describe PvAccommodationsController do
     before { signed_in_as_admin }
 
     describe 'POST import_accommodations' do
-      let(:importer) { mock(AccommodationImporter).as_null_object }
+      let(:importer) { double(AccommodationImporter).as_null_object }
 
       it 'instantiates an accommodation importer' do
         PierreEtVacances::AccommodationImporter.should_receive(:new).and_return(importer)

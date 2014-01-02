@@ -8,16 +8,22 @@ class PropertiesController < ApplicationController
     :email_a_friend, :current_time, :show,
     :show_interhome, :show_pv, :check_interhome_booking,
     :interhome_payment_success, :interhome_payment_failure,
-    :update_day_of_month_select]
+    :update_booking_durations_select, :update_day_of_month_select]
+
+  before_action :no_header!, only: [:contact, :email_a_friend, :show, :show_interhome, :show_pierret_et_vacances]
 
   before_action :find_property, only: [:show, :contact, :email_a_friend]
+  before_action :ensure_property_visibility, only: [:show, :contact, :email_a_friend]
 
   before_action :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
-  before_action :set_resort, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_action :require_resort, only: [:browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_action :resort_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
-  before_action :holiday_type_conditions, only: [:quick_search, :browse_for_rent, :browse_for_sale, :new_developments, :browse_hotels]
+  SEARCH_PAGES = [:browse_for_rent, :browse_for_sale, :browse_hotels, :new_developments, :quick_search]
+
+  before_action :set_resort, only: SEARCH_PAGES
+  before_action :require_resort, only: SEARCH_PAGES - [:quick_search]
+  before_action :protect_hidden_resort, only: SEARCH_PAGES
+  before_action :resort_conditions, only: SEARCH_PAGES
+  before_action :holiday_type_conditions, only: SEARCH_PAGES
 
   before_action :admin_required, only: [:index]
   layout 'admin', only: [:index]
@@ -33,10 +39,13 @@ class PropertiesController < ApplicationController
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
-    @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_FOR_RENT}"
+    @conditions[0] += " AND (listing_type = #{Property::LISTING_TYPE_FOR_RENT} OR listing_type = #{Property::LISTING_TYPE_HOTEL})"
 
     @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :wifi,
-      :disabled, :long_term_lets_available, :short_stays, :ski_in_ski_out]
+      :disabled, :ski_in_ski_out]
+
+    @search_filters <<= :long_term_lets_available if !@resort || Property.where(resort_id: @resort.id, long_term_lets_available: true).any?
+    @search_filters <<= :short_stays if !@resort || Property.where(resort_id: @resort.id, short_stays: true).any?
 
     filter_duration
     filter_price_range
@@ -52,7 +61,7 @@ class PropertiesController < ApplicationController
 
     @properties = Property.paginate(page: params[:page], order: order,
       conditions: @conditions)
-    render 'browse'
+    render :browse, status: search_status
   end
 
   def browse_for_rent
@@ -77,7 +86,7 @@ class PropertiesController < ApplicationController
 
     find_properties(order)
 
-    render 'browse'
+    render :browse, status: search_status
   end
 
   def browse_for_sale
@@ -94,7 +103,7 @@ class PropertiesController < ApplicationController
     filter_conditions
     find_properties(order)
 
-    render "browse"
+    render :browse, status: search_status
   end
 
   def new_developments
@@ -111,7 +120,7 @@ class PropertiesController < ApplicationController
     filter_conditions
     find_properties(order)
 
-    render "browse"
+    render :browse, status: search_status
   end
 
   def browse_hotels
@@ -130,7 +139,7 @@ class PropertiesController < ApplicationController
     filter_conditions
     find_properties(order)
 
-    render "browse"
+    render :browse, status: search_status
   end
 
   def new
@@ -145,9 +154,6 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    not_found and return unless @property.publicly_visible? or admin? or
-      (@current_user && @current_user.id == @property.user_id)
-
     if @property.interhome_accommodation
       flash.keep
       redirect_to "/accommodation/#{@property.interhome_accommodation.permalink}"
@@ -158,6 +164,8 @@ class PropertiesController < ApplicationController
 
     show_shared
     @advertiser_web_property_id = @property.user.google_web_property_id unless @property.user.google_web_property_id.blank?
+
+    render :show_hotel if @property.hotel?
   end
 
   def show_interhome
@@ -238,7 +246,14 @@ class PropertiesController < ApplicationController
     if @availability.available?
       @price_detail = Interhome::WebServices.request('PriceDetail', details)
       @additional_services = Interhome::WebServices.request('AdditionalServices', details)
+    else
+      InterhomeNotifier.unavailability_report(@accommodation, details).deliver
     end
+    render layout: false
+  end
+
+  def update_booking_durations_select
+    @nights = params[:nights].split(',').map { |n| n.to_i }
     render layout: false
   end
 
@@ -286,9 +301,6 @@ class PropertiesController < ApplicationController
   end
 
   def email_a_friend
-    default_page_title t('properties.email_a_friend')
-    @heading_a = render_to_string(partial: 'email_a_friend_heading').html_safe
-
     @form = EmailAFriendForm.new
     @form.property_id = @property.id
   end
@@ -391,6 +403,11 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def ensure_property_visibility
+    not_found unless @property.publicly_visible? or admin? or
+      (@current_user && @current_user.id == @property.user_id)
+  end
+
   def find_property_for_user
     if admin?
       @property = Property.find(params[:id])
@@ -416,6 +433,10 @@ class PropertiesController < ApplicationController
 
   def require_resort
     not_found unless @resort
+  end
+
+  def protect_hidden_resort
+    not_found if @resort && !@resort.visible? && !admin?
   end
 
   def selected_order(whitelist)
@@ -570,8 +591,19 @@ class PropertiesController < ApplicationController
     if @resort
       @breadcrumbs[@resort.name] = @resort
     end
-    @heading = "Ski Accommodation, Chalets &amp; Apartments for ".html_safe
-    @heading += @for_sale ? "Sale" : "Rent"
+
+    if @resort.try(:ski?)
+      @heading = 'Ski '.html_safe
+    else
+      @heading = ''.html_safe
+    end
+
+    @heading += 'Accommodation, Chalets &amp; Apartments for '.html_safe
+    @heading += @for_sale ? 'Sale' : 'Rent'
     @heading += " in #{@resort.name}" if @resort
+  end
+
+  def search_status
+    @properties.any? ? 200 : 404
   end
 end

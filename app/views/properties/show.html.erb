@@ -54,7 +54,9 @@
     <%= I18n.t('bathrooms') %>: <%= @property.number_of_bathrooms %>
   </div>
   <div class="column">
+<% unless @property.for_sale? -%>
     <%= I18n.t('sleeping_capacity') %>: <%= @property.sleeping_capacity %>
+<% end -%>
   </div>
   <div class="column">
 <% if @property.for_rent? -%>

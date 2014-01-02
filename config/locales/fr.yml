@@ -92,6 +92,7 @@ fr:
     cleaners: Nettoyeurs
     creche: Creches
     estate_agents: Agents immobiliers
+    foreign_currency: Foreign currency
     heliskiing: Heliskiing
     home_appliances: Appareils électroménagers
     home_insurance: Assurance habitation
@@ -101,10 +102,11 @@ fr:
     mountain_guide: Guides de montagne
     other: Divers
     outdoor_adventures: Outdoor adventures
+    property_developers: Property developers
     restaurants: Restaurants
     ski_hire: Location de ski
     ski_school: Ski school
-    takeaway: A emporter
+    takeaways: A emporter
     taxi: Taxis
   change: Changer
   checkout: Commander
@@ -407,7 +409,9 @@ fr:
     contact:
       heading: 'Enquire about %{property}'
       title: 'Enquire about %{property} in %{resort}, %{country}'
-    email_a_friend: Envoyer à un ami
+    email_a_friend:
+      heading: 'Email a friend about %{property}'
+      title: 'Email a friend about %{property} in %{resort}, %{country}'
     featured:
       alt_for_rent: '%{resort} accommodation chalets for rent in %{resort} apartments to rent in %{resort} holiday homes to rent in %{resort}'
       alt_for_sale: '%{resort} accommodation chalets for sale in %{resort} apartments to buy in %{resort} holiday homes to buy in %{resort}'
@@ -467,6 +471,7 @@ fr:
     no_matching_resorts: "Il n'ya pas de propriétés annoncées à cette station de ski qui correspondent à vos critères de recherche. De nombreuses locations de vacances seulement accepter des arrivées les samedis et avoir un séjour minimum de 7 jours. Si possible et vous êtes flexible pour les dates, s'il vous plaît essayer de modifier vos dates d'arrivée et / ou la durée de votre séjour - merci."
     place_in_window: 'Place in Window'
     property_summary:
+      email_a_friend: Envoyer à un ami
       nearest_lift: 'Nearest lift'
       sleeps: Sleeps
     select_resort: Sélectionnez une station

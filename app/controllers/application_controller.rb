@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActionView::MissingTemplate, with: :render_html
 
+  rescue_from ActionView::MissingTemplate, with: :render_html
+
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, with: :render_error
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -51,7 +53,6 @@ class ApplicationController < ActionController::Base
       '/welcome/property-owner',
     ].collect{|x| 'http://' + domain + x}
     Country.with_visible_resorts.each do |country|
-      @urls << country_url(country)
       country.visible_resorts.each do |resort|
         @urls << resort_url(resort)
         @urls << resort_guide_url(resort)
@@ -110,6 +111,10 @@ class ApplicationController < ActionController::Base
     end
 
     use_default_footer if @footer_box.blank?
+  end
+
+  def no_header!
+    @no_header = true
   end
 
   def use_default_footer

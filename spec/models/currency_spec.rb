@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe Currency do
+  describe '#to_s' do
+    it 'returns its code' do
+      currency = Currency.new(code: 'GBP')
+      expect(currency.to_s).to eq 'GBP'
+    end
+  end
+
   describe '.sterling_in_euros' do
     context 'when GBP currency exists' do
       before { FactoryGirl.create(:currency, code: 'GBP', in_euros: 1.5) }

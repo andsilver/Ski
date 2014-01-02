@@ -10,4 +10,9 @@ class Page < ActiveRecord::Base
   def sidebar_html(locale)
     Snippet.find_by(name: sidebar_snippet_name, locale: locale).try(:snippet)
   end
+
+  # Checks the title and description for SEO best practices.
+  def meta_ok?
+    title.length <= 51 && description.present?
+  end
 end

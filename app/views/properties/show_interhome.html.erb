@@ -2,6 +2,7 @@
 
 <%= content_for :theme, @property.theme %>
 
+<% cache [@accommodation, Date.today] do %>
 <%= render partial: 'google_map',
     locals: { lat: @accommodation.geodata_lat, lng: @accommodation.geodata_lng } %>
 <script>
@@ -14,9 +15,9 @@
     });
   });
 </script>
-<div id="property">
+<div id="property" itemscope itemtype="http://schema.org/LodgingBusiness">
 <%= render partial: 'user_logo', locals: { property: @property } %>
-<h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %>
+<h1 class="property_name"><span><%= t('property_name') %>:</span> <span itemprop="name"><%= @property.name %></span>
 <% unless @property.interhome_accommodation.interhome_place.nil? -%>
   (<%= @property.interhome_accommodation.interhome_place.name %>)
 <% end -%>
@@ -49,7 +50,7 @@
 <% end %>
 </p>
 <% @property.images.each do |i| %>
-<div id="pic_<%= i.id %>"><img src="<%= i.url %>" alt="Larger photo of <%= @property.name %>"></div>
+<div id="pic_<%= i.id %>"><img itemprop="image" src="<%= i.url %>" alt="Larger photo of <%= @property.name %>"></div>
 <% end %>
 <%= clear %>
 <% end %>
@@ -78,18 +79,34 @@ features = @accommodation.features.split(',')
 </div>
 
 <h2><%= I18n.t('description') %></h2>
-<h3>Inside</h3>
-<p>
-  <%= @accommodation.inside_description %>
-</p>
-<h3>Outside</h3>
-<p>
-  <%= @accommodation.outside_description %>
-</p>
-
+<div itemprop="description">
+  <h3>Inside</h3>
+  <p>
+    <%= @accommodation.inside_description %>
+  </p>
+  <h3>Outside</h3>
+  <p>
+    <%= @accommodation.outside_description %>
+  </p>
+</div>
 <%= render 'interhome_booking_form' if @accommodation.interhome_vacancy %>
 
+<div class="meta">
+  <h2>Additional Information</h2>
+  <p>
+    <a href="<%= interhome_property_path(@accommodation.permalink) %>" itemprop="url">Permalink</a>
+  </p>
+  <% if @accommodation.geodata_lat.present? -%>
+  <p itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+    Latitude: <%= @accommodation.geodata_lat %><br>
+    Longitude: <%= @accommodation.geodata_lng %>
+    <meta itemprop="latitude" content="<%= @accommodation.geodata_lat %>">
+    <meta itemprop="longitude" content="<%= @accommodation.geodata_lng %>">
+  </p>
+  <% end -%>
+</div>
 <%= clear %>
 
 </div><!--#property-->
+<% end %>
 <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>

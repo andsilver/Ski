@@ -4,7 +4,7 @@ class Property < ActiveRecord::Base
   belongs_to :user
   belongs_to :country
   belongs_to :region
-  belongs_to :resort
+  belongs_to :resort, touch: true
   belongs_to :image
   belongs_to :currency
   belongs_to :interhome_accommodation
@@ -39,7 +39,7 @@ class Property < ActiveRecord::Base
   delegate :theme, to: :resort
 
   cattr_reader :per_page
-  @@per_page = 10
+  @@per_page = 20
   @@perform_geocode = PERFORM_GEOCODE
 
   LISTING_TYPE_FOR_RENT = 0

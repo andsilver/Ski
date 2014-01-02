@@ -16,3 +16,30 @@ header[role=banner] {
   left: 235px;
   top: -70px;
 }
+
+#social {
+  bottom: 53px;
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  position: absolute;
+  right: 15px;
+
+  .google-plus-one {
+    margin-right: 5px;
+  }
+
+  li {
+    display: inline-block;
+    font-size: 22px;
+    margin-left: 5px;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}

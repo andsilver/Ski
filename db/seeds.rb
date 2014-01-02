@@ -10,8 +10,8 @@ Page.destroy_all
 HolidayType.destroy_all
 Property.destroy_all
 PropertyBasePrice.destroy_all
-Resort.destroy_all
 DirectoryAdvert.destroy_all
+Resort.destroy_all
 Category.destroy_all
 User.destroy_all
 Role.delete_all
@@ -24,12 +24,10 @@ Page.create!([
   { path: '/pages/about', title: 'About' }
 ])
 
-HolidayType.create!([
-  { name: 'Ski Holidays',      slug: 'ski-holidays' },
-  { name: 'Lakes & Mountains', slug: 'lakes-and-mountains' },
-  { name: 'Summer Villas',     slug: 'summer-villas' },
-  { name: 'City Breaks',       slug: 'city-breaks' }
-])
+ski_holidays = HolidayType.create!(name: 'Ski Holidays', slug: 'ski-holidays')
+lakes_and_mountains = HolidayType.create!(name: 'Lakes & Mountains', slug: 'lakes-and-mountains')
+summer_villas = HolidayType.create!(name: 'Summer Villas', slug: 'summer-villas')
+city_breaks = HolidayType.create!(name: 'City Breaks', slug: 'city-breaks')
 
 euros = Currency.create!(
   name: 'Euro',
@@ -287,10 +285,13 @@ countries = Country.create([
   { name: 'Zimbabwe',              iso_3166_1_alpha_2: 'ZW' }
   ])
 
-austria = Country.find_by(name: 'Austria').id
-france = Country.find_by(name: 'France').id
-italy = Country.find_by(name: 'Italy').id
-united_kingdom = Country.find_by(name: 'United Kingdom').id
+austria = Country.find_by(name: 'Austria')
+france = Country.find_by(name: 'France')
+italy = Country.find_by(name: 'Italy')
+united_kingdom = Country.find_by(name: 'United Kingdom')
+
+france.holiday_type_brochures.build(holiday_type: ski_holidays)
+france.save!
 
 admin = Role.create!(
   name: 'Administrator',
@@ -304,6 +305,9 @@ property_owner = Role.create!(
   name: 'Property owner',
   admin: false,
   select_on_signup: true,
+  advertises_generally: false,
+  advertises_properties_for_rent: true,
+  advertises_properties_for_sale: true,
   flag_new_development: false,
   has_a_website: false
 )
@@ -312,6 +316,8 @@ estate_agent = Role.create!(
   name: 'Estate agent',
   admin: false,
   select_on_signup: true,
+  advertises_properties_for_rent: true,
+  advertises_properties_for_sale: true,
   flag_new_development: true,
   has_a_website: true
 )
@@ -328,6 +334,8 @@ property_developer = Role.create!(
   name: 'Property developer',
   admin: false,
   select_on_signup: true,
+  advertises_properties_for_rent: false,
+  advertises_properties_for_sale: true,
   flag_new_development: true,
   new_development_by_default: true,
   has_a_website: true
@@ -337,6 +345,9 @@ other_business = Role.create!(
   name: 'Other business',
   admin: false,
   select_on_signup: true,
+  advertises_generally: true,
+  advertises_properties_for_rent: false,
+  advertises_properties_for_sale: false,
   flag_new_development: false,
   has_a_website: true
 )
@@ -354,7 +365,7 @@ alice = User.create!(
   password: 'secret',
   billing_street: '1, High St',
   billing_city: 'Portsmouth',
-  billing_country_id: united_kingdom,
+  billing_country: united_kingdom,
   terms_and_conditions: true,
   description: '',
   role: admin)
@@ -365,12 +376,39 @@ bob = User.create!(
   password: 'secret',
   billing_street: '2, Main Rd',
   billing_city: 'Newcastle',
-  billing_country_id: united_kingdom,
+  billing_country: united_kingdom,
   terms_and_conditions: true,
   description: '',
   role: property_developer)
+interhome = User.create!(
+  first_name: 'Interhome',
+  last_name: 'Interhome',
+  email: 'interhome@mychaletfinder.com',
+  password: 'secret',
+  billing_street: '1, High St',
+  billing_city: 'Portsmouth',
+  billing_country: united_kingdom,
+  terms_and_conditions: true,
+  description: '',
+  role: estate_agent)
 
-chamonix = Resort.create!(country_id: france, name: 'Chamonix',
+Resort.create!([
+  { country: austria, name: 'Alpbach',      slug: 'alphach' },
+  { country: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
+  { country: austria, name: 'St Anton',     slug: 'st-anton' },
+  { country: austria, name: 'Tyrol',        slug: 'tyrol' },
+  { country: austria, name: 'Westendorf',   slug: 'westendorf' },
+  { country: france,  name: 'Avoriaz',      slug: 'avoriaz' },
+  { country: france,  name: 'Bernex',       slug: 'bernex' },
+  { country: france,  name: 'La Tania',     slug: 'la-tania' },
+  { country: france,  name: 'Les Houches',  slug: 'les-houches', visible: true },
+  { country: france,  name: 'Morzine',      slug: 'morzine' },
+  { country: italy,   name: 'Cervinia',     slug: 'cervinia' },
+  { country: italy,   name: 'Dolomites',    slug: 'dolomites' },
+  { country: italy,   name: 'Italian Alps', slug: 'italian-alps' },
+])
+
+chamonix = Resort.create!(country: france, name: 'Chamonix',
   slug: 'chamonix',
   altitude_m: 1035,
   top_lift_m: 3842,
@@ -381,24 +419,16 @@ chamonix = Resort.create!(country_id: france, name: 'Chamonix',
   for_sale_count: 5
 )
 
-Airport.destroy_all
-geneva = Airport.create!(name: 'Geneva', code: 'GVA', country_id: france)
-AirportDistance.create!(airport_id: geneva.id, resort_id: chamonix.id, distance_km: 90)
+chamonix.holiday_type_brochures.build(holiday_type: ski_holidays)
+chamonix.save!
 
-Resort.create!([
-  { country_id: austria, name: 'Alpbach',      slug: 'alphach' },
-  { country_id: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
-  { country_id: austria, name: 'St Anton',     slug: 'st-anton' },
-  { country_id: austria, name: 'Tyrol',        slug: 'tyrol' },
-  { country_id: austria, name: 'Westendorf',   slug: 'westendorf' },
-  { country_id: france,  name: 'Avoriaz',      slug: 'avoriaz' },
-  { country_id: france,  name: 'Bernex',       slug: 'bernex' },
-  { country_id: france,  name: 'La Tania',     slug: 'la-tania' },
-  { country_id: france,  name: 'Morzine',      slug: 'morzine' },
-  { country_id: italy,   name: 'Cervinia',     slug: 'cervinia' },
-  { country_id: italy,   name: 'Dolomites',    slug: 'dolomites' },
-  { country_id: italy,   name: 'Italian Alps', slug: 'italian-alps' },
-])
+les_houches = Resort.find_by(slug: 'les-houches')
+les_houches.holiday_type_brochures.build(holiday_type: ski_holidays)
+les_houches.save!
+
+Airport.destroy_all
+geneva = Airport.create!(name: 'Geneva', code: 'GVA', country: france)
+AirportDistance.create!(airport_id: geneva.id, resort_id: chamonix.id, distance_km: 90)
 
 bars = Category.create!(name: 'Bars')
 
@@ -445,7 +475,8 @@ images = Image.create([
   { filename: 'chalet27.jpg', source_url: image_source_url },
   { filename: 'chalet28.jpg', source_url: image_source_url },
   { filename: 'chalet29.jpg', source_url: image_source_url },
-  { filename: 'chalet30.jpg', source_url: image_source_url }
+  { filename: 'chalet30.jpg', source_url: image_source_url },
+  { filename: 'hotel1.jpg', source_url: image_source_url }
   ])
 
 PropertyBasePrice.create!(number_of_months: 12, price: 150)
@@ -475,13 +506,27 @@ properties = Property.create!([
   { resort: chamonix, user: alice, name: "Chalet Eftikhia" ,  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5900, weekly_rent_price: 1600, currency: euros, image_id: 22, listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Flegere",    address: '123 street', sleeping_capacity: 10,  metres_from_lift: 3400, weekly_rent_price: 1700, currency: euros, image_id: 23, listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Gauthier",   address: '123 street', sleeping_capacity: 16,  metres_from_lift: 4300, weekly_rent_price: 1600, currency: euros, image_id: 24, listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Ghia",       address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, currency: euros, image_id: 25, listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Les Citronniers",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, currency: euros, image_id: 25, listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Grassonnets", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 3500, weekly_rent_price: 1300, currency: euros, image_id: 26, listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Guapa",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, currency: euros, image_id: 27, listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Ibex",       address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, currency: euros, image_id: 28, listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Jomain",     address: '123 street', sleeping_capacity: 18,  metres_from_lift: 10200, weekly_rent_price: 2050, currency: euros, image_id: 29, listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Kushi",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9800, weekly_rent_price: 1500, currency: euros, image_id: 30, listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true }
   ])
+
+hotel = Property.create!({
+  resort: les_houches,
+  user: alice,
+  name: 'Les Granges d’en Haut',
+  address: 'Route des Chavants, 74310 Les Houches',
+  sleeping_capacity: 100,
+  metres_from_lift: 1000,
+  weekly_rent_price: 1050,
+  currency: euros,
+  image_id: 31,
+  listing_type: Property::LISTING_TYPE_HOTEL,
+  publicly_visible: true
+})
 
 InterhomeAccommodation.destroy_all
 interhome_accommodation = InterhomeAccommodation.create!(
@@ -496,11 +541,10 @@ interhome_accommodation = InterhomeAccommodation.create!(
   floor: 0,
   geodata_lat: '66.073845',
   geodata_lng: '28.929323',
-  name: 'Alpen Lounge',
+  name: 'Holiday House Voltaire',
   pax: 10,
   permalink: 'ch1912-712-1',
   place: '1234',
-  property: Property.first,
   quality: 3,
   region: '1',
   rooms: 3,
@@ -509,6 +553,20 @@ interhome_accommodation = InterhomeAccommodation.create!(
   toilets: 1,
   zip: 'ZIP'
 )
+interhome_property = Property.create!(
+  resort: chamonix,
+  user: alice,
+  name: 'Holiday House Voltaire',
+  address: '123 street',
+  sleeping_capacity: 8,
+  metres_from_lift: 9800, weekly_rent_price: 1500,
+  currency: euros,
+  image_id: 30,
+  listing_type: Property::LISTING_TYPE_FOR_RENT,
+  publicly_visible: true,
+  interhome_accommodation_id: interhome_accommodation.id
+)
+
 InterhomeVacancy.destroy_all
 InterhomeVacancy.create!(
   accommodation_code: 'CH1912.712.1',
@@ -518,6 +576,23 @@ InterhomeVacancy.create!(
   interhome_accommodation_id: interhome_accommodation.id,
   minstay: 'CCCCCCCCCCCCCCCGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG',
   startday: Date.today
+)
+
+les_citronniers = PvAccommodation.create!(
+  property: Property.find_by(name: 'Les Citronniers'),
+  name: 'Les Citronniers',
+  code: '01L',
+  iso_3166_1: 'FR',
+  iso_3166_2: 'FR-06',
+  onu: 'FR-NCE',
+  address_1: '17, rue Partouneaux',
+  address_2: '',
+  town: 'MENTON',
+  postcode: '06500',
+  latitude: '43.77880000',
+  longitude: '7.50567000',
+  price_table_url: 'http://www.pv-holidays.com/gb-en/tabprice/?code=01L&season=SUMMER&currencyCode=EUR',
+  permalink: '01L'
 )
 
 DirectoryAdvert.destroy_all
@@ -538,7 +613,7 @@ order = Order.create!(
   email: alice.email,
   name: alice.first_name,
   address: alice.billing_street,
-  country_id: alice.billing_country.id,
+  country: alice.billing_country,
   phone: '+44.1234567890',
   status: Order::PAYMENT_RECEIVED,
   total: 50
