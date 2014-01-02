@@ -39,7 +39,7 @@ class PropertiesController < ApplicationController
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
-    @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_FOR_RENT}"
+    @conditions[0] += " AND (listing_type = #{Property::LISTING_TYPE_FOR_RENT} OR listing_type = #{Property::LISTING_TYPE_HOTEL})"
 
     @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :wifi,
       :disabled, :ski_in_ski_out]
