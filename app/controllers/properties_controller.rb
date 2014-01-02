@@ -30,7 +30,7 @@ class PropertiesController < ApplicationController
 
   def index
     default_page_title 'Properties'
-    @properties = Property.paginate(page: params[:page], order: 'id ASC', per_page: 200)
+    @properties = Property.order(:id).paginate(page: params[:page], per_page: 200)
   end
 
   def quick_search
@@ -59,8 +59,7 @@ class PropertiesController < ApplicationController
       @conditions << params[:board_basis]
     end
 
-    @properties = Property.paginate(page: params[:page], order: order,
-      conditions: @conditions)
+    @properties = Property.where(@conditions).order(order).paginate(page: params[:page])
     render :browse, status: search_status
   end
 
