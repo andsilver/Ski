@@ -106,19 +106,7 @@ class Image < ActiveRecord::Base
     unless FileTest.exists?(path)
       begin
         ImageScience.with_image(original_path) do |img|
-          if(method == :longest_side)
-            img.thumbnail(size) do |thumb|
-              thumb.save path
-            end
-          elsif(method == :height)
-            img.resize(img.width * size / img.height, size) do |thumb|
-              thumb.save path
-            end
-          elsif(method == :width)
-            img.resize(size, img.height * size / img.width) do |thumb|
-              thumb.save path
-            end
-          end
+          send("size_#{method}", img, size, path)
         end
       rescue
         return IMAGE_MISSING
@@ -138,6 +126,22 @@ class Image < ActiveRecord::Base
       return s3_url_for_filename(f)
     else
       return url_for_filename(f)
+    end
+  end
+
+  def size_longest_side(img, size, path)
+    img.thumbnail(size) { |thumb| thumb.save path }
+  end
+
+  def size_height(img, size, path)
+    img.resize(img.width * size / img.height, size) do |thumb|
+      thumb.save path
+    end
+  end
+
+  def size_width(img, size, path)
+    img.resize(size, img.height * size / img.width) do |thumb|
+      thumb.save path
     end
   end
 
