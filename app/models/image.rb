@@ -90,13 +90,13 @@ class Image < ActiveRecord::Base
   end
 
   def sized_url(size, method)
-    unless [:height, :width, :longest_side].include?(method)
-      raise ArgumentError.new("method must be :longest_side, :height or :width")
+    unless [:cropped, :height, :width, :longest_side, :maxpect].include?(method)
+      raise ArgumentError.new("method must be :cropped, :longest_side, :maxpect, :height or :width")
     end
 
     return source_url if remote_image?
 
-    f = method.to_s + '_' + size.to_s + '.' + extension
+    f = method.to_s + '_' + size.to_s.gsub(', ', 'x').gsub('[', '').gsub(']', '') + '.' + extension
     path = "#{directory_path}/#{f}"
     s3_path = path + '.s3uploaded'
 
@@ -129,6 +129,28 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def size_cropped(img, size, path)
+    width = size[0]
+    height = size[1]
+
+    src_ar = img.width.to_f / img.height.to_f
+    thumb_ar = width.to_f / height.to_f
+
+    if(src_ar > thumb_ar)
+      new_width = (img.height.to_f * thumb_ar).to_i
+      shave = ((img.width - new_width).to_f / 2.0).to_i
+      img.with_crop(shave, 0, img.width - shave, img.height) do |cropped|
+        size_maxpect(cropped, size, path)
+      end
+    else
+      new_height = (img.width.to_f / thumb_ar).to_i
+      shave = ((img.height - new_height).to_f / 2.0).to_i
+      img.with_crop(0, shave, img.width, img.height - shave) do |cropped|
+        size_maxpect(cropped, size, path)
+      end
+    end
+  end
+
   def size_longest_side(img, size, path)
     img.thumbnail(size) { |thumb| thumb.save path }
   end
@@ -142,6 +164,29 @@ class Image < ActiveRecord::Base
   def size_width(img, size, path)
     img.resize(size, img.height * size / img.width) do |thumb|
       thumb.save path
+    end
+  end
+
+  def size_maxpect(img, size, path)
+    if size.kind_of? Array
+      width = size[0]
+      height = size[1]
+    else
+      width = height = size
+    end
+
+    src_ar = img.width.to_f / img.height.to_f
+    thumb_ar = width.to_f / height.to_f
+    tolerance = 0.1
+    if(src_ar * (1+tolerance) < thumb_ar || src_ar / (1+tolerance) > thumb_ar)
+      if(src_ar > thumb_ar)
+        height = (width / src_ar).to_i
+      else
+        width = (height * src_ar).to_i
+      end
+    end
+    img.resize(width, height) do |thumb|
+      thumb.save(path)
     end
   end
 
