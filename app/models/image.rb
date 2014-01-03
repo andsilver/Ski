@@ -90,8 +90,8 @@ class Image < ActiveRecord::Base
   end
 
   def sized_url(size, method)
-    unless [:cropped, :height, :width, :longest_side, :maxpect].include?(method)
-      raise ArgumentError.new("method must be :cropped, :longest_side, :maxpect, :height or :width")
+    unless [:cropped, :height, :width, :longest_side, :maxpect, :square].include?(method)
+      raise ArgumentError.new("method must be :cropped, :longest_side, :maxpect, :square, :height or :width")
     end
 
     return source_url if remote_image?
@@ -165,6 +165,10 @@ class Image < ActiveRecord::Base
     img.resize(size, img.height * size / img.width) do |thumb|
       thumb.save path
     end
+  end
+
+  def size_square(img, size, path)
+    img.cropped_thumbnail(size) { |thumb| thumb.save path }
   end
 
   def size_maxpect(img, size, path)
