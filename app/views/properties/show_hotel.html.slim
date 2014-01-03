@@ -1,5 +1,6 @@
 - unless @property.image.nil?
   .header-image.layout-element.size-1of1
     = image_tag(@property.image.sized_url([620, 310], :cropped), alt: "Photo of #{@property.name}")
+    p.header-title= @property.name
 
 = render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort)
