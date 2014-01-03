@@ -9,6 +9,11 @@ describe 'properties/show_hotel' do
     assign(:property, property)
   end
 
+  it 'displays advertising' do
+    render
+    expect(view.content_for(:advertising)).to be
+  end
+
   context 'without an image' do
     before { property.image = nil }
 
