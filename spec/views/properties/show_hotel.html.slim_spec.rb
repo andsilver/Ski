@@ -9,6 +9,11 @@ describe 'properties/show_hotel' do
     assign(:property, property)
   end
 
+  it 'displays advertising' do
+    render
+    expect(view.content_for(:advertising)).to be
+  end
+
   context 'without an image' do
     before { property.image = nil }
 
@@ -25,6 +30,13 @@ describe 'properties/show_hotel' do
       render
       within('.header-image') do |header_image|
         expect(header_image).to have_selector 'img'
+      end
+    end
+
+    it 'shows the property name in the header title' do
+      render
+      within('p.header-title') do |header_title|
+        expect(header_title).to have_content property.name
       end
     end
   end

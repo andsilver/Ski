@@ -206,12 +206,12 @@ describe Property do
     end
 
     it 'returns the value of the Interhome accommodation availability' do
-      available = mock_model(InterhomeAccommodation, available_to_check_in_on_dates?: true)
+      available = mock_model(InterhomeAccommodation, available_to_check_in_on_dates?: true).as_null_object
       p = Property.new
       p.interhome_accommodation = available
       expect(p.calculate_late_availability([])).to be_true
 
-      unavailable = mock_model(InterhomeAccommodation, available_to_check_in_on_dates?: false)
+      unavailable = mock_model(InterhomeAccommodation, available_to_check_in_on_dates?: false).as_null_object
       p.interhome_accommodation = unavailable
       expect(p.calculate_late_availability([])).to be_false
     end
