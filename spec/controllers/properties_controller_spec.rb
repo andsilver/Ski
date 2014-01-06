@@ -18,14 +18,11 @@ describe PropertiesController do
         controller.stub(:admin?).and_return(true)
       end
 
-      it "finds a page of properties" do
-        Property.should_receive(:paginate)
-        get :index
-      end
-
-      it "assigns @properties" do
-        properties = [Property.new]
-        Property.stub(:paginate).and_return(properties)
+      it 'assigns @properties a page of properties ordered by id' do
+        properties = [
+          FactoryGirl.create(:property),
+          FactoryGirl.create(:property)
+        ]
         get :index
         expect(assigns(:properties)).to eq(properties)
       end
