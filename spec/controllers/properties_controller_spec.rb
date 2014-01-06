@@ -19,6 +19,7 @@ describe PropertiesController do
       end
 
       it 'assigns @properties a page of properties ordered by id' do
+        Property.delete_all
         properties = [
           FactoryGirl.create(:property),
           FactoryGirl.create(:property)
