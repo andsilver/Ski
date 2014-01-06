@@ -23,24 +23,36 @@
     border-right-color: #999;
     border-left-color: #999;
     border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
+    border-top: #0069af solid 4px;
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
-    background-color: white;
+    background-color: #009fe3;
     padding: 7px 12% 0;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
 
   h1 {
     font-size: 100%;
-    color: #730E15;
+    color: #fff;
     line-height: 1.5em;
   }
 
   div.dialog > p {
-    margin: 0 0 1em;
+    margin: 0;
     padding: 1em;
     background-color: #F7F7F7;
+    border: 1px solid #CCC;
+    border-right-color: #999;
+    border-left-color: #999;
+    border-top-color: #DADADA;
+    color: #666;
+    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  }
+
+  div.dialog > ul {
+    margin: 0 0 1em;
+    padding: 1em;
+    background-color: #fff;
     border: 1px solid #CCC;
     border-right-color: #999;
     border-left-color: #999;
@@ -51,6 +63,14 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+
+  .dialog li {
+    list-style: none;
+  }
+
+  .dialog a {
+    color: #009fe3;
+  }
   </style>
 </head>
 
@@ -58,10 +78,28 @@
   <!-- This file lives in public/404.html -->
   <div class="dialog">
     <div>
+      <p>
+        <img src="images/home-link.svg" alt="MyChaletFinder.com">
+      </p>
       <h1>The page you were looking for doesn't exist.</h1>
       <p>You may have mistyped the address or the page may have moved.</p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <p>
+      Looking for your perfect holiday accommodation?<br>
+      Here are some of our favourite pages:
+    </p>
+    <ul>
+      <li><a href="http://en.mychaletfinder.com/">MyChaletFinder.com home</a></li>
+      <li><a href="http://en.mychaletfinder.com/holidays/ski-holidays">Ski holidays</a></li>
+      <li><a href="http://en.mychaletfinder.com/countries/france/holidays/ski-holidays">Ski holidays in France</a></li>
+      <li><a href="http://en.mychaletfinder.com/countries/switzerland/holidays/ski-holidays">Ski holidays in Switzerland</a></li>
+      <li><a href="http://en.mychaletfinder.com/countries/austria/holidays/ski-holidays">Ski holidays in Austria</a></li>
+      <li><a href="http://en.mychaletfinder.com/countries/italy/holidays/ski-holidays">Ski holidays in Italy</a></li>
+      <li><a href="http://en.mychaletfinder.com/holidays/lakes-and-mountains">Lakes and mountains</a></li>
+      <li><a href="http://en.mychaletfinder.com/countries/italy/holidays/lakes-and-mountains">Lakes and mountains in Italy</a></li>
+      <li><a href="http://en.mychaletfinder.com/countries/france/holidays/summer-villas">Summer villas in France</a></li>
+      <li><a href="http://en.mychaletfinder.com/resorts/chamonix">Chamonix</a></li>
+    </ul>
   </div>
 </body>
 </html>
