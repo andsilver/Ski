@@ -13,15 +13,16 @@
         = @property.country
       
 
-    .gallery.layout-element.size-1of2
-      = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
-      = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
-      = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
-      = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
-      = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
-      = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
-      = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
-      = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
-      = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
+    - if @property.image
+      .gallery.layout-element.size-1of2
+        = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
+        = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
+        = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
+        = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
+        = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
+        = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
+        = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
+        = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
+        = image_tag(@property.image.sized_url(99, :square), alt: "Photo of #{@property.name}")
 
 = render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort)
