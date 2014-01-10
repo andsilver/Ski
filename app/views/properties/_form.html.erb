@@ -21,7 +21,21 @@ $(function() {
 <% end %>
 
 <%= form_for @property do |f| %>
-<%= f.hidden_field :listing_type %>
+
+<% if admin? -%>
+<div class="well">
+  <div class="form-horizontal">
+    <div class="form-group">
+      <%= f.label :listing_type, class: 'control-label col-lg-4' %>
+      <div class="col-lg-6">
+        <%= f.select :listing_type, listing_type_options, {}, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+</div>
+<% else -%>
+  <%= f.hidden_field :listing_type %>
+<% end -%>
 
   <div class="well">
     <div class="form-horizontal">
