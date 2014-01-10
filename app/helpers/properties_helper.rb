@@ -46,6 +46,14 @@ module PropertiesHelper
     t(keys[p.listing_type], resort: p.resort)
   end
 
+  def listing_type_options
+    [
+      ["For rent", Property::LISTING_TYPE_FOR_RENT],
+      ["For sale", Property::LISTING_TYPE_FOR_SALE],
+      ["Hotel",    Property::LISTING_TYPE_HOTEL]
+    ]
+  end
+
   def distance_options
     [
       ["< 100m", 100],

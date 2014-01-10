@@ -459,6 +459,65 @@
   </div><!--.has-shadow-->
 </div><!--.has-border-->
 
+<h2>Hotel Tab Panes</h2>
+
+<ul>
+  <li>The href of each tab must match the id of its tab pane</li>
+  <li>The first tab pane should include a class of <em>active</em></li>
+</ul>
+
+<pre>&lt;ul class="nav nav-tabs"&gt;
+  &lt;li class="active"&gt;&lt;a href="#description-tab"&gt;Description&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#amenities-tab"&gt;Hotel Amenities&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#area-tab"&gt;Local Area&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#pricing-tab"&gt;Pricing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="tab-content"&gt;
+  &lt;div class="tab-pane active" id="description-tab"&gt;
+    &lt;p&gt;Description...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="tab-pane" id="amenities-tab"&gt;
+    &lt;p&gt;Amenities...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="tab-pane" id="area-tab"&gt;
+    &lt;p&gt;Area...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="tab-pane" id="pricing-tab"&gt;
+    &lt;p&gt;Pricing...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<script>
+$(function() {
+  $('.nav-tabs a').click(function(e) {
+    e.preventDefault()
+    $(this).tab('show')
+  });
+});
+</script>
+<div class="hotel">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#description-tab">Description</a></li>
+    <li><a href="#amenities-tab">Hotel Amenities</a></li>
+    <li><a href="#area-tab">Local Area</a></li>
+    <li><a href="#pricing-tab">Pricing</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="description-tab">
+      <p>Description...</p>
+    </div>
+    <div class="tab-pane" id="amenities-tab">
+      <p>Amenities...</p>
+    </div>
+    <div class="tab-pane" id="area-tab">
+      <p>Area...</p>
+    </div>
+    <div class="tab-pane" id="pricing-tab">
+      <p>Pricing...</p>
+    </div>
+  </div>
+</div>
+
 <h2>Hiding Content from New and Legacy Websites</h2>
 
 <pre>&lt;div class="hide-from-legacy"&gt;
