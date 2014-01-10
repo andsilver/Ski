@@ -49,4 +49,11 @@ describe 'properties/show_hotel' do
     expect(response).to have_content(property.address)
     expect(response).to have_content(country)
   end
+
+  it 'displays the hotel description including raw HTML' do
+    property.description = '<h1 id="hotel">Hotel</h1>'
+
+    render
+    expect(response).to have_selector 'h1#hotel'
+  end
 end
