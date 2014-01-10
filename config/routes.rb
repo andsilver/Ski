@@ -75,7 +75,7 @@ Rails.application.routes.draw do
   get "tools/rental-prices/results" => "rental_prices#results"
 
   resources :categories, except: [:show]
-  get "categories/:id/:resort_id" => "categories#show", as: :show_category
+  get "categories/:id/:resort_slug" => "categories#show", as: :show_category
 
   get "sign_in" => "sessions#new"
   get "sign_out" => "sessions#destroy"

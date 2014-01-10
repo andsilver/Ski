@@ -63,7 +63,30 @@ describe CategoriesController do
     end
   end
 
-  describe "GET show" do
+  describe 'GET show' do
+    let(:cat)    { FactoryGirl.create(:category) }
+    let(:resort) { FactoryGirl.create(:resort) }
+
+    context 'with results' do
+      before do
+        Category.unstub(:new)
+        da = FactoryGirl.create(:directory_advert, category: cat, resort: resort)
+        Advert.new_for(da).start_and_save!
+      end
+
+      it 'succeeds' do
+        get :show, id: cat.id, resort_slug: resort.to_param
+        expect(response).to be_successful
+      end
+    end
+
+    context 'with no results' do
+      it '404s' do
+        Category.unstub(:new)
+        get :show, id: cat.id, resort_slug: resort.to_param
+        expect(response.status).to eq 404
+      end
+    end
   end
 
   describe 'DELETE destroy' do
