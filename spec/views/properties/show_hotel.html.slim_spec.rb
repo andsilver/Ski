@@ -40,4 +40,13 @@ describe 'properties/show_hotel' do
       end
     end
   end
+
+  it 'displays address and country' do
+    country = FactoryGirl.build(:country)
+    property.country = country
+
+    render
+    expect(response).to have_content(property.address)
+    expect(response).to have_content(country)
+  end
 end
