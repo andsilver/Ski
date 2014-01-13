@@ -92,11 +92,6 @@ p#property_main_image {
   height: 1100px;
 }
 
-#content .hotel ul.nav-tabs {
-  margin-bottom: 3px;
-  margin-left: 0;
-}
-
 .hotel {
   .clear-fix {
     width: 645px;
@@ -106,35 +101,10 @@ p#property_main_image {
     height: 202px;
   }
 
-  .nav-tabs {
-    border-bottom: none;
-  }
-
-  .nav-tabs > li > a {
-    border-color: #93d4f0;
-    border-bottom-color: transparent;
-    border-radius: 0;
-    color: #222;
-  }
-
-  .nav-tabs > li.active > a {
-    background-color: #00aeef;
-    border-color: #00aeef;
-    border-radius: 0;
-    color: #fff;
-  }
-
-  .tab-pane, .contact-availability {
+  .contact-availability {
     background-color: #e9f7fc;
     padding: 5px 10px;
-  }
 
-  .tab-pane {
-    border-bottom: 2px solid #000;
-    margin-bottom: 20px;
-  }
-
-  .contact-availability {
     h1 {
       border-bottom: 1px solid #084c8d;
       color: #000;
