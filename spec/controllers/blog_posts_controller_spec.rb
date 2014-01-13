@@ -7,6 +7,13 @@ describe BlogPostsController do
     Website.stub(:first).and_return(website)
   end
 
+  describe 'GET blog' do
+    it 'succeeds' do
+      get :blog
+      expect(response).to be_successful
+    end
+  end
+
   describe 'GET feed' do
     it 'finds all visible blog posts' do
       BlogPost.should_receive(:visible_posts)
