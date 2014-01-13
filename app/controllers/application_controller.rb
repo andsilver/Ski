@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
         @urls << resort_property_new_developments_url(resort) unless resort.new_development_count == 0
       end
     end
-    Property.find_each(batch_size: 500, conditions: {publicly_visible: true}, include: :interhome_accommodation) do |property|
+    Property.where(publicly_visible: true).includes(:interhome_accommodation).find_each(batch_size: 500) do |property|
       if property.interhome_accommodation_id
         @urls << interhome_property_url(property.interhome_accommodation.permalink)
       else
