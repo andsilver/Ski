@@ -40,7 +40,7 @@ class AirportTransfersController < ApplicationController
 
     @airport = Airport.find(airport_id)
     @resort = Resort.find(resort_id)
-    airport_transfers = AirportTransfer.all(conditions: ["airport_id = ? AND resort_id = ?", airport_id, resort_id])
+    airport_transfers = AirportTransfer.where(airport_id: airport_id, resort_id: resort_id)
 
     @results = []
     airport_transfers.each do |t|

@@ -20,4 +20,14 @@ describe AirportTransfersController do
   describe 'POST create' do
     pending
   end
+
+  describe 'POST results' do
+    let(:airport) { FactoryGirl.create(:airport) }
+    let(:resort)  { FactoryGirl.create(:resort) }
+
+    it 'should succeed' do
+      post :results, airport_transfer_search: { airport_id: airport.id, resort_id: resort.id }
+      expect(response).to be_successful
+    end
+  end
 end

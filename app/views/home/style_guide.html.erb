@@ -459,7 +459,7 @@
   </div><!--.has-shadow-->
 </div><!--.has-border-->
 
-<h2>Hotel Tab Panes</h2>
+<h2>Tab Panes</h2>
 
 <ul>
   <li>The href of each tab must match the id of its tab pane</li>
@@ -487,34 +487,24 @@
   &lt;/div&gt;
 &lt;/div&gt;</pre>
 
-<script>
-$(function() {
-  $('.nav-tabs a').click(function(e) {
-    e.preventDefault()
-    $(this).tab('show')
-  });
-});
-</script>
-<div class="hotel">
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#description-tab">Description</a></li>
-    <li><a href="#amenities-tab">Hotel Amenities</a></li>
-    <li><a href="#area-tab">Local Area</a></li>
-    <li><a href="#pricing-tab">Pricing</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="description-tab">
-      <p>Description...</p>
-    </div>
-    <div class="tab-pane" id="amenities-tab">
-      <p>Amenities...</p>
-    </div>
-    <div class="tab-pane" id="area-tab">
-      <p>Area...</p>
-    </div>
-    <div class="tab-pane" id="pricing-tab">
-      <p>Pricing...</p>
-    </div>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#description-tab">Description</a></li>
+  <li><a href="#amenities-tab">Hotel Amenities</a></li>
+  <li><a href="#area-tab">Local Area</a></li>
+  <li><a href="#pricing-tab">Pricing</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="description-tab">
+    <p>Description...</p>
+  </div>
+  <div class="tab-pane" id="amenities-tab">
+    <p>Amenities...</p>
+  </div>
+  <div class="tab-pane" id="area-tab">
+    <p>Area...</p>
+  </div>
+  <div class="tab-pane" id="pricing-tab">
+    <p>Pricing...</p>
   </div>
 </div>
 

@@ -42,8 +42,16 @@
   float: left;
 }
 
+.tab-pane .size-1of2 {
+  width: 295px;
+}
+
 .wide .size-1of2 {
   width: 390px;
+}
+
+.wide .tab-pane .size-1of2 {
+  width: 380px;
 }
 
 .size-1of3 {

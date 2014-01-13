@@ -35,6 +35,7 @@ html.no-js lang="#{@lang}"
         animateMarker();
         quickSearch();
         galleryZoom();
+        activateNavTabs();
       }
 
       function cycleHeaderImages() {
@@ -51,6 +52,13 @@ html.no-js lang="#{@lang}"
 
       function galleryZoom() {
         $('#gallery_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
+      }
+
+      function activateNavTabs() {
+        $('.nav-tabs a').click(function(e) {
+          e.preventDefault();
+          $(this).tab('show');
+        });
       }
   body class="#{@body_classes}"
     #wrapper class="#{"#{yield :theme}-theme" if content_for? :theme}"

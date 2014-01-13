@@ -1,10 +1,8 @@
 class CategoriesController < ApplicationController
-  include ResortSetter
-
   before_action :admin_required, except: [:show]
   layout 'admin', except: [:show]
 
-  before_action :find_resort, only: [:show]
+  before_action :set_resort, only: [:show]
   before_action :find_category, only: [:edit, :update, :show, :destroy]
 
   CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]
@@ -49,8 +47,7 @@ class CategoriesController < ApplicationController
     @conditions << @category.id
     @conditions << @resort.id
 
-    @directory_adverts = DirectoryAdvert.paginate(page: params[:page], order: 'RAND()',
-      conditions: @conditions)
+    @directory_adverts = DirectoryAdvert.where(@conditions).order('RAND()').paginate(page: params[:page])
     not_found unless @directory_adverts.any?
   end
 
@@ -62,9 +59,10 @@ class CategoriesController < ApplicationController
 
   protected
 
-  def find_resort
-    set_resort_with params[:resort_id]
-  end
+    def set_resort
+      @resort = Resort.find_by(slug: params[:resort_slug])
+      not_found unless @resort
+    end
 
   def find_category
     @category = Category.find_by(id: params[:id])

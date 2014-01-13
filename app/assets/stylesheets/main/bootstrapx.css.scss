@@ -3,3 +3,38 @@
 .carousel-control {
   bottom: 10px;
 }
+
+/* Nav tabs */
+
+#content ul.nav-tabs {
+  margin-bottom: 3px;
+  margin-left: 0;
+}
+
+.nav-tabs {
+  border-bottom: none;
+}
+
+.nav-tabs > li > a {
+  border-color: #93d4f0;
+  border-bottom-color: transparent;
+  border-radius: 0;
+  color: #222;
+}
+
+.nav-tabs > li.active > a {
+  background-color: #00aeef;
+  border-color: #00aeef;
+  border-radius: 0;
+  color: #fff;
+}
+
+.tab-pane {
+  background-color: #e9f7fc;
+  padding: 5px 10px;
+}
+
+.tab-pane {
+  border-bottom: 2px solid #000;
+  margin-bottom: 20px;
+}

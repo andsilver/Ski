@@ -5,7 +5,7 @@
 
   ul#categories
     - @categories.each do |category|
-      li= link_to t(category.name), show_category_path(category, resort_id: @resort)
+      li= link_to t(category.name), show_category_path(category, resort_slug: @resort)
 
   = clear
 
