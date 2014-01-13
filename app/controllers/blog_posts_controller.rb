@@ -3,7 +3,7 @@ class BlogPostsController < ApplicationController
 
   def blog
     @heading_a = t('blog_posts_controller.blog_heading')
-    @blog_posts = BlogPost.where(visible: true).paginate(page: params[:page], order: 'created_at DESC')
+    @blog_posts = BlogPost.where(visible: true).order(created_at: :desc).paginate(page: params[:page])
     not_found unless admin? || @w.blog_visible?
   end
 
