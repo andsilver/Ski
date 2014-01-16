@@ -12,7 +12,7 @@ feature 'Banner adverts' do
 
   scenario 'Handles long straplines gracefully' do
     sign_in_as_emily_evans
-    expect{add_banner_advert_to_basket(strapline: 'X' * 256)}.to_not raise_error(ActiveRecord::StatementInvalid)
+    expect{add_banner_advert_to_basket(strapline: 'X' * 256)}.to_not raise_error
     expect(page).to have_content 'Strapline is too long (maximum is 255 characters)'
   end
 end

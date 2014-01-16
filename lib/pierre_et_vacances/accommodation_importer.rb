@@ -2,10 +2,6 @@ require 'xmlsimple'
 
 module PierreEtVacances
   class AccommodationImporter < ::AccommodationImporter
-    def ftp_get
-      FTP.get(xml_filename)
-    end
-
     def import_accommodation(a)
       accommodation = PvAccommodation.new
       name = a['nom_produit'][0]['libelle'][0]
@@ -167,25 +163,6 @@ module PierreEtVacances
       quoted_code = ActiveRecord::Base.connection.quote(code)
       result = ActiveRecord::Base.connection.execute "SELECT MIN(promo_price_en * 7 / duration) FROM `pv_vacancies` WHERE `destination_code`=#{quoted_code}"
       result.first[0]
-    end
-
-    def xml_filename
-      @xml_filename ||= FTP.property_filename(current_season)
-    end
-
-    def current_season
-      season(Date.today)
-    end 
-
-    def season(date)
-      start_of_summer = Date.new(2000, 5, 1).yday
-      start_of_winter = Date.new(2000, 9, 1).yday
-      date = date.yday
-      if start_of_summer <= date && date < start_of_winter
-        :summer
-      else
-        :winter
-      end
     end
 
     def user_email

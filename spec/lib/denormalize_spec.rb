@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Denormalize do
   describe '.denormalize' do
+    before { Currency.stub(:update_exchange_rates) }
+
     it 'updates featured properties' do
       Denormalize.should_receive(:update_featured_properties)
       Denormalize.denormalize
@@ -41,7 +43,7 @@ describe Denormalize do
     end
 
     context 'with a website' do
-      let!(:website) { FactoryGirl.create(:website) }
+      let!(:website) { Website.first || FactoryGirl.create(:website) }
 
       it 'assigns featured properties to the website' do
         featured_properties = [FactoryGirl.create(:property)]

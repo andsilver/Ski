@@ -12,6 +12,36 @@ describe PagesController do
     @page ||= mock_model(Page, stubs).as_null_object
   end
 
+  describe 'POST create' do
+    before { post :create, page: page_params }
+
+    context 'with valid page params' do
+      let(:page_params) {{
+        title: 'Title',
+        path: SecureRandom.hex
+      }}
+
+      it 'creates a page' do
+        pp page_params
+        expect(Page.find_by(page_params)).to be
+      end
+
+      it 'redirects to pages index' do
+        expect(response).to redirect_to(pages_path)
+      end
+    end
+
+    context 'with invalid page params' do
+      let(:page_params) {{
+        title: ''
+      }}
+
+      it 'renders new' do
+        expect(response).to render_template :new
+      end
+    end
+  end
+
   def put_update
     put 'update', id: '1', page: { title: 'T' }
   end

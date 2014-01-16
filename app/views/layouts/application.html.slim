@@ -63,6 +63,8 @@ html.no-js lang="#{@lang}"
   body class="#{@body_classes}"
     #wrapper class="#{"#{yield :theme}-theme" if content_for? :theme}"
       header role="banner"
+        div.header-snippet
+          = raw @page_header_html
         nav#session
           ul
             li= link_to '<i class="icon-heart"></i> '.html_safe + t('favourites.favourites'), favourites_path, rel: 'nofollow'

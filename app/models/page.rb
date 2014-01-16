@@ -7,6 +7,10 @@ class Page < ActiveRecord::Base
 
   belongs_to :footer
 
+  def header_html(locale)
+    Snippet.find_by(name: header_snippet_name, locale: locale).try(:snippet)
+  end
+
   def sidebar_html(locale)
     Snippet.find_by(name: sidebar_snippet_name, locale: locale).try(:snippet)
   end

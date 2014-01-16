@@ -32,6 +32,10 @@
     = editor(f, :content, :html)
 
   .form-group
+    = f.label :header_snippet_name
+    = f.text_field :header_snippet_name, class: 'form-control'
+
+  .form-group
     = f.label :footer
     = select("page", "footer_id", (Footer.all.collect {|f| [ f.name, f.id ] }).sort, {prompt: 'Choose footer'}, class: 'form-control')
 

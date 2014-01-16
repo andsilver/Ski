@@ -50,10 +50,10 @@ class Admin::CountriesController < ApplicationController
     @errors << "This country has resorts associated with it. " unless @country.resorts.empty?
     @errors << "This country has users associated with it. " unless @country.users.empty?
     if @errors.empty?
-      #@country.destroy
-      redirect_to countries_path, notice: t('notices.deleted')
+      @country.destroy
+      redirect_to admin_countries_path, notice: t('notices.deleted')
     else
-      redirect_to countries_path, notice: "This country could not be deleted because: " +
+      redirect_to admin_countries_path, notice: "This country could not be deleted because: " +
         @errors.join
     end
   end

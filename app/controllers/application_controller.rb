@@ -108,6 +108,7 @@ class ApplicationController < ActionController::Base
       @footer_box = page.footer.content unless page.footer.nil?
       @banner_advert_html = page.banner_advert_html unless page.banner_advert_html.blank?
       @page_sidebar_html = page.sidebar_html(@lang)
+      @page_header_html = page.header_html(@lang)
     end
 
     use_default_footer if @footer_box.blank?

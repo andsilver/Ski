@@ -44,7 +44,17 @@ describe Admin::CountriesController do
     end
 
     describe 'DELETE destroy' do
-      pending
+      let(:country) { FactoryGirl.create(:country) }
+
+      it 'deletes a country' do
+        delete :destroy, id: country.to_param
+        expect(Country.find_by(id: country.id)).to_not be
+      end
+
+      it 'redirects to countries admin page' do
+        delete :destroy, id: country.to_param
+        expect(response).to redirect_to admin_countries_path
+      end
     end
   end
 end

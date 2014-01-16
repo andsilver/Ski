@@ -10,7 +10,7 @@ describe Admin::ResortsController do
   end
 
   describe "GET index" do
-    let(:countries) { mock(Array) }
+    let(:countries) { double(Array) }
 
     before do
       Country.stub(:with_resorts).and_return(countries)
@@ -175,7 +175,7 @@ describe Admin::ResortsController do
       before { Resort.stub(:find_by).and_return(resort) }
 
       it 'destroys each property' do
-        properties = mock(ActiveRecord::Relation)
+        properties = double(ActiveRecord::Relation)
         resort.stub(:properties).and_return(properties)
         properties.should_receive(:destroy_all)
         post 'destroy_properties', id: 'chamonix'
@@ -203,7 +203,7 @@ describe Admin::ResortsController do
       before { Resort.stub(:find_by).and_return(resort) }
 
       it 'destroys each directory advert' do
-        directory_adverts = mock(ActiveRecord::Relation)
+        directory_adverts = double(ActiveRecord::Relation)
         resort.stub(:directory_adverts).and_return(directory_adverts)
         directory_adverts.should_receive(:destroy_all)
         post :destroy_directory_adverts, id: 'chamonix'
