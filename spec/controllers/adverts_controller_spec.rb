@@ -26,7 +26,7 @@ describe AdvertsController do
       it 'collects windows into groups' do
         window = mock_model(Advert).as_null_object
         current_user.stub(:windows).and_return([window, window])
-        groups = mock(WindowGroups).as_null_object
+        groups = double(WindowGroups).as_null_object
         WindowGroups.stub(:new).and_return(groups)
         groups.should_receive(:<<).with(window).twice
         get 'my'
