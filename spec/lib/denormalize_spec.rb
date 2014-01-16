@@ -43,7 +43,7 @@ describe Denormalize do
     end
 
     context 'with a website' do
-      let!(:website) { FactoryGirl.create(:website) }
+      let!(:website) { Website.first || FactoryGirl.create(:website) }
 
       it 'assigns featured properties to the website' do
         featured_properties = [FactoryGirl.create(:property)]
