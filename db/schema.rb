@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130905113220) do
+ActiveRecord::Schema.define(version: 20140116143008) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -418,6 +418,7 @@ ActiveRecord::Schema.define(version: 20130905113220) do
     t.text     "banner_advert_html"
     t.boolean  "visible",              default: true, null: false
     t.string   "sidebar_snippet_name"
+    t.string   "header_snippet_name"
   end
 
   add_index "pages", ["path"], name: "index_pages_on_path", using: :btree

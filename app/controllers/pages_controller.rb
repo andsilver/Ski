@@ -18,7 +18,7 @@ class PagesController < ApplicationController
     if @page.save
       redirect_to(pages_path, notice: t('notices.created'))
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -60,6 +60,6 @@ class PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit(:banner_advert_html, :content, :description, :footer_id, :keywords, :path, :sidebar_snippet_name, :title, :visible)
+    params.require(:page).permit(:banner_advert_html, :content, :description, :footer_id, :header_snippet_name, :keywords, :path, :sidebar_snippet_name, :title, :visible)
   end
 end
