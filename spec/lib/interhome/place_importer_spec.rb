@@ -15,7 +15,7 @@ module Interhome
 
     describe '#import' do
       it 'deletes all Interhome places' do
-        f = mock('File').as_null_object
+        f = double('File').as_null_object
         File.stub(:open).and_return(f)
         XmlSimple.stub(:xml_in)
         InterhomePlace.should_receive(:delete_all)
@@ -26,21 +26,21 @@ module Interhome
         XmlSimple.stub(:xml_in)
         File.should_receive(:open).
         with('interhome/' + filename, 'rb').
-        and_return(mock('File').as_null_object)
+        and_return(double('File').as_null_object)
 
         PlaceImporter.new.import
       end
 
       it 'closes the XML file' do
         XmlSimple.stub(:xml_in)
-        f = mock('File')
+        f = double('File')
         File.stub(:open).and_return(f)
         f.should_receive(:close)
         PlaceImporter.new.import
       end
 
       it 'creates an XML document' do
-        f = mock('File').as_null_object
+        f = double('File').as_null_object
         File.stub(:open).and_return(f)
         XmlSimple.should_receive(:xml_in).with(f)
         PlaceImporter.new.import

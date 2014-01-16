@@ -100,7 +100,7 @@ class Image < ActiveRecord::Base
     path = "#{directory_path}/#{f}"
     s3_path = path + '.s3uploaded'
 
-    return s3_url_for_filename(f) if Rails.env == 'production' && File.exists?(s3_path)
+    return s3_url_for_filename(f) if Rails.env == 'production' && File.exist?(s3_path)
 
     # create a new image of the required size if it doesn't exist
     unless FileTest.exists?(path)
@@ -113,15 +113,15 @@ class Image < ActiveRecord::Base
       end
     end
 
-    return IMAGE_MISSING unless File.exists?(path)
+    return IMAGE_MISSING unless File.exist?(path)
 
     if Rails.env == 'production'
-      unless File.exists?(s3_path)
+      unless File.exist?(s3_path)
         s3_upload(path)
         FileUtils.touch(s3_path)
       end
 
-      FileUtils.rm(path) if File.exists?(path)
+      FileUtils.rm(path) if File.exist?(path)
 
       return s3_url_for_filename(f)
     else
@@ -221,7 +221,7 @@ class Image < ActiveRecord::Base
   # removing remote files from Amazon S3.
   def delete_files
     return if id.nil?
-    return unless File.exists?(directory_path)
+    return unless File.exist?(directory_path)
 
     FileUtils.rm_rf(directory_path)
     s3_delete_files

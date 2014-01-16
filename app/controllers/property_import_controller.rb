@@ -16,7 +16,7 @@ class PropertyImportController < ApplicationController
     cleanup_import "Error extracting ZIP file" and return unless zip_result
 
     csv_filename = "#{@path}/properties.csv"
-    cleanup_import "Could not find properties.csv in ZIP file" and return unless File.exists?(csv_filename)
+    cleanup_import "Could not find properties.csv in ZIP file" and return unless File.exist?(csv_filename)
 
     require 'csv'
 
@@ -181,7 +181,7 @@ class PropertyImportController < ApplicationController
       else
         filename = File.basename(filename)
         path = "#{@path}/#{filename}"
-        if File.exists? path
+        if File.exist? path
           file = File.open(path)
           image = Image.new
           image.image = file
@@ -208,7 +208,7 @@ class PropertyImportController < ApplicationController
       filename = "#{pericles_property.company_code}-#{pericles_property.site_code}-#{pericles_property.pericles_id}-#{letter}.jpg"
       puts "processing image: #{filename}"
       path = "#{@path}/#{filename}"
-      if File.exists? path
+      if File.exist? path
         file = File.open(path)
         image = Image.new
         image.image = file

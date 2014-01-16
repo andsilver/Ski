@@ -43,7 +43,7 @@ GEM
     afm (0.2.0)
     arel (5.0.0)
     atomic (1.1.14)
-    aws-sdk (1.29.0)
+    aws-sdk (1.32.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
