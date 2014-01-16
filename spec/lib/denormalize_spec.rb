@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Denormalize do
   describe '.denormalize' do
+    before { Currency.stub(:update_exchange_rates) }
+
     it 'updates featured properties' do
       Denormalize.should_receive(:update_featured_properties)
       Denormalize.denormalize
