@@ -5,10 +5,10 @@ module PierreEtVacances
   class FTP
     # Gets a ZIP file from the Pierre et Vacances FTP server corresponding to the given
     # XML file and unzips it.
-    def self.get(remote_file)
-      local_file = 'pierreetvacances/' + remote_file
+    def get
+      local_file = 'pierreetvacances/' + xml_filename
       ftp_session do |ftp|
-        ftp.getbinaryfile(remote_file, local_file)
+        ftp.getbinaryfile(xml_filename, local_file)
       end
       unzip(local_file) if local_file[-4,4] == '.zip'
       begin
@@ -17,17 +17,16 @@ module PierreEtVacances
       end
     end
 
-    def self.property_filename(summer_or_winter)
-      unless [:summer, :winter].include? summer_or_winter
-        raise ArgumentError.new "summer_or_winter must be :summer or :winter"
-      end
+    def xml_filename
+      @xml_filename ||= property_filename
+    end
 
-      s_or_w = summer_or_winter == :summer ? 'E' : 'H'
-
+    def property_filename
+      s_or_w = current_season == :summer ? 'E' : 'H'
       most_recent_file_matching "EN_PV_AA_#{s_or_w}13_GENERAL_*"
     end
 
-    def self.most_recent_file_matching(glob)
+    def most_recent_file_matching(glob)
       fn = ''
       ftp_session do |ftp|
         fn = most_recent_file(ftp.list glob).split.last
@@ -35,11 +34,11 @@ module PierreEtVacances
       fn
     end
 
-    def self.most_recent_file(list)
+    def most_recent_file(list)
       list.sort_by {|fn| Date.parse(fn[-13, 9])}.last
     end
 
-    def self.ftp_session
+    def ftp_session
       ftp = Net::FTP.new
       ftp.connect('mutpv.pierreetvacances.com')
       ftp.login('b2c', 'B*u8MLe1')
@@ -48,14 +47,29 @@ module PierreEtVacances
       ftp.close
     end
 
+    def current_season
+      season(Date.today)
+    end 
+
+    def season(date)
+      start_of_summer = Date.new(2000, 5, 1).yday
+      start_of_winter = Date.new(2000, 9, 1).yday
+      date = date.yday
+      if start_of_summer <= date && date < start_of_winter
+        :summer
+      else
+        :winter
+      end
+    end
+
     protected
 
-    def self.unzip(zip_file)
+    def unzip(zip_file)
       # -o = overwrite existing files without prompting
       `unzip -o #{zip_file} -d pierreetvacances`
     end
 
-    def self.yesterday_date_string
+    def yesterday_date_string
       (Time.now - 1.day).strftime("%d%b%Y")
     end
   end

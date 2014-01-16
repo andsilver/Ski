@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fournisseur licence="LI075950182PV" >
+    <identite>
+        <presentation>
+            <nom>
+                <libelle><![CDATA[Pierre & Vacances]]></libelle>
+            </nom>
+            <descriptif numero="1">
+                <picto>
+                    <objet numero="1" type_objet="vignette">
+                        <petit canal_objet="url"><![CDATA[http://media.pierreetvacances.com/admin/refhd/brand/PV/logo.png]]></petit>
+                        <legende><![CDATA[Pierre & Vacances]]></legende>
+                    </objet>
+                </picto>
+                <paragraphe entete="non" lg="EN" numero="1">
+                    <titre />
+                    <texte />
+                    <objet numero="1" type_objet="html">
+                        <petit canal_objet="url"><![CDATA[http://www.pierreetvacances.com/fr-fr]]></petit>
+                        <legende><![CDATA[Pierre & Vacances]]></legende>
+                    </objet>
+                </paragraphe>
+            </descriptif>
+        </presentation>
+        <coordonnees>
+            <adresse><ligne_adresse numero="0"><libelle><![CDATA[Groupe Pierre et Vacances L'Artois - Espace Pont de Flandre 11, rue de Cambrai]]></libelle></ligne_adresse></adresse>
+            <cp><libelle><![CDATA[75947]]></libelle></cp>
+            <commune><libelle><![CDATA[Paris Cedex 19]]></libelle></commune>
+            <telephone><numero_tel numero="0"><libelle><![CDATA[01 58 21 50 23 / 53 99]]></libelle></numero_tel></telephone>
+            <fax><numero_fax numero="0"><libelle><![CDATA[01 58 21 57 83]]></libelle></numero_fax></fax>
+            <email><adresse_email numero="0"><libelle><![CDATA[contact@pierreetvacances.com]]></libelle></adresse_email></email>
+            <internet><url numero="0"><libelle><![CDATA[http://www.pierreetvacances.com/fr-fr]]></libelle></url></internet>
+            <rcs><libelle><![CDATA[314 283 326]]></libelle></rcs>
+            <ape><libelle><![CDATA[633 Z]]></libelle></ape>
+            <siret><libelle><![CDATA[314 283 326 00093]]></libelle></siret>
+        </coordonnees>
+    </identite>
+    <themes>
+        <theme value="0">
+            <libelle lg="EN"><![CDATA[P&V]]></libelle>
+            <theme_attache value="thematic_pv" />
+        </theme>
+        <theme value="1">
+            <libelle lg="EN"><![CDATA[Services and facilities]]></libelle>
+            <theme_attache value="histoire" />
+        </theme>
+        <theme value="2">
+            <libelle lg="EN"><![CDATA[Hotel service]]></libelle>
+            <theme_attache value="histoire" />
+        </theme>
+        <theme value="3">
+            <libelle lg="EN"><![CDATA[Restaurants]]></libelle>
+            <theme_attache value="histoire" />
+        </theme>
+        <theme value="4">
+            <libelle lg="EN"><![CDATA[Children's & Teen Clubs]]></libelle>
+            <theme_attache value="famille" />
+        </theme>
+        <theme value="5">
+            <libelle lg="EN"><![CDATA[Sports and leisure activities]]></libelle>
+            <theme_attache value="famille" />
+        </theme>
+        <theme value="6">
+            <libelle lg="EN"><![CDATA[Water centre and watersports]]></libelle>
+            <theme_attache value="sport" />
+        </theme>
+        <theme value="7">
+            <libelle lg="EN"><![CDATA[- Sports]]></libelle>
+            <theme_attache value="sport" />
+        </theme>
+        <theme value="8">
+            <libelle lg="EN"><![CDATA[Well-being & Sauna]]></libelle>
+            <theme_attache value="detente" />
+        </theme>
+        <theme value="9">
+            <libelle lg="EN"><![CDATA[Outside activities]]></libelle>
+            <theme_attache value="nature" />
+        </theme>
+        <theme value="10">
+            <libelle lg="EN"><![CDATA[Golf]]></libelle>
+            <theme_attache value="golf" />
+        </theme>
+        <theme value="11">
+            <libelle lg="EN"><![CDATA[Winter sport]]></libelle>
+            <theme_attache value="montagne" />
+        </theme>
+        <theme value="12">
+            <libelle lg="EN"><![CDATA[Fitness/gym]]></libelle>
+            <theme_attache value="remise_forme" />
+        </theme>
+        <theme value="13">
+            <libelle lg="EN"><![CDATA[Shops]]></libelle>
+            <theme_attache value="histoire" />
+        </theme>
+    </themes>
+    <catalogue>
+        <informations_catalogue>
+            <identifiant>
+                <libelle lg="EN"><![CDATA[Winter 2012 2013]]></libelle>
+            </identifiant>
+            <saison value="hiver" />
+            <nom_catalogue>
+                <libelle><![CDATA[Winter 2012 2013]]></libelle>
+            </nom_catalogue>
+            <periode_catalogue>
+                <periode>
+                    <date_debut annee="2012" jour="01" mois="11" />
+                    <date_fin annee="2013" jour="31" mois="05" />
+                </periode>
+            </periode_catalogue>
+        </informations_catalogue>
+        <produits>
+            <produit numero="0">
+                <nom_produit>
+                    <libelle><![CDATA[Pierre & Vacances Les Citronniers]]></libelle>
+                </nom_produit>
+                <informations_generiques>
+                    <identification_produit>
+                        <exclusivite value="non" />
+                        <vente value="stock" />
+                        <formule value="location" />
+                        <formules>
+                            <formule value="location" />
+                            <formule value="sejour_balneaire" />
+                        </formules>
+                        <presentable_seul value="oui" />
+                        <avec_acheminement value="non" />
+                    </identification_produit>
+                    <references>
+                        <interne_to>
+                            <libelle><![CDATA[01L]]></libelle>
+                        </interne_to>
+                    </references>
+                    <periodes_parution>
+                        <parution numero="0">
+                            <periode_parution>
+                                <periode>
+                                    <date_debut annee="2012" jour="17" mois="11" />
+                                    <date_fin annee="2013" jour="23" mois="03" />
+                                </periode>
+                            </periode_parution>
+                        </parution>
+                        <parution numero="1">
+                            <periode_parution>
+                                <periode>
+                                    <date_debut annee="-0001" jour="30" mois="11" />
+                                    <date_fin annee="-0001" jour="30" mois="11" />
+                                </periode>
+                            </periode_parution>
+                        </parution>
+                    </periodes_parution>
+                    <destinations>
+                        <destination numero="1">
+                            <arrivee>
+                                <pays>
+                                    <iso_3166-1 value="FR" />
+                                    <region>
+                                        <iso_3166-2 value="FR-06" />
+                                        <ville>
+                                            <onu value="FR-NCE" />
+                                        </ville>
+                                    </region>
+                                </pays>
+                            </arrivee>
+                        </destination>
+                    </destinations>
+                </informations_generiques>
+                <informations_formule>
+                    <location>
+                        <hebergement_location>
+                            <type_lieu value="balneaire" />
+                            <type_location value="residence" />
+                            <descriptif numero="1">
+                                <paragraphe entete="oui" lg="EN" numero="1">
+                                    <titre><![CDATA[Les Citronniers]]></titre>
+                                    <texte><![CDATA[]]></texte>
+                                    <objet numero="0" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/6514.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/6514.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="1" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/6501.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/6501.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="2" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/17895.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/17895.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="3" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/17885.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/17885.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="4" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/17893.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/17893.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="5" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/17897.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/17897.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="6" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/17890.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/17890.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="7" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/17887.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/17887.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="8" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/6515.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/6515.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="9" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/23365.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/23365.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                </paragraphe>
+                            </descriptif>
+                        </hebergement_location>
+                        <station>
+                            <domaine>
+                                <libelle><![CDATA[]]></libelle>
+                                <paragraphe entete="non" lg="EN" numero="1">
+                                    <titre>longitude</titre>
+                                    <texte><![CDATA[7.50567000]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="2">
+                                    <titre>latitude</titre>
+                                    <texte><![CDATA[43.77880000]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="3">
+                                    <titre>adresse 1 </titre>
+                                    <texte><![CDATA[17, rue Partouneaux]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="6">
+                                    <titre>code postal </titre>
+                                    <texte><![CDATA[06500]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="7">
+                                    <titre>ville </titre>
+                                    <texte><![CDATA[MENTON]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="8">
+                                    <titre>téléphone indigo</titre>
+                                    <texte><![CDATA[0891 70 12 61]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="9">
+                                    <titre>fax</titre>
+                                    <texte><![CDATA[+334 93 28 68 20]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="10">
+                                    <titre>heure d'ouverture réception</titre>
+                                    <texte><![CDATA[Saturday from 8 am to 12 pm and 4 pm to 8 pm,
+Sunday from 10 am to 12 pm
+Mondays to Fridays, 10 am to noon and 4 pm to 7 pm
+Closed Sunday afternoon.]]></texte>
+                                </paragraphe>
+                            </domaine>
+                            <pistes_balisees><libelle></libelle></pistes_balisees>
+                            <longueur_pistes><libelle></libelle></longueur_pistes>
+                            <remontees><libelle></libelle></remontees>
+                            <altitude><libelle></libelle></altitude>
+                        </station>
+                        <sports>
+                            <sport numero="0">
+                                <type_sport value="tennis" />
+                            </sport>
+                        </sports>
+                        <services>
+                            <service numero="0">
+                                <type_service value="menage" />
+                            </service>
+                            <service numero="1">
+                                <type_service value="linge_toilette" />
+                            </service>
+                            <service numero="2">
+                                <type_service value="restaurants" />
+                            </service>
+                            <service numero="3">
+                                <type_service value="telecopie" />
+                            </service>
+                            <service numero="4">
+                                <type_service value="accueil_mobilite_reduite" />
+                            </service>
+                            <service numero="5">
+                                <type_service value="superette" />
+                            </service>
+                            <service numero="6">
+                                <type_service value="mail" />
+                            </service>
+                            <service numero="7">
+                                <type_service value="bibliotheque" />
+                            </service>
+                            <service numero="8">
+                                <type_service value="laverie" />
+                            </service>
+                            <service numero="9">
+                                <type_service value="parking" />
+                            </service>
+                        </services>
+                        <thematique>
+                            <theme_to value="12" />
+                            <theme_to value="4" />
+                            <theme_to value="6" />
+                            <theme_to value="7" />
+                        </thematique>
+                    </location>
+                </informations_formule>
+                <informations_commerciales>
+                    <presentation_commerciale>
+                        <accroche_liste>
+                            <libelle><![CDATA[In the heart of the city of Menton
+Near the medieval old town, the old harbor and the beach
+Newly renovated apartments and air conditioned]]></libelle>
+                        </accroche_liste>
+                        <accroche_fiche>
+                            <libelle><![CDATA[This 4-floor refurbished residence, has a lift, and is located in the town centre 500 m from the old town and the old port. The beach is 300 m away and the shops are 100 m away.]]></libelle>
+                        </accroche_fiche>
+                        <descriptif numero="1">
+                            <paragraphe entete="non" lg="EN" numero="0">
+                                <titre><![CDATA[Apartment Studio with air-conditioning for 2 people<!--01L12-->]]></titre>
+                                <texte><![CDATA[Living room with 1 double sofa bed. Bathroom: : Bathroom with toilet]]></texte>
+                            </paragraphe>
+                            <paragraphe entete="non" lg="EN" numero="1">
+                                <titre><![CDATA[Apartment 12J<!--01L12J-->]]></titre>
+                                <texte><![CDATA[. Living room with 1 double sofa bed. Bathroom: : Bathroom with toilet]]></texte>
+                            </paragraphe>
+                            <paragraphe entete="non" lg="EN" numero="2">
+                                <titre><![CDATA[Apartment Studio for 4 people, air-conditioned<!--01L14-->]]></titre>
+                                <texte><![CDATA[Living room with 1 double sofa bed, hall includes sleeping area with 2 bunk beds, separated from living room by a door. Living room with 1 double sofa bed, hall includes sleeping area with 2 bunk beds, separated from living room by a door. Bathroom: : Bathroom with toilet.]]></texte>
+                            </paragraphe>
+                            <paragraphe entete="non" lg="EN" numero="3">
+                                <titre><![CDATA[Apartment 14J<!--01L14J-->]]></titre>
+                                <texte><![CDATA[. Living room with 1 double sofa bed, hall includes sleeping area with 2 bunk beds, separated from living room by a door. Bathroom: : Bathroom with toilet.]]></texte>
+                            </paragraphe>
+                        </descriptif>
+                    </presentation_commerciale>
+                    <lesplus>
+                        <descriptif numero="1">
+                            <paragraphe entete="non" lg="EN" numero="1">
+                                <titre><![CDATA[Les trois plus]]></titre>
+                                <texte><![CDATA[In the heart of the city of Menton
+Near the medieval old town, the old harbor and the beach
+Newly renovated apartments and air conditioned]]></texte>
+                            </paragraphe>
+                        </descriptif>
+                    </lesplus>
+                    <reservations>
+                        <reservation numero="1">
+                            <type_reservation value="url" />
+                            <media_reservation>
+                                <libelle lg="EN"><![CDATA[http://www.pv-holidays.com/fr-fr/]]></libelle>
+                            </media_reservation>
+                            <commentaires_reservation>
+                                <libelle lg="EN"><![CDATA[Vous trouverez ici toutes les informations utiles a votre séjour et la possibilité de réserver]]></libelle>
+                            </commentaires_reservation>
+                        </reservation>
+                    </reservations>
+                </informations_commerciales>
+                <lesprix>
+                    <tableau_prix>
+                        <objet numero="1" type_objet="html">
+                            <petit canal_objet="url"><![CDATA[http://www.pv-holidays.com/gb-en/tabprice/?code=01L&season=WINTER&currencyCode=EUR]]></petit>
+                            <legende lg="EN"><![CDATA[Les tarifs]]></legende>
+                        </objet>
+                    </tableau_prix>
+                        <unprix numero="0">
+                            <informations_prix>
+                                <etat_produit value="ouvert" />
+                                <en_promotion value="non" />
+                                <periode_depart>
+                                    <periode>
+                                        <date_debut annee="2013" jour="23" mois="03" />
+                                        <date_fin annee="2013" jour="30" mois="03" />
+                                        <jours_semaine>
+                                            <libelle><![CDATA[6712345]]></libelle>
+                                        </jours_semaine>
+                                    </periode>
+                                </periode_depart>
+                                <ville_depart>
+                                    <ville>
+                                        <iata value="NCE" />
+                                    </ville>
+                                </ville_depart>
+                                <depart_garanti value="oui" />
+                                <tarif>
+                                    <montant devise="EUR">
+                                        <numerique><![CDATA[34000]]></numerique>
+                                    </montant>
+                                </tarif>
+                                <jours>
+                                    <numerique><![CDATA[8]]></numerique>
+                                </jours>
+                                <nuits>
+                                    <numerique><![CDATA[7]]></numerique>
+                                </nuits>
+                                <repas value="hebergs" />
+                                <participants>
+                                    <numerique><![CDATA[2]]></numerique>
+                                </participants>
+                                <commentaires>
+                                    <libelle lg="EN"><![CDATA[12J]]></libelle>
+                                </commentaires>
+                            </informations_prix>
+                            <taxes>
+                                <aerienne_france value="non" />
+                                <aerienne_locale value="non" />
+                                <portuaire_france value="non" />
+                                <portuaire_locale value="non" />
+                                <sejour_france value="non" />
+                                <sejour_locale value="non" />
+                            </taxes>
+                        </unprix>
+                </lesprix>
+            </produit>
+            <produit numero="1">
+                <nom_produit>
+                    <libelle><![CDATA[Pierre & Vacances Les Palmiers]]></libelle>
+                </nom_produit>
+                <informations_generiques>
+                    <identification_produit>
+                        <exclusivite value="non" />
+                        <vente value="stock" />
+                        <formule value="location" />
+                        <formules>
+                            <formule value="location" />
+                            <formule value="sejour_balneaire" />
+                        </formules>
+                        <presentable_seul value="oui" />
+                        <avec_acheminement value="non" />
+                    </identification_produit>
+                    <references>
+                        <interne_to>
+                            <libelle><![CDATA[05L]]></libelle>
+                        </interne_to>
+                    </references>
+                    <periodes_parution>
+                        <parution numero="0">
+                            <periode_parution>
+                                <periode>
+                                    <date_debut annee="2012" jour="17" mois="11" />
+                                    <date_fin annee="2013" jour="23" mois="03" />
+                                </periode>
+                            </periode_parution>
+                        </parution>
+                        <parution numero="1">
+                            <periode_parution>
+                                <periode>
+                                    <date_debut annee="-0001" jour="30" mois="11" />
+                                    <date_fin annee="-0001" jour="30" mois="11" />
+                                </periode>
+                            </periode_parution>
+                        </parution>
+                    </periodes_parution>
+                    <destinations>
+                        <destination numero="1">
+                            <arrivee>
+                                <pays>
+                                    <iso_3166-1 value="FR" />
+                                    <region>
+                                        <iso_3166-2 value="FR-06" />
+                                        <ville>
+                                            <onu value="FR-NCE" />
+                                        </ville>
+                                    </region>
+                                </pays>
+                            </arrivee>
+                        </destination>
+                    </destinations>
+                </informations_generiques>
+                <informations_formule>
+                    <location>
+                        <hebergement_location>
+                            <type_lieu value="balneaire" />
+                            <type_location value="residence" />
+                            <descriptif numero="1">
+                                <paragraphe entete="oui" lg="EN" numero="1">
+                                    <titre><![CDATA[Les Palmiers]]></titre>
+                                    <texte><![CDATA[]]></texte>
+                                    <objet numero="0" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/6558.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/6558.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="1" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/4665.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/4665.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="2" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/6546.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/6546.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="3" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/6572.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/6572.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="4" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/6570.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/6570.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="5" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/17949.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/17949.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="6" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/6554.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/6554.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                    <objet numero="7" type_objet="photo">
+                                        <petit canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/100x75/17946.jpg]]></petit>
+                                        <grand canal_objet="url"><![CDATA[http://media.pv-holidays.com/admin/fp/photos/268x201/17946.jpg]]></grand>
+                                        <legende lg="EN" />
+                                    </objet>
+                                </paragraphe>
+                            </descriptif>
+                        </hebergement_location>
+                        <station>
+                            <domaine>
+                                <libelle><![CDATA[]]></libelle>
+                                <paragraphe entete="non" lg="EN" numero="1">
+                                    <titre>longitude</titre>
+                                    <texte><![CDATA[7.23122000]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="2">
+                                    <titre>latitude</titre>
+                                    <texte><![CDATA[43.68840000]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="3">
+                                    <titre>adresse 1 </titre>
+                                    <texte><![CDATA[52 bis, avenue de Fabron]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="6">
+                                    <titre>code postal </titre>
+                                    <texte><![CDATA[06000]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="7">
+                                    <titre>ville </titre>
+                                    <texte><![CDATA[NICE]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="8">
+                                    <titre>téléphone indigo</titre>
+                                    <texte><![CDATA[+338 91 70 12 63]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="9">
+                                    <titre>fax</titre>
+                                    <texte><![CDATA[+334 93 37 79 29]]></texte>
+                                </paragraphe>
+                                <paragraphe entete="non" lg="EN" numero="10">
+                                    <titre>heure d'ouverture réception</titre>
+                                    <texte><![CDATA[Saturday from 8 am to 12 pm and 2 pm to 8 pm
+Sundays 9 am to noon.
+Mondays to Fridays, 9 am to noon and 4 pm to 7 pm
+Closed Sunday afternoon.]]></texte>
+                                </paragraphe>
+                            </domaine>
+                            <pistes_balisees><libelle></libelle></pistes_balisees>
+                            <longueur_pistes><libelle></libelle></longueur_pistes>
+                            <remontees><libelle></libelle></remontees>
+                            <altitude><libelle></libelle></altitude>
+                        </station>
+                        <sports>
+                            <sport numero="0">
+                                <type_sport value="equitation" />
+                            </sport>
+                            <sport numero="1">
+                                <type_sport value="golf" />
+                            </sport>
+                            <sport numero="2">
+                                <type_sport value="petanque" />
+                            </sport>
+                            <sport numero="3">
+                                <type_sport value="pingpong" />
+                            </sport>
+                            <sport numero="4">
+                                <type_sport value="tennis" />
+                            </sport>
+                        </sports>
+                        <services>
+                            <service numero="0">
+                                <type_service value="menage" />
+                            </service>
+                            <service numero="1">
+                                <type_service value="linge_toilette" />
+                            </service>
+                            <service numero="2">
+                                <type_service value="restaurants" />
+                            </service>
+                            <service numero="3">
+                                <type_service value="animaux_admis" />
+                            </service>
+                            <service numero="4">
+                                <type_service value="telecopie" />
+                            </service>
+                            <service numero="5">
+                                <type_service value="superette" />
+                            </service>
+                            <service numero="6">
+                                <type_service value="reception_24_24" />
+                            </service>
+                            <service numero="7">
+                                <type_service value="mail" />
+                            </service>
+                            <service numero="8">
+                                <type_service value="thalasso" />
+                            </service>
+                            <service numero="9">
+                                <type_service value="laverie" />
+                            </service>
+                            <service numero="10">
+                                <type_service value="parking" />
+                            </service>
+                        </services>
+                        <thematique>
+                            <theme_to value="12" />
+                            <theme_to value="4" />
+                            <theme_to value="8" />
+                            <theme_to value="9" />
+                            <theme_to value="6" />
+                            <theme_to value="7" />
+                        </thematique>
+                    </location>
+                </informations_formule>
+                <informations_commerciales>
+                    <presentation_commerciale>
+                        <accroche_liste>
+                            <libelle><![CDATA[In the resort of Nice, known for its Promenade des Anglais.
+In the heart of a lovely private garden.
+Residence with swimming pool, comfortable apartments.]]></libelle>
+                        </accroche_liste>
+                        <accroche_fiche>
+                            <libelle><![CDATA[A 3-floor residence with lift and private garden located in the centre of the quiet, residential area of Fabron. Shops are 600 m away and the beach is 800 m from the residence.]]></libelle>
+                        </accroche_fiche>
+                        <descriptif numero="1">
+                            <paragraphe entete="non" lg="EN" numero="0">
+                                <titre><![CDATA[Apartment studio for 2 people, air-conditioned<!--05L12-->]]></titre>
+                                <texte><![CDATA[Living room with 2 single sofa beds (beds cannot be joined together). Other Information: : Please note: Poolside apartments]]></texte>
+                            </paragraphe>
+                            <paragraphe entete="non" lg="EN" numero="1">
+                                <titre><![CDATA[Apartment Studio with air-conditioning for 4 people<!--05L14-->]]></titre>
+                                <texte><![CDATA[Living room with 1 double sofa bed
+Entrance incorporates 2 bunk beds separated from the living room by a door. Other Information: : Please note: Apartments facing on to park]]></texte>
+                            </paragraphe>
+                        </descriptif>
+                    </presentation_commerciale>
+                    <lesplus>
+                        <descriptif numero="1">
+                            <paragraphe entete="non" lg="EN" numero="1">
+                                <titre><![CDATA[Les trois plus]]></titre>
+                                <texte><![CDATA[In the resort of Nice, known for its Promenade des Anglais.
+In the heart of a lovely private garden.
+Residence with swimming pool, comfortable apartments.]]></texte>
+                            </paragraphe>
+                        </descriptif>
+                    </lesplus>
+                    <reservations>
+                        <reservation numero="1">
+                            <type_reservation value="url" />
+                            <media_reservation>
+                                <libelle lg="EN"><![CDATA[http://www.pv-holidays.com/fr-fr/]]></libelle>
+                            </media_reservation>
+                            <commentaires_reservation>
+                                <libelle lg="EN"><![CDATA[Vous trouverez ici toutes les informations utiles a votre séjour et la possibilité de réserver]]></libelle>
+                            </commentaires_reservation>
+                        </reservation>
+                    </reservations>
+                </informations_commerciales>
+                <lesprix>
+                    <tableau_prix>
+                        <objet numero="1" type_objet="html">
+                            <petit canal_objet="url"><![CDATA[http://www.pv-holidays.com/gb-en/tabprice/?code=05L&season=WINTER&currencyCode=EUR]]></petit>
+                            <legende lg="EN"><![CDATA[Les tarifs]]></legende>
+                        </objet>
+                    </tableau_prix>
+                        <unprix numero="0">
+                            <informations_prix>
+                                <etat_produit value="ouvert" />
+                                <en_promotion value="non" />
+                                <periode_depart>
+                                    <periode>
+                                        <date_debut annee="2013" jour="23" mois="03" />
+                                        <date_fin annee="2013" jour="30" mois="03" />
+                                        <jours_semaine>
+                                            <libelle><![CDATA[6712345]]></libelle>
+                                        </jours_semaine>
+                                    </periode>
+                                </periode_depart>
+                                <ville_depart>
+                                    <ville>
+                                        <iata value="NCE" />
+                                    </ville>
+                                </ville_depart>
+                                <depart_garanti value="oui" />
+                                <tarif>
+                                    <montant devise="EUR">
+                                        <numerique><![CDATA[34850]]></numerique>
+                                    </montant>
+                                </tarif>
+                                <jours>
+                                    <numerique><![CDATA[8]]></numerique>
+                                </jours>
+                                <nuits>
+                                    <numerique><![CDATA[7]]></numerique>
+                                </nuits>
+                                <repas value="hebergs" />
+                                <participants>
+                                    <numerique><![CDATA[2]]></numerique>
+                                </participants>
+                                <commentaires>
+                                    <libelle lg="EN"><![CDATA[studio for 2 people, air-conditioned]]></libelle>
+                                </commentaires>
+                            </informations_prix>
+                            <taxes>
+                                <aerienne_france value="non" />
+                                <aerienne_locale value="non" />
+                                <portuaire_france value="non" />
+                                <portuaire_locale value="non" />
+                                <sejour_france value="non" />
+                                <sejour_locale value="non" />
+                            </taxes>
+                        </unprix>
+                </lesprix>
+            </produit>
+        </produits>
+    </catalogue>
+</fournisseur>
