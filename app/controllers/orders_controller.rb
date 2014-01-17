@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
   end
 
   def receipts
-    @orders = @current_user.orders_with_receipts
+    @orders = current_user.orders_with_receipts
   end
 
   protected
@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
     if admin?
       @order = Order.find_by(id: params[:id])
     else
-      @order = Order.find_by(id: params[:id], user_id: @current_user.id)
+      @order = Order.find_by(id: params[:id], user_id: current_user.id)
     end
 
     if @order.nil?

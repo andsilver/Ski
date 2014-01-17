@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
   before_action :find_object, only: [:new, :edit, :create]
 
   def index
-    @images = @current_user.images
+    @images = current_user.images
   end
 
   def new
@@ -21,7 +21,7 @@ class ImagesController < ApplicationController
       remove_previous_image
     end
 
-    @image.user_id = @current_user.id
+    @image.user = current_user
 
     begin
       if @image.save
