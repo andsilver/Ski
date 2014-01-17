@@ -61,4 +61,47 @@ describe ResortsController do
   describe 'GET resort_guide' do
     it_behaves_like 'a featured properties finder', :resort_guide, id: 'chamonix'
   end
+
+  describe 'GET summer_holidays' do
+    let(:resort) { FactoryGirl.create(:resort) }
+    let(:admin)  { false }
+
+    before do
+      controller.stub(:admin?).and_return admin
+      controller.stub(:page_info).and_return page_info
+      get :summer_holidays, id: resort.to_param
+    end
+
+    context 'with no page' do
+      let(:page_info) { nil }
+
+      it '404s' do
+        expect(response.status).to eq 404
+      end
+    end
+
+    context 'with invisible page' do
+      let(:page_info) { Page.new(visible: false) }
+
+      it '404s' do
+        expect(response.status).to eq 404
+      end
+
+      context 'when admin' do
+        let(:admin) { true }
+
+        it 'renders' do
+          expect(response).to be_success
+        end
+      end
+    end
+
+    context 'with visible page' do
+      let(:page_info) { Page.new(visible: true) }
+
+      it 'renders' do
+        expect(response).to be_success
+      end
+    end
+  end
 end

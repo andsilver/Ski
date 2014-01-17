@@ -12,7 +12,7 @@ section
     - if @resort.ski? && !@resort.summer_only?
       = nav_link(piste_map_resort_path(@resort), "#{@resort.name} piste maps", t('piste_map'))
     = nav_link(gallery_resort_path(@resort), "Photos of #{@resort.name}", t('gallery'))
-    - if @resort.ski? && !@resort.summer_only?
+    - if has_summer_holidays_page? @resort
       = nav_link(summer_holidays_path(@resort), "Summer holidays in #{@resort.name}", t('resorts_controller.summer_holidays'))
     - if @resort.has_page?('how-to-get-there')
       = nav_link(how_to_get_there_path(@resort), "How to Get to #{@resort.name}", 'How to Get There')
