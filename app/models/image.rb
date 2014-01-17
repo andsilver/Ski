@@ -10,6 +10,8 @@ class Image < ActiveRecord::Base
   belongs_to :property
   belongs_to :user
 
+  attr_reader :was_sized
+
   def image=(file_data)
     unless file_data.kind_of? String and file_data.empty?
       @file_data = file_data
@@ -42,6 +44,14 @@ class Image < ActiveRecord::Base
     else
       sized_url(size, :longest_side)
     end
+  end
+
+  def height
+    ImageScience.with_image(original_path) {|i| return i.height}
+  end
+
+  def width
+    ImageScience.with_image(original_path) {|i| return i.width}
   end
 
   def url_for_filename(fn)
@@ -89,21 +99,32 @@ class Image < ActiveRecord::Base
     )
   end
 
+  def size_original!(size, method)
+    sized_url(size, method)
+
+    if was_sized
+      FileUtils.rm(original_path) if File.exist?(original_path)
+      FileUtils.cp(sized_path(size, method), original_path)
+    end
+  end
+
   def sized_url(size, method)
+    @was_sized = false
+
     unless [:cropped, :height, :width, :longest_side, :maxpect, :square].include?(method)
       raise ArgumentError.new("method must be :cropped, :longest_side, :maxpect, :square, :height or :width")
     end
 
     return source_url if remote_image?
 
-    f = method.to_s + '_' + size.to_s.gsub(', ', 'x').gsub('[', '').gsub(']', '') + '.' + extension
-    path = "#{directory_path}/#{f}"
+    f = sized_filename(size, method)
+    path = sized_path(size, method)
     s3_path = path + '.s3uploaded'
 
     return s3_url_for_filename(f) if Rails.env == 'production' && File.exist?(s3_path)
 
     # create a new image of the required size if it doesn't exist
-    unless FileTest.exists?(path)
+    unless FileTest.exist?(path)
       begin
         ImageScience.with_image(original_path) do |img|
           send("size_#{method}", img, size, path)
@@ -114,6 +135,8 @@ class Image < ActiveRecord::Base
     end
 
     return IMAGE_MISSING unless File.exist?(path)
+
+    @was_sized = true
 
     if Rails.env == 'production'
       unless File.exist?(s3_path)
@@ -127,6 +150,14 @@ class Image < ActiveRecord::Base
     else
       return url_for_filename(f)
     end
+  end
+
+  def sized_filename(size, method)
+    method.to_s + '_' + size.to_s.gsub(', ', 'x').gsub('[', '').gsub(']', '') + '.' + extension
+  end
+
+  def sized_path(size, method)
+    "#{directory_path}/#{sized_filename(size, method)}"
   end
 
   def size_cropped(img, size, path)
@@ -195,7 +226,7 @@ class Image < ActiveRecord::Base
   end
 
   def remote_image?
-    !(FileTest.exists?(original_path) || source_url.blank?)
+    !(FileTest.exist?(original_path) || source_url.blank?)
   end
 
   def valid_image_file?

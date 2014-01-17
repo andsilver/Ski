@@ -157,7 +157,7 @@ class UsersController < ApplicationController
     if admin? && params[:id]
       @user = User.find(params[:id])
     else
-      @user = @current_user
+      @user = current_user
     end
   end
 

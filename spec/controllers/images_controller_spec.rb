@@ -16,6 +16,30 @@ describe ImagesController do
     end
   end
 
+  describe 'POST create' do
+    context 'when image saves' do
+      before do
+        Image.any_instance.stub(:save).and_return(true)
+        controller.stub(:object).and_return(FactoryGirl.create(:property))
+      end
+
+      context 'when image height or width > 800' do
+        let(:mock_image) { mock_model(Image).as_null_object }
+
+        before do
+          Image.stub(:new).and_return(mock_image)
+          mock_image.stub(:height).and_return(1024)
+          mock_image.stub(:width).and_return(768)
+        end
+
+        it 'sizes the original image' do
+          mock_image.should_receive(:size_original!).with(800, :longest_side)
+          post :create, image: { source_url: '#' }
+        end
+      end
+    end
+  end
+
   describe 'DELETE destroy' do
     let(:image) { mock_model(Image).as_null_object }
 

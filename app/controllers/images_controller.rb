@@ -1,8 +1,8 @@
 class ImagesController < ApplicationController
-  before_action :find_object, only: [:new, :edit, :create]
+  before_action :object, only: [:new, :edit, :create]
 
   def index
-    @images = @current_user.images
+    @images = current_user.images
   end
 
   def new
@@ -21,11 +21,14 @@ class ImagesController < ApplicationController
       remove_previous_image
     end
 
-    @image.user_id = @current_user.id
+    @image.user = current_user
 
     begin
       if @image.save
         set_main_image_if_first
+        if @image.height > 800 || @image.width > 800
+          @image.size_original! 800, :longest_side
+        end
         redirect_to(new_image_path, notice: t('images_controller.image_uploaded')) and return
       end
     rescue
@@ -60,15 +63,15 @@ class ImagesController < ApplicationController
 
   def set_main_image_if_first
     if session[:image_mode] == 'property'
-      return if @object.images.count > 1
+      return if object.images.count > 1
     end
 
-    @object.image_id = @image.id
-    @object.save
+    object.image_id = @image.id
+    object.save
   end
 
-  def find_object
-    @object = object_class.find(the_object_id)
+  def object
+    @object ||= object_class.find(the_object_id)
   end
 
   def object_class
@@ -80,7 +83,7 @@ class ImagesController < ApplicationController
   end
 
   def remove_previous_image
-    @object.image.destroy if @object.image
+    object.image.destroy if object.image
   end
 
   def image_params

@@ -90,12 +90,12 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_user
-    @current_user = current_user
+    current_user
     @unregistered_user = UnregisteredUser.find_by(id: session[:unregistered_user])
   end
 
   def current_user
-    User.find_by(id: session[:user])
+    @current_user ||= User.find_by(id: session[:user])
   end
 
   def page_defaults
@@ -150,11 +150,11 @@ class ApplicationController < ActionController::Base
   end
 
   def signed_in?
-    @current_user.is_a?(User)
+    current_user.is_a?(User)
   end
 
   def admin?
-    signed_in? and @current_user.role.admin?
+    signed_in? and current_user.role.admin?
   end
 
   def not_found(exception = nil)
