@@ -103,7 +103,7 @@ class Image < ActiveRecord::Base
     return s3_url_for_filename(f) if Rails.env == 'production' && File.exist?(s3_path)
 
     # create a new image of the required size if it doesn't exist
-    unless FileTest.exists?(path)
+    unless FileTest.exist?(path)
       begin
         ImageScience.with_image(original_path) do |img|
           send("size_#{method}", img, size, path)
@@ -195,7 +195,7 @@ class Image < ActiveRecord::Base
   end
 
   def remote_image?
-    !(FileTest.exists?(original_path) || source_url.blank?)
+    !(FileTest.exist?(original_path) || source_url.blank?)
   end
 
   def valid_image_file?

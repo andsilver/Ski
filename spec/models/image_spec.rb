@@ -66,20 +66,20 @@ describe Image do
     it "returns true if the file doesn't exist and the source URL is not blank" do
       i = Image.new
       i.source_url = 'http://www.example.org/image.jpeg'
-      FileTest.stub(:exists?).and_return(false)
+      FileTest.stub(:exist?).and_return(false)
       expect(i.remote_image?).to be_true
     end
 
     it "returns false if the file exists" do
       i = Image.new
       i.source_url = 'http://www.example.org/image.jpeg'
-      FileTest.stub(:exists?).and_return(true)
+      FileTest.stub(:exist?).and_return(true)
       expect(i.remote_image?).to be_false
     end
 
     it "returns false if the source URL is blank" do
       i = Image.new
-      FileTest.stub(:exists?).and_return(true)
+      FileTest.stub(:exist?).and_return(true)
       expect(i.remote_image?).to be_false
     end
   end
