@@ -10,6 +10,10 @@ module RelatedPages
     !page(page_name).nil?
   end
 
+  def has_visible_page?(page_name)
+    Page.where(path: page_path(page_name), visible: true).any?
+  end
+
   def page(page_name)
     Page.find_by(path: page_path(page_name))
   end
