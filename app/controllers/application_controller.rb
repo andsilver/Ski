@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :admin?, :signed_in?
+  attr_reader :page_info
+
+  helper_method :admin?, :page_info, :signed_in?
 
   before_action :initialize_website, :set_locale, :initialize_user, :page_defaults
 
@@ -100,15 +102,15 @@ class ApplicationController < ActionController::Base
 
   def page_defaults
     @footer_box = ''
-    page = Page.find_by(path: request.path)
-    if page
-      @page_title = page.title
-      @meta_description = page.description
-      @page_content = page.content
-      @footer_box = page.footer.content unless page.footer.nil?
-      @banner_advert_html = page.banner_advert_html unless page.banner_advert_html.blank?
-      @page_sidebar_html = page.sidebar_html(@lang)
-      @page_header_html = page.header_html(@lang)
+    @page_info = Page.find_by(path: request.path)
+    if @page_info
+      @page_title = @page_info.title
+      @meta_description = @page_info.description
+      @page_content = @page_info.content
+      @footer_box = @page_info.footer.content unless @page_info.footer.nil?
+      @banner_advert_html = @page_info.banner_advert_html unless @page_info.banner_advert_html.blank?
+      @page_sidebar_html = @page_info.sidebar_html(@lang)
+      @page_header_html = @page_info.header_html(@lang)
     end
 
     use_default_footer if @footer_box.blank?

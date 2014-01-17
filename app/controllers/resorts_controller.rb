@@ -46,7 +46,9 @@ class ResortsController < ApplicationController
 
   def feature; end
 
-  def summer_holidays; end
+  def summer_holidays
+    not_found unless page_info.try(:visible?)
+  end
 
   def how_to_get_there; end
 
