@@ -64,8 +64,10 @@ describe ResortsController do
 
   describe 'GET summer_holidays' do
     let(:resort) { FactoryGirl.create(:resort) }
+    let(:admin)  { false }
 
     before do
+      controller.stub(:admin?).and_return admin
       controller.stub(:page_info).and_return page_info
       get :summer_holidays, id: resort.to_param
     end
@@ -83,6 +85,14 @@ describe ResortsController do
 
       it '404s' do
         expect(response.status).to eq 404
+      end
+
+      context 'when admin' do
+        let(:admin) { true }
+
+        it 'renders' do
+          expect(response).to be_success
+        end
       end
     end
 
