@@ -10,7 +10,7 @@
 
 = form_for [:admin, @buying_guide] do |f|
   = f.label :country_id, t('countries.country')
-  = select("buying_guide", "country_id", Country.all(order: 'name').collect {|c| [ c.name, c.id ] }, {prompt: t('countries.select_country')})
+  = select("buying_guide", "country_id", Country.order(:name).collect {|c| [ c.name, c.id ] }, {prompt: t('countries.select_country')})
 
   = f.label :content
   = editor(f, :content, :html)
