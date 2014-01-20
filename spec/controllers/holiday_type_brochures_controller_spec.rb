@@ -18,28 +18,18 @@ describe HolidayTypeBrochuresController do
     context 'with valid place and invalid holiday type' do
       let(:resort) { FactoryGirl.create(:resort) }
 
-      it 'redirects to the place' do
+      it '404s' do
         get :show, place_type: 'resort', place_slug: resort.slug, holiday_type_slug: 'none'
-        expect(response).to redirect_to resort
-      end
-
-      it 'sets a flash notice' do
-        get :show, place_type: 'resort', place_slug: resort.slug, holiday_type_slug: 'none'
-        expect(flash[:notice]).to eq 'That information is missing.'
+        expect(response.status).to eq 404
       end
     end
 
     context 'with invalid place and valid holiday type' do
       let(:holiday_type) { FactoryGirl.create(:holiday_type) }
 
-      it 'redirects to the holiday type' do
+      it '404s' do
         get :show, place_type: 'resort', place_slug: 'nowhere', holiday_type_slug: holiday_type.slug
-        expect(response).to redirect_to holiday_type
-      end
-
-      it 'sets a flash notice' do
-        get :show, place_type: 'resort', place_slug: 'nowhere', holiday_type_slug: holiday_type.slug
-        expect(flash[:notice]).to eq 'That place does not exist.'
+        expect(response.status).to eq 404
       end
     end
 

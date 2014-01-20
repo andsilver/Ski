@@ -14,10 +14,6 @@ class HolidayTypeBrochuresController < ApplicationController
       else
         not_found
       end
-    elsif @brochurable
-      redirect_to @brochurable, notice: 'That information is missing.'
-    elsif @holiday_type
-      redirect_to @holiday_type, notice: 'That place does not exist.'
     else
       not_found
     end
