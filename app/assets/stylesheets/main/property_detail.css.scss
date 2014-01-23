@@ -104,6 +104,7 @@ p#property_main_image {
   .contact-availability {
     background-color: #e9f7fc;
     padding: 5px 10px;
+    position: relative;
 
     h1 {
       border-bottom: 1px solid #084c8d;
@@ -123,4 +124,49 @@ p#property_main_image {
   .gallery a:nth-child(3n) img {
     margin-right: 0;
   }
+
+  .star-rating {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .make-a-booking {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+    a {
+      display: block;
+      color: #fff;
+      background: #084c8d;
+      font-size: 13px;
+      line-height: 15px;
+      padding: 10px 40px 10px 10px;
+
+      span {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    }
+  }
+}
+
+.special-offers {
+  display: block;
+  height: 193px;
+  width: 620px;
+  overflow: auto;
+  background-image: image-url('special-offers.png');
+  padding: 15px 40px 15px 320px;
+  margin-bottom: 10px;
+}
+
+body a.special-offers {
+  color: #2b1d24;
+}
+
+.special-offers:hover {
+  text-decoration: none;
 }

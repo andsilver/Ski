@@ -14,6 +14,12 @@ describe 'properties/show_hotel' do
     expect(view.content_for(:advertising)).to be
   end
 
+  it 'sets the theme for the property' do
+    property.stub(:theme).and_return 'city-breaks'
+    render
+    expect(view.content_for(:theme)).to eq 'city-breaks'
+  end
+
   context 'without an image' do
     before { property.image = nil }
 
@@ -55,5 +61,11 @@ describe 'properties/show_hotel' do
 
     render
     expect(response).to have_selector 'h1#hotel'
+  end
+
+  it 'displays star rating' do
+    property.star_rating = 3
+    view.should_receive(:star_rating).with(3)
+    render
   end
 end
