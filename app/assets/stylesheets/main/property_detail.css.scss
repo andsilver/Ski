@@ -152,3 +152,21 @@ p#property_main_image {
     }
   }
 }
+
+.special-offers {
+  display: block;
+  height: 193px;
+  width: 620px;
+  overflow: auto;
+  background-image: image-url('special-offers.png');
+  padding: 15px 40px 15px 320px;
+  margin-bottom: 10px;
+}
+
+body a.special-offers {
+  color: #2b1d24;
+}
+
+.special-offers:hover {
+  text-decoration: none;
+}
