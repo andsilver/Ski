@@ -18,6 +18,8 @@ javascript:
         = @property.address
         br
         = @property.country
+      p.star-rating.theme-color
+        = star_rating(@property.star_rating)
       
 
     - if @property.image

@@ -104,6 +104,7 @@ p#property_main_image {
   .contact-availability {
     background-color: #e9f7fc;
     padding: 5px 10px;
+    position: relative;
 
     h1 {
       border-bottom: 1px solid #084c8d;
@@ -122,5 +123,11 @@ p#property_main_image {
 
   .gallery a:nth-child(3n) img {
     margin-right: 0;
+  }
+
+  .star-rating {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
   }
 }

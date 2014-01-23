@@ -75,11 +75,11 @@ module ApplicationHelper
   end
 
   def star
-    '<img src="/images/star.png" alt="*">'.html_safe
+    '<span class="glyphicon glyphicon-star"></span>'.html_safe
   end
 
   def empty_star
-    '<img src="/images/empty-star.png" alt="">'.html_safe
+    '<span class="glyphicon glyphicon-star-empty"></span>'.html_safe
   end
 
   def alt_attribute(path, fallback)

@@ -62,4 +62,10 @@ describe 'properties/show_hotel' do
     render
     expect(response).to have_selector 'h1#hotel'
   end
+
+  it 'displays star rating' do
+    property.star_rating = 3
+    view.should_receive(:star_rating).with(3)
+    render
+  end
 end
