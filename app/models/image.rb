@@ -100,7 +100,7 @@ class Image < ActiveRecord::Base
   end
 
   def size_original!(size, method)
-    sized_url(size, method)
+    sized_url(size, method, force_local: true)
 
     if was_sized
       FileUtils.rm(original_path) if File.exist?(original_path)
@@ -108,7 +108,8 @@ class Image < ActiveRecord::Base
     end
   end
 
-  def sized_url(size, method)
+  def sized_url(size, method, options = {})
+    options.reverse_merge!(force_local: false)
     @was_sized = false
 
     unless [:cropped, :height, :width, :longest_side, :maxpect, :square].include?(method)
@@ -138,7 +139,9 @@ class Image < ActiveRecord::Base
 
     @was_sized = true
 
-    if Rails.env == 'production'
+    upload_to_s3 = (Rails.env == 'production' && !options[:force_local])
+
+    if upload_to_s3
       unless File.exist?(s3_path)
         s3_upload(path)
         FileUtils.touch(s3_path)
