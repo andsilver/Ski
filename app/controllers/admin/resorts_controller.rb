@@ -28,8 +28,6 @@ class Admin::ResortsController < ApplicationController
   end
 
   def edit
-    set_image_mode
-
     @interhome_place_resort = InterhomePlaceResort.new(resort_id: @resort.id)
     @pv_place_resort = PvPlaceResort.new(resort_id: @resort.id)
   end
@@ -65,11 +63,6 @@ class Admin::ResortsController < ApplicationController
     def set_resort
       @resort = Resort.find_by(slug: params[:id])
       redirect_to(admin_resorts_path, notice: t('resorts_controller.not_found')) unless @resort
-    end
-
-    def set_image_mode
-      session[:image_mode] = 'resort'
-      session[:resort_id] = @resort.id
     end
 
     def resort_params

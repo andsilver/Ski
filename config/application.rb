@@ -29,5 +29,7 @@ module MySkiChalet
 
     config.autoload_paths += Dir["#{config.root}/lib"]
     config.assets.precompile += %w( application-admin.css application-home.css application-main.css application-print.css )
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+    config.assets.paths << Rails.root.join("vendor", "assets", "fonts")
   end
 end
