@@ -73,8 +73,8 @@ describe Image do
       FileUtils.rm(sized_path)    if File.exist?(sized_path)
     end
 
-    it 'passes the method and size params to sized_url' do
-      image.should_receive(:sized_url).with(200, :maxpect)
+    it 'passes the method and size params to sized_url along with force_local option' do
+      image.should_receive(:sized_url).with(200, :maxpect, force_local: true)
       image.size_original!(200, :maxpect)
     end
 
