@@ -332,10 +332,17 @@ class PropertiesController < ApplicationController
   end
 
   def update
+    if params[:property][:image_id]
+      image = Image.find(params[:property][:image_id])
+      if image.user == @property.user
+        @property.image = image
+      end
+    end
+
     if @property.update_attributes(property_params)
       redirect_to my_adverts_path, notice: t('properties_controller.saved')
     else
-      render "edit"
+      render :edit
     end
   end
 

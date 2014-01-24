@@ -424,12 +424,13 @@ describe PropertiesController do
     end
   end
 
-  def put_update
-    put 'update', id: '1', property: { title: 'T' }
-  end
-
   describe "PUT update" do
     let(:current_user) { mock_model(User).as_null_object }
+    let(:image_id)     { nil }
+
+    def put_update
+      put 'update', id: '1', property: { title: 'T', image_id: image_id }
+    end
 
     before do
       signed_in_user
@@ -445,6 +446,31 @@ describe PropertiesController do
 
       before do
         Property.stub(:find_by).and_return(property)
+      end
+
+      context 'when image_id is set' do
+        let(:property_owner) { FactoryGirl.create(:user) }
+        let(:image)    { FactoryGirl.create(:image, source_url: '#', user: image_owner) }
+        let(:image_id) { image.id }
+        before         { property.stub(:user).and_return(property_owner) }
+
+        context 'when image owned by property owner' do
+          let(:image_owner) { property_owner }
+
+          it 'sets the property image' do
+            property.should_receive(:image=).with(image)
+            put_update
+          end
+        end
+
+        context 'when image not owned by property owner' do
+          let(:image_owner) { FactoryGirl.create(:user) }
+
+          it 'does not set the property image' do
+            property.should_not_receive(:image=)
+            put_update
+          end
+        end
       end
 
       context "when the property updates successfully" do
