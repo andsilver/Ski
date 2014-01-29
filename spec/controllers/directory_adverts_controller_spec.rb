@@ -213,4 +213,13 @@ describe DirectoryAdvertsController do
       end
     end
   end
+
+  describe 'POST click' do
+    let(:directory_advert) { FactoryGirl.create(:directory_advert, url: 'http://example.org') }
+
+    it 'redirects to the directory advert remote URL' do
+      post :click, id: directory_advert.id
+      expect(response).to redirect_to directory_advert.url
+    end
+  end
 end
