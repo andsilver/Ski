@@ -13,4 +13,16 @@ describe ApplicationController do
       expect(response).to be_successful
     end
   end
+
+  describe 'bot?' do
+    before { controller.stub(:bot_file).and_return('test-files/bots.txt') }
+
+    it 'returns true if bot is present in the bot file' do
+      expect(controller.bot?('bot')).to be_true
+    end
+
+    it 'returns false if bot is not present in the bot file' do
+      expect(controller.bot?('browser')).to be_false
+    end
+  end
 end

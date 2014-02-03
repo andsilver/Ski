@@ -75,6 +75,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def bot?(user_agent)
+    `cat #{Shellwords.escape(bot_file)} | grep #{Shellwords.escape(user_agent)}`.present?
+  end
+
   protected
 
   def initialize_website
@@ -191,6 +195,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+    def bot_file
+      'bots.txt'
+    end
 
     def render_html(exception)
       if request.format != 'html'
