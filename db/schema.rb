@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129194759) do
+ActiveRecord::Schema.define(version: 20140203154006) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -175,7 +175,6 @@ ActiveRecord::Schema.define(version: 20140129194759) do
     t.integer  "banner_image_id"
     t.integer  "width",            default: 0,     null: false
     t.integer  "height",           default: 0,     null: false
-    t.integer  "clicks",           default: 0,     null: false
     t.string   "business_name",    default: "",    null: false
   end
 
