@@ -221,5 +221,16 @@ describe DirectoryAdvertsController do
       post :click, id: directory_advert.id
       expect(response).to redirect_to directory_advert.url
     end
+
+    it 'tracks a click action' do
+      TrackedAction.should_receive(:create).with(hash_including(
+      action_type: :click,
+      http_user_agent: request.env['HTTP_USER_AGENT'],
+      remote_ip: request.remote_ip,
+      trackable_id: directory_advert.id,
+      trackable_type: 'DirectoryAdvert'
+      ))
+      post :click, id: directory_advert.id
+    end
   end
 end

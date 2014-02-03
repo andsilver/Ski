@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116143008) do
+ActiveRecord::Schema.define(version: 20140129194759) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -700,6 +700,20 @@ ActiveRecord::Schema.define(version: 20140116143008) do
   end
 
   add_index "snippets", ["name"], name: "index_snippets_on_name", using: :btree
+
+  create_table "tracked_actions", force: true do |t|
+    t.string   "remote_ip",       default: "", null: false
+    t.integer  "trackable_id",                 null: false
+    t.string   "trackable_type",               null: false
+    t.integer  "action_type",                  null: false
+    t.string   "http_user_agent", default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tracked_actions", ["created_at"], name: "index_tracked_actions_on_created_at", using: :btree
+  add_index "tracked_actions", ["trackable_id", "action_type"], name: "index_tracked_actions_on_trackable_id_and_action_type", using: :btree
+  add_index "tracked_actions", ["trackable_id"], name: "index_tracked_actions_on_trackable_id", using: :btree
 
   create_table "unavailabilities", force: true do |t|
     t.integer  "property_id"
