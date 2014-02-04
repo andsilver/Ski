@@ -126,7 +126,7 @@ class PropertiesController < ApplicationController
     @for_sale = false
     default_page_title t('properties.titles.hotels', resort: @resort)
     @breadcrumbs = {@resort.name => @resort}
-    @heading = t('resort_options.hotels')
+    @heading = t('properties_controller.titles.browse_hotels', resort: @resort)
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "star_rating DESC" ])
