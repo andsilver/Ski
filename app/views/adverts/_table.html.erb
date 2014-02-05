@@ -21,7 +21,7 @@ $(document).ready(function() {
       <% end %>
       <th class="numeric"><%= t 'views.adverts._table.views' %></th>
       <% if adverts.first.respond_to? :clicks %>
-      <th class="numeric"><%= t 'clicks' %></th>
+      <th class="numeric clicks"><%= t 'clicks' %></th>
       <% end %>
       <th><%= t 'advert_start_date' %></th>
       <th><%= t 'advert_end_date' %></th>
@@ -47,7 +47,7 @@ $(document).ready(function() {
       <% end %>
       <td class="numeric"><%= a.views %></td>
       <% if a.respond_to? :clicks %>
-      <td class="numeric"><%= a.clicks %></td>
+      <td class="numeric clicks"><%= a.clicks.count %></td>
       <% end %>
       <% if a.currently_advertised? %>
       <td>

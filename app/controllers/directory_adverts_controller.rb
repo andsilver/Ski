@@ -95,8 +95,16 @@ class DirectoryAdvertsController < ApplicationController
 
   def click
     @directory_advert = DirectoryAdvert.find(params[:id])
-    @directory_advert.clicks += 1
-    @directory_advert.save
+    user_agent = request.env['HTTP_USER_AGENT']
+    if !bot?(user_agent)
+      TrackedAction.create(
+        action_type: :click,
+        http_user_agent: user_agent,
+        remote_ip: request.remote_ip,
+        trackable_id: @directory_advert.id,
+        trackable_type: 'DirectoryAdvert'
+      )
+    end
     redirect_to @directory_advert.url
   end
 
