@@ -5,5 +5,6 @@ FactoryGirl.define do
     strapline        'We are awesome'
     association :resort
     association :user
+    association :category
   end
 end

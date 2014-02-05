@@ -142,26 +142,25 @@ describe UsersController do
     end
   end
 
-  describe 'PUT update' do
-    before { controller.stub(:current_user).and_return(user) }
+  describe 'PATCH update' do
+    before do
+      controller.stub(:current_user).and_return(user)
+      User.stub(:find).with('1').and_return(user)
+    end      
 
     let(:update_params) {{id: '1', user: { 'first_name' => 'Fred' } }}
 
     context 'when the user saves' do
-      before do
-        User.stub(:find).with('1').and_return(user)
-      end
-
       context 'when admin' do
         before { signed_in_as_admin }
 
         it 'redirects to users index' do
-          put 'update', update_params
+          patch :update, update_params
           expect(response).to redirect_to(users_path)
         end
 
         it 'sets a notice' do
-          put 'update', update_params
+          patch :update, update_params
           expect(flash.notice).to eq I18n.t('notices.saved')
         end
       end
@@ -170,14 +169,29 @@ describe UsersController do
         before { controller.stub(:admin?).and_return(false) }
 
         it 'redirects to My Details' do
-          put 'update', update_params
+          patch :update, update_params
           expect(response).to redirect_to(my_details_path)
         end
 
         it 'sets a notice' do
-          put 'update', update_params
+          patch :update, update_params
           expect(flash.notice).to eq I18n.t('my_details_saved')
         end
+      end
+    end
+
+    context 'when the user fails to update' do
+      before { user.stub(:update_attributes).and_return(false) }
+
+      it 'renders the edit template' do
+        patch :update, update_params
+        expect(response).to render_template(:edit)
+      end
+
+      it 'assigns @heading and @breadcrumbs' do
+        patch :update, update_params
+        expect(assigns(:heading)).to be
+        expect(assigns(:breadcrumbs)).to be
       end
     end
   end

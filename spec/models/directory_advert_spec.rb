@@ -16,4 +16,16 @@ describe DirectoryAdvert do
       end
     end
   end
+
+  describe '#clicks' do
+    it 'returns :click TrackedActions' do
+      da = FactoryGirl.create(:directory_advert)
+      3.times { TrackedAction.create(
+        action_type: :click,
+        trackable_id: da.id,
+        trackable_type: 'DirectoryAdvert'
+      ) }
+      expect(da.reload.clicks.count).to eq 3
+    end
+  end
 end

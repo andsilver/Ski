@@ -402,6 +402,8 @@ en:
     placed_in_window: "Your property advert has been placed in a window."
     removed_from_window: "Your property advert has been removed from its window."
     saved: "Your property advert details have been saved."
+    titles:
+      browse_hotels: "%{resort} Hotels"
   properties:
     accommodation_type: Accommodation type
     browse:

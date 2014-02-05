@@ -39,13 +39,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if admin?
-      @breadcrumbs = { 'CMS' => cms_path, 'Users' => users_path }
-      @heading = @user.name
-    else
-      @breadcrumbs = { t('advertise') => advertise_path }
-      @heading = t('users.my_details.my_details')
-    end
+    edit_breadcrumbs_and_heading
   end
 
   def update
@@ -63,7 +57,8 @@ class UsersController < ApplicationController
         redirect_to my_details_path, notice: t('my_details_saved')
       end
     else
-      render action: 'edit'
+      edit_breadcrumbs_and_heading
+      render :edit
     end
   end
 
@@ -109,62 +104,72 @@ class UsersController < ApplicationController
   
   private
 
-  def after_create_path(user)
-    if user.role.only_advertises_properties_for_sale?
-      new_property_path(listing_type: Property::LISTING_TYPE_FOR_SALE)
-    elsif user.role.only_advertises_properties_for_rent?
-      new_property_path(listing_type: Property::LISTING_TYPE_FOR_RENT)
-    else
-      first_advert_path
-    end
-  end
-
-  def update_logo
-    return if params[:image].nil?
-
-    @image = Image.new
-    @image.user_id = @user.id
-    @image.image = params[:image]
-
-    begin
-      if @image.save
-        @user.image.destroy unless @user.image.nil?
-        @user.image_id = @image.id
-        @user.save
+    def edit_breadcrumbs_and_heading
+      if admin?
+        @breadcrumbs = { 'CMS' => cms_path, 'Users' => users_path }
+        @heading = @user.name
+      else
+        @breadcrumbs = { t('advertise') => advertise_path }
+        @heading = t('users.my_details.my_details')
       end
-    rescue
     end
-  end
 
-  def forgot_password_params_ok?
-    if @user.forgot_password_token.blank?
-      redirect_to({ action: 'forgot_password' }, notice: t('users.enter_your_email_address'))
-      return false
-    elsif params[:t].nil? or @user.forgot_password_token != params[:t]
-      flash[:notice] = "The link you entered was invalid. This can happen if you have re-requested " +
-        "a forgot password email or you have already reset and changed your password."
-      redirect_to action: 'forgot_password'
-      return false
+    def after_create_path(user)
+      if user.role.only_advertises_properties_for_sale?
+        new_property_path(listing_type: Property::LISTING_TYPE_FOR_SALE)
+      elsif user.role.only_advertises_properties_for_rent?
+        new_property_path(listing_type: Property::LISTING_TYPE_FOR_RENT)
+      else
+        first_advert_path
+      end
     end
-    true
-  end
 
-  def find_user
-    @user = User.find(params[:id])
-  end
+    def update_logo
+      return if params[:image].nil?
 
-  def find_current_user_or_selected_user
-    if admin? && params[:id]
+      @image = Image.new
+      @image.user_id = @user.id
+      @image.image = params[:image]
+
+      begin
+        if @image.save
+          @user.image.destroy unless @user.image.nil?
+          @user.image_id = @image.id
+          @user.save
+        end
+      rescue
+      end
+    end
+
+    def forgot_password_params_ok?
+      if @user.forgot_password_token.blank?
+        redirect_to({ action: 'forgot_password' }, notice: t('users.enter_your_email_address'))
+        return false
+      elsif params[:t].nil? or @user.forgot_password_token != params[:t]
+        flash[:notice] = "The link you entered was invalid. This can happen if you have re-requested " +
+          "a forgot password email or you have already reset and changed your password."
+        redirect_to action: 'forgot_password'
+        return false
+      end
+      true
+    end
+
+    def find_user
       @user = User.find(params[:id])
-    else
-      @user = current_user
     end
-  end
 
-  def user_params
-    params.require(:user).permit(:email, :website, :description, :billing_street, :billing_location,
-      :billing_city, :billing_postcode, :billing_country_id, :phone, :mobile, :business_name,
-      :position, :terms_and_conditions, :first_name, :last_name, :google_web_property_id,
-      :vat_country_id, :vat_number, :password)
-  end
+    def find_current_user_or_selected_user
+      if admin? && params[:id]
+        @user = User.find(params[:id])
+      else
+        @user = current_user
+      end
+    end
+
+    def user_params
+      params.require(:user).permit(:email, :website, :description, :billing_street, :billing_location,
+        :billing_city, :billing_postcode, :billing_country_id, :phone, :mobile, :business_name,
+        :position, :terms_and_conditions, :first_name, :last_name, :google_web_property_id,
+        :vat_country_id, :vat_number, :password)
+    end
 end

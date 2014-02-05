@@ -213,4 +213,37 @@ describe DirectoryAdvertsController do
       end
     end
   end
+
+  describe 'POST click' do
+    let(:directory_advert) { FactoryGirl.create(:directory_advert, url: 'http://example.org') }
+
+    it 'redirects to the directory advert remote URL' do
+      post :click, id: directory_advert.id
+      expect(response).to redirect_to directory_advert.url
+    end
+
+    context 'when user agent is not a bot' do
+      before { controller.stub(:bot?).and_return(false) }
+
+      it 'tracks a click action' do
+        TrackedAction.should_receive(:create).with(hash_including(
+        action_type: :click,
+        http_user_agent: request.env['HTTP_USER_AGENT'],
+        remote_ip: request.remote_ip,
+        trackable_id: directory_advert.id,
+        trackable_type: 'DirectoryAdvert'
+        ))
+        post :click, id: directory_advert.id
+      end
+    end
+
+    context 'when user agent is a bot' do
+      before { controller.stub(:bot?).and_return(true) }
+
+      it 'does not track a click action' do
+        TrackedAction.should_not_receive(:create)
+        post :click, id: directory_advert.id
+      end
+    end
+  end
 end
