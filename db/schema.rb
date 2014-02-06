@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203154006) do
+ActiveRecord::Schema.define(version: 20140206135717) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -96,15 +96,6 @@ ActiveRecord::Schema.define(version: 20140203154006) do
     t.integer  "price",                 default: 0, null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-  end
-
-  create_table "blog_posts", force: true do |t|
-    t.string   "headline",   default: "",   null: false
-    t.text     "content"
-    t.integer  "image_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.boolean  "visible",    default: true, null: false
   end
 
   create_table "buying_guides", force: true do |t|
@@ -779,7 +770,6 @@ ActiveRecord::Schema.define(version: 20140203154006) do
     t.boolean  "worldpay_test_mode",                                         default: false, null: false
     t.boolean  "skip_payment",                                               default: false, null: false
     t.string   "worldpay_payment_response_password",                         default: "",    null: false
-    t.boolean  "blog_visible",                                               default: false, null: false
     t.text     "contact_details"
     t.decimal  "vat_rate",                           precision: 4, scale: 2, default: 20.0,  null: false
     t.text     "resources_banner_html"

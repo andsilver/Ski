@@ -127,6 +127,20 @@ a img {
   width: 790px;
 }
 
+.hide-links-and-search {
+  #links-and-search {
+    display: none;
+  }
+
+  #content {
+    width: 830px;
+  }
+
+  #content.wide {
+    width: 1000px;
+  }
+}
+
 #logo {
   display: block;
   position: absolute;

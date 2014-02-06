@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     resources :airport_distances, except: [:show]
     resources :airports,          except: [:show]
     resources :banner_prices,     except: [:show]
-    resources :blog_posts,        except: [:show]
     resources :buying_guides,     except: [:show]
     resources :countries,         except: [:show]
     resources :currencies,        except: [:show] do
@@ -210,11 +209,6 @@ Rails.application.routes.draw do
 
   resources :alt_attributes
 
-  resources :blog_posts do
-    get 'feed', on: :collection
-  end
-
-  get "blog" => "blog_posts#blog"
   resources :favourites
 
   get "cms" => "cms#index"

@@ -3,7 +3,7 @@ class ExportController < ApplicationController
 
   layout 'admin'
 
-  CLASSES = %w{Advert AirportDistances Airports BlogPost
+  CLASSES = %w{Advert AirportDistances Airports
     Category Country Coupon Currency DirectoryAdvert Enquiry Favourite Image
     Order OrderLine Page Payment Property PropertyBasePrice
     PropertyVolumeDiscount Resort Role UnregisteredUser User Website}

@@ -4,7 +4,6 @@ module ResortsHelper
   PISTE_MAP_SIZE = 821
   COUNTRIES_DIRECTORY = "#{Rails.root.to_s}/public/countries/"
   RESORTS_DIRECTORY = "#{Rails.root.to_s}/public/resorts/"
-  BLOG_POSTS_DIRECTORY = "#{Rails.root.to_s}/public/blog-posts/"
 
   def gallery_thumbnail(resort, filename)
     resort_image(resort, filename, THUMBNAIL_SIZE, 'gallery')
@@ -61,14 +60,6 @@ module ResortsHelper
       end
     end
 
-    if controller.controller_name == 'blog_posts' && controller.action_name == 'show'
-      id = params[:id].to_i.to_s
-      blog_post_images(id)
-      @images.each do |img|
-        urls << "/blog-posts/#{id}/#{img}"
-      end
-    end
-
     if controller.controller_name == 'pages' && controller.action_name == 'show'
       slug = params[:id]
       images_in_directory("#{Rails.root.to_s}/public/pages/#{slug}/headers")
@@ -98,11 +89,6 @@ module ResortsHelper
 
   def country_images(country, sub_dir)
     dir = "#{COUNTRIES_DIRECTORY}#{country.name.parameterize}/#{sub_dir}"
-    images_in_directory(dir)
-  end
-
-  def blog_post_images(sub_dir)
-    dir = "#{BLOG_POSTS_DIRECTORY}#{sub_dir}"
     images_in_directory(dir)
   end
 

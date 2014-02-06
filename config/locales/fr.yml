@@ -75,9 +75,6 @@ fr:
   basket: Panier
   bathrooms: Salles de bains
   bedrooms: 'Chambres'
-  blog_posts_controller:
-    blog: Blog
-    blog_heading: My Chalet Finder Blog
   business: Entreprise
   business_details: Détails d'entreprise
   categories_controller:
