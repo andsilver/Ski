@@ -75,6 +75,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Returns +true+ if +user_agent+ is a known robot user agent.
   def bot?(user_agent)
     `cat #{Shellwords.escape(bot_file)} | grep #{Shellwords.escape(user_agent)}`.present?
   end
