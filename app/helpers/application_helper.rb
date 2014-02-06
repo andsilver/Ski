@@ -174,6 +174,11 @@ module ApplicationHelper
     "<link rel=\"canonical\" href=\"#{url}\">".html_safe
   end
 
+  # Hides the links and search sidebar.
+  def hide_links_and_search
+    javascript_tag '$(function() { hideLinksAndSearch(); });'
+  end
+
   protected
 
     def object_title(object)

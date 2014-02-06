@@ -30,3 +30,6 @@ activateNavTabs = ->
     e.preventDefault()
     $(this).tab('show')
   )
+
+window.hideLinksAndSearch = ->
+  $('body').addClass('hide-links-and-search')
