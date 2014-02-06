@@ -1,17 +1,20 @@
+# == Invoice
+#
+# Generates a PDF invoice from an order.
+#
+#   Invoice.new(order).render
 class Invoice
   include ActionView::Helpers::NumberHelper
   include ApplicationHelper
 
-  attr_reader :filename
-
+  # Initializes the invoice with an order.
   def initialize(order)
     @order = order
   end
 
+  # Renders the invoice as a PDF document.
   def render
-    dir = "#{Rails.root.to_s}/public/invoices/#{@order.hash.to_s}"
-    FileUtils.makedirs(dir)
-    @filename = "#{dir}/MCF-Invoice-#{@order.order_number}.pdf"
+    FileUtils.makedirs(directory)
 
     Prawn::Document.generate(filename, page_size: 'A4') do |pdf|
       spacing = 3
@@ -60,5 +63,15 @@ class Invoice
         pdf.image logopath, width: 126, height: 22
       end
     end
+  end
+
+  # Returns the filename, including path, of the PDF document.
+  def filename
+    "#{directory}/MCF-Invoice-#{@order.order_number}.pdf"
+  end
+
+  # Returns the directory to which the rendered PDF will be written.
+  def directory
+    "#{Rails.root.to_s}/public/invoices/#{@order.hash.to_s}"
   end
 end
