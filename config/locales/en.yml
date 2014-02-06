@@ -75,9 +75,6 @@ en:
   basket: Basket
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
-  blog_posts_controller:
-    blog: Blog
-    blog_heading: My Chalet Finder Blog
   business: Business
   business_details: Business Details
   categories_controller:

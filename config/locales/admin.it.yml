@@ -21,13 +21,6 @@ it:
         title: Banner Prices
       new:
         title: New Banner Price
-    blog_posts:
-      edit:
-        title: Edit Post
-      index:
-        title: Blog
-      new:
-        title: New Post
     buying_guides:
       edit:
         title: Edit Buying Guide

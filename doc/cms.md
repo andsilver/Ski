@@ -66,9 +66,3 @@ Resort headers go in
 
 Summer holidays headers go in
 /public/resorts/resort-name/summer-headers
-
-Blog headers go in
-/public/blog-posts/1
-
-Replace '1' with the ID of your blog post - you can see this as the number at
-the beginning of the link on the blog post CMS index page.
