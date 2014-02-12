@@ -27,7 +27,7 @@ src="/images/small-banner-advertise-here.png" alt="Advertise in this space"></a>
   <% end %>
 <% else %>
   <% banners.each do |banner| %>
-    <%= button_to click_directory_advert_path(banner) do %>
+    <%= button_to(click_directory_advert_path(banner), formtarget: '_blank') do %>
       <img
         src="<%= banner.banner_image.url %>" alt="<%= banner.business_name %>"
         title="<%= banner.business_name %>">
