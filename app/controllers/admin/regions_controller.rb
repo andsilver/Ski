@@ -30,7 +30,7 @@ class Admin::RegionsController < ApplicationController
 
   def update
     if @region.update_attributes(region_params)
-      redirect_to(admin_regions_path, notice: t('notices.saved'))
+      redirect_to(edit_admin_region_path(@region), notice: t('notices.saved'))
     else
       render 'edit'
     end
