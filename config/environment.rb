@@ -8,3 +8,6 @@ Rails.application.initialize!
 ActionMailer::Base.smtp_settings = {
   openssl_verify_mode: 'none'
 }
+
+# Use Active Record for Liquid templates.
+Liquid::Template.file_system = SnippetFileSystem.new
