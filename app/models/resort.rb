@@ -20,7 +20,7 @@ class Resort < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, scope: :country_id
 
-  validates :slug, presence: true, uniqueness: true
+  validates :slug, ModelConstants::FLAT_NAMESPACE_SLUG_VALIDATIONS
 
   def to_param
     slug

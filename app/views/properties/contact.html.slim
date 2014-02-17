@@ -1,10 +1,16 @@
 = content_for :title, t('.title', property: @property, resort: @property.resort, country: @property.country)
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.decorate.contact_breadcrumbs, t('.heading', property: @property))
 
+= render 'property_header_image'
+
 = render 'spam/spam'
 = render partial: '/properties/user_logo', locals: { property: @property }
 
-p= t('enquiries_controller.enquiry_introduction')
+p
+  - if @property.hotel?
+    = t('.introduction.hotel')
+  - else
+    = t('.introduction.general')
 
 = clear
 
@@ -81,3 +87,5 @@ p= t('enquiries_controller.enquiry_introduction')
   h2= t('contact_details')
   p= "#{t('phone')}: #{@property.user.phone}"
   p= "#{t('mobile')}: #{@property.user.mobile}"
+
+= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort)

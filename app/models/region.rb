@@ -9,7 +9,7 @@ class Region < ActiveRecord::Base
   validates :country_id, presence: true
   validates :name, length: { maximum: 100 }, presence: true, uniqueness: { scope: :country }
 
-  validates :slug, presence: true, uniqueness: true
+  validates :slug, ModelConstants::FLAT_NAMESPACE_SLUG_VALIDATIONS
 
   def self.page_names
     ['how-to-get-there']

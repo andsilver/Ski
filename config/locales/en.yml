@@ -162,7 +162,6 @@ en:
     comments: Comments
     date_of_arrival: Date of arrival
     date_of_departure: Date of departure
-    enquiry_introduction: 'To enquire about the availability and prices of your selected accommodation, you can either call the owner or agent directly on the number below or complete the details in the form and send an email.  We hope you have a great holiday.'
     number_of_adults: Number of adults
     number_of_children: Number of children (3 to 16)
     number_of_infants: Number of infants (under 3)
@@ -408,6 +407,9 @@ en:
     choose_a_window: Choose a Window
     contact:
       heading: 'Enquire about %{property}'
+      introduction:
+        general: 'To enquire about the availability and prices of your selected accommodation, you can either call the owner or agent directly on the number below or complete the details in the form and send an email. We hope you have a great holiday.'
+        hotel: 'To enquire about the availability and prices of your selected accommodation, you can either call the hotel directly on the number below or complete the details in the form and send an email. We hope you have a great holiday.'
       title: 'Enquire about %{property} in %{resort}, %{country}'
     email_a_friend:
       heading: 'Email a friend about %{property}'
