@@ -40,7 +40,8 @@ class Image < ActiveRecord::Base
 
   def url(size=nil)
     if size.nil?
-      remote_image? ? source_url : url_for_filename(filename)
+      download_from_source_if_needed
+      url_for_filename(filename)
     else
       sized_url(size, :longest_side)
     end
@@ -116,7 +117,7 @@ class Image < ActiveRecord::Base
       raise ArgumentError.new("method must be :cropped, :longest_side, :maxpect, :square, :height or :width")
     end
 
-    return source_url if remote_image?
+    download_from_source_if_needed
 
     f = sized_filename(size, method)
     path = sized_path(size, method)
@@ -230,6 +231,29 @@ class Image < ActiveRecord::Base
 
   def remote_image?
     !(FileTest.exist?(original_path) || source_url.blank?)
+  end
+
+  def download_from_source_if_needed
+    download_from_source if remote_image?
+  end
+
+  def download_from_source
+    return if Rails.env == 'development'
+    begin
+      FileUtils.makedirs(directory_path)
+      require 'net/http'
+      uri = URI.parse(source_url)
+      Net::HTTP.start(uri.host, uri.port) do |http|
+        to_get = uri.path
+        to_get = "#{to_get}?" + uri.query unless uri.query.blank?
+        resp = http.get(to_get)
+        open(original_path, "wb") do |file|
+          file.write(resp.body)
+        end
+      end
+    rescue
+      return
+    end
   end
 
   def valid_image_file?
