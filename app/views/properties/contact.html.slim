@@ -4,7 +4,11 @@
 = render 'spam/spam'
 = render partial: '/properties/user_logo', locals: { property: @property }
 
-p= t('enquiries_controller.enquiry_introduction')
+p
+  - if @property.hotel?
+    = t('.introduction.hotel')
+  - else
+    = t('.introduction.general')
 
 = clear
 
