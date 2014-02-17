@@ -1,9 +1,14 @@
 require 'spec_helper'
+require_relative 'property_header_image'
 
 describe 'properties/contact.html.slim' do
+  let(:property) { FactoryGirl.build(:property) }
+
   before do
     assign(:enquiry, Enquiry.new)
   end
+
+  it_behaves_like 'a property header image'
 
   context 'when hotel' do
     before do
