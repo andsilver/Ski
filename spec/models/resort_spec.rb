@@ -1,4 +1,5 @@
 require 'spec_helper'
+require_relative 'shared_model_examples'
 
 describe Resort do
   # ActiveRecord
@@ -9,6 +10,8 @@ describe Resort do
     # Accommodate leaky fixtures
     HolidayType.destroy_all
   end
+
+  it_behaves_like 'a flat namespace slug validator', :resort
 
   describe '#to_param' do
     it 'returns its slug' do
