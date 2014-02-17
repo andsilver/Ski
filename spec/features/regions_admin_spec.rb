@@ -32,7 +32,7 @@ feature 'Regions admin' do
     fill_in 'Name', with: 'Yorkshire'
     click_button 'Update Region'
     expect(page).to have_content I18n.t('notices.saved')
-    expect(page).to have_content 'Yorkshire'
+    expect(find_field('Name').value).to eq 'Yorkshire'
   end
 
   scenario 'Delete region' do

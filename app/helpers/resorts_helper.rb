@@ -27,11 +27,13 @@ module ResortsHelper
     FileUtils.makedirs(thumbnails_path)
 
     # create a new image of the required size if it doesn't exist
-    unless FileTest.exists?(path)
+    unless FileTest.exist?(path)
       begin
         ImageScience.with_image(original_path) do |img|
-          img.thumbnail(size) do |thumb|
-            thumb.save path
+          if THUMBNAIL_SIZE == size
+            Image.new.size_cropped(img, [size, size], path)
+          else
+            img.thumbnail(size) { |thumb| thumb.save path }
           end
         end
       rescue
