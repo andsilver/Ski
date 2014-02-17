@@ -26,7 +26,7 @@ galleryZoom = ->
   $('#gallery_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true})
 
 activateNavTabs = ->
-  $('.nav-tabs a').click( ->
+  $('.nav-tabs a').click((e) ->
     e.preventDefault()
     $(this).tab('show')
   )
