@@ -46,10 +46,10 @@ describe Image do
   end
 
   describe "#url" do
-    it "returns the source URL if it's a remote image" do
-      i = Image.new(source_url: 'http://www.example.org/image.jpg')
-      i.stub(:remote_image?).and_return(true)
-      expect(i.url).to eq 'http://www.example.org/image.jpg'
+    it "downloads the image from the source URL if needed" do
+      i = Image.new
+      i.should_receive(:download_from_source_if_needed)
+      i.url
     end
   end
 
@@ -105,11 +105,11 @@ describe Image do
   end
 
   describe "#sized_url" do
-    it "returns the source URL if it's a remote image" do
-      i = Image.new(source_url: 'http://www.example.org/image.jpg')
+    it "downloads the image from the source URL if needed" do
+      i = Image.new
       i.stub(:filename).and_return('image.jpg')
-      i.stub(:remote_image?).and_return(true)
-      expect(i.sized_url(100, :longest_side)).to eq 'http://www.example.org/image.jpg'
+      i.should_receive(:download_from_source_if_needed)
+      i.sized_url(100, :longest_side)
     end
 
     describe 'was_sized flag' do
@@ -161,6 +161,35 @@ describe Image do
 
     it 'handles size as an [x,y] array' do
       expect(image.sized_filename([50, 100], :longest_side)).to eq 'longest_side_50x100.jpg'
+    end
+  end
+
+  describe "#download_from_source_if_needed" do
+    context "when the image does not exist and source_url is set" do
+      it "downloads the image from source" do
+        FileTest.stub(:exist?).and_return(false)
+        i = Image.new
+        i.source_url = 'http://example.org'
+        i.should_receive(:download_from_source)
+        i.download_from_source_if_needed
+      end
+    end
+
+    context "when the image exists" do
+      it "does nothing" do
+        FileTest.stub(:exist?).and_return(true)
+        i = Image.new
+        i.should_not_receive(:download_from_source)
+        i.download_from_source_if_needed
+      end
+    end
+
+    context "when the source_url is not set" do
+      it "does nothing" do
+         i = Image.new
+         i.should_not_receive(:download_from_source)
+         i.download_from_source_if_needed
+      end
     end
   end
 
