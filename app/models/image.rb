@@ -144,8 +144,12 @@ class Image < ActiveRecord::Base
 
     if upload_to_s3
       unless File.exist?(s3_path)
-        s3_upload(path)
-        FileUtils.touch(s3_path)
+        begin
+          s3_upload(path)
+          FileUtils.touch(s3_path)
+        rescue
+          logger.error "Failed to upload image at #{path} to S3"
+        end
       end
 
       FileUtils.rm(path) if File.exist?(path)
