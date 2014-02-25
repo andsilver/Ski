@@ -5,7 +5,7 @@ Rails.application.configure do
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
-  # your application in memory, allowing both thread web servers
+  # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
@@ -52,7 +52,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -66,7 +66,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation can not be found).
+  # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners.
@@ -77,6 +77,9 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Do not dump schema after migrations.
+  config.active_record.dump_schema_after_migration = false
 
   config.middleware.use ExceptionNotification::Rack,
     email: {
