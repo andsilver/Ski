@@ -45,6 +45,10 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'google-analytics-turbolinks'
 
+group :production do
+  gem 'dalli'
+end
+
 group :development do
   gem 'brakeman'
   gem 'thin'

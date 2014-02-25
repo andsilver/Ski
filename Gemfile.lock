@@ -88,6 +88,7 @@ GEM
       rails (>= 3.0.0)
     curb (0.8.5)
     daemons (1.1.9)
+    dalli (2.7.0)
     database_cleaner (1.2.0)
     diff-lcs (1.2.5)
     docile (1.1.1)
@@ -299,6 +300,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   cucumber-rails
   curb
+  dalli
   database_cleaner
   draper
   exception_notification!
