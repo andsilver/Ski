@@ -31,7 +31,7 @@ module FlipKey
     end
     
     # Parses the property index file and returns an array of property
-    # filenames that can be fetched from url_base.
+    # filenames that can be fetched from +url_base+.
     def parse_index
       File.open(index) { |file| PropertyIndexParser.new(file).parse }
     end
