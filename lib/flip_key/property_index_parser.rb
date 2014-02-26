@@ -16,7 +16,7 @@ module FlipKey
     private
 
       def property_data_filename?(f)
-        /\Aproperty_data_[\d+]\.xml\.gz\z/ =~ f
+        /\Aproperty_data_\d+\.xml\.gz\z/ =~ f
       end
   end
 end
