@@ -16,12 +16,15 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  # +select_role+ is a helper action to allow simple HTML links to pre-choose
+  # a role for signup.
+  def select_role
+    stage_one
+    render :new
+  end
+
   def create
-    @user = User.new(user_params)
-    @role = Role.find_by(id: params[:user][:role_id])
-    if @role && @role.select_on_signup?
-      @user.role_id = @role.id
-    end
+    stage_one
 
     if params[:stage] && params[:stage]=="1"
       render 'new' and return
@@ -111,6 +114,14 @@ class UsersController < ApplicationController
       else
         @breadcrumbs = { t('advertise') => advertise_path }
         @heading = t('users.my_details.my_details')
+      end
+    end
+
+    def stage_one
+      @user = User.new(user_params)
+      @role = Role.find_by(id: params[:user][:role_id])
+      if @role && @role.select_on_signup?
+        @user.role_id = @role.id
       end
     end
 
