@@ -49,7 +49,7 @@ module FlipKey
           .should_receive(:download)
           .with hash_including(
             from: url_base + '1.xml.gz', username: username, password: password,
-            to: property_downloader.flip_key_directory + '1.xml.gz'
+            to: File.join(property_downloader.flip_key_directory, '1.xml.gz')
           )
 
         property_downloader.download_properties

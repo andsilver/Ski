@@ -11,10 +11,12 @@ module FlipKey
     def download_properties
       downloader = BasicAuthDownloader.new
       downloader.download(from: @url_base, to: index, username: @username, password: @password)
-      parse_index.each do |property_filename|
+
+      background_process(parse_index) do |property_filename|
+        property_path = File.join(flip_key_directory, property_filename)
         downloader.download(
           from: @url_base + property_filename,
-          to: flip_key_directory + property_filename,
+          to: property_path,
           username: @username, password: @password
         )
       end
@@ -22,12 +24,12 @@ module FlipKey
 
     # Returns the local path of the property index HTML file.
     def index
-      "#{flip_key_directory}property_index.html"
+      File.join(flip_key_directory, 'property_index.html')
     end
 
     # Returns the directory where FlipKey data files are stored locally.
     def flip_key_directory
-      'flip_key/'
+      'flip_key'
     end
     
     # Parses the property index file and returns an array of property
@@ -35,5 +37,25 @@ module FlipKey
     def parse_index
       File.open(index) { |file| PropertyIndexParser.new(file).parse }
     end
+
+    private
+
+      def background_process(items)
+        queue = Queue.new
+        items.each { |item| queue << item }
+        threads = []
+
+        4.times do
+          threads << Thread.new do
+            until queue.empty?
+              item = queue.pop(true) rescue nil
+              yield item
+            end
+            ActiveRecord::Base.connection.close
+          end
+        end
+
+        threads.each(&:join)
+      end
   end
 end
