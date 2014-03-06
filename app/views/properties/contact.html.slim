@@ -1,7 +1,7 @@
 = content_for :title, t('.title', property: @property, resort: @property.resort, country: @property.country)
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.decorate.contact_breadcrumbs, t('.heading', property: @property))
 
-= render 'property_header_image'
+= render '/properties/property_header_image'
 
 = render 'spam/spam'
 = render partial: '/properties/user_logo', locals: { property: @property }

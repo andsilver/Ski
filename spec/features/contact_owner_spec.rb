@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 feature 'Contact owner' do
 
   # In order to express my interest in renting or buying the property
