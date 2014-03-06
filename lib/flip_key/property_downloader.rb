@@ -16,7 +16,7 @@ module FlipKey
       background_process(parse_index) do |property_filename|
         downloader.download(
           from: @url_base + property_filename,
-          to: File.join(flip_key_directory, property_filename),
+          to: File.join(FlipKey.directory, property_filename),
           username: @username, password: @password
         )
         yield property_filename if block_given?
@@ -25,12 +25,7 @@ module FlipKey
 
     # Returns the local path of the property index HTML file.
     def index
-      File.join(flip_key_directory, 'property_index.html')
-    end
-
-    # Returns the directory where FlipKey data files are stored locally.
-    def flip_key_directory
-      'flip_key'
+      File.join(FlipKey.directory, 'property_index.html')
     end
     
     # Parses the property index file and returns an array of property

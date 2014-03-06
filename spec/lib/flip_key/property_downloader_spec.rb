@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'flip_key'
 
 module FlipKey
   describe PropertyDownloader do
@@ -49,7 +50,7 @@ module FlipKey
           .should_receive(:download)
           .with hash_including(
             from: url_base + '1.xml.gz', username: username, password: password,
-            to: File.join(property_downloader.flip_key_directory, '1.xml.gz')
+            to: File.join(FlipKey.directory, '1.xml.gz')
           )
 
         property_downloader.download_properties
