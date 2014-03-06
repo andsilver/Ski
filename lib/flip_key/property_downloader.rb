@@ -7,18 +7,19 @@ module FlipKey
       @password = opts[:password]
     end
 
-    # Downloads all property files from the FlipKey webserver.
+    # Downloads all property files from the FlipKey webserver and yields each
+    # property filename.
     def download_properties
       downloader = BasicAuthDownloader.new
       downloader.download(from: @url_base, to: index, username: @username, password: @password)
 
       background_process(parse_index) do |property_filename|
-        property_path = File.join(flip_key_directory, property_filename)
         downloader.download(
           from: @url_base + property_filename,
-          to: property_path,
+          to: File.join(flip_key_directory, property_filename),
           username: @username, password: @password
         )
+        yield property_filename if block_given?
       end
     end
 

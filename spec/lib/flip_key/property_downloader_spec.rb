@@ -54,6 +54,21 @@ module FlipKey
 
         property_downloader.download_properties
       end
+
+      it 'yields each property path' do
+        class Receiver; end
+
+        basic_auth_downloader.stub(:download)
+        property_downloader.stub(:parse_index).and_return ['1.xml.gz']
+
+        Receiver
+          .should_receive(:receive)
+          .with('1.xml.gz')
+
+        property_downloader.download_properties do |path|
+          Receiver.receive(path)
+        end
+      end
     end
 
     describe '#parse_index' do
