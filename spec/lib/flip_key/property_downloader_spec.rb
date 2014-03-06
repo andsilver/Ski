@@ -12,7 +12,7 @@ module FlipKey
       )
     }
 
-    describe '#download_properties' do
+    describe '#download' do
       let(:basic_auth_downloader) { double(BasicAuthDownloader) }
 
       before do
@@ -31,7 +31,7 @@ module FlipKey
             username: username, password: password
           )
 
-        property_downloader.download_properties
+        property_downloader.download
       end
 
       it 'parses the property index' do
@@ -39,7 +39,7 @@ module FlipKey
 
         property_downloader.should_receive(:parse_index).and_return []
 
-        property_downloader.download_properties
+        property_downloader.download
       end
 
       it 'downloads each property file' do
@@ -53,7 +53,7 @@ module FlipKey
             to: File.join(FlipKey.directory, '1.xml.gz')
           )
 
-        property_downloader.download_properties
+        property_downloader.download
       end
 
       it 'yields each property path' do
@@ -66,7 +66,7 @@ module FlipKey
           .should_receive(:receive)
           .with('1.xml.gz')
 
-        property_downloader.download_properties do |path|
+        property_downloader.download do |path|
           Receiver.receive(path)
         end
       end

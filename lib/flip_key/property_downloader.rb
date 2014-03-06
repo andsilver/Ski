@@ -9,7 +9,7 @@ module FlipKey
 
     # Downloads all property files from the FlipKey webserver and yields each
     # property filename.
-    def download_properties
+    def download
       downloader = BasicAuthDownloader.new
       downloader.download(from: @url_base, to: index, username: @username, password: @password)
 
