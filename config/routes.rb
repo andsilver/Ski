@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     resources :airports,          except: [:show]
     resources :banner_prices,     except: [:show]
     resources :buying_guides,     except: [:show]
+    resources :carousel_slides,   except: [:show] do
+      member do
+        post :move_down
+        post :move_up
+      end
+    end
     resources :countries,         except: [:show]
     resources :currencies,        except: [:show] do
       collection do

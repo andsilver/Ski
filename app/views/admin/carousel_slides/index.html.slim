@@ -1,0 +1,17 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+p= new_button [:admin, CarouselSlide]
+
+- if @carousel_slides.empty?
+  p There are no carousel slides set up yet.
+- else
+  table.table.table-bordered.table-striped
+    - @carousel_slides.each do |carousel_slide|
+      tr
+        td= carousel_slide.caption
+        td
+          => edit_button([:admin, carousel_slide])
+          = delete_button([:admin, carousel_slide])
+        = move_up_cell   :move_up_admin_carousel_slide_path,   carousel_slide
+        = move_down_cell :move_down_admin_carousel_slide_path, carousel_slide

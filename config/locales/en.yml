@@ -329,6 +329,7 @@ en:
     advert_removed: Advert removed.
     created: Created.
     deleted: Deleted.
+    moved: Moved.
     saved: Saved.
     sign_in_required: Please sign in or sign up first.
   number_of_bathrooms: 'Number of bathrooms'

@@ -28,6 +28,13 @@ en:
         title: Buying Guides
       new:
         title: New Buying Guide
+    carousel_slides:
+      edit:
+        title: Edit Carousel Slide
+      index:
+        title: Carousel Slides
+      new:
+        title: Carousel Slides
     countries:
       edit:
         title: Edit Country
