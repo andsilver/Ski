@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206135717) do
+ActiveRecord::Schema.define(version: 20140316144743) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -106,6 +106,17 @@ ActiveRecord::Schema.define(version: 20140206135717) do
   end
 
   add_index "buying_guides", ["country_id"], name: "index_buying_guides_on_country_id", using: :btree
+
+  create_table "carousel_slides", force: true do |t|
+    t.integer  "position",     null: false
+    t.string   "image_url",    null: false
+    t.string   "caption",      null: false
+    t.string   "link",         null: false
+    t.datetime "active_from",  null: false
+    t.datetime "active_until", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"

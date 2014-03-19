@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'flip_key'
 
 module FlipKey
   describe PropertyDownloader do
@@ -11,7 +12,7 @@ module FlipKey
       )
     }
 
-    describe '#download_properties' do
+    describe '#download' do
       let(:basic_auth_downloader) { double(BasicAuthDownloader) }
 
       before do
@@ -30,7 +31,7 @@ module FlipKey
             username: username, password: password
           )
 
-        property_downloader.download_properties
+        property_downloader.download
       end
 
       it 'parses the property index' do
@@ -38,7 +39,7 @@ module FlipKey
 
         property_downloader.should_receive(:parse_index).and_return []
 
-        property_downloader.download_properties
+        property_downloader.download
       end
 
       it 'downloads each property file' do
@@ -49,10 +50,25 @@ module FlipKey
           .should_receive(:download)
           .with hash_including(
             from: url_base + '1.xml.gz', username: username, password: password,
-            to: property_downloader.flip_key_directory + '1.xml.gz'
+            to: File.join(FlipKey.directory, '1.xml.gz')
           )
 
-        property_downloader.download_properties
+        property_downloader.download
+      end
+
+      it 'yields each property path' do
+        class Receiver; end
+
+        basic_auth_downloader.stub(:download)
+        property_downloader.stub(:parse_index).and_return ['1.xml.gz']
+
+        Receiver
+          .should_receive(:receive)
+          .with('1.xml.gz')
+
+        property_downloader.download do |path|
+          Receiver.receive(path)
+        end
       end
     end
 

@@ -179,6 +179,12 @@ module ApplicationHelper
     javascript_tag '$(function() { hideLinksAndSearch(); });'
   end
 
+  def body_classes
+    classes = []
+    classes <<= 'home-page' if request.fullpath == '/'
+    classes.join(' ')
+  end
+
   protected
 
     def object_title(object)

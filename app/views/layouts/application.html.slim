@@ -22,7 +22,7 @@ html.no-js lang="#{@lang}"
     script src="http://maps.google.com/maps/api/js?key=AIzaSyCdlkrru2ofKjgTYPgyL7Mhgd6--0Ka8ok&sensor=false"
     = csrf_meta_tags
     meta name="google-site-verification" content="#{t('google.site_verification')}"
-  body class="#{@body_classes}"
+  body class="#{body_classes}"
     #wrapper class="#{"#{yield :theme}-theme" if content_for? :theme}"
       header role="banner"
         div.header-snippet
@@ -89,28 +89,35 @@ html.no-js lang="#{@lang}"
                   = raw ht.mega_menu_html
             li: a &nbsp;
       = render 'layouts/breadcrumbs_and_heading'
-      #links-and-search
-        = yield :links_and_search
-        = render 'layouts/region_nav' if @region
-        = render 'layouts/resort_nav' if @resort
-        = raw sidebar_html
-      #content role="main" class="#{'wide' unless content_for? :advertising}"
-        = flash_notice
-        - unless header_image_urls.empty?
-          #header-images
-            - header_image_urls.each do |url|
-              img src="#{url}" alt="#{alt_attribute(url, 'My Chalet Finder Ski Accommodation')}"
-        = yield
+      #slider-content
+        #links-and-search
+          = yield :links_and_search
+          = render 'layouts/region_nav' if @region
+          = render 'layouts/resort_nav' if @resort
+          = raw sidebar_html
+        - if content_for? :carousel
+          = yield :carousel
+      #page-surround
+        #content role="main" class="#{'wide' unless content_for? :advertising}"
+          = flash_notice
+          - unless header_image_urls.empty?
+            #header-images
+              - header_image_urls.each do |url|
+                img src="#{url}" alt="#{alt_attribute(url, 'My Chalet Finder Ski Accommodation')}"
+          = yield
 
-      - if content_for? :advertising
-        #advertising
-          = yield :advertising
+        - if content_for? :advertising
+          #advertising
+            = yield :advertising
 
-      footer role="contentinfo"
-        = render 'shared/footer_box'
-        hr
-        p#copyright
-          = "&copy; #{Time.now.year} My Holiday Home Ventures Limited".html_safe
+        - if content_for? :custom_footer
+          = yield :custom_footer
+        - else
+          footer role="contentinfo"
+            = render 'shared/footer_box'
+            hr
+            p#copyright
+              = "&copy; #{Time.now.year} My Holiday Home Ventures Limited".html_safe
 
     - if Rails.env == 'production'
       javascript:

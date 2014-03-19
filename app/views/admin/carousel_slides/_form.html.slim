@@ -1,0 +1,32 @@
+- if @carousel_slide.errors.any?
+  .alert.alert-error.fade.in
+    a.close data-dismiss="alert" href="#" &times;
+    h2= "#{pluralize(@carousel_slide.errors.count, "error")} prohibited this carousel slide from being saved:"
+    ul
+      - @carousel_slide.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for [:admin, @carousel_slide] do |form|
+
+  .form-group
+    = form.label :caption
+    = form.text_area :caption, class: 'form-control', required: true
+
+  .form-group
+    = form.label :link
+    = form.text_field :link, class: 'form-control', required: true
+
+  .form-group
+    = form.label :image_id
+    = form.text_field :image_url, class: 'form-control', required: true
+
+  .form-group
+    = form.label :active_from
+    = form.datetime_select :active_from
+
+  .form-group
+    = form.label :active_until
+    = form.datetime_select :active_until
+
+  br
+  = form.submit class: 'btn btn-primary'

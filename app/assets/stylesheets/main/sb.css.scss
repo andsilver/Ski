@@ -199,3 +199,251 @@ td {
     margin-top: 5px;
   }
 }
+
+.flat-list:after, .flat-list-right:after
+{
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+
+.flat-list li
+{
+	float:left;
+}
+
+.flat-list li.floatRight
+{
+	float:right;
+}
+
+.flat-list-right li
+{
+	float:right;
+}
+
+.flat-with-margin li
+{
+	margin-right:5px;
+}
+
+
+.home-page {
+  h1.home {
+    font-size: 16px;
+    line-height: 16px;
+    padding-right: 64px;
+    padding-top: 80px;
+    background-image: image-url('marker-blue.png');
+    background-position: top right;
+    background-repeat: no-repeat;
+  }
+
+  #column_headings {
+    display: none;
+  }
+
+  #slider-content {
+    height: 528px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  ul#carousel-slides {
+    list-style: none;
+    margin: 0;    
+    padding: 0;
+
+    .caption {
+      height: auto;
+      position: absolute;
+      left: 190px;
+      right: 0px;
+      bottom: 70px;
+      text-align: center;
+    }
+
+    .caption p:first-child {
+      font-weight: bold;
+    }
+
+    .caption p {
+      font-size: 28px;
+      line-height: 28px;
+      color: #ffffff;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+    }
+  }
+
+  #links-and-search {
+    float: none;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    z-index: 5;
+  }
+
+  #page-surround {
+    background: #e6e7e8;
+    background: -moz-linear-gradient(top, #e6e7e8 65%, #c2c2c6 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(65%,#e6e7e8), color-stop(100%,#c2c2c6));
+    background: -webkit-linear-gradient(top, #e6e7e8 65%,#c2c2c6 100%);
+    background: -o-linear-gradient(top, #e6e7e8 65%,#c2c2c6 100%);
+    background: -ms-linear-gradient(top, #e6e7e8 65%,#c2c2c6 100%);
+    background: linear-gradient(to bottom, #e6e7e8 65%,#c2c2c6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e7e8', endColorstr='#c2c2c6',GradientType=0 );
+  }
+
+  #page-surround {
+    padding: 15px 15px 15px 160px;
+  }
+
+  #welcome-message {
+    width: 276px;
+    padding-right: 20px;
+  }
+
+  footer[role="contentinfo"] {
+    border-top: none;
+  }
+
+  footer {
+    width:970px;
+    margin:auto;
+    margin-top:10px;
+    padding:15px;
+
+    background-color:#131a1c;
+    background-image: url('/images/footerBg.png');
+    background-position:top left;
+    background-repeat:repeat-x;
+  }
+
+  footer ul {
+    list-style: none;
+  }
+
+  footer li
+  {
+  	font-size:11px;
+  	margin-bottom:3px;
+  }
+
+  footer li a, footer li a:hover {
+    text-decoration:none;
+  }
+
+  footer li, footer li a {
+    color:#ededed;
+    text-transform:uppercase;
+  }
+
+  footer p {
+    color:#ededed;
+    font-size:11px;
+  }
+
+  footer li a:hover {
+    color:#ffffff!important;
+  }
+
+  .footer-title {
+    color:#ffffff;
+    font-weight:bold;
+    text-transform:uppercase;
+    font-size:11px;
+  }
+
+  .footer-element
+  {
+  	margin-right:30px;
+  }
+
+  footer {
+    background-image:none;
+    background-color:transparent;
+    width:100%;
+    padding:0px 0px;
+    margin-top:40px;
+  }
+
+  footer ul {
+    float: left;
+    width: 167px;
+    width: 154px;
+    margin: 0px 0px;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ababac;
+    padding: 0px 25px;
+    box-sizing: content-box;
+  }
+
+  footer ul:last-child {
+    border-right:none;
+  }
+
+  footer:not(#sub-footer) {
+    border-left:1px solid #ababac;
+  }
+
+  .footer-heading {
+    color: #231f20;
+  }
+
+  footer ul li a
+  {
+  	color:#808285;
+  }
+
+  footer ul li a:hover
+  {
+  	color:#231f20;
+  }
+
+  #sub-footer {
+    margin-bottom:30px;
+    margin-left:-55px;
+  }
+
+  #footer-marker, #footer-copyright {
+    height: 45px;
+  }
+
+
+  #footer-marker
+  {
+  	float:left;
+  	border-right:1px solid #ababac;
+  	padding-right:20px;
+  }
+
+  #footer-copyright {
+    float:left;
+    min-width:500px;
+    border-left:1px solid #ffffff;
+    padding-left:20px;
+  }
+
+  #footer-copyright p {
+    font-size:14px;
+    color:#000000;
+  }
+
+  #footer-copyright ul {
+    float:none;
+    width:100%;
+    border-left:none;
+    padding:0px 0px;
+  }
+
+  #footer-copyright ul li {
+    margin-right:10px;
+  }
+
+  #footer-copyright ul li a {
+    color:#717375;
+  }
+}
