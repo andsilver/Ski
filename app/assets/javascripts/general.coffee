@@ -11,6 +11,7 @@ pageLoad = ->
   quickSearch()
   galleryZoom()
   activateNavTabs()
+  homeCarousel()
 
 cycleHeaderImages = ->
   $('#header-images').cycle({
@@ -30,6 +31,13 @@ activateNavTabs = ->
     e.preventDefault()
     $(this).tab('show')
   )
+
+homeCarousel = ->
+  $('#carousel-slides').innerfade({ 
+    speed: 500, 
+    timeout: 6000, 
+    containerheight: '528px'
+  })
 
 window.hideLinksAndSearch = ->
   $('body').addClass('hide-links-and-search')
