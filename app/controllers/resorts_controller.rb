@@ -31,6 +31,7 @@ class ResortsController < ApplicationController
     default_page_title t('resorts_controller.titles.piste_map', resort: @resort, country: @resort.country)
     default_meta_description(resort: @resort, country: @resort.country)
     @heading = t('piste_map')
+    render :piste_map, status: @resort.has_piste_maps? ? 200 : 404
   end
 
   def piste_map_full_size
