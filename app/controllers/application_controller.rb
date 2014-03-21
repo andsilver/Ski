@@ -57,9 +57,9 @@ class ApplicationController < ActionController::Base
     Country.with_visible_resorts.each do |country|
       country.visible_resorts.each do |resort|
         @urls << resort_url(resort)
-        @urls << resort_guide_url(resort)
+        @urls << resort_guide_url(resort) if resort.has_resort_guide?
         @urls << gallery_resort_url(resort)
-        @urls << piste_map_resort_url(resort)
+        @urls << piste_map_resort_url(resort) if resort.has_piste_maps?
         @urls << resort_property_hotels_url(resort) unless resort.hotel_count == 0
         @urls << resort_property_rent_url(resort) unless resort.for_rent_count == 0
         @urls << resort_property_sale_url(resort) unless resort.for_sale_count == 0

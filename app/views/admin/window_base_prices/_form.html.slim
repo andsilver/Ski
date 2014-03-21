@@ -6,7 +6,7 @@
       - @window_base_price.errors.full_messages.each do |msg|
         li= msg
 
-= form_for @window_base_price do |f|
+= form_for [:admin, @window_base_price] do |f|
   .form-group
     = f.label :quantity
     = f.number_field :quantity, class: 'form-control'

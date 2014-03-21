@@ -62,6 +62,32 @@ describe ResortsController do
     it_behaves_like 'a featured properties finder', :resort_guide, id: 'chamonix'
   end
 
+  describe 'GET piste_map' do
+    let(:resort) { FactoryGirl.create(:resort) }
+
+    before do
+      Resort.stub(:find_by).and_return(resort)
+      resort.stub(:has_piste_maps?).and_return(has_piste_maps)
+      get :piste_map, id: resort.to_param
+    end
+
+    context "when resort doesn't have piste maps" do
+      let(:has_piste_maps) { false }
+
+      it '404s' do
+        expect(response.status).to eq 404
+      end
+    end
+
+    context 'when resort has piste maps' do
+      let(:has_piste_maps) { true }
+
+      it 'succeeds' do
+        expect(response.status).to eq 200
+      end
+    end
+  end
+
   describe 'GET summer_holidays' do
     let(:resort) { FactoryGirl.create(:resort) }
     let(:admin)  { false }

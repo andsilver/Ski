@@ -131,7 +131,7 @@ class AdvertsController < ApplicationController
   def prepare_basket
     @current_user.remove_expired_coupon
 
-    @basket = Basket.new(windows: session[:windows_in_basket], user: @current_user)
+    @basket = Basket.new(windows: windows_in_basket, user: @current_user)
     @basket.prepare
 
     @lines = @basket.lines
@@ -144,6 +144,14 @@ class AdvertsController < ApplicationController
       @total += @tax_amount
     else
       @tax_amount = 0
+    end
+  end
+
+  def windows_in_basket
+    if session[:windows_in_basket] && WindowBasePrice.find_by(quantity: session[:windows_in_basket]).nil?
+      session[:windows_in_basket] = nil
+    else
+      session[:windows_in_basket]
     end
   end
 
