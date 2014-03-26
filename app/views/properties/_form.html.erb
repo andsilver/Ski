@@ -339,6 +339,17 @@ $(function() {
         <%= select("property", "currency_id", (Currency.order('code').collect {|c| [ c.code, c.id ] }).sort, {prompt: 'Select Currency'}, class: 'form-control') %>
       </div>
     </div>
+    <p class="help-block">
+      If you have a booking or enquiry page on your own website then you may
+      enter its URL here to direct enquiries to it instead of using the
+      default MyChaletFinder.com contact page.
+    </p>
+    <div class="form-group">
+      <%= f.label :booking_url, 'Booking URL', class: 'control-label col-lg-4' %>
+      <div class="col-lg-6">
+        <%= f.text_field :booking_url, class: 'form-control', placeholder: 'http://example.com/mybookingform' %>
+      </div>
+    </div>
   </div>
 </div>
 <%= clear %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316144743) do
+ActiveRecord::Schema.define(version: 20140326155232) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -511,6 +511,7 @@ ActiveRecord::Schema.define(version: 20140316144743) do
     t.boolean  "late_availability",            default: true
     t.integer  "pv_accommodation_id"
     t.integer  "region_id"
+    t.string   "booking_url",                  default: "",    null: false
   end
 
   add_index "properties", ["country_id"], name: "index_properties_on_country_id", using: :btree

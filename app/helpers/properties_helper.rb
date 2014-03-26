@@ -140,4 +140,9 @@ module PropertiesHelper
   def sort_method
     params[:sort_method]
   end
+
+  # Returns an appropriate booking URL for a hotel.
+  def hotel_booking_url(property)
+    property.booking_url.present? ? property.booking_url : contact_property_path(property)
+  end
 end
