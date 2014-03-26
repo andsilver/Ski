@@ -566,7 +566,7 @@ class PropertiesController < ApplicationController
   def property_params
     convert_square_feet_to_square_metres
     params.require(:property).permit(:accommodation_type, :address, :balcony,
-      :board_basis, :cave,
+      :board_basis, :booking_url, :cave,
       :children_welcome, :currency_id, :description, :disabled,
       :distance_from_town_centre_m, :floor_area_metres_2,
       :fully_equipped_kitchen, :garden, :hot_tub, :indoor_swimming_pool,

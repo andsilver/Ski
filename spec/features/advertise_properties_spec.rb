@@ -3,6 +3,8 @@ require 'spec_helper'
 feature 'Advertise Properties' do
   fixtures :countries, :currencies, :resorts, :roles, :users, :websites
 
+  let(:booking_url) { 'http://example.com/booking.url' }
+
   scenario 'Advertise a new development' do
     sign_in_as_a_property_developer
     click_link 'Advertise a Property for Sale'
@@ -22,7 +24,10 @@ feature 'Advertise Properties' do
   scenario 'Advertise a new property for rent' do
     create_a_new_property_for_rent
 
-    property = Property.find_by(name: 'Chalet Des Sapins')
+    property = Property.find_by(
+      name: 'Chalet Des Sapins',
+      booking_url: booking_url
+    )
     expect(property).to_not be_nil
 
     expect(current_path).to eq new_image_path
@@ -50,6 +55,7 @@ feature 'Advertise Properties' do
     sign_in_as_a_property_owner
     click_link 'Advertise a Property for Rent'
     fill_in 'Property name', with: 'Chalet Des Sapins'
+    fill_in 'Booking URL', with: booking_url
     fill_in 'Strapline', with: 'Excellent facilities, sleeps 4'
     fill_in 'Address', with: '7440'
     fill_in 'Weekly rental price from', with: '1650'

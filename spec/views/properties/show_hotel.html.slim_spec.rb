@@ -3,9 +3,11 @@ require_relative 'property_header_image'
 
 describe 'properties/show_hotel' do
   let(:property) { FactoryGirl.create(:property, listing_type: Property::LISTING_TYPE_HOTEL) }
+  let(:hotel_booking_url) { '#hotel-booking-url' }
 
   before do
     assign(:property, property)
+    view.stub(:hotel_booking_url).and_return(hotel_booking_url)
   end
 
   it 'displays advertising' do
@@ -41,5 +43,10 @@ describe 'properties/show_hotel' do
     property.star_rating = 3
     view.should_receive(:star_rating).with(3)
     render
+  end
+
+  it 'links to the hotel booking URL' do
+    render
+    expect(response).to have_selector("a[href='#{hotel_booking_url}']")
   end
 end
