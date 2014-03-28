@@ -141,6 +141,18 @@ module PropertiesHelper
     params[:sort_method]
   end
 
+  # Returns a property detail path based on the property type since different
+  # routes are used for third-party content.
+  def property_detail_path(property)
+    if property.interhome_accommodation_id
+      interhome_property_path(property.interhome_accommodation.permalink)
+    elsif property.pv_accommodation_id
+      pv_property_path(property.pv_accommodation.permalink)
+    else
+      property_path(property)
+    end
+  end
+
   # Returns an appropriate booking URL for a hotel.
   def hotel_booking_url(property)
     property.booking_url.present? ? property.booking_url : contact_property_path(property)

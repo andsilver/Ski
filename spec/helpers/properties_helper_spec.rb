@@ -15,6 +15,26 @@ describe PropertiesHelper do
     end
   end
 
+  describe '#property_detail_path' do
+    let(:property) { FactoryGirl.create(:property) }
+
+    it 'returns a property_path for a native property' do
+      expect(property_detail_path(property)).to eq property_path(property)
+    end
+
+    it 'returns an interhome_property_path for an Interhome property' do
+      interhome_accommodation = FactoryGirl.create(:interhome_accommodation)
+      property.interhome_accommodation = interhome_accommodation
+      expect(property_detail_path(property)).to eq interhome_property_path(interhome_accommodation.permalink)
+    end
+
+    it 'returns a pv_property_path for a Pierre et Vacances property' do
+      pv_accommodation = FactoryGirl.create(:pv_accommodation)
+      property.pv_accommodation = pv_accommodation
+      expect(property_detail_path(property)).to eq pv_property_path(pv_accommodation.permalink)
+    end
+  end
+
   describe '#hotel_booking_url' do
     let(:property) { FactoryGirl.build(:property, booking_url: booking_url) }
 

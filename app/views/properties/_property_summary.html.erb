@@ -1,12 +1,6 @@
 <div class="property-summary">
   <%
-  if p.interhome_accommodation_id
-    link = interhome_property_path(p.interhome_accommodation.permalink)
-  elsif p.pv_accommodation_id
-    link = pv_property_path(p.pv_accommodation.permalink)
-  else
-    link = p
-  end
+  link = property_detail_path(p)
   %>
   <p class="property-thumbnail">
 <% unless p.image.nil? -%>
