@@ -3,6 +3,12 @@ class PropertyDecorator < Draper::Decorator
 
   include Rails.application.routes.url_helpers
 
+  # Returns +true+ if a more info button linking to the property detail page
+  # should be displayed on the summary listing.
+  def has_more_info_button_on_summary?
+    interhome_accommodation_id || listing_type == Property::LISTING_TYPE_HOTEL
+  end
+
   def nearest_lift
     metres_from_lift == 1001 ? '> 1km' : "#{metres_from_lift}m"
   end
