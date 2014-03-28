@@ -34,4 +34,24 @@ describe PropertiesHelper do
       end
     end
   end
+
+  describe '#hotel_booking_link_target' do
+    let(:property) { FactoryGirl.build(:property, booking_url: booking_url) }
+
+    context 'when property has the booking URL set' do
+      let(:booking_url) { '#hotel' }
+
+      it 'returns _blank' do
+        expect(hotel_booking_link_target(property)).to eq '_blank'
+      end
+    end
+
+    context 'when property has no booking URL set' do
+      let(:booking_url) { '' }
+
+      it 'returns _self' do
+        expect(hotel_booking_link_target(property)).to eq '_self'
+      end
+    end
+  end
 end
