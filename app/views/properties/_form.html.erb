@@ -105,7 +105,7 @@ $(function() {
         <div class="col-lg-6">
           <select id="property_accommodation_type" name="property[accommodation_type]" class="form-control">
             <% [Property::ACCOMMODATION_TYPE_CHALET, Property::ACCOMMODATION_TYPE_APARTMENT].each do |value| -%>
-            <option value="<%= value %>"<%= ' selected="selected"' if @property.accommodation_type==value %>><%= Property.accommodation_type_description(value) %></option>
+            <option value="<%= value %>"<%= ' selected="selected"' if @property.accommodation_type==value %>><%= property_type_for_accommodation_type(value) %></option>
             <% end %>
           </select>
         </div>

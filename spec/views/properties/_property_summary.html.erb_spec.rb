@@ -11,6 +11,12 @@ describe 'properties/_property_summary' do
     expect(rendered).to have_content('Sorrento')
   end
 
+  it 'includes the property type (SEO)' do
+    view.stub(:property_type).and_return 'Castle'
+    render 'properties/property_summary', p: property
+    expect(rendered).to have_content('Castle')    
+  end
+
   context 'when sorting by distance from lift' do
     before { view.stub(:sort_method).and_return 'metres_from_lift ASC' }
 

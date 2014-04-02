@@ -12,23 +12,6 @@ describe Property do
 
   it { should respond_to(:star_rating) }
 
-  describe '.accommodation_type_description' do
-    it "returns either 'Chalet' or 'Apartment'" do
-      expect(Property.accommodation_type_description(Property::ACCOMMODATION_TYPE_CHALET)).to eq 'Chalet'
-      expect(Property.accommodation_type_description(Property::ACCOMMODATION_TYPE_APARTMENT)).to eq 'Apartment'
-    end
-  end
-
-  describe '#accommodation_type_description' do
-    it "returns either 'Chalet' or 'Apartment' for the property object" do
-      p = Property.new
-      p.accommodation_type = Property::ACCOMMODATION_TYPE_CHALET
-      expect(p.accommodation_type_description).to eq 'Chalet'
-      p.accommodation_type = Property::ACCOMMODATION_TYPE_APARTMENT
-      expect(p.accommodation_type_description).to eq 'Apartment'
-    end
-  end
-
   describe '.parking_description' do
     pending
   end

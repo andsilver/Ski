@@ -141,6 +141,47 @@ module PropertiesHelper
     params[:sort_method]
   end
 
+  # Returns a string describing the property type.
+  def property_type(property)
+    if property.interhome_accommodation_id
+      property_type_for_interhome(property.interhome_accommodation)
+    else
+      if property.listing_type == Property::LISTING_TYPE_HOTEL
+        property_type_i18n(:hotel)
+      else
+        property_type_for_accommodation_type(property.accommodation_type)
+      end
+    end
+  end
+
+  # Returns a string describing the property type based on Interhome
+  # accommodation details.
+  def property_type_for_interhome(interhome_accommodation)
+    keys = {
+      'A' => :apartment,
+      'B' => :bungalow,
+      'C' => :chalet,
+      'V' => :villa
+    }
+    keys.default = :accommodation
+    property_type_i18n(keys[interhome_accommodation.details])
+  end
+
+  # Returns a string describing the property type based on the property's
+  # +accommodation_type+ attribute.
+  def property_type_for_accommodation_type(accommodation_type)    
+    keys = {
+      Property::ACCOMMODATION_TYPE_APARTMENT => :apartment,
+      Property::ACCOMMODATION_TYPE_CHALET    => :chalet
+    }
+    keys.default = :accommodation
+    property_type_i18n(keys[accommodation_type])
+  end
+
+  def property_type_i18n(key)
+    I18n.t("helpers.properties.property_type.#{key}")
+  end
+
   # Returns a property detail path based on the property type since different
   # routes are used for third-party content.
   def property_detail_path(property)

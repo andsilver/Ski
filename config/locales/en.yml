@@ -189,6 +189,15 @@ en:
   google:
     site_verification: lqULaLa4Fubz6zh09WjcMwZHUGPb7SnTz38rxtkcRHY
     web_property_id: UA-22451896-2
+  helpers:
+    properties:
+      property_type:
+        accommodation: 'Accommodation'
+        apartment: 'Apartment'
+        bungalow: 'Bungalow'
+        chalet: 'Chalet'
+        hotel: 'Hotel'
+        villa: 'Villa'
   holiday_type_brochures:
     show:
       heading: '%{holiday_type} in %{place}'
