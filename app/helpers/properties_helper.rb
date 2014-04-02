@@ -161,6 +161,7 @@ module PropertiesHelper
       'A' => :apartment,
       'B' => :bungalow,
       'C' => :chalet,
+      'H' => :holiday_resort,
       'V' => :villa
     }
     keys.default = :accommodation

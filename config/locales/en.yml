@@ -196,6 +196,7 @@ en:
         apartment: 'Apartment'
         bungalow: 'Bungalow'
         chalet: 'Chalet'
+        holiday_resort: 'Holiday Resort'
         hotel: 'Hotel'
         villa: 'Villa'
   holiday_type_brochures:
