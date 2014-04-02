@@ -5,6 +5,12 @@ describe 'properties/_property_summary' do
 
   let(:property) { FactoryGirl.create(:property, metres_from_lift: 500).decorate }
 
+  it 'includes the resort name (SEO)' do
+    property.resort = FactoryGirl.create(:resort, name: 'Sorrento')
+    render 'properties/property_summary', p: property
+    expect(rendered).to have_content('Sorrento')
+  end
+
   context 'when sorting by distance from lift' do
     before { view.stub(:sort_method).and_return 'metres_from_lift ASC' }
 
