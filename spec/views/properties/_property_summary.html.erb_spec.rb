@@ -5,6 +5,18 @@ describe 'properties/_property_summary' do
 
   let(:property) { FactoryGirl.create(:property, metres_from_lift: 500).decorate }
 
+  it 'includes the resort name (SEO)' do
+    property.resort = FactoryGirl.create(:resort, name: 'Sorrento')
+    render 'properties/property_summary', p: property
+    expect(rendered).to have_content('Sorrento')
+  end
+
+  it 'includes the property type (SEO)' do
+    view.stub(:property_type).and_return 'Castle'
+    render 'properties/property_summary', p: property
+    expect(rendered).to have_content('Castle')    
+  end
+
   context 'when sorting by distance from lift' do
     before { view.stub(:sort_method).and_return 'metres_from_lift ASC' }
 
@@ -31,7 +43,7 @@ describe 'properties/_property_summary' do
     it 'displays price in the heading' do
       render 'properties/property_summary', p: property
       within 'h3' do |h3|
-        expect(h3).to have_content 'Weekly price from 1,500'
+        expect(h3).to have_content I18n.t('properties.property_summary.weekly_price', price: '1,500')
       end
     end
 

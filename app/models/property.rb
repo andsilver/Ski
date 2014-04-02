@@ -51,17 +51,6 @@ class Property < ActiveRecord::Base
   ACCOMMODATION_TYPE_CHALET = 0
   ACCOMMODATION_TYPE_APARTMENT = 1
 
-  def self.accommodation_type_description accommodation_type_param
-    {
-      ACCOMMODATION_TYPE_CHALET => 'Chalet',
-      ACCOMMODATION_TYPE_APARTMENT => 'Apartment'
-    }[accommodation_type_param]
-  end
-
-  def accommodation_type_description
-    Property.accommodation_type_description accommodation_type
-  end
-
   PARKING_NO = 0
   PARKING_ON_STREET = 1
   PARKING_OFF_STREET = 2
