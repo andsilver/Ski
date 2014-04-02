@@ -485,7 +485,9 @@ en:
     property_summary:
       email_a_friend: 'Email a friend'
       nearest_lift: 'Nearest lift'
+      sale_price: 'Sale price %{price}'
       sleeps: Sleeps
+      weekly_price: 'From %{price} weekly'
     select_resort: Select resort
     star_rating: Star rating
     strapline_example: Strapline Example
