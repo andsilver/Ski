@@ -248,7 +248,7 @@ describe PropertiesController do
 
   describe 'GET contact' do
     def get_contact
-      get :contact, id: '1'      
+      get :contact, id: '1'
     end
 
     it 'finds a property' do
@@ -312,10 +312,22 @@ describe PropertiesController do
             expect(response).to render_template :show_hotel
           end
         end
-        
-        context 'when not a hotel' do
+
+        context 'when a new development' do
+          before do
+            property.stub(:new_development?).and_return(true)
+          end
+
+          it 'renders show_new_development' do
+            get :show, id: '1'
+            expect(response).to render_template :show_new_development
+          end
+        end
+
+        context 'when neither a hotel nor new development' do
           before do
             property.stub(:hotel?).and_return(false)
+            property.stub(:new_development?).and_return(false)
           end
 
           it 'renders show' do

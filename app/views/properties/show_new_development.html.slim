@@ -1,0 +1,36 @@
+= content_for :theme, @property.theme
+
+javascript:
+  $(function() {
+    $('.gallery a').fancyZoom({scaleImg: true, closeOnClick: true});
+  });
+
+.hotel
+  = render 'property_header_image'
+
+  .clear-fix
+    .contact-availability.layout-element.size-1of2
+      h1= @property.name
+      p
+        = @property.address
+        br
+        = @property.country
+      p.star-rating.theme-color
+        = star_rating(@property.star_rating)
+      .make-a-booking
+        = link_to (t('enquire') + ' <span class="glyphicon glyphicon-play theme-color"></span>').html_safe,\
+          contact_property_path(@property)
+
+    - if @property.image
+      .gallery-container.layout-element.size-1of2
+        .gallery
+          - @property.images.each do |i|
+            a href="#pic_#{i.id}"
+              = image_tag(i.sized_url(99, :square), alt: "Photo of #{@property.name}")
+        - @property.images.each do |i|
+          div id="pic_#{i.id}"
+            = image_tag(i.url, alt: "Larger photo of #{@property.name}")
+
+  = raw @property.description
+
+= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort)
