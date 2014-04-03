@@ -7,14 +7,6 @@ describe 'properties/show' do
     expect(rendered).to have_selector('#features')
   end
 
-  context 'when a hotel' do
-    it 'does not show a table of features' do
-      assign(:property, FactoryGirl.create(:property, listing_type: Property::LISTING_TYPE_HOTEL).decorate)
-      render
-      expect(rendered).not_to have_selector('#features')
-    end
-  end
-
   context 'when for rent' do
     before do
       assign(:property, FactoryGirl.create(:property, listing_type: Property::LISTING_TYPE_FOR_RENT, sleeping_capacity: 3).decorate)
