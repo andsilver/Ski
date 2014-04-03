@@ -315,6 +315,7 @@ describe PropertiesController do
 
         context 'when a new development' do
           before do
+            property.stub(:hotel?).and_return(false)
             property.stub(:new_development?).and_return(true)
           end
 
@@ -341,6 +342,7 @@ describe PropertiesController do
         before do
           property.stub(:publicly_visible?).and_return(false)
           property.stub(:hotel?).and_return(false)
+          property.stub(:new_development?).and_return(false)
         end
 
         context "when not signed in as admin" do
