@@ -173,6 +173,8 @@ module PropertiesHelper
         property_type_i18n(:villa)
       elsif interhome_accommodation.inside_description.downcase.index("chalet")
         property_type_i18n(:chalet)
+      elsif interhome_accommodation.inside_description.downcase.index("apartment")
+        property_type_i18n(:apartment)
       else
         property_type_i18n(:accommodation)
       end
