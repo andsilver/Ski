@@ -176,6 +176,8 @@ module PropertiesHelper
       else
         property_type_i18n(:accommodation)
       end
+    else
+      type
     end
   end
 
