@@ -164,7 +164,7 @@ module PropertiesHelper
       'H' => :holiday_resort,
       'V' => :villa
     }
-    type = property_type_i18n(keys[interhome_accommodation.details])
+    type = keys[interhome_accommodation.details]
 
     # Most Interhome accommodation is classed as 'divers' (assuming: misc)
     # so let's dig into the description for clues.
@@ -177,7 +177,7 @@ module PropertiesHelper
         property_type_i18n(:accommodation)
       end
     else
-      type
+      property_type_i18n(type)
     end
   end
 
