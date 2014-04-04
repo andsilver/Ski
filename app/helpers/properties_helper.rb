@@ -164,13 +164,24 @@ module PropertiesHelper
       'H' => :holiday_resort,
       'V' => :villa
     }
-    keys.default = :accommodation
-    property_type_i18n(keys[interhome_accommodation.details])
+    type = property_type_i18n(keys[interhome_accommodation.details])
+
+    # Most Interhome accommodation is classed as 'divers' (assuming: misc)
+    # so let's dig into the description for clues.
+    if type.nil?
+      if interhome_accommodation.inside_description.downcase.index("villa")
+        property_type_i18n(:villa)
+      elsif interhome_accommodation.inside_description.downcase.index("chalet")
+        property_type_i18n(:chalet)
+      else
+        property_type_i18n(:accommodation)
+      end
+    end
   end
 
   # Returns a string describing the property type based on the property's
   # +accommodation_type+ attribute.
-  def property_type_for_accommodation_type(accommodation_type)    
+  def property_type_for_accommodation_type(accommodation_type)
     keys = {
       Property::ACCOMMODATION_TYPE_APARTMENT => :apartment,
       Property::ACCOMMODATION_TYPE_CHALET    => :chalet
