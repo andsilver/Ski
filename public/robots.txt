@@ -5,3 +5,4 @@
 # Disallow: /
 User-agent: *
 Disallow: /properties/search
+Disallow: /properties/update_booking_durations_select
