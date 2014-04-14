@@ -42,7 +42,7 @@ h1= @heading
 
 #content-with-side-banners
 
-  = raw @page_content
+  = raw @page_content if first_page?
 
   #property_summaries
     - if @properties.empty?

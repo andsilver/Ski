@@ -219,4 +219,9 @@ module PropertiesHelper
   def hotel_booking_link_target(property)
     property.booking_url.present? ? '_blank' : '_self'
   end
+
+  # Returns true if the current page is the first page in a pagniated set.
+  def first_page?
+    params[:page].nil?
+  end
 end
