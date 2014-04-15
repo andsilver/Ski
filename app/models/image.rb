@@ -2,6 +2,7 @@ class Image < ActiveRecord::Base
   IMAGE_STORAGE_PATH = "#{Rails.root.to_s}/public/up/images"
   IMAGE_STORAGE_URL = "/up/images"
   IMAGE_MISSING = "image-missing.png"
+  S3_ENABLED = false
 
   before_save   :determine_filename
   after_save    :write_file
@@ -123,7 +124,7 @@ class Image < ActiveRecord::Base
     path = sized_path(size, method)
     s3_path = path + '.s3uploaded'
 
-    return s3_url_for_filename(f) if Rails.env == 'production' && File.exist?(s3_path)
+    return s3_url_for_filename(f) if S3_ENABLED && Rails.env == 'production' && File.exist?(s3_path)
 
     # create a new image of the required size if it doesn't exist
     unless FileTest.exist?(path)
@@ -140,7 +141,7 @@ class Image < ActiveRecord::Base
 
     @was_sized = true
 
-    upload_to_s3 = (Rails.env == 'production' && !options[:force_local])
+    upload_to_s3 = (S3_ENABLED && Rails.env == 'production' && !options[:force_local])
 
     if upload_to_s3
       unless File.exist?(s3_path)
