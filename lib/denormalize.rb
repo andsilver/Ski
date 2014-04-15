@@ -99,6 +99,8 @@ class Denormalize
         # property_image_thumbnail(property)
         # Thumbnail on listing page.
         property.image.sized_url(165, :height) if property.image
+        # Featured property.
+        property.image.url(258)
         property.images.each do |image|
           # Thumbnail for properties/show.html.erb and
           # properties/show_interhome.html.erb.
