@@ -97,10 +97,12 @@ class Denormalize
       properties.each do |property|
         # TODO: Use helper methods do DRY.
         # property_image_thumbnail(property)
-        # Thumbnail on listing page.
-        property.image.sized_url(165, :height) if property.image
-        # Featured property.
-        property.image.url(258)
+        if property.image
+          # Thumbnail on listing page.
+          property.image.sized_url(165, :height)
+          # Featured property.
+          property.image.url(258)
+        end
         property.images.each do |image|
           # Thumbnail for properties/show.html.erb and
           # properties/show_interhome.html.erb.
