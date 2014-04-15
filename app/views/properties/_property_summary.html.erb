@@ -4,7 +4,7 @@
   %>
   <p class="property-thumbnail">
 <% unless p.image.nil? -%>
-    <span><%= link_to(image_tag(p.image.sized_url(165, :height), alt: "#{p.name} #{property_type(p)} in #{p.resort}"), link) %></span>
+    <span><%= link_to(image_tag(property_summary_thumbnail(p), alt: "#{p.name} #{property_type(p)} in #{p.resort}"), link) %></span>
 <% end -%>
   </p>
   <div class="property-summary-description">

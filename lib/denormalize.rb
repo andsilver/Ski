@@ -90,4 +90,25 @@ class Denormalize
 
     Unavailability.where('created_at < ?', start_time).delete_all
   end
+
+  def self.generate_thumbnails
+    Property.stop_geocoding
+    Property.find_in_batches(batch_size: 25) do |properties|
+      properties.each do |property|
+        # TODO: Use helper methods do DRY.
+        # property_image_thumbnail(property)
+        # Thumbnail on listing page.
+        property.image.sized_url(165, :height) if property.image
+        property.images.each do |image|
+          # Thumbnail for properties/show.html.erb and
+          # properties/show_interhome.html.erb.
+          image.sized_url(135, :height)
+          # Thumbnail for hotels and new developments.
+          image.sized_url(99, :square)
+        end
+      end
+      sleep(1)
+    end
+    Property.resume_geocoding
+  end
 end

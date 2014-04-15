@@ -224,4 +224,9 @@ module PropertiesHelper
   def first_page?
     params[:page].nil?
   end
+
+  # Thumbnail image for property summary on property listing page.
+  def property_summary_thumbnail(property)
+    property.image.sized_url(165, :height)
+  end
 end
