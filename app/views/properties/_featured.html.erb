@@ -1,4 +1,4 @@
-<% cache |p| do -%>
+<% cache(p) do -%>
 <a href="<%= property_path(p) %>" class="layout-element size-1of3" title="<%= p.name %>">
   <% if p.image %>
   <%= image_tag(p.image.url(258), alt: featured_property_alt_attribute(p)) %>
