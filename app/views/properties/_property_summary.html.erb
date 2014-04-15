@@ -1,4 +1,5 @@
 <div class="property-summary">
+<% cache(p) do -%>
   <%
   link = property_detail_path(p)
   %>
@@ -37,6 +38,7 @@
     </div>
   </div>
   <%= clear %>
+<% end -%>
   <% if fav = favourite_for_property(p) %>
   <%= form_for(fav, method: :delete) do |f| %>
   <p><%= f.submit t('favourites.remove') %></p>
