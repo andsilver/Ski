@@ -30,7 +30,7 @@ table.table.table-bordered
     tr
       td= @image.property.id
       td= @image.property.resort
-      td= @image.property.name
+      td= link_to(@image.property.name, property_path(@image.property))
       td= @image.property.created_at
       td= @image.property.updated_at
 
@@ -44,6 +44,6 @@ table.table.table-bordered
         th Updated at
       tr
         td= @image.property.interhome_accommodation.id
-        td= @image.property.interhome_accommodation.code
+        td= link_to(@image.property.interhome_accommodation.code, interhome_property_path(@image.property.interhome_accommodation.permalink))
         td= @image.property.interhome_accommodation.created_at
         td= @image.property.interhome_accommodation.updated_at
