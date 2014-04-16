@@ -137,7 +137,7 @@ module Interhome
       property.latitude = accommodation.geodata_lat
       property.longitude = accommodation.geodata_lng
       property.weekly_rent_price = accommodation.current_price
-    
+
       return if property.weekly_rent_price.nil?
       property.currency_id = @euro.id
       property.sleeping_capacity = accommodation.pax
@@ -174,6 +174,15 @@ module Interhome
         if picture.picture_type == 'm'
           property.image_id = image.id
           property.save
+        end
+      end
+
+      # Delete orphaned images
+      urls_to_keep = accommodation.interhome_pictures.map { |picture| picture.url }
+      property.images.each do |image|
+        if !urls_to_keep.include?(image.source_url)
+          property.image = nil if property.image == image
+          image.destroy
         end
       end
 
