@@ -92,9 +92,9 @@ features = @accommodation.features.split(',')
 <% if @accommodation.interhome_vacancy -%>
 <script>
 $(function() {
-  $.ajax(
+  $.ajax({
     url: "<%= interhome_booking_form_property_path(@accommodation.id) %>"
-  ).done(function(html) {
+  }).done(function(html) {
     $('#interhome_booking_form').replaceWith(html);
   });
 });
