@@ -1,0 +1,47 @@
+= page_header 'Image Details'
+
+.table.table-bordered
+  tr
+    th ID
+    th User
+    th Filename
+    th Created at
+    th Updated at
+    th Property ID
+    th Source URL
+  tr
+    td= @image.id
+    td= @image.user
+    td= @image.filename
+    td= @image.created_at
+    td= @image.updated_at
+    td= @image.property_id
+    td= @image.source_url
+
+- if @image.property
+  .table.table-bordered
+    tr
+      th ID
+      th Resort
+      th Name
+      th Created at
+      th Updated at
+    tr
+      td= @image.property.id
+      td= @image.property.resort
+      td= @image.property.name
+      td= @image.property.created_at
+      td= @image.property.updated_at
+
+  - if @image.property.interhome_accommodation
+    .table.table-bordered
+      tr
+        th ID
+        th Code
+        th Created at
+        th Updated at
+      tr
+        td= @image.property.interhome_accommodation.id
+        td= @image.property.interhome_accommodation.code
+        td= @image.property.interhome_accommodation.created_at
+        td= @image.property.interhome_accommodation.updated_at

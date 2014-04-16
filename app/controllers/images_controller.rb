@@ -1,8 +1,15 @@
 class ImagesController < ApplicationController
   before_action :object, only: [:new, :edit, :create]
 
+  before_action :admin_required, only: [:show]
+
   def index
     @images = current_user.images
+  end
+
+  def show
+    @image = Image.find(params[:id])
+    render layout: 'admin'
   end
 
   def new
