@@ -2,7 +2,7 @@
 
 <%= content_for :theme, @property.theme %>
 
-<% cache [@accommodation, Date.today] do %>
+<% cache(@accommodation) do %>
 <%= render partial: 'google_map',
     locals: { lat: @accommodation.geodata_lat, lng: @accommodation.geodata_lng } %>
 <script>
