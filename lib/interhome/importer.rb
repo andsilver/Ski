@@ -62,7 +62,7 @@ module Interhome
     end
 
     def self.import_local_accommodation_only
-      importer = InterhomeAccommodation.new(skip_ftp: true)
+      importer = Importer.new(skip_ftp: true)
       importer.import_accommodation
     end
   end
