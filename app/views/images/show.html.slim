@@ -16,7 +16,7 @@ table.table.table-bordered
     td= @image.created_at
     td= @image.updated_at
     td= @image.property_id
-    td= link_to @image.source_url
+    td= link_to(@image.source_url, @image.source_url, target: '_blank')
 
 - if @image.property
   h2 Property
