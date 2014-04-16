@@ -186,7 +186,7 @@ class PropertiesController < ApplicationController
   end
 
   def interhome_booking_form
-    @accommodation = InterhomeAccommodation.find(id: params[:id])
+    @accommodation = InterhomeAccommodation.find(params[:id])
     @property = @accommodation.property
 
     arrival = Date.today
