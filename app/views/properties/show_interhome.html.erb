@@ -93,7 +93,7 @@ features = @accommodation.features.split(',')
 <script>
 $(function() {
   $.ajax(
-    url("<%= interhome_booking_form_property_path(@accommodation.id) %>")
+    url: "<%= interhome_booking_form_property_path(@accommodation.id) %>"
   ).done(function(html) {
     $('#interhome_booking_form').replaceWith(html);
   });
