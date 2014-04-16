@@ -182,10 +182,17 @@ class PropertiesController < ApplicationController
       return
     end
 
+    show_shared
+  end
+
+  def interhome_booking_form
+    @accommodation = InterhomeAccommodation.find(id: params[:id])
+    @property = @accommodation.property
+
     arrival = Date.today
     @interhome_booking = Interhome::Booking.new(arrival.to_s[8..9], arrival.to_s[0..6], arrival, 7, 2, 0, 0)
 
-    show_shared
+    render layout: false
   end
 
   def show_pv

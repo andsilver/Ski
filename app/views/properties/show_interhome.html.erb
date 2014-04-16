@@ -89,7 +89,18 @@ features = @accommodation.features.split(',')
     <%= @accommodation.outside_description %>
   </p>
 </div>
-<%= render 'interhome_booking_form' if @accommodation.interhome_vacancy %>
+<% if @accommodation.interhome_vacancy -%>
+<script>
+$(function() {
+  $.ajax(
+    url("<%= interhome_booking_form_property_path(@accommodation.id) %>")
+  ).done(function(html) {
+    $('#interhome_booking_form').replaceWith(html);
+  });
+});
+</script>
+<div id="interhome_booking_form"></div>
+<% end -%>
 
 <div class="meta">
   <h2>Additional Information</h2>

@@ -122,6 +122,7 @@ Rails.application.routes.draw do
       get 'choose_window'
       get  'contact'
       get  'email_a_friend'
+      get  'interhome_booking_form'
       post 'place_in_window'
       post 'remove_from_window'
     end
