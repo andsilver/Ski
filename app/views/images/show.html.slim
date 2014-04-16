@@ -1,6 +1,6 @@
 = page_header 'Image Details'
 
-.table.table-bordered
+table.table.table-bordered
   tr
     th ID
     th User
@@ -19,7 +19,7 @@
     td= @image.source_url
 
 - if @image.property
-  .table.table-bordered
+  table.table.table-bordered
     tr
       th ID
       th Resort
@@ -34,7 +34,7 @@
       td= @image.property.updated_at
 
   - if @image.property.interhome_accommodation
-    .table.table-bordered
+    table.table.table-bordered
       tr
         th ID
         th Code
