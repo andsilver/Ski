@@ -62,8 +62,9 @@ module Interhome
     end
 
     def self.import_local_accommodation_only
-      importer = Importer.new(skip_ftp: true)
-      importer.import_accommodation
+      importer = AccommodationImporter.new
+      filenames = Dir.entries('interhome').select { |e| e =~ /\Aaccommodation\.\d+\.xml\z/ }
+      importer.import(filenames)
     end
   end
 end
