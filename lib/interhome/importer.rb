@@ -60,5 +60,10 @@ module Interhome
       filenames = importer.split_xml(@opts[:max_xml_files])
       importer.import(filenames)
     end
+
+    def self.import_local_accommodation_only
+      importer = InterhomeAccommodation.new(skip_ftp: true)
+      importer.import_accommodation
+    end
   end
 end
