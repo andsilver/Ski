@@ -183,6 +183,7 @@ module Interhome
         if !urls_to_keep.include?(image.source_url)
           property.image = nil if property.image == image
           image.destroy
+          logger.warn "Destroyed orphaned image for Interhome accommodation #{accommodation.id} - #{image.source_url}"
         end
       end
 
