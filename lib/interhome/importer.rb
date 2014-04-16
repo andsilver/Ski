@@ -63,7 +63,9 @@ module Interhome
 
     def self.import_local_accommodation_only
       importer = AccommodationImporter.new
-      filenames = Dir.entries('interhome').select { |e| e =~ /\Aaccommodation\.\d+\.xml\z/ }
+      filenames = Dir.entries('interhome')
+        .select { |e| e =~ /\Aaccommodation\.\d+\.xml\z/ }
+        .map    { |f| "interhome/#f" }
       importer.import(filenames, true)
     end
   end
