@@ -133,19 +133,18 @@ class Image < ActiveRecord::Base
           puts "Generating thumbnail: #{path}"
           send("size_#{method}", img, size, path)
         end
-        unless FileTest.exist?(path)
-          # Thumbnail generation failed; assume problem with original.
-          if File.exist?(original_path) && source_url.present?
-            FileUtils.rm(original_path)
-            puts "Deleting original: #{original_path}"
-          end
-        end
       rescue
+      end
+
+      unless FileTest.exist?(path)
+        # Thumbnail generation failed; assume problem with original.
+        if File.exist?(original_path) && source_url.present?
+          FileUtils.rm(original_path)
+          puts "Deleting original: #{original_path}"
+        end
         return IMAGE_MISSING
       end
     end
-
-    return IMAGE_MISSING unless File.exist?(path)
 
     @was_sized = true
 
