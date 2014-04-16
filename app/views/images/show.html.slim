@@ -16,9 +16,10 @@ table.table.table-bordered
     td= @image.created_at
     td= @image.updated_at
     td= @image.property_id
-    td= @image.source_url
+    td= link_to @image.source_url
 
 - if @image.property
+  h2 Property
   table.table.table-bordered
     tr
       th ID
@@ -34,6 +35,7 @@ table.table.table-bordered
       td= @image.property.updated_at
 
   - if @image.property.interhome_accommodation
+    h2 Interhome Accommodation
     table.table.table-bordered
       tr
         th ID
