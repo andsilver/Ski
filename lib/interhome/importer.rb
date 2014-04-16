@@ -65,7 +65,7 @@ module Interhome
       importer = AccommodationImporter.new
       filenames = Dir.entries('interhome')
         .select { |e| e =~ /\Aaccommodation\.\d+\.xml\z/ }
-        .map    { |f| "interhome/#f" }
+        .map    { |f| "interhome/#{f}" }
       importer.import(filenames, true)
     end
   end
