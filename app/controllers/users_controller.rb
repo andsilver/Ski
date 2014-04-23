@@ -55,7 +55,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       update_logo
       if admin?
-        redirect_to users_path, notice: t('notices.saved')
+        redirect_to admin_users_path, notice: t('notices.saved')
       else
         redirect_to my_details_path, notice: t('my_details_saved')
       end
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
     default_page_title t('users.forgot_password.forgot_password')
     @heading_a = t('users.forgot_password.forgot_password')
   end
-  
+
   def forgot_password_send
     default_page_title t('users.email_sent')
     @heading_a = t('users.email_sent')
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
     @heading_a = t('users.choose_a_new_password')
     forgot_password_params_ok?
   end
-  
+
   def forgot_password_change
     if forgot_password_params_ok?
       @user.password = params[:password]
@@ -104,7 +104,7 @@ class UsersController < ApplicationController
       redirect_to sign_in_path, notice: t('users.password_changed')
     end
   end
-  
+
   private
 
     def edit_breadcrumbs_and_heading

@@ -153,7 +153,7 @@ describe UsersController do
     before do
       controller.stub(:current_user).and_return(user)
       User.stub(:find).with('1').and_return(user)
-    end      
+    end
 
     let(:update_params) {{id: '1', user: { 'first_name' => 'Fred' } }}
 
@@ -161,9 +161,9 @@ describe UsersController do
       context 'when admin' do
         before { signed_in_as_admin }
 
-        it 'redirects to users index' do
+        it 'redirects to admin users index' do
           patch :update, update_params
-          expect(response).to redirect_to(users_path)
+          expect(response).to redirect_to(admin_users_path)
         end
 
         it 'sets a notice' do
