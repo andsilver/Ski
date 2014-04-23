@@ -1,4 +1,4 @@
-- cache(brochurable) do
+- cache([brochurable, method]) do
   - if brochurable.respond_to? method
     - brochures = brochurable.public_send(method, holiday_type.id)
     - unless brochures.empty?
