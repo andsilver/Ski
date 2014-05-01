@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326155232) do
+ActiveRecord::Schema.define(version: 20140501144720) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -210,6 +210,19 @@ ActiveRecord::Schema.define(version: 20140326155232) do
 
   add_index "favourites", ["property_id"], name: "index_favourites_on_property_id", using: :btree
   add_index "favourites", ["unregistered_user_id"], name: "index_favourites_on_unregistered_user_id", using: :btree
+
+  create_table "flip_key_locations", force: true do |t|
+    t.integer  "rgt"
+    t.string   "parent_path",                null: false
+    t.integer  "parent_id"
+    t.string   "display",                    null: false
+    t.integer  "lft"
+    t.integer  "property_count", default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "flip_key_locations", ["parent_id"], name: "index_flip_key_locations_on_parent_id", using: :btree
 
   create_table "footers", force: true do |t|
     t.string   "name",       null: false

@@ -13,7 +13,14 @@ module FlipKey
     ] }
 
     describe '#import' do
+      it 'imports locations' do
+        importer.stub(:import_properties)
+        importer.should_receive(:import_locations)
+        importer.import
+      end
+
       it 'imports properties' do
+        importer.stub(:import_locations)
         importer.should_receive(:import_properties)
         importer.import
       end

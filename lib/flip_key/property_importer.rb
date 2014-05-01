@@ -1,4 +1,4 @@
 module FlipKey
-  class PropertyImporter
+  class PropertyImporter < ::AccommodationImporter
   end
 end

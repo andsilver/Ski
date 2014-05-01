@@ -6,10 +6,16 @@ module FlipKey
       password: 'LIxoxLol'
     }.freeze
 
+    LOCATION_XML_SPLIT_OPTIONS = {
+      root_element: 'locations',
+      child_element: 'location',
+      elements_per_file: 4000
+    }.freeze
+
     PROPERTY_XML_SPLIT_OPTIONS = {
       root_element: 'property_data',
       child_element: 'property',
-      elements_per_file: 75
+      elements_per_file: 100
     }.freeze
 
     def initialize(options = {})
@@ -18,7 +24,18 @@ module FlipKey
 
     # Imports all FlipKey data.
     def import
+      import_locations
       import_properties
+    end
+
+    # Imports FlipKey location data.
+    def import_locations
+      perform_import(
+        LocationDownloader,
+        LocationImporter,
+        -> { location_filenames },
+        LOCATION_XML_SPLIT_OPTIONS
+      )
     end
 
     # Imports FlipKey property data.
@@ -29,6 +46,11 @@ module FlipKey
         -> { property_filenames },
         PROPERTY_XML_SPLIT_OPTIONS
       )
+    end
+
+    # Returns an array of location XML filenames.
+    def location_filenames
+      filenames_matching(/\A\d+[a-z_]+\.\d+\.xml\z/)
     end
 
     # Returns an array of property XML filenames.
@@ -45,7 +67,7 @@ module FlipKey
         downloader.new(DOWNLOADER_OPTIONS).download do |filename|
           gunzip(filename)
           xml_filename = File.join(FlipKey.directory, filename[0..-4])
-          opts = { xml_filename: xml_filename }.merge PROPERTY_XML_SPLIT_OPTIONS
+          opts = { xml_filename: xml_filename }.merge xml_split_options
           splitter = XMLSplitter.new(opts)
           splitter.split
         end

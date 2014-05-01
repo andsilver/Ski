@@ -40,6 +40,8 @@ GEM
       tzinfo (~> 1.1)
     acts_as_list (0.4.0)
       activerecord (>= 3.0)
+    acts_as_tree (1.6.0)
+      activerecord (>= 3.0.0)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
     aws-sdk (1.38.0)
@@ -293,6 +295,7 @@ PLATFORMS
 DEPENDENCIES
   RubyInline
   acts_as_list
+  acts_as_tree
   aws-sdk
   brakeman
   capybara
