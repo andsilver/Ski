@@ -29,11 +29,7 @@
         Land <%= p.plot_size_metres_2 %> m<sup>2</sup>
       </p>
       <% end %>
-  <% if p.has_more_info_button_on_summary? -%>
       <p class="contact_owner btn-property"><%= link_to 'More info', link, title: "More info about #{p.name}" %><i class="icon-caret-right"></i></p>
-  <% else -%>
-      <p class="contact_owner btn-property"><%= link_to t('enquire'), contact_property_path(p), title: "Enquire about #{p.name}" %><i class="icon-caret-right"></i></p>
-  <% end -%>
       <p class="email_a_friend btn-property"><%= link_to t('.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}" %><i class="icon-caret-right"></i></p>
     </div>
   </div>
