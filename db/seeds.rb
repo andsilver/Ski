@@ -507,6 +507,8 @@ hotel = Property.create!({
   publicly_visible: true
 })
 
+31.downto(21).each {|i| hotel.images << images[i]}
+
 InterhomeAccommodation.destroy_all
 interhome_accommodation = InterhomeAccommodation.create!(
   accommodation_type: 'T',
