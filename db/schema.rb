@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501144720) do
+ActiveRecord::Schema.define(version: 20140502151505) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -215,7 +215,7 @@ ActiveRecord::Schema.define(version: 20140501144720) do
     t.integer  "rgt"
     t.string   "parent_path",                null: false
     t.integer  "parent_id"
-    t.string   "display",                    null: false
+    t.string   "name",                       null: false
     t.integer  "lft"
     t.integer  "property_count", default: 0, null: false
     t.datetime "created_at"

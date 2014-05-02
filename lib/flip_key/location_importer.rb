@@ -19,7 +19,7 @@ module FlipKey
       id = l['location_id']
       location = FlipKeyLocation.find_by(id: id) || FlipKeyLocation.new
       location.id = id
-      location.display = l['display'][0].strip
+      location.name = l['display'][0].strip
       location.lft = l['lft'][0].strip
       location.rgt = l['rgt'][0].strip
       location.parent_path = l['parent_path'][0].strip
