@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
     end
     resources :coupons,           except: [:show]
+    resources :flip_key_locations, only: [:index, :show]
     resources :footers,           except: [:show]
     resources :holiday_types,     except: [:show]
     resources :regions,           except: [:show] do

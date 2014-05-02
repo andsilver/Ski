@@ -49,6 +49,9 @@ en:
         title: Promotion Codes
       new:
         title: New Promotion Code
+    flip_key_locations:
+      index:
+        title: FlipKey Locations
     footers:
       edit:
         title: Edit Footer

@@ -1,0 +1,11 @@
+= content_for(:title, @flip_key_location.name)
+= page_header(@flip_key_location.name)
+
+- if @flip_key_location.parent
+  p
+    | Parent:
+    =< link_to(@flip_key_location.parent.name, [:admin, @flip_key_location.parent])
+
+ul
+  - @flip_key_location.children.each do |l|
+    li= link_to(l.name, [:admin, l])
