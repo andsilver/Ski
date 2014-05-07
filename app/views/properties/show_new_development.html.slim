@@ -1,4 +1,5 @@
 = content_for :theme, @property.theme
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading)
 
 javascript:
   $(function() {
