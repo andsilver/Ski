@@ -5,12 +5,12 @@ describe 'properties/_featured.html.erb' do
 
   context 'with property image' do
     before do
-      property.image = Image.new(source_url: 'http://example.org/chalet.png')
+      property.image = mock_model(Image, url: '/up/images/chalet.png')
     end
 
     it 'displays the main property image' do
       render partial: 'featured', locals: { p: property }
-      expect(rendered).to have_selector 'img[src="http://example.org/chalet.png"]'
+      expect(rendered).to have_selector 'img[src="/up/images/chalet.png"]'
     end
   end
 
