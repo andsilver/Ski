@@ -7,6 +7,7 @@ class PropertiesController < ApplicationController
     :new_developments, :browse_hotels, :contact,
     :email_a_friend, :current_time, :show,
     :show_interhome, :show_pv, :check_interhome_booking,
+    :interhome_booking_form,
     :interhome_payment_success, :interhome_payment_failure,
     :update_booking_durations_select, :update_day_of_month_select]
 
