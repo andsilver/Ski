@@ -4,8 +4,8 @@ describe 'layouts/_resort_nav' do
   let(:resort) { mock_model(Resort).as_null_object }
   before { assign(:resort, resort) }
 
-  context 'when a ski resort' do
-    before { resort.stub(:ski?).and_return(true) }
+  context 'when resort has guide' do
+    before { resort.stub(:has_resort_guide?).and_return(true) }
 
     it 'links to the resort guide' do
       render
@@ -13,8 +13,8 @@ describe 'layouts/_resort_nav' do
     end
   end
 
-  context 'when not a ski resort' do
-    before { resort.stub(:ski?).and_return(false) }
+  context 'when resort has no guide' do
+    before { resort.stub(:has_resort_guide?).and_return(false) }
 
     it 'does not link to the resort guide' do
       render
