@@ -6,6 +6,21 @@
     | Parent:
     =< link_to(@flip_key_location.parent.name, [:admin, @flip_key_location.parent])
 
-ul
-  - @flip_key_location.children.each do |l|
-    li= link_to(l.name, [:admin, l])
+= form_for [:admin, @flip_key_location], html: { class: 'well' } do |f|
+  .form-group
+    = f.label :resort_id
+    = f.select(:resort_id, (Resort.all.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: t('.select_resort'), include_blank: true}, class: 'form-control')
+    
+  .form-group
+    = f.submit class: 'btn btn-primary'
+
+table.table.table-bordered
+  thead
+    tr
+      th= t('.flip_key_location')
+      th= t('.resort')
+  tbody
+    - @flip_key_location.children.each do |l|
+      tr
+        td= link_to(l.name, [:admin, l])
+        td= l.resort

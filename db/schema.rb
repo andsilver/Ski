@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502151505) do
+ActiveRecord::Schema.define(version: 20140512155921) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -220,9 +220,11 @@ ActiveRecord::Schema.define(version: 20140502151505) do
     t.integer  "property_count", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "resort_id"
   end
 
   add_index "flip_key_locations", ["parent_id"], name: "index_flip_key_locations_on_parent_id", using: :btree
+  add_index "flip_key_locations", ["resort_id"], name: "index_flip_key_locations_on_resort_id", using: :btree
 
   create_table "footers", force: true do |t|
     t.string   "name",       null: false

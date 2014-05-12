@@ -1,5 +1,6 @@
 class Admin::FlipKeyLocationsController < ApplicationController
   before_action :admin_required
+  before_action :set_flip_key_location, only: [:show, :update]
 
   layout 'admin'
 
@@ -8,6 +9,16 @@ class Admin::FlipKeyLocationsController < ApplicationController
   end
 
   def show
-    @flip_key_location = FlipKeyLocation.find(params[:id])
   end
+
+  def update
+    @flip_key_location.cascade_resort_id= params[:flip_key_location][:resort_id]
+    redirect_to [:admin, @flip_key_location], notice: 'Updated.'
+  end
+
+  private
+
+    def set_flip_key_location
+      @flip_key_location = FlipKeyLocation.find(params[:id])
+    end
 end
