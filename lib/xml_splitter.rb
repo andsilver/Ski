@@ -58,7 +58,14 @@ class XMLSplitter
             dst = start_file(chunk, filenames)
           end
         end
-        if tag == open_tag && !started
+
+        # compare_tag strips attributes within a tag
+        compare_tag = tag
+        if compare_tag.index ' '
+          compare_tag = compare_tag[0...compare_tag.index(' ')] + '>'
+        end
+
+        if compare_tag == open_tag && !started
           dst.close
           dst = start_file(chunk, filenames)
           dst.puts(tag)
