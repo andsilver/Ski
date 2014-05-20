@@ -489,7 +489,7 @@ en:
       floor_area: 'Living area'
       nearest_lift: 'Nearest lift'
       plot_size: 'Total'
-      sale_price: 'Sale price %{price}'
+      sale_price: 'Prices from %{price}'
       sleeps: Sleeps
       weekly_price: 'From %{price} weekly'
     select_resort: Select resort
