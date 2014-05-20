@@ -5,7 +5,14 @@ class EnquiryNotifier < ActionMailer::Base
   def notify enquiry, property
     @enquiry = enquiry
     @property = property
-    mail(to: enquiry.user.email,
-      subject: "My Chalet Finder: Enquiry for property ##{property.id}")
+    cc = []
+    if enquiry.user.enquiry_cc_emails.present?
+      cc = enquiry.user.enquiry_cc_emails.split(',').map { |e| e.strip }
+    end
+    mail(
+      to: enquiry.user.email,
+      cc: cc,
+      subject: "My Chalet Finder: Enquiry for property ##{property.id}"
+    )
   end
 end

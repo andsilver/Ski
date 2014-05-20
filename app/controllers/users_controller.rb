@@ -178,9 +178,11 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:email, :website, :description, :billing_street, :billing_location,
-        :billing_city, :billing_postcode, :billing_country_id, :phone, :mobile, :business_name,
-        :position, :terms_and_conditions, :first_name, :last_name, :google_web_property_id,
-        :vat_country_id, :vat_number, :password)
+      params.require(:user).permit(
+        :billing_city, :billing_country_id, :billing_location,
+        :billing_postcode, :billing_street, :business_name, :description,
+        :email, :enquiry_cc_emails, :first_name, :google_web_property_id,
+        :last_name, :mobile, :password, :phone, :position,
+        :terms_and_conditions, :website, :vat_country_id, :vat_number)
     end
 end

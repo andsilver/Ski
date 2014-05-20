@@ -40,6 +40,10 @@
     <%= f.label :mobile, t('mobile') %>
     <%= f.text_field :mobile, class: 'form-control' %>
   </div>
+  <div class="form-group">
+    <%= f.label :enquiry_cc_emails, t('.enquiry_cc_emails') %>
+    <%= f.text_area :enquiry_cc_emails, class: 'form-control' %>
+  </div>
 </div>
 
 <% if admin? %>

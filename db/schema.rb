@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512155921) do
+ActiveRecord::Schema.define(version: 20140520100810) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -779,6 +779,7 @@ ActiveRecord::Schema.define(version: 20140512155921) do
     t.integer  "vat_country_id"
     t.boolean  "apply_price_override",   default: false, null: false
     t.integer  "price_override",         default: 0,     null: false
+    t.text     "enquiry_cc_emails"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

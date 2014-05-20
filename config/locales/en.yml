@@ -668,6 +668,8 @@ en:
       heading: Email Sent
       content: An email has been sent showing how to reset and change your password. Please check your inbox in a few minutes.
     forgot_your_password: Forgot your password?
+    form:
+      enquiry_cc_emails: 'List of email address to which to carbon copy (Cc) enquiries, each separated with a comma'
     i_accept_terms: 'I have read, understood and agree to be bound by the terms and conditions.'
     manage_airport_transfers:
       description: 'Set up your list of airport-resort connections and be found in our airport transfer tool'
