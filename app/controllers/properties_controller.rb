@@ -36,8 +36,7 @@ class PropertiesController < ApplicationController
 
   def quick_search
     default_page_title t('properties.titles.browse_for_rent', resort: @resort)
-    browse_property_breadcrumbs
-    @heading = t('properties_controller.quick_search.heading')
+    browse_property_heading
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
@@ -67,7 +66,7 @@ class PropertiesController < ApplicationController
 
   def browse_for_rent
     default_page_title t('properties.titles.browse_for_rent', resort: @resort)
-    browse_property_breadcrumbs
+    browse_property_heading
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
@@ -93,7 +92,7 @@ class PropertiesController < ApplicationController
   def browse_for_sale
     @for_sale = true
     default_page_title t('properties.titles.browse_for_sale', resort: @resort)
-    browse_property_breadcrumbs
+    browse_property_heading
 
     order = for_sale_selected_order
 
@@ -605,11 +604,21 @@ class PropertiesController < ApplicationController
     (square_feet.to_f * 0.09290304).round.to_s
   end
 
-  def browse_property_breadcrumbs
+  def browse_property_heading
     @breadcrumbs = {}
     if @resort
       @breadcrumbs[@resort.name] = @resort
     end
+
+    if @resort.try(:ski?)
+      @heading = 'Ski '.html_safe
+    else
+      @heading = ''.html_safe
+    end
+
+    @heading += 'Accommodation, Chalets &amp; Apartments for '.html_safe
+    @heading += @for_sale ? 'Sale' : 'Rent'
+    @heading += " in #{@resort.name}" if @resort
   end
 
   def search_status
