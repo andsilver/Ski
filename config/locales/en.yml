@@ -419,6 +419,7 @@ en:
     contact:
       heading: 'Enquire about %{property}'
       introduction:
+        for_sale: 'For further information about this new development such as floor plans, completion dates and the buying process, please complete the enquiry form below and one of our partner sales consultants will contact you straight away to answer any questions you may have and provide you with additional information. We wish you all the best in purchasing your holiday home.'
         general: 'To enquire about the availability and prices of your selected accommodation, you can either call the owner or agent directly on the number below or complete the details in the form and send an email. We hope you have a great holiday.'
         hotel: 'To enquire about the availability and prices of your selected accommodation, you can either call the hotel directly on the number below or complete the details in the form and send an email. We hope you have a great holiday.'
       title: 'Enquire about %{property} in %{resort}, %{country}'

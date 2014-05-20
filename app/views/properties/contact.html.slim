@@ -9,6 +9,8 @@
 p
   - if @property.hotel?
     = t('.introduction.hotel')
+  - elsif @property.for_sale?
+    = t('.introduction.for_sale')
   - else
     = t('.introduction.general')
 
