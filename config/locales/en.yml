@@ -407,6 +407,8 @@ en:
       show: "%{resort} Accommodation - %{strapline}"
       show_interhome: "%{resort} Accommodation - %{strapline}"
     placed_in_window: "Your property advert has been placed in a window."
+    quick_search:
+      heading: 'Search Results'
     removed_from_window: "Your property advert has been removed from its window."
     saved: "Your property advert details have been saved."
     titles:

@@ -1,6 +1,7 @@
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@breadcrumbs, @heading)
 
-h1= @heading
+- if @heading.present?
+  h1= @heading
 
 - if @resort
   = content_for :theme, @resort.theme
