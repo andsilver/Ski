@@ -36,7 +36,8 @@ class PropertiesController < ApplicationController
 
   def quick_search
     default_page_title t('properties.titles.browse_for_rent', resort: @resort)
-    browse_property_heading
+    browse_property_breadcrumbs
+    @heading = t('properties_controller.quick_search.heading')
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
@@ -66,7 +67,10 @@ class PropertiesController < ApplicationController
 
   def browse_for_rent
     default_page_title t('properties.titles.browse_for_rent', resort: @resort)
-    browse_property_heading
+    browse_property_breadcrumbs
+
+    @heading = I18n.t('properties_controller.browse_for_rent.heading.' +
+      browse_resort_heading_key, resort: @resort)
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
@@ -92,7 +96,10 @@ class PropertiesController < ApplicationController
   def browse_for_sale
     @for_sale = true
     default_page_title t('properties.titles.browse_for_sale', resort: @resort)
-    browse_property_heading
+    browse_property_breadcrumbs
+
+    @heading = I18n.t('properties_controller.browse_for_sale.heading.' +
+      browse_resort_heading_key, resort: @resort)
 
     order = for_sale_selected_order
 
@@ -604,21 +611,21 @@ class PropertiesController < ApplicationController
     (square_feet.to_f * 0.09290304).round.to_s
   end
 
-  def browse_property_heading
+  def browse_property_breadcrumbs
     @breadcrumbs = {}
     if @resort
       @breadcrumbs[@resort.name] = @resort
     end
+  end
 
-    if @resort.try(:ski?)
-      @heading = 'Ski '.html_safe
+  def browse_resort_heading_key
+    if @resort.ski?
+      'ski'
+    elsif @resort.summer?
+      'summer'
     else
-      @heading = ''.html_safe
+      'other'
     end
-
-    @heading += 'Accommodation, Chalets &amp; Apartments for '.html_safe
-    @heading += @for_sale ? 'Sale' : 'Rent'
-    @heading += " in #{@resort.name}" if @resort
   end
 
   def search_status

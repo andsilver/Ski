@@ -400,6 +400,16 @@ en:
   property_sales: 'Property Sales'
   properties_controller:
     added_to_basket: 'Your property advert has been added to your basket.'
+    browse_for_rent:
+      heading:
+        other: "Accommodation & Apartments for Rent in %{resort}"
+        ski: "Accommodation, Chalets & Apartments for Rent in %{resort}"
+        summer: "Accommodation, Villas & Apartments for Rent in %{resort}"
+    browse_for_sale:
+      heading:
+        other: "Accommodation & Apartments for Sale in %{resort}"
+        ski: "Accommodation, Chalets & Apartments for Sale in %{resort}"
+        summer: "Accommodation, Villas & Apartments for Sale in %{resort}"
     created: "Your property advert was successfully created. Now let's add some photos."
     created_and_assigned_to_window: "Your property advert was successfully created. We've automatically placed it in one of your free windows. Now let's add some photos."
     created_but_no_empty_windows_left: "Your property advert was successfully created but you have no empty windows to place it in."
@@ -407,6 +417,8 @@ en:
       show: "%{resort} Accommodation - %{strapline}"
       show_interhome: "%{resort} Accommodation - %{strapline}"
     placed_in_window: "Your property advert has been placed in a window."
+    quick_search:
+      heading: 'Search Results'
     removed_from_window: "Your property advert has been removed from its window."
     saved: "Your property advert details have been saved."
     titles:

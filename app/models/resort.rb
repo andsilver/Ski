@@ -55,6 +55,10 @@ class Resort < ActiveRecord::Base
     holiday_types.any? { |ht| ht.slug == 'ski-holidays' }
   end
 
+  def summer?
+    holiday_types.any? { |ht| ht.slug == 'summer-villas' }
+  end
+
   def to_s
     name
   end
