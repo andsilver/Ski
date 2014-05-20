@@ -25,8 +25,8 @@
     <div class="actions">
       <% if p.for_sale? %>
       <p class="additional-info">
-        Property <%= p.floor_area_metres_2 %> m<sup>2</sup><br>
-        Land <%= p.plot_size_metres_2 %> m<sup>2</sup>
+        <%= t('.floor_area') %> <%= p.floor_area_metres_2 %> m<sup>2</sup><br>
+        <%= t('.plot_size') %> <%= p.plot_size_metres_2 %> m<sup>2</sup>
       </p>
       <% end %>
       <p class="contact_owner btn-property"><%= link_to 'More info', link, title: "More info about #{p.name}" %><i class="icon-caret-right"></i></p>
