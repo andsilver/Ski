@@ -308,7 +308,7 @@ en:
   last_name: Last name
   late_availability:
     index:
-      action: 'Search for last minute accommodation for your ski holidays or summer vacation.'
+      action: 'Search for last minute holiday accommodation.'
       choose_country: 'Choose Country'
       choose_country_first: 'Choose Country First ↑'
       choose_resort: 'Choose Resort'
@@ -332,7 +332,7 @@ en:
   my_details_saved: 'Your details have been saved.'
   name: 'Name'
   nearest_lift: 'Nearest lift'
-  new_developments: 'New Developments'
+  new_developments: 'Properties for Sale - New Chalet & Apartment Developments'
   notices:
     added: Added.
     admin_required: You need to be logged in as an administrator to do that.
@@ -481,7 +481,7 @@ en:
       smoking: Smoking
       tv: TV
       wifi: WiFi
-    no_matching_properties: 'There are no properties advertised at this resort that match your search criteria. Many holiday rentals only accept arrivals on Saturdays and have a minimum stay of 7 days. If possible and you are flexible with your dates, please try amending your arrival dates and / or duration of your holiday - thank you.'
+    no_matching_properties: 'We are sorry but there are no properties advertised at this resort that match your search criteria. Many holiday rentals only accept arrivals on Saturdays and have a minimum stay of 7 days. If possible and you are flexible with your dates, please try amending your arrival dates and / or duration of your holiday - thank you.'
     place_in_window: 'Place in Window'
     property_summary:
       email_a_friend: 'Email a friend'
@@ -562,7 +562,7 @@ en:
       directory: "Directory for %{resort}, %{country}"
       gallery: "Photos of %{resort}"
       piste_map: "%{resort} piste map | Chalet Rentals in %{resort} | Holiday Homes for Rent in %{resort} / Ski Holidays in %{resort}"
-      resort_guide: "Detailed Information for %{resort} Ski Resort, %{country}"
+      resort_guide: "%{resort} Ski Resort & Accommodation Guide, %{country}"
       show: "%{resort} | Ski Holiday Accommodation | Chalets & Apartments for Rent & Sale"
       summer_holidays: "Summer Holidays in %{resort}"
     not_found: 'That resort does not exist.'
@@ -573,7 +573,7 @@ en:
     titles:
       directory: "Directory for %{resort}, %{country}"
       gallery: "Photos of %{resort}"
-      how_to_get_there: "%{resort}|Transfers to %{resort}|Airport Transfers to %{resort}|How to get to %{resort}"
+      how_to_get_there: "%{resort} Airport Transfers | Directions to %{resort} | How to get to %{resort}"
       piste_map: "%{resort} piste map | Chalet Rentals in %{resort} | Holiday Homes for Rent in %{resort} / Ski Holidays in %{resort}"
       resort_guide: "Detailed Information for %{resort} Ski Resort, %{country}"
       show: "%{resort} | Ski Holiday Accommodation | Chalets & Apartments for Rent & Sale"
