@@ -67,6 +67,7 @@ class User < ActiveRecord::Base
   validates_presence_of :billing_street
   validates_presence_of :billing_city
   validates_presence_of :billing_country_id
+  validates_presence_of :phone
   validates_presence_of :role_id
 
   validates_format_of :website, with: /\A(#{URI::regexp(%w(http https))})\Z/, allow_blank: true
