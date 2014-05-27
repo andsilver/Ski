@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527115844) do
+ActiveRecord::Schema.define(version: 20140527121308) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -536,9 +536,11 @@ ActiveRecord::Schema.define(version: 20140527115844) do
     t.integer  "pv_accommodation_id"
     t.integer  "region_id"
     t.string   "booking_url",                  default: "",    null: false
+    t.integer  "flip_key_property_id"
   end
 
   add_index "properties", ["country_id"], name: "index_properties_on_country_id", using: :btree
+  add_index "properties", ["flip_key_property_id"], name: "index_properties_on_flip_key_property_id", using: :btree
   add_index "properties", ["interhome_accommodation_id"], name: "index_properties_on_interhome_accommodation_id", using: :btree
   add_index "properties", ["late_availability"], name: "index_properties_on_late_availability", using: :btree
   add_index "properties", ["publicly_visible"], name: "index_properties_on_publicly_visible", using: :btree
