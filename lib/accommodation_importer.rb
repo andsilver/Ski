@@ -1,6 +1,9 @@
 class AccommodationImporter
   attr_accessor :import_start_time, :user
 
+  # Subclasses should implement the following methods:
+  # * model_class
+
   # Non-destructive import.
   # Updates existing accommodations and imports new accommodations
   # from the XML file.
@@ -52,5 +55,9 @@ class AccommodationImporter
 
   def destroy_all
     model_class.destroy_all(['updated_at < ?', @import_start_time])
+  end
+
+  def model_class
+    raise 'Subclass should return an ActiveRecord model subclass'
   end
 end
