@@ -7,6 +7,8 @@ class Property < ActiveRecord::Base
   belongs_to :resort, touch: true
   belongs_to :image
   belongs_to :currency
+
+  belongs_to :flip_key_property
   belongs_to :interhome_accommodation
   belongs_to :pv_accommodation
 
