@@ -3,6 +3,7 @@ class AccommodationImporter
 
   # Subclasses should implement the following methods:
   # * model_class
+  # * user_email
 
   # Non-destructive import.
   # Updates existing accommodations and imports new accommodations
