@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527121308) do
+ActiveRecord::Schema.define(version: 20140527134250) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -227,8 +227,8 @@ ActiveRecord::Schema.define(version: 20140527121308) do
   add_index "flip_key_locations", ["resort_id"], name: "index_flip_key_locations_on_resort_id", using: :btree
 
   create_table "flip_key_properties", force: true do |t|
-    t.string   "url",        null: false
-    t.text     "xml_data"
+    t.string   "url",                         null: false
+    t.text     "json_data",  limit: 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
   end

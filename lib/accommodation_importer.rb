@@ -1,7 +1,11 @@
+require 'xmlsimple'
+
 class AccommodationImporter
   attr_accessor :import_start_time, :user
 
   # Subclasses should implement the following methods:
+  # * accommodation
+  # * import_accommodation
   # * model_class
   # * user_email
 
@@ -58,7 +62,19 @@ class AccommodationImporter
     model_class.destroy_all(['updated_at < ?', @import_start_time])
   end
 
+  def accommodation(xml)
+    raise 'Subclass should return an array of all accommodation XML'
+  end
+
+  def import_accommodation(a)
+    raise 'Subclass should import the data'
+  end
+
   def model_class
     raise 'Subclass should return an ActiveRecord model subclass'
+  end
+
+  def user_email
+    raise 'Subclass should return an email address for a user that will own the imported data'
   end
 end
