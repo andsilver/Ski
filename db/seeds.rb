@@ -13,6 +13,7 @@ Property.destroy_all
 PropertyBasePrice.destroy_all
 DirectoryAdvert.destroy_all
 Resort.destroy_all
+Country.destroy_all
 Category.destroy_all
 User.destroy_all
 Role.delete_all
@@ -38,7 +39,7 @@ euros = Currency.create!(
   in_euros: 1
 )
 
-countries = Country.create([
+countries = [
   { name: 'Andorra',               iso_3166_1_alpha_2: 'AD' },
   { name: 'Afghanistan',           iso_3166_1_alpha_2: 'AF' },
   { name: 'Albania',               iso_3166_1_alpha_2: 'AL' },
@@ -145,7 +146,7 @@ countries = Country.create([
   { name: 'Iraq',                  iso_3166_1_alpha_2: 'IQ' },
   { name: 'Ireland',               iso_3166_1_alpha_2: 'IE' },
   { name: 'Isle of Man',           iso_3166_1_alpha_2: 'IM' },
-  { name: 'Israel',                iso_3166_1_alpha_2: 'IS' },
+  { name: 'Israel',                iso_3166_1_alpha_2: 'IL' },
   { name: 'Italy',                 iso_3166_1_alpha_2: 'IT' },
   { name: 'Jamaica',               iso_3166_1_alpha_2: 'JM' },
   { name: 'Japan',                 iso_3166_1_alpha_2: 'JP' },
@@ -284,7 +285,11 @@ countries = Country.create([
   { name: 'Yemen',                 iso_3166_1_alpha_2: 'YE' },
   { name: 'Zambia',                iso_3166_1_alpha_2: 'ZM' },
   { name: 'Zimbabwe',              iso_3166_1_alpha_2: 'ZW' }
-  ])
+]
+
+countries.each do |c|
+  Country.create!(name: c[:name], iso_3166_1_alpha_2: c[:iso_3166_1_alpha_2], slug: c[:name].parameterize)
+end
 
 austria = Country.find_by(name: 'Austria')
 france = Country.find_by(name: 'France')
@@ -369,7 +374,9 @@ alice = User.create!(
   billing_country: united_kingdom,
   terms_and_conditions: true,
   description: '',
-  role: admin)
+  role: admin,
+  phone: '+441234567890'
+)
 bob = User.create!(
   first_name: 'Bob',
   last_name: 'Brown',
@@ -380,7 +387,9 @@ bob = User.create!(
   billing_country: united_kingdom,
   terms_and_conditions: true,
   description: '',
-  role: property_developer)
+  role: property_developer,
+  phone: '+441234567890'
+)
 interhome = User.create!(
   first_name: 'Interhome',
   last_name: 'Interhome',
@@ -391,7 +400,9 @@ interhome = User.create!(
   billing_country: united_kingdom,
   terms_and_conditions: true,
   description: '',
-  role: estate_agent)
+  role: estate_agent,
+  phone: '+441234567890'
+)
 
 Resort.create!([
   { country: austria, name: 'Alpbach',      slug: 'alphach' },
