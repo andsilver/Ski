@@ -315,7 +315,7 @@ en:
       featured_properties: 'Featured Last Minute Properties'
       form_heading: 'Last Minute Search'
       heading: 'Late Availability'
-      intro: 'Still not booked your accommodation for your ski holidays? Use our search tool that will help you find what you are looking for quickly.  Our chalet rentals, apartments to rent and other holiday rental accommodation lists are updated every day so you can be assured you will only see what is currently available.'
+      intro: 'Still not booked your accommodation for your holidays? Use our search tool that will help you find what you are looking for quickly.  Our chalets, apartments, villas and other holiday rental accommodation lists are updated every day so you can be assured you will only see what is currently available.'
   late_availability_controller:
     titles:
       index: 'Late Availability - Last Minute Ski Accommodation'
@@ -579,10 +579,10 @@ en:
       piste_map: "%{resort} piste map | Chalet Rentals in %{resort} | Holiday Homes for Rent in %{resort} / Ski Holidays in %{resort}"
       resort_guide: "%{resort} Ski Resort & Accommodation Guide, %{country}"
       show: "%{resort} | Ski Holiday Accommodation | Chalets & Apartments for Rent & Sale"
-      summer_holidays: "Summer Holidays in %{resort}"
+      summer_holidays: "Summer Holidays in %{resort} | Accommodation in %{resort}"
     not_found: 'That resort does not exist.'
     piste_map:
-      no_piste_maps: "There are no piste maps for this resort yet."
+      no_piste_maps: "Sorry, there are no piste maps for this resort yet - we will be adding one shortly."
     resort_information_heading: "%{resort} Resort Information"
     summer_holidays: 'Summer Holidays'
     titles:
@@ -590,7 +590,7 @@ en:
       gallery: "Photos of %{resort}"
       how_to_get_there: "%{resort} Airport Transfers | Directions to %{resort} | How to get to %{resort}"
       piste_map: "%{resort} piste map | Chalet Rentals in %{resort} | Holiday Homes for Rent in %{resort} / Ski Holidays in %{resort}"
-      resort_guide: "Detailed Information for %{resort} Ski Resort, %{country}"
+      resort_guide: "%{resort} Ski Resort & Accommodation Guide, %{country}"
       show: "%{resort} | Ski Holiday Accommodation | Chalets & Apartments for Rent & Sale"
       summer_holidays: "Summer Holidays in %{resort}"
   resort_options:
@@ -620,7 +620,7 @@ en:
   sign_in: 'Sign In'
   sign_in_invalid: 'Your sign in attempt failed. No account was found with this email address and password.'
   sign_out: Sign Out
-  sign_up: Register
+  sign_up: Advertise
   signed_out: 'You are now signed out.'
   sleeping_capacity: 'Sleeping capacity'
   sleeps: sleeps
