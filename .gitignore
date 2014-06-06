@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore vagrant files.
+/.vagrant
+
 *.pdf
 !public/images/flags/*.png
 *.psd
