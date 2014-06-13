@@ -5,7 +5,8 @@
 
   ul#categories
     - @categories.each do |category|
-      li= link_to t(category.name), show_category_path(category, resort_slug: @resort)
+      - if DirectoryAdvert.advertised_in(category, @resort).any?
+        li= link_to t(category.name), show_category_path(category, resort_slug: @resort)
 
   = clear
 
