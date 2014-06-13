@@ -50,6 +50,14 @@ class DirectoryAdvert < ActiveRecord::Base
     is_banner_advert? ? 'Banner Advert + Free Directory Advert' : 'Directory Advert'
   end
 
+  def self.advertised_in(category, resort)
+    conditions = CURRENTLY_ADVERTISED.dup
+    conditions[0] += " AND category_id = ? AND resort_id = ?"
+    conditions << category.id
+    conditions << resort.id
+    DirectoryAdvert.where(conditions)
+  end
+
   def self.banner_adverts_for(resort, dimensions, qty)
     conditions = CURRENTLY_ADVERTISED.dup
     conditions[0] += " AND resort_id = ?" if resort

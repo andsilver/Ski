@@ -5,8 +5,6 @@ class CategoriesController < ApplicationController
   before_action :set_resort, only: [:show]
   before_action :find_category, only: [:edit, :update, :show, :destroy]
 
-  CURRENTLY_ADVERTISED = ["id IN (SELECT adverts.directory_advert_id FROM adverts WHERE adverts.directory_advert_id=directory_adverts.id AND adverts.expires_at > NOW())"]
-
   def index
     @categories = Category.order('name')
   end
@@ -42,12 +40,11 @@ class CategoriesController < ApplicationController
     @heading_a = "#{t(@category.name)} in #{@resort}, #{@resort.country.name}"
     default_page_title(@heading_a)
 
-    @conditions = CURRENTLY_ADVERTISED.dup
-    @conditions[0] += " AND category_id = ? AND resort_id = ?"
-    @conditions << @category.id
-    @conditions << @resort.id
+    @directory_adverts = DirectoryAdvert
+      .advertised_in(@category, @resort)
+      .order('RAND()')
+      .paginate(page: params[:page])
 
-    @directory_adverts = DirectoryAdvert.where(@conditions).order('RAND()').paginate(page: params[:page])
     not_found unless @directory_adverts.any?
   end
 
