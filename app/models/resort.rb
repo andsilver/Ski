@@ -3,7 +3,7 @@ class Resort < ActiveRecord::Base
   include RelatedPages
 
   belongs_to :country
-  belongs_to :region, inverse_of: :resorts
+  belongs_to :region, inverse_of: :resorts, touch: true
 
   has_many :directory_adverts, dependent: :restrict_with_exception
   has_many :properties, dependent: :restrict_with_exception
