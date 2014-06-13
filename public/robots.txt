@@ -4,5 +4,6 @@
 # User-agent: *
 # Disallow: /
 User-agent: *
+Disallow: /properties/check_interhome_booking
 Disallow: /properties/search
 Disallow: /properties/update_booking_durations_select
