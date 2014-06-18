@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527134250) do
+ActiveRecord::Schema.define(version: 20140618154757) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id",                             null: false
@@ -444,9 +444,13 @@ ActiveRecord::Schema.define(version: 20140527134250) do
     t.boolean  "visible",              default: true, null: false
     t.string   "sidebar_snippet_name"
     t.string   "header_snippet_name"
+    t.integer  "region_id"
+    t.integer  "resort_id"
   end
 
   add_index "pages", ["path"], name: "index_pages_on_path", using: :btree
+  add_index "pages", ["region_id"], name: "index_pages_on_region_id", using: :btree
+  add_index "pages", ["resort_id"], name: "index_pages_on_resort_id", using: :btree
 
   create_table "payments", force: true do |t|
     t.integer  "order_id"

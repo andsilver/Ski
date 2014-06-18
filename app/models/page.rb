@@ -7,6 +7,9 @@ class Page < ActiveRecord::Base
 
   belongs_to :footer
 
+  belongs_to :region, touch: true
+  belongs_to :resort, touch: true
+
   def header_html(locale)
     Snippet.find_by(name: header_snippet_name, locale: locale).try(:snippet)
   end

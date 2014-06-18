@@ -4,6 +4,7 @@ module RelatedPages
   included do
     after_save :handle_slug_change
     before_destroy :destroy_pages
+    has_many :pages
   end
 
   def has_page?(page_name)
@@ -19,7 +20,7 @@ module RelatedPages
   end
 
   def create_page(page_name)
-    Page.create(path: page_path(page_name), title: page_title(page_name))
+    pages.create(path: page_path(page_name), title: page_title(page_name))
   end
 
   def page_path(page_name, object_slug = nil)
