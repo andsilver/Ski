@@ -50,11 +50,7 @@ module ResortsHelper
     return urls if @no_header
 
     if @resort
-      if controller.action_name == 'summer_holidays'
-        sub_dir = 'summer-headers'
-      else
-        sub_dir = 'headers'
-      end
+      sub_dir = header_image_sub_directory
       resort_images(@resort, sub_dir)
 
       @images.each do |img|
@@ -82,6 +78,15 @@ module ResortsHelper
 
     urls.map! {|u| u.gsub(' ', '%20')}
     urls
+  end
+
+  # Returns a sub-directory containing a resort's header images based on the
+  # resort page being shown.
+  def header_image_sub_directory
+    dirs = Hash.new('headers')
+    dirs['ski_and_guiding_schools'] = 'ski-school-headers'
+    dirs['summer_holidays'] = 'summer-headers'
+    dirs[controller.action_name]
   end
 
   def resort_images(resort, sub_dir)
