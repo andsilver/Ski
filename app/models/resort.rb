@@ -36,7 +36,7 @@ class Resort < ActiveRecord::Base
   end
 
   def self.page_names
-    ['how-to-get-there', 'summer-holidays']
+    ['how-to-get-there', 'ski-and-guiding-schools', 'summer-holidays']
   end
 
   def nearest_airport

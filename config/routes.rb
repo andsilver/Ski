@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     as: :resort_property_new_developments
   get "resorts/:resort_slug/properties/hotels" => "properties#browse_hotels", as: :resort_property_hotels
   get "resorts/:id/resort-guide" => "resorts#resort_guide", as: :resort_guide
+  get "resorts/:id/ski-and-guiding-schools" => "resorts#ski_and_guiding_schools", as: :ski_and_guiding_schools
   get "resorts/:id/summer-holidays" => "resorts#summer_holidays", as: :summer_holidays
   get "resorts/:id/how-to-get-there" => "resorts#how_to_get_there", as: :how_to_get_there
   resources :resorts, only: [:show] do

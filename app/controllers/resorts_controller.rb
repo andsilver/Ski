@@ -1,7 +1,9 @@
 class ResortsController < ApplicationController
   include ResortSetter
 
-  before_action :set_resort, only: [:directory, :feature, :gallery, :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide, :show, :summer_holidays]
+  before_action :set_resort, only: [:directory, :feature, :gallery,
+    :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide,
+    :show, :ski_and_guiding_schools, :summer_holidays]
   before_action :find_featured_properties, only: [:resort_guide, :show, :summer_holidays]
 
   def show
@@ -46,6 +48,10 @@ class ResortsController < ApplicationController
   end
 
   def feature; end
+
+  def ski_and_guiding_schools
+    not_found unless admin? || page_info.try(:visible?)
+  end
 
   def summer_holidays
     not_found unless admin? || page_info.try(:visible?)
