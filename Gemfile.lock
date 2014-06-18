@@ -137,7 +137,6 @@ GEM
     json (1.8.1)
     launchy (2.4.2)
       addressable (~> 2.3)
-    libv8 (3.16.14.3)
     liquid (2.6.1)
     listen (2.7.8)
       celluloid (>= 0.15.2)
@@ -192,7 +191,6 @@ GEM
     rdiscount (1.6.8)
     rdoc (4.1.1)
       json (~> 1.4)
-    ref (1.0.5)
     request_store (1.0.6)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
@@ -260,9 +258,6 @@ GEM
     sqlite3 (1.3.9)
     temple (0.6.7)
     terminal-table (1.4.5)
-    therubyracer (0.12.1)
-      libv8 (~> 3.16.14.0)
-      ref
     thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -311,7 +306,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
-  libv8
   liquid
   mysql2
   newrelic_rpm
@@ -330,7 +324,6 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   sqlite3
-  therubyracer
   thin
   turbolinks
   uglifier (>= 1.3.0)
