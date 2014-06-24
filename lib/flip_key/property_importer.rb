@@ -37,7 +37,11 @@ module FlipKey
     def delete_old_pictures(property)
     end
 
-    def create_property(property, resort)
+    def create_property(fk_property, resort)
+      property = prepare_property(flip_key_property_id: fk_property.id)
+      property.resort = resort
+      property.save
+      create_advert(property)
     end
 
     def accommodations(xml)
