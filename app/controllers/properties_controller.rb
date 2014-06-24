@@ -176,6 +176,8 @@ class PropertiesController < ApplicationController
       render :show_hotel
     elsif @property.new_development?
       render :show_new_development
+    elsif @property.flip_key_property
+      render :show_flip_key
     end
   end
 
