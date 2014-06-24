@@ -1,4 +1,3 @@
-# encoding: utf-8
 class Basket
   attr_accessor :lines
 

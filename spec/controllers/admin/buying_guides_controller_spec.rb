@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::BuyingGuidesController do
-  let(:website) { mock_model(Website).as_null_object }
-  let(:buying_guide) { mock_model(BuyingGuide).as_null_object }
+  let(:website) { double(Website).as_null_object }
+  let(:buying_guide) { double(BuyingGuide).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)

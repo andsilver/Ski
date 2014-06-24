@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PvPlaceResortsController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
@@ -13,7 +13,7 @@ describe PvPlaceResortsController do
     end
 
     describe 'POST create' do
-      let(:pv_place_resort) { mock_model(PvPlaceResort).as_null_object }
+      let(:pv_place_resort) { double(PvPlaceResort).as_null_object }
       let(:params) { { pv_place_resort: { 'resort_id' => '1', 'pv_place_code' => 'FR-FR-05-FR-SEC'} } }
 
       before do
@@ -54,7 +54,7 @@ describe PvPlaceResortsController do
     end
 
     describe 'DELETE destroy' do
-      let(:pv_place_resort) { mock_model(PvPlaceResort).as_null_object }
+      let(:pv_place_resort) { double(PvPlaceResort).as_null_object }
 
       before do
         PvPlaceResort.stub(:find).and_return(pv_place_resort)

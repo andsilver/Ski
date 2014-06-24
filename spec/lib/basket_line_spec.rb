@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe BasketLine do
   describe '#initialize' do
@@ -9,7 +9,7 @@ describe BasketLine do
 
   describe '#order_description' do
     context 'with an advert' do
-      let(:advert) { mock_model(Advert, months: 12, to_s: 'Advert') }
+      let(:advert) { double(Advert, months: 12, to_s: 'Advert') }
 
       before do
         @bl = BasketLine.new
@@ -47,13 +47,13 @@ describe BasketLine do
     it 'returns true when there are windows' do
       bl = BasketLine.new
       bl.windows = '1'
-      expect(bl.pay_monthly?).to be_true
+      expect(bl.pay_monthly?).to be_truthy
     end
 
     it 'returns false when there are no windows' do
       bl = BasketLine.new
       bl.windows = '0'
-      expect(bl.pay_monthly?).to be_false
+      expect(bl.pay_monthly?).to be_falsey
     end
   end
 

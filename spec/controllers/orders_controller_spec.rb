@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe OrdersController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before { Website.stub(:first).and_return(website) }
 
@@ -9,7 +9,7 @@ describe OrdersController do
     context 'when signed in' do
       before { signed_in }
 
-      let(:order) { mock_model(Order).as_null_object }
+      let(:order) { double(Order).as_null_object }
       let(:invoice) { double(Invoice, filename: 'test-files/invoice.pdf') }
 
       it 'finds the order' do

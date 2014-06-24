@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Resorts admin' do
   fixtures :countries, :holiday_types, :regions, :roles, :users, :websites
@@ -28,7 +28,7 @@ feature 'Resorts admin' do
     visit admin_resorts_path
     click_link 'Delete Bowness-on-Windermere'
     click_button 'Delete Properties'
-    expect(bow.properties.any?).to be_false
+    expect(bow.properties.any?).to be_falsey
   end
 
   scenario 'Add resort to region from resort page' do

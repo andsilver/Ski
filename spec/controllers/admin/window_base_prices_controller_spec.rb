@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::WindowBasePricesController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   def mock_window_base_price(stubs = {})
-    @mock_window_base_price ||= mock_model(WindowBasePrice, stubs)
+    @mock_window_base_price ||= double(WindowBasePrice, stubs)
   end
 
   before do
@@ -67,6 +67,7 @@ describe Admin::WindowBasePricesController do
         end
 
         it 'redirects to admin window base prices path' do
+          mock_window_base_price.stub(:destroy)
           delete 'destroy', id: '1'
           expect(response).to redirect_to admin_window_base_prices_path
         end

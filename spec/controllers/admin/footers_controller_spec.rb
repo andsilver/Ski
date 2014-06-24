@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::FootersController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   def mock_footer(stubs = {})
-    @mock_footer ||= mock_model(Footer, stubs)
+    @mock_footer ||= double(Footer, stubs)
   end
 
   before do
@@ -69,6 +69,7 @@ describe Admin::FootersController do
         end
 
         it 'redirects to admin footers path' do
+          mock_footer.stub(:destroy)
           delete 'destroy', id: '1'
           expect(response).to redirect_to admin_footers_path
         end

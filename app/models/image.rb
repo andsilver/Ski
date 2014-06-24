@@ -138,8 +138,8 @@ class Image < ActiveRecord::Base
 
       unless FileTest.exist?(path)
         # Thumbnail generation failed; assume problem with original.
-        if File.exist?(original_path) && source_url.present?
-          FileUtils.rm(original_path)
+        if FileTest.exist?(original_path) && source_url.present?
+          FileUtils.rm(original_path, force: true)
           puts "Deleting original: #{original_path}"
         end
         return IMAGE_MISSING

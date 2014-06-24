@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CategoriesController do
-  let(:website) { mock_model(Website).as_null_object }
-  let(:category) { mock_model(Category).as_null_object }
+  let(:website) { double(Website).as_null_object }
+  let(:category) { double(Category).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)

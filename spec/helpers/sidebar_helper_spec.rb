@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SidebarHelper do
   describe '#sidebar_html' do
@@ -38,18 +38,18 @@ describe SidebarHelper do
 
   describe '#website_sidebar_html' do
     it 'returns website sidebar HTML belonging to @w' do
-      assign(:w, mock_model(Website, sidebar_html: 'website sidebar HTML'))
+      assign(:w, double(Website, sidebar_html: 'website sidebar HTML'))
       expect(helper.website_sidebar_html).to eq('website sidebar HTML')
     end
   end
 
   describe '#holiday_type_sidebar_html' do
-    let(:ski) { mock_model(HolidayType, sidebar_html: 'ski HTML') }
-    let(:lakes) { mock_model(HolidayType, sidebar_html: 'lakes HTML') }
-    let(:city_breaks) { mock_model(HolidayType, sidebar_html: 'city breaks HTML') }
-    let(:france) { mock_model(Country) }
-    let(:rhone_alpes) { mock_model(Region) } 
-    let(:chamonix) { mock_model(Resort) } 
+    let(:ski) { double(HolidayType, sidebar_html: 'ski HTML') }
+    let(:lakes) { double(HolidayType, sidebar_html: 'lakes HTML') }
+    let(:city_breaks) { double(HolidayType, sidebar_html: 'city breaks HTML') }
+    let(:france) { double(Country) }
+    let(:rhone_alpes) { double(Region) }
+    let(:chamonix) { double(Resort) }
 
     it 'returns sidebar HTML from @holiday_type' do
       assign(:holiday_type, ski)

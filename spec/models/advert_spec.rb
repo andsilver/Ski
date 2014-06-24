@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Advert do
   describe ".create_for" do
@@ -13,7 +13,7 @@ describe Advert do
     end
 
     context 'when the basket does not contain the object' do
-      let(:advert) { mock_model(Advert).as_null_object }
+      let(:advert) { double(Advert).as_null_object }
 
       before do
         Advert.stub(:basket_contains?).and_return(false)
@@ -41,7 +41,7 @@ describe Advert do
 
   describe ".new_for" do
     it "returns an Advert" do
-      expect(Advert.new_for(Property.new({user_id: 1})).is_a?(Advert)).to be_true
+      expect(Advert.new_for(Property.new({user_id: 1})).is_a?(Advert)).to be_truthy
     end
   end
 
@@ -57,13 +57,13 @@ describe Advert do
     it 'returns true when expired_at is earlier than the current time' do
       a = valid_advert
       a.expires_at = Time.now - 1.minute
-      expect(a.expired?).to be_true
+      expect(a.expired?).to be_truthy
     end
 
     it 'returns false expired_at is later than the current time' do
       a = valid_advert
       a.expires_at = Time.now + 1.minute
-      expect(a.expired?).to be_false
+      expect(a.expired?).to be_falsey
     end
   end
 
@@ -104,8 +104,8 @@ describe Advert do
 
   describe "#to_s" do
     context "when it has an object" do
-      let(:property) { mock_model(Property).as_null_object }
-      let(:resort) { mock_model(Resort).as_null_object }
+      let(:property) { double(Property).as_null_object }
+      let(:resort) { double(Resort).as_null_object }
 
       it "returns a string containing the object's name, resort and type description" do
         a = valid_advert
@@ -128,7 +128,7 @@ describe Advert do
 
   describe "#price" do
     context "when it has an object" do
-      let(:property) { mock_model(Property).as_null_object }
+      let(:property) { double(Property).as_null_object }
 
       it "returns the object's price" do
         price_of_property = 99
@@ -171,7 +171,7 @@ describe Advert do
       a.starts_at = Time.zone.now - (1.year + 1.day)
       a.months = 12
       a.expires_at = Time.zone.now - 1.day
-      expect(a.old?).to be_true
+      expect(a.old?).to be_truthy
     end
 
     it 'returns false if the starts_at + number of months is in the future' do
@@ -179,7 +179,7 @@ describe Advert do
       a.starts_at = Time.zone.now - (1.day)
       a.months = 12
       a.expires_at = Time.zone.now + (1.year - 1.day)
-      expect(a.old?).to be_false
+      expect(a.old?).to be_falsey
     end
 
     it 'returns false regardless of starts_at if expires_at is in the future' do
@@ -187,7 +187,7 @@ describe Advert do
       a.starts_at = Time.zone.now - (1.year + 1.day)
       a.months = 12
       a.expires_at = Time.zone.now + 1.hour
-      expect(a.old?).to be_false
+      expect(a.old?).to be_falsey
     end
   end
 

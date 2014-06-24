@@ -1,14 +1,14 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe RolesController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
   end
 
   describe "PUT update" do
-    let(:role) { mock_model(Role).as_null_object }
+    let(:role) { double(Role).as_null_object }
     let(:update_params) {{ id: '1', role: { name: 'A Role'}}}
 
     context "when signed in as admin" do

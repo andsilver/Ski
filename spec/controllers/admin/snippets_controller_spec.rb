@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::SnippetsController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   def mock_snippet(stubs = {})
-    @mock_snippet ||= mock_model(Snippet, stubs)
+    @mock_snippet ||= double(Snippet, stubs)
   end
 
   before do
@@ -67,6 +67,7 @@ describe Admin::SnippetsController do
         end
 
         it 'redirects to admin snippets path' do
+          mock_snippet.stub(:destroy)
           delete 'destroy', id: '1'
           expect(response).to redirect_to admin_snippets_path
         end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Role do
   it { should respond_to(:advertises_hotels?) }
@@ -9,18 +9,18 @@ describe Role do
       role.advertises_properties_for_rent = true
       role.advertises_properties_for_sale = false
       role.advertises_generally = false
-      expect(role.only_advertises_properties_for_rent?).to be_true
+      expect(role.only_advertises_properties_for_rent?).to be_truthy
 
       role.advertises_properties_for_rent = false
-      expect(role.only_advertises_properties_for_rent?).to be_false
+      expect(role.only_advertises_properties_for_rent?).to be_falsey
 
       role.advertises_properties_for_rent = true
       role.advertises_properties_for_sale = true
-      expect(role.only_advertises_properties_for_rent?).to be_false
+      expect(role.only_advertises_properties_for_rent?).to be_falsey
 
       role.advertises_properties_for_sale = true
       role.advertises_generally = true
-      expect(role.only_advertises_properties_for_rent?).to be_false
+      expect(role.only_advertises_properties_for_rent?).to be_falsey
     end
   end
 
@@ -30,18 +30,18 @@ describe Role do
       role.advertises_properties_for_sale = true
       role.advertises_properties_for_rent = false
       role.advertises_generally = false
-      expect(role.only_advertises_properties_for_sale?).to be_true
+      expect(role.only_advertises_properties_for_sale?).to be_truthy
 
       role.advertises_properties_for_sale = false
-      expect(role.only_advertises_properties_for_sale?).to be_false
+      expect(role.only_advertises_properties_for_sale?).to be_falsey
 
       role.advertises_properties_for_sale = true
       role.advertises_properties_for_rent = true
-      expect(role.only_advertises_properties_for_sale?).to be_false
+      expect(role.only_advertises_properties_for_sale?).to be_falsey
 
       role.advertises_properties_for_rent = true
       role.advertises_generally = true
-      expect(role.only_advertises_properties_for_sale?).to be_false
+      expect(role.only_advertises_properties_for_sale?).to be_falsey
     end
   end
 

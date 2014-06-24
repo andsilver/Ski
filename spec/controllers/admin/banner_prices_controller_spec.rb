@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::BannerPricesController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { FactoryGirl.build(:website) }
 
   before do
     Website.stub(:first).and_return(website)
@@ -41,7 +41,7 @@ describe Admin::BannerPricesController do
     end
 
     describe 'POST create' do
-      let(:banner_price) { mock_model(BannerPrice).as_null_object }
+      let(:banner_price) { double(BannerPrice).as_null_object }
       let(:params) { { banner_price: { 'current_banner_number' => '1', 'price' => '10'} } }
 
       before do
@@ -102,7 +102,7 @@ describe Admin::BannerPricesController do
 
     describe 'PUT update' do
       let(:params) { { id: '1', banner_price: { 'current_banner_number' => '1', 'price' => '10'} } }
-      let(:banner_price) { mock_model(BannerPrice).as_null_object }
+      let(:banner_price) { double(BannerPrice).as_null_object }
 
       before do
         BannerPrice.stub(:find).and_return(banner_price)
@@ -147,7 +147,7 @@ describe Admin::BannerPricesController do
     end
 
     describe 'DELETE destroy' do
-      let(:banner_price) { mock_model(BannerPrice).as_null_object }
+      let(:banner_price) { double(BannerPrice).as_null_object }
 
       before do
         BannerPrice.stub(:find).and_return(banner_price)

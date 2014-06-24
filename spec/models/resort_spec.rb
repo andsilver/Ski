@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require_relative 'shared_model_examples'
 
 describe Resort do
@@ -29,13 +29,13 @@ describe Resort do
     it 'returns true if the page exists' do
       r = Resort.new
       r.stub(:page).and_return(Page.new)
-      expect(r.has_page?('a-page')).to be_true
+      expect(r.has_page?('a-page')).to be_truthy
     end
 
     it 'returns false if the page does not exist' do
       r = Resort.new
       r.stub(:page).and_return(nil)
-      expect(r.has_page?('a-page')).to be_false
+      expect(r.has_page?('a-page')).to be_falsey
     end
   end
 
@@ -70,11 +70,11 @@ describe Resort do
 
   describe '#ski?' do
     it 'returns false when it has no ski-holidays holiday type' do
-      expect(resort_with_holiday_type('city-breaks').ski?).to be_false
+      expect(resort_with_holiday_type('city-breaks').ski?).to be_falsey
     end
 
     it 'returns true when it has a ski-holidays holiday type' do
-      expect(resort_with_holiday_type('ski-holidays').ski?).to be_true
+      expect(resort_with_holiday_type('ski-holidays').ski?).to be_truthy
     end
 
     def resort_with_holiday_type(slug)

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   fixtures :users
@@ -32,8 +32,8 @@ describe User do
   describe '#delete_old_windows' do
     it 'deletes old window adverts' do
       alice = users(:alice)
-      old_window = mock_model(Advert, {:old? => true})
-      current_window = mock_model(Advert, {:old? => false})
+      old_window = double(Advert, {:old? => true})
+      current_window = double(Advert, {:old? => false})
 
       alice.stub(:windows).and_return [old_window, current_window]
 
@@ -46,14 +46,14 @@ describe User do
 
   describe '#advertises_through_windows?' do
     it 'returns false if the user has no role' do
-      expect(User.new.advertises_through_windows?).to be_false
+      expect(User.new.advertises_through_windows?).to be_falsey
     end
 
     it "returns the value of the role's advertises_through_windows?" do
-      role = mock_model(Role, :advertises_through_windows? => true)
+      role = double(Role, :advertises_through_windows? => true)
       user = User.new
       user.stub(:role).and_return(role)
-      expect(user.advertises_through_windows?).to be_true
+      expect(user.advertises_through_windows?).to be_truthy
     end
   end
 
@@ -61,13 +61,13 @@ describe User do
     it "returns true when there are one or more properties for rent" do
       user = User.new
       user.stub(:properties_for_rent).and_return([:a_property])
-      expect(user.has_properties_for_rent?).to be_true
+      expect(user.has_properties_for_rent?).to be_truthy
     end
 
     it "returns false when there are 0 properties for rent" do
       user = User.new
       user.stub(:properties_for_rent).and_return([])
-      expect(user.has_properties_for_rent?).to be_false
+      expect(user.has_properties_for_rent?).to be_falsey
     end
   end
 
@@ -75,13 +75,13 @@ describe User do
     it "returns true when there are one or more properties for sale" do
       user = User.new
       user.stub(:properties_for_sale).and_return([:a_property])
-      expect(user.has_properties_for_sale?).to be_true
+      expect(user.has_properties_for_sale?).to be_truthy
     end
 
     it "returns false when there are 0 properties for sale" do
       user = User.new
       user.stub(:properties_for_sale).and_return([])
-      expect(user.has_properties_for_sale?).to be_false
+      expect(user.has_properties_for_sale?).to be_falsey
     end
   end
 
@@ -95,45 +95,45 @@ describe User do
     it 'returns true if the VAT number is blank and the country is in the EU' do
       user = User.new(vat_number: '')
       user.stub(:billing_country).and_return(uk)
-      expect(user.pays_vat?).to be_true
+      expect(user.pays_vat?).to be_truthy
       user.stub(:billing_country).and_return(france)
-      expect(user.pays_vat?).to be_true
+      expect(user.pays_vat?).to be_truthy
     end
 
     it 'returns false if the VAT number is given and the country is in the EU, not UK' do
       user = User.new(vat_number: '123')
       user.stub(:billing_country).and_return(france)
-      expect(user.pays_vat?).to be_false
+      expect(user.pays_vat?).to be_falsey
     end
 
     it 'returns false if the country is not in the EU' do
       user = User.new(vat_number: '')
       user.stub(:billing_country).and_return(us)
-      expect(user.pays_vat?).to be_false
+      expect(user.pays_vat?).to be_falsey
       user.vat_number = '123'
-      expect(user.pays_vat?).to be_false
+      expect(user.pays_vat?).to be_falsey
     end
 
     it 'returns true if country is United Kingdom' do
       user = User.new(vat_number: '')
       user.stub(:billing_country).and_return(uk)
-      expect(user.pays_vat?).to be_true
+      expect(user.pays_vat?).to be_truthy
       user.vat_number = '123'
-      expect(user.pays_vat?).to be_true
+      expect(user.pays_vat?).to be_truthy
     end
 
     it 'returns false if billing country is UK but VAT country is France' do
       user = User.new(vat_number: '123')
       user.stub(:billing_country).and_return(uk)
       user.stub(:vat_country).and_return(france)
-      expect(user.pays_vat?).to be_false
+      expect(user.pays_vat?).to be_falsey
     end
 
     it 'returns true if billing country is US but VAT country is UK' do
       user = User.new(vat_number: '123')
       user.stub(:billing_country).and_return(us)
       user.stub(:vat_country).and_return(uk)
-      expect(user.pays_vat?).to be_true
+      expect(user.pays_vat?).to be_truthy
     end
   end
 
@@ -155,7 +155,7 @@ describe User do
   describe '#empty_basket' do
     it 'deletes all adverts in basket' do
       user = User.new
-      advert = mock_model(Advert)
+      advert = double(Advert)
       advert.should_receive(:delete)
       adverts = [advert]
       user.stub(:adverts_in_basket).and_return(adverts)
@@ -165,10 +165,10 @@ describe User do
 
   describe '#new_advertisables' do
     it 'returns an array of new advertisables' do
-      p_new = mock_model(Property, advert_status: :new)
-      p_live = mock_model(Property, advert_status: :live)
-      d_new = mock_model(DirectoryAdvert, advert_status: :new)
-      d_live = mock_model(DirectoryAdvert, advert_status: :live)
+      p_new = double(Property, advert_status: :new)
+      p_live = double(Property, advert_status: :live)
+      d_new = double(DirectoryAdvert, advert_status: :new)
+      d_live = double(DirectoryAdvert, advert_status: :live)
       u = User.new
       u.stub(:properties).and_return([p_new, p_live])
       u.stub(:directory_adverts).and_return([d_new, d_live])
@@ -180,8 +180,14 @@ describe User do
   end
 
   describe '#remove_expired_coupon' do
+    let(:coupon) do
+      c = Coupon.new
+      c.stub(:expired?).and_return(expired)
+      c
+    end
+
     context 'with an expired coupon' do
-      let(:coupon) { mock_model(Coupon, :expired? => true) }
+      let(:expired) { true }
 
       it 'removes it' do
         u = User.new
@@ -199,7 +205,7 @@ describe User do
     end
 
     context 'with an unexpired coupon' do
-      let(:coupon) { mock_model(Coupon, :expired? => false) }
+      let(:expired) { false }
 
       it 'leaves it' do
         u = User.new

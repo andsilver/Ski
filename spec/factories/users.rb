@@ -6,6 +6,7 @@ FactoryGirl.define do
     password             'secret'
     billing_street       '123 Street'
     billing_city         'London'
+    phone                '+44.1234 567890'
     description          ''
     terms_and_conditions true
     association :billing_country, factory: :country

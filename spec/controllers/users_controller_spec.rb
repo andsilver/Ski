@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UsersController do
-  let(:website) { mock_model(Website).as_null_object }
-  let(:user) { mock_model(User).as_null_object }
+  let(:website) { double(Website).as_null_object }
+  let(:user) { double(User).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
@@ -29,11 +29,12 @@ describe UsersController do
   end
 
   describe "POST create" do
-    let(:role) { mock_model(Role).as_null_object }
+    let(:role) { double(Role).as_null_object }
     let(:params) { { user: { "name" => "Carey", "role_id" => "1" }} }
 
     before do
       Role.stub(:find_by).and_return(role)
+      UserNotifier.stub_chain(:welcome, :deliver)
     end
 
     it "instantiates a new user with the given cleansed params" do
@@ -141,7 +142,7 @@ describe UsersController do
       end
 
       it 'mentions the user\'s name in the heading' do
-        u = mock_model(User, {name: 'Jane'})
+        u = double(User, {name: 'Jane'})
         User.stub(:find).and_return(u)
         get 'edit', id: '1'
         expect(assigns(:heading)).to eq('Jane')
@@ -173,7 +174,10 @@ describe UsersController do
       end
 
       context 'when user' do
-        before { controller.stub(:admin?).and_return(false) }
+        before do
+          signed_in
+          controller.stub(:admin?).and_return(false)
+        end
 
         it 'redirects to My Details' do
           patch :update, update_params
@@ -184,21 +188,21 @@ describe UsersController do
           patch :update, update_params
           expect(flash.notice).to eq I18n.t('my_details_saved')
         end
-      end
-    end
 
-    context 'when the user fails to update' do
-      before { user.stub(:update_attributes).and_return(false) }
+        context 'when the user fails to update' do
+          before { user.stub(:update_attributes).and_return(false) }
 
-      it 'renders the edit template' do
-        patch :update, update_params
-        expect(response).to render_template(:edit)
-      end
+          it 'renders the edit template' do
+            patch :update, update_params
+            expect(response).to render_template(:edit)
+          end
 
-      it 'assigns @heading and @breadcrumbs' do
-        patch :update, update_params
-        expect(assigns(:heading)).to be
-        expect(assigns(:breadcrumbs)).to be
+          it 'assigns @heading and @breadcrumbs' do
+            patch :update, update_params
+            expect(assigns(:heading)).to be
+            expect(assigns(:breadcrumbs)).to be
+          end
+        end
       end
     end
   end

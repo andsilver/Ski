@@ -1,11 +1,12 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'properties/_featured.html.erb' do
   let(:property) { FactoryGirl.create(:property) }
 
   context 'with property image' do
     before do
-      property.image = mock_model(Image, url: '/up/images/chalet.png')
+      property.image = FactoryGirl.create(:image)
+      property.image.stub(url: '/up/images/chalet.png')
     end
 
     it 'displays the main property image' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Property do
   # ActiveRecord
@@ -51,28 +51,28 @@ describe Property do
   describe '#for_rent?' do
     it 'returns true when listing_type is LISTING_TYPE_FOR_RENT' do
       property = Property.new(listing_type: Property::LISTING_TYPE_FOR_RENT)
-      expect(property.for_rent?).to be_true
+      expect(property.for_rent?).to be_truthy
     end
 
     it 'returns false when listing_type is anything else' do
       property = Property.new(listing_type: Property::LISTING_TYPE_FOR_SALE)
-      expect(property.for_rent?).to be_false
+      expect(property.for_rent?).to be_falsey
       property = Property.new(listing_type: Property::LISTING_TYPE_HOTEL)
-      expect(property.for_rent?).to be_false
+      expect(property.for_rent?).to be_falsey
     end
   end
 
   describe '#for_sale?' do
     it 'returns true when listing_type is LISTING_TYPE_FOR_SALE' do
       property = Property.new(listing_type: Property::LISTING_TYPE_FOR_SALE)
-      expect(property.for_sale?).to be_true
+      expect(property.for_sale?).to be_truthy
     end
   end
 
   describe '#hotel?' do
     it 'returns true when listing_type is LISTING_TYPE_HOTEL' do
       property = Property.new(listing_type: Property::LISTING_TYPE_HOTEL)
-      expect(property.hotel?).to be_true
+      expect(property.hotel?).to be_truthy
     end
   end
 
@@ -179,24 +179,26 @@ describe Property do
     context 'when not Interhome accommodation' do
       it 'returns true if the property is not for sale' do
         p = Property.new(listing_type: Property::LISTING_TYPE_FOR_RENT)
-        expect(p.calculate_late_availability([])).to be_true
+        expect(p.calculate_late_availability([])).to be_truthy
       end
 
       it 'returns false if the property is for sale' do
         p = Property.new(listing_type: Property::LISTING_TYPE_FOR_SALE)
-        expect(p.calculate_late_availability([])).to be_false
+        expect(p.calculate_late_availability([])).to be_falsey
       end
     end
 
     it 'returns the value of the Interhome accommodation availability' do
-      available = mock_model(InterhomeAccommodation, available_to_check_in_on_dates?: true).as_null_object
+      available = InterhomeAccommodation.new
+      available.stub(available_to_check_in_on_dates?: true)
       p = Property.new
       p.interhome_accommodation = available
-      expect(p.calculate_late_availability([])).to be_true
+      expect(p.calculate_late_availability([])).to be_truthy
 
-      unavailable = mock_model(InterhomeAccommodation, available_to_check_in_on_dates?: false).as_null_object
+      unavailable = InterhomeAccommodation.new
+      unavailable.stub(available_to_check_in_on_dates?: false)
       p.interhome_accommodation = unavailable
-      expect(p.calculate_late_availability([])).to be_false
+      expect(p.calculate_late_availability([])).to be_falsey
     end
   end
 end

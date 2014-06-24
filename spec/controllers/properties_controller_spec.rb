@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PropertiesController do
-  let(:property) { mock_model(Property).as_null_object }
-  let(:website) { mock_model(Website).as_null_object }
-  let(:resort) { mock_model(Resort).as_null_object }
-  let(:non_admin_role) { mock_model(Role).as_null_object }
+  let(:property) { FactoryGirl.create(:property) }
+  let(:website) { double(Website).as_null_object }
+  let(:resort) { double(Resort).as_null_object }
+  let(:non_admin_role) { double(Role).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
@@ -139,30 +139,24 @@ describe PropertiesController do
   end
 
   describe "GET new" do
-    let(:current_user) { mock_model(User).as_null_object }
+    let(:current_user) { double(User).as_null_object }
 
     before do
-      session[:user] = 1
-      User.stub(:find_by).and_return(current_user)
+      controller.stub(:signed_in?).and_return(true)
+      controller.stub(:current_user).and_return(current_user)
       current_user.stub(:role).and_return(non_admin_role)
-      Property.stub(:new).and_return(property)
-    end
-
-    it "instantiates a new property" do
-      Property.should_receive(:new)
-      get :new
     end
 
     context "with params[:listing_type] set" do
       it "sets property.listing_type to the given param" do
-        property.should_receive(:listing_type=).with('1')
         get :new, listing_type: '1'
+        expect(assigns(:property).listing_type).to eq 1
       end
     end
 
     context "with params[:listing_type] not set" do
       it "doesn't set property.listing_type" do
-        property.should_not_receive(:listing_type=)
+        Property.any_instance.should_not_receive(:listing_type=)
         get :new
       end
     end
@@ -195,14 +189,16 @@ describe PropertiesController do
   end
 
   describe "POST create" do
-    let(:current_user) { mock_model(User).as_null_object }
-    let(:role) { mock_model(Role).as_null_object }
+    let(:current_user) { double(User).as_null_object }
+    let(:role) { double(Role).as_null_object }
     let(:create_params) {{ id: '1', property: {name: 'A Property'}}}
+    let(:property) { double(Property).as_null_object }
 
     before do
       session[:user] = 1
       Advert.stub(:create_for)
-      User.stub(:find_by).and_return(current_user)
+      controller.stub(:signed_in?).and_return(true)
+      controller.stub(:current_user).and_return(current_user)
       current_user.stub(:role).and_return(role)
       Property.stub(:new).and_return(property)
       property.stub(:user_id).and_return(1)
@@ -278,10 +274,10 @@ describe PropertiesController do
     end
 
     context "when a property is found" do
-      let(:property) { mock_model(Property).as_null_object }
-      let(:resort) { mock_model(Resort).as_null_object }
-      let(:enquiry) { mock_model(Enquiry).as_null_object }
-      let(:property_owner) { mock_model(User).as_null_object }
+      let(:property) { double(Property).as_null_object }
+      let(:resort) { double(Resort).as_null_object }
+      let(:enquiry) { double(Enquiry).as_null_object }
+      let(:property_owner) { double(User).as_null_object }
 
       before do
         Property.stub(:find_by).and_return(property)
@@ -351,7 +347,7 @@ describe PropertiesController do
           end
 
           context "but signed is as the owner" do
-            let(:current_user) { mock_model(User).as_null_object }
+            let(:current_user) { double(User).as_null_object }
 
             it "shows the property" do
               signed_in_user
@@ -396,15 +392,15 @@ describe PropertiesController do
   end
 
   def signed_in_user
-    session[:user] = 1
-    User.stub(:find_by).and_return(current_user)
+    controller.stub(:signed_in?).and_return(true)
+    controller.stub(:current_user).and_return(current_user)
 
     current_user.stub(:role).and_return(non_admin_role)
   end
 
   describe "GET edit" do
-    let(:current_user) { mock_model(User).as_null_object }
-    let(:property) { mock_model(Property).as_null_object }
+    let(:current_user) { double(User).as_null_object }
+    let(:property) { double(Property).as_null_object }
 
     before do
       signed_in_user
@@ -439,7 +435,7 @@ describe PropertiesController do
   end
 
   describe "PUT update" do
-    let(:current_user) { mock_model(User).as_null_object }
+    let(:current_user) { double(User).as_null_object }
     let(:image_id)     { nil }
 
     def put_update
@@ -456,7 +452,7 @@ describe PropertiesController do
     end
 
     context "when a valid property is found" do
-      let(:property) { mock_model(Property).as_null_object }
+      let(:property) { double(Property).as_null_object }
 
       before do
         Property.stub(:find_by).and_return(property)
@@ -534,7 +530,7 @@ describe PropertiesController do
   end
 
   describe 'POST place_in_window' do
-    let(:current_user) { mock_model(User).as_null_object }
+    let(:current_user) { double(User).as_null_object }
 
     before do
       signed_in_user
@@ -556,7 +552,7 @@ describe PropertiesController do
       end
 
       context 'when an advert is found and it is a window' do
-        let(:advert) { mock_model(Advert).as_null_object }
+        let(:advert) { double(Advert).as_null_object }
 
         before do
           Advert.stub(:find_by).and_return(advert)

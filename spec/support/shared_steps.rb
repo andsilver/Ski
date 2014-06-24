@@ -40,9 +40,11 @@ def sign_in_with(email, password)
 end
 
 def signed_in
+  controller.stub(:signed_in?).and_return(true)
   controller.stub(:current_user).and_return(FactoryGirl.create(:user))
 end
 
 def signed_in_as_admin
+  controller.stub(:signed_in?).and_return(true)
   controller.stub(:admin?).and_return(true)
 end

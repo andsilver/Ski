@@ -87,7 +87,7 @@ group :test, :development do
 end
 
 group :test do
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem "capybara"

@@ -1,21 +1,26 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe InterhomeAccommodation do
   describe '#check_in_on_dates?' do
     it 'returns false when there is no InterhomeVacancy' do
-      expect(InterhomeAccommodation.new.available_to_check_in_on_dates?([])).to be_false
+      expect(InterhomeAccommodation.new.available_to_check_in_on_dates?([])).to be_falsey
     end
 
     it 'delegates to InterhomeVacancy' do
       accom = InterhomeAccommodation.new
 
-      available = mock_model(InterhomeVacancy, available_to_check_in_on_dates?: true, :[]= => nil, delete: true).as_null_object
+      available = InterhomeVacancy.new
+      available.stub(available_to_check_in_on_dates?: true)
+      available.stub(:[]= => nil)
+      available.stub(delete: true)
       accom.interhome_vacancy = available
-      expect(accom.available_to_check_in_on_dates?([])).to be_true
+      expect(accom.available_to_check_in_on_dates?([])).to be_truthy
 
-      unavailable = mock_model(InterhomeVacancy, available_to_check_in_on_dates?: false, :[]= => nil).as_null_object
+      unavailable = InterhomeVacancy.new
+      unavailable.stub(available_to_check_in_on_dates?: false)
+      unavailable.stub(:[]= => nil)
       accom.interhome_vacancy = unavailable
-      expect(accom.available_to_check_in_on_dates?([])).to be_false
+      expect(accom.available_to_check_in_on_dates?([])).to be_falsey
     end
   end
 end

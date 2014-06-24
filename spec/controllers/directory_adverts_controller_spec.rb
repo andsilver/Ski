@@ -1,13 +1,13 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe DirectoryAdvertsController do
-  let(:website) { mock_model(Website).as_null_object }
-  let(:current_user) { mock_model(User).as_null_object }
+  let(:website) { double(Website).as_null_object }
+  let(:current_user) { double(User).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
-    session[:user] = 1
-    User.stub(:find_by).and_return(current_user)
+    controller.stub(:signed_in?).and_return(true)
+    controller.stub(:current_user).and_return(current_user)
   end
 
   describe "GET index" do
@@ -27,7 +27,7 @@ describe DirectoryAdvertsController do
   end
 
   describe "GET new" do
-    let(:directory_advert) { mock_model(DirectoryAdvert).as_null_object }
+    let(:directory_advert) { double(DirectoryAdvert).as_null_object }
 
     before do
       DirectoryAdvert.stub(:new).and_return(directory_advert)
@@ -45,7 +45,7 @@ describe DirectoryAdvertsController do
   end
 
   describe "GET show" do
-    let(:directory_advert) { mock_model(DirectoryAdvert).as_null_object }
+    let(:directory_advert) { double(DirectoryAdvert).as_null_object }
 
     it "finds a directory advert specified by param[:id]" do
       DirectoryAdvert.should_receive(:find_by).with(id: '1')
@@ -53,10 +53,10 @@ describe DirectoryAdvertsController do
     end
 
     context "when the advert is found" do
-      let(:advert) { mock_model(Advert).as_null_object }
-      let(:category) { mock_model(Category).as_null_object }
-      let(:resort) { mock_model(Resort).as_null_object }
-      let(:country) { mock_model(Country).as_null_object }
+      let(:advert) { double(Advert).as_null_object }
+      let(:category) { double(Category).as_null_object }
+      let(:resort) { double(Resort).as_null_object }
+      let(:country) { double(Country).as_null_object }
 
       before do
         DirectoryAdvert.stub(:find_by).and_return(directory_advert)
@@ -110,12 +110,13 @@ describe DirectoryAdvertsController do
   end
 
   describe "POST create" do
-    let(:directory_advert) { mock_model(DirectoryAdvert).as_null_object }
+    let(:directory_advert) { double(DirectoryAdvert).as_null_object }
 
     before do
       DirectoryAdvert.stub(:new).and_return(directory_advert)
       directory_advert.stub(:default_months).and_return(12)
       directory_advert.stub(:user_id).and_return(1)
+      Advert.stub(:new_for).with(directory_advert).and_return(Advert.new(user_id: 1))
     end
 
     def post_valid
@@ -166,7 +167,7 @@ describe DirectoryAdvertsController do
   end
 
   describe "DELETE destroy" do
-    let(:directory_advert) { mock_model(DirectoryAdvert).as_null_object }
+    let(:directory_advert) { double(DirectoryAdvert).as_null_object }
 
     before do
       DirectoryAdvert.stub(:find).and_return(directory_advert)

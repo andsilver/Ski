@@ -1,14 +1,13 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::AirportDistancesController do
-  let(:website) { mock_model(Website).as_null_object }
-  let(:current_user) { mock_model(User).as_null_object }
-  let(:airport_distance) { mock_model(AirportDistance).as_null_object }
+  let(:website) { Website.new }
+  let(:current_user) { FactoryGirl.build(:user) }
+  let(:airport_distance) { double(AirportDistance).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
-    session[:user] = 1
-    User.stub(:find_by).and_return(current_user)
+    controller.stub(:admin?).and_return(true)
   end
 
   describe 'GET index' do

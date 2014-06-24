@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'layouts/_resort_nav' do
-  let(:resort) { mock_model(Resort).as_null_object }
+  let(:resort) { double(Resort).as_null_object }
   before { assign(:resort, resort) }
 
   context 'when resort has guide' do

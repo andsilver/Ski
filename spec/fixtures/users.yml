@@ -22,6 +22,7 @@ bob:
   billing_street: 10 Pound Walk
   billing_city: Manchester
   billing_country: united_kingdom
+  phone: '+44.1234567890'
   terms_and_conditions: true
   role: property_developer
 
@@ -35,6 +36,7 @@ dave:
   billing_street: Restover Lodge
   billing_city: Doncaster
   billing_country: united_kingdom
+  phone: '+44.1234567890'
   terms_and_conditions: true
   role: property_owner
 
@@ -48,6 +50,7 @@ emily:
   billing_street: Restover Lodge
   billing_city: Doncaster
   billing_country: united_kingdom
+  phone: '+44.1234567890'
   terms_and_conditions: true
   role: other_business
 
@@ -61,5 +64,6 @@ tony:
   billing_street: Restover Lodge
   billing_city: Doncaster
   billing_country: united_kingdom
+  phone: '+44.1234567890'
   terms_and_conditions: true
   role: administrator

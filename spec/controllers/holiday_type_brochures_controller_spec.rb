@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe HolidayTypeBrochuresController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)

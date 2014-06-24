@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PaymentsController do
-  let(:website) { mock_model(Website).as_null_object }
-  let(:payment) { mock_model(Payment).as_null_object }
+  let(:website) { double(Website).as_null_object }
+  let(:payment) { double(Payment).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)

@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ResortsController do
-  let(:website) { mock_model(Website).as_null_object }
-  let(:resort) { mock_model(Resort).as_null_object }
+  let(:website) { double(Website).as_null_object }
+  let(:resort) { FactoryGirl.create(:resort) }
 
   before do
     Website.stub(:first).and_return(website)
@@ -11,7 +11,7 @@ describe ResortsController do
 
   shared_examples 'a featured properties finder' do |action, params|
     before do
-      Resort.stub(:find_by).and_return(mock_model(Resort, visible: true).as_null_object)
+      Resort.stub(:find_by).and_return(double(Resort, visible: true).as_null_object)
     end
 
     it 'assigns @featured_properties' do

@@ -1,14 +1,14 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::CountriesController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
   end
 
   def mock_country
-    @mock_country ||= mock_model(Country)
+    @mock_country ||= double(Country)
   end
 
   context 'when signed in as admin' do

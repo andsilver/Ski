@@ -4,7 +4,7 @@ class EnquiriesController < ApplicationController
   before_action :user_required, only: [:my, :show]
 
   def my
-    @enquiries = @current_user.enquiries
+    @enquiries = current_user.enquiries
   end
 
   def show

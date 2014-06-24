@@ -1,14 +1,14 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::CarouselSlidesController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
   end
 
   def mock_carousel_slide(stubs={})
-    @mock_carousel_slide ||= mock_model(CarouselSlide, stubs)
+    @mock_carousel_slide ||= double(CarouselSlide, stubs)
   end
 
   context 'as admin' do

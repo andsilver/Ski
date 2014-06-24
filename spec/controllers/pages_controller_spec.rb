@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PagesController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
@@ -9,7 +9,7 @@ describe PagesController do
   end
 
   def page(stubs = {})
-    @page ||= mock_model(Page, stubs).as_null_object
+    @page ||= double(Page, stubs).as_null_object
   end
 
   describe 'POST create' do
@@ -79,13 +79,13 @@ describe PagesController do
     end
 
     context 'when the page is found' do
-      let(:page) { mock_model(Page).as_null_object }
+      let(:page) { double(Page).as_null_object }
 
       it 'duplicates the page' do
         Page.stub(:find).and_return(FactoryGirl.create(:page, title: 'xyzzy'))
         get 'copy', id: '1'
         expect(assigns(:page).title).to eq 'xyzzy'
-        expect(assigns(:page).new_record?).to be_true
+        expect(assigns(:page).new_record?).to be_truthy
       end
 
       it 'renders the new template' do

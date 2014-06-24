@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SessionsController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
@@ -13,8 +13,8 @@ describe SessionsController do
   end
 
   describe "POST create" do
-    let(:user) { mock_model(User).as_null_object }
-    let(:role) { mock_model(Role).as_null_object }
+    let(:user) { double(User).as_null_object }
+    let(:role) { double(Role).as_null_object }
 
     before do
       user.stub(:role).and_return(role)
@@ -90,7 +90,7 @@ describe SessionsController do
   describe 'GET switch_user' do
     it 'requires admin' do
       controller.stub(:admin?).and_return(false)
-      User.stub(:find).and_return(mock_model(User).as_null_object)
+      User.stub(:find).and_return(double(User).as_null_object)
       get 'switch_user', user_id: '1'
       expect(response).to redirect_to sign_in_path
     end

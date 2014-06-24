@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe EnquiriesController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
@@ -9,11 +9,11 @@ describe EnquiriesController do
 
   describe "GET my" do
     context "when signed in" do
-      let(:current_user) { mock_model(User).as_null_object }
+      let(:current_user) { double(User).as_null_object }
 
       before do
-        session[:user] = 1
-        User.stub(:find_by).and_return(current_user)
+        controller.stub(:signed_in?).and_return(true)
+        controller.stub(:current_user).and_return(current_user)
       end
 
       it "finds enquiries belonging to the current user" do
@@ -38,8 +38,8 @@ describe EnquiriesController do
   end
 
   describe "POST create" do
-    let(:property) { mock_model(Property).as_null_object }
-    let(:user) { mock_model(User).as_null_object }
+    let(:property) { Property.new }
+    let(:user) { User.new }
 
     before do
       Property.stub(:find).and_return(property)

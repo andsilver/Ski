@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Image do
   it { should respond_to(:source_url) }
@@ -125,9 +125,9 @@ describe Image do
 
         it 'sets to true when sized' do
           i.stub(:remote_image?).and_return(false)
-          File.stub(:exist?).and_return true
+          FileTest.stub(:exist?).and_return true
           i.sized_url(100, :longest_side)
-          expect(i.was_sized).to be_true
+          expect(i.was_sized).to be_truthy
         end
       end
 
@@ -137,14 +137,14 @@ describe Image do
         it 'sets to false when remote' do
           i.stub(:remote_image?).and_return(true)
           i.sized_url(100, :longest_side)
-          expect(i.was_sized).to be_false
+          expect(i.was_sized).to be_falsey
         end
 
         it 'sets to false when file missing' do
           i.stub(:remote_image?).and_return(false)
           File.stub(:exist?).and_return false
           i.sized_url(100, :longest_side)
-          expect(i.was_sized).to be_false
+          expect(i.was_sized).to be_falsey
         end
       end
     end
@@ -198,20 +198,20 @@ describe Image do
       i = Image.new
       i.source_url = 'http://www.example.org/image.jpeg'
       FileTest.stub(:exist?).and_return(false)
-      expect(i.remote_image?).to be_true
+      expect(i.remote_image?).to be_truthy
     end
 
     it "returns false if the file exists" do
       i = Image.new
       i.source_url = 'http://www.example.org/image.jpeg'
       FileTest.stub(:exist?).and_return(true)
-      expect(i.remote_image?).to be_false
+      expect(i.remote_image?).to be_falsey
     end
 
     it "returns false if the source URL is blank" do
       i = Image.new
       FileTest.stub(:exist?).and_return(true)
-      expect(i.remote_image?).to be_false
+      expect(i.remote_image?).to be_falsey
     end
   end
 end

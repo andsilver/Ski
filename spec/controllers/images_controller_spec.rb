@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ImagesController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
@@ -9,7 +9,7 @@ describe ImagesController do
 
   describe 'GET index' do
     it 'assigns all images belonging to the current user to @images' do
-      user = mock_model(User, images: :images)
+      user = double(User, images: :images)
       controller.stub(:current_user).and_return(user)
       get 'index'
       expect(assigns(:images)).to eq :images
@@ -24,7 +24,7 @@ describe ImagesController do
       end
 
       context 'when image height or width > 800' do
-        let(:mock_image) { mock_model(Image).as_null_object }
+        let(:mock_image) { double(Image).as_null_object }
 
         before do
           Image.stub(:new).and_return(mock_image)
@@ -41,7 +41,7 @@ describe ImagesController do
   end
 
   describe 'DELETE destroy' do
-    let(:image) { mock_model(Image).as_null_object }
+    let(:image) { double(Image).as_null_object }
 
     it 'finds the image' do
       Image.should_receive(:find).with('1').and_return(image)

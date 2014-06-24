@@ -1,14 +1,14 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::CurrenciesController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
   end
 
   def mock_currency(stubs = {})
-    @mock_currency ||= mock_model(Currency, stubs)
+    @mock_currency ||= double(Currency, stubs)
   end
 
   context 'when signed in as admin' do

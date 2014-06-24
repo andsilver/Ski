@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::ResortsController do
-  let(:website) { mock_model(Website).as_null_object }
-  let(:resort) { mock_model(Resort).as_null_object }
+  let(:website) { double(Website).as_null_object }
+  let(:resort) { double(Resort).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
@@ -28,7 +28,7 @@ describe Admin::ResortsController do
   end
 
   describe 'POST create' do
-    let(:resort) { mock_model(Resort).as_null_object }
+    let(:resort) { double(Resort).as_null_object }
     let(:params) { { resort: { 'name' => 'Morzine' } } }
 
     before do

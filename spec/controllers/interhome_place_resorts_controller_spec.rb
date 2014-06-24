@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe InterhomePlaceResortsController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
@@ -14,7 +14,7 @@ describe InterhomePlaceResortsController do
 
     describe 'POST create' do
       let(:resort) { FactoryGirl.create(:resort) }
-      let(:interhome_place_resort) { mock_model(InterhomePlaceResort).as_null_object }
+      let(:interhome_place_resort) { double(InterhomePlaceResort).as_null_object }
       let(:params) { { interhome_place_resort: { 'interhome_place_code' => 'AD_1_1450', 'resort_id' => resort.id.to_s } } }
 
       before do
@@ -55,7 +55,7 @@ describe InterhomePlaceResortsController do
     end
 
     describe 'DELETE destroy' do
-      let(:interhome_place_resort) { mock_model(InterhomePlaceResort).as_null_object }
+      let(:interhome_place_resort) { double(InterhomePlaceResort).as_null_object }
 
       before do
         InterhomePlaceResort.stub(:find).and_return(interhome_place_resort)

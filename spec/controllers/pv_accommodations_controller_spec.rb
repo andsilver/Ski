@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PvAccommodationsController do
-  let(:website) { mock_model(Website).as_null_object }
+  let(:website) { double(Website).as_null_object }
 
   before { Website.stub(:first).and_return(website) }
 

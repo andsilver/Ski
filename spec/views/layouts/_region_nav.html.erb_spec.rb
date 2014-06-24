@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'layouts/_region_nav' do
-  let(:region) { mock_model(Region).as_null_object }
+  let(:region) { double(Region).as_null_object }
   before { assign(:region, region) }
 
   it 'displays the region name in a heading' do

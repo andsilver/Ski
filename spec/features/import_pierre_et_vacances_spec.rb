@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Import Pierre et Vacances' do
   before { setup_website }
@@ -51,6 +51,7 @@ feature 'Import Pierre et Vacances' do
     billing_street: 'Street',
     billing_city: 'City',
     billing_country: countries(:france),
+    phone: '+44.1234567890',
     description: '',
     role: roles(:estate_agent),
     terms_and_conditions: true)

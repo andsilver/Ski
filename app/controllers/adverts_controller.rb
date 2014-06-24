@@ -7,7 +7,7 @@ class AdvertsController < ApplicationController
     if params[:user_id] && admin?
       user = User.find(params[:user_id])
     else
-      user = @current_user
+      user = current_user
     end
 
     if user.advertises_through_windows?
@@ -32,7 +32,7 @@ class AdvertsController < ApplicationController
     redirect_to action: 'place_order' and return if params[:place_order]
 
     if params[:empty_basket]
-      @current_user.empty_basket
+      current_user.empty_basket
       remove_windows_from_basket
       flash[:notice] = t('adverts_controller.notices.basket_emptied')
     else
@@ -85,7 +85,7 @@ class AdvertsController < ApplicationController
 
     @order.total = @total
     @order.tax_amount = @tax_amount
-    @order.tax_description = @current_user.tax_description
+    @order.tax_description = current_user.tax_description
     @order.sterling_in_euros = Currency.sterling_in_euros
     if @order.total == 0
       @order.status = Order::PAYMENT_NOT_REQUIRED
@@ -129,9 +129,9 @@ class AdvertsController < ApplicationController
   protected
 
   def prepare_basket
-    @current_user.remove_expired_coupon
+    current_user.remove_expired_coupon
 
-    @basket = Basket.new(windows: windows_in_basket, user: @current_user)
+    @basket = Basket.new(windows: windows_in_basket, user: current_user)
     @basket.prepare
 
     @lines = @basket.lines
@@ -139,7 +139,7 @@ class AdvertsController < ApplicationController
 
     @subtotal = @total
 
-    if @current_user.pays_vat?
+    if current_user.pays_vat?
       @tax_amount = @w.vat_for(@subtotal)
       @total += @tax_amount
     else
@@ -199,14 +199,14 @@ class AdvertsController < ApplicationController
   end
 
   def copy_user_details_to_order
-    @order.user_id = @current_user.id
-    @order.address = "#{@current_user.billing_street}\n#{@current_user.billing_locality}\n" +
-      "#{@current_user.billing_city}\n#{@current_user.billing_county}\n"
-    @order.postcode = @current_user.billing_postcode
-    @order.country_id = @current_user.billing_country_id
-    @order.phone = @current_user.phone
-    @order.email = @current_user.email
-    @order.name = @current_user.name
-    @order.customer_vat_number = @current_user.vat_number
+    @order.user_id = current_user.id
+    @order.address = "#{current_user.billing_street}\n#{current_user.billing_locality}\n" +
+      "#{current_user.billing_city}\n#{current_user.billing_county}\n"
+    @order.postcode = current_user.billing_postcode
+    @order.country_id = current_user.billing_country_id
+    @order.phone = current_user.phone
+    @order.email = current_user.email
+    @order.name = current_user.name
+    @order.customer_vat_number = current_user.vat_number
   end
 end

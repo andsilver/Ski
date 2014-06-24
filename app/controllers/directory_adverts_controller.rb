@@ -15,9 +15,9 @@ class DirectoryAdvertsController < ApplicationController
 
   def new
     @directory_advert = DirectoryAdvert.new
-    @directory_advert.url = @current_user.website
-    @directory_advert.description = @current_user.description
-    @directory_advert.business_name = @current_user.business_name
+    @directory_advert.url = current_user.website
+    @directory_advert.description = current_user.description
+    @directory_advert.business_name = current_user.business_name
   end
 
   def show
@@ -45,7 +45,7 @@ class DirectoryAdvertsController < ApplicationController
       @directory_advert.resort_id = resort_id
       @directory_advert.is_banner_advert = is_banner_advert
 
-      @directory_advert.user_id = @current_user.id
+      @directory_advert.user_id = current_user.id
 
       if @directory_advert.save
         update_images

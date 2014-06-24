@@ -1,13 +1,13 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe AdvertsController do
-  let(:website) { mock_model(Website).as_null_object }
-  let(:current_user) { mock_model(User).as_null_object }
+  let(:website) { double(Website).as_null_object }
+  let(:current_user) { double(User).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
-    session[:user] = 1
-    User.stub(:find_by).and_return(current_user)
+    controller.stub(:signed_in?).and_return(true)
+    controller.stub(:current_user).and_return(current_user)
   end
 
   describe 'GET my' do
@@ -24,7 +24,7 @@ describe AdvertsController do
       end
 
       it 'collects windows into groups' do
-        window = mock_model(Advert).as_null_object
+        window = double(Advert).as_null_object
         current_user.stub(:windows).and_return([window, window])
         groups = double(WindowGroups).as_null_object
         WindowGroups.stub(:new).and_return(groups)
@@ -106,7 +106,7 @@ describe AdvertsController do
   end
 
   describe "POST place order" do
-    let(:order) { mock_model(Order).as_null_object }
+    let(:order) { double(Order).as_null_object }
 
     before do
       website.stub(:vat_for).and_return 0
@@ -155,7 +155,7 @@ describe AdvertsController do
     end
 
     it 'destroys each advertisable' do
-      property = mock_model(Property)
+      property = double(Property)
       current_user.stub(:new_advertisables).and_return([property])
       property.should_receive(:destroy)
       delete 'delete_all_new_advertisables'

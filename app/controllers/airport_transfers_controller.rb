@@ -4,7 +4,7 @@ class AirportTransfersController < ApplicationController
   before_action :user_required, except: [:find, :results, :skilifts]
 
   def index
-    @airport_transfers = @current_user.airport_transfers
+    @airport_transfers = current_user.airport_transfers
   end
 
   def create

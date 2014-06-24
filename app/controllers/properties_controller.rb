@@ -154,7 +154,7 @@ class PropertiesController < ApplicationController
     @heading_a = render_to_string(partial: 'new_property_heading').html_safe
 
     @property = Property.new
-    @property.new_development = @current_user.role.new_development_by_default?
+    @property.new_development = current_user.role.new_development_by_default?
     if params[:listing_type]
       @property.listing_type = params[:listing_type]
     end
@@ -330,11 +330,11 @@ class PropertiesController < ApplicationController
 
   def create
     @property = Property.new(property_params)
-    @property.user_id = @current_user.id
+    @property.user_id = current_user.id
 
     if @property.save
       set_image_mode
-      if @current_user.advertises_through_windows?
+      if current_user.advertises_through_windows?
         if Advert.assign_window_for(@property)
           notice = t('properties_controller.created_and_assigned_to_window')
         else
@@ -380,7 +380,7 @@ class PropertiesController < ApplicationController
   end
 
   def place_in_window
-    advert = Advert.find_by(id: params[:advert_id], user_id: @current_user.id)
+    advert = Advert.find_by(id: params[:advert_id], user_id: current_user.id)
     if advert && advert.window?
       if advert.expired?
         redirect_to({action: 'choose_window'}, notice: 'That window has expired.')
@@ -430,14 +430,14 @@ class PropertiesController < ApplicationController
 
   def ensure_property_visibility
     not_found unless @property.publicly_visible? or admin? or
-      (@current_user && @current_user.id == @property.user_id)
+      (current_user && current_user.id == @property.user_id)
   end
 
   def find_property_for_user
     if admin?
       @property = Property.find(params[:id])
     else
-      @property = Property.find_by(id: params[:id], user_id: @current_user.id)
+      @property = Property.find_by(id: params[:id], user_id: current_user.id)
     end
     not_found unless @property
   end

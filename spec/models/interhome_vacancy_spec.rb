@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe InterhomeVacancy do
   let(:vacancy) { InterhomeVacancy.new(startday: Date.new(2012, 10, 10)) }
@@ -45,13 +45,13 @@ describe InterhomeVacancy do
     end
 
     it 'returns true when the check in value is C or I' do
-      expect(vacancy.check_in_on?(Date.new(2012, 10, 10))).to be_true
-      expect(vacancy.check_in_on?(Date.new(2012, 10, 11))).to be_true
+      expect(vacancy.check_in_on?(Date.new(2012, 10, 10))).to be_truthy
+      expect(vacancy.check_in_on?(Date.new(2012, 10, 11))).to be_truthy
     end
 
     it 'returns false when the check in value is X or O' do
-      expect(vacancy.check_in_on?(Date.new(2012, 10, 12))).to be_false
-      expect(vacancy.check_in_on?(Date.new(2012, 10, 13))).to be_false
+      expect(vacancy.check_in_on?(Date.new(2012, 10, 12))).to be_falsey
+      expect(vacancy.check_in_on?(Date.new(2012, 10, 13))).to be_falsey
     end
   end
 
@@ -64,23 +64,23 @@ describe InterhomeVacancy do
     it 'returns false if availability is not Y' do
       vacancy.availability = 'NN'
       vacancy.changeover = 'CX'
-      expect(vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)])).to be_false
+      expect(vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)])).to be_falsey
     end
 
     it 'returns true if all dates can be checked in on and are available' do
       vacancy.availability = 'YY'
       vacancy.changeover = 'CI'
-      expect(vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)])).to be_true
+      expect(vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)])).to be_truthy
     end
 
     it 'returns false if any date cannot be checked in on' do
       vacancy.availability = 'YY'
       vacancy.changeover = 'CO'
-      expect(vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)])).to be_false
+      expect(vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)])).to be_falsey
 
       vacancy.availability = 'NY'
       vacancy.changeover = 'CC'
-      expect(vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)])).to be_false
+      expect(vacancy.available_to_check_in_on_dates?([Date.new(2012, 10, 10), Date.new(2012, 10, 11)])).to be_falsey
     end
   end
 
