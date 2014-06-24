@@ -18,9 +18,16 @@ class UsersController < ApplicationController
 
   # +select_role+ is a helper action to allow simple HTML links to pre-choose
   # a role for signup.
+  #
+  # Example:
+  #     <a href="/users/select_role?user[role_id]=2">Advertise</a>
   def select_role
-    stage_one
-    render :new
+    if params[:user] && params[:user][:role_id]
+      stage_one
+      render :new
+    else
+      redirect_to '/welcome/advertiser'
+    end
   end
 
   def create
