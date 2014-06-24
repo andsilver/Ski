@@ -10,7 +10,6 @@
 # Ignore vagrant files.
 /.vagrant
 
-*.pdf
 !public/images/flags/*.png
 *.psd
 *.pxm
@@ -28,6 +27,7 @@ doc/features.html
 
 /public/countries
 /public/fixed-banners
+/public/invoices
 /public/resorts
 /public/test
 /public/up
