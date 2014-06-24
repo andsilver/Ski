@@ -1,7 +1,10 @@
 require 'xmlsimple'
 
 class AccommodationImporter
-  attr_accessor :import_start_time, :user
+  attr_accessor :import_start_time
+
+  # The +User+ to which imported properties will belong.
+  attr_accessor :user
 
   # Subclasses should implement the following methods:
   # * accommodation
@@ -68,6 +71,28 @@ class AccommodationImporter
 
   def import_accommodation(a)
     raise 'Subclass should import the data'
+  end
+
+  # Prepares a property by finding an existing +Property+ or initializing a
+  # new one associated with the given accommodation key => id.
+  #
+  # If the property exists then its current advert is deleted. The caller
+  # should create a new advert.
+  #
+  # The property's user is set to @user.
+  #
+  # Example:
+  #     p = prepare_property(my_accommodation_id: my_accommodation.id)
+  #     ...
+  #     create_advert(p)
+  def prepare_property(accommodation_key_id)
+    property = Property.find_by(accommodation_key_id)
+    if property
+      property.current_advert.try(:delete)
+    else
+      property = Property.new(accommodation_key_id)
+    end
+    property.user = @user
   end
 
   def model_class

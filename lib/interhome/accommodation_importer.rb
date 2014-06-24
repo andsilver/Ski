@@ -119,16 +119,7 @@ module Interhome
     end
 
     def create_property(accommodation, resort_id, address)
-      property = Property.find_by(interhome_accommodation_id: accommodation.id)
-      if property
-        # delete the advert; we'll create a new one shortly
-        property.current_advert.delete if property.current_advert
-      else
-        property = Property.new
-      end
-
-      property.interhome_accommodation_id = accommodation.id
-      property.user_id = @user.id
+      property = prepare_property(interhome_accommodation_id: accommodation.id)
       property.resort_id = resort_id
       property.name = accommodation.name.blank? ? accommodation.code : accommodation.name
       property.strapline = accommodation.inside_description
