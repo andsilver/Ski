@@ -15,8 +15,9 @@ class AccommodationImporter
   # Non-destructive import.
   # Updates existing accommodations and imports new accommodations
   # from the XML file.
-  # Old accommodations are destroyed by checking their updated_at timestamps.
-  def import(filenames, cleanup)
+  # Old accommodations are destroyed by checking their updated_at timestamps
+  # if +cleanup+ is true (the default).
+  def import(filenames, cleanup = true)
     setup
     filenames.each {|f| import_file(f)}
     if cleanup
