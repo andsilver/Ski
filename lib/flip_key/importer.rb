@@ -18,8 +18,9 @@ module FlipKey
       elements_per_file: 100
     }.freeze
 
+    # Set +:limit_filenames+ to perform a smaller import during development.
     def initialize(options = {})
-      @options = options.reverse_merge! skip_download: false
+      @options = options.reverse_merge! skip_download: false, limit_filenames: -1
     end
 
     # Imports all FlipKey data.
@@ -73,7 +74,7 @@ module FlipKey
         end
       end
 
-      importer.new.import(filenames.call)
+      importer.new.import(limit_filenames(filenames))
     end
 
     private
@@ -84,6 +85,15 @@ module FlipKey
 
       def gunzip(filename)
         system("gunzip -f #{File.join(FlipKey.directory, filename)}")
+      end
+
+      def limit_filenames(filenames_lambda)
+        filenames = filenames_lambda.call
+        if @options[:limit_filenames] > 0
+          filenames[0...(@options[:limit_filenames])]
+        else
+          filenames
+        end
       end
   end
 end
