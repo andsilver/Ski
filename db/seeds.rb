@@ -403,6 +403,19 @@ interhome = User.create!(
   role: estate_agent,
   phone: '+441234567890'
 )
+flip_key = User.create!(
+  first_name: 'FlipKey',
+  last_name: 'FlipKey',
+  email: 'flipkey@mychaletfinder.com',
+  password: 'secret',
+  billing_street: '1, High St',
+  billing_city: 'Portsmouth',
+  billing_country: united_kingdom,
+  terms_and_conditions: true,
+  description: '',
+  role: estate_agent,
+  phone: '+441234567890'
+)
 
 Resort.create!([
   { country: austria, name: 'Alpbach',      slug: 'alphach' },
