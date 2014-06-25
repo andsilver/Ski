@@ -36,9 +36,9 @@ module FlipKey
     end
 
     describe '#property_filenames' do
-      it 'returns an array of splitted property XML filenames' do
+      it 'returns an array of splitted property XML filenames, including the FlipKey directory' do
         Dir.stub(:entries).with(FlipKey.directory).and_return(dir_entries)
-        expect(importer.property_filenames).to eq ['property_data_13.10.xml']
+        expect(importer.property_filenames).to eq [File.join(FlipKey.directory, 'property_data_13.10.xml')]
       end
     end
 

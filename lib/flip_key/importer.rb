@@ -56,7 +56,7 @@ module FlipKey
 
     # Returns an array of property XML filenames.
     def property_filenames
-      filenames_matching(/\Aproperty_data_\d+\.\d+\.xml\z/)
+      filenames_matching(/\Aproperty_data_\d+\.\d+\.xml\z/).map {|f| File.join(FlipKey.directory, f)}
     end
 
     # Instantiates +importer+ and invokes its import method on +filenames+.
