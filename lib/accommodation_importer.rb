@@ -80,7 +80,7 @@ class AccommodationImporter
   # If the property exists then its current advert is deleted. The caller
   # should create a new advert.
   #
-  # The property's user is set to @user.
+  # The property is set to publicly_visible and its user is set to @user.
   #
   # Example:
   #     p = prepare_property(my_accommodation_id: my_accommodation.id)
@@ -93,6 +93,7 @@ class AccommodationImporter
     else
       property = Property.new(accommodation_key_id)
     end
+    property.publicly_visible = true
     property.user = @user
     property
   end
