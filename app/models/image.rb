@@ -264,6 +264,7 @@ class Image < ActiveRecord::Base
         end
       end
     rescue
+      logger.warn 'Could not download image from source: ' + source_url
       return
     end
   end
