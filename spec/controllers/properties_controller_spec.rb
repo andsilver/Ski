@@ -340,6 +340,7 @@ describe PropertiesController do
           property.stub(:publicly_visible?).and_return(false)
           property.stub(:hotel?).and_return(false)
           property.stub(:new_development?).and_return(false)
+          property.stub(:flip_key_property).and_return(nil)
         end
 
         context "when not signed in as admin" do

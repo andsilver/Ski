@@ -29,7 +29,8 @@ javascript:
           div id="pic_#{i.id}"
             = image_tag(i.url, alt: "Larger photo of #{@property.name}")
 
-  = raw @property.description
+  p
+    = raw flip_key_property_description(@json)
 
 = render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort)
 
