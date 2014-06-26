@@ -94,6 +94,7 @@ class AccommodationImporter
       property = Property.new(accommodation_key_id)
     end
     property.user = @user
+    property
   end
 
   def model_class
