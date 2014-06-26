@@ -300,6 +300,7 @@ class Image < ActiveRecord::Base
 
   # Deletes resized versions hosted on Amazon S3.
   def s3_delete_files
+    return unless S3_ENABLED
     s3 = AWS::S3.new
     bucket = s3.buckets[s3_bucket_name]
     bucket.objects.with_prefix("#{id}/").each do |obj|
