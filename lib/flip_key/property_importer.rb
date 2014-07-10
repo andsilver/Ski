@@ -59,6 +59,7 @@ module FlipKey
       property.name = xml['property_details'][0]['name'][0].strip
       property.address = "Somewhere on Earth"
       property.sleeping_capacity = xml['property_details'][0]['occupancy'][0].strip
+      property.weekly_rent_price = weekly_rent_price(xml)
       property.save
       import_pictures(property, xml)
       create_advert(property)
@@ -74,6 +75,16 @@ module FlipKey
 
     def location_id(property_xml)
       property_xml['property_addresses'][0]['new_location_id'][0]
+    end
+
+    # Gets the weekly rent price from week_min_rate if present or seven times
+    # the day rate otherwise.
+    def weekly_rent_price(property_xml)
+      if property_xml['property_rate_summary'][0]['week_min_rate'][0].kind_of?(Hash)
+        7 * property_xml['property_rate_summary'][0]['day_min_rate'][0].strip.to_i
+      else
+        property_xml['property_rate_summary'][0]['week_min_rate'][0].strip
+      end
     end
   end
 end
