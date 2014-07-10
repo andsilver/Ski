@@ -47,7 +47,8 @@
       p= t('properties.no_matching_properties')
     - else
       - @properties.each do |p|
-        = render partial: 'properties/property_summary', locals: {p: p.decorate}
+        - if admin? || p.flip_key_property_id == nil
+          = render partial: 'properties/property_summary', locals: {p: p.decorate}
 
       = will_paginate @properties
 

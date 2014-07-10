@@ -181,7 +181,11 @@ class PropertiesController < ApplicationController
         @json = @property.flip_key_property.parsed_json
       rescue
       end
-      render :show_flip_key
+      if admin?
+        render :show_flip_key
+      else
+        not_found
+      end
     end
   end
 
