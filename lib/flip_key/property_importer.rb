@@ -58,6 +58,7 @@ module FlipKey
       property.currency = @euro
       property.name = xml['property_details'][0]['name'][0].strip
       property.address = "Somewhere on Earth"
+      property.sleeping_capacity = xml['property_details'][0]['occupancy'][0].strip
       property.save
       import_pictures(property, xml)
       create_advert(property)
