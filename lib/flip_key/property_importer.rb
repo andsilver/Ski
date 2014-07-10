@@ -57,6 +57,8 @@ module FlipKey
       property.resort = resort
       property.currency = @euro
       property.name = xml['property_details'][0]['name'][0].strip
+      property.strapline = xml['property_descriptions'][0]['property_description'][0]['description'][0].strip
+      property.tidy_name_and_strapline
       property.address = "Somewhere on Earth"
       property.sleeping_capacity = xml['property_details'][0]['occupancy'][0].strip
       property.weekly_rent_price = weekly_rent_price(xml)
