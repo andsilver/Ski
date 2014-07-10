@@ -178,7 +178,7 @@ class PropertiesController < ApplicationController
       render :show_new_development
     elsif @property.flip_key_property
       begin
-        @json = JSON.parse(@property.flip_key_property.json_data)
+        @json = @property.flip_key_property.parsed_json
       rescue
       end
       render :show_flip_key
