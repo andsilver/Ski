@@ -39,5 +39,27 @@ javascript:
       p= raw flip_key_property_description(@json)
     .tab-pane#location-tab
 
+  - cal = FlipKeyCalendar.new(@property.flip_key_property)
+  .well
+    .btn-group
+      button.btn.btn-default#earlier
+        i.icon-backward>
+        | Earlier
+      button.btn.btn-default#later
+        | Later
+        i.icon-forward<
+    br
+    - today = Date.today
+    - month = today.month
+    - year = today.year
+    - hide = false
+    - 15.times do |i|
+      .month id="month#{month}#{year}" data-month="#{month}" data-year="#{year}" style="#{'display: none' if hide}"
+        = raw cal.show_month(month, year)
+      - hide = true if (i + 1) % 3 == 0
+      - month += 1
+      - if month == 13; month = 1; year += 1; end
+    .clear
+
 = render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort)
 
