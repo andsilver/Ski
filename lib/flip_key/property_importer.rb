@@ -52,6 +52,11 @@ module FlipKey
       end
     end
 
+    # Creates a +Property+ for the +FlipKeyProperty+ +fk_property+, imports
+    # pictures and creates an +Advert+.
+    #
+    # +ActiveRecord::RecordInvalid+ gets raised if the +Property+ cannot be
+    # saved.
     def create_property(fk_property, resort, xml)
       property = prepare_property(flip_key_property_id: fk_property.id)
       property.resort = resort
@@ -62,7 +67,7 @@ module FlipKey
       property.address = "Somewhere on Earth"
       property.sleeping_capacity = xml['property_details'][0]['occupancy'][0].strip
       property.weekly_rent_price = weekly_rent_price(xml)
-      property.save
+      property.save!
       import_pictures(property, xml)
       create_advert(property)
     end
