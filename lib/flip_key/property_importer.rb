@@ -23,7 +23,12 @@ module FlipKey
 
       location = FlipKeyLocation.find_by(id: location_id(a))
       if resort = location.try(:resort)
-        create_property(property, resort, a)
+        begin
+          create_property(property, resort, a)
+        rescue
+          logger.warn "Could not create property for FlipKey property #{property.url}"
+          property.destroy
+        end
       else
         property.destroy
       end
@@ -66,7 +71,12 @@ module FlipKey
       property.tidy_name_and_strapline
       property.address = "Somewhere on Earth"
       property.sleeping_capacity = xml['property_details'][0]['occupancy'][0].strip
-      property.weekly_rent_price = weekly_rent_price(xml)
+      begin
+        property.weekly_rent_price = weekly_rent_price(xml)
+      rescue
+        logger.warn "Could not get weekly rent price for FlipKey property #{fk_property.url}"
+        raise
+      end
       property.save!
       import_pictures(property, xml)
       create_advert(property)
@@ -85,12 +95,18 @@ module FlipKey
     end
 
     # Gets the weekly rent price from week_min_rate if present or seven times
-    # the day rate otherwise.
+    # the day_min_rate otherwise.
+    #
+    # Raises if neither of these are present.
     def weekly_rent_price(property_xml)
-      if property_xml['property_rate_summary'][0]['week_min_rate'][0].kind_of?(Hash)
-        7 * property_xml['property_rate_summary'][0]['day_min_rate'][0].strip.to_i
-      else
-        property_xml['property_rate_summary'][0]['week_min_rate'][0].strip
+      begin
+        if property_xml['property_rate_summary'][0]['week_min_rate'][0].kind_of?(Hash)
+          7 * property_xml['property_rate_summary'][0]['day_min_rate'][0].strip.to_i
+        else
+          property_xml['property_rate_summary'][0]['week_min_rate'][0].strip
+        end
+      rescue
+        raise 'week_min_rate and day_min_rate absent'
       end
     end
   end
