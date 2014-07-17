@@ -3,7 +3,7 @@ class Page < ActiveRecord::Base
 
   validates :path, uniqueness: true
 
-  validates :description, :path, :title, length: { maximum: 255 }
+  validates :description, :keywords, :path, :title, length: { maximum: 255 }
 
   belongs_to :footer
 
