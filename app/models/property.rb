@@ -275,11 +275,14 @@ class Property < ActiveRecord::Base
   # Truncates the property name to 50 characters and the strapline to 255
   # characters. If the strapline is blank then the first 255 characters
   # of the description are used as the strapline.
+  #
+  # HTML is not escaped, ensuring that the lengths do not exceed these
+  # limits.
   def tidy_name_and_strapline
     if strapline.blank?
-      self.strapline = description.blank? ? '' : truncate(description, length: 255, separator: ' ')
+      self.strapline = description.blank? ? '' : truncate(description, escape: false, length: 255, separator: ' ')
     else
-      self.strapline = truncate(strapline, length: 255, separator: ' ')
+      self.strapline = truncate(strapline, escape: false, length: 255, separator: ' ')
     end
     self.name = name[0..49]
   end
