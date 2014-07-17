@@ -26,7 +26,7 @@ module FlipKey
         begin
           create_property(property, resort, a)
         rescue
-          logger.warn "Could not create property for FlipKey property #{property.url}"
+          Rails.logger.warn "Could not create property for FlipKey property #{property.url}"
           property.destroy
         end
       else
@@ -74,7 +74,7 @@ module FlipKey
       begin
         property.weekly_rent_price = weekly_rent_price(xml)
       rescue
-        logger.warn "Could not get weekly rent price for FlipKey property #{fk_property.url}"
+        Rails.logger.warn "Could not get weekly rent price for FlipKey property #{fk_property.url}"
         raise
       end
       property.save!
