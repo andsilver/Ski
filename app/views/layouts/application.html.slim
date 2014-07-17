@@ -81,13 +81,13 @@ html.no-js lang="#{@lang}"
               i.icon-facebook
         nav#main-menu role="navigation"
           ul
-            li= raw snippet('layous.application.top_left_menu_item', '<a>&nbsp;</a>')
+            li= raw snippet('layouts.application.top_left_menu_item', '<a>&nbsp;</a>')
             - HolidayType.on_menu.each do |ht| 
               li class="mega-parent #{ht.slug}"
                 = link_to ht.name, ht
                 .mega-menu
                   = raw ht.mega_menu_html
-            li= raw snippet('layous.application.top_right_menu_item', '<a>&nbsp;</a>')
+            li= raw snippet('layouts.application.top_right_menu_item', '<a>&nbsp;</a>')
       = render 'layouts/breadcrumbs_and_heading'
       #slider-content
         #links-and-search
