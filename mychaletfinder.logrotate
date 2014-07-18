@@ -1,9 +1,17 @@
-/home/admin/railsapps/mychaletfinder/log/production.log {
+/home/admin/railsapps/myskichalet/log/production.log {
   daily
   missingok
   rotate 7
   compress
   delaycompress
-  notifempty
-  create 640 mychaletfinder mychaletfinder
+  create 640 admin admin
+}
+
+/opt/nginx/logs/access.log {
+  daily
+  missingok
+  rotate 7
+  compress
+  delaycompress
+  create 640 root root
 }
