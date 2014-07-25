@@ -23,6 +23,21 @@ html.no-js lang="#{@lang}"
     = csrf_meta_tags
     meta name="google-site-verification" content="#{t('google.site_verification')}"
   body class="#{body_classes}"
+    - if Rails.env == 'production'
+      javascript:
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', '#{t('google.web_property_id')}', 'auto');
+        ga('send', 'pageview');
+      - if @advertiser_web_property_id.present?
+        javascript:
+          //TODO:
+          //ga(['_setAccount', '#{@advertiser_web_property_id}']);
+          //ga(['_setDomainName', 'mychaletfinder.com']);
+          //ga(['_trackPageview']);
+
     #wrapper class="#{"#{yield :theme}-theme" if content_for? :theme}"
       header role="banner"
         div.header-snippet
@@ -118,22 +133,3 @@ html.no-js lang="#{@lang}"
             hr
             p#copyright
               = "&copy; #{Time.now.year} My Holiday Home Ventures Limited".html_safe
-
-    - if Rails.env == 'production'
-      javascript:
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', '#{t('google.web_property_id')}']);
-        _gaq.push(['_trackPageview']);
-      - unless @advertiser_web_property_id.blank?
-        javascript:
-          _gaq.push(['_setAccount', '#{@advertiser_web_property_id}']);
-          _gaq.push(['_setDomainName', 'mychaletfinder.com']);
-          _gaq.push(['_trackPageview']);
-
-      javascript:
-
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
