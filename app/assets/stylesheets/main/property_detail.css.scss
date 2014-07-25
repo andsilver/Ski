@@ -170,3 +170,46 @@ body a.special-offers {
 .special-offers:hover {
   text-decoration: none;
 }
+
+.flip-key-property {
+  h3 {
+    background: transparent !important;
+    color: #444;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 0;
+  }
+
+  .details li {
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    padding: 10px 55px 10px 0;
+  }
+
+  .property-details p {
+    font-size: 14px;
+  }
+
+  .from {
+    color: #999;
+    font-size: 14px;
+  }
+
+  .rental-price {
+    color: #333;
+    font-size: 34px;
+    font-weight: bold;
+  }
+  
+  .rental-price-scope {
+    color: #444;
+    font-size: 14px;
+  }
+
+  .request-more-information {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+}

@@ -1,67 +1,105 @@
 = content_for :theme, @property.theme
 
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading)
+
+css:
+  #slider-content {
+    display: none;
+  }
+
+  #content.wide {
+    float: none;
+    width: 100%;
+  }
+
 javascript:
   $(function() {
     $('.gallery a').fancyZoom({scaleImg: true, closeOnClick: true});
   });
 
-.hotel
-  = render 'property_header_image'
+.flip-key-property
+  .container-fluid
+    h1= @property.name
+    .row
+      .col-md-8
+        = image_tag(@property.image.sized_url([640, 480], :cropped), alt: "Photo of #{@property.name}")
 
-  .clear-fix
-    .contact-availability.layout-element.size-1of2
-      h1= @property.name
-      p
-        = @property.address
-        br
-        = @property.country
-      .make-a-booking
-        = link_to 'Make a booking <span class="glyphicon glyphicon-play theme-color"></span>'.html_safe,\
-          '#', target: '_blank'
-
-    - if @property.image
-      .gallery-container.layout-element.size-1of2
-        .gallery
+        - if @property.image
+          .gallery
+            - @property.images.each do |i|
+              a href="#pic_#{i.id}"
+                = image_tag(i.sized_url(99, :square), alt: "Photo of #{@property.name}")
           - @property.images.each do |i|
-            a href="#pic_#{i.id}"
-              = image_tag(i.sized_url(99, :square), alt: "Photo of #{@property.name}")
-        - @property.images.each do |i|
-          div id="pic_#{i.id}"
-            = image_tag(i.url, alt: "Larger photo of #{@property.name}")
+            div id="pic_#{i.id}"
+              = image_tag(i.url, alt: "Larger photo of #{@property.name}")
 
-  ul.nav.nav-tabs
-    li.active
-      a href="#description-tab" Description
-    li
-      a href="#location-tab" Location
-  .tab-content
-    .tab-pane.active#description-tab
-      p= raw flip_key_property_description(@json)
-    .tab-pane#location-tab
+        .property-details
+          ul.details
+            li= pluralize(@property.flip_key_property.bedroom_count, 'bedroom')
+            li= pluralize(@property.flip_key_property.bathroom_count, 'bathroom')
+            li= "Sleeps #{@property.flip_key_property.occupancy}"
+            li= @property.flip_key_property.property_type
+          h3 Description from the manager
+          p= raw flip_key_property_description(@json)
+  
+        h2 Location
+        p
+          = @property.address
+          br
+          = @property.country
+        = render partial: 'google_map', locals: { lat: @property.flip_key_property.latitude, lng: @property.flip_key_property.longitude }
+        #map_canvas
+  
+        h2 Availability
+        - cal = FlipKeyCalendar.new(@property.flip_key_property)
+        .well
+          .btn-group
+            button.btn.btn-default#earlier
+              i.icon-backward>
+              | Earlier
+            button.btn.btn-default#later
+              | Later
+              i.icon-forward<
+          br
+          - today = Date.today
+          - month = today.month
+          - year = today.year
+          - hide = false
+          - 15.times do |i|
+            .month id="month#{month}#{year}" data-month="#{month}" data-year="#{year}" style="#{'display: none' if hide}"
+              = raw cal.show_month(month, year)
+            - hide = true if (i + 1) % 6 == 0
+            - month += 1
+            - if month == 13
+              - month = 1
+              - year += 1
+          .clear
 
-  - cal = FlipKeyCalendar.new(@property.flip_key_property)
-  .well
-    .btn-group
-      button.btn.btn-default#earlier
-        i.icon-backward>
-        | Earlier
-      button.btn.btn-default#later
-        | Later
-        i.icon-forward<
-    br
-    - today = Date.today
-    - month = today.month
-    - year = today.year
-    - hide = false
-    - 15.times do |i|
-      .month id="month#{month}#{year}" data-month="#{month}" data-year="#{year}" style="#{'display: none' if hide}"
-        = raw cal.show_month(month, year)
-      - hide = true if (i + 1) % 3 == 0
-      - month += 1
-      - if month == 13
-        - month = 1
-        - year += 1
-    .clear
-
-= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort)
-
+      .col-md-4
+        h2 Interested?
+        .rates-total
+          span.from From:
+          br
+          span.rental-price= format_currency(@property.flip_key_property.rental_price, Currency.find_by(code: 'USD'))
+          span.rental-price-scope= @property.flip_key_property.rental_price_scope
+        p.request-more-information Request more information
+        form
+          .form-group
+            select.form-control
+              - (1..@property.flip_key_property.occupancy).each do |guests|
+                - if guests == @property.flip_key_property.occupancy
+                  option= pluralize(guests, 'guest') + ' (max occupancy)'
+                - else
+                  option= pluralize(guests, 'guest')
+          .form-group
+            input.form-control placeholder="First and last name"
+          .form-group
+            input.form-control placeholder="Email"
+          .form-group
+            input.form-control placeholder="Phone"
+          .form-group
+            input.form-control placeholder="Enter a brief message"
+          .form-group
+            input.form-control.btn.btn-primary type="submit" value="Send Message"
+        h2 About the manager
+        p Manager Name
