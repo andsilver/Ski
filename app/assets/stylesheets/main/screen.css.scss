@@ -269,6 +269,11 @@ textarea {
   width: 36em;
 }
 
+.form-control[readonly].picker__input {
+  cursor: default;
+  background: #fff;
+}
+
 #flash_notice {
   background: yellow;
   padding: 6px;
@@ -701,4 +706,8 @@ textarea.narrow {
 .image-right {
   float: right;
   margin: 0 0 15px 15px;
+}
+
+.home-datepicker td + td + td + td + td + td + td .picker__day {
+  font-weight: bold;
 }
