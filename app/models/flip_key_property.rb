@@ -5,6 +5,10 @@ class FlipKeyProperty < ActiveRecord::Base
     parsed_json['property_calendar'][0]['booked_date'].any? { |bd| bd == date.to_s }
   end
 
+  def currency
+    Currency.find_by(code: property_details['currency'][0])
+  end
+
   def parsed_json
     @parsed_json ||= JSON.parse(json_data)
   end
@@ -55,6 +59,10 @@ class FlipKeyProperty < ActiveRecord::Base
 
   def property_rate_summary
     parsed_json['property_rate_summary'][0]
+  end
+
+  def property_rates
+    parsed_json['property_rates'][0]['property_rate']
   end
 
   def rental_price_scope
