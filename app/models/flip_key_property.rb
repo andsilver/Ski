@@ -21,6 +21,14 @@ class FlipKeyProperty < ActiveRecord::Base
     parsed_json['property_addresses'][0]['longitude'][0]
   end
 
+  def location_description
+    parsed_json['property_descriptions'][0]['property_description'][2]['description'][0]
+  end
+
+  def city
+    parsed_json['property_addresses'][0]['city'][0]
+  end
+
   def occupancy
     property_details['occupancy'][0].to_i
   end

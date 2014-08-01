@@ -44,7 +44,7 @@ javascript:
   
         h2 Location
         p
-          = @property.address
+          = "#{@property.flip_key_property.location_description}, #{@property.flip_key_property.city}"
           br
           = @property.country
         = render partial: 'google_map', locals: { lat: @property.flip_key_property.latitude, lng: @property.flip_key_property.longitude }
