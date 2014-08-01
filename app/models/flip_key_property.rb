@@ -42,7 +42,15 @@ class FlipKeyProperty < ActiveRecord::Base
   end
 
   def day_min_rate
-    property_rate_summary['day_min_rate'][0]
+    hash_nil(property_rate_summary['day_min_rate'][0])
+  end
+
+  def week_min_rate
+    hash_nil(property_rate_summary['week_min_rate'][0])
+  end
+
+  def month_min_rate
+    hash_nil(property_rate_summary['month_min_rate'][0])
   end
 
   def property_rate_summary
@@ -55,4 +63,10 @@ class FlipKeyProperty < ActiveRecord::Base
     return 'per month' if month_min_rate
     return ''
   end
+
+  private
+
+    def hash_nil(value)
+      value.kind_of?(Hash) ? nil : value
+    end
 end
