@@ -1,0 +1,28 @@
+javascript:
+  $(function() {
+    var startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    $('.datepicker-days table').after('Many properties only accept arrivals on Saturdays and have a minimum stay of 7 nights.');
+
+    $('#arrival-datepicker, #departure-datepicker').datepicker({
+      format: 'D d MM yyyy',
+      startDate: startOfToday,
+      endDate: '+18m',
+      todayHighlight: false
+    }).on('changeDate', function(ev) {
+      $(this).datepicker('hide');
+    }).on('show', function(ev) {
+      if($('.datepicker-days .help').length == 0) {
+        $('.datepicker-days table').after('<p class="help"><%= t('.help') %></p>');
+      }
+    });
+  });
+.input-append.date#arrival-datepicker
+  input.form-control type="text" value="#{params[:start_date] ? params[:start_date] : t('.arrival_date')}" name="start_date"
+  span.add-on.btn.btn-default.btn-mini
+    i.icon-th
+.input-append.date#departure-datepicker
+  input.form-control type="text" value="#{params[:end_date] ? params[:end_date] : t('.departure_date')}" name="end_date"
+  span.add-on.btn.btn-default.btn-mini
+    i.icon-th
