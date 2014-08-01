@@ -103,6 +103,14 @@ javascript:
           span.rental-price-scope= @property.flip_key_property.rental_price_scope
         p.request-more-information Request more information
         form
+          javascript:
+            $(function() {
+              $('.datepicker').pickadate();
+            });
+          .form-group
+            = text_field_tag('check_in', '', required: true, class: 'form-control datepicker', placeholder: 'Check-in')
+          .form-group
+            = text_field_tag('check_out', '', required: true, class: 'form-control datepicker', placeholder: 'Check-out')
           .form-group
             select.form-control
               - (1..@property.flip_key_property.occupancy).each do |guests|
@@ -111,13 +119,13 @@ javascript:
                 - else
                   option= pluralize(guests, 'guest')
           .form-group
-            input.form-control placeholder="First and last name"
+            = text_field_tag('name', '', class: 'form-control', placeholder: 'First and last name', required: true)
           .form-group
-            input.form-control placeholder="Email"
+            = email_field_tag('email', '', class: 'form-control', placeholder: 'Email', required: true)
           .form-group
-            input.form-control placeholder="Phone"
+            = phone_field_tag('phone_number', '', class: 'form-control', placeholder: 'Phone', required: true)
           .form-group
-            input.form-control placeholder="Enter a brief message"
+            = text_field_tag('comment', '', class: 'form-control', placeholder: 'Enter a brief message', required: true)
           .form-group
             input.form-control.btn.btn-primary type="submit" value="Send Message"
         h2 About the manager
