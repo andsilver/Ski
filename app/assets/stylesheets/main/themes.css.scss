@@ -55,7 +55,7 @@
   border-color: #e6332a;
 }
 
-.ski-holidays-theme #links-and-search section, .ski-holidays-theme .header-title, .ski-holidays-theme h3, .ski-holidays-theme .btnDefault, .ski-holidays-theme table tr th {
+.ski-holidays-theme #links-and-search section, .ski-holidays-theme .header-title, .ski-holidays-theme h3, .ski-holidays-theme .btnDefault, .ski-holidays-theme table.theme-table tr th {
   background-color:#009fe3;
 }
 
@@ -72,12 +72,12 @@
   color:#009fe3;
 }
 
-.ski-holidays-theme table {
+.ski-holidays-theme table.theme-table {
   border-bottom-color:#009fe3;
   background-color:#ccecf9;
 }
 
-.lakes-and-mountains-theme #links-and-search section, .lakes-and-mountains-theme .header-title, .lakes-and-mountains-theme h3, .lakes-and-mountains-theme .btnDefault, .lakes-and-mountains-theme table tr th {
+.lakes-and-mountains-theme #links-and-search section, .lakes-and-mountains-theme .header-title, .lakes-and-mountains-theme h3, .lakes-and-mountains-theme .btnDefault, .lakes-and-mountains-theme table.theme-table tr th {
   background-color:#008D36;
 }
 
@@ -94,12 +94,12 @@
   color:#008D36;
 }
 
-.lakes-and-mountains-theme table {
+.lakes-and-mountains-theme table.theme-table {
   border-bottom-color:#008D36;
   background-color:#cdf9de;
 }
 
-.summer-villas-theme #links-and-search section, .summer-villas-theme .header-title, .summer-villas-theme h3, .summer-villas-theme .btnDefault, .summer-villas-theme table tr th {
+.summer-villas-theme #links-and-search section, .summer-villas-theme .header-title, .summer-villas-theme h3, .summer-villas-theme .btnDefault, .summer-villas-theme table.theme-table tr th {
   background-color:#F9B233;
 }
 
@@ -116,12 +116,12 @@
   color:#F9B233;
 }
 
-.summer-villas-theme table {
+.summer-villas-theme table.theme-table {
   border-bottom-color:#F9B233;
   background-color:#f9e9cc;
 }
 
-.city-breaks-theme #links-and-search section, .city-breaks-theme .header-title, .city-breaks-theme h3, .city-breaks-theme .btnDefault, .city-breaks-theme table tr th {
+.city-breaks-theme #links-and-search section, .city-breaks-theme .header-title, .city-breaks-theme h3, .city-breaks-theme .btnDefault, .city-breaks-theme table.theme-table tr th {
   background-color:#E6332A;
 }
 
@@ -138,7 +138,7 @@
   color:#E6332A;
 }
 
-.city-breaks-theme table {
+.city-breaks-theme table.theme-table {
   border-bottom-color:#E6332A;
   background-color:#f9cecc;
 }
