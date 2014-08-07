@@ -603,7 +603,9 @@ class PropertiesController < ApplicationController
       :long_term_lets_available, :longitude,
       :metres_from_lift, :mountain_views, :name, :new_development, :number_of_bathrooms,
       :number_of_bedrooms, :outdoor_swimming_pool, :parking, :pets,
-      :plot_size_metres_2, :postcode, :resort_id, :sale_price,
+      :plot_size_metres_2, :postcode,
+      :price_description,
+      :resort_id, :sale_price,
       :sauna, :short_stays, :ski_in_ski_out, :sleeping_capacity, :smoking,
       :star_rating, :strapline, :terrace, :tv, :weekly_rent_price, :wifi)
   end

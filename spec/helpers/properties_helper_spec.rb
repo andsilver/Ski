@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PropertiesHelper do
   describe '#featured_properties' do

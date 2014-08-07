@@ -32,9 +32,13 @@ module PropertiesHelper
   end
 
   def featured_property_price_message(p)
-    price = p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency)
-    key = p.for_sale? ? '.sale_price' : '.weekly_price_from'
-    t(key, price: price)
+    if p.price_description.present?
+      p.price_description
+    else
+      price = p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency)
+      key = p.for_sale? ? '.sale_price' : '.weekly_price_from'
+      t(key, price: price)
+    end
   end
 
   def featured_property_alt_attribute(p)

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Advertise Properties' do
   fixtures :countries, :currencies, :resorts, :roles, :users, :websites
@@ -59,6 +59,7 @@ feature 'Advertise Properties' do
     fill_in 'Strapline', with: 'Excellent facilities, sleeps 4'
     fill_in 'Address', with: '7440'
     fill_in 'Weekly rental price from', with: '1650'
+    fill_in 'Price description', with: 'From £165 pp'
     select '< 800m', from: 'Distance from town centre'
     select '< 500m', from: 'Nearest lift'
     select 'France > Chamonix', from: 'Resort'
