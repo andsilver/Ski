@@ -47,16 +47,19 @@ javascript:
   - if @current_user.role.flag_new_development? or @property.for_rent?
     .well
       - if @current_user.role.flag_new_development? && !@property.for_rent?
-        label.checkbox
-          = f.check_box :new_development
-          = t('properties.features.new_development')
+        .checkbox
+          label
+            = f.check_box :new_development
+            = t('properties.features.new_development')
       - if @property.for_rent?
-        label.checkbox
-          = f.check_box :long_term_lets_available
-          = t('properties.features.long_term_lets_available')
-        label.checkbox
-          = f.check_box :short_stays
-          = t('properties.features.short_stays')
+        .checkbox
+          label
+            = f.check_box :long_term_lets_available
+            = t('properties.features.long_term_lets_available')
+        .checkbox
+          label
+            = f.check_box :short_stays
+            = t('properties.features.short_stays')
 
   .well
     .form-horizontal
@@ -170,60 +173,77 @@ javascript:
       table
         tr
           td
-            label.checkbox
-              = f.check_box :balcony
-              = t('properties.features.balcony')
-            label.checkbox
-              = f.check_box :terrace
-              = t('properties.features.terrace')
-            label.checkbox
-              = f.check_box :mountain_views
-              = t('properties.features.mountain_views')
+            .checkbox
+              label
+                = f.check_box :balcony
+                = t('properties.features.balcony')
+            .checkbox
+              label
+                = f.check_box :terrace
+                = t('properties.features.terrace')
+            .checkbox
+              label
+                = f.check_box :mountain_views
+                = t('properties.features.mountain_views')
             - if @property.for_rent?
-              label.checkbox
-                = f.check_box :wifi
-                = t('properties.features.wifi')
-            label.checkbox
-              = f.check_box :log_fire
-              = t('properties.features.log_fire')
-            label.checkbox
-              = f.check_box :fully_equipped_kitchen
-              = t('properties.features.fully_equipped_kitchen')
-            label.checkbox
-              = f.check_box :cave
-              = t('properties.features.cave')
-            label.checkbox
-              = f.check_box :ski_in_ski_out
-              = t('properties.features.ski_in_ski_out')
+              .checkbox
+                label
+                  = f.check_box :wifi
+                  = t('properties.features.wifi')
+            .checkbox
+              label
+                = f.check_box :log_fire
+                = t('properties.features.log_fire')
+            .checkbox
+              label
+                = f.check_box :fully_equipped_kitchen
+                = t('properties.features.fully_equipped_kitchen')
+            .checkbox
+              label
+                = f.check_box :cave
+                = t('properties.features.cave')
+            .checkbox
+              label
+                = f.check_box :ski_in_ski_out
+                = t('properties.features.ski_in_ski_out')
           td
             - if @property.for_rent?
-              label.checkbox
-                = f.check_box :children_welcome
-                = t('properties.features.children_welcome')
-              label.checkbox
-                = f.check_box :pets
-                = t('properties.features.pets')
-              label.checkbox
-                = f.check_box :smoking
-                = t('properties.features.smoking')
-              label.checkbox
-                = f.check_box :disabled
-                = t('properties.features.disabled')
-            label.checkbox
-              = f.check_box :garden
-              = t('properties.features.garden')
-            label.checkbox
-              = f.check_box :hot_tub
-              = t('properties.features.hot_tub')
-            label.checkbox
-              = f.check_box :indoor_swimming_pool
-              = t('properties.features.indoor_swimming_pool')
-            label.checkbox
-              = f.check_box :outdoor_swimming_pool
-              = t('properties.features.outdoor_swimming_pool')
-            label.checkbox
-              = f.check_box :sauna
-              = t('properties.features.sauna')
+              .checkbox
+                label
+                  = f.check_box :children_welcome
+                  = t('properties.features.children_welcome')
+              .checkbox
+                label
+                  = f.check_box :pets
+                  = t('properties.features.pets')
+              .checkbox
+                label
+                  = f.check_box :smoking
+                  = t('properties.features.smoking')
+              .checkbox
+                label
+                  = f.check_box :disabled
+                  = t('properties.features.disabled')
+            .checkbox
+              label
+                = f.check_box :garden
+                = t('properties.features.garden')
+            .checkbox
+              label
+                = f.check_box :hot_tub
+                = t('properties.features.hot_tub')
+            .checkbox
+              label
+                = f.check_box :indoor_swimming_pool
+                = t('properties.features.indoor_swimming_pool')
+            .checkbox
+              label
+                = f.check_box :outdoor_swimming_pool
+                = t('properties.features.outdoor_swimming_pool')
+            .checkbox
+              label
+                = f.check_box :sauna
+                = t('properties.features.sauna')
 
   .well
     legend Price
@@ -236,7 +256,7 @@ javascript:
         - else
           = f.label :weekly_rent_price, I18n.t('weekly_rent_price'), class: 'control-label col-lg-4'
           .col-lg-2
-          = f.text_field :weekly_rent_price, class: 'form-control'
+            = f.text_field :weekly_rent_price, class: 'form-control'
         .col-lg-2
           = select("property", "currency_id", (Currency.order('code').collect {|c| [ c.code, c.id ] }).sort, {prompt: 'Select Currency'}, class: 'form-control')
       p.help-block If you have a booking or enquiry page on your own website then you may enter its URL here to direct enquiries to it instead of using the default MyChaletFinder.com contact page.
