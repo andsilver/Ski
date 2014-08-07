@@ -1,5 +1,6 @@
 - cache(@resort) do
   section
+    h2= @resort.name
     ul#resort-nav
       = nav_link(resort_path(@resort), "#{@resort.name} resort information", t('resort_options.resort_info'))
       = nav_link(resort_guide_path(@resort), "#{@resort.name} resort guide", t('.resort_guide')) if @resort.has_resort_guide?
