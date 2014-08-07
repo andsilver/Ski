@@ -11,6 +11,8 @@ html.no-js lang="#{@lang}"
       | My Chalet Finder
     - unless @meta_description.blank?
       meta name="description" content="#{@meta_description}"
+    - if @meta_keywords.present?
+      meta name="description" content="#{@meta_keywords}"
     meta name="alexaVerifyID" content="0IVBlNZ4wkIe-rLrsQkQNVUS9to"
     link rel="icon" type="image/x-icon" href="/favicon.ico"
     link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"
