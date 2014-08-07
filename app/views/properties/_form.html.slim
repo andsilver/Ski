@@ -1,0 +1,284 @@
+javascript:
+  $(function() {
+    $('#strapline_example').click(function() {
+      $('#strapline-example-modal').modal('show');
+      // prevent the default action, e.g., following a link
+      return false;
+    });
+  });
+
+- if @property.errors.any?
+  #error_explanation
+    h2= "#{pluralize(@property.errors.count, "error")} prohibited this property from being saved:"
+    ul
+      - @property.errors.full_messages.each do |msg|
+        li= msg
+
+= form_for @property do |f|
+
+  - if admin?
+    .well
+      .form-horizontal
+        .form-group
+          = f.label :listing_type, class: 'control-label col-lg-4'
+          .col-lg-6
+            = f.select :listing_type, listing_type_options, {}, class: 'form-control'
+  - else
+    = f.hidden_field :listing_type
+
+  .well
+    .form-horizontal
+      .form-group
+        = f.label :name, t('property_name'), class: 'control-label col-lg-2'
+        = required_field
+        .col-lg-4
+          = f.text_field :name, class: 'form-control'
+
+  - unless @property.new_record?
+    .well
+      legend Images
+      p
+        => link_to 'Add or remove images for this property', new_image_path
+        | (changes made on this page will not be saved)
+      - unless @property.images.empty?
+        = f.label :image_id, t('main_image')
+        = select("property", "image_id", (@property.images.collect {|i| [ i.filename, i.id ] }).sort, {prompt: 'Select Image'})
+
+  - if @current_user.role.flag_new_development? or @property.for_rent?
+    .well
+      - if @current_user.role.flag_new_development? && !@property.for_rent?
+        label.checkbox
+          = f.check_box :new_development
+          = t('properties.features.new_development')
+      - if @property.for_rent?
+        label.checkbox
+          = f.check_box :long_term_lets_available
+          = t('properties.features.long_term_lets_available')
+        label.checkbox
+          = f.check_box :short_stays
+          = t('properties.features.short_stays')
+
+  .well
+    .form-horizontal
+      .form-group
+        = f.label :resort_id, I18n.t('resort'), class: 'control-label col-lg-4'
+        = required_field
+        .col-lg-6
+          = select("property", "resort_id", (Resort.where(visible: true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: t('properties.select_resort')}, class: 'form-control')
+      - if @property.hotel?
+        .form-group
+          = f.label :star_rating, t('properties.star_rating'), class: 'control-label col-lg-2'
+          .col-lg-6
+            = select("property", "star_rating", Range.new(1, 5).collect {|sr| [pluralize(sr, 'star'), sr]}, {prompt: 'Choose'}, class: 'form-control')
+      - if @property.for_sale? or @property.for_rent?
+        .form-group
+          = f.label :accommodation_type, t('properties.accommodation_type'), class: 'control-label col-lg-4'
+          .col-lg-6
+            select#property_accommodation_type name="property[accommodation_type]" class="form-control"
+              - [Property::ACCOMMODATION_TYPE_CHALET, Property::ACCOMMODATION_TYPE_APARTMENT].each do |value|
+                = content_tag(:option, property_type_for_accommodation_type(value), value: value, selected: @property.accommodation_type==value)
+      - else
+        / not relevant
+        input#property_accommodation_type name="property[accommodation_type]" type="hidden" value="#{Property::ACCOMMODATION_TYPE_CHALET}"
+      .form-group
+        = f.label :distance_from_town_centre_m, 'Distance from town centre', class: 'control-label col-lg-4'
+        .col-lg-2
+          = select 'property', 'distance_from_town_centre_m', distance_options, {prompt: 'Choose'}, class: 'form-control'
+
+      .form-group
+        = f.label :metres_from_lift, t('nearest_lift'), class: 'control-label col-lg-4'
+        .col-lg-2
+          = select 'property', 'metres_from_lift', distance_options, {prompt: 'Choose'}, class: 'form-control'
+
+      .form-group
+        = f.label :number_of_bedrooms, t('number_of_bedrooms'), class: 'control-label col-lg-4'
+        .col-lg-2
+          = select("property", "number_of_bedrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'form-control')
+
+      - if @property.for_rent?
+        .form-group
+          = f.label :sleeping_capacity, t('sleeping_capacity'), class: 'control-label col-lg-4'
+          .col-lg-2
+            = select("property", "sleeping_capacity", ((1..30).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'form-control')
+
+      .form-group
+        = f.label :number_of_bathrooms, t('number_of_bathrooms'), class: 'control-label col-lg-4'
+        .col-lg-2
+          = select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'form-control')
+
+      css:
+        .area-unit {
+          width: 140px;
+        }
+      javascript:
+        $(function() {
+          $('.area-unit').change(function() {
+            var sq_m_to_f = 10.7639104
+              , sq_f_to_m = 0.09290304
+              , input = $("#" + $(this).data('target'))
+              , area = input.val();
+
+            if($(this).val() == 'm') {
+              area = sq_f_to_m * area;
+            } else {
+              area = sq_m_to_f * area;
+            }
+
+            input.val(Math.round(area));
+          });
+        });
+
+      - if @property.for_rent? or @property.for_sale?
+        .form-group
+          = f.label :floor_area_metres_2, t('floor_area'), class: 'control-label col-lg-4'
+          .col-lg-2
+            = f.number_field :floor_area_metres_2, class: 'form-control'
+          .col-lg-2
+            = area_select 'floor_area_unit', :property_floor_area_metres_2
+
+      - if @property.for_sale?
+        .form-group
+          = f.label :plot_size_metres_2, t('plot_size'), class: 'control-label col-lg-2'
+          .col-lg-6
+            = f.number_field :plot_size_metres_2
+            = area_select 'plot_area_unit', :property_plot_size_metres_2
+
+  .well
+    legend Features
+    .form-horizontal
+      - if @property.for_rent?
+        .form-group
+          = f.label :tv, t('properties.features.tv'), class: 'control-label col-lg-2'
+          .col-lg-6
+            select#property_tv.form-control name="property[tv]"
+              - [Property::TV_NO, Property::TV_YES, Property::TV_FREEVIEW, Property::TV_SATELLITE].each do |value|
+                = content_tag(:option, Property.tv_description(value), value: value, selected: @property.tv == value)
+        .form-group
+          = f.label :board_basis, t('properties.features.board_basis'), class: 'control-label col-lg-2'
+          .col-lg-6
+            select#property_board_basis.form-control name="property[board_basis]"
+              - [Property::BOARD_BASIS_SELF_CATERING, Property::BOARD_BASIS_BED_AND_BREAKFAST, Property::BOARD_BASIS_HALF_BOARD, Property::BOARD_BASIS_FULL_BOARD].each do |value|
+                = content_tag(:option, Property.board_basis_description(value), value: value, selected: @property.board_basis == value)
+
+      .form-group
+        = f.label :parking, t('properties.features.parking'), class: 'control-label col-lg-2'
+        .col-lg-6
+          select#property_parking name="property[parking]" class="form-control"
+            - [Property::PARKING_NO, Property::PARKING_ON_STREET, Property::PARKING_OFF_STREET, Property::PARKING_GARAGE].each do |value|
+              = content_tag(:option, Property.parking_description(value), value: value, selected: @property.parking == value)
+
+      table
+        tr
+          td
+            label.checkbox
+              = f.check_box :balcony
+              = t('properties.features.balcony')
+            label.checkbox
+              = f.check_box :terrace
+              = t('properties.features.terrace')
+            label.checkbox
+              = f.check_box :mountain_views
+              = t('properties.features.mountain_views')
+            - if @property.for_rent?
+              label.checkbox
+                = f.check_box :wifi
+                = t('properties.features.wifi')
+            label.checkbox
+              = f.check_box :log_fire
+              = t('properties.features.log_fire')
+            label.checkbox
+              = f.check_box :fully_equipped_kitchen
+              = t('properties.features.fully_equipped_kitchen')
+            label.checkbox
+              = f.check_box :cave
+              = t('properties.features.cave')
+            label.checkbox
+              = f.check_box :ski_in_ski_out
+              = t('properties.features.ski_in_ski_out')
+          td
+            - if @property.for_rent?
+              label.checkbox
+                = f.check_box :children_welcome
+                = t('properties.features.children_welcome')
+              label.checkbox
+                = f.check_box :pets
+                = t('properties.features.pets')
+              label.checkbox
+                = f.check_box :smoking
+                = t('properties.features.smoking')
+              label.checkbox
+                = f.check_box :disabled
+                = t('properties.features.disabled')
+            label.checkbox
+              = f.check_box :garden
+              = t('properties.features.garden')
+            label.checkbox
+              = f.check_box :hot_tub
+              = t('properties.features.hot_tub')
+            label.checkbox
+              = f.check_box :indoor_swimming_pool
+              = t('properties.features.indoor_swimming_pool')
+            label.checkbox
+              = f.check_box :outdoor_swimming_pool
+              = t('properties.features.outdoor_swimming_pool')
+            label.checkbox
+              = f.check_box :sauna
+              = t('properties.features.sauna')
+
+  .well
+    legend Price
+    .form-horizontal
+      .form-group
+        - if @property.for_sale?
+          = f.label :sale_price, I18n.t('sale_price'), class: 'control-label col-lg-4'
+          .col-lg-2
+            = f.text_field :sale_price, class: 'form-control'
+        - else
+          = f.label :weekly_rent_price, I18n.t('weekly_rent_price'), class: 'control-label col-lg-4'
+          .col-lg-2
+          = f.text_field :weekly_rent_price, class: 'form-control'
+        .col-lg-2
+          = select("property", "currency_id", (Currency.order('code').collect {|c| [ c.code, c.id ] }).sort, {prompt: 'Select Currency'}, class: 'form-control')
+      p.help-block If you have a booking or enquiry page on your own website then you may enter its URL here to direct enquiries to it instead of using the default MyChaletFinder.com contact page.
+      .form-group
+        = f.label :booking_url, 'Booking URL', class: 'control-label col-lg-4'
+        .col-lg-6
+          = f.text_field :booking_url, class: 'form-control', placeholder: 'http://example.com/mybookingform'
+
+  = clear
+
+  .well
+    legend Address
+    .form-group
+      = f.label :address, t('address')
+      = required_field
+      = f.text_area :address, class: 'form-control'
+    .form-group
+      = f.label :postcode, t('postcode')
+      = f.text_field :postcode, class: 'form-control'
+
+  .modal.fade#strapline-example-modal
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+          h4.modal-title= t('properties.strapline_example')
+        .modal-body
+          p= t('properties.strapline_example_content')
+
+  .well
+    legend Describe your property for potential customers
+    .form-group
+      = f.label :strapline, t('strapline')
+      = f.text_area :strapline, class: 'form-control'
+    p.help-block
+      = I18n.t('strapline_placeholder')
+      a href="#" id="strapline_example"= t('example')
+    .form-group
+      = f.label :description, t('description')
+      = f.text_area :description, class: 'form-control'
+
+  = clear
+
+  .form-group
+    = f.submit I18n.t('save'), class: 'btn btn-primary'
