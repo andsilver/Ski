@@ -64,17 +64,19 @@ module FlipKey
     # The download process is skipped if the importer is initialised with the
     # +skip_download+ option.
     def perform_import(downloader, importer, filenames, xml_split_options)
-      unless @options[:skip_download]
-        downloader.new(DOWNLOADER_OPTIONS).download do |filename|
-          gunzip(filename)
-          xml_filename = File.join(FlipKey.directory, filename[0..-4])
-          opts = { xml_filename: xml_filename }.merge xml_split_options
-          splitter = XMLSplitter.new(opts)
-          splitter.split
-        end
-      end
-
+      prepare(downloader, xml_split_options) unless @options[:skip_download]
       importer.new.import(limit_filenames(filenames))
+    end
+
+    # Downloads and prepares files ready for importing.
+    def prepare(downloader, xml_split_options)
+      downloader.new(DOWNLOADER_OPTIONS).download do |filename|
+        gunzip(filename)
+        xml_filename = File.join(FlipKey.directory, filename[0..-4])
+        opts = { xml_filename: xml_filename }.merge xml_split_options
+        splitter = XMLSplitter.new(opts)
+        splitter.split
+      end      
     end
 
     private
