@@ -1,8 +1,18 @@
 class FlipKeyProperty < ActiveRecord::Base
   has_one :property, dependent: :destroy
 
+  # Returns +true+ if the property is booked on the given date or if the
+  # property calendar is missing.
   def booked_on?(date)
-    parsed_json['property_calendar'][0]['booked_date'].any? { |bd| bd == date.to_s }
+    if property_calendar.kind_of?(Hash)
+      true
+    else
+      property_calendar['booked_date'].any? { |bd| bd == date.to_s }
+    end
+  end
+
+  def property_calendar
+    parsed_json['property_calendar'][0]
   end
 
   def currency
