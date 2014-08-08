@@ -75,24 +75,25 @@ javascript:
               - year += 1
           .clear
 
-        h2 Rates
-        table
-          thead
-            th Dates
-            th Nightly
-            th Weekly
-            th Monthly
-            th Minimum Stay
-          tbody
-            - @property.flip_key_property.property_rates.each do |rate|
-              tr
-                td
-                  .rate-dates= "#{Date.parse(rate['start_date'][0]).strftime("%b %-d")} - #{Date.parse(rate['end_date'][0]).strftime("%b %-d, %Y")}"
-                  .check-in= flip_key_changeover(rate['changeover_day'][0])
-                td= flip_key_rate(@property.flip_key_property, rate['day_min_rate'])
-                td= flip_key_rate(@property.flip_key_property, rate['week_min_rate'])
-                td= flip_key_rate(@property.flip_key_property, rate['month_min_rate'])
-                td= flip_key_minimum_stay(rate)
+        - if @property.flip_key_property.property_rates
+          h2 Rates
+          table
+            thead
+              th Dates
+              th Nightly
+              th Weekly
+              th Monthly
+              th Minimum Stay
+            tbody
+              - @property.flip_key_property.property_rates.each do |rate|
+                tr
+                  td
+                    .rate-dates= "#{Date.parse(rate['start_date'][0]).strftime("%b %-d")} - #{Date.parse(rate['end_date'][0]).strftime("%b %-d, %Y")}"
+                    .check-in= flip_key_changeover(rate['changeover_day'][0])
+                  td= flip_key_rate(@property.flip_key_property, rate['day_min_rate'])
+                  td= flip_key_rate(@property.flip_key_property, rate['week_min_rate'])
+                  td= flip_key_rate(@property.flip_key_property, rate['month_min_rate'])
+                  td= flip_key_minimum_stay(rate)
 
       .col-md-4
         h2 Interested?
