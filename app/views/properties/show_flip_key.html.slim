@@ -36,7 +36,8 @@ javascript:
         .property-details
           ul.details
             li= pluralize(@property.flip_key_property.bedroom_count, 'bedroom')
-            li= pluralize(@property.flip_key_property.bathroom_count, 'bathroom')
+            - if @property.flip_key_property.bathroom_count
+              li= pluralize(@property.flip_key_property.bathroom_count, 'bathroom')
             li= "Sleeps #{@property.flip_key_property.occupancy}"
             li= @property.flip_key_property.property_type
           h3 Description from the manager

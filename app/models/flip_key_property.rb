@@ -44,7 +44,11 @@ class FlipKeyProperty < ActiveRecord::Base
   end
 
   def bathroom_count
-    property_details['bathroom_count'][0].to_i
+    if property_details['bathroom_count'][0].kind_of?(Hash)
+      nil
+    else
+      property_details['bathroom_count'][0].to_i
+    end
   end
 
   def bedroom_count
