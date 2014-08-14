@@ -107,12 +107,18 @@ javascript:
         form
           javascript:
             $(function() {
-              $('.datepicker').pickadate();
+              var now = new Date();
+              var nextYear = new Date();
+              nextYear.setYear(now.getFullYear() + 1);
+              $('.check-in').pickadate({
+                min: now,
+                max: nextYear
+              });
             });
           .form-group
-            = text_field_tag('check_in', '', required: true, class: 'form-control datepicker', placeholder: 'Check-in')
+            = text_field_tag('check_in', '', required: true, class: 'form-control datepicker check-in', placeholder: 'Check-in')
           .form-group
-            = text_field_tag('check_out', '', required: true, class: 'form-control datepicker', placeholder: 'Check-out')
+            = text_field_tag('check_out', '', required: true, class: 'form-control datepicker check-out', placeholder: 'Check-out')
           .form-group
             select.form-control
               - (1..@property.flip_key_property.occupancy).each do |guests|
