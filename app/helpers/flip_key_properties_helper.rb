@@ -27,6 +27,6 @@ module FlipKeyPropertiesHelper
   # Converts an array of Dates into a string containing a JavaScript comma
   # separated list of dates.
   def javascript_dates(dates)
-    dates.map {|d| "new Date(#{d.strftime('%Y,%-m,%-d')})" }.join(', ').html_safe
+    dates.map {|d| "new Date(#{d.strftime('%Y,%-m-1,%-d')})" }.join(', ').html_safe
   end
 end
