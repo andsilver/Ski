@@ -15,6 +15,21 @@ class FlipKeyProperty < ActiveRecord::Base
     end
   end
 
+  # Returns an array of Dates where check-in is possible.
+  def check_in_dates
+    dates = []
+    today = Date.today
+    (0..365).each do |days|
+      date = today + days.days
+      dates << date if check_in_on?(date)
+    end
+    dates
+  end
+
+  def check_in_on?(date)
+    !booked_on?(date)
+  end
+
   def property_calendar
     parsed_json['property_calendar'][0]
   end

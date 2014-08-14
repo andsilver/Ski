@@ -23,4 +23,10 @@ module FlipKeyPropertiesHelper
     return 'Check in any day' if changeover.kind_of?(Hash)
     %w{Sunday Monday Tuesday Wednesday Thursday Friday Saturday}[changeover.to_i] + ' check-in'
   end
+
+  # Converts an array of Dates into a string containing a JavaScript comma
+  # separated list of dates.
+  def javascript_dates(dates)
+    dates.map {|d| "new Date(#{d.strftime('%Y,%-m,%-d')})" }.join(', ').html_safe
+  end
 end

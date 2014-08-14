@@ -112,7 +112,12 @@ javascript:
               nextYear.setYear(now.getFullYear() + 1);
               $('.check-in').pickadate({
                 min: now,
-                max: nextYear
+                max: nextYear,
+                disable: [
+                 true,
+                 0,
+                 #{javascript_dates(@property.flip_key_property.check_in_dates)}
+                ]
               });
             });
           .form-group
