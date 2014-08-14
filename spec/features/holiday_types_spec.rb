@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature "Holiday types" do
   fixtures :countries, :holiday_types, :resorts, :websites

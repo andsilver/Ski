@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'CMS' do
   # In order to maintain the website and instil confidence in larger customers

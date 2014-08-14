@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'properties/_form' do
   fixtures :roles, :users

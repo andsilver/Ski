@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require_relative 'property_header_image'
 
 describe 'properties/show_hotel' do

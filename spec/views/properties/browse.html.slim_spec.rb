@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'properties/browse' do
   let(:resort) { FactoryGirl.create(:resort) }

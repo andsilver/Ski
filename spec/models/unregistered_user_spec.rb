@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UnregisteredUser do
   it { should have_many(:favourites) }

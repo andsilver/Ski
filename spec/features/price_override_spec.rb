@@ -1,5 +1,5 @@
 # encoding: utf-8
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Price Override' do
   fixtures :banner_prices, :categories, :countries, :resorts, :websites

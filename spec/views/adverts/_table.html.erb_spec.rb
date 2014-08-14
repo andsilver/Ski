@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'adverts/_table.html.erb' do
   it 'shows the count of clicks' do

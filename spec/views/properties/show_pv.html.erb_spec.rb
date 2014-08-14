@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'properties/show_pv' do
   it 'displays the booking iframe' do

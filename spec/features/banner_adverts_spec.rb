@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Banner adverts' do
   fixtures :banner_prices, :categories, :countries, :resorts, :roles, :users, :websites

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'properties/show' do
   it 'shows a table of features' do

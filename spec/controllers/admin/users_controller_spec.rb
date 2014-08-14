@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::UsersController do
   let(:website) { mock_model(Website).as_null_object }

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Window base prices admin' do
   fixtures :roles, :users, :websites

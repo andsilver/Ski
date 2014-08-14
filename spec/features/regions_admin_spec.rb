@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Regions admin' do
   fixtures :countries, :holiday_types, :regions, :roles, :users, :websites

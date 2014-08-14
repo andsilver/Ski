@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Switch user' do
   fixtures :roles, :users, :websites

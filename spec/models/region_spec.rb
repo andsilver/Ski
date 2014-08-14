@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require_relative 'shared_model_examples'
 
 describe Region do

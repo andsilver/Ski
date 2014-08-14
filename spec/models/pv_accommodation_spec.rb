@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PvAccommodation do
   describe '#photo_array' do

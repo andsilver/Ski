@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Category do
   it "has an SEO-friendly to_param using i18n" do

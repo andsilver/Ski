@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'My Adverts' do
   fixtures :categories, :countries, :resorts, :roles, :users, :websites
