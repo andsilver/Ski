@@ -1,13 +1,17 @@
 class FlipKeyProperty < ActiveRecord::Base
   has_one :property, dependent: :destroy
 
-  # Returns +true+ if the property is booked on the given date or if the
-  # property calendar is missing.
+  # Returns +true+ if:
+  # * property is booked on the given date, or
+  # * property calendar is missing, or
+  # * date is in the past
   def booked_on?(date)
-    if property_calendar.kind_of?(Hash)
+    if date < Date.today
       true
-    else
+    elsif property_calendar['booked_date']
       property_calendar['booked_date'].any? { |bd| bd == date.to_s }
+    else
+      true
     end
   end
 
