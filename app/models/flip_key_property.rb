@@ -26,8 +26,21 @@ class FlipKeyProperty < ActiveRecord::Base
     dates
   end
 
+  # Returns +true+ if a customer can check in on the given date.
   def check_in_on?(date)
-    !booked_on?(date)
+    if !booked_on?(date)
+      rate = rate_for_date(date)
+      if rate.nil?
+        true
+      else
+        changeover = rate['changeover_day'][0].to_i
+        # FlipKey Sunday is 0; Ruby Date Sunday is 7
+        changeover = 7 if changeover == 0
+        return changeover == date.cwday
+      end
+    else
+      false
+    end
   end
 
   def property_calendar
@@ -104,6 +117,17 @@ class FlipKeyProperty < ActiveRecord::Base
 
   def property_rates
     parsed_json['property_rates'][0]['property_rate']
+  end
+
+  # Returns the property rate details for the given date, or nil if there
+  # are no rates given for the date.
+  def rate_for_date(date)
+    property_rates.each do |rate|
+      if Date.parse(rate['start_date'][0]) <= date && Date.parse(rate['end_date'][0]) >= date
+        return rate
+      end
+    end
+    nil
   end
 
   def rental_price_scope
