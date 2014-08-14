@@ -1,0 +1,37 @@
+= render 'users/advertising_options'
+
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('advertise') => advertise_path}, t('my_adverts'))
+
+- if @current_user.advertises_through_windows?
+  h2= t('my_windows')
+    table.theme-table
+      tr
+        th= t('.purchased_on')
+        th= t('.expires_on')
+        th= t('.days_remaining')
+        th= t('.total')
+        th= t('.number_in_use')
+        th= t('.number_free')
+      - @window_groups.each do |group|
+        tr
+          td= l group.starts_at, format: :short
+          td= l group.expires_at, format: :short
+          td= group.days_remaining
+          td= group.total
+          td= group.number_in_use
+          td= group.number_free
+
+- unless @rentals.empty?
+  = render 'table', title: 'property_rentals', adverts: @rentals
+
+- unless @sales.empty?
+  = render 'table', title: 'property_sales', adverts: @sales
+
+- unless @hotels.empty?
+  = render 'table', title: 'hotels', adverts: @hotels
+
+- unless @directory_adverts.empty?
+  = render 'table', title: 'directory_and_banner_adverts', adverts: @directory_adverts
+
+= form_tag(action: 'delete_all_new_advertisables') do
+  = submit_tag('Delete all new adverts', class: 'btn btn-danger', data: {confirm: 'Are you sure?'})
