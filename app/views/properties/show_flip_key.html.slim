@@ -107,6 +107,9 @@ javascript:
         form
           javascript:
             $(function() {
+              var checkOutDates = {
+                #{javascript_check_out_dates(@property.flip_key_property)}
+              };
               var checkOutPicker = null;
               var now = new Date();
               var nextYear = new Date();
@@ -127,18 +130,25 @@ javascript:
                       checkOutPicker.set('disable', true);
                     }
                   } else {
-                    $('.check-out').pickadate({
-                      min: now,
-                      max: nextYear,
-                      disable: [
-                       true,
-                       []
-                      ],
-                      onStart: function() {
-                        // save a reference to the check-out picker
-                        checkOutPicker = this;
-                      }
-                    });
+                    var checkInPicker = this;
+                    var checkOuts = checkOutDates[checkInPicker.get('select', 'yyyy-mm-dd')];
+
+                    if(checkOutPicker) {
+                      // set to new check-out dates
+                      checkOutPicker.set('clear');
+                      checkOutPicker.set('disable', checkOuts);
+                    } else {
+                      // initialize the check-out picker
+                      $('.check-out').pickadate({
+                        min: now,
+                        max: nextYear,
+                        disable: checkOuts,
+                        onStart: function() {
+                          // save a reference to the check-out picker
+                          checkOutPicker = this;
+                        }
+                      });
+                    }
                   }
                 }
               });

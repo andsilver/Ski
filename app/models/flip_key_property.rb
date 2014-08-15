@@ -43,6 +43,11 @@ class FlipKeyProperty < ActiveRecord::Base
     end
   end
 
+  def check_out_dates(check_in)
+    # dummy code
+    [Date.today, Date.today + 1.day]
+  end
+
   def property_calendar
     parsed_json['property_calendar'][0]
   end

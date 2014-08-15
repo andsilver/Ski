@@ -24,6 +24,20 @@ module FlipKeyPropertiesHelper
     %w{Sunday Monday Tuesday Wednesday Thursday Friday Saturday}[changeover.to_i] + ' check-in'
   end
 
+  # Given a FlipKeyProperty, converts its check-in Dates into a string of
+  # JavaScript that is a map of check-in to check-out dates in object format.
+  #
+  # +true+ is prepended to the value array for use with the pickadate.js date
+  # disabling method.
+  #
+  #    '2014-08-23': [true, new Date(2014,7,30), new Date(2014,8,6)],
+  #    '2014-08-30': [true, new Date(2014,8,6)]
+  def javascript_check_out_dates(flip_key_property)
+    flip_key_property.check_in_dates.map do |ci|
+      "'#{ci.to_s}': [true, #{javascript_dates(flip_key_property.check_out_dates(ci))}]"
+    end.join(",\n").html_safe
+  end
+
   # Converts an array of Dates into a string containing a JavaScript comma
   # separated list of dates.
   def javascript_dates(dates)
