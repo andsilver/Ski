@@ -107,6 +107,7 @@ javascript:
         form
           javascript:
             $(function() {
+              var checkOutPicker = null;
               var now = new Date();
               var nextYear = new Date();
               nextYear.setYear(now.getFullYear() + 1);
@@ -115,9 +116,31 @@ javascript:
                 max: nextYear,
                 disable: [
                  true,
-                 0,
                  #{javascript_dates(@property.flip_key_property.check_in_dates)}
-                ]
+                ],
+                onClose: function() {
+                  if(this.get('select') == null) {
+                    // check-in date cleared so disable all dates in the
+                    // check-out picker, if set
+                    if(checkOutPicker) {
+                      checkOutPicker.set('clear');
+                      checkOutPicker.set('disable', true);
+                    }
+                  } else {
+                    $('.check-out').pickadate({
+                      min: now,
+                      max: nextYear,
+                      disable: [
+                       true,
+                       []
+                      ],
+                      onStart: function() {
+                        // save a reference to the check-out picker
+                        checkOutPicker = this;
+                      }
+                    });
+                  }
+                }
               });
             });
           .form-group
