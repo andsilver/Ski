@@ -33,10 +33,15 @@ class FlipKeyProperty < ActiveRecord::Base
       if rate.nil?
         true
       else
-        changeover = rate['changeover_day'][0].to_i
-        # FlipKey Sunday is 0; Ruby Date Sunday is 7
-        changeover = 7 if changeover == 0
-        return changeover == date.cwday
+        changeover = rate['changeover_day'][0]
+        if changeover.kind_of?(Hash)
+          return true
+        else
+          changeover = changeover.to_i
+          # FlipKey Sunday is 0; Ruby Date Sunday is 7
+          changeover = 7 if changeover == 0
+          return changeover == date.cwday
+        end
       end
     else
       false
@@ -44,8 +49,13 @@ class FlipKeyProperty < ActiveRecord::Base
   end
 
   def check_out_dates(check_in)
-    # dummy code
-    [Date.today, Date.today + 1.day]
+    dates = []
+    ((min_stay(check_in))..30).each do |days|
+      date = check_in + days.days
+      dates << date
+      break if booked_on?(date)
+    end
+    dates
   end
 
   def property_calendar
@@ -122,6 +132,14 @@ class FlipKeyProperty < ActiveRecord::Base
 
   def property_rates
     parsed_json['property_rates'][0]['property_rate']
+  end
+
+  def min_stay(check_in)
+    if rate = rate_for_date(check_in)
+      rate['minimum_length'][0].to_i
+    else
+      1
+    end
   end
 
   # Returns the property rate details for the given date, or nil if there
