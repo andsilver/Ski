@@ -5,14 +5,14 @@ describe CategoriesController do
   let(:category) { double(Category).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
-    Category.stub(:new).and_return(category)
-    controller.stub(:admin?).and_return(true)
+    allow(Website).to receive(:first).and_return(website)
+    allow(Category).to receive(:new).and_return(category)
+    allow(controller).to receive(:admin?).and_return(true)
   end
 
   describe "GET new" do
     it "instantiates a new category" do
-      Category.should_receive(:new)
+      expect(Category).to receive(:new)
       get :new
     end
 
@@ -26,13 +26,13 @@ describe CategoriesController do
     let(:params) { {category: { "name" => "Restaurants" }} }
 
     it "instantiates a new category with the given params" do
-      Category.should_receive(:new).with(params[:category])
+      expect(Category).to receive(:new).with(params[:category])
       post :create, params
     end
 
     context "when the category saves successfully" do
       before do
-        category.stub(:save).and_return(true)
+        allow(category).to receive(:save).and_return(true)
       end
 
       it "sets a flash[:notice] message" do
@@ -48,7 +48,7 @@ describe CategoriesController do
 
     context "when the category fails to save" do
       before do
-        category.stub(:save).and_return(false)
+        allow(category).to receive(:save).and_return(false)
       end
 
       it "assigns @category" do
@@ -69,7 +69,7 @@ describe CategoriesController do
 
     context 'with results' do
       before do
-        Category.unstub(:new)
+        allow(Category).to receive(:new).and_call_original
         da = FactoryGirl.create(:directory_advert, category: cat, resort: resort)
         Advert.new_for(da).start_and_save!
       end
@@ -82,7 +82,7 @@ describe CategoriesController do
 
     context 'with no results' do
       it '404s' do
-        Category.unstub(:new)
+        allow(Category).to receive(:new).and_call_original
         get :show, id: cat.id, resort_slug: resort.to_param
         expect(response.status).to eq 404
       end
@@ -91,15 +91,15 @@ describe CategoriesController do
 
   describe 'DELETE destroy' do
     it 'finds the category' do
-      Category.should_receive(:find_by).with(id: '1')
+      expect(Category).to receive(:find_by).with(id: '1')
       delete 'destroy', id: 1
     end
 
     context 'when the category is found' do
-      before { Category.stub(:find_by).and_return(category) }
+      before { allow(Category).to receive(:find_by).and_return(category) }
 
       it 'destroys the category' do
-        category.should_receive(:destroy)
+        expect(category).to receive(:destroy)
         delete 'destroy', id: 1
       end
 

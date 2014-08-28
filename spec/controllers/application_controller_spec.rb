@@ -4,7 +4,7 @@ describe ApplicationController do
   let(:website) { double(Website).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   describe 'GET sitemap' do
@@ -15,7 +15,7 @@ describe ApplicationController do
   end
 
   describe 'bot?' do
-    before { controller.stub(:bot_file).and_return('test-files/bots.txt') }
+    before { allow(controller).to receive(:bot_file).and_return('test-files/bots.txt') }
 
     it 'returns true if bot is present in the bot file' do
       expect(controller.bot?('bot')).to be_truthy
