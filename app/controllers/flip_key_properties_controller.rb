@@ -25,12 +25,15 @@ class FlipKeyPropertiesController < ApplicationController
     guests: params[:guests],
     name: params[:name],
     phone_number: params[:phone_number],
-    property_id: @flip_key_property.id,
+    property_id: @flip_key_property.provider_property_id,
     user_ip: request.remote_ip
     )
 
-    ms.send_message
-    redirect_to message_sent_flip_key_property_path(@flip_key_property)
+    if ms.send_message
+      redirect_to message_sent_flip_key_property_path(@flip_key_property)
+    else
+      redirect_to @flip_key_property.property
+    end
   end
 
   def message_sent

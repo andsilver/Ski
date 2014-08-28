@@ -38,10 +38,12 @@ describe FlipKeyPropertiesController do
       allow(flip_key_property).to receive(:check_in_and_out_on?).with(Date.parse(invalid_check_in), Date.parse(valid_check_out)).and_return(false)
       allow(flip_key_property).to receive(:check_in_and_out_on?).with(Date.parse(valid_check_in), Date.parse(invalid_check_out)).and_return(false)
       allow(flip_key_property).to receive(:occupancy).and_return(2)
+      allow(flip_key_property).to receive(:provider_property_id).and_return('123')
     end
 
     context 'with valid params' do
       it 'redirects to message_sent' do
+        allow(FlipKey::MessageSender).to receive(:new).and_return double(FlipKey::MessageSender).as_null_object
         post 'send_message', valid_params
         expect(response).to redirect_to(message_sent_flip_key_property_path(flip_key_property))
       end
@@ -54,9 +56,9 @@ describe FlipKeyPropertiesController do
         email: valid_params[:email],
         guests: valid_params[:guests],
         phone_number: valid_params[:phone_number],
-        property_id: flip_key_property.id,
+        property_id: flip_key_property.provider_property_id,
         user_ip: request.remote_ip
-        )).and_call_original
+        )).and_return double(FlipKey::MessageSender).as_null_object
         post 'send_message', valid_params
       end
 

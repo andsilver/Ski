@@ -6,7 +6,23 @@ module FlipKey
       @params = params
     end
 
+    # Sends the message to FlipKey's server. Returns +true+ if successful.
     def send_message
+      c = Curl.post('https://ws.demo.flipkey.net/pfe/inquiry/inquiry',
+        {
+          'inquiry_xml' => xml
+        }
+      ) do |c|
+        c.ssl_verify_peer = false
+        c.verbose = true
+        c.http_auth_types = :basic
+        c.username = 'mychaletfinder'
+        c.password = '8QXPogvv'
+        c.headers['Expect'] = ''
+      end
+      Rails.logger.info "FlipKey::MessageSender status: #{c.status}"
+      Rails.logger.info "FlipKey::MessageSender response: #{c.body_str}"
+      c.status == '200 OK'
     end
 
     def xml

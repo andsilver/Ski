@@ -1,6 +1,11 @@
 class FlipKeyProperty < ActiveRecord::Base
   has_one :property, dependent: :destroy
 
+  # Returns the property ID as used in FlipKey's database.
+  def provider_property_id
+    parsed_json['property_attributes'][0]['property_id'][0]
+  end
+
   # Returns +true+ if:
   # * property is booked on the given date, or
   # * property calendar is missing, or
