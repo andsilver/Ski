@@ -24,7 +24,7 @@ class Property < ActiveRecord::Base
   validates_presence_of :currency
   validates :price_description, length: { maximum: 30 }
 
-  validates_length_of :name, within: 4..50
+  validates_length_of :name, within: 4..255
   validates_length_of :strapline, within: 0..255
 
   VALID_DISTANCES = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
@@ -273,8 +273,8 @@ class Property < ActiveRecord::Base
 
   include ActionView::Helpers::TextHelper
 
-  # Truncates the property name to 50 characters and the strapline to 255
-  # characters. If the strapline is blank then the first 255 characters
+  # Truncates the property name and the strapline to 255 characters.
+  # If the strapline is blank then the first 255 characters
   # of the description are used as the strapline.
   #
   # HTML is not escaped, ensuring that the lengths do not exceed these
@@ -285,7 +285,7 @@ class Property < ActiveRecord::Base
     else
       self.strapline = truncate(strapline, escape: false, length: 255, separator: ' ')
     end
-    self.name = name[0..49]
+    self.name = name[0...255]
   end
 
   def basket_advert_type_description

@@ -17,6 +17,15 @@ describe 'properties/_property_summary' do
     expect(rendered).to have_content('Castle')    
   end
 
+  it 'includes the truncated property name in .property-summary-description' do
+    truncated = 'TRUNCATED'
+    allow(property).to receive(:truncated_name).and_return(truncated)
+    render 'properties/property_summary', p: property
+    within('.property-summary-description') do |psd|
+      expect(psd).to have_content(truncated)
+    end
+  end
+
   context 'when sorting by distance from lift' do
     before { view.stub(:sort_method).and_return 'metres_from_lift ASC' }
 

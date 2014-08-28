@@ -26,4 +26,9 @@ class PropertyDecorator < Draper::Decorator
   def contact_breadcrumbs
     breadcrumbs.merge(name => self)
   end
+
+  # Returns a truncated property name for use where space is limited.
+  def truncated_name
+    name.length <= 50 ? name : "#{name[0...50]}..."
+  end
 end

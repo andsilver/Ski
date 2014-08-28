@@ -10,7 +10,7 @@
   </p>
   <div class="property-summary-description">
     <h3>
-      <%= link_to p.name, link, title: "Read more about #{p.name}" %>
+      <%= link_to p.truncated_name, link, title: "Read more about #{p.name}" %>
       <% unless p.hotel? || p.for_sale? %>&middot; <%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
       <% if sort_method == 'metres_from_lift ASC' %>&middot; <%= t('.nearest_lift' )%> <%= p.nearest_lift %><% end %>
       &middot;

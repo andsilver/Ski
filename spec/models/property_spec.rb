@@ -6,7 +6,7 @@ describe Property do
   it { should have_many(:adverts) }
 
   # ActiveModel
-  it { should ensure_length_of(:name).is_at_least(4).is_at_most(50) }
+  it { should ensure_length_of(:name).is_at_least(4).is_at_most(255) }
   it { should validate_presence_of(:resort) }
   it { should ensure_inclusion_of(:star_rating).in_range(1..5).with_message("is not in the range 1-5") }
 
@@ -168,10 +168,10 @@ describe Property do
       end
     end
 
-    it "truncates name to 50 chars" do
-      property.name = 'x' * 51
+    it "truncates name to 255 chars" do
+      property.name = 'x' * 256
       property.tidy_name_and_strapline
-      expect(property.name).to eq('x' * 50)
+      expect(property.name).to eq('x' * 255)
     end
   end
 
