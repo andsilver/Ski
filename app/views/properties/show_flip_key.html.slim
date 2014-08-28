@@ -102,7 +102,7 @@ javascript:
           span.rental-price= format_currency(@property.flip_key_property.rental_price, Currency.find_by(code: 'USD'))
           span.rental-price-scope= @property.flip_key_property.rental_price_scope
         p.request-more-information Request more information
-        form
+        = form_tag(send_message_flip_key_property_path(@property.flip_key_property))
           javascript:
             $(function() {
               var checkOutDates = {
@@ -157,7 +157,7 @@ javascript:
           .form-group
             = text_field_tag('check_out', '', required: true, class: 'form-control datepicker check-out', placeholder: 'Check-out')
           .form-group
-            select.form-control
+            select.form-control name="guests"
               - (1..@property.flip_key_property.occupancy).each do |guests|
                 - if guests == @property.flip_key_property.occupancy
                   option= pluralize(guests, 'guest') + ' (max occupancy)'
@@ -170,6 +170,6 @@ javascript:
           .form-group
             = phone_field_tag('phone_number', '', class: 'form-control', placeholder: 'Phone', required: true)
           .form-group
-            = text_field_tag('comment', '', class: 'form-control', placeholder: 'Enter a brief message', required: true)
+            = text_field_tag('message', '', class: 'form-control', placeholder: 'Enter a brief message', required: true)
           .form-group
             input.form-control.btn.btn-primary type="submit" value="Send Message"

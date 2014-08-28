@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  VALID_EMAIL_FORMAT = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
   belongs_to :role
   belongs_to :billing_country, class_name: 'Country'
   belongs_to :vat_country, class_name: 'Country'
@@ -32,7 +34,7 @@ class User < ActiveRecord::Base
   validates_presence_of :last_name
 
   validates_uniqueness_of :email
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_format_of :email, with: VALID_EMAIL_FORMAT
 
   validates_format_of :vat_number, with: /\A(
     (AT)?U[0-9]{8} |                              # Austria

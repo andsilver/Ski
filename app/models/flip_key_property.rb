@@ -48,6 +48,11 @@ class FlipKeyProperty < ActiveRecord::Base
     end
   end
 
+  # Returns +true+ if +check_out+ date is valid for the given +check_in+ date.
+  def check_in_and_out_on?(check_in, check_out)
+    check_out_dates(check_in).include?(check_out)
+  end
+
   def check_out_dates(check_in)
     dates = []
     ((min_stay(check_in))..30).each do |days|
@@ -86,6 +91,7 @@ class FlipKeyProperty < ActiveRecord::Base
     parsed_json['property_addresses'][0]['city'][0]
   end
 
+  # Returns the maximum number of guests.
   def occupancy
     property_details['occupancy'][0].to_i
   end
