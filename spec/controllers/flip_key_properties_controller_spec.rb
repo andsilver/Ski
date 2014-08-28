@@ -112,4 +112,13 @@ describe FlipKeyPropertiesController do
       expect(response).to redirect_to(property_path(property))
     end
   end
+
+  describe 'GET message_sent' do
+    it 'finds and assigns @flip_key_property' do
+      fkp = double(FlipKeyProperty)
+      expect(FlipKeyProperty).to receive(:find).with('1').and_return fkp
+      get 'message_sent', id: '1'
+      expect(assigns(:flip_key_property)).to eq fkp
+    end
+  end
 end
