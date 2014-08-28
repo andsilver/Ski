@@ -68,6 +68,16 @@ describe FlipKeyPropertiesController do
         expect(ms).to receive(:send_message)
         post 'send_message', valid_params        
       end
+
+      context 'when message sending fails' do
+        let(:message_sender) { double(FlipKey::MessageSender, send_message: false) }
+
+        it 'should redirect back to the property' do
+          allow(FlipKey::MessageSender).to receive(:new).and_return(message_sender)
+          post 'send_message', valid_params
+          expect_redirect
+        end
+      end
     end
 
     context 'without a name' do
