@@ -16,16 +16,16 @@ describe FlipKeyPropertiesController do
     let(:valid_check_out)   { '30 August, 2014' }
     let(:invalid_check_out) { '31 August, 2014' }
 
-    let(:ok_guests) { 2 }
-    let(:too_many_guests) { 3 }
+    let(:ok_guests)       { '2' }
+    let(:too_many_guests) { '3' }
 
     let(:valid_params) {{
       id: flip_key_property.id,
       check_in: valid_check_in,
       check_out: valid_check_out,
+      comment: 'Can my pet lizard stay?',
       email: 'ianf@yesl.co.uk',
       guests: ok_guests,
-      message: 'Can my pet lizard stay?',
       name: 'Ian',
       phone_number: '01234 567890'
     }}
@@ -47,7 +47,16 @@ describe FlipKeyPropertiesController do
       end
 
       it 'instantiates a FlipKey::MessageSender' do
-        expect(FlipKey::MessageSender).to receive(:new).and_call_original
+        expect(FlipKey::MessageSender).to receive(:new).with(hash_including(
+        check_in: Date.parse(valid_params[:check_in]),
+        check_out: Date.parse(valid_params[:check_out]),
+        comment: valid_params[:comment],
+        email: valid_params[:email],
+        guests: valid_params[:guests],
+        phone_number: valid_params[:phone_number],
+        property_id: flip_key_property.id,
+        user_ip: request.remote_ip
+        )).and_call_original
         post 'send_message', valid_params
       end
 
@@ -75,7 +84,7 @@ describe FlipKeyPropertiesController do
 
     context 'without a message' do
       it 'should redirect back to the property' do
-        post 'send_message', valid_params.merge(message: '')
+        post 'send_message', valid_params.merge(comment: '')
         expect_redirect
       end
     end
