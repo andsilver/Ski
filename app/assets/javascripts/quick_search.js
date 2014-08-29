@@ -12,7 +12,6 @@ function getQuickSearchCountries() {
       $('#country_id').val($.cookie('quick_search_country_id'));
       $.removeCookie('quick_search_country_id');
     }
-    quickSearch();
   });
   return false;
 }
@@ -35,9 +34,10 @@ function getQuickSearchResorts() {
 }
 
 function quickSearch() {
-  if($('#quick-search').length) {  
-    $('#holiday_type_id').change(getQuickSearchCountries);  
-    $('#country_id').change(getQuickSearchResorts);
+  var $qs = $('#quick-search');
+  if($qs.length) {
+    $qs.on('change', '#holiday_type_id', getQuickSearchCountries);
+    $qs.on('change', '#country_id', getQuickSearchResorts);
     $('#quick-search form').submit(function() {
       if($('#resort_id').val() == '') {
         alert('Please choose a resort first.');
@@ -45,7 +45,7 @@ function quickSearch() {
       }
     });
     if($('#holiday_type_id').length && $('#holiday_type_id').val() != '') {
-      getQuickSearchResorts();
+      getQuickSearchCountries();
     }
     if($('#country_id').length && $('#country_id').val() != '') {
       getQuickSearchResorts();
