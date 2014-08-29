@@ -33,7 +33,9 @@ nav {
   position: absolute;
   background: #ccc;
   left: 177px;
-  z-index: 12;
+
+  /* cycle slides are at z-index: 100 */
+  z-index: 101;
 
   ul {
     float: left;
