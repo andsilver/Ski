@@ -66,7 +66,7 @@ class AccommodationImporter
     model_class.destroy_all(['updated_at < ?', @import_start_time])
   end
 
-  def accommodation(xml)
+  def accommodations(xml)
     raise 'Subclass should return an array of all accommodation XML'
   end
 
