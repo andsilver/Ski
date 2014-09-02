@@ -43,9 +43,18 @@ class AccommodationImporter
     xml = XmlSimple.xml_in(xml_file)
     xml_file.close
 
-    Property.stop_geocoding
-    accommodations(xml).each {|a| import_accommodation(a)} if xml
-    Property.resume_geocoding
+    if xml
+      Property.stop_geocoding
+      a = accommodations(xml)
+      if a
+        a.each {|a| import_accommodation(a)}
+      else
+        Rails.logger.warn "AccommodationImporter::#import_filename: Nil accommodations in #{filename}"
+      end
+      Property.resume_geocoding
+    else
+      Rails.logger.warn "AccommodationImporter::#import_filename: Could not parse XML file #{filename}"
+    end
   end
 
   def create_advert(property)
