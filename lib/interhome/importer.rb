@@ -51,7 +51,8 @@ module Interhome
       importer = AccommodationImporter.new
       importer.ftp_get unless skip_ftp?
       filenames = importer.split_xml(@opts[:max_xml_files])
-      importer.import(filenames, true)
+      importer.import(filenames)
+      importer.cleanup
     end
 
     def import_vacancies
@@ -66,7 +67,8 @@ module Interhome
       filenames = Dir.entries('interhome')
         .select { |e| e =~ /\Aaccommodation\.\d+\.xml\z/ }
         .map    { |f| "interhome/#{f}" }
-      importer.import(filenames, true)
+      importer.import(filenames)
+      importer.cleanup
     end
   end
 end

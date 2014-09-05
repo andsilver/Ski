@@ -1,5 +1,20 @@
 require 'xmlsimple'
 
+# A base class for importing accommodation from external providers.
+# XML is assumed to be the format of the accommodation feed.
+#
+# To import a series of XML files:
+#
+#   AccommodationImporter.new.import([
+#     'feed-provider/accommodation-0.xml',
+#     'feed-provider/accommodation-1.xml'
+#   ])
+#
+# Call #cleanup to remove accommodations that existed before the import but
+# which weren't included in the filenames provided to #import:
+#
+#  importer = AccommodationImporter.new
+#  importer.import(['feed-provider/accommodation-0.xml']).cleanup
 class AccommodationImporter
   attr_accessor :import_start_time
 
@@ -14,16 +29,12 @@ class AccommodationImporter
 
   # Non-destructive import.
   # Updates existing accommodations and imports new accommodations
-  # from the XML file.
-  # Old accommodations are destroyed by checking their updated_at timestamps
-  # if +cleanup+ is true (the default).
-  def import(filenames, cleanup = true)
+  # from the XML filenames provided in +filenames+.
+  # Returns self.
+  def import(filenames)
     setup
     filenames.each {|f| import_file(f)}
-    if cleanup
-      delete_old_adverts
-      destroy_all
-    end
+    self
   end
 
   def setup
@@ -35,6 +46,12 @@ class AccommodationImporter
 
     @import_start_time = Time.now
   end
+
+  # Remove old accommodations by checking their updated_at timestamps.
+  def cleanup
+    delete_old_adverts
+    destroy_all
+  end    
 
   # Imports a single XML file. Property geocoding is suspended for the
   # duration of the file's import.
