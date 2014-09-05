@@ -66,6 +66,6 @@ class ResortsController < ApplicationController
     end
 
     def find_featured_properties
-      @featured_properties = Property.order('RAND()').limit(9).where(publicly_visible: true, resort_id: @resort.id, flip_key_property_id: nil)
+      @featured_properties = Property.order('RAND()').limit(9).where(publicly_visible: true, resort_id: @resort.id)
     end
 end
