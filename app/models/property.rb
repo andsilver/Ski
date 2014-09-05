@@ -43,7 +43,14 @@ class Property < ActiveRecord::Base
 
   cattr_reader :per_page
   @@per_page = 50
+
+  # Use in single-threaded batch imports with #stop_geocoding and
+  # #resume_geocoding.
   @@perform_geocode = PERFORM_GEOCODE
+
+  # Use to stop and resume geocoding on a per-Property level such as when
+  # doing a multi-process or multi-threaded batch import.
+  attr_accessor :perform_geocode
 
   LISTING_TYPE_FOR_RENT = 0
   LISTING_TYPE_FOR_SALE = 1
@@ -58,6 +65,10 @@ class Property < ActiveRecord::Base
   PARKING_ON_STREET = 1
   PARKING_OFF_STREET = 2
   PARKING_GARAGE = 3
+
+  def initialize
+    @perform_geocoding = PERFORM_GEOCODING
+  end
 
   # Returns an internationalised description of the given parking attribute's
   # value.
@@ -127,8 +138,9 @@ class Property < ActiveRecord::Base
     end
   end
 
+  # Returns +true+ if the property's location will be geocoded upon saving.
   def self.geocoding?
-    @@perform_geocode
+    @@perform_geocode && @perform_geocode
   end
 
   def self.stop_geocoding
