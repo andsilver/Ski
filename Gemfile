@@ -21,6 +21,9 @@ gem 'aws-sdk'
 gem 'sanitize'
 gem 'slim', '~> 2.0.0'
 
+# Run jobs in background processes
+gem 'delayed_job_active_record'
+
 # Use Draper to decorate models
 gem 'draper'
 
