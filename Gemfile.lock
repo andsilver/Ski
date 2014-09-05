@@ -305,6 +305,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   cucumber-rails
   curb
+  daemons
   dalli
   database_cleaner
   delayed_job_active_record

@@ -1,4 +1,4 @@
 #!/bin/bash
-RAILS_ENV=production script/delayed_job stop
+RAILS_ENV=production bin/delayed_job stop
 touch tmp/restart.txt
-RAILS_ENV=production script/delayed_job -n 2 start
+RAILS_ENV=production bin/delayed_job -n 2 start
