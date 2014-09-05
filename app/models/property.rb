@@ -67,7 +67,7 @@ class Property < ActiveRecord::Base
   PARKING_GARAGE = 3
 
   def initialize
-    @perform_geocoding = PERFORM_GEOCODING
+    @perform_geocode = PERFORM_GEOCODE
   end
 
   # Returns an internationalised description of the given parking attribute's
