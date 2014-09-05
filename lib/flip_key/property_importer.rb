@@ -17,7 +17,6 @@ module FlipKey
       else
         property = FlipKeyProperty.new
       end
-      property.perform_geocode = false
       property.url = url(a)
       property.json_data = a.to_json
       property.save
@@ -65,6 +64,7 @@ module FlipKey
     # saved.
     def create_property(fk_property, resort, xml)
       property = prepare_property(flip_key_property_id: fk_property.id)
+      property.perform_geocode = false
       property.resort = resort
       property.currency = @euro
       property.name = xml['property_details'][0]['name'][0].strip
