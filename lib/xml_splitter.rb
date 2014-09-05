@@ -23,6 +23,8 @@ class XMLSplitter
     @max_files = nil if @max_files == 0
   end
 
+  # Splits the source XML file into multiple smaller XML files.
+  # Yields each generated filename if a block is given.
   def split
     tag = ''
     in_tag = false
@@ -53,7 +55,9 @@ class XMLSplitter
             chunk += 1
             dst.puts "</#{@root_element}>"
             break if @max_files && chunk >= @max_files
+
             dst.close
+            yield xml_output_filename(chunk - 1) if block_given?
 
             dst = start_file(chunk, filenames)
           end
@@ -79,6 +83,7 @@ class XMLSplitter
     end
 
     dst.close
+    yield xml_output_filename(chunk) if block_given?
     filenames
   end
 

@@ -59,23 +59,51 @@ module FlipKey
       filenames_matching(/\Aproperty_data_\d+\.\d+\.xml\z/).map {|f| File.join(FlipKey.directory, f)}
     end
 
-    # Instantiates +importer+ and invokes its import method on +filenames+.
-    # +filenames+ is a lambda that is called after the download process.
-    # The download process is skipped if the importer is initialised with the
-    # +skip_download+ option.
+    # Performs an import. 
+    #
+    # The download process is skipped if FlipKey::Importer is initialised with
+    # the +skip_download+ option.
+    #
+    # * <tt>importer</tt> is a class to perform the import.
+    #
+    # When downloading:
+    #
+    # * <tt>downloader</tt> is a class to perform the download.
+    # * <tt>filenames</tt> is ignored. Files are imported as they are downloaded
+    # and processed.
+    # * <tt>xml_split_options</tt> are passed to the XML splitter.
+    #
+    # When skipping download:
+    # * <tt>filenames</tt> is a lambda that should return files to be imported.
+    # * <tt>downloader</tt> and <tt>xml_split_options</tt> are ignored.
     def perform_import(downloader, importer, filenames, xml_split_options)
-      prepare(downloader, xml_split_options) unless @options[:skip_download]
+      if @options[:skip_download]
+        perform_import_without_download(importer, filenames)
+      else
+        perform_import_with_download(downloader, importer, xml_split_options)
+      end
+    end
+
+    def perform_import_with_download(downloader, importer, xml_split_options)
+      prepare(downloader, xml_split_options) do |filename|
+        filename = File.basename(filename)
+        Rails.logger.info "FlipKey::Importer: importing #{filename}..."
+        importer.new.import [filename]
+      end
+    end
+
+    def perform_import_without_download(importer, filenames)
       importer.new.import(limit_filenames(filenames))
     end
 
     # Downloads and prepares files ready for importing.
-    def prepare(downloader, xml_split_options)
+    def prepare(downloader, xml_split_options, &block)
       downloader.new(DOWNLOADER_OPTIONS).download do |filename|
         gunzip(filename)
         xml_filename = File.join(FlipKey.directory, filename[0..-4])
         opts = { xml_filename: xml_filename }.merge xml_split_options
         splitter = XMLSplitter.new(opts)
-        splitter.split
+        splitter.split(&block)
       end      
     end
 

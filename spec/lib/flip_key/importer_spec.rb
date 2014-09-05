@@ -83,20 +83,19 @@ module FlipKey
 
         importer.perform_import(FakeDownloader, FakeImporter, filenames, Importer::PROPERTY_XML_SPLIT_OPTIONS)
       end
+    end
+    
+    describe '#perform_import_without_download' do
+      let(:filenames) { -> { ['data1.xml'] } }
 
       it 'creates an importer and requests it to import the filenames' do
         fake_importer = double(FakeImporter)
-        FakeImporter.should_receive(:new).and_return fake_importer
-        fake_importer.should_receive(:import).with(filenames.call)
+        expect(FakeImporter).to receive(:new).and_return fake_importer
+        expect(fake_importer).to receive(:import).with(filenames.call)
 
-        XMLSplitter.stub(:new).and_return double(XMLSplitter).as_null_object
+        allow(XMLSplitter).to receive(:new).and_return double(XMLSplitter).as_null_object
 
-        importer.stub(:gunzip)
-
-        importer.perform_import(FakeDownloader, FakeImporter, filenames, {})
-      end
-
-      context 'with skip download' do
+        importer.perform_import_without_download(FakeImporter, filenames)
       end
     end
   end

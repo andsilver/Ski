@@ -5,7 +5,7 @@ describe AccommodationImporter do
     it 'runs setup' do
       i = AccommodationImporter.new
       i.should_receive(:setup)
-      i.import [], false
+      i.import []
     end
   end
 
