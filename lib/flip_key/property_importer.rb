@@ -17,7 +17,7 @@ module FlipKey
       else
         property = FlipKeyProperty.new
       end
-      property.perform_geocoding = false
+      property.perform_geocode = false
       property.url = url(a)
       property.json_data = a.to_json
       property.save
