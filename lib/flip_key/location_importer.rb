@@ -7,7 +7,7 @@ module FlipKey
     end
 
     def import_filename(f)
-      xml_file = File.open(File.join(FlipKey.directory, f), 'rb')
+      xml_file = File.open(f, 'rb')
       xml = XmlSimple.xml_in(xml_file)
       xml_file.close
 

@@ -56,7 +56,7 @@ module FlipKey
 
     # Returns an array of property XML filenames.
     def property_filenames
-      filenames_matching(/\Aproperty_data_\d+\.\d+\.xml\z/).map {|f| File.join(FlipKey.directory, f)}
+      filenames_matching(/\Aproperty_data_\d+\.\d+\.xml\z/)
     end
 
     # Performs an import. 
@@ -86,7 +86,6 @@ module FlipKey
 
     def perform_import_with_download(downloader, importer, xml_split_options)
       prepare(downloader, xml_split_options) do |filename|
-        filename = File.basename(filename)
         Rails.logger.info "FlipKey::Importer: importing #{filename}..."
         importer.new.import [filename]
       end
@@ -110,7 +109,9 @@ module FlipKey
     private
 
       def filenames_matching(pattern)
-        Dir.entries(FlipKey.directory).select { |e| e =~ pattern }
+        Dir.entries(FlipKey.directory)
+          .select { |e| e =~ pattern }
+          .map {|f| File.join(FlipKey.directory, f)}
       end
 
       def gunzip(filename)
