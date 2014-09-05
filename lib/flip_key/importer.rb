@@ -87,7 +87,7 @@ module FlipKey
     def perform_import_with_download(downloader, importer, xml_split_options)
       prepare(downloader, xml_split_options) do |filename|
         Rails.logger.info "FlipKey::Importer: importing #{filename}..."
-        importer.new.import [filename]
+        importer.new.delay.import([filename])
       end
     end
 
