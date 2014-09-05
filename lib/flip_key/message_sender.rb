@@ -8,16 +8,20 @@ module FlipKey
 
     # Sends the message to FlipKey's server. Returns +true+ if successful.
     def send_message
-      c = Curl.post('https://ws.demo.flipkey.net/pfe/inquiry/inquiry',
-        {
-          'inquiry_xml' => xml
-        }
-      ) do |c|
+      if Rails.env.production?
+        url = 'https://ws.flipkey.com/pfe/inquiry/inquiry'
+        password = 'LIxoxLol'
+      else
+        url = 'https://ws.demo.flipkey.net/pfe/inquiry/inquiry'
+        password = '8QXPogvv'
+      end
+
+      c = Curl.post(url, { 'inquiry_xml' => xml }) do |c|
         c.ssl_verify_peer = false
         c.verbose = true
         c.http_auth_types = :basic
         c.username = 'mychaletfinder'
-        c.password = '8QXPogvv'
+        c.password = password
         c.headers['Expect'] = ''
       end
       Rails.logger.info "FlipKey::MessageSender status: #{c.status}"
