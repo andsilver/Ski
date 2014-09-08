@@ -15,7 +15,7 @@ module FlipKey
     PROPERTY_XML_SPLIT_OPTIONS = {
       root_element: 'property_data',
       child_element: 'property',
-      elements_per_file: 25
+      elements_per_file: 250
     }.freeze
 
     # Set +:limit_filenames+ to perform a smaller import during development.

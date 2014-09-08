@@ -11,6 +11,10 @@ class XMLSplitter
   attr_accessor :xml_filename
   # Number of main child elements to place into each smaller document
   attr_accessor :elements_per_file
+  # Maximum number of characters to be written to a file after which no more
+  # main elements will be added to the file. If this limit is exceeded, how
+  # much by is influenced by the size of the final main element.
+  attr_accessor :chars_per_file
   # Maximum number of XML files to create. Extra data is ignored.
   attr_accessor :max_files
 
@@ -19,6 +23,7 @@ class XMLSplitter
     @child_element = opts[:child_element] if opts[:child_element]
     @xml_filename = opts[:xml_filename] if opts[:xml_filename]
     @elements_per_file = opts[:elements_per_file] if opts[:elements_per_file]
+    @chars_per_file = opts[:chars_per_file] || 10_000_000
     @max_files = opts[:max_files]
     @max_files = nil if @max_files == 0
   end
@@ -32,7 +37,7 @@ class XMLSplitter
     close_tag = "</#{@child_element}>"
     chunk = 0
     started = false
-    current = 0
+    current = 0 # elements in current file
     filenames = []
 
     src = File.open(@xml_filename, 'r')
@@ -50,7 +55,7 @@ class XMLSplitter
         if tag == close_tag
           dst.putc("\n")
           current += 1
-          if current == @elements_per_file
+          if current == @elements_per_file || dst.pos >= @chars_per_file
             current = 0
             chunk += 1
             dst.puts "</#{@root_element}>"
