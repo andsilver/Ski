@@ -156,7 +156,7 @@ class FlipKeyProperty < ActiveRecord::Base
   # Returns the property rate details for the given date, or nil if there
   # are no rates given for the date.
   def rate_for_date(date)
-    property_rates.each do |rate|
+    property_rates.try(:each) do |rate|
       if Date.parse(rate['start_date'][0]) <= date && Date.parse(rate['end_date'][0]) >= date
         return rate
       end
