@@ -199,6 +199,15 @@ class PropertiesController < ApplicationController
     show_shared
   end
 
+  # Responds to an XHR with a booking form for the given Interhome
+  # accommodation. XHR is used since rendering the booking form can take a
+  # while. This allows the containing page to be rendered independently and
+  # faster.
+  #
+  # Most Interhome accommodations will have vacancy information but it is not
+  # guaranteed since it is contained in a separate feed. In the case of missing
+  # vacancy information, the <tt>interhome_no_vacancy_info</tt> template is
+  # rendered.
   def interhome_booking_form
     @accommodation = InterhomeAccommodation.find(params[:id])
     @property = @accommodation.property
@@ -206,7 +215,11 @@ class PropertiesController < ApplicationController
     arrival = Date.today
     @interhome_booking = Interhome::Booking.new(arrival.to_s[8..9], arrival.to_s[0..6], arrival, 7, 2, 0, 0)
 
-    render layout: false
+    if @accommodation.interhome_vacancy
+      render layout: false
+    else
+      render template: 'properties/interhome_no_vacancy_info', layout: false
+    end
   end
 
   def show_pv

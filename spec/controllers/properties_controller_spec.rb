@@ -389,6 +389,28 @@ describe PropertiesController do
     end
   end
 
+  describe 'GET interhome_booking_form' do
+    let!(:accommodation) { FactoryGirl.create(:interhome_accommodation) }
+
+    context 'with vacancy information' do
+      before do
+        FactoryGirl.create(:interhome_vacancy, interhome_accommodation_id: accommodation.id)
+      end
+
+      it 'renders the default template' do
+        get 'interhome_booking_form', id: accommodation.id
+        expect(response).to render_template 'interhome_booking_form'
+      end
+    end
+
+    context 'when vacancy information missing' do
+      it 'renders the interhome_no_vacancy_info template' do
+        get 'interhome_booking_form', id: accommodation.id
+        expect(response).to render_template 'properties/interhome_no_vacancy_info'
+      end
+    end
+  end
+
   def find_a_property_belonging_to_the_current_user
     Property.should_receive(:find_by).with(id: '1', user_id: anything())
   end
