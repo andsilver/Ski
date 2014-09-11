@@ -25,6 +25,10 @@ javascript:
       .col-md-8
         - if @property.image
           .cycle-slideshow data-cycle-fx="scrollHorz" data-cycle-timeout="8000" data-cycle-pager="#adv-custom-pager" data-cycle-pager-template="<a href='#'><img src='{{src}}' width=64 height=48></a>"
+            .cycle-prev
+              span.glyphicon.glyphicon-circle-arrow-left
+            .cycle-next
+              span.glyphicon.glyphicon-circle-arrow-right
             - @property.images.each do |i|
               = image_tag(i.sized_url([640, 480], :cropped), alt: "Photo of #{@property.name}")
             #adv-custom-pager.center.external
