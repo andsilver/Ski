@@ -75,16 +75,16 @@ javascript:
               - year += 1
           .clear
 
-        - if @property.flip_key_property.property_rates
-          h2 Rates
-          table.table
-            thead
-              th Dates
-              th Nightly
-              th Weekly
-              th Monthly
-              th Minimum Stay
-            tbody
+        h2 Rates
+        table.table
+          thead
+            th Dates
+            th Nightly
+            th Weekly
+            th Monthly
+            th Minimum Stay
+          tbody
+            - if @property.flip_key_property.property_rates
               - @property.flip_key_property.property_rates.each do |rate|
                 tr
                   td
@@ -94,6 +94,18 @@ javascript:
                   td= flip_key_rate(@property.flip_key_property, rate['week_min_rate'])
                   td= flip_key_rate(@property.flip_key_property, rate['month_min_rate'])
                   td= flip_key_minimum_stay(rate)
+            tr
+              td
+                .rate-dates
+                  - if @property.flip_key_property.property_rates
+                    | All other dates
+                  - else
+                    | All dates
+              - rate = @property.flip_key_property.property_default_rate
+              td= flip_key_rate(@property.flip_key_property, rate['day_min_rate'])
+              td= flip_key_rate(@property.flip_key_property, rate['week_min_rate'])
+              td= flip_key_rate(@property.flip_key_property, rate['month_min_rate'])
+              td= flip_key_minimum_stay(rate)
 
       .col-md-4
         h2 Interested?
