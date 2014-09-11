@@ -111,8 +111,9 @@ class FlipKeyProperty < ActiveRecord::Base
     end
   end
 
+  # Returns the number of bedrooms, or nil if not provided.
   def bedroom_count
-    property_details['bedroom_count'][0].to_i
+    property_details['bedroom_count'][0].try(:to_i)
   end
 
   def property_type
