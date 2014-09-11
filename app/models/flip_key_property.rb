@@ -8,15 +8,17 @@ class FlipKeyProperty < ActiveRecord::Base
 
   # Returns +true+ if:
   # * property is booked on the given date, or
-  # * property calendar is missing, or
   # * date is in the past
+  # Returns +false+ if:
+  # * property calendar is present but not booked on the given date, or
+  # * property calendar is missing
   def booked_on?(date)
     if date < Date.today
       true
-    elsif property_calendar['booked_date']
-      property_calendar['booked_date'].any? { |bd| bd == date.to_s }
+    elsif property_calendar
+      property_calendar.any? { |bd| bd == date.to_s }
     else
-      true
+      false
     end
   end
 
@@ -69,7 +71,7 @@ class FlipKeyProperty < ActiveRecord::Base
   end
 
   def property_calendar
-    parsed_json['property_calendar'][0]
+    parsed_json['property_calendar'][0]['booked_date']
   end
 
   def currency
@@ -158,15 +160,15 @@ class FlipKeyProperty < ActiveRecord::Base
     end
   end
 
-  # Returns the property rate details for the given date, or nil if there
-  # are no rates given for the date.
+  # Returns the property rate details for the given date, or the default rate
+  # if no rates given for the date.
   def rate_for_date(date)
     property_rates.try(:each) do |rate|
       if Date.parse(rate['start_date'][0]) <= date && Date.parse(rate['end_date'][0]) >= date
         return rate
       end
     end
-    nil
+    property_default_rate
   end
 
   def rental_price_scope
