@@ -1,3 +1,5 @@
+require_relative '../../lib/interhome.rb'
+
 class PropertiesController < ApplicationController
   include SpamProtection
 

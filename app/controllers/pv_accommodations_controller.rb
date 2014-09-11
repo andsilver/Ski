@@ -11,7 +11,7 @@ class PvAccommodationsController < ApplicationController
     importer = PierreEtVacances::AccommodationImporter.new
     ftp = PierreEtVacances::FTP.new
     ftp.get
-    importer.import([File.join('pierreetvacances', ftp.xml_filename)], true)
+    importer.import([File.join('pierreetvacances', ftp.xml_filename)])
     redirect_to({action: 'index'}, notice: 'Pierre et Vacances accommodations have been imported.')
   end
 end

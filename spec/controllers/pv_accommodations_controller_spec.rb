@@ -28,7 +28,7 @@ describe PvAccommodationsController do
       it 'imports the data' do
         PierreEtVacances::AccommodationImporter.stub(:new).and_return(importer)
         ftp_double.stub(:xml_filename).and_return('a.xml')
-        importer.should_receive(:import).with(['pierreetvacances/a.xml'], true)
+        expect(importer).to receive(:import).with(['pierreetvacances/a.xml'])
         post 'import_accommodations'
       end
 

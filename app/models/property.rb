@@ -66,8 +66,8 @@ class Property < ActiveRecord::Base
   PARKING_OFF_STREET = 2
   PARKING_GARAGE = 3
 
-  def initialize
-    super
+  def initialize(params={})
+    super(params)
     @perform_geocode = PERFORM_GEOCODE
   end
 
