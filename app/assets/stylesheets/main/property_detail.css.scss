@@ -214,6 +214,18 @@ body a.special-offers {
   }
 }
 
+#adv-custom-pager {
+  border-top: 2px solid #fff;
+  width: 640px;
+  height: 94px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.fk-thumb {
+  border-right: 2px solid #fff;
+}
+
 .cycle-prev {
   left: 0;
 }
