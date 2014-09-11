@@ -1,6 +1,10 @@
 module FlipKeyPropertiesHelper
   def flip_key_property_description(json)
-    raw json['property_descriptions'][0]['property_description'][0]['description'][0].gsub("\n", '<br>')
+    br_marker = '~BR~'
+    json['property_descriptions'][0]['property_description'][0]['description'][0]
+      .gsub("\n\n", br_marker)
+      .gsub("\n", br_marker)
+      .gsub(br_marker, '<br><br>')
   end
 
   def flip_key_rate(property, value)
