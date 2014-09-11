@@ -148,8 +148,13 @@ class FlipKeyProperty < ActiveRecord::Base
   end
 
   # These are rates to be used when there is no rate for a date range.
+  # nil is returned if no property default rate is found.
   def property_default_rate
-    parsed_json['property_default_rates'][0]['property_default_rate'][0]
+    if parsed_json['property_default_rates'][0]['property_default_rate']
+      parsed_json['property_default_rates'][0]['property_default_rate'][0]
+    else
+      nil
+    end
   end
 
   def min_stay(check_in)
