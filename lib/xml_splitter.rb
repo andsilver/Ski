@@ -88,6 +88,7 @@ class XMLSplitter
     end
 
     dst.close
+    src.close
     yield xml_output_filename(chunk) if block_given?
     filenames
   end
