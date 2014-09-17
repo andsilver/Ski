@@ -23,7 +23,7 @@ class XMLSplitter
     @child_element = opts[:child_element] if opts[:child_element]
     @xml_filename = opts[:xml_filename] if opts[:xml_filename]
     @elements_per_file = opts[:elements_per_file] if opts[:elements_per_file]
-    @chars_per_file = opts[:chars_per_file] || 10_000_000
+    @chars_per_file = opts[:chars_per_file] || 5_000_000
     @max_files = opts[:max_files]
     @max_files = nil if @max_files == 0
   end
