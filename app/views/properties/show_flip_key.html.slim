@@ -113,6 +113,14 @@ javascript:
                 td= flip_key_rate(@property.flip_key_property, rate['month_min_rate'])
                 td= flip_key_minimum_stay(rate)
 
+        - if @property.flip_key_property.amenities.any?
+          h2 Amenities
+          table.table.table-bordered.table-striped
+            - @property.flip_key_property.amenities.each_pair do |category, amenities|
+              tr
+                th= category
+                td= amenities.join ' · '
+
       .col-md-4
         h2 Interested?
         .rates-total

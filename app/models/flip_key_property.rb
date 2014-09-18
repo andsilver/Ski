@@ -116,6 +116,23 @@ class FlipKeyProperty < ActiveRecord::Base
     property_details['bedroom_count'][0].try(:to_i)
   end
 
+  # Returns a hash of the amenities for the property.
+  # Each item in the hash is keyed by the amenity category. Each
+  # value is an array of amenities in that category:
+  #
+  #   {
+  #     'Kitchen' => ['Microwave', 'Grill']
+  #   }
+  def amenities
+    a = Hash.new {|h,k| h[k]=[]}
+    parsed_json['property_amenities'][0]['property_amenity'].each do |pa|
+      category = pa['parent_amenity'][0]
+      amenity = pa['site_amenity'][0]
+      a[category] << amenity
+    end
+    a
+  end
+
   def property_type
     property_details['property_type'][0]
   end
