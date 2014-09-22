@@ -42,6 +42,10 @@ module FlipKey
       end
     end
 
+    class FakeImporter
+      def import(x); end
+    end
+
     describe '#perform_import' do
       class FakeDownloader
         def initialize(x); end
@@ -49,10 +53,6 @@ module FlipKey
         def download
           yield 'data.xml.gz'
         end
-      end
-
-      class FakeImporter
-        def import(x); end
       end
 
       let(:filenames) { -> { ['data1.xml'] } }
@@ -96,6 +96,32 @@ module FlipKey
         allow(XMLSplitter).to receive(:new).and_return double(XMLSplitter).as_null_object
 
         importer.perform_import_without_download(FakeImporter, filenames)
+      end
+    end
+
+    describe '#import_and_delete' do
+      let(:filenames) {[
+        File.join('tmp', SecureRandom.hex), File.join('tmp', SecureRandom.hex)
+      ]}
+
+      it 'imports each filename' do
+        fake_importer = double(FakeImporter)
+        expect(FakeImporter).to receive(:new).and_return fake_importer
+        expect(fake_importer).to receive(:import).with(filenames)
+        Importer.new.import_and_delete(FakeImporter, filenames)
+      end
+
+      it 'deletes each file' do
+        filenames.each do |f|
+          FileUtils.touch(f)
+          expect(File.exist?(f)).to be_truthy
+        end
+
+        Importer.new.import_and_delete(FakeImporter, filenames)
+
+        filenames.each do |f|
+          expect(File.exist?(f)).to be_falsey
+        end
       end
     end
   end
