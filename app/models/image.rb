@@ -126,8 +126,8 @@ class Image < ActiveRecord::Base
 
     return s3_url_for_filename(f) if S3_ENABLED && Rails.env == 'production' && File.exist?(s3_path)
 
-    # create a new image of the required size if it doesn't exist
-    unless FileTest.exist?(path)
+    # create a new image of the required size if it doesn't exist or if it is empty
+    if !FileTest.exist?(path) || File.size(path) == 0
       begin
         ImageScience.with_image(original_path) do |img|
           puts "Generating thumbnail: #{path}"
