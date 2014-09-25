@@ -32,15 +32,29 @@ describe FlipKeyProperty do
   end
 
   describe '#amenities' do
-    it 'returns a hash of amenities keyed by category' do
-      fk = FlipKeyProperty.new
-      allow(fk).to receive(:parsed_json).and_return(amenities_parsed_json)
-      expect(fk.amenities).to eq({
-        'Kitchen' => ['Grill', 'Microwave', 'Dishwasher'],
-        'Entertainment' => ['Television'],
-        'General' => ['Washing Machine', 'Clothes Dryer'],
-        'Phone / Internet' => ['Telephone']
-        })
+    let(:fk) { FlipKeyProperty.new }
+
+    before { allow(fk).to receive(:parsed_json).and_return(amenities) }
+
+    context 'with amenities info present' do
+      let(:amenities) { amenities_parsed_json }
+
+      it 'returns a hash of amenities keyed by category' do
+        expect(fk.amenities).to eq({
+          'Kitchen' => ['Grill', 'Microwave', 'Dishwasher'],
+          'Entertainment' => ['Television'],
+          'General' => ['Washing Machine', 'Clothes Dryer'],
+          'Phone / Internet' => ['Telephone']
+          })
+      end
+    end
+
+    context 'with amenities info missing' do
+      let(:amenities) { {"property_amenities"=>[{}]} }
+
+      it 'returns an empty hash' do
+        expect(fk.amenities).to eq({})
+      end
     end
   end
 

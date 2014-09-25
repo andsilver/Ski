@@ -125,10 +125,13 @@ class FlipKeyProperty < ActiveRecord::Base
   #   }
   def amenities
     a = Hash.new {|h,k| h[k]=[]}
-    parsed_json['property_amenities'][0]['property_amenity'].each do |pa|
-      category = pa['parent_amenity'][0]
-      amenity = pa['site_amenity'][0]
-      a[category] << amenity
+    pa = parsed_json['property_amenities'][0]
+    if pa.length > 0
+      pa['property_amenity'].each do |pa|
+        category = pa['parent_amenity'][0]
+        amenity = pa['site_amenity'][0]
+        a[category] << amenity
+      end
     end
     a
   end
