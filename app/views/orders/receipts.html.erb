@@ -7,7 +7,7 @@
 <% if @orders.empty? %>
 <p><%= t('.no_receipts') %></p>
 <% else %>
-<table id="receipts">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th><%= t('.order_number') %></th>
