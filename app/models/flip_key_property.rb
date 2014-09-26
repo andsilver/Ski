@@ -190,7 +190,8 @@ class FlipKeyProperty < ActiveRecord::Base
   # if no rates given for the date.
   def rate_for_date(date)
     property_rates.try(:each) do |rate|
-      if Date.parse(rate['start_date'][0]) <= date && Date.parse(rate['end_date'][0]) >= date
+      if rate['start_date'][0].kind_of?(String) && rate['end_date'][0].kind_of?(String) &&
+        Date.parse(rate['start_date'][0]) <= date && Date.parse(rate['end_date'][0]) >= date
         return rate
       end
     end

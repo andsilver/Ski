@@ -16,15 +16,33 @@ describe FlipKeyProperty do
   end
 
   describe '#rate_for_date' do
+    let(:pdr) {{
+      'date' => 'info'
+    }}
+
+    context 'when dates are described as labels' do
+      before do
+        allow(fkp).to receive(:property_rates).and_return [
+          {
+            'start_date' => [{}],
+            'end_date' => [{}],
+            'label' => ['High Season']
+          }
+        ]
+      end
+
+      it 'returns the property default rate' do
+        expect(fkp).to receive(:property_default_rate).and_return(pdr)
+        expect(fkp.rate_for_date(Date.new)).to eq pdr
+      end
+    end
+
     context 'when no rates for given date' do
       before do
         allow(fkp).to receive(:property_rates).and_return []
       end
 
       it 'returns the property default rate' do
-        pdr = {
-          'date' => 'info'
-        }
         expect(fkp).to receive(:property_default_rate).and_return(pdr)
         expect(fkp.rate_for_date(Date.new)).to eq pdr
       end
