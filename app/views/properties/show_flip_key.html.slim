@@ -93,7 +93,7 @@ javascript:
               - @property.flip_key_property.property_rates.each do |rate|
                 tr
                   td
-                    .rate-dates= "#{Date.parse(rate['start_date'][0]).strftime("%b %-d")} - #{Date.parse(rate['end_date'][0]).strftime("%b %-d, %Y")}"
+                    .rate-dates= flip_key_rate_dates(rate)
                     .check-in= flip_key_changeover(rate['changeover_day'][0])
                   td= flip_key_rate(@property.flip_key_property, rate['day_min_rate'])
                   td= flip_key_rate(@property.flip_key_property, rate['week_min_rate'])

@@ -23,6 +23,16 @@ module FlipKeyPropertiesHelper
     pluralize(rate['min_stay_count'][0], rate['min_stay_unit'][0])
   end
 
+  # Returns a date range or label string describing the dates for which this
+  # rate applies.
+  def flip_key_rate_dates(rate)
+    if rate['start_date'][0].kind_of?(Hash) || rate['end_date'][0].kind_of?(Hash)
+      rate['label'][0]
+    else
+      "#{Date.parse(rate['start_date'][0]).strftime("%b %-d")} - #{Date.parse(rate['end_date'][0]).strftime("%b %-d, %Y")}"
+    end
+  end
+
   def flip_key_changeover(changeover)
     return 'Check in any day' if changeover.kind_of?(Hash)
     %w{Sunday Monday Tuesday Wednesday Thursday Friday Saturday}[changeover.to_i] + ' check-in'
