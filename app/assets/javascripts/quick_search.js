@@ -25,9 +25,9 @@ function getQuickSearchResorts() {
   }).success(function(data) {
     $('#resort_id').replaceWith(data);
 
-    if($.cookie('quick_search_resort_id') != null) {
-      $('#resort_id').val($.cookie('quick_search_resort_id'));
-      $.removeCookie('quick_search_resort_id');
+    if($.cookie('quick_search_resort_slug') != null) {
+      $('#resort_id').val($.cookie('quick_search_resort_slug'));
+      $.removeCookie('quick_search_resort_slug');
     }
   });
   return false;

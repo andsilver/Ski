@@ -5,7 +5,7 @@
 
   javascript:
     $(function() {
-      $.cookie('quick_search_resort_id', '#{@resort.id}', { path: '/' });
+      $.cookie('quick_search_resort_slug', '#{@resort.slug}', { path: '/' });
     });
 
 = content_for :links_and_search do
