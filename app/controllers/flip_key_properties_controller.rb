@@ -58,7 +58,7 @@ class FlipKeyPropertiesController < ApplicationController
         email:             details[:email],
         name:              details[:name],
         phone:             details[:phone_number],
-        property_id:       details[:property_id], 
+        property_id:       @flip_key_property.property.id, 
         comments:          details.map{|k,v| "#{k}:\n#{v}"}.join("\n\n")
       )
     end
