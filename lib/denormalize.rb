@@ -29,10 +29,8 @@ class Denormalize
     Property.includes(:resort).find_in_batches(batch_size: 250) do |properties|
       properties.each do |p|
         publicly_visible = p.currently_advertised? && p.resort.visible?
-        country_id = p.resort.country_id
         p.publicly_visible = publicly_visible
-        p.country_id = country_id
-        p.region_id = p.resort.region_id
+        p.set_country_and_region
         p.normalise_prices
         p.late_availability = p.calculate_late_availability(LateAvailability.next_three_saturdays)
         p.save
