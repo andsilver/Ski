@@ -6,18 +6,18 @@ describe Admin::AirportDistancesController do
   let(:airport_distance) { double(AirportDistance).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
-    controller.stub(:admin?).and_return(true)
+    allow(Website).to receive(:first).and_return(website)
+    allow(controller).to receive(:admin?).and_return(true)
   end
 
   describe 'GET index' do
     it 'finds all airport distances' do
-      AirportDistance.should_receive(:all)
+      expect(AirportDistance).to receive(:all)
       get 'index'
     end
 
     it 'assigns @airport_distances' do
-      AirportDistance.stub(:all).and_return([airport_distance])
+      allow(AirportDistance).to receive(:all).and_return([airport_distance])
       get 'index'
       expect(assigns(:airport_distances)).to eq [airport_distance]
     end
@@ -25,12 +25,12 @@ describe Admin::AirportDistancesController do
 
   describe 'GET new' do
     it 'instantiates a new airport distance' do
-      AirportDistance.should_receive(:new)
+      expect(AirportDistance).to receive(:new)
       get 'new'
     end
 
     it 'assigns a new airport distance' do
-      AirportDistance.stub(:new).and_return(airport_distance)
+      allow(AirportDistance).to receive(:new).and_return(airport_distance)
       get 'new'
       expect(assigns(:airport_distance)).to eq airport_distance
     end
@@ -42,15 +42,15 @@ describe Admin::AirportDistancesController do
 
   describe 'POST create' do
     it 'instantiates a new airport distance with the given params' do
-      AirportDistance.should_receive(:new).with(post_params[:airport_distance])
+      expect(AirportDistance).to receive(:new).with(post_params[:airport_distance])
         .and_return(airport_distance)
       post 'create', post_params
     end
 
     context 'when the airport distance saves' do
       before do
-        AirportDistance.stub(:new).and_return(airport_distance)
-        airport_distance.stub(:save).and_return(true)
+        allow(AirportDistance).to receive(:new).and_return(airport_distance)
+        allow(airport_distance).to receive(:save).and_return(true)
       end
       
       it 'redirects to index' do
@@ -66,8 +66,8 @@ describe Admin::AirportDistancesController do
 
     context 'when the airport distance fails to save' do
       before do
-        AirportDistance.stub(:new).and_return(airport_distance)
-        airport_distance.stub(:save).and_return(false)
+        allow(AirportDistance).to receive(:new).and_return(airport_distance)
+        allow(airport_distance).to receive(:save).and_return(false)
       end
 
       it 'renders new' do
@@ -84,14 +84,14 @@ describe Admin::AirportDistancesController do
     end
 
     it 'assigns @airport_distance' do
-      AirportDistance.stub(:find).and_return(airport_distance)
+      allow(AirportDistance).to receive(:find).and_return(airport_distance)
       get 'edit', { 'id' => '1' }
       expect(assigns(:airport_distance)).to eq airport_distance
     end
   end
 
   def should_find_airport_distance
-    AirportDistance.should_receive(:find).and_return(airport_distance)
+    expect(AirportDistance).to receive(:find).and_return(airport_distance)
   end
 
   def put_params
@@ -105,15 +105,15 @@ describe Admin::AirportDistancesController do
     end
 
     it 'updates the airport distance' do
-      AirportDistance.stub(:find).and_return(airport_distance)
-      airport_distance.should_receive(:update_attributes).with(put_params['airport_distance'])
+      allow(AirportDistance).to receive(:find).and_return(airport_distance)
+      expect(airport_distance).to receive(:update_attributes).with(put_params['airport_distance'])
       put 'update', put_params
     end
 
     context 'when the airport distance saves' do
       before do
-        AirportDistance.stub(:find).and_return(airport_distance)
-        airport_distance.stub(:update_attributes).and_return(true)
+        allow(AirportDistance).to receive(:find).and_return(airport_distance)
+        allow(airport_distance).to receive(:update_attributes).and_return(true)
       end
 
       it 'redirects to index' do
@@ -129,8 +129,8 @@ describe Admin::AirportDistancesController do
 
     context 'when the airport distance fails to save' do
       before do
-        AirportDistance.stub(:find).and_return(airport_distance)
-        airport_distance.stub(:update_attributes).and_return(false)
+        allow(AirportDistance).to receive(:find).and_return(airport_distance)
+        allow(airport_distance).to receive(:update_attributes).and_return(false)
       end
 
       it 'renders edit' do
@@ -152,19 +152,19 @@ describe Admin::AirportDistancesController do
     end
 
     it 'destroys the airport distance' do
-      AirportDistance.stub(:find).and_return(airport_distance)
-      airport_distance.should_receive(:destroy)
+      allow(AirportDistance).to receive(:find).and_return(airport_distance)
+      expect(airport_distance).to receive(:destroy)
       delete 'destroy', { 'id' => '1' }
     end
 
     it 'redirects to index' do
-      AirportDistance.stub(:find).and_return(airport_distance)
+      allow(AirportDistance).to receive(:find).and_return(airport_distance)
       delete 'destroy', { 'id' => '1' }
       expect(response).to redirect_to(action: 'index')
     end
 
     it 'sets a notice' do
-      AirportDistance.stub(:find).and_return(airport_distance)
+      allow(AirportDistance).to receive(:find).and_return(airport_distance)
       delete 'destroy', { 'id' => '1' }
       expect(flash[:notice]).to eq I18n.t('notices.deleted')
     end

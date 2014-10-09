@@ -4,23 +4,23 @@ describe Admin::BannerPricesController do
   let(:website) { FactoryGirl.build(:website) }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   context 'when signed in as admin' do
     before do
-      controller.stub(:admin?).and_return(true)
+      allow(controller).to receive(:admin?).and_return(true)
     end
 
     describe 'GET index' do
       it 'finds all banner prices' do
-        BannerPrice.should_receive(:all)
+        expect(BannerPrice).to receive(:all)
         get 'index'
       end
 
       it 'assigns @banner_prices' do
         banner_prices = [BannerPrice.new]
-        BannerPrice.stub(:all).and_return(banner_prices)
+        allow(BannerPrice).to receive(:all).and_return(banner_prices)
         get 'index'
         expect(assigns(:banner_prices)).to eq(banner_prices)
       end
@@ -28,7 +28,7 @@ describe Admin::BannerPricesController do
 
     describe 'GET new' do
       it 'instantiates a new banner price' do
-        BannerPrice.should_receive(:new)
+        expect(BannerPrice).to receive(:new)
         get 'new'
       end
 
@@ -49,7 +49,7 @@ describe Admin::BannerPricesController do
       end
 
       it 'instantiates a new banner price with the given params' do
-        BannerPrice.should_receive(:new).with(params[:banner_price])
+        expect(BannerPrice).to receive(:new).with(params[:banner_price])
         post 'create', params
       end
 
@@ -88,13 +88,13 @@ describe Admin::BannerPricesController do
 
     describe 'GET edit' do
       it 'finds the banner price' do
-        BannerPrice.should_receive(:find).with('1')
+        expect(BannerPrice).to receive(:find).with('1')
         get 'edit', id: '1'
       end
 
       it 'assigns @banner_price' do
         bp = BannerPrice.new(price: 20)
-        BannerPrice.stub(:find).with('1').and_return(bp)
+        allow(BannerPrice).to receive(:find).with('1').and_return(bp)
         get 'edit', id: '1'
         expect(assigns(:banner_price)).to eq(bp)
       end
@@ -109,7 +109,7 @@ describe Admin::BannerPricesController do
       end
 
       it 'finds the banner price' do
-        BannerPrice.should_receive(:find).with('1')
+        expect(BannerPrice).to receive(:find).with('1')
         put 'update', params
       end
 
@@ -154,12 +154,12 @@ describe Admin::BannerPricesController do
       end
 
       it 'finds the banner price' do
-        BannerPrice.should_receive(:find).with('1')
+        expect(BannerPrice).to receive(:find).with('1')
         delete 'destroy', id: '1'
       end      
 
       it 'destroys the banner price' do
-        banner_price.should_receive(:destroy)
+        expect(banner_price).to receive(:destroy)
         delete 'destroy', id: '1'
       end
 

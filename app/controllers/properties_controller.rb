@@ -466,12 +466,6 @@ class PropertiesController < ApplicationController
   def set_resort
     @resort = Resort.find_by(slug: params[:resort_slug])
 
-    # Handle legacy resort URLs
-    if !@resort
-      @resort = Resort.find_by(id: params[:resort_slug])
-      redirect_to(params.merge(resort_slug: @resort.slug), status: 301) and return if @resort
-    end
-
     if params[:resort_id]
       @resort ||= Resort.find_by(id: params[:resort_id])
     end
