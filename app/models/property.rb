@@ -37,7 +37,7 @@ class Property < ActiveRecord::Base
   validates_uniqueness_of :pericles_id, allow_nil: true, scope: :user_id
 
   before_validation :adjust_distances_if_needed
-  before_save :geocode, :normalise_prices, :properties_for_rent_cannot_be_new_developments
+  before_save :set_country_and_region, :geocode, :normalise_prices, :properties_for_rent_cannot_be_new_developments
 
   delegate :theme, to: :resort
 
@@ -299,6 +299,11 @@ class Property < ActiveRecord::Base
       self.strapline = truncate(strapline, escape: false, length: 255, separator: ' ')
     end
     self.name = name[0...255]
+  end
+
+  def set_country_and_region
+    self.country = resort.country
+    self.region = resort.region
   end
 
   def basket_advert_type_description

@@ -190,15 +190,45 @@ describe Property do
 
     it 'returns the value of the Interhome accommodation availability' do
       available = InterhomeAccommodation.new
-      available.stub(available_to_check_in_on_dates?: true)
+      expect(available).to receive(:available_to_check_in_on_dates?).and_return(true)
       p = Property.new
       p.interhome_accommodation = available
       expect(p.calculate_late_availability([])).to be_truthy
 
       unavailable = InterhomeAccommodation.new
-      unavailable.stub(available_to_check_in_on_dates?: false)
+      allow(unavailable).to receive(:available_to_check_in_on_dates?).and_return(false)
       p.interhome_accommodation = unavailable
       expect(p.calculate_late_availability([])).to be_falsey
+    end
+  end
+
+  describe '#set_country_and_region' do
+    let(:property) { FactoryGirl.build(:property) }
+
+    before do
+      @country = FactoryGirl.create(:country)
+      @region = FactoryGirl.create(:region, country_id: @country.id)
+      @resort = FactoryGirl.create(:resort, country_id: @country.id, region_id: @region.id)
+
+      property.resort = @resort
+      property.set_country_and_region
+    end
+
+    it 'sets country' do
+      expect(property.country).to eq @country
+    end
+
+    it 'sets region' do
+      expect(property.region).to eq @region
+    end
+  end
+
+  describe 'before_save' do
+    let(:property) { FactoryGirl.build(:property) }
+
+    it 'calls set_country_and_region' do
+      expect(property).to receive(:set_country_and_region)
+      property.save
     end
   end
 end
