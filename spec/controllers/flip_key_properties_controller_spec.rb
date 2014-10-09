@@ -74,14 +74,19 @@ describe FlipKeyPropertiesController do
       context 'when message sending succeeds' do
         let(:message_sender) { double(FlipKey::MessageSender, send_message: true) }
 
-        it 'creates an enquiry' do
+        before do
           FactoryGirl.create(:user, email: FlipKey::user_email)
-
           allow(FlipKey::MessageSender).to receive(:new).and_return(message_sender)
+        end
 
+        it 'creates an enquiry' do
           post 'send_message', valid_params
-
           expect(Enquiry.find_by(user_id: FlipKey::user.id)).to be
+        end
+
+        it 'sends an email notification' do
+          expect(EnquiryNotifier).to receive(:notify).and_call_original
+          post 'send_message', valid_params
         end
       end
 

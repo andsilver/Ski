@@ -49,9 +49,9 @@ class FlipKeyPropertiesController < ApplicationController
 
     # Creates a copy of the FlipKey message as an enquiry under the FlipKey
     # user's account, allowing the site owner to reconcile enquiries with
-    # affiliate payments.
+    # affiliate payments. An email notification is also sent.
     def save_copy_as_enquiry(details)
-      Enquiry.create!(
+      enquiry = Enquiry.create!(
         user_id:           FlipKey::user.id,
         date_of_arrival:   details[:check_in],
         date_of_departure: details[:check_in],
@@ -61,5 +61,6 @@ class FlipKeyPropertiesController < ApplicationController
         property_id:       @flip_key_property.property.id, 
         comments:          details.map{|k,v| "#{k}:\n#{v}"}.join("\n\n")
       )
+      EnquiryNotifier.notify(enquiry, Property.find(@flip_key_property.property)).deliver
     end
 end
