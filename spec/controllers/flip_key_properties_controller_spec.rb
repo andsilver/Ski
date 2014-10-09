@@ -43,12 +43,14 @@ describe FlipKeyPropertiesController do
 
     context 'with valid params' do
       it 'redirects to message_sent' do
+        allow(controller).to receive(:save_copy_as_enquiry)
         allow(FlipKey::MessageSender).to receive(:new).and_return double(FlipKey::MessageSender).as_null_object
         post 'send_message', valid_params
         expect(response).to redirect_to(message_sent_flip_key_property_path(flip_key_property))
       end
 
       it 'instantiates a FlipKey::MessageSender' do
+        allow(controller).to receive(:save_copy_as_enquiry)
         expect(FlipKey::MessageSender).to receive(:new).with(hash_including(
         check_in: Date.parse(valid_params[:check_in]),
         check_out: Date.parse(valid_params[:check_out]),
@@ -67,6 +69,20 @@ describe FlipKeyPropertiesController do
         allow(FlipKey::MessageSender).to receive(:new).and_return(ms)
         expect(ms).to receive(:send_message)
         post 'send_message', valid_params        
+      end
+
+      context 'when message sending succeeds' do
+        let(:message_sender) { double(FlipKey::MessageSender, send_message: true) }
+
+        it 'creates an enquiry' do
+          FactoryGirl.create(:user, email: FlipKey::user_email)
+
+          allow(FlipKey::MessageSender).to receive(:new).and_return(message_sender)
+
+          post 'send_message', valid_params
+
+          expect(Enquiry.find_by(user_id: FlipKey::user.id)).to be
+        end
       end
 
       context 'when message sending fails' do

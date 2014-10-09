@@ -5,7 +5,7 @@ module FlipKey
     end
 
     def user_email
-      'flipkey@mychaletfinder.com'
+      FlipKey::user_email
     end
 
     def import_accommodation(a)
