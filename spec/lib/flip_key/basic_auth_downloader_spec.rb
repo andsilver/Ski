@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 module FlipKey
   describe BasicAuthDownloader do
@@ -11,12 +11,12 @@ module FlipKey
 
       it 'uses basic authentation to download a file from a webserver' do
         curl_easy = double(Curl::Easy)
-        Curl::Easy.should_receive(:new).with(from).and_return(curl_easy)
-        curl_easy.should_receive(:http_auth_types=).with(:basic)
-        curl_easy.should_receive(:username=).with(username)
-        curl_easy.should_receive(:password=).with(password)
-        curl_easy.should_receive(:perform)
-        curl_easy.should_receive(:body_str).and_return(body_str)
+        expect(Curl::Easy).to receive(:new).with(from).and_return(curl_easy)
+        expect(curl_easy).to receive(:http_auth_types=).with(:basic)
+        expect(curl_easy).to receive(:username=).with(username)
+        expect(curl_easy).to receive(:password=).with(password)
+        expect(curl_easy).to receive(:perform)
+        expect(curl_easy).to receive(:body_str).and_return(body_str)
 
         BasicAuthDownloader.new.download(
           from: from,

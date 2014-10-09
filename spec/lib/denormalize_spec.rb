@@ -1,36 +1,36 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Denormalize do
   describe '.denormalize' do
-    before { Currency.stub(:update_exchange_rates) }
+    before { allow(Currency).to receive(:update_exchange_rates) }
 
     it 'updates featured properties' do
-      Denormalize.should_receive(:update_featured_properties)
+      expect(Denormalize).to receive(:update_featured_properties)
       Denormalize.denormalize
     end
 
     it 'updates exchange rates' do
-      Currency.should_receive(:update_exchange_rates)
+      expect(Currency).to receive(:update_exchange_rates)
       Denormalize.denormalize
     end
 
     it 'updates properties' do
-      Denormalize.should_receive(:update_properties)
+      expect(Denormalize).to receive(:update_properties)
       Denormalize.denormalize
     end
 
     it 'updates resorts' do
-      Denormalize.should_receive(:update_resorts)
+      expect(Denormalize).to receive(:update_resorts)
       Denormalize.denormalize
     end
 
     it 'updates countries' do
-      Denormalize.should_receive(:update_countries)
+      expect(Denormalize).to receive(:update_countries)
       Denormalize.denormalize
     end
 
     it 'updates regions' do
-      Denormalize.should_receive(:update_regions)
+      expect(Denormalize).to receive(:update_regions)
       Denormalize.denormalize
     end
   end
@@ -47,18 +47,18 @@ describe Denormalize do
 
       it 'assigns featured properties to the website' do
         featured_properties = [FactoryGirl.create(:property)]
-        Property.should_receive(:featured).and_return featured_properties
+        expect(Property).to receive(:featured).and_return featured_properties
         Denormalize.update_featured_properties
         website.reload
-        website.featured_properties.should eq featured_properties
+        expect(website.featured_properties).to eq featured_properties
       end
     end
   end
 
   describe '.update_properties' do
     it 'suspends geocoding' do
-      Property.should_receive(:stop_geocoding)
-      Property.should_receive(:resume_geocoding)
+      expect(Property).to receive(:stop_geocoding)
+      expect(Property).to receive(:resume_geocoding)
       Denormalize.update_properties
     end
   end

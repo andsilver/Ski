@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 module Interhome
   describe PriceImporter do
@@ -15,13 +15,13 @@ module Interhome
 
     describe '#ftp_get' do
       it 'gets the file corresponding to the sales office and 7 days via FTP' do
-        FTP.should_receive(:get).with('price_1234_eur.xml')
+        expect(FTP).to receive(:get).with('price_1234_eur.xml')
         ipi = PriceImporter.new(sales_office, 7)
         ipi.ftp_get
       end
 
       it 'gets the file corresponding to the sales office and 14 days via FTP' do
-        FTP.should_receive(:get).with('price_1234_eur_14.xml')
+        expect(FTP).to receive(:get).with('price_1234_eur_14.xml')
         ipi = PriceImporter.new(sales_office, 14)
         ipi.ftp_get
       end
@@ -29,14 +29,14 @@ module Interhome
 
     describe '#import' do
       it 'deletes all Interhome prices for @days days' do
-        InterhomePrice.should_receive(:delete_all).with(days: days)
+        expect(InterhomePrice).to receive(:delete_all).with(days: days)
         PriceImporter.new(sales_office, days).import([])
       end
 
       it 'imports each file in the array' do
         ipi = PriceImporter.new(sales_office, days)
-        ipi.should_receive(:import_file).with('file1.xml')
-        ipi.should_receive(:import_file).with('file2.xml')
+        expect(ipi).to receive(:import_file).with('file1.xml')
+        expect(ipi).to receive(:import_file).with('file2.xml')
         ipi.import(['file1.xml', 'file2.xml'])
       end
     end

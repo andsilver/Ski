@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PierreEtVacances::FTP do
   describe 'most_recent_file' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'xmlsimple'
 
 module Interhome
@@ -7,7 +7,7 @@ module Interhome
 
     describe '#ftp_get' do
       it 'gets the file via FTP' do
-        FTP.should_receive(:get).with(filename)
+        expect(FTP).to receive(:get).with(filename)
         ipi = PlaceImporter.new
         ipi.ftp_get
       end
@@ -16,41 +16,41 @@ module Interhome
     describe '#import' do
       it 'deletes all Interhome places' do
         f = double('File').as_null_object
-        File.stub(:open).and_return(f)
-        XmlSimple.stub(:xml_in)
-        InterhomePlace.should_receive(:delete_all)
+        allow(File).to receive(:open).and_return(f)
+        allow(XmlSimple).to receive(:xml_in)
+        expect(InterhomePlace).to receive(:delete_all)
         PlaceImporter.new.import
       end
 
       it 'opens the XML file' do
-        XmlSimple.stub(:xml_in)
-        File.should_receive(:open).
-        with('interhome/' + filename, 'rb').
-        and_return(double('File').as_null_object)
+        allow(XmlSimple).to receive(:xml_in)
+        expect(File).to receive(:open)
+          .with('interhome/' + filename, 'rb')
+          .and_return(double('File').as_null_object)
 
         PlaceImporter.new.import
       end
 
       it 'closes the XML file' do
-        XmlSimple.stub(:xml_in)
+        allow(XmlSimple).to receive(:xml_in)
         f = double('File')
-        File.stub(:open).and_return(f)
-        f.should_receive(:close)
+        allow(File).to receive(:open).and_return(f)
+        expect(f).to receive(:close)
         PlaceImporter.new.import
       end
 
       it 'creates an XML document' do
         f = double('File').as_null_object
-        File.stub(:open).and_return(f)
-        XmlSimple.should_receive(:xml_in).with(f)
+        allow(File).to receive(:open).and_return(f)
+        expect(XmlSimple).to receive(:xml_in).with(f)
         PlaceImporter.new.import
       end
 
       it 'imports each country' do
         ipi = PlaceImporter.new
         # The sample XML document contains 2 countries
-        ipi.stub(:xml_filename).and_return('spec/lib/countryregionplace_en.xml')
-        ipi.should_receive(:import_country).twice
+        allow(ipi).to receive(:xml_filename).and_return('spec/lib/countryregionplace_en.xml')
+        expect(ipi).to receive(:import_country).twice
         ipi.import
       end
     end

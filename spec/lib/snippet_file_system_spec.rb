@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe SnippetFileSystem do
   describe '#read_template_file' do

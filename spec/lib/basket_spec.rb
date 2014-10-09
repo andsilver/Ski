@@ -1,5 +1,4 @@
-# encoding: utf-8
-require 'spec_helper'
+require 'rails_helper'
 
 describe Basket do
   describe '#initialize' do
@@ -12,19 +11,19 @@ describe Basket do
   describe '#prepare' do
     it 'adds a line for windows' do
       b = Basket.new(user: FactoryGirl.build(:user))
-      b.should_receive(:add_line_for_windows)
+      expect(b).to receive(:add_line_for_windows)
       b.prepare
     end
 
     it 'adds lines for adverts' do
       b = Basket.new(user: FactoryGirl.build(:user))
-      b.should_receive(:add_lines_for_adverts)
+      expect(b).to receive(:add_lines_for_adverts)
       b.prepare
     end
 
     it 'applies any price override' do
       b = Basket.new(user: FactoryGirl.build(:user))
-      b.should_receive(:apply_price_override)
+      expect(b).to receive(:apply_price_override)
       b.prepare
     end
   end

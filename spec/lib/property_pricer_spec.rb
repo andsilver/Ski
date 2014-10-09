@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PropertyPricer do
   it "raises ArgumentError if either :property_number or :months are omitted" do

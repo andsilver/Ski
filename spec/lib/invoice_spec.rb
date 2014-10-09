@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Invoice do
   describe '#render' do
@@ -23,7 +23,7 @@ describe Invoice do
     it 'returns a filename, including path, based on the order number' do
       order = double(Order, order_number: '1234')
       invoice = Invoice.new(order)
-      invoice.stub(:directory).and_return '/tmp'
+      allow(invoice).to receive(:directory).and_return '/tmp'
       expect(invoice.filename).to eq '/tmp/MCF-Invoice-1234.pdf'
     end
   end
