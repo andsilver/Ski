@@ -22,10 +22,10 @@ class PropertiesController < ApplicationController
 
   SEARCH_PAGES = [:browse_for_rent, :browse_for_sale, :browse_hotels, :new_developments, :quick_search]
 
-  before_action :set_resort, only: SEARCH_PAGES
+  before_action :set_resort_and_region, only: SEARCH_PAGES
   before_action :require_resort, only: SEARCH_PAGES - [:quick_search]
   before_action :protect_hidden_resort, only: SEARCH_PAGES
-  before_action :resort_conditions, only: SEARCH_PAGES
+  before_action :location_conditions, only: SEARCH_PAGES
   before_action :holiday_type_conditions, only: SEARCH_PAGES
 
   before_action :admin_required, only: [:index]
@@ -463,8 +463,15 @@ class PropertiesController < ApplicationController
     not_found unless @property
   end
 
-  def set_resort
-    @resort = Resort.find_by(slug: params[:resort_slug])
+  def set_resort_and_region
+    @region = @resort = nil
+
+    if params[:resort_slug]
+      @resort = Resort.find_by(slug: params[:resort_slug])
+      # A slug in params[:resort_slug] may refer to a region since a single
+      # +select+ field is used in the UI.
+      @region = Region.find_by(slug: params[:resort_slug])
+    end
 
     if params[:resort_id]
       @resort ||= Resort.find_by(id: params[:resort_id])
@@ -489,10 +496,13 @@ class PropertiesController < ApplicationController
       'number_of_bedrooms ASC' ])
   end
 
-  def resort_conditions
+  def location_conditions
     if @resort
       @conditions = ["publicly_visible = 1 AND resort_id = ?"]
       @conditions << @resort.id
+    elsif @region
+      @conditions = ["publicly_visible = 1 AND region_id = ?"]
+      @conditions << @region.id
     else
       @conditions = ["publicly_visible = 1"]
     end
@@ -500,8 +510,14 @@ class PropertiesController < ApplicationController
 
   def holiday_type_conditions
     if params[:holiday_type_id]
-      @conditions[0] += " AND resort_id IN(SELECT brochurable_id FROM holiday_type_brochures WHERE brochurable_type = 'Resort' AND holiday_type_id = ?)"
-      @conditions << params[:holiday_type_id]
+      if @resort || @region
+        if @resort
+          @conditions[0] += " AND resort_id IN(SELECT brochurable_id FROM holiday_type_brochures WHERE brochurable_type = 'Resort' AND holiday_type_id = ?)"
+        else
+          @conditions[0] += " AND region_id IN(SELECT brochurable_id FROM holiday_type_brochures WHERE brochurable_type = 'Region' AND holiday_type_id = ?)"
+        end
+        @conditions << params[:holiday_type_id]
+      end
     end
   end
 

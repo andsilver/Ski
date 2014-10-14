@@ -12,15 +12,17 @@ class HomeController < ApplicationController
     render layout: false
   end
 
+  # Despite the name, this action populates @resorts with both Regions and
+  # Resorts.
   def resort_options_for_quick_search
     if params[:country_id].blank?
       @resorts = []
     else
       country = Country.find(params[:country_id])
       if params[:holiday_type_id].blank?
-        @resorts = country.visible_resorts
+        @resorts = country.visible_regions + country.visible_resorts
       else
-        @resorts = country.resort_brochures(params[:holiday_type_id]).map { |b| b.brochurable }
+        @resorts = country.region_brochures(params[:holiday_type_id]).map { |b| b.brochurable } + country.resort_brochures(params[:holiday_type_id]).map { |b| b.brochurable }
       end
     end
     render layout: false
