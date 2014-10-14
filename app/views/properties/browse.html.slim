@@ -13,7 +13,9 @@
     #search-options
       = form_tag request.path, method: 'get' do
         - if @resort
-          input type="hidden" name="resort_id" value="#{@resort.id}"
+          input type="hidden" name="resort_slug" value="#{@resort.slug}"
+        - if @region # region also uses resort_slug param name
+          input type="hidden" name="resort_slug" value="#{@region.slug}"
         select#sort_method.form-control name="sort_method"
           - if @for_sale
             = content_tag(:option, 'Price high to low', value: 'normalised_sale_price DESC', selected: sort_method=='normalised_sale_price DESC')
