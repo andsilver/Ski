@@ -44,12 +44,6 @@ function quickSearch() {
   if($qs.length) {
     $qs.on('change', '#holiday_type_id', getQuickSearchCountries);
     $qs.on('change', '#country_id', getQuickSearchResorts);
-    $('#quick-search form').submit(function() {
-      if($('#resort_id').val() == '') {
-        alert('Please choose a resort first.');
-        return false;
-      }
-    });
     if($('#holiday_type_id').length && $('#holiday_type_id').val() != '') {
       getQuickSearchCountries();
     }
