@@ -36,8 +36,12 @@ module FlipKey
 
     def import_pictures(property, xml)
       xml['property_photos'][0]['property_photo'].each do |photo|
-        prefix = photo['largest_image_prefix'][0]
-        photo_url = 'http://images1.flipkey.com/img/photos/' + photo['base_url'][0] + '/' + prefix + '_' + photo['photo_file_name'][0]
+        if photo['largest_image_prefix']
+          prefix = photo['largest_image_prefix'][0]
+          photo_url = 'http://images1.flipkey.com/img/photos/' + photo['base_url'][0] + '/' + prefix + '_' + photo['photo_file_name'][0]
+        else
+          photo_url = photo['ta_image'][0]
+        end
         image = Image.find_by(property_id: property.id, source_url: photo_url)
         if image
           image.touch
