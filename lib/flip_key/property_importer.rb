@@ -45,7 +45,7 @@ module FlipKey
         image = Image.find_by(property_id: property.id, source_url: photo_url)
         if image
           image.touch
-        elsif photo['base_url']
+        else
           image = Image.new(property_id: property.id)
           image.source_url = photo_url
           if image.save && property.image.nil?
