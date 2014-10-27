@@ -255,13 +255,16 @@ class Image < ActiveRecord::Base
       FileUtils.makedirs(directory_path)
       require 'net/http'
       uri = URI.parse(source_url)
-      Net::HTTP.start(uri.host, uri.port) do |http|
-        to_get = uri.path
-        to_get = "#{to_get}?" + uri.query unless uri.query.blank?
-        resp = http.get(to_get)
-        open(original_path, "wb") do |file|
-          file.write(resp.body)
-        end
+      to_get = uri.path
+      to_get = "#{to_get}?" + uri.query if uri.query.present?
+      request = Net::HTTP::Get.new(to_get)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = uri.port == 443
+      response = http.start do |http|
+        http.request(request)
+      end
+      open(original_path, "wb") do |file|
+        file.write(response.body)
       end
     rescue
       logger.warn 'Could not download image from source: ' + source_url
