@@ -192,7 +192,9 @@ module PropertiesHelper
   def property_type_for_accommodation_type(accommodation_type)
     keys = {
       Property::ACCOMMODATION_TYPE_APARTMENT => :apartment,
-      Property::ACCOMMODATION_TYPE_CHALET    => :chalet
+      Property::ACCOMMODATION_TYPE_CHALET    => :chalet,
+      Property::ACCOMMODATION_TYPE_HOUSE     => :house,
+      Property::ACCOMMODATION_TYPE_VILLA     => :villa,
     }
     keys.default = :accommodation
     property_type_i18n(keys[accommodation_type])

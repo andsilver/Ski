@@ -78,7 +78,7 @@ javascript:
           = f.label :accommodation_type, t('properties.accommodation_type'), class: 'control-label col-lg-4'
           .col-lg-6
             select#property_accommodation_type name="property[accommodation_type]" class="form-control"
-              - [Property::ACCOMMODATION_TYPE_CHALET, Property::ACCOMMODATION_TYPE_APARTMENT].each do |value|
+              - Property::ACCOMMODATION_TYPES.each do |value|
                 = content_tag(:option, property_type_for_accommodation_type(value), value: value, selected: @property.accommodation_type==value)
       - else
         / not relevant

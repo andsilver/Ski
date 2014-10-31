@@ -76,6 +76,7 @@ module FlipKey
       property.tidy_name_and_strapline
       property.address = "Somewhere on Earth"
       property.sleeping_capacity = xml['property_details'][0]['occupancy'][0].strip
+      property.accommodation_type = accommodation_type(xml)
       begin
         property.weekly_rent_price = weekly_rent_price(xml)
       rescue
@@ -85,6 +86,21 @@ module FlipKey
       property.save!
       import_pictures(property, xml)
       create_advert(property)
+    end
+
+    # Returns one of <tt>Property::ACCOMMODATION_TYPES</tt> based on the
+    # FlipKey +property_type+ value.
+    def accommodation_type(xml)
+      case xml['property_details'][0]['property_type'][0]
+      when 'Apt. / Condo'
+        Property::ACCOMMODATION_TYPE_APARTMENT
+      when 'House'
+        Property::ACCOMMODATION_TYPE_HOUSE
+      when 'Villa'
+        Property::ACCOMMODATION_TYPE_VILLA
+      else
+        Property::ACCOMMODATION_TYPE_CHALET
+      end
     end
 
     def accommodations(xml)
