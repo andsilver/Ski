@@ -35,7 +35,6 @@ class ApplicationController < ActionController::Base
   end
 
   def sitemap
-    domain = "#{request.subdomains.first}.#{request.domain}"
     @urls = [
       '/contact',
       '/enquiries/new',
@@ -51,7 +50,7 @@ class ApplicationController < ActionController::Base
       '/welcome/letting-agent',
       '/welcome/other-business',
       '/welcome/property-owner',
-    ].collect{|x| 'http://' + domain + x}
+    ].collect{|x| 'https://' + request.domain + x}
     Country.with_visible_resorts.each do |country|
       country.visible_resorts.each do |resort|
         @urls << resort_url(resort)
