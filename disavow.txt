@@ -1,12 +1,17 @@
 domain:140.128.107.177
+domain:1videoparjour.fr
+domain:203.211.0.150
 domain:203.211.150.164
 domain:61.19.250.30
+domain:9dtv.com.hk
 domain:a950216t.saw.tw
 domain:aboutall.eu
 domain:acerejadomeubolo.com.br
 domain:acs.homeunix.net
 domain:activereleasedoc.com
+domain:adamekvsgolota.pl
 domain:afoolishblog.altervista.org
+domain:alivenotdead.com
 domain:alliance-pbem.net
 domain:andrewkahlphotography.com
 domain:angelnotes.olqaschool.org
