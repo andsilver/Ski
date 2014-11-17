@@ -5,13 +5,13 @@ describe UsersController do
   let(:user) { double(User).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
-    User.stub(:new).and_return(user)
+    allow(Website).to receive(:first).and_return(website)
+    allow(User).to receive(:new).and_return(user)
   end
 
   describe "GET new" do
     it "instantiates a new user" do
-      User.should_receive(:new)
+      expect(User).to receive(:new)
       get :new
     end
 
@@ -24,7 +24,7 @@ describe UsersController do
   describe 'GET select_role' do
     it 'renders the "new" template' do
       get 'select_role', {user: {role_id: 1}}
-      response.should render_template('new')
+      expect(response).to render_template('new')
     end
   end
 
@@ -38,41 +38,41 @@ describe UsersController do
     end
 
     it "instantiates a new user with the given cleansed params" do
-      User.should_receive(:new).with(params[:user].slice(:name))
+      expect(User).to receive(:new).with(params[:user].slice(:name))
       post :create, params
     end
 
     it "finds the selected role" do
-      Role.should_receive(:find_by).with(id: '1')
+      expect(Role).to receive(:find_by).with(id: '1')
       post :create, params
     end
 
     context "when the role is valid" do
       before do
-        role.stub(:select_on_signup?).and_return(true)
+        allow(role).to receive(:select_on_signup?).and_return(true)
       end
 
       it "assigns @user.role_id" do
-        user.should_receive(:role_id=).with(role.id)
+        expect(user).to receive(:role_id=).with(role.id)
         post :create, params
       end
     end
 
     context "when the role is not valid" do
       before do
-        role.stub(:select_on_signup?).and_return(false)
+        allow(role).to receive(:select_on_signup?).and_return(false)
       end
 
       it "does not assign @user.role_id" do
-        user.should_not_receive(:role_id=)
+        expect(user).not_to receive(:role_id=)
         post :create, params
       end
     end
 
     context "when the user saves successfully" do
       before do
-        user.stub(:save).and_return(true)
-        user.stub(:role).and_return(role)
+        allow(user).to receive(:save).and_return(true)
+        allow(user).to receive(:role).and_return(role)
       end
 
       it "sets a flash[:notice] message" do
@@ -82,8 +82,8 @@ describe UsersController do
 
       context "when the user's role only advertises for sale" do
         before do
-          role.stub(:only_advertises_properties_for_sale?).and_return(true)
-          role.stub(:only_advertises_properties_for_rent?).and_return(false)
+          allow(role).to receive(:only_advertises_properties_for_sale?).and_return(true)
+          allow(role).to receive(:only_advertises_properties_for_rent?).and_return(false)
         end
 
         it "redirects to the new property for sale page" do
@@ -94,8 +94,8 @@ describe UsersController do
 
       context "when the user's role only advertises for rent" do
         before do
-          role.stub(:only_advertises_properties_for_sale?).and_return(false)
-          role.stub(:only_advertises_properties_for_rent?).and_return(true)
+          allow(role).to receive(:only_advertises_properties_for_sale?).and_return(false)
+          allow(role).to receive(:only_advertises_properties_for_rent?).and_return(true)
         end
 
         it "redirects to the new property for rent page" do
@@ -106,8 +106,8 @@ describe UsersController do
 
       context "when the user's role does multiple advertising" do
         before do
-          role.stub(:only_advertises_properties_for_sale?).and_return(false)
-          role.stub(:only_advertises_properties_for_rent?).and_return(false)
+          allow(role).to receive(:only_advertises_properties_for_sale?).and_return(false)
+          allow(role).to receive(:only_advertises_properties_for_rent?).and_return(false)
         end
 
         it "redirects to the first advert page" do
@@ -119,7 +119,7 @@ describe UsersController do
 
     context "when the user fails to save" do
       before do
-        user.stub(:save).and_return(false)
+        allow(user).to receive(:save).and_return(false)
       end
 
       it "assigns @user" do
@@ -137,8 +137,8 @@ describe UsersController do
   describe "GET edit" do
     context 'when admin' do
       before do
-        controller.stub(:signed_in?).and_return(true)
-        controller.stub(:admin?).and_return(true)
+        allow(controller).to receive(:signed_in?).and_return(true)
+        allow(controller).to receive(:admin?).and_return(true)
       end
 
       it 'mentions the user\'s name in the heading' do

@@ -5,16 +5,16 @@ describe Admin::BuyingGuidesController do
   let(:buying_guide) { double(BuyingGuide).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
-    controller.stub(:admin?).and_return(true)
+    allow(Website).to receive(:first).and_return(website)
+    allow(controller).to receive(:admin?).and_return(true)
   end
 
   describe 'PATCH update' do
     context 'when buying guide found' do
-      before { BuyingGuide.stub(:find_by).and_return(buying_guide) }     
+      before { allow(BuyingGuide).to receive(:find_by).and_return(buying_guide) }     
 
       context 'when update succeeds' do
-        before { buying_guide.stub(:update_attributes).and_return(true) }
+        before { allow(buying_guide).to receive(:update_attributes).and_return(true) }
 
         it 'redirects to the edit action' do
           patch 'update', id: '1', buying_guide: { 'some' => 'params' }

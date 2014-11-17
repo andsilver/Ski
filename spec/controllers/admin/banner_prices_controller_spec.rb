@@ -34,7 +34,7 @@ describe Admin::BannerPricesController do
 
       it 'assigns @banner_price' do
         banner_price = BannerPrice.new(price: 10)
-        BannerPrice.stub(:new).and_return(banner_price)
+        allow(BannerPrice).to receive(:new).and_return(banner_price)
         get 'new'
         expect(assigns(:banner_price)).to eq(banner_price)
       end
@@ -45,7 +45,7 @@ describe Admin::BannerPricesController do
       let(:params) { { banner_price: { 'current_banner_number' => '1', 'price' => '10'} } }
 
       before do
-        BannerPrice.stub(:new).and_return(banner_price)
+        allow(BannerPrice).to receive(:new).and_return(banner_price)
       end
 
       it 'instantiates a new banner price with the given params' do
@@ -55,7 +55,7 @@ describe Admin::BannerPricesController do
 
       context 'when the banner price saves successfully' do
         before do
-          banner_price.stub(:save).and_return(true)
+          allow(banner_price).to receive(:save).and_return(true)
         end
 
         it 'sets a flash[:notice] message' do
@@ -71,7 +71,7 @@ describe Admin::BannerPricesController do
 
       context 'when the banner price fails to save' do
         before do
-          banner_price.stub(:save).and_return(false)
+          allow(banner_price).to receive(:save).and_return(false)
         end
 
         it 'assigns @banner_price' do
@@ -105,7 +105,7 @@ describe Admin::BannerPricesController do
       let(:banner_price) { double(BannerPrice).as_null_object }
 
       before do
-        BannerPrice.stub(:find).and_return(banner_price)
+        allow(BannerPrice).to receive(:find).and_return(banner_price)
       end
 
       it 'finds the banner price' do
@@ -115,7 +115,7 @@ describe Admin::BannerPricesController do
 
       context 'when the banner price updates successfully' do
         before do
-          banner_price.stub(:update_attributes).and_return(true)
+          allow(banner_price).to receive(:update_attributes).and_return(true)
         end
 
         it 'redirects to the banner prices page' do
@@ -131,7 +131,7 @@ describe Admin::BannerPricesController do
 
       context 'when the banner price fails to update' do
         before do
-          banner_price.stub(:update_attributes).and_return(false)
+          allow(banner_price).to receive(:update_attributes).and_return(false)
         end
 
         it 'assigns @banner_price' do
@@ -150,7 +150,7 @@ describe Admin::BannerPricesController do
       let(:banner_price) { double(BannerPrice).as_null_object }
 
       before do
-        BannerPrice.stub(:find).and_return(banner_price)
+        allow(BannerPrice).to receive(:find).and_return(banner_price)
       end
 
       it 'finds the banner price' do

@@ -39,7 +39,7 @@ describe Region do
       region.save
       resort.save
 
-      region.resort_brochures(ht.id).to_a.should eq [resort_brochure]
+      expect(region.resort_brochures(ht.id).to_a).to eq [resort_brochure]
     end
 
     it 'excludes invisible resorts' do
@@ -49,7 +49,7 @@ describe Region do
       region.save
       resort.save
 
-      region.resort_brochures(ht.id).to_a.should eq []
+      expect(region.resort_brochures(ht.id).to_a).to eq []
     end
   end
 end

@@ -12,9 +12,9 @@ describe Country do
     end
 
     it "only returns countries that have resorts" do
-      Country.with_resorts.should_not be_empty
+      expect(Country.with_resorts).not_to be_empty
       Country.with_resorts.each do |country|
-        country.resorts.should_not be_empty
+        expect(country.resorts).not_to be_empty
       end
     end
 
@@ -64,7 +64,7 @@ describe Country do
       country.save
       region.save
 
-      country.region_brochures(ht.id).to_a.should eq [region_brochure]
+      expect(country.region_brochures(ht.id).to_a).to eq [region_brochure]
     end
 
     it 'excludes invisible resorts' do
@@ -74,7 +74,7 @@ describe Country do
       country.save
       region.save
 
-      country.region_brochures(ht.id).to_a.should eq []
+      expect(country.region_brochures(ht.id).to_a).to eq []
     end
   end
 
