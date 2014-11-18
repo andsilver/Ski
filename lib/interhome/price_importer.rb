@@ -45,7 +45,14 @@ module Interhome
       @price.accommodation_code = p['code'][0]
       @price.start_date = p['startdate'][0]
       @price.end_date = p['enddate'][0]
+
+      # Price without any special offers.
+      @price.regular_price = p['regularprice'][0]
+
+      # Rental price may be the same as the regular or special offer price.
+      # It reflects the current price including any special offer.
       @price.rental_price = p['rentalprice'][0]
+
       @price.min_rental_price = p['minrentalprice'][0]
       @price.max_rental_price = p['maxrentalprice'][0]
       if p['specialoffer']
