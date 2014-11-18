@@ -51,7 +51,7 @@ module FlipKey
               item = queue.pop(true) rescue nil
               yield item
             end
-            ActiveRecord::Base.connection.close
+            ActiveRecord::Base.clear_active_connections!
           end
         end
 
