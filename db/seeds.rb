@@ -22,6 +22,14 @@ Payment.delete_all
 
 website = Website.create!
 
+CarouselSlide.delete_all
+CarouselSlide.create!([
+  { caption: '<p>Ski Holidays</p><p>A wide choice of international<br>ski resorts around the world</p>', link: '/holidays/ski-holidays', image_url: '/images/home/sh-home.png' },
+  { caption: '<p>City Breaks</p><p>All year round destinations – <br>explore something new</p>', link: '/holidays/city-breaks', image_url: '/images/home/ex-slider.png' },
+  { caption: '<p>Summer Villas</p><p>A great choice from the blue seas of <br>the Amalfi Coast to the Florida Keys</p>', link: '/holidays/summer-villas', image_url: '/images/home/sv-home.png' },
+  { caption: '<p>Lakes & Mountains<p><p>Beautiful lakeside resorts in picture <br>postcard settings</p>', link: '/holidays/lakes-and-mountains', image_url: '/images/home/lm-home.png' }
+])
+
 Page.create!([
   { path: '/pages/about', title: 'About' }
 ])
