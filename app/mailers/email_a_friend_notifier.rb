@@ -1,4 +1,7 @@
+require 'concerns/email_setup'
+
 class EmailAFriendNotifier < ActionMailer::Base
+  include EmailSetup
   layout 'email'
 
   def notify form, property

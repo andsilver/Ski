@@ -1,4 +1,7 @@
+require 'concerns/email_setup'
+
 class UserNotifier < ActionMailer::Base
+  include EmailSetup
   default from: 'notifier@mychaletfinder.com'
   layout 'email'
 
