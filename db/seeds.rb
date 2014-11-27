@@ -638,6 +638,8 @@ Payment.create!(
   amount: '50'
 )
 
+FlipKeyLocation.delete_all
+
 FlipKeyLocation.create!(id: 1, rgt: nil, parent_path: '1', parent_id: nil, name: 'Earth', lft: nil, property_count: 0)
 # These ones can probably be imported from the data provided by FlipKey:
 FlipKeyLocation.create!(id: 2, rgt: 21787, parent_path: '1,2', parent_id: 1, name: 'Asia', lft: 2, property_count: 8459)
