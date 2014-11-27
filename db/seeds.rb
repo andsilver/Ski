@@ -455,6 +455,8 @@ chamonix = Resort.create!(country: france, name: 'Chamonix',
 chamonix.holiday_type_brochures.build(holiday_type: ski_holidays)
 chamonix.save!
 
+chamonix.create_page('how-to-get-there')
+
 les_houches = Resort.find_by(slug: 'les-houches')
 les_houches.holiday_type_brochures.build(holiday_type: ski_holidays)
 les_houches.hotel_count = 1
