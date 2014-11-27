@@ -86,8 +86,17 @@ Rails.application.configure do
       sender_address: %{"MyChaletFinder" <noreply@mychaletfinder.com>},
       exception_recipients: %w{ianfleeton@gmail.com}
     }
-end
 
-ActionMailer::Base.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.mandrillapp.com',
+    port:                 587,
+    user_name:            'ianf@yesl.co.uk',
+    password:             'DDNWTklSlBvIpa41MtDW9A',
+    authentication:       'login',
+    enable_starttls_auto: true,
+    domain:               'mychaletfinder.com'
+  }
+end
 
 PERFORM_GEOCODE = true
