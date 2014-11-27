@@ -19,10 +19,10 @@ class EmailAFriendForm
   end
 
   def to_key
-    ["1"]
+    [1]
   end
 
   def to_param
-    to_key
+    1
   end
 end

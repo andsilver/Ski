@@ -179,7 +179,7 @@ Rails.application.routes.draw do
   resources :email_a_friend_form do
     post 'current_time', on: :collection
   end
-  get "email_a_friend_form/1" => "email_a_friend_form#create"
+  post "email_a_friend_form/1" => "email_a_friend_form#create"
 
   resources :interhome_place_resorts
   resources :pv_place_resorts
