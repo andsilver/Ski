@@ -28,9 +28,6 @@ gem 'delayed_job_active_record'
 # Use Draper to decorate models
 gem 'draper'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 
