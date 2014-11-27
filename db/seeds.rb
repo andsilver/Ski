@@ -464,7 +464,11 @@ les_houches.save!
 
 Airport.destroy_all
 geneva = Airport.create!(name: 'Geneva', code: 'GVA', country: france)
-AirportDistance.create!(airport_id: geneva.id, resort_id: chamonix.id, distance_km: 90)
+grenoble = Airport.create!(name: 'Grenoble', code: 'GNB', country: france)
+AirportDistance.create!([
+  {airport: geneva, resort: chamonix, distance_km: 90},
+  {airport: grenoble, resort: chamonix, distance_km: 255}
+])
 
 bars = Category.create!(name: 'Bars')
 
