@@ -13,14 +13,33 @@ class SessionsController < ApplicationController
     end
   end
 
+  # Ends the current session.
+  #
+  # If the user is an admin assuming the role of another user then the user
+  # is signed back into their admin account.
+  #
+  # If +redirect_to+ param is set then the user is redirected to this URL,
+  # otherwise the user is redirected back to the sign in page.
   def destroy
-    reset_session
-    redirect_to root_path, notice: t('signed_out')
+    if session[:admin]
+      @current_user = User.find(session[:admin])
+      set_user
+    else
+      reset_session
+      flash[:notice] = t('signed_out')
+      if params[:redirect_to]
+        redirect_to params[:redirect_to]
+      else
+        redirect_to action: 'new'
+      end
+    end
   end
 
   def switch_user
+    admin_id = @current_user.id
     @current_user = User.find(params[:user_id])
     set_user
+    session[:admin] = admin_id
   end
 
   protected
