@@ -1,7 +1,7 @@
 module FlipKey
   class Importer
     DOWNLOADER_OPTIONS = {
-      url_base: 'http://ws.flipkey.com/pfe/',
+      url_base: 'https://ws.flipkey.com/pfe/',
       username: 'mychaletfinder',
       password: 'LIxoxLol'
     }.freeze

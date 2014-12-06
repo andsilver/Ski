@@ -3,7 +3,7 @@ require 'flip_key'
 
 module FlipKey
   describe PropertyDownloader do
-    let(:url_base) { 'http://ws.flipkey.com/pfe/' }
+    let(:url_base) { 'https://ws.flipkey.com/pfe/' }
     let(:username) { 'mychaletfinder' }
     let(:password) { 'LIxoxLol' }
     let(:property_downloader) {
