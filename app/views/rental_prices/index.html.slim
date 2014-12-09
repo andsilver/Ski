@@ -19,7 +19,7 @@ p Choose which resort you want to search and specify the sleeping capacity of yo
 - if defined? @found_resort
   h2 "Rental prices for accommodation in #{@found_resort} sleeping #{pluralize(@rental_prices_search.sleeping_capacity, 'person')}"
 
-  table
+  table.theme-table
     tr
       th Minimum
       th Maximum
