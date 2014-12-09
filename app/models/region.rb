@@ -46,8 +46,18 @@ class Region < ActiveRecord::Base
 
   # Returns the number of properties for rent within this region.
   def for_rent_count
+    resort_sum('for_rent_count')
+  end
+
+  # Returns the number of properties for sale within this region.
+  def for_sale_count
+    resort_sum('for_sale_count')
+  end
+
+  # Returns the SUM of +column+ in dependent resorts.
+  def resort_sum(column)
     conn = ActiveRecord::Base.connection
-    result = conn.execute("SELECT SUM(for_rent_count) FROM resorts WHERE region_id = #{id}")
+    result = conn.execute("SELECT SUM(#{column}) FROM resorts WHERE region_id = #{id}")
     result.first[0]
   end
 end

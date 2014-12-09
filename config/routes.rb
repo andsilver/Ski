@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   # Region property routes are handled by the same controller and actions as
   # the resort property routes.
   get "regions/:region_slug/properties/rent" => "properties#browse_for_rent", as: :region_property_rent
+  get "regions/:region_slug/properties/sale" => "properties#browse_for_sale", as: :region_property_sale
 
   get "resorts/:id/resort-guide" => "resorts#resort_guide", as: :resort_guide
   get "resorts/:id/ski-and-guiding-schools" => "resorts#ski_and_guiding_schools", as: :ski_and_guiding_schools

@@ -414,9 +414,9 @@ en:
         summer: "Accommodation, Villas & Apartments for Rent in %{place}"
     browse_for_sale:
       heading:
-        other: "Accommodation & Apartments for Sale in %{resort}"
-        ski: "Accommodation, Chalets & Apartments for Sale in %{resort}"
-        summer: "Accommodation, Villas & Apartments for Sale in %{resort}"
+        other: "Accommodation & Apartments for Sale in %{place}"
+        ski: "Accommodation, Chalets & Apartments for Sale in %{place}"
+        summer: "Accommodation, Villas & Apartments for Sale in %{place}"
     created: "Your property advert was successfully created. Now let's add some photos."
     created_and_assigned_to_window: "Your property advert was successfully created. We've automatically placed it in one of your free windows. Now let's add some photos."
     created_but_no_empty_windows_left: "Your property advert was successfully created but you have no empty windows to place it in."
@@ -520,7 +520,7 @@ en:
     strapline_example_content: 'A large, traditional alpine luxury ski chalet, sleeping 10. Full of charm and character.'
     titles:
       browse_for_rent: "Chalets and Apartments for Rent in %{place}"
-      browse_for_sale: "Chalets and Apartments for Sale in %{resort}"
+      browse_for_sale: "Chalets and Apartments for Sale in %{place}"
       edit: 'Edit Property'
       hotels: "Hotels in %{resort}"
       new: New Property

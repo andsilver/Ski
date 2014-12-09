@@ -23,7 +23,7 @@ class PropertiesController < ApplicationController
   SEARCH_PAGES = [:browse_for_rent, :browse_for_sale, :browse_hotels, :new_developments, :quick_search]
 
   before_action :set_resort_and_region, only: SEARCH_PAGES
-  before_action :require_resort, only: SEARCH_PAGES - [:quick_search, :browse_for_rent]
+  before_action :require_resort, only: SEARCH_PAGES - [:quick_search, :browse_for_rent, :browse_for_sale]
   before_action :protect_hidden_resort, only: SEARCH_PAGES
   before_action :location_conditions, only: SEARCH_PAGES
   before_action :holiday_type_conditions, only: SEARCH_PAGES
@@ -97,11 +97,11 @@ class PropertiesController < ApplicationController
 
   def browse_for_sale
     @for_sale = true
-    default_page_title t('properties.titles.browse_for_sale', resort: @resort)
+    default_page_title t('properties.titles.browse_for_sale', place: place)
     browse_property_breadcrumbs
 
     @heading = I18n.t('properties_controller.browse_for_sale.heading.' +
-      browse_heading_key, resort: @resort)
+      browse_heading_key, place: place)
 
     order = for_sale_selected_order
 
