@@ -55,7 +55,7 @@ class Admin::CarouselSlidesController < ApplicationController
     end
 
     def carousel_slide_params
-      params.require(:carousel_slide).permit(:active_from, :active_until, :caption, :image_url, :link, :position)
+      params.require(:carousel_slide).permit(:active_from, :active_until, :alt, :caption, :image_url, :link, :position)
     end
 
     def moved

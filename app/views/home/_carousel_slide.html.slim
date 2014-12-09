@@ -3,4 +3,4 @@ li
     img src="#{carousel_slide.image_url}" alt=""
     .caption
       = raw carousel_slide.caption
-      = image_tag 'slider-arrow.png', alt: '', style: 'display:inline-block;'
+      = image_tag 'slider-arrow.png', alt: carousel_slide.alt, style: 'display:inline-block;'
