@@ -1,0 +1,6 @@
+- if @region.has_page?('how-to-get-there')
+  section
+    h2= @region.name
+    ul#resort-nav
+      li class="#{current_page?(how_to_get_to_region_path(@region)) ? 'active' : ''}"
+        = link_to 'How to Get There', how_to_get_to_region_path(@region)
