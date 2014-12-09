@@ -12,6 +12,7 @@ HolidayType.destroy_all
 Property.destroy_all
 PropertyBasePrice.destroy_all
 DirectoryAdvert.destroy_all
+Region.destroy_all
 Resort.destroy_all
 Country.destroy_all
 Category.destroy_all
@@ -441,6 +442,17 @@ Resort.create!([
   { country: italy,   name: 'Italian Alps', slug: 'italian-alps' },
 ])
 
+rhone_alpes = Region.create!(
+  country: france, name: 'Rhône Alpes', slug: 'rhone-alpes'
+)
+
+rhone_alpes.holiday_type_brochures.build(holiday_type: ski_holidays)
+rhone_alpes.save!
+
+htgt = rhone_alpes.create_page('how-to-get-there')
+htgt.content = '<p>How to get to Rhône Alpes...</p>'
+htgt.save
+
 chamonix = Resort.create!(country: france, name: 'Chamonix',
   slug: 'chamonix',
   altitude_m: 1035,
@@ -449,7 +461,8 @@ chamonix = Resort.create!(country: france, name: 'Chamonix',
   visible: true,
   info: 'Chamonix, with a population of approximately 10,000, is a world famous resort and was the location of the first winter Olympics in 1924.',
   for_rent_count: 25,
-  for_sale_count: 5
+  for_sale_count: 5,
+  region: rhone_alpes
 )
 
 chamonix.holiday_type_brochures.build(holiday_type: ski_holidays)
