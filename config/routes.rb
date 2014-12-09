@@ -54,6 +54,11 @@ Rails.application.routes.draw do
   get "resorts/:resort_slug/properties/new-developments" => "properties#new_developments",
     as: :resort_property_new_developments
   get "resorts/:resort_slug/properties/hotels" => "properties#browse_hotels", as: :resort_property_hotels
+
+  # Region property routes are handled by the same controller and actions as
+  # the resort property routes.
+  get "regions/:region_slug/properties/rent" => "properties#browse_for_rent", as: :region_property_rent
+
   get "resorts/:id/resort-guide" => "resorts#resort_guide", as: :resort_guide
   get "resorts/:id/ski-and-guiding-schools" => "resorts#ski_and_guiding_schools", as: :ski_and_guiding_schools
   get "resorts/:id/summer-holidays" => "resorts#summer_holidays", as: :summer_holidays

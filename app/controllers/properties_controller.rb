@@ -23,7 +23,7 @@ class PropertiesController < ApplicationController
   SEARCH_PAGES = [:browse_for_rent, :browse_for_sale, :browse_hotels, :new_developments, :quick_search]
 
   before_action :set_resort_and_region, only: SEARCH_PAGES
-  before_action :require_resort, only: SEARCH_PAGES - [:quick_search]
+  before_action :require_resort, only: SEARCH_PAGES - [:quick_search, :browse_for_rent]
   before_action :protect_hidden_resort, only: SEARCH_PAGES
   before_action :location_conditions, only: SEARCH_PAGES
   before_action :holiday_type_conditions, only: SEARCH_PAGES
@@ -37,7 +37,7 @@ class PropertiesController < ApplicationController
   end
 
   def quick_search
-    default_page_title t('properties.titles.browse_for_rent', resort: @resort)
+    default_page_title t('properties.titles.browse_for_rent', place: place)
     browse_property_breadcrumbs
     @heading = t('properties_controller.quick_search.heading')
 
@@ -68,11 +68,11 @@ class PropertiesController < ApplicationController
   end
 
   def browse_for_rent
-    default_page_title t('properties.titles.browse_for_rent', resort: @resort)
+    default_page_title t('properties.titles.browse_for_rent', place: place)
     browse_property_breadcrumbs
 
     @heading = I18n.t('properties_controller.browse_for_rent.heading.' +
-      browse_resort_heading_key, resort: @resort)
+      browse_heading_key, place: place)
 
     order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
       "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
@@ -101,7 +101,7 @@ class PropertiesController < ApplicationController
     browse_property_breadcrumbs
 
     @heading = I18n.t('properties_controller.browse_for_sale.heading.' +
-      browse_resort_heading_key, resort: @resort)
+      browse_heading_key, resort: @resort)
 
     order = for_sale_selected_order
 
@@ -471,6 +471,8 @@ class PropertiesController < ApplicationController
       # A slug in params[:resort_slug] may refer to a region since a single
       # +select+ field is used in the UI.
       @region = Region.find_by(slug: params[:resort_slug])
+    elsif params[:region_slug]
+      @region = Region.find_by(slug: params[:region_slug])
     end
 
     if params[:resort_id]
@@ -651,10 +653,10 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def browse_resort_heading_key
-    if @resort.ski?
+  def browse_heading_key
+    if @resort.try(:ski?)
       'ski'
-    elsif @resort.summer?
+    elsif @resort.try(:summer?)
       'summer'
     else
       'other'
@@ -663,5 +665,9 @@ class PropertiesController < ApplicationController
 
   def search_status
     @properties.any? ? 200 : 404
+  end
+
+  def place
+    @resort || @region
   end
 end

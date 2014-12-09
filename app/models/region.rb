@@ -43,4 +43,11 @@ class Region < ActiveRecord::Base
   def featured_properties(limit)
     Property.order('RAND()').limit(limit).where(region_id: id, publicly_visible: true)
   end
+
+  # Returns the number of properties for rent within this region.
+  def for_rent_count
+    conn = ActiveRecord::Base.connection
+    result = conn.execute("SELECT SUM(for_rent_count) FROM resorts WHERE region_id = #{id}")
+    result.first[0]
+  end
 end
