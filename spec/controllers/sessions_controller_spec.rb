@@ -4,7 +4,7 @@ describe SessionsController do
   let(:website) { double(Website).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   describe "GET new" do
@@ -17,18 +17,18 @@ describe SessionsController do
     let(:role) { double(Role).as_null_object }
 
     before do
-      user.stub(:role).and_return(role)
+      allow(user).to receive(:role).and_return(role)
     end
 
     it "authenticates the user" do
-      User.should_receive(:authenticate).with("email", "password")
-      post :create, { :email => "email", :password => "password" }
+      expect(User).to receive(:authenticate).with("email", "password")
+      post :create, { email: 'email', password: 'password' }
     end
 
     context "when authentication is successful" do
       before do
-        User.stub(:authenticate).and_return(user)
-        user.stub(:id).and_return(123)
+        allow(User).to receive(:authenticate).and_return(user)
+        allow(user).to receive(:id).and_return(123)
       end
 
       it "sets session[:user]" do
@@ -43,7 +43,7 @@ describe SessionsController do
 
       context "when user is an admin" do
         it "redirects to the cms page" do
-          role.stub(:admin?).and_return(true)
+          allow(role).to receive(:admin?).and_return(true)
           post :create
           expect(response).to redirect_to cms_path
         end
@@ -51,7 +51,7 @@ describe SessionsController do
 
       context "when user is not an admin" do
         it "redirects to the advertise page" do
-          role.stub(:admin?).and_return(false)
+          allow(role).to receive(:admin?).and_return(false)
           post :create
           expect(response).to redirect_to advertise_path
         end
@@ -60,7 +60,7 @@ describe SessionsController do
 
     context "when authentication is unsuccessful" do
       before do
-        User.stub(:authenticate).and_return(nil)
+        allow(User).to receive(:authenticate).and_return(nil)
       end
 
       it "informs the user" do
@@ -77,20 +77,20 @@ describe SessionsController do
 
   describe "DELETE destroy" do
     it "resets the session" do
-      controller.should_receive(:reset_session)
+      expect(controller).to receive(:reset_session)
       delete :destroy
     end
 
-    it "redirects to the home page" do
+    it 'redirects to the sign in page' do
       delete :destroy
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to sign_in_path
     end
   end
 
   describe 'GET switch_user' do
     it 'requires admin' do
-      controller.stub(:admin?).and_return(false)
-      User.stub(:find).and_return(double(User).as_null_object)
+      allow(controller).to receive(:admin?).and_return(false)
+      allow(User).to receive(:find).and_return(double(User).as_null_object)
       get 'switch_user', user_id: '1'
       expect(response).to redirect_to sign_in_path
     end
