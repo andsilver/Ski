@@ -2,6 +2,8 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@resort.breadcrumbs, @heading)
 
+= raw @resort.gallery_content
+
 - resort_images(@resort, 'gallery')
 - if @images.empty?
   p= t('resorts_controller.gallery.no_photos')
@@ -16,5 +18,3 @@
   - @images.each do |i|
     div id="pic_#{Digest::MD5.hexdigest(gallery_thumbnail(@resort, i))}"
       img src="#{gallery_photo(@resort, i)}" alt="Large photo of #{@resort}"
-
-= raw @resort.gallery_content
