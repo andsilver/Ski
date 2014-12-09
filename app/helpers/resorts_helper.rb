@@ -116,7 +116,13 @@ module ResortsHelper
     resort.ski? && !resort.summer_only? && resort.has_visible_page?('summer-holidays')
   end
 
-  def resort_link_with_count(path, title, link_text, count)
+  # Returns HTML for a link to +path+ with +count+ in parentheses after the
+  # +link_text+.
+  #
+  # The link has a class of active if +path+ is the current page.
+  #
+  # If +count+ is 0 then +nil+ is returned.
+  def link_with_count(path, title, link_text, count)
     return if count == 0
 
     opts = current_page?(path) ? {class: 'active'} : {}
