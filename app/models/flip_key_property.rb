@@ -205,6 +205,12 @@ class FlipKeyProperty < ActiveRecord::Base
     return ''
   end
 
+  # Returns stale properties, that is, thse that have not been updated in
+  # a while.
+  def self.stale
+    where ['updated_at <= ?', Time.zone.now - 1.week]
+  end
+
   private
 
     def hash_nil(value)

@@ -128,4 +128,13 @@ describe FlipKeyProperty do
       ]
     }
   end
+
+  describe '.stale' do
+    it 'returns properties older than 1 week' do
+      stale = FactoryGirl.create(:flip_key_property, updated_at: Time.zone.now - 1.week)
+      still_fresh = FactoryGirl.create(:flip_key_property, updated_at: Time.zone.now - 6.days)
+      expect(FlipKeyProperty.stale).to include(stale)
+      expect(FlipKeyProperty.stale).not_to include(still_fresh)
+    end
+  end
 end
