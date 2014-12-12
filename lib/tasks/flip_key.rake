@@ -1,4 +1,7 @@
 desc 'Import properties from FlipKey'
-task flip_key: :environment do
-  FlipKey::Importer.new.import
+
+namespace :flip_key do
+  task import: :environment do
+    FlipKey::Importer.new.import
+  end
 end
