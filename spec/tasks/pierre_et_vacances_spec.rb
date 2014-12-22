@@ -7,6 +7,18 @@ describe 'pierre_et_vacances namespace rake task' do
     Rake::Task.define_task(:environment)
   end
 
+  describe 'pierre_et_vacances:tidy' do
+    let :run_rake_task do
+      Rake::Task['pierre_et_vacances:import'].reenable
+      Rake.application.invoke_task 'pierre_et_vacances:tidy'
+    end
+
+    it 'deletes old P&V vacancies' do
+      expect(PvVacancy).to receive(:delete_old)
+      run_rake_task
+    end
+  end
+
   describe 'pierre_et_vacances:import' do
     let :run_rake_task do
       Rake::Task['pierre_et_vacances:import'].reenable
