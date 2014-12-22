@@ -107,7 +107,7 @@ module FlipKey
         gunzip(filename)
         xml_filename = File.join(FlipKey.directory, filename[0..-4])
         opts = { xml_filename: xml_filename }.merge xml_split_options
-        splitter = XMLSplitter.new(opts)
+        splitter = ::XMLSplitter.new(opts)
         splitter.split(&block)
       end      
     end
