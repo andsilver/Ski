@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Admin::ResortsController do
   let(:website) { double(Website).as_null_object }
-  let(:resort) { double(Resort).as_null_object }
+  let(:resort) { double(Resort, id: 1).as_null_object }
 
   before do
     Website.stub(:first).and_return(website)
@@ -88,7 +88,7 @@ describe Admin::ResortsController do
       end
 
       it 'creates a new Interhome place resort and sets its resort_id' do
-        InterhomePlaceResort.should_receive(:new).with(resort_id: resort.id)
+        expect(InterhomePlaceResort).to receive(:new).with(resort_id: resort.id)
         get 'edit', id: '1'
       end
 

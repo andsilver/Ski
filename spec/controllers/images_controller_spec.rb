@@ -4,13 +4,13 @@ describe ImagesController do
   let(:website) { double(Website).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   describe 'GET index' do
     it 'assigns all images belonging to the current user to @images' do
       user = double(User, images: :images)
-      controller.stub(:current_user).and_return(user)
+      allow(controller).to receive(:current_user).and_return(user)
       get 'index'
       expect(assigns(:images)).to eq :images
     end
@@ -19,21 +19,21 @@ describe ImagesController do
   describe 'POST create' do
     context 'when image saves' do
       before do
-        Image.any_instance.stub(:save).and_return(true)
-        controller.stub(:object).and_return(FactoryGirl.create(:property))
+        allow_any_instance_of(Image).to receive(:save).and_return(true)
+        allow(controller).to receive(:object).and_return(FactoryGirl.create(:property))
       end
 
       context 'when image height or width > 800' do
-        let(:mock_image) { double(Image).as_null_object }
+        let(:mock_image) { double(Image, id: 1).as_null_object }
 
         before do
-          Image.stub(:new).and_return(mock_image)
-          mock_image.stub(:height).and_return(1024)
-          mock_image.stub(:width).and_return(768)
+          allow(Image).to receive(:new).and_return(mock_image)
+          allow(mock_image).to receive(:height).and_return(1024)
+          allow(mock_image).to receive(:width).and_return(768)
         end
 
         it 'sizes the original image' do
-          mock_image.should_receive(:size_original!).with(800, :longest_side)
+          expect(mock_image).to receive(:size_original!).with(800, :longest_side)
           post :create, image: { source_url: '#' }
         end
       end
@@ -44,17 +44,17 @@ describe ImagesController do
     let(:image) { double(Image).as_null_object }
 
     it 'finds the image' do
-      Image.should_receive(:find).with('1').and_return(image)
+      expect(Image).to receive(:find).with('1').and_return(image)
       delete 'destroy', id: '1'
     end
 
     context 'when image is found' do
       before do
-        Image.stub(:find).and_return(image)
+        allow(Image).to receive(:find).and_return(image)
       end
 
       it 'redirects to the referrer' do
-        request.stub(:referer).and_return('http://example.org')
+        allow(request).to receive(:referer).and_return('http://example.org')
         delete 'destroy', id: '1'
         expect(response).to redirect_to('http://example.org')
       end

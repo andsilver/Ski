@@ -11,7 +11,7 @@ class DirectoryAdvert < ActiveRecord::Base
 
   has_many :adverts, dependent: :nullify
 
-  has_many :clicks, -> { where(action_type: :click) }, class_name: 'TrackedAction', as: :trackable
+  has_many :clicks, -> { where(action_type: TrackedAction.action_types[:click]) }, class_name: 'TrackedAction', as: :trackable
 
   validates_presence_of :category
   validates_presence_of :resort

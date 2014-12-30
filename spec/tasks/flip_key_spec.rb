@@ -33,7 +33,7 @@ describe 'flip_key namespace rake task' do
     end
 
     it 'destroys stale properties' do
-      stale = FactoryGirl.create(:flip_key_property, updated_at: Time.zone.now - 1.week)
+      stale = FactoryGirl.create(:flip_key_property, updated_at: Time.zone.now - (1.week + 1.second))
       still_fresh = FactoryGirl.create(:flip_key_property, updated_at: Time.zone.now - 6.days)
       run_rake_task
       expect(FlipKeyProperty.find_by_id(stale.id)).to be_nil

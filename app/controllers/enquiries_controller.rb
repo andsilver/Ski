@@ -25,7 +25,7 @@ class EnquiriesController < ApplicationController
     @enquiry.user = @property.user
 
     if @enquiry.save
-      EnquiryNotifier.notify(@enquiry, @property).deliver
+      EnquiryNotifier.notify(@enquiry, @property).deliver_now
       redirect_to @property, notice: t('enquiries_controller.your_enquiry_has_been_sent')
     else
       render 'properties/contact'

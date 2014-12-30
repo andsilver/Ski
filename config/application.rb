@@ -28,6 +28,9 @@ module MySkiChalet
     # config.i18n.default_locale = :de
     config.i18n.enforce_available_locales = true
 
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
+
     config.autoload_paths += Dir["#{config.root}/lib"]
     config.assets.precompile += %w( application-admin.css application-home.css application-main.css application-print.css )
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
