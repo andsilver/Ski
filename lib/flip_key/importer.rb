@@ -1,3 +1,5 @@
+require_relative '../xml_splitter.rb'
+
 module FlipKey
   class Importer
     DOWNLOADER_OPTIONS = {
