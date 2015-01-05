@@ -74,4 +74,32 @@ describe PropertiesHelper do
       end
     end
   end
+
+  describe '#search_results_page_type' do
+    before do
+      expect(controller).to receive(:action_name).and_return action_name
+    end
+
+    context 'for a property sales action' do
+      let(:action_name) { 'browse_for_sale' }
+
+      it 'returns :sales' do
+        expect(search_results_page_type).to eq :sales
+      end
+    end
+
+    context 'for a property rentals action' do
+      let(:action_name) { 'browse_for_rent' }
+
+      it 'returns :rentals' do
+        expect(search_results_page_type).to eq :rentals
+      end
+    end
+
+    context 'for any other action' do
+      it 'returns nil' do
+        expect(search_results_page_type).to eq nil
+      end
+    end
+  end
 end

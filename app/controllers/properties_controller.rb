@@ -96,7 +96,6 @@ class PropertiesController < ApplicationController
   end
 
   def browse_for_sale
-    @for_sale = true
     default_page_title t('properties.titles.browse_for_sale', place: place)
     browse_property_breadcrumbs
 
@@ -116,7 +115,6 @@ class PropertiesController < ApplicationController
   end
 
   def new_developments
-    @for_sale = true
     default_page_title t('properties.titles.new_developments', resort: @resort.name)
     @breadcrumbs = {@resort.name => @resort}
     @heading = t(:new_developments)
@@ -133,7 +131,6 @@ class PropertiesController < ApplicationController
   end
 
   def browse_hotels
-    @for_sale = false
     default_page_title t('properties.titles.hotels', resort: @resort)
     @breadcrumbs = {@resort.name => @resort}
     @heading = t('properties_controller.titles.browse_hotels', resort: @resort)

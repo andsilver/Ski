@@ -235,4 +235,15 @@ module PropertiesHelper
   def property_summary_thumbnail(property)
     property.image.sized_url(165, :height)
   end
+
+  # Returns <tt>:sales</tt>, <tt>:rentals</tt> or <tt>nil</tt> depending on the
+  # type of search results page.
+  def search_results_page_type
+    action = controller.action_name
+    if ['browse_for_sale', 'new_developments'].include? action
+      :sales
+    elsif ['browse_hotels', 'browse_for_rent', 'quick_search'].include? action
+      :rentals
+    end
+  end
 end
