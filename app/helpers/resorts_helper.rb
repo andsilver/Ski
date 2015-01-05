@@ -60,7 +60,7 @@ module ResortsHelper
 
     if controller.controller_name == 'pages' && controller.action_name == 'show'
       slug = params[:id]
-      images_in_directory("#{Rails.root.to_s}/public/pages/#{slug}/headers")
+      @images = images_in_directory("#{Rails.root.to_s}/public/pages/#{slug}/headers")
       @images.each do |img|
         urls << "/pages/#{slug}/headers/#{img}"
       end
@@ -91,20 +91,19 @@ module ResortsHelper
 
   def resort_images(resort, sub_dir)
     dir = "#{RESORTS_DIRECTORY}#{resort.name.parameterize}/#{sub_dir}"
-    images_in_directory(dir)
+    @images = images_in_directory(dir)
   end
 
   def country_images(country, sub_dir)
     dir = "#{COUNTRIES_DIRECTORY}#{country.name.parameterize}/#{sub_dir}"
-    images_in_directory(dir)
+    @images = images_in_directory(dir)
   end
 
   def images_in_directory(dir)
     begin
-      @images = Dir.entries(dir).select {|e| e[0..0] != "." && e.include?(".")}
-      @images.sort!
-    rescue
-      @images = []
+      Dir.entries(dir).select {|e| e[0..0] != "." && e.include?(".")}.sort!
+    rescue Errno::ENOENT
+      []
     end
   end
 
