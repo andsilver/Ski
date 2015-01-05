@@ -100,5 +100,6 @@ group :test do
   gem 'database_cleaner'
   gem "capybara"
   gem 'launchy'
+  gem 'selenium-webdriver'
   gem "railroad", "0.5.0"
 end
