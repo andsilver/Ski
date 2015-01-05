@@ -68,20 +68,33 @@ describe PropertiesController do
     end
   end
 
+  shared_examples 'a country scoped search' do |method, action|
+    let(:country) { FactoryGirl.create(:country) }
+
+    it 'searches within a country' do
+      send(method, action, country_id: country.id)
+      expect(assigns(:conditions).first).to include('country_id = ?')
+    end
+  end
+
   describe 'GET quick_search' do
     it_behaves_like 'a protector of hidden resorts', :get, :quick_search
+    it_behaves_like 'a country scoped search', :get, :quick_search
   end
 
   describe 'GET browse_for_rent' do
     it_behaves_like 'a protector of hidden resorts', :get, :browse_for_rent
+    it_behaves_like 'a country scoped search', :get, :quick_search
   end
 
   describe 'GET browse_for_sale' do
     it_behaves_like 'a protector of hidden resorts', :get, :browse_for_sale
+    it_behaves_like 'a country scoped search', :get, :quick_search
   end
 
   describe 'GET browse_hotels' do
     it_behaves_like 'a protector of hidden resorts', :get, :browse_hotels
+    it_behaves_like 'a country scoped search', :get, :quick_search
   end
 
   describe 'GET new_developments' do
@@ -93,6 +106,7 @@ describe PropertiesController do
       allow(rel).to receive(:order).and_return(properties)
     end
 
+    it_behaves_like 'a country scoped search', :get, :quick_search
     it_behaves_like 'a protector of hidden resorts', :get, :new_developments
 
     it 'finds a resort by its slug' do
