@@ -13,7 +13,7 @@ describe 'properties/browse' do
     before { assign(:resort, resort) }
 
     context 'when ski resort' do
-      before { resort.stub(:ski?).and_return(true) }
+      before { allow(resort).to receive(:ski?).and_return(true) }
 
       it 'includes the distance from lift sort method' do
         render
@@ -22,7 +22,7 @@ describe 'properties/browse' do
     end
 
     context 'when not ski resort' do
-      before { resort.stub(:ski?).and_return(false) }
+      before { allow(resort).to receive(:ski?).and_return(false) }
 
       it 'excludes the distance from lift sort method' do
         render
