@@ -18,11 +18,22 @@ class EmailAFriendForm
     end
   end
 
+  # The following methods are provided to let an instance be used with
+  # <tt>form_for</tt>.
+
   def to_key
     [1]
   end
 
   def to_param
-    1
+    '1'
+  end
+
+  def to_model
+    self
+  end
+
+  def persisted?
+    true
   end
 end
