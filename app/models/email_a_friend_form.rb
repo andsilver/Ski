@@ -22,11 +22,11 @@ class EmailAFriendForm
   # <tt>form_for</tt>.
 
   def to_key
-    [1]
+    nil
   end
 
   def to_param
-    '1'
+    nil
   end
 
   def to_model
@@ -34,6 +34,6 @@ class EmailAFriendForm
   end
 
   def persisted?
-    true
+    false
   end
 end

@@ -1,11 +1,11 @@
-class EmailAFriendFormController < ApplicationController
+class EmailAFriendFormsController < ApplicationController
   include SpamProtection
 
   def create
     @form = EmailAFriendForm.new(params[:email_a_friend_form])
     @property = Property.find(params[:email_a_friend_form][:property_id])
     if @form.valid?
-      EmailAFriendNotifier.notify(@form, @property).deliver
+      EmailAFriendNotifier.notify(@form, @property).deliver_now
       redirect_to @property, notice: t('email_a_friend_form_controller.confirmation')
     else
       render 'properties/email_a_friend'
