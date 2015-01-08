@@ -1,3 +1,7 @@
+<%= content_for :title, t('.title') %>
+
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('advertise') => advertise_path}, t('.title')) %>
+
 <%= render 'users/advertising_options' %>
 <%= render partial: 'shared/steps', locals: { step: 4 } %>
 

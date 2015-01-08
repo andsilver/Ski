@@ -149,9 +149,6 @@ class PropertiesController < ApplicationController
   end
 
   def new
-    default_page_title t('properties.titles.new')
-    @heading_a = render_to_string(partial: 'new_property_heading').html_safe
-
     @property = Property.new
     @property.new_development = current_user.role.new_development_by_default?
     if params[:listing_type]

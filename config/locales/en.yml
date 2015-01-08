@@ -504,6 +504,8 @@ en:
     interhome_no_vacancy_info:
       heading: No Vacancy Information
       explanation: 'We do not yet have information about the booking availability for this accommodation. Please check back soon.'
+    new:
+      title: 'New Property'
     no_matching_properties: 'We are sorry but there are no properties advertised at this resort that match your search criteria. Many holiday rentals only accept arrivals on Saturdays and have a minimum stay of 7 days. If possible and you are flexible with your dates, please try amending your arrival dates and / or duration of your holiday - thank you.'
     place_in_window: 'Place in Window'
     property_summary:
@@ -523,7 +525,6 @@ en:
       browse_for_sale: "Chalets and Apartments for Sale in %{place}"
       edit: 'Edit Property'
       hotels: "Hotels in %{resort}"
-      new: New Property
       new_developments: "New Property Developments in %{resort}"
       show: "%{property_name} - Holiday Rentals / Chalet Rentals / Apartment %{rent_or_sale} in %{resort}, %{country}"
   receipts: Receipts
