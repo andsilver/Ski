@@ -20,6 +20,7 @@ User.destroy_all
 Role.delete_all
 Currency.destroy_all
 Payment.delete_all
+Enquiry.delete_all
 
 website = Website.create!
 
@@ -389,7 +390,7 @@ alice = User.create!(
 bob = User.create!(
   first_name: 'Bob',
   last_name: 'Brown',
-  email: 'bob@mychaletfider.com',
+  email: 'bob@mychaletfinder.com',
   password: 'secret',
   billing_street: '2, Main Rd',
   billing_city: 'Newcastle',
@@ -668,3 +669,5 @@ FlipKeyLocation.create!(id: 8, rgt: 188135, parent_path: '1,8', parent_id: 1, na
 FlipKeyLocation.create!(id: 13, rgt: 204273, parent_path: '1,13', parent_id: 1, name: 'South America', lft: 188202, property_count: 5679)
 FlipKeyLocation.create!(id: 21, rgt: 206263, parent_path: '1,24', parent_id: 1, name: 'Middle East', lft: 204276, property_count: 1529)
 FlipKeyLocation.create!(id: 191, rgt: 272593, parent_path: '1,191', parent_id: 1, name: 'USA', lft: 206264, property_count: 123423)
+
+Enquiry.create!(user: bob, name: 'Carol', email: 'carol@example.org', phone: '01234 567890')
