@@ -34,11 +34,15 @@
 <% if @object.respond_to? :images %>
 <h2>Uploaded So Far</h2>
 
-<ul class="thumbnails">
-<% @object.images.each do |i| %>
-  <li><div class="image_thumbnail"><%= link_to image_tag(i.url(64)), edit_image_path(i) %></div> <%= delete_button(i) %></li>
-<% end %>
-</ul>
+<% if @object.images.any? -%>
+  <ul class="thumbnails">
+  <% @object.images.each do |i| %>
+    <li><div class="image_thumbnail"><%= link_to image_tag(i.url(64)), edit_image_path(i) %></div> <%= delete_button(i) %></li>
+  <% end %>
+  </ul>
+<% else -%>
+  <p><%= t('.none_uploaded') %></p>
+<% end -%>
 
 <%= clear %>
 <% end %>

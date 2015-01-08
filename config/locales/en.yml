@@ -230,6 +230,9 @@ en:
       title: 'Terms and Conditions'
   home_page: 'Home'
   hotels: Hotels
+  images:
+    form:
+      none_uploaded: 'No images have been uploaded yet.'
   images_controller:
     banner_image: 'Banner Image'
     deleted: 'Image deleted.'
