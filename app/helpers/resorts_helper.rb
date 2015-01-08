@@ -3,6 +3,7 @@ module ResortsHelper
   PHOTO_SIZE = 500
   PISTE_MAP_SIZE = 821
   COUNTRIES_DIRECTORY = "#{Rails.root.to_s}/public/countries/"
+  REGIONS_DIRECTORY = "#{Rails.root.to_s}/public/regions/"
   RESORTS_DIRECTORY = "#{Rails.root.to_s}/public/resorts/"
 
   def gallery_thumbnail(resort, filename)
@@ -111,6 +112,11 @@ module ResortsHelper
     dirs['ski_and_guiding_schools'] = 'ski-school-headers'
     dirs['summer_holidays'] = 'summer-headers'
     dirs[controller.action_name]
+  end
+
+  def region_images(region)
+    dir = "#{REGIONS_DIRECTORY}#{region.name.parameterize}/headers"
+    images_in_directory(dir)
   end
 
   def resort_images(resort, sub_dir)
