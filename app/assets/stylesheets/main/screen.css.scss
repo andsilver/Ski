@@ -10,7 +10,7 @@ header, hgroup, nav, section {
 
 body {
   background: #e3e3e3;
-  font-size: 62.5%;
+  font-size: 13px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -248,7 +248,7 @@ h4 {
 }
 
 pre {
-  font-size: 1.4em;
+  font-size: 14px;
 }
 
 input[type=email],
@@ -263,7 +263,7 @@ textarea {
 }
 
 input[type=number] {
-  width: 7em;
+  width: 70em;
 }
 
 textarea {
@@ -279,7 +279,6 @@ textarea {
   background: yellow;
   padding: 6px;
   border-bottom: 1px solid #68C8E7;
-  font-size: 1.2em;
   color: #000;
 }
 
@@ -318,7 +317,6 @@ input[type=email] .LV_invalid_field {
 
 #my_details_summary {
   background: #eee;
-  font-size: .8em;
   border-radius: 1em;
   border: 1px solid #ccc;
   padding: 10px;
@@ -384,14 +382,14 @@ input#property_postcode {
 }
 
 #user_panel_2 p {
-  font-size: 2em;
+  font-size: 20px;
   text-align: center;
-  padding-top: 2em;
+  padding-top: 20px;
 }
 
 .km {
-  font-size: 0.8em;
-  padding-left: 0.2em;
+  font-size: 11px;
+  padding-left: 2px;
 }
 
 div.field_with_errors {
@@ -467,7 +465,7 @@ table.chat {
   margin: 3em auto;
   border: 1px solid #68C8E7;
   background: #f3f7f8;
-  padding: 1em;
+  padding: 10px;
 }
 
 p.chunky_button {
@@ -488,7 +486,7 @@ p.advertise_now {
   background-image: url(/images/chunky-button-arrow.png);
   background-repeat: no-repeat;
   background-position: 6px 20px;
-  font-size: 1em;
+  font-size: 13px;
   border: 2px solid #00529c;
   display: block;
   border-radius: 6px;
@@ -517,8 +515,8 @@ p.advertise_now {
  */
 
 textarea#enquiry_comments {
-  width: 18em;
-  height: 4em;
+  width: 180px;
+  height: 40px;
 }
 
 /**
@@ -572,7 +570,7 @@ iframe {
   h3 {
     margin: 0.2em 0;
     font-weight: normal;
-    font-size: 1.5em;
+    font-size: 15px;
 
     a {
       color: #00aeef;
@@ -588,10 +586,10 @@ iframe {
 
   .price {
     margin-top: 0;
-    font-size: 1.2em;
+    font-size: 12px;
 
     span {
-      font-size: 1.4em;
+      font-size: 14px;
     }
   }
 }
