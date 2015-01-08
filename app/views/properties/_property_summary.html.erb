@@ -1,4 +1,4 @@
-<div class="property-summary">
+<div class="property-summary clear-fix">
 <% cache(p) do -%>
   <%
   link = property_detail_path(p)
@@ -8,7 +8,7 @@
     <span><%= link_to(image_tag(property_summary_thumbnail(p), alt: "#{p.name} #{property_type(p)} in #{p.resort}"), link) %></span>
 <% end -%>
   </p>
-  <div class="property-summary-description clear-fix">
+  <div class="property-summary-description">
     <h3>
       <%= link_to p.truncated_name, link, title: "Read more about #{p.name}" %>
       <% unless p.hotel? || p.for_sale? %>&middot; <%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
