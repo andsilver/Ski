@@ -7,6 +7,24 @@
   create 640 admin admin
 }
 
+/opt/nginx/logs/mychaletfinder.com.access.log {
+  daily
+  missingok
+  rotate 7
+  compress
+  delaycompress
+  create 640 root root
+}
+
+/opt/nginx/logs/error.log {
+  daily
+  missingok
+  rotate 7
+  compress
+  delaycompress
+  create 640 root root
+}
+
 /opt/nginx/logs/access.log {
   daily
   missingok
