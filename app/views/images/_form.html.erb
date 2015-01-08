@@ -22,12 +22,12 @@
 
 <%= form_for @image, html: { multipart: true } do |form| %>
 
-<div class="field">
+<div class="form-group">
 	<%= form.label :image, "Image (.jpeg, .jpg, .gif, .png)" %><br>
 	<%= form.file_field :image %>
 </div>
 
-<%= submit_tag "Upload Image" %>
+<%= submit_tag "Upload Image", class: 'btn btn-default' %>
 
 <% end %>
 
