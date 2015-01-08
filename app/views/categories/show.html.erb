@@ -1,6 +1,6 @@
 <ul class="directory-advert-summaries">
 <% @directory_adverts.each do |da| %>
-  <li>
+  <li class="clear-fix">
     <div class="logo-space">
       <% if da.image %>
       <div class="user_logo">
@@ -33,7 +33,6 @@
       <div><%= link_to 'Visit Website <i class="icon-arrow-right"></i>'.html_safe, da.url, class: 'btn' %></div>
       <% end %>
     </div>
-    <%= clear %>
   </li>
 <% end %>
 </ul>

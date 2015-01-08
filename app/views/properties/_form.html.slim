@@ -245,7 +245,7 @@ javascript:
                 = f.check_box :sauna
                 = t('properties.features.sauna')
 
-  .well
+  .well.clear-fix
     legend Price
     .form-horizontal
       .form-group
@@ -270,8 +270,6 @@ javascript:
         .col-lg-6
           = f.text_field :booking_url, class: 'form-control', placeholder: 'http://example.com/mybookingform'
 
-  = clear
-
   .well
     legend Address
     .form-group
@@ -291,7 +289,7 @@ javascript:
         .modal-body
           p= t('properties.strapline_example_content')
 
-  .well
+  .well.clear-fix
     legend Describe your property for potential customers
     .form-group
       = f.label :strapline, t('strapline')
@@ -302,8 +300,6 @@ javascript:
     .form-group
       = f.label :description, t('description')
       = f.text_area :description, class: 'form-control'
-
-  = clear
 
   .form-group
     = f.submit I18n.t('save'), class: 'btn btn-primary'

@@ -8,7 +8,7 @@
     <span><%= link_to(image_tag(property_summary_thumbnail(p), alt: "#{p.name} #{property_type(p)} in #{p.resort}"), link) %></span>
 <% end -%>
   </p>
-  <div class="property-summary-description">
+  <div class="property-summary-description clear-fix">
     <h3>
       <%= link_to p.truncated_name, link, title: "Read more about #{p.name}" %>
       <% unless p.hotel? || p.for_sale? %>&middot; <%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
@@ -37,7 +37,6 @@
       <p class="email_a_friend btn-property"><%= link_to t('.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}" %><i class="icon-caret-right"></i></p>
     </div>
   </div>
-  <%= clear %>
 <% end -%>
   <% if fav = favourite_for_property(p) %>
   <%= form_for(fav, method: :delete) do |f| %>

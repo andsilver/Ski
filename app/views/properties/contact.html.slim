@@ -6,15 +6,13 @@
 = render 'spam/spam'
 = render partial: '/properties/user_logo', locals: { property: @property }
 
-p
+p.clear-fix
   - if @property.hotel?
     = t('.introduction.hotel')
   - elsif @property.for_sale?
     = t('.introduction.for_sale')
   - else
     = t('.introduction.general')
-
-= clear
 
 - if @enquiry.errors.any?
   #error_explanation
