@@ -25,8 +25,8 @@ feature 'Contact owner' do
     visit resort_property_sale_path(resorts(:chamonix))
     click_link 'Read more about Chalet Alaska'
     click_link 'Enquire'
-    expect(page).not_to have_content 'Date of arrival'
-    expect(page).not_to have_content 'Date of departure'
+    expect(page).not_to have_content 'Check-in date'
+    expect(page).not_to have_content 'Check-out date'
     expect(page).not_to have_content 'Number of adults'
     expect(page).not_to have_content 'Number of children'
     expect(page).not_to have_content 'Number of infants'

@@ -158,9 +158,9 @@ it:
     confirmation: "We've sent your friend an email. Thanks for sharing My Chalet Finder."
   enquire: Enquire
   enquiries_controller:
+    check_in_date: Check-in date
+    check_out_date: Check-out date
     comments: Comments
-    date_of_arrival: Date of arrival
-    date_of_departure: Date of departure
     number_of_adults: Number of adults
     number_of_children: Number of children (3 to 16)
     number_of_infants: Number of infants (under 3)
@@ -198,9 +198,9 @@ it:
       title: '%{holiday_type}'
   home:
     datepickers:
-      arrival_date: 'Arrival Date'
-      departure_date: 'Departure Date'
-      help: 'Many properties only accept arrivals on Saturdays and have a minimum stay of 7 nights.'
+      check_in_date: 'Check-In Date'
+      check_out_date: 'Check-Out Date'
+      help: 'Many properties only accept check-ins on Saturdays and have a minimum stay of 7 nights.'
     quick_search:
       choose_country: 'Choose Country'
       choose_country_first: 'Choose Country First ↑'
@@ -464,7 +464,7 @@ it:
       smoking: Smoking
       tv: TV
       wifi: WiFi
-    no_matching_properties: 'There are no properties advertised at this resort that match your search criteria. Many holiday rentals only accept arrivals on Saturdays and have a minimum stay of 7 days. If possible and you are flexible with your dates, please try amending your arrival dates and / or duration of your holiday - thank you.'
+    no_matching_properties: 'There are no properties advertised at this resort that match your search criteria. Many holiday rentals only accept check-ins on Saturdays and have a minimum stay of 7 days. If possible and you are flexible with your dates, please try amending your check-in dates and / or duration of your holiday - thank you.'
     place_in_window: 'Place in Window'
     property_summary:
       email_a_friend: 'Email a friend'

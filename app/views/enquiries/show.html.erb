@@ -16,11 +16,11 @@
     <td><%= @enquiry.phone %></td>
   </tr>
   <tr>
-    <th><%= t('enquiries_controller.date_of_arrival') %></th>
+    <th><%= t('enquiries_controller.check_in_date') %></th>
     <td><%= l(@enquiry.date_of_arrival, format: :short) unless @enquiry.date_of_arrival.nil? %></td>
   </tr>
   <tr>
-    <th><%= t('enquiries_controller.date_of_departure') %></th>
+    <th><%= t('enquiries_controller.check_out_date') %></th>
     <td><%= l(@enquiry.date_of_departure, format: :short) unless @enquiry.date_of_departure.nil? %></td>
   </tr>
   <tr>
