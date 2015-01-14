@@ -33,4 +33,12 @@ class InterhomeAccommodation < ActiveRecord::Base
   def available_to_check_in_on_dates?(dates)
     interhome_vacancy ? interhome_vacancy.available_to_check_in_on_dates?(dates) : false
   end
+
+  # Returns an array of features.
+  #
+  #   a = InterhomeAccommodation.new(features: 'shower,bbq')
+  #   a.feature_list # => ["shower", "bbq"]
+  def feature_list
+    features.try(:split, ',') || []
+  end
 end

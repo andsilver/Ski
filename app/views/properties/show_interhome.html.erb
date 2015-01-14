@@ -57,10 +57,7 @@
     <%= I18n.t('sleeping_capacity') %>: <%= @accommodation.pax %>
   </div>
   <p class="divider">&nbsp;</p>
-<%
-features = @accommodation.features.split(',')
-%>
-<% features.each do |feature| %>
+<% @accommodation.feature_list.each do |feature| %>
   <div class="column">
     <%= feature_tick(true, t("interhome.features.#{feature}")) %><br>
   </div>
