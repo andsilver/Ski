@@ -9,7 +9,8 @@ RSpec.describe 'properties/show_interhome.html.erb', type: :view do
     assign(:property, property)
   end
 
-  it 'renders' do
+  it 'displays an ABTA logo for increased customer confidence' do
     render
+    expect(rendered).to have_selector '.abta img'
   end
 end
