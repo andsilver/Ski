@@ -7,6 +7,8 @@
     $(function() {
       $.cookie('quick_search_resort_slug', '#{@resort.slug}', { path: '/' });
     });
+- elsif @region
+  = content_for :theme, @region.theme
 
 = content_for :links_and_search do
   section
