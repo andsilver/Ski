@@ -54,7 +54,7 @@ class FlipKeyPropertiesController < ApplicationController
       enquiry = Enquiry.create!(
         user_id:           FlipKey::user.id,
         date_of_arrival:   details[:check_in],
-        date_of_departure: details[:check_in],
+        date_of_departure: details[:check_out],
         email:             details[:email],
         name:              details[:name],
         phone:             details[:phone_number],
