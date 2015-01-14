@@ -498,9 +498,10 @@ Category.create!([
 ])
 
 images = []
-(1..30).each do |i|
+(1..50).each do |i|
   img = Image.new
-  img.image = File.open("test-files/properties/chalet#{i}.jpg", 'rb')
+  n = ((i - 1) % 30) + 1
+  img.image = File.open("test-files/properties/chalet#{n}.jpg", 'rb')
   img.save!
   images[i] = img
 end
@@ -508,7 +509,7 @@ end
 img = Image.new
 img.image = File.open("test-files/properties/hotel1.jpg", 'rb')
 img.save!
-images[31] = img
+images[51] = img
 
 PropertyBasePrice.create!(number_of_months: 12, price: 150)
 
@@ -545,6 +546,14 @@ properties = Property.create!([
   { resort: chamonix, user: alice, name: "Chalet Kushi",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9800, weekly_rent_price: 1500, currency: euros, image: images[30], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true }
   ])
 
+
+n = 0
+properties.each do |property|
+  n += 1
+  images[n].property = property
+  images[n].save!
+end
+
 hotel = Property.create!({
   resort: les_houches,
   user: alice,
@@ -559,7 +568,7 @@ hotel = Property.create!({
   publicly_visible: true
 })
 
-31.downto(21).each {|i| hotel.images << images[i]}
+51.downto(41).each {|i| hotel.images << images[i]}
 
 InterhomeAccommodation.destroy_all
 interhome_accommodation = InterhomeAccommodation.create!(
@@ -597,8 +606,10 @@ interhome_property = Property.create!(
   image_id: 30,
   listing_type: Property::LISTING_TYPE_FOR_RENT,
   publicly_visible: true,
-  interhome_accommodation_id: interhome_accommodation.id
+  interhome_accommodation_id: interhome_accommodation.id,
+  image: images[31]
 )
+40.downto(31).each {|i| interhome_property.images << images[i]}
 
 InterhomeVacancy.destroy_all
 InterhomeVacancy.create!(

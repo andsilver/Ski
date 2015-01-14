@@ -7,8 +7,6 @@
     locals: { lat: @accommodation.geodata_lat, lng: @accommodation.geodata_lng } %>
 <script>
   $(function() {
-    $('#property-thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
-
     $('.availability-Q').click(function() {
       var win = window.open('<%= contact_property_path(@property) %>', '_blank');
       win.focus();
@@ -16,41 +14,41 @@
   });
 </script>
 <div id="property" itemscope itemtype="http://schema.org/LodgingBusiness">
-<%= render partial: 'user_logo', locals: { property: @property } %>
-<div class="thumbnail abta">
-  <%= image_tag 'abta.png', alt: 'ABTA Member' %>
-  The tour operator<br>
-  (Interhome) is an<br>
-  ABTA Member<br>
-  ABTA No. L7890
-</div>
-<h1 class="property_name"><span><%= t('property_name') %>:</span> <span itemprop="name"><%= @property.name %></span>
-<% unless @property.interhome_accommodation.interhome_place.nil? -%>
-  (<%= @property.interhome_accommodation.interhome_place.name %>)
-<% end -%>
-</h1>
-<%= render partial: 'price_and_id', locals: { property: @property } %>
-
-<% if fav = favourite_for_property(@property) %>
-<%= form_for(fav, method: :delete) do |f| %>
-<p>
-  <%= f.submit t('favourites.remove'), class: 'btn btn-large btn-danger' %>
-  <%= render 'location_button_and_modal' if @accommodation.geodata_lat.present? %>
-</p>
-<% end %>
-<% else %>
-<% @favourite = Favourite.new(property_id: @property.id) %>
-<%= form_for @favourite do |f| %>
-<%= f.hidden_field :property_id %>
-<p>
-  <button type="submit" class="btn btn-primary btn-large"><i class='icon-heart icon-white'></i>
-  <%= t('favourites.add') %></button>
-  <%= render 'location_button_and_modal' if @accommodation.geodata_lat.present? %>
-</p>
-<% end %>
-<% end %>
-
-<%= render partial: 'images', locals: { property: @property } %>
+  <div class="clearfix">
+    <%= render partial: 'user_logo', locals: { property: @property } %>
+    <div class="thumbnail abta">
+      <%= image_tag 'abta.png', alt: 'ABTA Member' %>
+      The tour operator<br>
+      (Interhome) is an<br>
+      ABTA Member<br>
+      ABTA No. L7890
+    </div>
+    <h1 class="property_name"><span><%= t('property_name') %>:</span> <span itemprop="name"><%= @property.name %></span>
+    <% unless @property.interhome_accommodation.interhome_place.nil? -%>
+      (<%= @property.interhome_accommodation.interhome_place.name %>)
+    <% end -%>
+    </h1>
+    <%= render partial: 'price_and_id', locals: { property: @property } %>
+    <% if fav = favourite_for_property(@property) %>
+    <%= form_for(fav, method: :delete) do |f| %>
+    <p>
+      <%= f.submit t('favourites.remove'), class: 'btn btn-large btn-danger' %>
+      <%= render 'location_button_and_modal' if @accommodation.geodata_lat.present? %>
+    </p>
+    <% end %>
+    <% else %>
+    <% @favourite = Favourite.new(property_id: @property.id) %>
+    <%= form_for @favourite do |f| %>
+    <%= f.hidden_field :property_id %>
+    <p>
+      <button type="submit" class="btn btn-primary btn-large"><i class='icon-heart icon-white'></i>
+      <%= t('favourites.add') %></button>
+      <%= render 'location_button_and_modal' if @accommodation.geodata_lat.present? %>
+    </p>
+    <% end %>
+    <% end %>
+  </div>
+  <%= render partial: 'images', locals: { property: @property } %>
 
 <h2><%= I18n.t('features') %></h2>
 <div id="features" class="interhome-features">

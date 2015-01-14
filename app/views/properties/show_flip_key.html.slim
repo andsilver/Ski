@@ -23,19 +23,7 @@ javascript:
     h1= @property.name
     .row
       .col-md-8
-        - if @property.image
-          .cycle-slideshow data-cycle-fx="scrollHorz" data-cycle-timeout="8000" data-cycle-pager="#adv-custom-pager" data-cycle-pager-template="<a href='#' class='fk-thumb'><img src='{{src}}' width=96 height=72></a>"
-            .cycle-prev
-              span.glyphicon.glyphicon-circle-arrow-left
-            .cycle-next
-              span.glyphicon.glyphicon-circle-arrow-right
-            - @property.images.each do |i|
-              = image_tag(i.sized_url([640, 480], :cropped), alt: "Photo of #{@property.name}")
-            #adv-custom-pager.center.external
-            javascript:
-              $(function() {
-                $('.cycle-slideshow').cycle();
-              });
+        = render partial: 'images', locals: { property: @property }
         .property-details
           ul.details
             - if @property.flip_key_property.bedroom_count
@@ -201,3 +189,6 @@ javascript:
             = text_field_tag('comment', '', class: 'form-control', placeholder: 'Enter a brief message', required: true)
           .form-group
             input.form-control.btn.btn-primary type="submit" value="Send Message"
+
+  pre
+    = @property.flip_key_property.parsed_json
