@@ -24,6 +24,19 @@ html.no-js lang="#{@lang}"
     script src="https://maps.google.com/maps/api/js?key=AIzaSyCdlkrru2ofKjgTYPgyL7Mhgd6--0Ka8ok&sensor=false"
     = csrf_meta_tags
     meta name="google-site-verification" content="#{t('google.site_verification')}"
+    javascript:
+      WebFontConfig = {
+        google: { families: [ 'Oxygen:400,700:latin' ] }
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
   body class="#{body_classes}"
     - if Rails.env == 'production'
       javascript:
