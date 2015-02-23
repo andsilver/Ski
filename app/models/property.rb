@@ -268,12 +268,16 @@ class Property < ActiveRecord::Base
   end
 
   def cache_availability(dates)
-    return unless interhome_accommodation
+    return unless interhome_accommodation && interhome_accommodation.interhome_vacancy
 
     dates.each do |date|
-      if interhome_accommodation.available_to_check_in_on_dates?([date])
-        Availability.create!(property_id: id, start_date: date)
-      end
+      Availability.create!(
+        property_id: id,
+        start_date: date,
+        check_in: interhome_accommodation.check_in_on?(date),
+        check_out: interhome_accommodation.check_out_on?(date),
+        availability: Availability.availability_from_interhome(interhome_accommodation.availability_on(date))
+      )
     end
   end
 
