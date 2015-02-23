@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150223124607) do
+ActiveRecord::Schema.define(version: 20150223125512) do
 
   create_table "adverts", force: :cascade do |t|
     t.integer  "user_id",             limit: 4,                 null: false
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 20150223124607) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "availability", limit: 1, null: false
+    t.boolean  "check_in",     limit: 1, null: false
+    t.boolean  "check_out",    limit: 1, null: false
   end
 
   add_index "availabilities", ["created_at"], name: "index_availabilities_on_created_at", using: :btree
