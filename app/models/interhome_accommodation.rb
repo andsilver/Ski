@@ -1,7 +1,11 @@
 class InterhomeAccommodation < ActiveRecord::Base
   has_many :interhome_pictures, dependent: :delete_all
   has_one :property, dependent: :destroy
+
   has_one :interhome_vacancy, dependent: :delete
+  delegate :availability_on, to: :interhome_vacancy
+  delegate :check_in_on?, to: :interhome_vacancy
+  delegate :check_out_on?, to: :interhome_vacancy
 
   def interhome_place
     InterhomePlace.find_by_country_and_region_and_place(country, region, place)

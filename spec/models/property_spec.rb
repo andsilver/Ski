@@ -122,6 +122,82 @@ describe Property do
     end
   end
 
+  describe '#cache_availability' do
+    let(:interhome_accommodation) { FactoryGirl.create(:interhome_accommodation) }
+    let(:property) { FactoryGirl.create(:property, interhome_accommodation: interhome_accommodation) }
+    let!(:interhome_vacancy) { InterhomeVacancy.create!(
+      interhome_accommodation_id: interhome_accommodation.id,
+      startday: '2015-02-23',
+      accommodation_code: 'AT0000.000.0',
+      availability: 'NYQN',
+      changeover: 'XCIO'
+      ) }
+    let(:d1) { Date.parse('2015-02-23') }
+    let(:d2) { Date.parse('2015-02-24') }
+    let(:d3) { Date.parse('2015-02-25') }
+    let(:d4) { Date.parse('2015-02-26') }
+
+    it 'creates multiple Availabilities' do
+      property.cache_availability([d1, d2])
+      expect(Availability.count).to eq 2
+    end
+
+    it 'records no availability' do
+      property.cache_availability([d1])
+      expect(Availability.first.availability).to eq Availability::UNAVAILABLE
+    end
+
+    it 'records availability' do
+      property.cache_availability([d2])
+      expect(Availability.first.availability).to eq Availability::AVAILABLE
+    end
+
+    it 'records enquire for availability' do
+      property.cache_availability([d3])
+      expect(Availability.first.availability).to eq Availability::ENQUIRE
+    end
+
+    context 'for X' do
+      before { property.cache_availability([d1]) }
+      it 'records no check-in' do
+        expect(Availability.first.check_in?).to be_falsey
+      end
+      it 'records no check-out' do
+        expect(Availability.first.check_out?).to be_falsey
+      end
+    end
+
+    context 'for C' do
+      before { property.cache_availability([d2]) }
+      it 'records check-in' do
+        expect(Availability.first.check_in?).to be_truthy
+      end
+      it 'records check-out' do
+        expect(Availability.first.check_out?).to be_truthy
+      end
+    end
+
+    context 'for I' do
+      before { property.cache_availability([d3]) }
+      it 'records check-in' do
+        expect(Availability.first.check_in?).to be_truthy
+      end
+      it 'records no check-out' do
+        expect(Availability.first.check_out?).to be_falsey
+      end
+    end
+
+    context 'for O' do
+      before { property.cache_availability([d4]) }
+      it 'records no check-in' do
+        expect(Availability.first.check_in?).to be_falsey
+      end
+      it 'records check-out' do
+        expect(Availability.first.check_out?).to be_truthy
+      end
+    end
+  end
+
   describe '#default_months' do
     let(:property) { Property.new }
 

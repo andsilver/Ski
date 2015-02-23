@@ -77,9 +77,44 @@ describe PropertiesController do
     end
   end
 
+  shared_examples 'an availability filter' do |method, action|
+    let(:property) { FactoryGirl.create(:property) }
+
+    before do
+      Availability.create!(property: property, start_date: '2015-02-23', availability: Availability::AVAILABLE,   check_in: true,  check_out: false)
+      Availability.create!(property: property, start_date: '2015-02-24', availability: Availability::UNAVAILABLE, check_in: false, check_out: true)
+      Availability.create!(property: property, start_date: '2015-02-25', availability: Availability::AVAILABLE,   check_in: true,  check_out: true)
+
+      Availability.create!(property: property, start_date: '2015-02-26', availability: Availability::AVAILABLE,   check_in: true,  check_out: false)
+      Availability.create!(property: property, start_date: '2015-02-27', availability: Availability::AVAILABLE,   check_in: false, check_out: true)
+      Availability.create!(property: property, start_date: '2015-02-28', availability: Availability::AVAILABLE,   check_in: true,  check_out: true)
+    end
+
+    it 'assumes a one night stay when only start date is specified' do
+      send(method, action, start_date: '2015-02-23')
+      expect(assigns(:properties)).to include(property)
+    end
+
+    it 'does not allow check-in on no check-in days' do
+      send(method, action, start_date: '2015-02-24')
+      expect(assigns(:properties)).not_to include(property)
+    end
+
+    it 'disallows a two night stay when day in the middle is unavailable' do
+      send(method, action, start_date: '2015-02-23', end_date: '2015-02-25')
+      expect(assigns(:properties)).not_to include(property)
+    end
+
+    it 'allows a two night stay when day in the middle is available' do
+      send(method, action, start_date: '2015-02-26', end_date: '2015-02-28')
+      expect(assigns(:properties)).to include(property)
+    end
+  end
+
   describe 'GET quick_search' do
     it_behaves_like 'a protector of hidden resorts', :get, :quick_search
     it_behaves_like 'a country scoped search', :get, :quick_search
+    it_behaves_like 'an availability filter', :get, :quick_search
   end
 
   describe 'GET browse_for_rent' do
