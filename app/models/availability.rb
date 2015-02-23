@@ -1,4 +1,6 @@
 class Availability < ActiveRecord::Base
+  belongs_to :property
+
   AVAILABILITIES = [
     UNAVAILABLE = 0,
     AVAILABLE = 1,

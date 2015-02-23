@@ -54,7 +54,7 @@ class PropertiesController < ApplicationController
     filter_duration
     filter_price_range
     filter_sleeps
-    filter_start_date
+    filter_availability
 
     filter_conditions
 
@@ -81,7 +81,7 @@ class PropertiesController < ApplicationController
     @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :wifi,
       :disabled, :long_term_lets_available, :short_stays, :ski_in_ski_out]
 
-    filter_start_date
+    filter_availability
     filter_sleeps
     filter_conditions
 
@@ -585,7 +585,7 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def filter_start_date
+  def filter_availability
     if params[:start_date].present?
       begin
         from = Date.parse(params[:start_date])
@@ -605,9 +605,20 @@ class PropertiesController < ApplicationController
         to = from + 1.day
       end
 
-      @conditions[0] += " AND id IN (SELECT property_id FROM availabilities WHERE start_date IN (?))"
-      dates = *(from...to)
-      @conditions << dates
+      day_after_check_in = from + 1.day
+      day_before_check_out = to - 1.day
+
+      @conditions[0] += " AND id IN (SELECT property_id FROM availabilities WHERE start_date = ? AND check_in = 1 AND availability = #{Availability::AVAILABLE})"
+      @conditions << from
+
+      internal_dates = *(day_after_check_in..day_before_check_out)
+      if internal_dates.any?
+        @conditions[0] += " AND id IN (SELECT property_id FROM availabilities WHERE start_date IN (?) AND availability = #{Availability::AVAILABLE})"
+        @conditions << internal_dates
+      end
+
+      @conditions[0] += " AND id IN (SELECT property_id FROM availabilities WHERE start_date = ? AND check_out = 1)"
+      @conditions << to
     end
   end
 
