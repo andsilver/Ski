@@ -276,7 +276,7 @@ class Property < ActiveRecord::Base
         start_date: date,
         check_in: interhome_accommodation.check_in_on?(date),
         check_out: interhome_accommodation.check_out_on?(date),
-        availability: Availability.availability_from_interhome(interhome_accommodation.availability_on(date))
+        availability: Availability.availability_from_interhome(interhome_accommodation.availability_on(date)) || Availability::UNAVAILABLE
       )
     end
   end

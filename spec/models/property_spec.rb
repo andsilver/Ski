@@ -152,6 +152,11 @@ describe Property do
       expect(Availability.first.availability).to eq Availability::AVAILABLE
     end
 
+    it 'records no availability when no vacancy information' do
+      property.cache_availability([Date.parse('2015-02-27')])
+      expect(Availability.first.availability).to eq Availability::UNAVAILABLE
+    end
+
     it 'records enquire for availability' do
       property.cache_availability([d3])
       expect(Availability.first.availability).to eq Availability::ENQUIRE
