@@ -3,9 +3,9 @@ task :denormalize => :environment do
   Denormalize.denormalize
 end
 
-desc "Cache unavailability"
-task :cache_unavailability => :environment do
-  Denormalize.cache_unavailability
+desc "Cache availability"
+task :cache_availability => :environment do
+  Denormalize.cache_availability
 end
 
 desc 'Generate thumbnails'

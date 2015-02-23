@@ -71,7 +71,7 @@ class Denormalize
     end
   end
 
-  def self.cache_unavailability
+  def self.cache_availability
     start_time = Time.now
 
     dates = []
@@ -81,12 +81,12 @@ class Denormalize
 
     Property.stop_geocoding
     Property.find_in_batches(batch_size: 25) do |properties|
-      properties.each { |p| p.cache_unavailability(dates) }
+      properties.each { |p| p.cache_availability(dates) }
       sleep(1)
     end
     Property.resume_geocoding
 
-    Unavailability.where('created_at < ?', start_time).delete_all
+    Availability.where('created_at < ?', start_time).delete_all
   end
 
   def self.generate_thumbnails
