@@ -605,7 +605,7 @@ class PropertiesController < ApplicationController
         to = from + 1.day
       end
 
-      @conditions[0] += " AND id NOT IN (SELECT property_id FROM unavailabilities WHERE start_date IN (?))"
+      @conditions[0] += " AND id IN (SELECT property_id FROM availabilities WHERE start_date IN (?))"
       dates = *(from...to)
       @conditions << dates
     end
