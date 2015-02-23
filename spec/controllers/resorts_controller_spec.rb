@@ -5,13 +5,13 @@ describe ResortsController do
   let(:resort) { FactoryGirl.create(:resort) }
 
   before do
-    Website.stub(:first).and_return(website)
-    controller.stub(:admin?).and_return(false)
+    allow(Website).to receive(:first).and_return(website)
+    allow(controller).to receive(:admin?).and_return(false)
   end
 
   shared_examples 'a featured properties finder' do |action, params|
     before do
-      Resort.stub(:find_by).and_return(double(Resort, visible: true).as_null_object)
+      allow(Resort).to receive(:find_by).and_return(double(Resort, visible: true).as_null_object)
     end
 
     it 'assigns @featured_properties' do
@@ -24,23 +24,23 @@ describe ResortsController do
     it_behaves_like 'a featured properties finder', :show, id: 'chamonix'
 
     it 'finds a resort by its slug' do
-      Resort.should_receive(:find_by).with(slug: 'chamonix').and_return(Resort.new)
+      expect(Resort).to receive(:find_by).with(slug: 'chamonix').and_return(Resort.new)
       get :show, id: 'chamonix'
     end
 
     context 'when resort not found by slug' do
       before do
-        Resort.stub(:find_by).with(slug: 'chamonix').and_return nil
+        allow(Resort).to receive(:find_by).with(slug: 'chamonix').and_return nil
       end
 
       it 'finds a resort by its ID' do
-        Resort.should_receive(:find_by).with(id: 'chamonix')
+        expect(Resort).to receive(:find_by).with(id: 'chamonix')
         get :show, id: :chamonix
       end
 
       context 'when resort found by its ID' do
         before do
-          Resort.should_receive(:find_by).with(id: 'chamonix').and_return resort
+          expect(Resort).to receive(:find_by).with(id: 'chamonix').and_return resort
         end
 
         it 'permanently redirects to that resort' do
@@ -52,7 +52,7 @@ describe ResortsController do
     end
 
     it 'assigns @resort' do
-      Resort.stub(:find_by).and_return(resort)
+      allow(Resort).to receive(:find_by).and_return(resort)
       get :show, id: 'chamonix'
       expect(assigns[:resort]).to equal(resort)
     end
@@ -66,8 +66,8 @@ describe ResortsController do
     let(:resort) { FactoryGirl.create(:resort) }
 
     before do
-      Resort.stub(:find_by).and_return(resort)
-      resort.stub(:has_piste_maps?).and_return(has_piste_maps)
+      allow(Resort).to receive(:find_by).and_return(resort)
+      allow(resort).to receive(:has_piste_maps?).and_return(has_piste_maps)
       get :piste_map, id: resort.to_param
     end
 
@@ -93,8 +93,8 @@ describe ResortsController do
     let(:admin)  { false }
 
     before do
-      controller.stub(:admin?).and_return admin
-      controller.stub(:page_info).and_return page_info
+      allow(controller).to receive(:admin?).and_return admin
+      allow(controller).to receive(:page_info).and_return page_info
       get :summer_holidays, id: resort.to_param
     end
 

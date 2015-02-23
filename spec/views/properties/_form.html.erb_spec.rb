@@ -6,7 +6,7 @@ describe 'properties/_form' do
   context 'with a property developer' do
     before do
       assign(:current_user, users(:bob)) # a property developer
-      view.stub(:admin?).and_return(false)
+      allow(view).to receive(:admin?).and_return(false)
     end
 
     it 'renders listing_type as a hidden field' do
@@ -40,7 +40,7 @@ describe 'properties/_form' do
 
   context 'when admin' do
     before do
-      view.stub(:admin?).and_return(true)
+      allow(view).to receive(:admin?).and_return(true)
       assign(:current_user, users(:tony)) # an administrator
     end
 

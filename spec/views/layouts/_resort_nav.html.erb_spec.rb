@@ -5,7 +5,7 @@ describe 'layouts/_resort_nav' do
   before { assign(:resort, resort) }
 
   context 'when resort has guide' do
-    before { resort.stub(:has_resort_guide?).and_return(true) }
+    before { allow(resort).to receive(:has_resort_guide?).and_return(true) }
 
     it 'links to the resort guide' do
       render
@@ -14,7 +14,7 @@ describe 'layouts/_resort_nav' do
   end
 
   context 'when resort has no guide' do
-    before { resort.stub(:has_resort_guide?).and_return(false) }
+    before { allow(resort).to receive(:has_resort_guide?).and_return(false) }
 
     it 'does not link to the resort guide' do
       render

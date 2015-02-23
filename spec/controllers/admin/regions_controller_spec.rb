@@ -4,7 +4,7 @@ describe Admin::RegionsController do
   let(:website) { double(Website).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   context 'as admin' do
@@ -15,7 +15,7 @@ describe Admin::RegionsController do
 
       context 'when update succeeds' do
         before do
-          region.stub(:update_attributes).and_return(true)
+          allow(region).to receive(:update_attributes).and_return(true)
         end
 
         it 'redirects to edit' do

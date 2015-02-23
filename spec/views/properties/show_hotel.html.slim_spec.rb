@@ -8,8 +8,8 @@ describe 'properties/show_hotel' do
 
   before do
     assign(:property, property)
-    view.stub(:hotel_booking_url).and_return(hotel_booking_url_ret)
-    view.stub(:hotel_booking_link_target).and_return(hotel_booking_link_target_ret)
+    allow(view).to receive(:hotel_booking_url).and_return(hotel_booking_url_ret)
+    allow(view).to receive(:hotel_booking_link_target).and_return(hotel_booking_link_target_ret)
   end
 
   it 'displays advertising' do
@@ -18,7 +18,7 @@ describe 'properties/show_hotel' do
   end
 
   it 'sets the theme for the property' do
-    property.stub(:theme).and_return 'city-breaks'
+    allow(property).to receive(:theme).and_return 'city-breaks'
     render
     expect(view.content_for(:theme)).to eq 'city-breaks'
   end
@@ -43,7 +43,7 @@ describe 'properties/show_hotel' do
 
   it 'displays star rating' do
     property.star_rating = 3
-    view.should_receive(:star_rating).with(3)
+    expect(view).to receive(:star_rating).with(3)
     render
   end
 

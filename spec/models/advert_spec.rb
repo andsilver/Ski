@@ -6,8 +6,8 @@ describe Advert do
 
     context 'when the basket contains the object' do
       it 'does not create a new advert' do
-        Advert.stub(:basket_contains?).and_return(true)
-        Advert.should_not_receive(:new_for)
+        allow(Advert).to receive(:basket_contains?).and_return(true)
+        expect(Advert).not_to receive(:new_for)
         Advert.create_for(property)
       end
     end
@@ -16,20 +16,20 @@ describe Advert do
       let(:advert) { double(Advert).as_null_object }
 
       before do
-        Advert.stub(:basket_contains?).and_return(false)
+        allow(Advert).to receive(:basket_contains?).and_return(false)
       end
 
       it 'creates a new advert' do
-        Advert.should_receive(:new_for).with(property).and_return(advert)
+        expect(Advert).to receive(:new_for).with(property).and_return(advert)
         Advert.create_for(property)
       end
 
       it "sets the advert's duration to the default months of the object" do
-        Advert.stub(:new_for).and_return(advert)
+        allow(Advert).to receive(:new_for).and_return(advert)
         advert.stub(:save!).and_return(true)
 
         property.stub(:default_months).and_return(24)
-        advert.should_receive(:months=).with(24)
+        expect(advert).to receive(:months=).with(24)
         Advert.create_for(property)
       end
     end
@@ -109,11 +109,11 @@ describe Advert do
 
       it "returns a string containing the object's name, resort and type description" do
         a = valid_advert
-        a.stub(:object).and_return(property)
-        property.stub(:name).and_return('My Chalet')
-        property.stub(:resort).and_return(resort)
-        resort.stub(:name).and_return('Chamonix')
-        property.stub(:basket_advert_type_description).and_return('Property')
+        allow(a).to receive(:object).and_return(property)
+        allow(property).to receive(:name).and_return('My Chalet')
+        allow(property).to receive(:resort).and_return(resort)
+        allow(resort).to receive(:name).and_return('Chamonix')
+        allow(property).to receive(:basket_advert_type_description).and_return('Property')
         expect(a.to_s).to eq "My Chalet (Chamonix Property)"
       end
     end
@@ -133,8 +133,8 @@ describe Advert do
       it "returns the object's price" do
         price_of_property = 99
         a = valid_advert
-        a.stub(:object).and_return(property)
-        property.should_receive(:price).with(a, 1).and_return(price_of_property)
+        allow(a).to receive(:object).and_return(property)
+        expect(property).to receive(:price).with(a, 1).and_return(price_of_property)
         expect(a.price(1)).to equal(price_of_property)
       end
     end
@@ -160,7 +160,7 @@ describe Advert do
 
     it "saves itself" do
       a = valid_advert
-      a.should_receive(:save)
+      expect(a).to receive(:save)
       a.record_view
     end
   end

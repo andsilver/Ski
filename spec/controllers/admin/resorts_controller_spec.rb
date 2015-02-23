@@ -5,19 +5,19 @@ describe Admin::ResortsController do
   let(:resort) { double(Resort, id: 1).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
-    controller.stub(:admin?).and_return(true)
+    allow(Website).to receive(:first).and_return(website)
+    allow(controller).to receive(:admin?).and_return(true)
   end
 
   describe "GET index" do
     let(:countries) { double(Array) }
 
     before do
-      Country.stub(:with_resorts).and_return(countries)
+      allow(Country).to receive(:with_resorts).and_return(countries)
     end
 
     it "finds all countries with resorts" do
-      Country.should_receive(:with_resorts)
+      expect(Country).to receive(:with_resorts)
       get :index
     end
 
@@ -32,17 +32,17 @@ describe Admin::ResortsController do
     let(:params) { { resort: { 'name' => 'Morzine' } } }
 
     before do
-      Resort.stub(:new).and_return(resort)
+      allow(Resort).to receive(:new).and_return(resort)
     end
 
     it 'instantiates a new resort with the given params' do
-      Resort.should_receive(:new).with(params[:resort])
+      expect(Resort).to receive(:new).with(params[:resort])
       post 'create', params
     end
 
     context 'when the resort saves successfully' do
       before do
-        resort.stub(:save).and_return(true)
+        allow(resort).to receive(:save).and_return(true)
       end
 
       it 'sets a flash[:notice] message' do
@@ -58,7 +58,7 @@ describe Admin::ResortsController do
 
     context 'when the resort fails to save' do
       before do
-        resort.stub(:save).and_return(false)
+        allow(resort).to receive(:save).and_return(false)
       end
 
       it 'assigns @resort' do
@@ -78,13 +78,13 @@ describe Admin::ResortsController do
     let(:pv_place_resort) { PvPlaceResort.new }
 
     it 'finds a resort' do
-      Resort.should_receive(:find_by).with(slug: 'chamonix')
+      expect(Resort).to receive(:find_by).with(slug: 'chamonix')
       get 'edit', id: 'chamonix'
     end
 
     context 'when resort is found' do
       before do
-        Resort.stub(:find_by).and_return(resort)
+        allow(Resort).to receive(:find_by).and_return(resort)
       end
 
       it 'creates a new Interhome place resort and sets its resort_id' do
@@ -93,18 +93,18 @@ describe Admin::ResortsController do
       end
 
       it 'assigns(@interhome_place_resort)' do
-        InterhomePlaceResort.stub(:new).and_return(interhome_place_resort)
+        allow(InterhomePlaceResort).to receive(:new).and_return(interhome_place_resort)
         get 'edit', id: '1'
         expect(assigns(:interhome_place_resort)).to eq interhome_place_resort
       end
 
       it 'creates a new P&V place resort and sets its resort_id' do
-        PvPlaceResort.should_receive(:new).with(resort_id: resort.id)
+        expect(PvPlaceResort).to receive(:new).with(resort_id: resort.id)
         get 'edit', id: '1'
       end
 
       it 'assigns(@pv_place_resort)' do
-        PvPlaceResort.stub(:new).and_return(pv_place_resort)
+        allow(PvPlaceResort).to receive(:new).and_return(pv_place_resort)
         get 'edit', id: '1'
         expect(assigns(:pv_place_resort)).to eq pv_place_resort
       end
@@ -114,7 +114,7 @@ describe Admin::ResortsController do
   describe "DELETE destroy" do
     context 'when resort found' do
       before do
-        Resort.stub(:find_by).and_return(resort)
+        allow(Resort).to receive(:find_by).and_return(resort)
       end
 
       context 'when resort has no properties or directory adverts' do
@@ -124,7 +124,7 @@ describe Admin::ResortsController do
         end
 
         it 'destroys the resort' do
-          resort.should_receive(:destroy)
+          expect(resort).to receive(:destroy)
           delete :destroy, id: 'chamonix'
         end
 
@@ -167,17 +167,17 @@ describe Admin::ResortsController do
 
   describe 'POST destroy_properties' do
     it 'finds the resort' do
-      Resort.should_receive(:find_by).with(slug: 'chamonix').and_return(resort)
+      expect(Resort).to receive(:find_by).with(slug: 'chamonix').and_return(resort)
       post 'destroy_properties', id: 'chamonix'
     end
 
     context 'when the resort is found' do
-      before { Resort.stub(:find_by).and_return(resort) }
+      before { allow(Resort).to receive(:find_by).and_return(resort) }
 
       it 'destroys each property' do
         properties = double(ActiveRecord::Relation)
-        resort.stub(:properties).and_return(properties)
-        properties.should_receive(:destroy_all)
+        allow(resort).to receive(:properties).and_return(properties)
+        expect(properties).to receive(:destroy_all)
         post 'destroy_properties', id: 'chamonix'
       end
 
@@ -195,17 +195,17 @@ describe Admin::ResortsController do
 
   describe 'POST destroy_directory_adverts' do
     it 'finds the resort' do
-      Resort.should_receive(:find_by).with(slug: 'chamonix').and_return(resort)
+      expect(Resort).to receive(:find_by).with(slug: 'chamonix').and_return(resort)
       post :destroy_directory_adverts, id: 'chamonix'
     end
 
     context 'when the resort is found' do
-      before { Resort.stub(:find_by).and_return(resort) }
+      before { allow(Resort).to receive(:find_by).and_return(resort) }
 
       it 'destroys each directory advert' do
         directory_adverts = double(ActiveRecord::Relation)
-        resort.stub(:directory_adverts).and_return(directory_adverts)
-        directory_adverts.should_receive(:destroy_all)
+        allow(resort).to receive(:directory_adverts).and_return(directory_adverts)
+        expect(directory_adverts).to receive(:destroy_all)
         post :destroy_directory_adverts, id: 'chamonix'
       end
 

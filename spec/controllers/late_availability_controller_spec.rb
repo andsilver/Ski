@@ -4,14 +4,14 @@ describe LateAvailabilityController do
   let(:website) { double(Website).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   describe 'GET index' do
     it 'finds 8 featured late availability properties' do
       finder = double(LateAvailability::Finder)
-      LateAvailability::Finder.should_receive(:new).and_return(finder)
-      finder.should_receive(:find_featured).with(limit: 8)
+      expect(LateAvailability::Finder).to receive(:new).and_return(finder)
+      expect(finder).to receive(:find_featured).with(limit: 8)
       get 'index'
     end
 
@@ -19,8 +19,8 @@ describe LateAvailabilityController do
       featured = [Property.new]
 
       finder = double(LateAvailability::Finder).as_null_object
-      LateAvailability::Finder.stub(:new).and_return(finder)
-      finder.stub(:find_featured).and_return(featured)
+      allow(LateAvailability::Finder).to receive(:new).and_return(finder)
+      allow(finder).to receive(:find_featured).and_return(featured)
       get 'index'
       expect(assigns(:featured_properties)).to eq(featured)
     end

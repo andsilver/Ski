@@ -4,8 +4,8 @@ describe SidebarHelper do
   describe '#sidebar_html' do
     context 'when only website sidebar HTML exists' do
       before do
-        helper.stub(:website_sidebar_html).and_return('website sidebar HTML') 
-        helper.stub(:holiday_type_sidebar_html).and_return(nil) 
+        allow(helper).to receive(:website_sidebar_html).and_return('website sidebar HTML')
+        allow(helper).to receive(:holiday_type_sidebar_html).and_return(nil)
       end
 
       it 'returns website sidebar HTML' do
@@ -15,8 +15,8 @@ describe SidebarHelper do
 
     context 'when only holiday type sidebar HTML exists' do
       before do
-        helper.stub(:holiday_type_sidebar_html).and_return('holiday type sidebar HTML')
-        helper.stub(:website_sidebar_html).and_return(nil) 
+        allow(helper).to receive(:holiday_type_sidebar_html).and_return('holiday type sidebar HTML')
+        allow(helper).to receive(:website_sidebar_html).and_return(nil)
       end
 
       it 'returns holiday type sidebar HTML' do
@@ -26,8 +26,8 @@ describe SidebarHelper do
 
     context 'when website and holiday type sidebar HTML exist' do
       before do
-        helper.stub(:holiday_type_sidebar_html).and_return('holiday type sidebar HTML')
-        helper.stub(:website_sidebar_html).and_return('website sidebar HTML') 
+        allow(helper).to receive(:holiday_type_sidebar_html).and_return('holiday type sidebar HTML')
+        allow(helper).to receive(:website_sidebar_html).and_return('website sidebar HTML')
       end
 
       it 'returns holiday type sidebar HTML' do
@@ -57,27 +57,27 @@ describe SidebarHelper do
     end
 
     it 'returns sidebar HTML from each @country holiday type' do
-      france.stub(:holiday_types).and_return [ski, lakes]
+      allow(france).to receive(:holiday_types).and_return [ski, lakes]
       assign(:country, france)
       expect(helper.holiday_type_sidebar_html).to eq 'ski HTMLlakes HTML'
     end
 
     it 'returns sidebar HTML from each @region holiday type' do
-      rhone_alpes.stub(:holiday_types).and_return [ski, lakes]
+      allow(rhone_alpes).to receive(:holiday_types).and_return [ski, lakes]
       assign(:region, rhone_alpes)
       expect(helper.holiday_type_sidebar_html).to eq 'ski HTMLlakes HTML'
     end
 
     it 'returns sidebar HTML from each @resort holiday type' do
-      chamonix.stub(:holiday_types).and_return [ski, lakes]
+      allow(chamonix).to receive(:holiday_types).and_return [ski, lakes]
       assign(:resort, chamonix)
       expect(helper.holiday_type_sidebar_html).to eq 'ski HTMLlakes HTML'
     end
 
     it 'returns all sidebar HTML once from holiday types via @holiday_type, @country, @region and @resort' do
-      france.stub(:holiday_types).and_return [ski, lakes]
-      rhone_alpes.stub(:holiday_types).and_return [ski, city_breaks]
-      chamonix.stub(:holiday_types).and_return [ski, lakes]
+      allow(france).to receive(:holiday_types).and_return [ski, lakes]
+      allow(rhone_alpes).to receive(:holiday_types).and_return [ski, city_breaks]
+      allow(chamonix).to receive(:holiday_types).and_return [ski, lakes]
       assign(:country, france)
       assign(:region, rhone_alpes)
       assign(:resort, chamonix)

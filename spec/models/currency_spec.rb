@@ -28,12 +28,12 @@ describe Currency do
     it "updates each currency's exchange rate" do
       FactoryGirl.create(:currency, code: 'GBP', in_euros: 3)
       FactoryGirl.create(:currency, code: 'USD', in_euros: 3)
-      Currency.stub(:exchange_rates_url).and_return('fakerates')
+      allow(Currency).to receive(:exchange_rates_url).and_return('fakerates')
       rates = StringIO.new(
-        '"GBPEUR=X",1.1711,"5/24/2013","11:13am",1.1709,1.1713' + "\n" + 
+        '"GBPEUR=X",1.1711,"5/24/2013","11:13am",1.1709,1.1713' + "\n" +
         '"USDEUR=X",0.7742,"5/24/2013","11:13am",0.7741,0.7742'
       )
-      Currency.stub(:open).with('fakerates') { |&block| block.yield rates }
+      allow(Currency).to receive(:open).with('fakerates') { |&block| block.yield rates }
       Currency.update_exchange_rates
       expect(Currency.find_by(code: 'GBP').in_euros).to eq 1.1711
       expect(Currency.find_by(code: 'USD').in_euros).to eq 0.7742

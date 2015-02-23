@@ -12,9 +12,9 @@ describe 'properties/_property_summary' do
   end
 
   it 'includes the property type (SEO)' do
-    view.stub(:property_type).and_return 'Castle'
+    allow(view).to receive(:property_type).and_return 'Castle'
     render 'properties/property_summary', p: property
-    expect(rendered).to have_content('Castle')    
+    expect(rendered).to have_content('Castle')
   end
 
   it 'includes the truncated property name in .property-summary-description' do
@@ -27,7 +27,7 @@ describe 'properties/_property_summary' do
   end
 
   context 'when sorting by distance from lift' do
-    before { view.stub(:sort_method).and_return 'metres_from_lift ASC' }
+    before { allow(view).to receive(:sort_method).and_return 'metres_from_lift ASC' }
 
     it 'displays distance from lift' do
       render 'properties/property_summary', p: property

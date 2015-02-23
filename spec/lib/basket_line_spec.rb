@@ -24,7 +24,7 @@ describe BasketLine do
 
       context 'with a coupon' do
         before do
-          @bl.coupon = Coupon.new 
+          @bl.coupon = Coupon.new
           @bl.description = 'Coupon description'
         end
 
@@ -61,7 +61,7 @@ describe BasketLine do
     it 'returns price - 11 subsequent payments' do
       bl = BasketLine.new
       bl.price = 145
-      bl.stub(:subsequent_payments).and_return(12)
+      allow(bl).to receive(:subsequent_payments).and_return(12)
       expect(bl.first_payment).to eq 13
     end
   end

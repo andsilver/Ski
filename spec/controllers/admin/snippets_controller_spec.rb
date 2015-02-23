@@ -8,7 +8,7 @@ describe Admin::SnippetsController do
   end
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   context 'when signed in as admin' do
@@ -16,12 +16,12 @@ describe Admin::SnippetsController do
 
     describe 'GET index' do
       it 'finds all snippets ordered by name' do
-        Snippet.should_receive(:order).with('name')
+        expect(Snippet).to receive(:order).with('name')
         get 'index'
       end
 
       it 'assigns @snippets' do
-        Snippet.stub(:order).and_return(:snippets)
+        allow(Snippet).to receive(:order).and_return(:snippets)
         get 'index'
         expect(assigns(:snippets)).to eq :snippets
       end
@@ -29,7 +29,7 @@ describe Admin::SnippetsController do
 
     describe 'GET new' do
       it 'assigns a new instance of Snippet to @snippet' do
-        Snippet.should_receive(:new).and_return(mock_snippet)
+        expect(Snippet).to receive(:new).and_return(mock_snippet)
         get 'new'
         expect(assigns(:snippet)).to eq mock_snippet
       end
@@ -37,7 +37,7 @@ describe Admin::SnippetsController do
 
     describe 'POST create' do
       context 'on successful save' do
-        before { Snippet.stub(:new).and_return(mock_snippet(save: true)) }
+        before { allow(Snippet).to receive(:new).and_return(mock_snippet(save: true)) }
 
         it 'redirects to admin snippets path' do
           post 'create', id: '1', snippet: { 'some' => 'params' }
@@ -48,7 +48,7 @@ describe Admin::SnippetsController do
 
     describe 'PATCH update' do
       context 'on successful update' do
-        before { Snippet.stub(:find).and_return(mock_snippet(update_attributes: true)) }
+        before { allow(Snippet).to receive(:find).and_return(mock_snippet(update_attributes: true)) }
 
         it 'redirects to admin snippets path' do
           patch 'update', id: '1', snippet: { 'some' => 'params' }
@@ -59,15 +59,15 @@ describe Admin::SnippetsController do
 
     describe 'DELETE destroy' do
       context 'when snippet found' do
-        before { Snippet.stub(:find).and_return(mock_snippet) }
+        before { allow(Snippet).to receive(:find).and_return(mock_snippet) }
 
         it 'destroys the snippet' do
-          mock_snippet.should_receive(:destroy)
+          expect(mock_snippet).to receive(:destroy)
           delete 'destroy', id: '1'
         end
 
         it 'redirects to admin snippets path' do
-          mock_snippet.stub(:destroy)
+          allow(mock_snippet).to receive(:destroy)
           delete 'destroy', id: '1'
           expect(response).to redirect_to admin_snippets_path
         end

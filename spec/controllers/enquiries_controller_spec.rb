@@ -4,7 +4,7 @@ describe EnquiriesController do
   let(:website) { double(Website).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   describe "GET my" do
@@ -12,18 +12,18 @@ describe EnquiriesController do
       let(:current_user) { double(User).as_null_object }
 
       before do
-        controller.stub(:signed_in?).and_return(true)
-        controller.stub(:current_user).and_return(current_user)
+        allow(controller).to receive(:signed_in?).and_return(true)
+        allow(controller).to receive(:current_user).and_return(current_user)
       end
 
       it "finds enquiries belonging to the current user" do
-        current_user.should_receive(:enquiries)
+        expect(current_user).to receive(:enquiries)
         get :my
       end
 
       it "assigns @enquiries" do
         enquiries = [Enquiry.new]
-        current_user.stub(:enquiries).and_return(enquiries)
+        allow(current_user).to receive(:enquiries).and_return(enquiries)
         get :my
         expect(assigns(:enquiries)).to eq(enquiries)
       end
@@ -42,12 +42,12 @@ describe EnquiriesController do
     let(:user) { User.new }
 
     before do
-      Property.stub(:find).and_return(property)
-      property.stub(:user).and_return(user)
+      allow(Property).to receive(:find).and_return(property)
+      allow(property).to receive(:user).and_return(user)
     end
 
     it "finds a property" do
-      Property.should_receive(:find).with("1")
+      expect(Property).to receive(:find).with("1")
       post :create, enquiry: { property_id: '1' }
     end
   end
@@ -58,7 +58,7 @@ describe EnquiriesController do
       let(:time_to_i) { time.to_i }
 
       before do
-        Time.stub(:now).and_return(time)
+        allow(Time).to receive(:now).and_return(time)
       end
 
       it "sets session[:enquiry_token] with a secretly hashed current time" do

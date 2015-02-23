@@ -4,7 +4,7 @@ describe Admin::CountriesController do
   let(:website) { double(Website).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   def mock_country
@@ -17,7 +17,7 @@ describe Admin::CountriesController do
     describe 'GET index' do
       it 'assigns all countries ordered by name to @countries' do
         countries = [mock_country]
-        Country.should_receive(:order).with('name').and_return(countries)
+        expect(Country).to receive(:order).with('name').and_return(countries)
         get 'index'
         expect(assigns(:countries)).to eq countries
       end
@@ -25,7 +25,7 @@ describe Admin::CountriesController do
 
     describe 'GET new' do
       it 'assigns a new instance of Country to @country' do
-        Country.should_receive(:new).and_return(mock_country)
+        expect(Country).to receive(:new).and_return(mock_country)
         get 'new'
         expect(assigns(:country)).to eq mock_country
       end

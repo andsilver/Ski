@@ -35,10 +35,10 @@ describe User do
       old_window = double(Advert, {:old? => true})
       current_window = double(Advert, {:old? => false})
 
-      alice.stub(:windows).and_return [old_window, current_window]
+      allow(alice).to receive(:windows).and_return [old_window, current_window]
 
-      old_window.should_receive(:delete)
-      current_window.should_not_receive(:delete)
+      expect(old_window).to receive(:delete)
+      expect(current_window).not_to receive(:delete)
 
       alice.delete_old_windows
     end
@@ -52,7 +52,7 @@ describe User do
     it "returns the value of the role's advertises_through_windows?" do
       role = double(Role, :advertises_through_windows? => true)
       user = User.new
-      user.stub(:role).and_return(role)
+      allow(user).to receive(:role).and_return(role)
       expect(user.advertises_through_windows?).to be_truthy
     end
   end
@@ -60,13 +60,13 @@ describe User do
   describe "#has_properties_for_rent?" do
     it "returns true when there are one or more properties for rent" do
       user = User.new
-      user.stub(:properties_for_rent).and_return([:a_property])
+      allow(user).to receive(:properties_for_rent).and_return([:a_property])
       expect(user.has_properties_for_rent?).to be_truthy
     end
 
     it "returns false when there are 0 properties for rent" do
       user = User.new
-      user.stub(:properties_for_rent).and_return([])
+      allow(user).to receive(:properties_for_rent).and_return([])
       expect(user.has_properties_for_rent?).to be_falsey
     end
   end
@@ -74,13 +74,13 @@ describe User do
   describe "#has_properties_for_sale?" do
     it "returns true when there are one or more properties for sale" do
       user = User.new
-      user.stub(:properties_for_sale).and_return([:a_property])
+      allow(user).to receive(:properties_for_sale).and_return([:a_property])
       expect(user.has_properties_for_sale?).to be_truthy
     end
 
     it "returns false when there are 0 properties for sale" do
       user = User.new
-      user.stub(:properties_for_sale).and_return([])
+      allow(user).to receive(:properties_for_sale).and_return([])
       expect(user.has_properties_for_sale?).to be_falsey
     end
   end
@@ -94,21 +94,21 @@ describe User do
 
     it 'returns true if the VAT number is blank and the country is in the EU' do
       user = User.new(vat_number: '')
-      user.stub(:billing_country).and_return(uk)
+      allow(user).to receive(:billing_country).and_return(uk)
       expect(user.pays_vat?).to be_truthy
-      user.stub(:billing_country).and_return(france)
+      allow(user).to receive(:billing_country).and_return(france)
       expect(user.pays_vat?).to be_truthy
     end
 
     it 'returns false if the VAT number is given and the country is in the EU, not UK' do
       user = User.new(vat_number: '123')
-      user.stub(:billing_country).and_return(france)
+      allow(user).to receive(:billing_country).and_return(france)
       expect(user.pays_vat?).to be_falsey
     end
 
     it 'returns false if the country is not in the EU' do
       user = User.new(vat_number: '')
-      user.stub(:billing_country).and_return(us)
+      allow(user).to receive(:billing_country).and_return(us)
       expect(user.pays_vat?).to be_falsey
       user.vat_number = '123'
       expect(user.pays_vat?).to be_falsey
@@ -116,7 +116,7 @@ describe User do
 
     it 'returns true if country is United Kingdom' do
       user = User.new(vat_number: '')
-      user.stub(:billing_country).and_return(uk)
+      allow(user).to receive(:billing_country).and_return(uk)
       expect(user.pays_vat?).to be_truthy
       user.vat_number = '123'
       expect(user.pays_vat?).to be_truthy
@@ -124,15 +124,15 @@ describe User do
 
     it 'returns false if billing country is UK but VAT country is France' do
       user = User.new(vat_number: '123')
-      user.stub(:billing_country).and_return(uk)
-      user.stub(:vat_country).and_return(france)
+      allow(user).to receive(:billing_country).and_return(uk)
+      allow(user).to receive(:vat_country).and_return(france)
       expect(user.pays_vat?).to be_falsey
     end
 
     it 'returns true if billing country is US but VAT country is UK' do
       user = User.new(vat_number: '123')
-      user.stub(:billing_country).and_return(us)
-      user.stub(:vat_country).and_return(uk)
+      allow(user).to receive(:billing_country).and_return(us)
+      allow(user).to receive(:vat_country).and_return(uk)
       expect(user.pays_vat?).to be_truthy
     end
   end
@@ -156,9 +156,9 @@ describe User do
     it 'deletes all adverts in basket' do
       user = User.new
       advert = double(Advert)
-      advert.should_receive(:delete)
+      expect(advert).to receive(:delete)
       adverts = [advert]
-      user.stub(:adverts_in_basket).and_return(adverts)
+      allow(user).to receive(:adverts_in_basket).and_return(adverts)
       user.empty_basket
     end
   end
@@ -170,8 +170,8 @@ describe User do
       d_new = double(DirectoryAdvert, advert_status: :new)
       d_live = double(DirectoryAdvert, advert_status: :live)
       u = User.new
-      u.stub(:properties).and_return([p_new, p_live])
-      u.stub(:directory_adverts).and_return([d_new, d_live])
+      allow(u).to receive(:properties).and_return([p_new, p_live])
+      allow(u).to receive(:directory_adverts).and_return([d_new, d_live])
       expect(u.new_advertisables).to include(p_new)
       expect(u.new_advertisables).to include(d_new)
       expect(u.new_advertisables).to_not include(p_live)
@@ -182,7 +182,7 @@ describe User do
   describe '#remove_expired_coupon' do
     let(:coupon) do
       c = Coupon.new
-      c.stub(:expired?).and_return(expired)
+      allow(c).to receive(:expired?).and_return(expired)
       c
     end
 
@@ -199,7 +199,7 @@ describe User do
       it 'saves' do
         u = User.new
         u.coupon = coupon
-        u.should_receive(:save)
+        expect(u).to receive(:save)
         u.remove_expired_coupon
       end
     end
@@ -217,7 +217,7 @@ describe User do
       it 'does not save' do
         u = User.new
         u.coupon = coupon
-        u.should_not_receive(:save)
+        expect(u).not_to receive(:save)
         u.remove_expired_coupon
       end
     end
@@ -226,7 +226,7 @@ describe User do
       it 'does not save' do
         u = User.new
         u.coupon = nil
-        u.should_not_receive(:save)
+        expect(u).not_to receive(:save)
         u.remove_expired_coupon
       end
     end

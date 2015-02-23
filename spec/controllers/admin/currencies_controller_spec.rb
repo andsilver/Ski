@@ -4,7 +4,7 @@ describe Admin::CurrenciesController do
   let(:website) { double(Website).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   def mock_currency(stubs = {})
@@ -17,7 +17,7 @@ describe Admin::CurrenciesController do
     describe 'GET index' do
       it 'assigns all currencies ordered by code to @currencies' do
         currencies = [mock_currency]
-        Currency.should_receive(:order).with('code').and_return(currencies)
+        expect(Currency).to receive(:order).with('code').and_return(currencies)
         get 'index'
         expect(assigns(:currencies)).to eq currencies
       end
@@ -25,7 +25,7 @@ describe Admin::CurrenciesController do
 
     describe 'GET new' do
       it 'assigns a new currency to @currency' do
-        Currency.should_receive(:new).and_return(mock_currency)
+        expect(Currency).to receive(:new).and_return(mock_currency)
         get 'new'
         expect(assigns(:currency)).to eq mock_currency
       end
@@ -33,7 +33,7 @@ describe Admin::CurrenciesController do
 
     describe 'POST create' do
       context 'on successful save' do
-        before { Currency.stub(:new).and_return(mock_currency(save: true)) }
+        before { allow(Currency).to receive(:new).and_return(mock_currency(save: true)) }
 
         it 'redirects to admin currencies path' do
           post 'create', id: '1', currency: { 'some' => 'params' }
@@ -44,7 +44,7 @@ describe Admin::CurrenciesController do
 
     describe 'PATCH update' do
       context 'on successful update' do
-        before { Currency.stub(:find).and_return(mock_currency(update_attributes: true)) }
+        before { allow(Currency).to receive(:find).and_return(mock_currency(update_attributes: true)) }
 
         it 'redirects to admin currencies path' do
           patch 'update', id: '1', currency: { 'some' => 'params' }
@@ -55,7 +55,7 @@ describe Admin::CurrenciesController do
 
     describe 'GET update_exchange_rates' do
       it 'updates exchange rates' do
-        Currency.should_receive(:update_exchange_rates)
+        expect(Currency).to receive(:update_exchange_rates)
         get 'update_exchange_rates'
       end
 

@@ -24,7 +24,7 @@ feature 'Import Pierre et Vacances' do
     sign_in_as_admin
     setup_pv_user
 
-    PierreEtVacances::FTP.stub(:new).and_return(FakeFTP.new)
+    allow(PierreEtVacances::FTP).to receive(:new).and_return(FakeFTP.new)
 
     visit '/pv_accommodations'
     click_link 'Import Accommodations'

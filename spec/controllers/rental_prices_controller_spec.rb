@@ -4,7 +4,7 @@ describe RentalPricesController do
   let(:website) { double(Website).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   describe 'GET results' do

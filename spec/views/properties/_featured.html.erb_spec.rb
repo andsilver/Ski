@@ -6,7 +6,7 @@ describe 'properties/_featured.html.erb' do
   context 'with property image' do
     before do
       property.image = FactoryGirl.create(:image)
-      property.image.stub(url: '/up/images/chalet.png')
+      allow(property.image).to receive(:url).and_return('/up/images/chalet.png')
     end
 
     it 'displays the main property image' do

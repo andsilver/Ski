@@ -4,7 +4,7 @@ describe RolesController do
   let(:website) { double(Website).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   describe "PUT update" do
@@ -13,12 +13,12 @@ describe RolesController do
 
     context "when signed in as admin" do
       before do
-        controller.stub(:admin?).and_return(true)
-        Role.stub(:find).and_return(role)
+        allow(controller).to receive(:admin?).and_return(true)
+        allow(Role).to receive(:find).and_return(role)
       end
 
       it "finds the role" do
-        Role.should_receive(:find).with("1")
+        expect(Role).to receive(:find).with("1")
         put 'update', update_params
       end
 
@@ -28,13 +28,13 @@ describe RolesController do
       end
 
       it "updates the role" do
-        role.should_receive(:update_attributes)
+        expect(role).to receive(:update_attributes)
         put 'update', update_params
       end
 
       context "when the role updates successfully" do
         it "redirects to the edit role page" do
-          role.stub(:update_attributes).and_return(true)
+          allow(role).to receive(:update_attributes).and_return(true)
           put 'update', update_params
           expect(response).to redirect_to(edit_role_path(role))
         end
@@ -42,7 +42,7 @@ describe RolesController do
 
       context "when the role doesn't update successfully" do
         it "renders the edit role page" do
-          role.stub(:update_attributes).and_return(false)
+          allow(role).to receive(:update_attributes).and_return(false)
           put 'update', update_params
           expect(response).to render_template('edit')
         end
@@ -51,7 +51,7 @@ describe RolesController do
 
     context "when not signed in as admin" do
       it "redirects to the sign in page" do
-        controller.stub(:admin?).and_return(false)
+        allow(controller).to receive(:admin?).and_return(false)
         put 'update', update_params
         expect(response).to redirect_to(sign_in_path)
       end
@@ -62,7 +62,7 @@ describe RolesController do
     let(:role) { mock_model(Role).as_null_object }
 
     it "finds the role by its SEO param" do
-      Role.should_receive(:find_by).with(name: 'property developer')
+      expect(Role).to receive(:find_by).with(name: 'property developer')
       get 'sales_pitch', role: 'property-developer'
     end
 
@@ -72,7 +72,7 @@ describe RolesController do
 
     context "when the role does not exist" do
       it "renders not found" do
-        Role.stub(:find_by).and_return(nil)
+        allow(Role).to receive(:find_by).and_return(nil)
         put 'sales_pitch', role: 'property-developer'
         expect(response.status).to eql 404
       end

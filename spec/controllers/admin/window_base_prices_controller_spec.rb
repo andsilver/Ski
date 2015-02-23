@@ -8,7 +8,7 @@ describe Admin::WindowBasePricesController do
   end
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   context 'when signed in as admin' do
@@ -16,12 +16,12 @@ describe Admin::WindowBasePricesController do
 
     describe 'GET index' do
       it 'finds all window base prices ordered by quantity' do
-        WindowBasePrice.should_receive(:order).with('quantity')
+        expect(WindowBasePrice).to receive(:order).with('quantity')
         get 'index'
       end
 
       it 'assigns @window_base_prices' do
-        WindowBasePrice.stub(:order).and_return(:window_base_prices)
+        allow(WindowBasePrice).to receive(:order).and_return(:window_base_prices)
         get 'index'
         expect(assigns(:window_base_prices)).to eq :window_base_prices
       end
@@ -29,7 +29,7 @@ describe Admin::WindowBasePricesController do
 
     describe 'GET new' do
       it 'assigns a new instance of WindowBasePrice to @window_base_price' do
-        WindowBasePrice.should_receive(:new).and_return(mock_window_base_price)
+        expect(WindowBasePrice).to receive(:new).and_return(mock_window_base_price)
         get 'new'
         expect(assigns(:window_base_price)).to eq mock_window_base_price
       end
@@ -37,7 +37,7 @@ describe Admin::WindowBasePricesController do
 
     describe 'POST create' do
       context 'on successful save' do
-        before { WindowBasePrice.stub(:new).and_return(mock_window_base_price(save: true)) }
+        before { allow(WindowBasePrice).to receive(:new).and_return(mock_window_base_price(save: true)) }
 
         it 'redirects to admin window base prices path' do
           post 'create', id: '1', window_base_price: { 'some' => 'params' }
@@ -48,7 +48,7 @@ describe Admin::WindowBasePricesController do
 
     describe 'PATCH update' do
       context 'on successful update' do
-        before { WindowBasePrice.stub(:find).and_return(mock_window_base_price(update_attributes: true)) }
+        before { allow(WindowBasePrice).to receive(:find).and_return(mock_window_base_price(update_attributes: true)) }
 
         it 'redirects to admin window base prices path' do
           patch 'update', id: '1', window_base_price: { 'some' => 'params' }
@@ -59,15 +59,15 @@ describe Admin::WindowBasePricesController do
 
     describe 'DELETE destroy' do
       context 'when window base price found' do
-        before { WindowBasePrice.stub(:find).and_return(mock_window_base_price) }
+        before { allow(WindowBasePrice).to receive(:find).and_return(mock_window_base_price) }
 
         it 'destroys the window base price' do
-          mock_window_base_price.should_receive(:destroy)
+          expect(mock_window_base_price).to receive(:destroy)
           delete 'destroy', id: '1'
         end
 
         it 'redirects to admin window base prices path' do
-          mock_window_base_price.stub(:destroy)
+          allow(mock_window_base_price).to receive(:destroy)
           delete 'destroy', id: '1'
           expect(response).to redirect_to admin_window_base_prices_path
         end

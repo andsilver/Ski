@@ -33,7 +33,7 @@ describe UsersController do
     let(:params) { { user: { "name" => "Carey", "role_id" => "1" }} }
 
     before do
-      Role.stub(:find_by).and_return(role)
+      allow(Role).to receive(:find_by).and_return(role)
       UserNotifier.stub_chain(:welcome, :deliver)
     end
 
@@ -143,7 +143,7 @@ describe UsersController do
 
       it 'mentions the user\'s name in the heading' do
         u = double(User, {name: 'Jane'})
-        User.stub(:find).and_return(u)
+        allow(User).to receive(:find).and_return(u)
         get 'edit', id: '1'
         expect(assigns(:heading)).to eq('Jane')
       end
@@ -152,8 +152,8 @@ describe UsersController do
 
   describe 'PATCH update' do
     before do
-      controller.stub(:current_user).and_return(user)
-      User.stub(:find).with('1').and_return(user)
+      allow(controller).to receive(:current_user).and_return(user)
+      allow(User).to receive(:find).with('1').and_return(user)
     end
 
     let(:update_params) {{id: '1', user: { 'first_name' => 'Fred' } }}
@@ -176,7 +176,7 @@ describe UsersController do
       context 'when user' do
         before do
           signed_in
-          controller.stub(:admin?).and_return(false)
+          allow(controller).to receive(:admin?).and_return(false)
         end
 
         it 'redirects to My Details' do
@@ -190,7 +190,7 @@ describe UsersController do
         end
 
         context 'when the user fails to update' do
-          before { user.stub(:update_attributes).and_return(false) }
+          before { allow(user).to receive(:update_attributes).and_return(false) }
 
           it 'renders the edit template' do
             patch :update, update_params

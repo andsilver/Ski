@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Admin::AirportsController do
   before do
-    controller.stub(:admin?).and_return(true)
-    Website.stub(:first).and_return(Website.new)
+    allow(controller).to receive(:admin?).and_return(true)
+    allow(Website).to receive(:first).and_return(Website.new)
   end
 
   describe 'GET index' do

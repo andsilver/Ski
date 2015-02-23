@@ -5,32 +5,32 @@ describe RegionsController do
   let(:region) { double(Region).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
-    controller.stub(:admin?).and_return(false)
+    allow(Website).to receive(:first).and_return(website)
+    allow(controller).to receive(:admin?).and_return(false)
   end
 
   shared_examples "a user of a region" do
     it 'finds a region by its slug' do
-      Region.should_receive(:find_by).with(slug: 'lake-como')
+      expect(Region).to receive(:find_by).with(slug: 'lake-como')
       get :show, id: 'lake-como'
     end
 
     it 'assigns @region' do
-      Region.stub(:find_by).and_return(region)
+      allow(Region).to receive(:find_by).and_return(region)
       get :show, id: 'lake-como'
       expect(assigns[:region]).to equal(region)
     end
 
     context 'when region found' do
-      before { Region.stub(:find_by).and_return(region) }
+      before { allow(Region).to receive(:find_by).and_return(region) }
 
       it 'gets featured properties for the region' do
-        region.should_receive(:featured_properties)
+        expect(region).to receive(:featured_properties)
         get :show, id: 'lake-como'
       end
 
       it 'assigns @featured_properties' do
-        region.stub(:featured_properties).and_return(:featured_properties)
+        allow(region).to receive(:featured_properties).and_return(:featured_properties)
         get :show, id: 'lake-como'
         expect(assigns(:featured_properties)).to eq :featured_properties
       end
@@ -52,7 +52,7 @@ describe RegionsController do
     it_behaves_like "a user of a region"
 
     context 'when region found' do
-      before { Region.stub(:find_by).and_return(region) }
+      before { allow(Region).to receive(:find_by).and_return(region) }
 
       context 'when @page_content is set' do
         before { controller.instance_variable_set(:@page_content, 'some content') }

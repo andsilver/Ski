@@ -4,7 +4,7 @@ describe Admin::CarouselSlidesController do
   let(:website) { double(Website).as_null_object }
 
   before do
-    Website.stub(:first).and_return(website)
+    allow(Website).to receive(:first).and_return(website)
   end
 
   def mock_carousel_slide(stubs={})
@@ -16,7 +16,7 @@ describe Admin::CarouselSlidesController do
 
     describe 'GET new' do
       it 'assigns a new carousel slide to @carousel_slide' do
-        CarouselSlide.stub(:new).and_return(mock_carousel_slide)
+        allow(CarouselSlide).to receive(:new).and_return(mock_carousel_slide)
         get :new
         expect(assigns(:carousel_slide)).to eq mock_carousel_slide
       end
@@ -28,8 +28,8 @@ describe Admin::CarouselSlidesController do
     end
 
     context 'moving' do
-      let!(:first) { FactoryGirl.create(:carousel_slide) } 
-      let!(:last)  { FactoryGirl.create(:carousel_slide) } 
+      let!(:first) { FactoryGirl.create(:carousel_slide) }
+      let!(:last)  { FactoryGirl.create(:carousel_slide) }
 
       describe 'GET move_up' do
         it 'moves the carousel slide up the list' do
@@ -72,7 +72,7 @@ describe Admin::CarouselSlidesController do
   end
 
   def find_requested_carousel_slide(stubs={})
-    CarouselSlide.should_receive(:find_by)
+    expect(CarouselSlide).to receive(:find_by)
       .with(id: '37', website_id: website.id)
       .and_return(mock_carousel_slide(stubs))
   end

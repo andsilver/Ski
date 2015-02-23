@@ -28,13 +28,13 @@ describe Resort do
   describe '#has_page?' do
     it 'returns true if the page exists' do
       r = Resort.new
-      r.stub(:page).and_return(Page.new)
+      allow(r).to receive(:page).and_return(Page.new)
       expect(r.has_page?('a-page')).to be_truthy
     end
 
     it 'returns false if the page does not exist' do
       r = Resort.new
-      r.stub(:page).and_return(nil)
+      allow(r).to receive(:page).and_return(nil)
       expect(r.has_page?('a-page')).to be_falsey
     end
   end
@@ -42,8 +42,8 @@ describe Resort do
   describe '#page' do
     it 'finds the page with the corresponding path' do
       r = Resort.new
-      r.should_receive(:page_path).with('a-page').and_return('/path/to/a-page')
-      Page.should_receive(:find_by).with(path: '/path/to/a-page')
+      expect(r).to receive(:page_path).with('a-page').and_return('/path/to/a-page')
+      expect(Page).to receive(:find_by).with(path: '/path/to/a-page')
       r.page('a-page')
     end
   end
