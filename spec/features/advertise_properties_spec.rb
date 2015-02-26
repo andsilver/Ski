@@ -72,6 +72,7 @@ feature 'Advertise Properties' do
     check 'WiFi'
     check 'Disabled access'
     check 'Fully equipped kitchen'
+    select 'Classic', from: 'Layout'
     click_button 'Save'
   end
 

@@ -33,6 +33,10 @@ javascript:
         = required_field
         .col-lg-4
           = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :layout, class: 'control-label col-md-4'
+        .col-md-6
+          = f.select :layout, property_layout_options, {}, class: 'form-control'
 
   - unless @property.new_record?
     .well

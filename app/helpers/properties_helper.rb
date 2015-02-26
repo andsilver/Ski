@@ -58,6 +58,10 @@ module PropertiesHelper
     ]
   end
 
+  def property_layout_options
+    {'Default' => nil}.merge(Property::LAYOUTS.reject{|l| l.nil?}.map{|l| [l,l]}.to_h)
+  end
+
   def distance_options
     [
       ["< 100m", 100],

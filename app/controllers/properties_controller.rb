@@ -168,17 +168,14 @@ class PropertiesController < ApplicationController
     show_shared
     @advertiser_web_property_id = @property.user.google_web_property_id unless @property.user.google_web_property_id.blank?
 
-    if @property.hotel?
-      render :show_hotel
-    elsif @property.new_development?
-      render :show_new_development
-    elsif @property.flip_key_property
+    if @property.flip_key_property
       begin
         @json = @property.flip_key_property.parsed_json
       rescue
       end
-      render :show_flip_key
     end
+
+    render @property.template
   end
 
   def show_interhome
@@ -634,7 +631,7 @@ class PropertiesController < ApplicationController
       :children_welcome, :currency_id, :description, :disabled,
       :distance_from_town_centre_m, :floor_area_metres_2,
       :fully_equipped_kitchen, :garden, :hot_tub, :indoor_swimming_pool,
-      :latitude, :listing_type, :log_fire,
+      :latitude, :layout, :listing_type, :log_fire,
       :long_term_lets_available, :longitude,
       :metres_from_lift, :mountain_views, :name, :new_development, :number_of_bathrooms,
       :number_of_bedrooms, :outdoor_swimming_pool, :parking, :pets,

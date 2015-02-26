@@ -216,34 +216,34 @@ describe PropertiesController do
   end
 
   describe "POST create" do
-    let(:current_user) { double(User).as_null_object }
+    let(:current_user) { FactoryGirl.create(:user) }
     let(:role) { double(Role).as_null_object }
-    let(:create_params) {{ id: '1', property: {name: 'A Property'}}}
-    let(:property) { double(Property).as_null_object }
+    let(:property_attributes) {{
+      layout: 'Showcase',
+      name: 'Property',
+      address: 'Address',
+      resort_id: FactoryGirl.create(:resort).id,
+      currency_id: FactoryGirl.create(:currency).id
+    }}
+    let(:create_params) { { property: property_attributes } }
 
     before do
-      session[:user] = 1
       allow(Advert).to receive(:create_for)
-      allow(controller).to receive(:signed_in?).and_return(true)
       allow(controller).to receive(:current_user).and_return(current_user)
       allow(current_user).to receive(:role).and_return(role)
-      allow(Property).to receive(:new).and_return(property)
-      allow(property).to receive(:user_id).and_return(1)
     end
 
-    context "when the property saves successfully" do
-      before do
-        allow(property).to receive(:save).and_return(true)
+    context "with valid attributes" do
+      it 'creates a new property with supplied attributes' do
+        post 'create', create_params
+        expect(Property.find_by(property_attributes)).to be
       end
 
       context "when submitting in square feet" do
         it "converts square feet to square metres" do
-          expect(Property).to receive(:new).with({
-            "floor_area_metres_2"=>"93",
-            "name"=>"A Property",
-            "plot_size_metres_2"=>"186"
-          })
-          post 'create', { id: 1, property: {name: 'A Property', floor_area_metres_2: '1000', plot_size_metres_2: '2000'}, floor_area_unit: 'f', plot_area_unit: 'f' }
+          post 'create', { property: property_attributes.merge({floor_area_metres_2: '1000', plot_size_metres_2: '2000'}), floor_area_unit: 'f', plot_area_unit: 'f' }
+          expect(Property.last.floor_area_metres_2).to eq 93
+          expect(Property.last.plot_size_metres_2).to eq 186
         end
       end
 
@@ -295,78 +295,45 @@ describe PropertiesController do
   end
 
   describe "GET show" do
-    it "finds a property" do
-      expect(Property).to receive(:find_by).with(id: '1')
-      get :show, id: '1'
-    end
+    let(:property) { FactoryGirl.create(:property) }
 
     context "when a property is found" do
-      let(:property) { double(Property).as_null_object }
-      let(:resort) { double(Resort).as_null_object }
-      let(:enquiry) { double(Enquiry).as_null_object }
-      let(:property_owner) { double(User).as_null_object }
+      let(:publicly_visible?) { true }
 
       before do
-        allow(Property).to receive(:find_by).and_return(property)
-        allow(Enquiry).to receive(:new).and_return(enquiry)
-        allow(property).to receive(:resort).and_return(resort)
-        allow(property).to receive(:user).and_return(property_owner)
-        allow(property).to receive(:strapline).and_return('A strapline')
-        allow(property).to receive(:interhome_accommodation).and_return(nil)
+        allow_any_instance_of(Property).to receive(:publicly_visible?).and_return(publicly_visible?)
+        get 'show', id: property.id
       end
+      #let(:property) { double(Property).as_null_object }
+      #let(:resort) { double(Resort).as_null_object }
+      #let(:enquiry) { double(Enquiry).as_null_object }
+      #let(:property_owner) { double(User).as_null_object }
+
+      #before do
+      #  allow(Property).to receive(:find_by).and_return(property)
+      #  allow(Enquiry).to receive(:new).and_return(enquiry)
+      #  allow(property).to receive(:resort).and_return(resort)
+      #  allow(property).to receive(:user).and_return(property_owner)
+      #  allow(property).to receive(:strapline).and_return('A strapline')
+      #  allow(property).to receive(:interhome_accommodation).and_return(nil)
+      #  allow(property).to receive(:template).and_return 'show_classic'
+      #end
 
       it "assigns @property" do
-        get :show, id: '1'
-        expect(assigns[:property]).to equal(property)
+        expect(assigns[:property]).to be_kind_of PropertyDecorator
       end
 
       context 'when the property is publicly visible' do
-        before do
-          allow(property).to receive(:publicly_visible?).and_return(true)
-        end
+        let(:publicly_visible?) { true }
 
-        context 'when a hotel' do
-          before do
-            allow(property).to receive(:hotel?).and_return(true)
-          end
-
-          it 'renders show_hotel' do
-            get :show, id: '1'
-            expect(response).to render_template :show_hotel
-          end
-        end
-
-        context 'when a new development' do
-          before do
-            allow(property).to receive(:hotel?).and_return(false)
-            allow(property).to receive(:new_development?).and_return(true)
-          end
-
-          it 'renders show_new_development' do
-            get :show, id: '1'
-            expect(response).to render_template :show_new_development
-          end
-        end
-
-        context 'when neither a hotel nor new development nor FlipKey' do
-          before do
-            allow(property).to receive(:hotel?).and_return(false)
-            allow(property).to receive(:new_development?).and_return(false)
-            allow(property).to receive(:flip_key_property).and_return(nil)
-          end
-
-          it 'renders show' do
-            get :show, id: '1'
-            expect(response).to render_template :show
-          end
+        it 'renders the property template' do
+          expect(response).to render_template(property.template)
         end
       end
 
       context "when the property is not publicly visible" do
+        let(:publicly_visible?) { false }
         before do
-          allow(property).to receive(:publicly_visible?).and_return(false)
-          allow(property).to receive(:hotel?).and_return(false)
-          allow(property).to receive(:new_development?).and_return(false)
           allow(property).to receive(:flip_key_property).and_return(nil)
         end
 
@@ -376,19 +343,18 @@ describe PropertiesController do
           end
 
           context "but signed is as the owner" do
-            let(:current_user) { double(User).as_null_object }
+            let(:current_user) { property.user }
 
             it "shows the property" do
               signed_in_user
               allow(property).to receive(:user_id).and_return(current_user.id)
-              get :show, { id: '1' }
-              expect(response).to render_template('show')
+              get :show, { id: property.id }
+              expect(response).to render_template(property.template)
             end
           end
 
           context "when not the owner either" do
             it "renders not found" do
-              get :show, { id: '1' }
               expect(response.status).to eql 404
             end
           end
@@ -397,8 +363,8 @@ describe PropertiesController do
         context "when signed in as admin" do
           it "shows the property" do
             allow(controller).to receive(:admin?).and_return(true)
-            get :show, { id: '1' }
-            expect(response).to render_template('show')
+            get :show, { id: property.id }
+            expect(response).to render_template(property.template)
           end
         end
       end

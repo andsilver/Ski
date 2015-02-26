@@ -9,8 +9,8 @@ describe Property do
   it { should ensure_length_of(:name).is_at_least(4).is_at_most(255) }
   it { should validate_presence_of(:resort) }
   it { should ensure_inclusion_of(:star_rating).in_range(1..5).with_message("is not in the range 1-5") }
-
   it { should respond_to(:star_rating) }
+  it { should ensure_inclusion_of(:layout).in_array(Property::LAYOUTS) }
 
   describe '.parking_description' do
     pending
@@ -301,6 +301,48 @@ describe Property do
 
     it 'sets region' do
       expect(property.region).to eq @region
+    end
+  end
+
+  describe '#template' do
+    let(:flip_key_property) { nil }
+    let(:property) { Property.new(layout: layout, flip_key_property: flip_key_property) }
+    let(:hotel?) { false }
+    let(:new_development?) { false }
+
+    before do
+      allow(property).to receive(:hotel?).and_return hotel?
+      allow(property).to receive(:new_development?).and_return new_development?
+    end
+
+    subject { property.template }
+
+    context 'when layout is set' do
+      let(:layout) { 'Cool Layout' }
+      it { should eq 'show_cool_layout' }
+    end
+
+    context 'when layout not set' do
+      let(:layout) { nil }
+
+      context 'when neither a hotel, new development or FlipKey' do
+        it { should eq 'show_classic' }
+      end
+
+      context 'when a hotel' do
+        let(:hotel?) { true }
+        it { should eq 'show_hotel' }
+      end
+
+      context 'when a new development' do
+        let(:new_development?) { true }
+        it { should eq 'show_new_development' }
+      end
+
+      context 'when FlipKey' do
+        let(:flip_key_property) { FactoryGirl.create(:flip_key_property) }
+        it { should eq 'show_flip_key' }
+      end
     end
   end
 

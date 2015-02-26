@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150223125512) do
+ActiveRecord::Schema.define(version: 20150226121422) do
 
   create_table "adverts", force: :cascade do |t|
     t.integer  "user_id",             limit: 4,                 null: false
@@ -575,6 +575,7 @@ ActiveRecord::Schema.define(version: 20150223125512) do
     t.string   "booking_url",                  limit: 255,   default: "",    null: false
     t.integer  "flip_key_property_id",         limit: 4
     t.string   "price_description",            limit: 255,   default: "",    null: false
+    t.string   "layout",                       limit: 255
   end
 
   add_index "properties", ["country_id"], name: "index_properties_on_country_id", using: :btree

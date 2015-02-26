@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'properties/show' do
+describe 'properties/show_classic' do
   it 'shows a table of features' do
     assign(:property, FactoryGirl.create(:property).decorate)
     render

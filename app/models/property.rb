@@ -36,6 +36,8 @@ class Property < ActiveRecord::Base
 
   validates_uniqueness_of :pericles_id, allow_nil: true, scope: :user_id
 
+  validates_inclusion_of :layout, in: LAYOUTS = [nil, 'Classic', 'Showcase']
+
   before_validation :adjust_distances_if_needed
   before_save :set_country_and_region, :geocode, :normalise_prices, :properties_for_rent_cannot_be_new_developments
 
@@ -318,6 +320,21 @@ class Property < ActiveRecord::Base
 
   def basket_advert_type_description
     'Property'
+  end
+
+  def template
+    tpl = if layout
+            layout.downcase.tr(' ', '_')
+          elsif hotel?
+            'hotel'
+          elsif new_development?
+            'new_development'
+          elsif flip_key_property
+            'flip_key'
+          else
+            'classic'
+          end
+    "show_#{tpl}"
   end
 
   def to_s
