@@ -6,7 +6,7 @@ html lang="en"
       - if content_for? :title
         = yield :title
         = ' - '
-      | My Chalet Finder Admin  
+      | My Chalet Finder Admin
     = csrf_meta_tags
     = stylesheet_link_tag 'application-admin', media: 'screen', 'data-turbolinks-track' => true
     link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"
@@ -100,8 +100,8 @@ html lang="en"
                 | Account
                 b.caret
               ul.dropdown-menu
-                li= link_to t('account'), advertise_path, data: { 'no-turbolinks' => true }
-                li= link_to t('sign_out'), sign_out_path, data: { 'no-turbolinks' => true }
+                li= link_to t('account'), advertise_path, data: { 'no-turbolink' => true }
+                li= link_to t('sign_out'), sign_out_path, data: { 'no-turbolink' => true }
     .container
       - if flash[:notice]
         .alert.alert-info.fade.in

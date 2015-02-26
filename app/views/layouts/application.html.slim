@@ -73,7 +73,7 @@ html.no-js lang="#{@lang}"
                 = link_to '<i class="icon-user"></i> '.html_safe + t('account'), advertise_path
                 i.icon-caret-right
               li
-                = link_to '<i class="icon-signout"></i> '.html_safe + t('sign_out'), sign_out_path
+                = link_to '<i class="icon-signout"></i> '.html_safe + t('sign_out'), sign_out_path, data: { 'no-turbolink' => true }
                 i.icon-caret-right
             - else
               li
@@ -112,7 +112,7 @@ html.no-js lang="#{@lang}"
         nav#main-menu role="navigation"
           ul
             li= raw snippet('layouts.application.top_left_menu_item', '<a>&nbsp;</a>')
-            - HolidayType.on_menu.each do |ht| 
+            - HolidayType.on_menu.each do |ht|
               li class="mega-parent #{ht.slug}"
                 = link_to ht.name, ht
                 .mega-menu
