@@ -558,7 +558,7 @@ hotel = Property.create!({
   resort: les_houches,
   user: alice,
   name: 'Les Granges d’en Haut',
-  address: 'Route des Chavants, 74310 Les Houches',
+  address: "Route des Chavants,\n74310 Les Houches",
   sleeping_capacity: 100,
   metres_from_lift: 1000,
   weekly_rent_price: 1050,

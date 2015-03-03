@@ -12,7 +12,7 @@ javascript:
     .contact-availability.layout-element.size-1of2
       h1= @property.name
       p
-        = @property.address
+        = simple_format(@property.address)
         br
         = @property.country
       p.star-rating.theme-color
