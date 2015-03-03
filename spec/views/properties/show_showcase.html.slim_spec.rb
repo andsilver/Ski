@@ -36,4 +36,10 @@ RSpec.describe 'properties/show_showcase', type: :view do
     render
     expect(response).to have_selector 'h1#rental'
   end
+
+  it 'displays star rating' do
+    property.star_rating = 3
+    expect(view).to receive(:star_rating).with(3)
+    render
+  end
 end
