@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'properties/_form' do
+RSpec.describe 'properties/_form.html.slim', type: :view do
   fixtures :roles, :users
 
   context 'with a property developer' do
@@ -42,12 +42,13 @@ describe 'properties/_form' do
     before do
       allow(view).to receive(:admin?).and_return(true)
       assign(:current_user, users(:tony)) # an administrator
-    end
-
-    it 'renders listing_type as a select field' do
       assign(:property, Property.new)
       render
-      expect(rendered).to have_selector('select#property_listing_type')
     end
+
+    subject { rendered }
+
+    it { should have_selector('select#property_listing_type') }
+    it { should have_selector('select#property_star_rating') }
   end
 end

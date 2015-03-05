@@ -72,7 +72,7 @@ javascript:
         = required_field
         .col-lg-6
           = select("property", "resort_id", (Resort.where(visible: true).collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: t('properties.select_resort')}, class: 'form-control')
-      - if @property.hotel?
+      - if @property.hotel? || admin?
         .form-group
           = f.label :star_rating, t('properties.star_rating'), class: 'control-label col-lg-2'
           .col-lg-6
