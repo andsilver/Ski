@@ -11,10 +11,7 @@ javascript:
   .clear-fix
     .contact-availability.layout-element.size-1of2
       h1= @property.name
-      p
-        = simple_format(@property.address)
-        br
-        = @property.country
+      = simple_format("#{@property.address}\n#{@property.country}")
       p.star-rating.theme-color
         = star_rating(@property.star_rating)
       .make-a-booking
