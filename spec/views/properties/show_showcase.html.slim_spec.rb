@@ -42,4 +42,10 @@ RSpec.describe 'properties/show_showcase', type: :view do
     expect(view).to receive(:star_rating).with(3)
     render
   end
+
+  it 'links to the property booking URL' do
+    property.booking_url = 'http://example.org'
+    render
+    expect(response).to have_selector(".make-a-booking a[href='http://example.org']")
+  end
 end

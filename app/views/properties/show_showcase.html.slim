@@ -14,6 +14,8 @@ javascript:
       = simple_format("#{@property.address}\n#{@property.country}")
       p.star-rating.theme-color
         = star_rating(@property.star_rating)
+      .make-a-booking
+        = link_to 'Make a booking <span class="glyphicon glyphicon-play theme-color"></span>'.html_safe, @property.booking_url
 
     - if @property.image
       .gallery-container.layout-element.size-1of2
