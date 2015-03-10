@@ -542,6 +542,8 @@ en:
   resorts:
     how_to_get_there:
       heading: 'How to Get There'
+    piste_table:
+      table_heading: 'Piste Map Information'
     ski_and_guiding_schools:
       heading: 'Ski & Guiding Schools'
     summer_holidays:

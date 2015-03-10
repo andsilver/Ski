@@ -456,6 +456,7 @@ htgt.save
 
 chamonix = Resort.create!(country: france, name: 'Chamonix',
   slug: 'chamonix',
+  piste_map_content: '{{ piste_table }}',
   altitude_m: 1035,
   top_lift_m: 3842,
   piste_length_km: 550,
