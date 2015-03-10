@@ -218,16 +218,27 @@ h1, h2, h3 {
 
 h1 {
   font-weight: bold;
+  padding: 15px 0;
+}
+
+h1 {
+  font-size: 22px;
+
+  span {
+    display: block;
+    font-size: 16px;
+    margin-top: 4px;
+  }
 }
 
 h1, h2, #property h3 {
   color: #646464;
-  font-size: 18px;
 }
 
 h2, #property h3 {
   background-color: transparent;
   border-bottom: 1px solid #ccc;
+  font-size: 18px;
   margin: 0 0 5px 0;
   padding: 5px 0;
 }
