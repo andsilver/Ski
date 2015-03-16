@@ -37,6 +37,7 @@ class Property < ActiveRecord::Base
   validates_uniqueness_of :pericles_id, allow_nil: true, scope: :user_id
 
   validates_inclusion_of :layout, in: LAYOUTS = [nil, 'Classic', 'Showcase']
+  before_validation :set_empty_layout_to_nil
 
   before_validation :adjust_distances_if_needed
   before_save :set_country_and_region, :geocode, :normalise_prices, :properties_for_rent_cannot_be_new_developments
@@ -207,6 +208,10 @@ class Property < ActiveRecord::Base
   def adjust_distances_if_needed
     self.distance_from_town_centre_m = closest_distance(distance_from_town_centre_m)
     self.metres_from_lift = closest_distance(metres_from_lift)
+  end
+
+  def set_empty_layout_to_nil
+    self.layout = nil if layout == ''
   end
 
   def closest_distance d

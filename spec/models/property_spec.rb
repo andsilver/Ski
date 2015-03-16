@@ -354,4 +354,12 @@ describe Property do
       property.save
     end
   end
+
+  describe 'before_validation' do
+    it 'sets empty string layout to nil' do
+      property = FactoryGirl.build(:property, layout: '')
+      property.save
+      expect(property.layout).to be_nil
+    end
+  end
 end
