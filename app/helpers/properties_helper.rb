@@ -225,8 +225,8 @@ module PropertiesHelper
     property.booking_url.present? ? property.booking_url : contact_property_path(property)
   end
 
-  # Returns the <a> target attribute for a hotel booking link.
-  def hotel_booking_link_target(property)
+  # Returns the <a> target attribute for a booking link.
+  def booking_link_target(property)
     property.booking_url.present? ? '_blank' : '_self'
   end
 

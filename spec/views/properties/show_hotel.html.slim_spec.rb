@@ -3,13 +3,13 @@ require_relative 'property_header_image'
 
 describe 'properties/show_hotel' do
   let(:property) { FactoryGirl.create(:property, listing_type: Property::LISTING_TYPE_HOTEL) }
-  let(:hotel_booking_url_ret)         { '#hotel-booking-url' }
-  let(:hotel_booking_link_target_ret) { '_blank' }
+  let(:hotel_booking_url_ret)   { '#hotel-booking-url' }
+  let(:booking_link_target_ret) { '_blank' }
 
   before do
     assign(:property, property)
     allow(view).to receive(:hotel_booking_url).and_return(hotel_booking_url_ret)
-    allow(view).to receive(:hotel_booking_link_target).and_return(hotel_booking_link_target_ret)
+    allow(view).to receive(:booking_link_target).and_return(booking_link_target_ret)
   end
 
   it 'displays advertising' do
@@ -52,8 +52,8 @@ describe 'properties/show_hotel' do
     expect(response).to have_selector("a[href='#{hotel_booking_url_ret}']")
   end
 
-  it 'links to the target given by hotel_booking_link_target' do
+  it 'links to the target given by booking_link_target' do
     render
-    expect(response).to have_selector("a[target='#{hotel_booking_link_target_ret}']")
+    expect(response).to have_selector("a[target='#{booking_link_target_ret}']")
   end
 end

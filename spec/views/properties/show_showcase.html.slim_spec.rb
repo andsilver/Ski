@@ -3,9 +3,11 @@ require_relative 'property_header_image'
 
 RSpec.describe 'properties/show_showcase', type: :view do
   let(:property) { FactoryGirl.create(:property, listing_type: Property::LISTING_TYPE_FOR_RENT) }
+  let(:booking_link_target_ret) { '_blank' }
 
   before do
     assign(:property, property)
+    allow(view).to receive(:booking_link_target).and_return(booking_link_target_ret)
   end
 
   it 'displays advertising' do
@@ -47,5 +49,10 @@ RSpec.describe 'properties/show_showcase', type: :view do
     property.booking_url = 'http://example.org'
     render
     expect(response).to have_selector(".make-a-booking a[href='http://example.org']")
+  end
+
+  it 'links to the target given by booking_link_target' do
+    render
+    expect(response).to have_selector("a[target='#{booking_link_target_ret}']")
   end
 end
