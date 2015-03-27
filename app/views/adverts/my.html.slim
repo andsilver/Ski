@@ -2,7 +2,7 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('advertise') => advertise_path}, t('my_adverts'))
 
-- if @current_user.advertises_through_windows?
+- if @user.advertises_through_windows?
   h2= t('.my_windows')
   table.theme-table
     tr
@@ -20,6 +20,15 @@
         td= group.total
         td= group.number_in_use
         td= group.number_free
+  - if admin?
+    .well
+      h3= t('.extend_window_duration')
+      = form_tag(extend_windows_admin_user_path(@user)) do
+        .row
+          .col-md-2
+            input#days.form-control name="days" placeholder="#{t('.days')}"
+          .col-md-4
+            = submit_tag t('.extend_windows'), class: 'btn btn-default'
 
 - unless @rentals.empty?
   = render 'table', title: 'property_rentals', adverts: @rentals

@@ -22,5 +22,6 @@ table.table.table-condensed.table-bordered
         td= tick u.role.admin?
         td= link_to 'Switch User', switch_user_path(u.id), class: 'btn btn-default', data: { 'no-turbolink' => true }
         td
+          =' link_to 'Adverts', my_adverts_path(user_id: u.id), class: 'btn btn-default', data: { 'no-turbolink' => true }, title: "View #{u}'s adverts"
           =' edit_button u
           = delete_button([:admin, u])

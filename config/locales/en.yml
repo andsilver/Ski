@@ -40,8 +40,11 @@ en:
       empty: Your basket is empty.
       total: Total
     my:
+      days: 'Days'
       days_remaining: Days Remaining
       expires_on: Expires On
+      extend_window_duration: 'Extend Window Duration'
+      extend_windows: 'Extend Windows'
       my_windows: 'My Windows'
       number_free: Number Free
       number_in_use: Number in Use

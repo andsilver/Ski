@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :admin_required
   layout 'admin'
 
-  before_action :set_user, only: [:destroy]
+  before_action :set_user, only: [:destroy, :extend_windows]
 
   def index
     @users = User.order('email')
@@ -12,7 +12,15 @@ class Admin::UsersController < ApplicationController
     @user.destroy
     redirect_to admin_users_path, notice: t('notices.deleted')
   end
-  
+
+  def extend_windows
+    @user.windows.each do |window|
+      window.expires_at += params[:days].to_i.days
+      window.save
+    end
+    redirect_to my_adverts_path(user_id: @user.id)
+  end
+
   private
 
     def set_user

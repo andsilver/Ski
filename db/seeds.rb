@@ -352,6 +352,7 @@ property_developer = Role.create!(
   select_on_signup: true,
   advertises_properties_for_rent: false,
   advertises_properties_for_sale: true,
+  advertises_through_windows: true,
   flag_new_development: true,
   new_development_by_default: true,
   has_a_website: true

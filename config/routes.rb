@@ -40,7 +40,13 @@ Rails.application.routes.draw do
       end
     end
     resources :snippets,          except: [:show]
-    resources :users, only: [:index, :destroy]
+
+    resources :users, only: [:index, :destroy] do
+      member do
+        post 'extend_windows'
+      end
+    end
+
     resources :window_base_prices, except: [:show]
   end
 
