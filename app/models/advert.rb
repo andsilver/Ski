@@ -127,7 +127,8 @@ class Advert < ActiveRecord::Base
     save
   end
 
+  # Returns true if this advert both starts at and expires at before now.
   def old?
-    starts_at + months.months < Time.zone.now && expires_at < Time.zone.now
+    starts_at && (starts_at + days < Time.zone.now && expires_at < Time.zone.now)
   end
 end
