@@ -87,9 +87,16 @@ class PaymentsController < ApplicationController
         line.advert.start_and_save! unless line.coupon
       end
       if line.windows > 0
-        Advert.activate_windows_for_user(line.windows, order)
+        Advert.activate_windows_for_user(line.windows, order, initial_window_months(order))
       end
     end
     session[:windows_in_basket] = nil
+  end
+
+  # Returns the number of months the window should be initially activated for
+  # based on the order. Orders with a total of 0 are assumed to have been
+  # negotiated for a yearly fee offline.
+  def initial_window_months(order)
+    order.total > 0 ? 1 : 12
   end
 end

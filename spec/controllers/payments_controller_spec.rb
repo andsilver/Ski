@@ -49,4 +49,25 @@ describe PaymentsController do
       end
     end
   end
+
+  describe 'GET complete_payment_not_required' do
+    context 'with windows and 0 order value' do
+      let(:order) { FactoryGirl.create(:order, status: Order::PAYMENT_NOT_REQUIRED, total: 0) }
+
+      before do
+        OrderLine.create!(
+          order: order,
+          description: 'Windows',
+          amount: 0,
+          windows: 10
+        )
+        session[:order_id] = order.id
+      end
+
+      it 'activates windows for 12 months' do
+        expect(Advert).to receive(:activate_windows_for_user).with(10, order, 12)
+        get :complete_payment_not_required
+      end
+    end
+  end
 end
