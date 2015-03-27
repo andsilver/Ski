@@ -3,6 +3,8 @@ class ImagesController < ApplicationController
 
   before_action :admin_required, only: [:show]
 
+  before_action :user_required, only: [:index]
+
   def index
     @images = current_user.images
   end

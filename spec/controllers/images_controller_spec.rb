@@ -1,6 +1,7 @@
 require 'rails_helper'
+require_relative './shared_examples/user_required.rb'
 
-describe ImagesController do
+RSpec.describe ImagesController, type: :controller do
   let(:website) { double(Website).as_null_object }
 
   before do
@@ -8,8 +9,11 @@ describe ImagesController do
   end
 
   describe 'GET index' do
+    it_behaves_like 'a user requirer', :get, :index
+
     it 'assigns all images belonging to the current user to @images' do
-      user = double(User, images: :images)
+      user = User.new
+      allow(user).to receive(:images).and_return(:images)
       allow(controller).to receive(:current_user).and_return(user)
       get 'index'
       expect(assigns(:images)).to eq :images
