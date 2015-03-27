@@ -151,6 +151,20 @@ describe Advert do
     pending
   end
 
+  describe '#days' do
+    subject { Advert.new(months: months).days }
+
+    context 'for 1 month' do
+      let(:months) { 1 }
+      it { should eq 31.days }
+    end
+
+    context 'for 12 months' do
+      let(:months) { 12 }
+      it { should eq 366.days }
+    end
+  end
+
   describe "#record_view" do
     it "increases the number of views by one" do
       a = valid_advert

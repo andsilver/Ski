@@ -100,12 +100,25 @@ class Advert < ActiveRecord::Base
     self.starts_at = Time.now
 
     if object && object.current_advert
-      self.expires_at = object.current_advert.expires_at + months.months
+      self.expires_at = object.current_advert.expires_at + days
     else
-      self.expires_at = self.starts_at + months.months
+      self.expires_at = self.starts_at + days
     end
 
     save
+  end
+
+  # Returns a more optimistic number of days for the advert's number of months
+  # than Rails.
+  #
+  #   Advert.new(months: 1).days  # => 31 days
+  #   Advert.new(months: 12).days # => 366 days
+  def days
+    Advert.days_for_months(months)
+  end
+
+  def self.days_for_months(months)
+    (months * 30.5).ceil.days
   end
 
   # Records a view or impression of this advert and saves the model.
