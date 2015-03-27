@@ -12,7 +12,7 @@ describe Coupon do
   # ActiveModel
   it { should validate_presence_of(:code) }
   it { should validate_uniqueness_of(:code) }
-  it { should ensure_inclusion_of(:number_of_adverts).in_range(1..1000000).with_message("is not in the range 1-1000000") }
+  it { should validate_inclusion_of(:number_of_adverts).in_range(1..1000000).with_message("is not in the range 1-1000000") }
 
   describe "#expired?" do
     pending
