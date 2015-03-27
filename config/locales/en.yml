@@ -239,6 +239,7 @@ en:
     directory_image: 'Directory Image'
     image: 'Image'
     image_uploaded: Image uploaded.
+    invalid_object: "The object you are trying to add an image to is invalid. Please start again by going back to that object (for example, a property or banner advert)."
     invalid_dimensions: This image was not accepted because it does not have valid dimensions.
     problem_uploading: 'There was a problem uploading your image. Was it in the correct format?'
     saved: 'Image saved.'

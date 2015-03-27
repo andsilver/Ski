@@ -24,7 +24,7 @@
 
 <div class="form-group">
 	<%= form.label :image, "Image (.jpeg, .jpg, .gif, .png)" %><br>
-	<%= form.file_field :image %>
+	<%= form.file_field :image, required: true %>
 </div>
 
 <%= submit_tag "Upload Image", class: 'btn btn-default' %>

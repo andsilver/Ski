@@ -1,4 +1,5 @@
 require 'rails_helper'
+require_relative './shared_examples/image_object_required.rb'
 require_relative './shared_examples/user_required.rb'
 
 RSpec.describe ImagesController, type: :controller do
@@ -21,6 +22,8 @@ RSpec.describe ImagesController, type: :controller do
   end
 
   describe 'POST create' do
+    it_behaves_like 'an image object requirer', :post, :create, {}
+
     context 'when image saves' do
       before do
         allow_any_instance_of(Image).to receive(:save).and_return(true)

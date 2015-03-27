@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :object, only: [:new, :edit, :create]
+  before_action :require_object, only: [:new, :edit, :create]
 
   before_action :admin_required, only: [:show]
 
@@ -77,6 +77,16 @@ class ImagesController < ApplicationController
 
     object.image_id = @image.id
     object.save
+  end
+
+  # Ensures we have a valid object to add an image to. The type of object and
+  # its ID should be stored in the session.
+  def require_object
+    begin
+      object
+    rescue
+      redirect_to images_path, notice: t('images_controller.invalid_object')
+    end
   end
 
   def object
