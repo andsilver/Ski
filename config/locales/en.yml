@@ -42,6 +42,7 @@ en:
     my:
       days_remaining: Days Remaining
       expires_on: Expires On
+      my_windows: 'My Windows'
       number_free: Number Free
       number_in_use: Number in Use
       purchased_on: Purchased On
