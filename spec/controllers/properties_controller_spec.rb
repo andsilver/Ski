@@ -3,12 +3,10 @@ require 'rails_helper'
 describe PropertiesController do
   let(:property) { FactoryGirl.create(:property) }
   let(:website) { double(Website).as_null_object }
-  let(:resort) { double(Resort).as_null_object }
   let(:non_admin_role) { double(Role).as_null_object }
 
   before do
     allow(Website).to receive(:first).and_return(website)
-    allow(Resort).to receive(:find_by).and_return(resort)
     allow(non_admin_role).to receive(:admin?).and_return(false)
   end
 
@@ -117,12 +115,37 @@ describe PropertiesController do
     it_behaves_like 'an availability filter', :get, :quick_search
   end
 
+  shared_examples_for 'it requires a resort or region' do |method, action, listing_type|
+    it 'shows with a resort' do
+      resort = FactoryGirl.create(:resort)
+      FactoryGirl.create(:property, resort: resort, listing_type: listing_type)
+      send(method, action, resort_slug: resort.slug)
+      expect(response.status).to eq 200
+    end
+
+    it 'shows with a region' do
+      region = FactoryGirl.create(:region)
+      resort = FactoryGirl.create(:resort, region: region)
+      FactoryGirl.create(:property, resort: resort, listing_type: listing_type)
+      send(method, action, resort_slug: region.slug)
+      expect(response.status).to eq 200
+    end
+
+    it '404s with neither a resort nor region' do
+      FactoryGirl.create(:property, listing_type: listing_type)
+      send(method, action, resort_slug: 'nonexistent')
+      expect(response.status).to eq 404
+    end
+  end
+
   describe 'GET browse_for_rent' do
     it_behaves_like 'a protector of hidden resorts', :get, :browse_for_rent
+    it_behaves_like 'it requires a resort or region', :get, :browse_for_rent, Property::LISTING_TYPE_FOR_RENT
   end
 
   describe 'GET browse_for_sale' do
     it_behaves_like 'a protector of hidden resorts', :get, :browse_for_sale
+    it_behaves_like 'it requires a resort or region', :get, :browse_for_sale, Property::LISTING_TYPE_FOR_SALE
   end
 
   describe 'GET browse_hotels' do
@@ -131,6 +154,7 @@ describe PropertiesController do
 
   describe 'GET new_developments' do
     let(:properties) { double(ActiveRecord::Relation).as_null_object }
+    let!(:resort) { FactoryGirl.create(:resort) }
 
     before do
       rel = double(Property::ActiveRecord_Relation)
@@ -141,22 +165,22 @@ describe PropertiesController do
     it_behaves_like 'a protector of hidden resorts', :get, :new_developments
 
     it 'finds a resort by its slug' do
-      expect(Resort).to receive(:find_by).with(slug: 'chamonix').and_return(Resort.new)
-      get :new_developments, resort_slug: 'chamonix'
+      expect(Resort).to receive(:find_by).with(slug: resort.slug).and_call_original
+      get :new_developments, resort_slug: resort.slug
     end
 
     it "finds paginated properties" do
       expect(properties).to receive(:paginate)
-      get :new_developments, resort_slug: 'chamonix'
+      get :new_developments, resort_slug: resort.slug
     end
 
     it "finds new developments" do
       expect(Property).to receive(:where).with(["publicly_visible = 1 AND resort_id = ? AND new_development = 1", resort.id]).and_return(properties)
-      get :new_developments, resort_slug: 'chamonix'
+      get :new_developments, resort_slug: resort.slug
     end
 
     it "assigns @properties" do
-      get :new_developments, resort_slug: 'chamonix'
+      get :new_developments, resort_slug: resort.slug
       expect(assigns[:properties]).to equal(properties)
     end
   end
@@ -266,6 +290,8 @@ describe PropertiesController do
   end
 
   describe 'GET contact' do
+    let(:resort) { FactoryGirl.create(:resort) }
+
     def get_contact
       get :contact, id: '1'
     end

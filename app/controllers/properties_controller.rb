@@ -25,6 +25,7 @@ class PropertiesController < ApplicationController
   before_action :set_resort_and_region, only: SEARCH_PAGES
   before_action :set_country, only: [:quick_search]
   before_action :require_resort, only: SEARCH_PAGES - [:quick_search, :browse_for_rent, :browse_for_sale]
+  before_action :require_resort_or_region, only: [:browse_for_rent, :browse_for_sale]
   before_action :protect_hidden_resort, only: SEARCH_PAGES
   before_action :location_conditions, only: SEARCH_PAGES
   before_action :holiday_type_conditions, only: SEARCH_PAGES
@@ -482,6 +483,10 @@ class PropertiesController < ApplicationController
 
   def require_resort
     not_found unless @resort
+  end
+
+  def require_resort_or_region
+    not_found unless (@resort || @region)
   end
 
   def protect_hidden_resort
