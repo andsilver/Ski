@@ -119,17 +119,14 @@ describe PropertiesController do
 
   describe 'GET browse_for_rent' do
     it_behaves_like 'a protector of hidden resorts', :get, :browse_for_rent
-    it_behaves_like 'a country scoped search', :get, :quick_search
   end
 
   describe 'GET browse_for_sale' do
     it_behaves_like 'a protector of hidden resorts', :get, :browse_for_sale
-    it_behaves_like 'a country scoped search', :get, :quick_search
   end
 
   describe 'GET browse_hotels' do
     it_behaves_like 'a protector of hidden resorts', :get, :browse_hotels
-    it_behaves_like 'a country scoped search', :get, :quick_search
   end
 
   describe 'GET new_developments' do
@@ -141,7 +138,6 @@ describe PropertiesController do
       allow(rel).to receive(:order).and_return(properties)
     end
 
-    it_behaves_like 'a country scoped search', :get, :quick_search
     it_behaves_like 'a protector of hidden resorts', :get, :new_developments
 
     it 'finds a resort by its slug' do

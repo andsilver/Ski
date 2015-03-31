@@ -22,7 +22,8 @@ class PropertiesController < ApplicationController
 
   SEARCH_PAGES = [:browse_for_rent, :browse_for_sale, :browse_hotels, :new_developments, :quick_search]
 
-  before_action :set_resort_and_region_and_country, only: SEARCH_PAGES
+  before_action :set_resort_and_region, only: SEARCH_PAGES
+  before_action :set_country, only: [:quick_search]
   before_action :require_resort, only: SEARCH_PAGES - [:quick_search, :browse_for_rent, :browse_for_sale]
   before_action :protect_hidden_resort, only: SEARCH_PAGES
   before_action :location_conditions, only: SEARCH_PAGES
@@ -454,8 +455,8 @@ class PropertiesController < ApplicationController
     not_found unless @property
   end
 
-  def set_resort_and_region_and_country
-    @region = @resort = @country = nil
+  def set_resort_and_region
+    @region = @resort = nil
 
     if params[:resort_slug]
       @resort = Resort.find_by(slug: params[:resort_slug])
@@ -469,9 +470,13 @@ class PropertiesController < ApplicationController
     if params[:resort_id]
       @resort ||= Resort.find_by(id: params[:resort_id])
     end
+  end
 
+  def set_country
     if params[:country_id]
       @country = Country.find_by(id: params[:country_id])
+    else
+      @country = nil
     end
   end
 
