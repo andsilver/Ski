@@ -51,14 +51,17 @@ class AccommodationImporter
   def cleanup
     delete_old_adverts
     destroy_all
-  end    
+  end
 
   # Imports a single XML file. Property geocoding is suspended for the
   # duration of the file's import.
   def import_file(filename)
     xml_file = File.open(filename, 'rb')
-    xml = XmlSimple.xml_in(xml_file)
-    xml_file.close
+    begin
+      xml = XmlSimple.xml_in(xml_file)
+    ensure
+      xml_file.close
+    end
 
     if xml
       Property.stop_geocoding
