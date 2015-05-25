@@ -1,4 +1,5 @@
 = page_header 'CMS'
+p= "There are #{pluralize(delayed_job_workers, 'delayed_job worker')} running. There should be at least 3."
 p= link_to t('.restart'), restart_path, class: 'btn btn-default'
 p= link_to 'Precompile Assets', precompile_assets_path, class: 'btn btn-default'
 p= link_to 'Style Guide', style_guide_path, class: 'btn btn-default'

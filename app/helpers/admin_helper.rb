@@ -30,4 +30,11 @@ module AdminHelper
       content_tag(:td, link_to('Move Down', send(path_helper, object), class: 'btn btn-default', method: :post))
     end
   end
+
+  def delayed_job_workers
+    `ps x | grep delayed_job`
+      .split("\n")
+      .reject{|l| l.include?('grep')}
+      .count
+  end
 end
