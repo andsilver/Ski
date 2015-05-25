@@ -100,3 +100,6 @@ en:
         title: Edit Window Base Price
       new:
         title: New Window Base Price
+  cms:
+    index:
+      restart: 'Restart Application and Background Workers'

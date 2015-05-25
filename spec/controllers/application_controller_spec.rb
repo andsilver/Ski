@@ -1,10 +1,27 @@
 require 'rails_helper'
 
-describe ApplicationController do
+RSpec.describe ApplicationController, type: :controller do
   let(:website) { double(Website).as_null_object }
 
   before do
     allow(Website).to receive(:first).and_return(website)
+  end
+
+  describe 'GET restart' do
+    before do
+      signed_in_as_admin
+    end
+
+    it 'runs the restart script' do
+      expect(controller).to receive(:restart_script)
+      get :restart
+    end
+
+    it 'redirects to CMS index' do
+      allow(controller).to receive(:restart_script)
+      get :restart
+      expect(response).to redirect_to cms_path
+    end
   end
 
   describe 'GET sitemap' do

@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def restart
-    `touch tmp/restart.txt` # assumes Phusion Passenger
+    restart_script
     redirect_to cms_path, notice: 'Application restarted.'
   end
 
@@ -205,5 +205,9 @@ class ApplicationController < ActionController::Base
       else
         raise exception
       end
+    end
+
+    def restart_script
+      `./restart.sh`
     end
 end
