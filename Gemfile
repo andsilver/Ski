@@ -21,6 +21,8 @@ gem 'liquid'
 gem 'aws-sdk', '~> 1'
 gem 'sanitize'
 gem 'slim', '~> 2.0.0'
+# Easier Bootstrap forms
+gem 'bootstrap_form'
 
 # Run jobs in background processes
 gem 'daemons'

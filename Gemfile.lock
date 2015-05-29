@@ -60,6 +60,7 @@ GEM
       nokogiri (>= 1.4.4)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap_form (2.3.0)
     brakeman (3.0.2)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
@@ -351,6 +352,7 @@ DEPENDENCIES
   acts_as_list
   acts_as_tree
   aws-sdk (~> 1)
+  bootstrap_form
   brakeman
   byebug
   capybara
