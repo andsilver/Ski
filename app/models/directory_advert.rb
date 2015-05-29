@@ -77,7 +77,13 @@ class DirectoryAdvert < ActiveRecord::Base
     ads
   end
 
-  def self.small_banners_for(resort, qty = 6)
-    self.banner_adverts_for(resort, [160, 200], qty)
+  # Returns small banner adverts for a place. Only resorts support advertising
+  # at the moment so any other type of place will return an empty array.
+  def self.small_banners_for(place, qty = 6)
+    if place.is_a?(Resort)
+      self.banner_adverts_for(place, [160, 200], qty)
+    else
+      []
+    end
   end
 end

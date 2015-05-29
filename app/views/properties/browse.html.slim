@@ -55,4 +55,4 @@
 
       = will_paginate @properties
 
-= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort) if @resort
+= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort || @region)

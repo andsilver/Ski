@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe DirectoryAdvert do
+RSpec.describe DirectoryAdvert, type: :model do
   describe '#price' do
     context 'when a banner advert' do
       let(:da) { DirectoryAdvert.new {|da| da.is_banner_advert = true} }
@@ -26,6 +26,26 @@ describe DirectoryAdvert do
         trackable_type: 'DirectoryAdvert'
       ) }
       expect(da.reload.clicks.count).to eq 3
+    end
+  end
+
+  describe '.small_banners_for' do
+    context 'with a region' do
+      it 'returns an empty array' do
+        expect(DirectoryAdvert.small_banners_for(Region.new)).to eq []
+      end
+
+      it 'does not call self.banner_adverts_for' do
+        expect(DirectoryAdvert).not_to receive(:banner_adverts_for)
+        DirectoryAdvert.small_banners_for(Region.new)
+      end
+    end
+
+    context 'with a resort' do
+      it 'calls self.banner_adverts_for' do
+        expect(DirectoryAdvert).to receive(:banner_adverts_for)
+        DirectoryAdvert.small_banners_for(Resort.new)
+      end
     end
   end
 end
