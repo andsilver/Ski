@@ -287,7 +287,7 @@ p, label {
     position: absolute;
     top: 15px;
     left: 0;
-    z-index: 5;
+    z-index: 11; /* Allows for 10 slides at z-index 1-10 */
   }
 
   #page-surround {
