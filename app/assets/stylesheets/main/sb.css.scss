@@ -206,10 +206,10 @@ p, label {
 
 .flat-list:after, .flat-list-right:after
 {
-   content: "."; 
-   visibility: hidden; 
-   display: block; 
-   height: 0; 
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
    clear: both;
 }
 
@@ -258,7 +258,7 @@ p, label {
 
   ul#carousel-slides {
     list-style: none;
-    margin: 0;    
+    margin: 0;
     padding: 0;
 
     .caption {
