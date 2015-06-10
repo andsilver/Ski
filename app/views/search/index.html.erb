@@ -2454,6 +2454,12 @@
 
 <div id="bloodhound" style="margin-bottom:15em;">
 <input class="typeahead" type="text" placeholder="Search Regions & Resorts">
+<div class="date home-datepicker" id="arrival-datepicker">
+      <input class="form-control" type="text" value="Check in date" name="start_date">
+  </div>
+  <div class="date home-datepicker" id="departure-datepicker">
+      <input class="form-control" type="text" value="Check out date" name="end_date">
+  </div>
 </div>
 
 
@@ -2471,4 +2477,15 @@ $('#bloodhound .typeahead').typeahead(null, {
 name: 'states',
 source: states
 });
+
+  $(function() {
+    $('.home-datepicker input').pickadate({
+      onOpen: function() {
+        console.log('Opened up');
+        if($('.home-datepicker .help').length == 0) {
+          $('.home-datepicker .picker__footer').after('<p class="help">%={t(\'.help\')}</p>');
+        }
+      }
+    });
+  });
   </script>
