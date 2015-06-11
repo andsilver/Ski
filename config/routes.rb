@@ -65,6 +65,8 @@ Rails.application.routes.draw do
   # the resort property routes.
   get "regions/:region_slug/properties/rent" => "properties#browse_for_rent", as: :region_property_rent
   get "regions/:region_slug/properties/sale" => "properties#browse_for_sale", as: :region_property_sale
+  get "regions/:region_slug/properties/new-developments" => "properties#new_developments", as: :region_property_new_developments
+  get "regions/:region_slug/properties/hotels" => "properties#browse_hotels", as: :region_property_hotels
 
   get "resorts/:id/resort-guide" => "resorts#resort_guide", as: :resort_guide
   get "resorts/:id/ski-and-guiding-schools" => "resorts#ski_and_guiding_schools", as: :ski_and_guiding_schools
@@ -254,6 +256,9 @@ Rails.application.routes.draw do
   get 'sitemap.xml' => 'application#sitemap', as:  'sitemap', :format => 'xml'
   get 'restart' => 'application#restart', as: 'restart'
   get 'precompile_assets' => 'application#precompile_assets', as: 'precompile_assets'
+
+  get 'search' => 'search#index'
+  get 'search/place_names' => 'search#place_names'
 
   get 'home/country_options_for_quick_search' => 'home#country_options_for_quick_search'
   get 'home/resort_options_for_quick_search' => 'home#resort_options_for_quick_search'

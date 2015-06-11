@@ -1,0 +1,43 @@
+<div id="bloodhound" style="margin-bottom:15em;">
+  <form class="search-form" action="/properties/search">
+    <input class="typeahead" type="text" placeholder="Search Regions & Resorts" name="place_name">
+    <div class="date search-datepicker" id="arrival-datepicker">
+      <input class="form-control" type="text" placeholder="Check-in" value="" name="start_date">
+    </div>
+    <div class="date search-datepicker" id="departure-datepicker">
+      <input class="form-control" type="text" placeholder="Check-out" value="" name="end_date">
+    </div>
+    <input class="form-submit form-control" type="submit" value="Search">
+  </form>
+</div>
+
+
+<script>
+  // constructs the suggestion engine
+  var states = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    // `states` is an array of state names defined in "The Basics"
+    prefetch: 'place_names.json'
+  });
+
+  $('#bloodhound .typeahead').typeahead({
+    hint: true,
+    highlight: true
+    }, {
+    name: 'states',
+    source: states
+  });
+
+  $(function() {
+    $('.search-datepicker input').pickadate({
+      onOpen: function() {
+        console.log('Opened up');
+        if($('.search-datepicker .help').length == 0) {
+          $('.search-datepicker .picker__footer').after('<p class="help">%={t(\'.help\')}</p>');
+        }
+      },
+      format: 'd mmm, yyyy'
+    });
+  });
+</script>

@@ -23,6 +23,7 @@ class PropertiesController < ApplicationController
   SEARCH_PAGES = [:browse_for_rent, :browse_for_sale, :browse_hotels, :new_developments, :quick_search]
 
   before_action :set_resort_and_region, only: SEARCH_PAGES
+  before_action :set_resort_and_region_from_place_name, only: [:quick_search]
   before_action :set_country, only: [:quick_search]
   before_action :require_resort, only: SEARCH_PAGES - [:quick_search, :browse_for_rent, :browse_for_sale]
   before_action :require_resort_or_region, only: [:browse_for_rent, :browse_for_sale]
@@ -467,9 +468,13 @@ class PropertiesController < ApplicationController
     elsif params[:region_slug]
       @region = Region.find_by(slug: params[:region_slug])
     end
+  end
 
-    if params[:resort_id]
-      @resort ||= Resort.find_by(id: params[:resort_id])
+  def set_resort_and_region_from_place_name
+    #raise Resort.first.name
+    if params[:place_name]
+      @resort ||= Resort.find_by(name: params[:place_name])
+      @region ||= Region.find_by(name: params[:place_name])
     end
   end
 
