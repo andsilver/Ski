@@ -1,7 +1,7 @@
 <section>
   <div id="quick-search">
     <%= form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do %>
-      <input type="hidden" name="resort_id" value="<%= @resort.id %>">
+      <input type="hidden" name="resort_slug" value="<%= @resort.slug %>">
       <%= render 'properties/sleeps_select' %>
       <%= render 'properties/price_range_select' %>
       <%= render 'home/datepickers' %>
