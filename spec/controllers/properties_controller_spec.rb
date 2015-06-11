@@ -109,10 +109,47 @@ describe PropertiesController do
     end
   end
 
+  shared_examples_for 'a region and resort setter' do |method, action|
+    let(:resort_id) { nil }
+    let(:resort_slug) { nil }
+    let(:region_slug) { nil }
+
+    before do
+      send(method, action, resort_id: resort_id, resort_slug: resort_slug, region_slug: region_slug)
+    end
+
+    context 'given a resort slug that refers to a resort' do
+      let(:resort) { FactoryGirl.create(:resort) }
+      let(:resort_slug)  { resort.slug }
+
+      it 'sets the resort' do
+        expect(assigns(:resort)).to eq(resort)
+      end
+    end
+    context 'given a resort slug that refers to a region' do
+      let(:region) { FactoryGirl.create(:region) }
+      let(:resort_slug) { region.slug }
+
+      it 'sets the region' do
+        expect(assigns(:region)).to eq(region)
+      end
+    end
+
+    context 'given a region slug' do
+      let(:region) { FactoryGirl.create(:region) }
+      let(:region_slug) { region.slug }
+
+      it 'sets the region' do
+        expect(assigns(:region)).to eq(region)
+      end
+    end
+  end
+
   describe 'GET quick_search' do
     it_behaves_like 'a protector of hidden resorts', :get, :quick_search
     it_behaves_like 'a country scoped search', :get, :quick_search
     it_behaves_like 'an availability filter', :get, :quick_search
+    it_behaves_like 'a region and resort setter', :get, :quick_search
   end
 
   shared_examples_for 'it requires a resort or region' do |method, action, listing_type|
@@ -141,15 +178,18 @@ describe PropertiesController do
   describe 'GET browse_for_rent' do
     it_behaves_like 'a protector of hidden resorts', :get, :browse_for_rent
     it_behaves_like 'it requires a resort or region', :get, :browse_for_rent, Property::LISTING_TYPE_FOR_RENT
+    it_behaves_like 'a region and resort setter', :get, :browse_for_rent
   end
 
   describe 'GET browse_for_sale' do
     it_behaves_like 'a protector of hidden resorts', :get, :browse_for_sale
     it_behaves_like 'it requires a resort or region', :get, :browse_for_sale, Property::LISTING_TYPE_FOR_SALE
+    it_behaves_like 'a region and resort setter', :get, :browse_for_sale
   end
 
   describe 'GET browse_hotels' do
     it_behaves_like 'a protector of hidden resorts', :get, :browse_hotels
+    it_behaves_like 'a region and resort setter', :get, :browse_hotels
   end
 
   describe 'GET new_developments' do
@@ -163,6 +203,7 @@ describe PropertiesController do
     end
 
     it_behaves_like 'a protector of hidden resorts', :get, :new_developments
+    it_behaves_like 'a region and resort setter', :get, :new_developments
 
     it 'finds a resort by its slug' do
       expect(Resort).to receive(:find_by).with(slug: resort.slug).and_call_original

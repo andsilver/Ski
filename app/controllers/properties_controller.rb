@@ -467,10 +467,6 @@ class PropertiesController < ApplicationController
     elsif params[:region_slug]
       @region = Region.find_by(slug: params[:region_slug])
     end
-
-    if params[:resort_id]
-      @resort ||= Resort.find_by(id: params[:resort_id])
-    end
   end
 
   def set_country
