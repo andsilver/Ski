@@ -3,6 +3,6 @@ class SearchController < ApplicationController
   end
 
   def place_names
-    render json: (Region.pluck('name') + Resort.pluck('name')).sort
+    render json: (Region.pluck('name') + Resort.visible.pluck('name')).sort
   end
 end
