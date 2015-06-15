@@ -44,8 +44,7 @@ class PropertiesController < ApplicationController
     browse_property_breadcrumbs
     @heading = t('properties_controller.quick_search.heading')
 
-    order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
-      "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
+    order = selected_order(whitelist: order_whitelist, sort_method: params[:sort_method])
     @conditions[0] += " AND (listing_type = #{Property::LISTING_TYPE_FOR_RENT} OR listing_type = #{Property::LISTING_TYPE_HOTEL})"
 
     @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :wifi,
@@ -77,8 +76,7 @@ class PropertiesController < ApplicationController
     @heading = I18n.t('properties_controller.browse_for_rent.heading.' +
       browse_heading_key, place: place)
 
-    order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
-      "metres_from_lift ASC", "sleeping_capacity ASC", "number_of_bedrooms ASC" ])
+    order = selected_order(whitelist: order_whitelist, sort_method: params[:sort_method])
     @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_FOR_RENT}"
 
     @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :wifi,
@@ -105,7 +103,7 @@ class PropertiesController < ApplicationController
     @heading = I18n.t('properties_controller.browse_for_sale.heading.' +
       browse_heading_key, place: place)
 
-    order = for_sale_selected_order
+    order = selected_order(whitelist: for_sale_order_whitelist, sort_method: params[:sort_method])
 
     @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_FOR_SALE}"
 
@@ -123,7 +121,7 @@ class PropertiesController < ApplicationController
     @heading = t(:new_developments)
     @conditions[0] += " AND new_development = 1"
 
-    order = for_sale_selected_order
+    order = selected_order(whitelist: for_sale_order_whitelist, sort_method: params[:sort_method])
 
     @search_filters = [:garage, :parking, :garden]
 
@@ -138,8 +136,7 @@ class PropertiesController < ApplicationController
     @breadcrumbs = {@resort.name => @resort}
     @heading = t('properties_controller.titles.browse_hotels', resort: @resort)
 
-    order = selected_order([ "normalised_weekly_rent_price DESC", "normalised_weekly_rent_price ASC",
-      "metres_from_lift ASC", "sleeping_capacity ASC", "star_rating DESC" ])
+    order = selected_order(whitelist: hotel_order_whitelist, sort_method: params[:sort_method])
 
     @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_HOTEL}"
 
@@ -418,6 +415,8 @@ class PropertiesController < ApplicationController
 
   protected
 
+  include PropertyOrdering
+
   def find_properties(order)
     @properties = Property.where(@conditions).order(order).paginate(page: params[:page])
   end
@@ -496,16 +495,6 @@ class PropertiesController < ApplicationController
 
   def protect_hidden_resort
     not_found if @resort && !@resort.visible? && !admin?
-  end
-
-  def selected_order(whitelist)
-    whitelist.include?(params[:sort_method]) ? params[:sort_method] : whitelist.first
-  end
-
-  def for_sale_selected_order
-    selected_order([ 'normalised_sale_price DESC', 'normalised_sale_price ASC',
-      'metres_from_lift ASC', 'number_of_bathrooms ASC',
-      'number_of_bedrooms ASC' ])
   end
 
   def location_conditions
