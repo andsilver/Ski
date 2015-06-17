@@ -29,15 +29,9 @@
     source: states
   });
 
-  $(function() {
-    $('.search-datepicker input').pickadate({
-      onOpen: function() {
-        console.log('Opened up');
-        if($('.search-datepicker .help').length == 0) {
-          $('.search-datepicker .picker__footer').after('<p class="help">%={t(\'.help\')}</p>');
-        }
-      },
-      format: 'd mmm, yyyy'
-    });
-  });
+   $(function() {
+     $('.search-datepicker input').pickadate({
+       format: 'd mmm, yyyy'
+     });
+   });
 </script>
