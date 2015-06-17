@@ -71,12 +71,15 @@ describe 'properties/browse' do
   end
 
   context 'with results' do
-    let(:property) { FactoryGirl.create(:property) }
-    let(:properties) { [property] }
-
     before do
-      allow(properties).to receive(:total_pages).and_return(1)
-      assign(:properties, properties)
+      FactoryGirl.create(:property)
+      @properties = Property.all.paginate(page: 1)
+      assign(:properties, @properties)
+    end
+
+    it 'shows pagination' do
+      render
+      expect(rendered).to have_selector('.results-count')
     end
   end
 
