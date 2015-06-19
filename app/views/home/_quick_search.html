@@ -1,0 +1,75 @@
+<div id="bloodhound" style="margin-bottom:15em;">
+  <form class="search-form" action="/properties/search">
+    <input class="typeahead" type="text" placeholder="Please enter your destination" name="place_name">
+    <input class="form-submit form-control" type="submit" value="Search">
+  </form>
+  <p>OR</p>
+  <div class="date search-datepicker" id="departure-datepicker">
+    <select id="holiday-type-picker">
+      <option value="none">Holiday Type...</option>
+      <option value="ski">Ski Holidays</option>
+      <option value="lakes">Lakes & Mountains</option>
+      <option value="summer">Summer Villas</option>
+      <option value="city">City Breaks</option>
+    </select>
+  </div>
+</div>
+
+<script>
+  $('#holiday-type-picker').change(function() {
+    var holidayType = $('#holiday-type-picker').val();
+
+    if(holidayType == 'none') {
+      alert('Please select a destination OR a holiday type');
+    } else {
+      switch(holidayType) {
+        case 'ski':
+          window.location.href = '/holidays/ski-holidays';
+          break;
+        case 'lakes':
+          window.location.href = '/holidays/lakes-and-mountains';
+          break;
+        case 'summer':
+          window.location.href = '/holidays/summer-villas';
+          break;
+        case 'city':
+          window.location.href = '/holidays/city-breaks';
+          break;
+      }
+    }
+  });
+
+  $('.search-form').on('submit', function() {
+    var placeName = $('.tt-input').val();
+
+    if(placeName) {
+      return true;
+    } else {
+      alert('Please select a destination OR a holiday type');
+    }
+
+    return false;
+  });
+
+  // constructs the suggestion engine
+  var states = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    // `states` is an array of state names defined in "The Basics"
+    prefetch: '/search/place_names.json'
+  });
+
+  $('#bloodhound .typeahead').typeahead({
+    hint: true,
+    highlight: true
+    }, {
+    name: 'states',
+    source: states
+  });
+
+   $(function() {
+     $('.search-datepicker input').pickadate({
+       format: 'd mmm, yyyy'
+     });
+   });
+</script>

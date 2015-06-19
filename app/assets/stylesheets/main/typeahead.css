@@ -59,7 +59,7 @@
   width: 100px;
   background-color: #005ea5;
   color: #eee;
-  margin-left: 4px;
+  margin-left: 10px;
   float: left;
   font-weight: bold;
 }
@@ -77,4 +77,17 @@
   height: 54px;
   width: 700px;
   border-radius: 4px;
+}
+
+#bloodhound p {
+  float: left;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 30px;
+  padding: 0 10px;
+}
+
+#holiday-type-picker {
+  height: 34px;
 }

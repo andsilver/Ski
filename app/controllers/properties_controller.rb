@@ -40,6 +40,16 @@ class PropertiesController < ApplicationController
   end
 
   def quick_search
+    if @resort
+      redirect_to '/resorts/' + @resort.name.downcase.tr(' ', '-')
+    else
+      if @region
+        redirect_to '/regions/' + @region.name.downcase.tr(' ', '-')
+      end
+    end
+
+    return
+
     default_page_title t('properties.titles.browse_for_rent', place: place)
     browse_property_breadcrumbs
     @heading = t('properties_controller.quick_search.heading')
