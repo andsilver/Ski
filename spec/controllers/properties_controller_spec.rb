@@ -146,30 +146,10 @@ describe PropertiesController do
   end
 
   describe 'GET quick_search' do
-    #it_behaves_like 'a protector of hidden resorts', :get, :quick_search
-    #it_behaves_like 'a country scoped search', :get, :quick_search
-    #it_behaves_like 'an availability filter', :get, :quick_search
+    it_behaves_like 'a protector of hidden resorts', :get, :quick_search
+    it_behaves_like 'a country scoped search', :get, :quick_search
+    it_behaves_like 'an availability filter', :get, :quick_search
     it_behaves_like 'a region and resort setter', :get, :quick_search
-
-    context 'with place_name set' do
-      before { get :quick_search, place_name: place_name }
-
-      context 'to a resort name`' do
-        let(:resort) { FactoryGirl.create(:resort) }
-        let(:place_name) { resort.name }
-        it 'sets the resort' do
-          expect(assigns(:resort)).to eq(resort)
-        end
-      end
-
-      context 'to a region name' do
-        let(:region) { FactoryGirl.create(:region) }
-        let(:place_name) { region.name }
-        it 'sets the region' do
-          expect(assigns(:region)).to eq(region)
-        end
-      end
-    end
   end
 
   shared_examples_for 'it requires a resort or region' do |method, action, listing_type|

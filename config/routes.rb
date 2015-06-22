@@ -260,6 +260,7 @@ Rails.application.routes.draw do
   get 'search' => 'search#index'
   get 'search/place_names' => 'search#place_names'
 
+  get 'home/search' => 'home#search', as: :home_search
   get 'home/country_options_for_quick_search' => 'home#country_options_for_quick_search'
   get 'home/resort_options_for_quick_search' => 'home#resort_options_for_quick_search'
   root 'home#index'

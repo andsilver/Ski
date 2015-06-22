@@ -6,7 +6,7 @@ feature 'Quick search' do
   end
 
   scenario 'Resort or region is required', js: true do
-    visit '/'
+    visit '/favourites'
     click_button 'Search'
     accept_prompt 'Please choose a resort first.'
   end

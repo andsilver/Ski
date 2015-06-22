@@ -1,6 +1,18 @@
 class HomeController < ApplicationController
+  before_action :set_resort_and_region_from_place_name, only: [:search]
+
   def index
     @featured_properties = @w.featured_properties
+  end
+
+  def search
+    if @resort
+      redirect_to @resort
+    elsif @region
+      redirect_to @region
+    else
+      not_found
+    end
   end
 
   def country_options_for_quick_search
@@ -39,4 +51,13 @@ class HomeController < ApplicationController
   def terms
     default_page_title t('terms')
   end
+
+  private
+
+    def set_resort_and_region_from_place_name
+      if params[:place_name]
+        @resort ||= Resort.find_by(name: params[:place_name])
+        @region ||= Region.find_by(name: params[:place_name])
+      end
+    end
 end
