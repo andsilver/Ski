@@ -1,17 +1,20 @@
-<div id="bloodhound" style="margin-bottom:15em;">
-  <form class="search-form" action="<%= home_search_path %>">
-    <input class="typeahead" type="text" placeholder="Please enter your destination" name="place_name">
-    <input class="form-submit form-control" type="submit" value="Search">
-  </form>
-  <p>OR</p>
-  <div class="date search-datepicker" id="departure-datepicker">
-    <select id="holiday-type-picker">
-      <option value="none">Holiday Type...</option>
-      <option value="ski">Ski Holidays</option>
-      <option value="lakes">Lakes & Mountains</option>
-      <option value="summer">Summer Villas</option>
-      <option value="city">City Breaks</option>
-    </select>
+<div id="searchBox">
+  <div id="bloodhound">
+    <form class="search-form" action="<%= home_search_path %>">
+      <input class="typeahead" type="text" placeholder="Please enter your destination" name="place_name">
+      <input class="form-submit form-control" type="submit" value="Search">
+    </form>
+    <p>or</p>
+    <div class="date search-datepicker" id="departure-datepicker">
+      <select id="holiday-type-picker">
+        <option value="none">Holiday Type...</option>
+        <option value="ski">Ski Holidays</option>
+        <option value="lakes">Lakes & Mountains</option>
+        <option value="summer">Summer Villas</option>
+        <option value="city">City Breaks</option>
+        <option value="spa">Spa Resorts</option>
+      </select>
+    </div>
   </div>
 </div>
 
@@ -34,6 +37,9 @@
           break;
         case 'city':
           window.location.href = '/holidays/city-breaks';
+          break;
+        case 'spa':
+          window.location.href = '/holoidays/spa-resorts';
           break;
       }
     }

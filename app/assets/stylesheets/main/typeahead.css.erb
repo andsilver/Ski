@@ -69,13 +69,17 @@
   color: #005ea5;
 }
 
+#searchBox {
+  width: 970px;
+}
+
 #bloodhound {
-  margin-bottom: 15em;
-  width: auto;
+  display: block;
+  margin: 0 auto;
   padding: 10px;
-  background-color: rgba(0, 94, 165, 0.1);
+  background-color: rgba(0, 94, 165, 0.3);
   height: 54px;
-  width: 700px;
+  width: 660px;
   border-radius: 4px;
 }
 
@@ -90,4 +94,22 @@
 
 #holiday-type-picker {
   height: 34px;
+  border: 1px solid #111;
+  background: transparent;
+  width: 150px;
+  padding: 5px 29px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('<%= asset_path('dropdown-arrow.jpg') %>') 96% / 15% no-repeat #eee;
+  border-radius: 5px;
+}
+
+@media screen and (min-width:0\0) {
+    #holiday-type-picker {
+        background: #eee;
+        padding: 5px;
+    }
 }
