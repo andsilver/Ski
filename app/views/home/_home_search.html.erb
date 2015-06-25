@@ -58,10 +58,9 @@
   });
 
   // constructs the suggestion engine
-  var states = new Bloodhound({
+  var places = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    // `states` is an array of state names defined in "The Basics"
     prefetch: '/search/place_names.json'
   });
 
@@ -69,8 +68,8 @@
     hint: true,
     highlight: true
     }, {
-    name: 'states',
-    source: states,
+    name: 'places',
+    source: places,
     limit: 15
   });
 
