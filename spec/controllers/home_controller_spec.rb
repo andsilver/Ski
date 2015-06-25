@@ -24,7 +24,7 @@ RSpec.describe HomeController, type: :controller do
         end
 
         it 'redirects to the resort\'s page' do
-          expect(response).to redirect_to(resort)
+          expect(response).to redirect_to('/' + resort.slug + '/properties/rent')
         end
       end
 
@@ -36,7 +36,7 @@ RSpec.describe HomeController, type: :controller do
         end
 
         it 'redirects to the region\'s page' do
-          expect(response).to redirect_to(region)
+          expect(response).to redirect_to('/' + region.slug + '/properties/rent')
         end
       end
     end
