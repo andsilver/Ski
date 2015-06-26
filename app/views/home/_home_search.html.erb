@@ -64,6 +64,8 @@
     prefetch: '/search/place_names.json'
   });
 
+  places.clearPrefetchCache();
+
   $('#bloodhound .typeahead').typeahead({
     hint: true,
     highlight: true
