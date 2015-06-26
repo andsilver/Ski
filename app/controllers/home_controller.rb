@@ -7,9 +7,9 @@ class HomeController < ApplicationController
 
   def search
     if @resort
-      redirect_to '/' + @resort.slug + '/properties/rent'
+      redirect_to resort_property_rent_path(@resort)
     elsif @region
-      redirect_to '/' + @region.slug + '/properties/rent'
+      redirect_to region_property_rent_path(@region)
     else
       not_found
     end
