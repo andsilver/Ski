@@ -9,7 +9,7 @@
       <select id="holiday-type-picker">
         <option value="none">Holiday Type...</option>
         <option value="ski">Ski Holidays</option>
-        <option value="lakes">Lakes & Mountains</option>
+        <option value="lakes">Lakes &amp; Mountains</option>
         <option value="summer">Summer Villas</option>
         <option value="city">City Breaks</option>
         <option value="spa">Spa Resorts</option>
@@ -23,7 +23,7 @@
     var holidayType = $('#holiday-type-picker').val();
 
     if(holidayType == 'none') {
-      alert('Please select a destination OR a holiday type');
+      return;
     } else {
       switch(holidayType) {
         case 'ski':
@@ -59,7 +59,7 @@
 
   // constructs the suggestion engine
   var places = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     prefetch: '/search/place_names.json'
   });
@@ -67,10 +67,16 @@
   $('#bloodhound .typeahead').typeahead({
     hint: true,
     highlight: true
-    }, {
+  }, {
     name: 'places',
     source: places,
-    limit: 15
+    display: 'name',
+    limit: 15,
+    templates: {
+      suggestion: function(data) {
+         return '<div><strong>' + data.name + '</strong>  <div class="property-count">' + data.count + ' <div>For Rent</div></div></div>';
+      }
+    }
   });
 
    $(function() {

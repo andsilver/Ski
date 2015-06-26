@@ -8,16 +8,20 @@ RSpec.describe SearchController, type: :controller do
   end
 
   describe 'GET #place_names' do
-    let(:region) { FactoryGirl.create(:region, name: 'Lake Como') }
-    let(:resort1) { FactoryGirl.create(:resort, name: 'Zel am See') }
+    let(:region) { FactoryGirl.create(:region, name: 'Lake Como', property_count: 2) }
+    let(:resort1) { FactoryGirl.create(:resort, name: 'Zel am See', property_count: 3) }
     let(:resort2) { FactoryGirl.create(:resort, visible: 0) }
-    let(:resort3) { FactoryGirl.create(:resort, name: 'Chamonix') }
+    let(:resort3) { FactoryGirl.create(:resort, name: 'Chamonix', property_count: 0) }
 
     render_views
 
     it 'returns the names of regions and visible resorts in alphabetical order' do
       get :place_names
-      JSON.parse(response.body) == ['Chamonix', 'Lake Como', 'Zel am See']
+      JSON.parse(response.body) == [
+          { name: 'Chamonix', count: 0 },
+          { name: 'Lake Como', count: 2 },
+          { name: 'Zel am See', count: 3 }
+        ]
     end
   end
 end

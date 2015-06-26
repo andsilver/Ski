@@ -3,6 +3,11 @@ class SearchController < ApplicationController
   end
 
   def place_names
-    render json: (Region.pluck('name') + Resort.visible.pluck('name')).sort
+    render json: (
+        Region.pluck('name', 'property_count') +
+        Resort.visible.pluck('name', 'property_count')
+      )
+      .sort
+      .map{|x| {name: x[0], count: x[1]} }
   end
 end
