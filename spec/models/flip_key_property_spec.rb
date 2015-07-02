@@ -130,11 +130,20 @@ describe FlipKeyProperty do
   end
 
   describe '.stale' do
-    it 'returns properties older than 1 week' do
-      stale = FactoryGirl.create(:flip_key_property, updated_at: Time.zone.now - (1.week + 1.second))
-      still_fresh = FactoryGirl.create(:flip_key_property, updated_at: Time.zone.now - 6.days)
+    it 'returns properties older than 24 hours' do
+      stale = FactoryGirl.create(:flip_key_property, updated_at: Time.zone.now - (24.hours + 1.second))
+      still_fresh = FactoryGirl.create(:flip_key_property, updated_at: Time.zone.now - 23.hours)
       expect(FlipKeyProperty.stale).to include(stale)
       expect(FlipKeyProperty.stale).not_to include(still_fresh)
+    end
+  end
+
+  describe '.destroy_stale' do
+    it 'destroys stale properties' do
+      stale = FactoryGirl.create(:flip_key_property)
+      allow(FlipKeyProperty).to receive(:stale).and_return FlipKeyProperty.all
+      FlipKeyProperty.destroy_stale
+      expect(FlipKeyProperty.find_by(id: stale.id)).to be_nil
     end
   end
 end

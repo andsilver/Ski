@@ -24,6 +24,14 @@ module FlipKey
         expect(importer).to receive(:import_properties)
         importer.import
       end
+
+      it 'destroys stale properties' do
+        allow(importer).to receive(:import_locations)
+        allow(importer).to receive(:import_properties)
+
+        expect(FlipKeyProperty).to receive(:destroy_stale)
+        importer.import
+      end
     end
 
     describe '#import_properties' do
@@ -84,7 +92,7 @@ module FlipKey
         importer.perform_import(FakeDownloader, FakeImporter, filenames, Importer::PROPERTY_XML_SPLIT_OPTIONS)
       end
     end
-    
+
     describe '#perform_import_without_download' do
       let(:filenames) { -> { ['data1.xml'] } }
 

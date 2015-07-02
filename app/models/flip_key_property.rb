@@ -205,10 +205,17 @@ class FlipKeyProperty < ActiveRecord::Base
     return ''
   end
 
+  # Destroys stale properties.
+  def self.destroy_stale
+    stale.destroy_all
+  end
+
   # Returns stale properties, that is, thse that have not been updated in
   # a while.
+  # The time chosen is based on the time between imports.
+  # FlipKey requires that partners update their feed on a daily basis.
   def self.stale
-    where ['updated_at <= ?', Time.zone.now - 1.week]
+    where ['updated_at <= ?', Time.zone.now - 24.hours]
   end
 
   private

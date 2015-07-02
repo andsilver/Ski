@@ -13,4 +13,10 @@ module FlipKey
   def self.user_email
     'flipkey@mychaletfinder.com'
   end
+
+  # Estimated time to perform a full import. Adjust this as needed based on
+  # observed times.
+  def self.estimated_import_time
+    18.hours
+  end
 end

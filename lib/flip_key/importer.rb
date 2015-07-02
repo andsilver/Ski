@@ -25,10 +25,11 @@ module FlipKey
       @options = options.reverse_merge! skip_download: false, limit_filenames: -1
     end
 
-    # Imports all FlipKey data.
+    # Imports all FlipKey data and destroys old properties.
     def import
       import_locations
       import_properties
+      FlipKeyProperty.destroy_stale
     end
 
     # Imports FlipKey location data.
@@ -61,7 +62,7 @@ module FlipKey
       filenames_matching(/\Aproperty_data_\d+\.\d+\.xml\z/)
     end
 
-    # Performs an import. 
+    # Performs an import.
     #
     # The download process is skipped if FlipKey::Importer is initialised with
     # the +skip_download+ option.
@@ -111,7 +112,7 @@ module FlipKey
         opts = { xml_filename: xml_filename }.merge xml_split_options
         splitter = ::XMLSplitter.new(opts)
         splitter.split(&block)
-      end      
+      end
     end
 
     private
