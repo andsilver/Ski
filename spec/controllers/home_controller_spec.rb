@@ -10,8 +10,8 @@ RSpec.describe HomeController, type: :controller do
 
     context 'when given neither a region or a resort' do
       let(:place_name) { nil }
-      it 'returns 404' do
-        expect(response.status).to eq(404)
+      it 'redirects to the home page' do
+        expect(response).to redirect_to root_path
       end
     end
 

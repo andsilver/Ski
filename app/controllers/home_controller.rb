@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     elsif @region
       redirect_to region_property_rent_path(@region)
     else
-      not_found
+      redirect_to root_path
     end
   end
 
