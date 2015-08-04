@@ -49,6 +49,15 @@ describe FlipKeyProperty do
     end
   end
 
+  describe '#city' do
+    let(:fk) { FlipKeyProperty.new(json_data: json_data) }
+    subject { fk.city }
+    context 'when city info is missing' do
+      let(:json_data) { '{"property_addresses": [{"city": [{}]}]}' }
+      it { should eq '' }
+    end
+  end
+
   describe '#amenities' do
     let(:fk) { FlipKeyProperty.new }
 

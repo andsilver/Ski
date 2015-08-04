@@ -34,15 +34,17 @@ javascript:
             li= @property.flip_key_property.property_type
           h3 Description from the manager
           p= raw flip_key_property_description(@json)
-  
+
         h2 Location
         p
-          = "#{@property.flip_key_property.location_description}, #{@property.flip_key_property.city}"
+          = raw "#{@property.flip_key_property.location_description}"
+          - if @property.flip_key_property.city.present?
+            = ", #{@property.flip_key_property.city}"
           br
           = @property.country
         = render partial: 'google_map', locals: { lat: @property.flip_key_property.latitude, lng: @property.flip_key_property.longitude }
         #map_canvas
-  
+
         h2 Availability
         - cal = FlipKeyCalendar.new(@property.flip_key_property)
         .well

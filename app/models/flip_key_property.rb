@@ -95,7 +95,12 @@ class FlipKeyProperty < ActiveRecord::Base
   end
 
   def city
-    parsed_json['property_addresses'][0]['city'][0]
+    c = parsed_json['property_addresses'][0]['city'][0]
+    if c.kind_of?(Hash)
+      ''
+    else
+      c
+    end
   end
 
   # Returns the maximum number of guests.
