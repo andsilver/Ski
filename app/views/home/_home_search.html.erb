@@ -79,6 +79,10 @@
          return '<div>' + data.name + ' <div class="property-count">' + data.count + ' <div>For Rent</div></div></div>';
       }
     }
+  }).keypress(function (e) {
+    if (e.which == 13) {
+      $('.tt-suggestion:first-child').trigger('click');
+    }
   });
 
    $(function() {
