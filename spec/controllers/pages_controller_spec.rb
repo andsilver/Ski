@@ -22,7 +22,6 @@ describe PagesController do
       }}
 
       it 'creates a page' do
-        pp page_params
         expect(Page.find_by(page_params)).to be
       end
 
