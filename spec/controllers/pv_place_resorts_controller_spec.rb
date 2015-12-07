@@ -32,7 +32,7 @@ describe PvPlaceResortsController do
 
       context 'when the P&V place resort saves successfully' do
         before do
-          pv_place_resort.stub(:save).and_return(true)
+          allow(pv_place_resort).to receive(:save).and_return(true)
         end
 
         it 'sets a flash[:notice] message' do

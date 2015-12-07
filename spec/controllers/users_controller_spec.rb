@@ -34,7 +34,7 @@ describe UsersController do
 
     before do
       allow(Role).to receive(:find_by).and_return(role)
-      UserNotifier.stub_chain(:welcome, :deliver)
+      allow(UserNotifier).to receive_message_chain(:welcome, :deliver)
     end
 
     it "instantiates a new user with the given cleansed params" do

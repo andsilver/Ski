@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Advert do
+RSpec.describe Advert, type: :model do
   describe ".create_for" do
     let(:property) { Property.new }
 
@@ -26,9 +26,9 @@ describe Advert do
 
       it "sets the advert's duration to the default months of the object" do
         allow(Advert).to receive(:new_for).and_return(advert)
-        advert.stub(:save!).and_return(true)
+        allow(advert).to receive(:save!).and_return(true)
 
-        property.stub(:default_months).and_return(24)
+        allow(property).to receive(:default_months).and_return(24)
         expect(advert).to receive(:months=).with(24)
         Advert.create_for(property)
       end

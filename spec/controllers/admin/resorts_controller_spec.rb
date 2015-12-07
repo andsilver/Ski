@@ -119,8 +119,8 @@ describe Admin::ResortsController do
 
       context 'when resort has no properties or directory adverts' do
         before do
-          resort.stub_chain([:properties, :any?]).and_return(false)
-          resort.stub_chain([:directory_adverts, :any?]).and_return(false)
+          allow(resort).to receive_message_chain([:properties, :any?]).and_return(false)
+          allow(resort).to receive_message_chain([:directory_adverts, :any?]).and_return(false)
         end
 
         it 'destroys the resort' do
@@ -141,8 +141,8 @@ describe Admin::ResortsController do
 
       context 'when resort has properties' do
         before do
-          resort.stub_chain([:properties, :any?]).and_return(true)
-          resort.stub_chain([:directory_adverts, :any?]).and_return(false)
+          allow(resort).to receive_message_chain([:properties, :any?]).and_return(true)
+          allow(resort).to receive_message_chain([:directory_adverts, :any?]).and_return(false)
         end
 
         it 'renders' do
@@ -153,8 +153,8 @@ describe Admin::ResortsController do
 
       context 'when resort has directory adverts' do
         before do
-          resort.stub_chain([:directory_adverts, :any?]).and_return(true)
-          resort.stub_chain([:properties, :any?]).and_return(false)
+          allow(resort).to receive_message_chain([:directory_adverts, :any?]).and_return(true)
+          allow(resort).to receive_message_chain([:properties, :any?]).and_return(false)
         end
 
         it 'renders' do
