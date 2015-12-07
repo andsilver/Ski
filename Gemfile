@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.5'
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'will_paginate'
 gem 'acts_as_list'
 gem 'acts_as_tree'
@@ -88,7 +88,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers', '~> 3.0'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem "capybara"
