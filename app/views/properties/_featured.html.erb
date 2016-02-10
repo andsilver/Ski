@@ -3,7 +3,7 @@
   <% if p.image %>
   <%= image_tag(p.image.url(258), alt: featured_property_alt_attribute(p)) %>
   <% else %>
-  <%= image_tag('image-missing.png') %>
+  <%= image_tag('image-missing.png', alt: 'Image missing') %>
   <% end %>
   <p class="header-title"><%= featured_property_price_message(p) %></p>
   <div class="header-text-cont">
