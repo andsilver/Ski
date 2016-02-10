@@ -18,15 +18,15 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.integer  "months",              limit: 4, default: 3,     null: false
     t.datetime "starts_at"
     t.datetime "expires_at"
-    t.boolean  "moderated",           limit: 1, default: false, null: false
-    t.boolean  "paused",              limit: 1, default: false, null: false
+    t.boolean  "moderated",                     default: false, null: false
+    t.boolean  "paused",                        default: false, null: false
     t.integer  "views",               limit: 4, default: 0,     null: false
     t.integer  "banner_advert_id",    limit: 4
     t.integer  "directory_advert_id", limit: 4
     t.integer  "property_id",         limit: 4
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.boolean  "window",              limit: 1, default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "window",                        default: false, null: false
     t.integer  "order_id",            limit: 4
   end
 
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.integer  "resort_id",   limit: 4,             null: false
     t.integer  "airport_id",  limit: 4,             null: false
     t.integer  "distance_km", limit: 4, default: 0, null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "airport_distances", ["resort_id"], name: "index_airport_distances_on_resort_id", using: :btree
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.integer  "airport_id",       limit: 4,                null: false
     t.integer  "resort_id",        limit: 4,                null: false
     t.integer  "user_id",          limit: 4,                null: false
-    t.boolean  "publicly_visible", limit: 1, default: true, null: false
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.boolean  "publicly_visible",           default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "airport_transfers", ["airport_id"], name: "index_airport_transfers_on_airport_id", using: :btree
@@ -63,15 +63,15 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "name",       limit: 255, default: "", null: false
     t.string   "code",       limit: 255, default: "", null: false
     t.integer  "country_id", limit: 4,                null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "alt_attributes", force: :cascade do |t|
     t.string   "path",       limit: 255,              null: false
     t.string   "alt_text",   limit: 255, default: "", null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "alt_attributes", ["path"], name: "index_alt_attributes_on_path", using: :btree
@@ -79,11 +79,11 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "availabilities", force: :cascade do |t|
     t.integer  "property_id",  limit: 4
     t.date     "start_date"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "availability", limit: 1, null: false
-    t.boolean  "check_in",     limit: 1, null: false
-    t.boolean  "check_out",    limit: 1, null: false
+    t.boolean  "check_in",               null: false
+    t.boolean  "check_out",              null: false
   end
 
   add_index "availabilities", ["created_at"], name: "index_availabilities_on_created_at", using: :btree
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.integer  "width",      limit: 4,   default: 0, null: false
     t.integer  "height",     limit: 4,   default: 0, null: false
     t.integer  "clicks",     limit: 4,   default: 0, null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "banner_adverts", ["resort_id"], name: "index_banner_adverts_on_resort_id", using: :btree
@@ -109,15 +109,15 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "banner_prices", force: :cascade do |t|
     t.integer  "current_banner_number", limit: 4, default: 0, null: false
     t.integer  "price",                 limit: 4, default: 0, null: false
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "buying_guides", force: :cascade do |t|
     t.integer  "country_id", limit: 4,     null: false
     t.text     "content",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "buying_guides", ["country_id"], name: "index_buying_guides_on_country_id", using: :btree
@@ -136,18 +136,18 @@ ActiveRecord::Schema.define(version: 20150226121422) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "countries", force: :cascade do |t|
     t.string   "name",                    limit: 255,   default: "",    null: false
     t.string   "iso_3166_1_alpha_2",      limit: 255,   default: "",    null: false
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "info",                    limit: 65535
-    t.boolean  "popular_billing_country", limit: 1,     default: false, null: false
-    t.boolean  "in_eu",                   limit: 1,     default: false, null: false
+    t.boolean  "popular_billing_country",               default: false, null: false
+    t.boolean  "in_eu",                                 default: false, null: false
     t.integer  "image_id",                limit: 4
     t.text     "banner_advert_html",      limit: 65535
     t.integer  "property_count",          limit: 4,     default: 0,     null: false
@@ -159,8 +159,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "coupons", force: :cascade do |t|
     t.string   "code",              limit: 255
     t.integer  "number_of_adverts", limit: 4
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "percentage_off",    limit: 4,   default: 100, null: false
     t.date     "expires_on"
   end
@@ -168,11 +168,11 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "currencies", force: :cascade do |t|
     t.string   "name",       limit: 255,                         default: "",   null: false
     t.string   "unit",       limit: 255,                         default: "",   null: false
-    t.boolean  "pre",        limit: 1,                           default: true, null: false
+    t.boolean  "pre",                                            default: true, null: false
     t.string   "code",       limit: 255,                         default: "",   null: false
     t.decimal  "in_euros",               precision: 6, scale: 4, default: 1.0,  null: false
-    t.datetime "created_at",                                                    null: false
-    t.datetime "updated_at",                                                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -194,8 +194,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "directory_adverts", force: :cascade do |t|
     t.integer  "user_id",          limit: 4,                     null: false
     t.integer  "category_id",      limit: 4,                     null: false
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "business_address", limit: 255,                   null: false
     t.string   "postcode",         limit: 255,   default: "",    null: false
     t.string   "opening_hours",    limit: 255,   default: "",    null: false
@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "url",              limit: 255,   default: "",    null: false
     t.string   "strapline",        limit: 255,   default: "",    null: false
     t.text     "description",      limit: 65535
-    t.boolean  "is_banner_advert", limit: 1,     default: false, null: false
+    t.boolean  "is_banner_advert",               default: false, null: false
     t.integer  "banner_image_id",  limit: 4
     t.integer  "width",            limit: 4,     default: 0,     null: false
     t.integer  "height",           limit: 4,     default: 0,     null: false
@@ -224,20 +224,20 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.date     "date_of_arrival"
     t.date     "date_of_departure"
     t.text     "comments",              limit: 65535
-    t.boolean  "contact_me",            limit: 1,     default: false, null: false
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.boolean  "contact_me",                          default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "number_of_adults",      limit: 4,     default: 0,     null: false
     t.integer  "number_of_children",    limit: 4,     default: 0,     null: false
     t.integer  "number_of_infants",     limit: 4,     default: 0,     null: false
-    t.boolean  "permission_to_contact", limit: 1,     default: false, null: false
+    t.boolean  "permission_to_contact",               default: false, null: false
   end
 
   create_table "favourites", force: :cascade do |t|
     t.integer  "property_id",          limit: 4, null: false
     t.integer  "unregistered_user_id", limit: 4, null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "favourites", ["property_id"], name: "index_favourites_on_property_id", using: :btree
@@ -270,8 +270,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "footers", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
     t.text     "content",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "footers", ["name"], name: "index_footers_on_name", using: :btree
@@ -292,7 +292,7 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "slug",            limit: 255,                  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "visible_on_menu", limit: 1,     default: true, null: false
+    t.boolean  "visible_on_menu",               default: true, null: false
     t.text     "sidebar_html",    limit: 65535
     t.text     "mega_menu_html",  limit: 65535
   end
@@ -300,8 +300,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "images", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
     t.string   "filename",    limit: 255,   null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "property_id", limit: 4
     t.text     "source_url",  limit: 65535
   end
@@ -330,8 +330,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "geodata_lng",        limit: 255,   null: false
     t.text     "features",           limit: 65535
     t.string   "themes",             limit: 255,   null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "permalink",          limit: 255
   end
 
@@ -341,8 +341,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "interhome_inside_descriptions", force: :cascade do |t|
     t.string   "accommodation_code", limit: 255,   null: false
     t.text     "description",        limit: 65535
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "interhome_inside_descriptions", ["accommodation_code"], name: "index_interhome_inside_descriptions_on_accommodation_code", using: :btree
@@ -350,8 +350,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "interhome_outside_descriptions", force: :cascade do |t|
     t.string   "accommodation_code", limit: 255,   null: false
     t.text     "description",        limit: 65535
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "interhome_outside_descriptions", ["accommodation_code"], name: "index_interhome_outside_descriptions_on_accommodation_code", using: :btree
@@ -361,8 +361,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "picture_type",               limit: 255, null: false
     t.string   "season",                     limit: 255, null: false
     t.string   "url",                        limit: 255, null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "interhome_pictures", ["interhome_accommodation_id"], name: "index_interhome_pictures_on_interhome_accommodation_id", using: :btree
@@ -370,8 +370,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "interhome_place_resorts", force: :cascade do |t|
     t.integer  "resort_id",            limit: 4,   null: false
     t.string   "interhome_place_code", limit: 255, null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "interhome_place_resorts", ["resort_id"], name: "index_interhome_place_resorts_on_resort_id", using: :btree
@@ -380,8 +380,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "code",       limit: 255, null: false
     t.string   "name",       limit: 255, null: false
     t.string   "full_name",  limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "interhome_places", ["code"], name: "index_interhome_places_on_code", using: :btree
@@ -396,8 +396,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.integer  "max_rental_price",    limit: 4,               null: false
     t.string   "special_offer_code",  limit: 255
     t.integer  "special_offer_price", limit: 4
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "regular_price",       limit: 4,   default: 0, null: false
   end
 
@@ -411,8 +411,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.text     "changeover",                 limit: 65535
     t.text     "minstay",                    limit: 65535
     t.text     "flexbooking",                limit: 65535
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "interhome_vacancies", ["accommodation_code"], name: "index_interhome_vacancies_on_accommodation_code", using: :btree
@@ -423,8 +423,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "description", limit: 255,             null: false
     t.integer  "amount",      limit: 4,               null: false
     t.integer  "advert_id",   limit: 4
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "coupon_id",   limit: 4
     t.integer  "country_id",  limit: 4
     t.integer  "resort_id",   limit: 4
@@ -447,10 +447,10 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.integer  "country_id",          limit: 4,                                           null: false
     t.string   "phone",               limit: 255,                                         null: false
     t.integer  "total",               limit: 4,                                           null: false
-    t.datetime "created_at",                                                              null: false
-    t.datetime "updated_at",                                                              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "postcode",            limit: 255,                         default: "",    null: false
-    t.boolean  "pay_monthly",         limit: 1,                           default: false
+    t.boolean  "pay_monthly",                                             default: false
     t.integer  "first_payment",       limit: 4,                           default: 0
     t.integer  "subsequent_payments", limit: 4,                           default: 0
     t.integer  "tax_amount",          limit: 4,                           default: 0,     null: false
@@ -469,12 +469,12 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "title",                limit: 255,                  null: false
     t.string   "description",          limit: 255,   default: "",   null: false
     t.string   "keywords",             limit: 255,   default: "",   null: false
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "footer_id",            limit: 4
     t.text     "content",              limit: 65535
     t.text     "banner_advert_html",   limit: 65535
-    t.boolean  "visible",              limit: 1,     default: true, null: false
+    t.boolean  "visible",                            default: true, null: false
     t.string   "sidebar_snippet_name", limit: 255
     t.string   "header_snippet_name",  limit: 255
     t.integer  "region_id",            limit: 4
@@ -493,7 +493,7 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "description",        limit: 255
     t.string   "amount",             limit: 255
     t.string   "currency",           limit: 255
-    t.boolean  "test_mode",          limit: 1
+    t.boolean  "test_mode"
     t.string   "name",               limit: 255
     t.string   "address",            limit: 255
     t.string   "postcode",           limit: 255
@@ -505,9 +505,9 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "transaction_status", limit: 255
     t.string   "transaction_time",   limit: 255
     t.text     "raw_auth_message",   limit: 65535
-    t.boolean  "accepted",           limit: 1
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "futurepay_id",       limit: 255,   default: "", null: false
   end
 
@@ -522,54 +522,54 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.integer  "metres_from_lift",             limit: 4,     default: 0,     null: false
     t.integer  "sleeping_capacity",            limit: 4,     default: 0,     null: false
     t.integer  "number_of_bedrooms",           limit: 4,     default: 0,     null: false
-    t.boolean  "new_development",              limit: 1,     default: false, null: false
+    t.boolean  "new_development",                            default: false, null: false
     t.integer  "listing_type",                 limit: 4,     default: 0,     null: false
     t.integer  "image_id",                     limit: 4
     t.integer  "weekly_rent_price",            limit: 4,     default: 0,     null: false
-    t.boolean  "fully_equipped_kitchen",       limit: 1,     default: false, null: false
+    t.boolean  "fully_equipped_kitchen",                     default: false, null: false
     t.integer  "tv",                           limit: 4,     default: 0,     null: false
-    t.boolean  "wifi",                         limit: 1,     default: false, null: false
-    t.boolean  "disabled",                     limit: 1,     default: false, null: false
+    t.boolean  "wifi",                                       default: false, null: false
+    t.boolean  "disabled",                                   default: false, null: false
     t.integer  "parking",                      limit: 4,     default: 0,     null: false
-    t.boolean  "pets",                         limit: 1,     default: false, null: false
-    t.boolean  "smoking",                      limit: 1,     default: false, null: false
+    t.boolean  "pets",                                       default: false, null: false
+    t.boolean  "smoking",                                    default: false, null: false
     t.integer  "sale_price",                   limit: 4,     default: 0,     null: false
-    t.boolean  "garden",                       limit: 1,     default: false, null: false
+    t.boolean  "garden",                                     default: false, null: false
     t.integer  "floor_area_metres_2",          limit: 4,     default: 0,     null: false
     t.integer  "plot_size_metres_2",           limit: 4,     default: 0,     null: false
-    t.datetime "created_at",                                                 null: false
-    t.datetime "updated_at",                                                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "description",                  limit: 65535
     t.integer  "number_of_bathrooms",          limit: 4,     default: 0,     null: false
     t.string   "address",                      limit: 255,   default: "",    null: false
     t.string   "postcode",                     limit: 255,   default: "",    null: false
     t.string   "latitude",                     limit: 255,   default: "",    null: false
     t.string   "longitude",                    limit: 255,   default: "",    null: false
-    t.boolean  "long_term_lets_available",     limit: 1,     default: false, null: false
-    t.boolean  "balcony",                      limit: 1,     default: false, null: false
-    t.boolean  "mountain_views",               limit: 1,     default: false, null: false
-    t.boolean  "log_fire",                     limit: 1,     default: false, null: false
-    t.boolean  "cave",                         limit: 1,     default: false, null: false
-    t.boolean  "ski_in_ski_out",               limit: 1,     default: false, null: false
-    t.boolean  "hot_tub",                      limit: 1,     default: false, null: false
-    t.boolean  "indoor_swimming_pool",         limit: 1,     default: false, null: false
-    t.boolean  "outdoor_swimming_pool",        limit: 1,     default: false, null: false
-    t.boolean  "sauna",                        limit: 1,     default: false, null: false
+    t.boolean  "long_term_lets_available",                   default: false, null: false
+    t.boolean  "balcony",                                    default: false, null: false
+    t.boolean  "mountain_views",                             default: false, null: false
+    t.boolean  "log_fire",                                   default: false, null: false
+    t.boolean  "cave",                                       default: false, null: false
+    t.boolean  "ski_in_ski_out",                             default: false, null: false
+    t.boolean  "hot_tub",                                    default: false, null: false
+    t.boolean  "indoor_swimming_pool",                       default: false, null: false
+    t.boolean  "outdoor_swimming_pool",                      default: false, null: false
+    t.boolean  "sauna",                                      default: false, null: false
     t.integer  "distance_from_town_centre_m",  limit: 4,     default: 0,     null: false
     t.integer  "accommodation_type",           limit: 4,     default: 0,     null: false
     t.integer  "currency_id",                  limit: 4,     default: 1,     null: false
     t.integer  "normalised_sale_price",        limit: 4,     default: 0,     null: false
     t.integer  "normalised_weekly_rent_price", limit: 4,     default: 0,     null: false
-    t.boolean  "children_welcome",             limit: 1,     default: false, null: false
-    t.boolean  "short_stays",                  limit: 1,     default: false, null: false
-    t.boolean  "terrace",                      limit: 1,     default: false, null: false
+    t.boolean  "children_welcome",                           default: false, null: false
+    t.boolean  "short_stays",                                default: false, null: false
+    t.boolean  "terrace",                                    default: false, null: false
     t.integer  "pericles_id",                  limit: 4
     t.integer  "board_basis",                  limit: 4,     default: 0,     null: false
     t.integer  "star_rating",                  limit: 4,     default: 1,     null: false
     t.integer  "interhome_accommodation_id",   limit: 4
     t.integer  "country_id",                   limit: 4
-    t.boolean  "publicly_visible",             limit: 1,     default: false, null: false
-    t.boolean  "late_availability",            limit: 1,     default: true
+    t.boolean  "publicly_visible",                           default: false, null: false
+    t.boolean  "late_availability",                          default: true
     t.integer  "pv_accommodation_id",          limit: 4
     t.integer  "region_id",                    limit: 4
     t.string   "booking_url",                  limit: 255,   default: "",    null: false
@@ -590,15 +590,15 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "property_base_prices", force: :cascade do |t|
     t.integer  "number_of_months", limit: 4, default: 0, null: false
     t.integer  "price",            limit: 4, default: 0, null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "property_volume_discounts", force: :cascade do |t|
     t.integer  "current_property_number", limit: 4, default: 0, null: false
     t.integer  "discount_percentage",     limit: 4, default: 0, null: false
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "discount_amount",         limit: 4, default: 0, null: false
   end
 
@@ -621,8 +621,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.text     "services",        limit: 65535
     t.string   "price_table_url", limit: 255,   null: false
     t.string   "permalink",       limit: 255,   null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "photos",          limit: 65535
   end
 
@@ -632,8 +632,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "pv_place_resorts", force: :cascade do |t|
     t.integer  "resort_id",     limit: 4,   null: false
     t.string   "pv_place_code", limit: 255, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "pv_place_resorts", ["pv_place_code"], name: "index_pv_place_resorts_on_pv_place_code", using: :btree
@@ -653,8 +653,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.decimal  "promo_price_nl",               precision: 10, scale: 2, null: false
     t.decimal  "promo_price_es",               precision: 10, scale: 2, null: false
     t.decimal  "promo_price_it",               precision: 10, scale: 2, null: false
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "pv_vacancies", ["destination_code", "apartment_code"], name: "index_pv_vacancies_on_destination_code_and_apartment_code", using: :btree
@@ -666,7 +666,7 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug",           limit: 255,                  null: false
-    t.boolean  "visible",        limit: 1,     default: true, null: false
+    t.boolean  "visible",                      default: true, null: false
     t.integer  "property_count", limit: 4,     default: 0,    null: false
   end
 
@@ -677,8 +677,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "resorts", force: :cascade do |t|
     t.integer  "country_id",             limit: 4,     default: 0,     null: false
     t.string   "name",                   limit: 255,   default: "",    null: false
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "info",                   limit: 65535
     t.integer  "altitude_m",             limit: 4
     t.integer  "top_lift_m",             limit: 4
@@ -698,11 +698,11 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.integer  "snowboard_parks",        limit: 4
     t.integer  "cross_country_km",       limit: 4
     t.integer  "mountain_restaurants",   limit: 4
-    t.boolean  "glacier_skiing",         limit: 1
-    t.boolean  "creche",                 limit: 1
-    t.boolean  "babysitting_services",   limit: 1
-    t.boolean  "visible",                limit: 1,     default: false, null: false
-    t.boolean  "featured",               limit: 1,     default: false, null: false
+    t.boolean  "glacier_skiing"
+    t.boolean  "creche"
+    t.boolean  "babysitting_services"
+    t.boolean  "visible",                              default: false, null: false
+    t.boolean  "featured",                             default: false, null: false
     t.text     "feature",                limit: 65535
     t.text     "introduction",           limit: 65535
     t.string   "season",                 limit: 255,   default: "",    null: false
@@ -710,8 +710,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.integer  "intermediate",           limit: 4,     default: 0,     null: false
     t.integer  "off_piste",              limit: 4,     default: 0,     null: false
     t.integer  "expert",                 limit: 4,     default: 0,     null: false
-    t.boolean  "heli_skiing",            limit: 1
-    t.boolean  "summer_skiing",          limit: 1
+    t.boolean  "heli_skiing"
+    t.boolean  "summer_skiing"
     t.integer  "family",                 limit: 4,     default: 0,     null: false
     t.text     "visiting",               limit: 65535
     t.text     "owning_a_property_in",   limit: 65535
@@ -719,7 +719,7 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.text     "insider_view",           limit: 65535
     t.text     "weather_code",           limit: 65535
     t.string   "apres_ski",              limit: 255,   default: "",    null: false
-    t.boolean  "local_area",             limit: 1,     default: false, null: false
+    t.boolean  "local_area",                           default: false, null: false
     t.integer  "property_count",         limit: 4,     default: 0,     null: false
     t.integer  "for_rent_count",         limit: 4,     default: 0,     null: false
     t.integer  "for_sale_count",         limit: 4,     default: 0,     null: false
@@ -727,7 +727,7 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.integer  "new_development_count",  limit: 4,     default: 0,     null: false
     t.text     "gallery_content",        limit: 65535
     t.text     "piste_map_content",      limit: 65535
-    t.boolean  "summer_only",            limit: 1,     default: false, null: false
+    t.boolean  "summer_only",                          default: false, null: false
     t.integer  "directory_advert_count", limit: 4,     default: 0,     null: false
     t.integer  "region_id",              limit: 4
     t.string   "slug",                   limit: 255,                   null: false
@@ -742,27 +742,27 @@ ActiveRecord::Schema.define(version: 20150226121422) do
 
   create_table "roles", force: :cascade do |t|
     t.string   "name",                           limit: 255
-    t.boolean  "select_on_signup",               limit: 1
-    t.boolean  "admin",                          limit: 1
-    t.boolean  "flag_new_development",           limit: 1
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
-    t.boolean  "advertises_properties_for_rent", limit: 1,     default: false, null: false
-    t.boolean  "advertises_generally",           limit: 1,     default: false, null: false
-    t.boolean  "has_business_details",           limit: 1,     default: false, null: false
-    t.boolean  "has_a_website",                  limit: 1,     default: false, null: false
-    t.boolean  "new_development_by_default",     limit: 1,     default: false, null: false
+    t.boolean  "select_on_signup"
+    t.boolean  "admin"
+    t.boolean  "flag_new_development"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "advertises_properties_for_rent",               default: false, null: false
+    t.boolean  "advertises_generally",                         default: false, null: false
+    t.boolean  "has_business_details",                         default: false, null: false
+    t.boolean  "has_a_website",                                default: false, null: false
+    t.boolean  "new_development_by_default",                   default: false, null: false
     t.text     "sales_pitch",                    limit: 65535
-    t.boolean  "advertises_properties_for_sale", limit: 1,     default: false, null: false
-    t.boolean  "advertises_through_windows",     limit: 1,     default: false, null: false
-    t.boolean  "advertises_hotels",              limit: 1,     default: false, null: false
+    t.boolean  "advertises_properties_for_sale",               default: false, null: false
+    t.boolean  "advertises_through_windows",                   default: false, null: false
+    t.boolean  "advertises_hotels",                            default: false, null: false
   end
 
   create_table "snippets", force: :cascade do |t|
     t.string   "name",       limit: 255,   default: "",   null: false
     t.text     "snippet",    limit: 65535
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "locale",     limit: 255,   default: "en", null: false
   end
 
@@ -783,8 +783,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   add_index "tracked_actions", ["trackable_id"], name: "index_tracked_actions_on_trackable_id", using: :btree
 
   create_table "unregistered_users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -803,9 +803,9 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "mobile",                 limit: 255,   default: "",    null: false
     t.string   "business_name",          limit: 255,   default: "",    null: false
     t.string   "position",               limit: 255,   default: "",    null: false
-    t.boolean  "terms_and_conditions",   limit: 1,                     null: false
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
+    t.boolean  "terms_and_conditions",                                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "role_id",                limit: 4,                     null: false
     t.integer  "coupon_id",              limit: 4
     t.string   "forgot_password_token",  limit: 255,   default: "",    null: false
@@ -815,7 +815,7 @@ ActiveRecord::Schema.define(version: 20150226121422) do
     t.string   "google_web_property_id", limit: 255,   default: "",    null: false
     t.string   "vat_number",             limit: 255,   default: "",    null: false
     t.integer  "vat_country_id",         limit: 4
-    t.boolean  "apply_price_override",   limit: 1,     default: false, null: false
+    t.boolean  "apply_price_override",                 default: false, null: false
     t.integer  "price_override",         limit: 4,     default: 0,     null: false
     t.text     "enquiry_cc_emails",      limit: 65535
   end
@@ -825,16 +825,16 @@ ActiveRecord::Schema.define(version: 20150226121422) do
 
   create_table "websites", force: :cascade do |t|
     t.text     "terms",                              limit: 65535
-    t.datetime "created_at",                                                                               null: false
-    t.datetime "updated_at",                                                                               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "privacy_policy",                     limit: 65535
     t.text     "home_content",                       limit: 65535
     t.integer  "directory_advert_price",             limit: 4,                             default: 0,     null: false
     t.text     "start_page_content",                 limit: 65535
     t.string   "worldpay_installation_id",           limit: 255,                           default: "",    null: false
-    t.boolean  "worldpay_active",                    limit: 1,                             default: false, null: false
-    t.boolean  "worldpay_test_mode",                 limit: 1,                             default: false, null: false
-    t.boolean  "skip_payment",                       limit: 1,                             default: false, null: false
+    t.boolean  "worldpay_active",                                                          default: false, null: false
+    t.boolean  "worldpay_test_mode",                                                       default: false, null: false
+    t.boolean  "skip_payment",                                                             default: false, null: false
     t.string   "worldpay_payment_response_password", limit: 255,                           default: "",    null: false
     t.text     "contact_details",                    limit: 65535
     t.decimal  "vat_rate",                                         precision: 4, scale: 2, default: 20.0,  null: false
@@ -846,8 +846,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
   create_table "window_base_prices", force: :cascade do |t|
     t.integer  "quantity",   limit: 4, default: 0, null: false
     t.integer  "price",      limit: 4, default: 0, null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

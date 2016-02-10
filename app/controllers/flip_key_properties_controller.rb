@@ -58,9 +58,9 @@ class FlipKeyPropertiesController < ApplicationController
         email:             details[:email],
         name:              details[:name],
         phone:             details[:phone_number],
-        property_id:       @flip_key_property.property.id, 
+        property_id:       @flip_key_property.property.id,
         comments:          details.map{|k,v| "#{k}:\n#{v}"}.join("\n\n")
       )
-      EnquiryNotifier.notify(enquiry, Property.find(@flip_key_property.property)).deliver_now
+      EnquiryNotifier.notify(enquiry, @flip_key_property.property).deliver_now
     end
 end

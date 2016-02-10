@@ -30,6 +30,25 @@ resize2fs /dev/sda
 reboot
 ```
 
+# FlipKey details
+
+```
+1. XML data/feed:
+User: mychaletfinder
+Pass: LIxoxLol
+URL to acess data: http://ws.flipkey.com/pfe/
+
+2. Demo environment for test inquiry posts:
+User: mychaletfinder
+Pass: 8QXPogvv
+https://ws.demo.flipkey.net/pfe/inquiry/inquiry
+
+3. Live/Production for inquiry posts:
+User: mychaletfinder
+Pass: LIxoxLol
+https://ws.flipkey.com/pfe/inquiry/inquiry
+```
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

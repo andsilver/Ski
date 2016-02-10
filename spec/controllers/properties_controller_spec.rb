@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe PropertiesController do
+RSpec.describe PropertiesController, type: :controller do
   let(:property) { FactoryGirl.create(:property) }
   let(:website) { double(Website).as_null_object }
-  let(:non_admin_role) { double(Role).as_null_object }
+  let(:non_admin_role) { Role.new(admin: false) }
 
   before do
     allow(Website).to receive(:first).and_return(website)

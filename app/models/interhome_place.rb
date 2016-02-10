@@ -1,5 +1,5 @@
 class InterhomePlace < ActiveRecord::Base
-  validates_uniqueness_of :code
+  validates_uniqueness_of :code, case_sensitive: false
 
   # Returns a matching Interhome subplace, place, or nil, in that order.
   # Interhome accommodation specifies a 'place' code which can be either a

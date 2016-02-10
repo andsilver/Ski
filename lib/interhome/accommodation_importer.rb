@@ -83,13 +83,13 @@ module Interhome
     def import_pictures(accommodation, a)
       return unless a['pictures']
       a['pictures'][0]['picture'].each do |p|
-        url = p['url'][0]
+        url = p['url'] ? p['url'][0] : ''
         picture = InterhomePicture.find_by(interhome_accommodation_id: accommodation.id, url: url)
         if picture
           picture.touch
         else
           picture = InterhomePicture.new
-          picture.picture_type = p['type'][0]
+          picture.picture_type = p['type'] ? p['type'][0] : ''
           picture.season = p['season'] ? p['season'][0] : ''
           picture.url = url
           accommodation.interhome_pictures << picture
