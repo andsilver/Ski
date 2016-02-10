@@ -23,7 +23,7 @@ module Interhome
           }
         }
         it 'adds a picture with given properties' do
-          importer = AccommodationImporter.new
+          importer = Interhome::AccommodationImporter.new
           importer.import_pictures(accommodation, a)
           p = accommodation.interhome_pictures.last
           expect(p.picture_type).to eq 'i'
@@ -45,7 +45,7 @@ module Interhome
           }
         }
         it 'adds a picture with missing properties' do
-          importer = AccommodationImporter.new
+          importer = Interhome::AccommodationImporter.new
           importer.import_pictures(accommodation, a)
           expect(accommodation.interhome_pictures.count).to eq 1
         end
