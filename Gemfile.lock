@@ -299,7 +299,7 @@ GEM
     slop (3.6.0)
     spreadsheet (0.6.5.4)
       ruby-ole (>= 1.0)
-    spring (1.5.0)
+    spring (1.6.3)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     sprockets (3.5.1)
@@ -391,4 +391,4 @@ DEPENDENCIES
   xml-simple
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
