@@ -19,7 +19,7 @@ module Interhome
       end
 
       it 'logs in' do
-        expect(ftp).to receive(:login).with('ihxmlpartner', 'S13oPjEu')
+        expect(ftp).to receive(:login).with('ihxmlpartner', 'XZpJ6LkG')
         FTP.get('file')
       end
 
