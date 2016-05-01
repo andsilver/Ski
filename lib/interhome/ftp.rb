@@ -8,7 +8,7 @@ module Interhome
     def self.get(xml_file)
       ftp = Net::FTP.new
       ftp.connect('ftp.interhome.com')
-      ftp.login('ihxmlpartner', 'S13oPjEu')
+      ftp.login('ihxmlpartner', 'XZpJ6LkG')
       ftp.passive = true
       zip_file = xml_file + '.zip'
       local_zip_file = 'interhome/' + zip_file
