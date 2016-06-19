@@ -12,15 +12,19 @@ function getQuickSearchCountries() {
 
       if($("#previousValues").val() !== "") {
           arrayOfChoices = JSON.parse($("#previousValues").val());
-
-          $('#country_id option').each(function(){
-              if(this.value == arrayOfChoices[0]) {
-                  $('#resort_id').val(arrayOfChoices[0]);
-                  return false;
-              }
-          });
-
+      } else if(window.ChaletJS && ChaletJS.currentPageCountryID) {
+          arrayOfChoices = [ChaletJS.currentPageCountryID, null];
+      } else {
+          return;
       }
+
+      $('#country_id option').each(function(){
+          if(this.value == arrayOfChoices[0]) {
+              $('#resort_id').val(arrayOfChoices[0]);
+              return false;
+          }
+      });
+
   });
   return false;
 }
@@ -36,15 +40,19 @@ function getQuickSearchResorts() {
 
     if($("#previousValues").val() !== "") {
         arrayOfChoices = JSON.parse($("#previousValues").val());
-
-      $('#resort_id option').each(function(){
-        if(this.value == arrayOfChoices[1]) {
-          $('#resort_id').val(arrayOfChoices[1]);
-          return false;
-        }
-      });
-
+    } else if(window.ChaletJS && ChaletJS.currentPageResortID) {
+        arrayOfChoices = [null, ChaletJS.currentPageResortID];
+    } else {
+        return;
     }
+
+    $('#resort_id option').each(function(){
+        if(this.value == arrayOfChoices[1]) {
+            $('#resort_id').val(arrayOfChoices[1]);
+            return false;
+        }
+    });
+
   });
   return false;
 }
@@ -68,3 +76,24 @@ function quickSearch() {
     }
   }
 }
+
+jQuery(function($){
+
+    var elements = ["#country_id", "#resort_id"]; //"#holiday_type_id",
+    var quickSearchArray = [];
+
+    $("#quick-search").on("change","select",function(){
+        quickSearchArray = [];
+        $("#quick-search select.form-control").each(function(i){
+            self = this;
+            for (var x=0;x<elements.length;x++) {
+                if ($(self).is(elements[x])) {
+                    quickSearchArray.push($(self).val());
+                }
+            }
+        });
+        console.log(JSON.stringify(quickSearchArray));
+        $("input[type=hidden]").val(JSON.stringify(quickSearchArray));
+    });
+
+});
