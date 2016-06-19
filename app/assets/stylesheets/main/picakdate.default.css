@@ -173,3 +173,17 @@
 /**
  * For `large` screens, transform into an inline picker.
  */
+
+div.date {
+    position:relative;
+}
+
+div.date::after {
+    font-family: "FontAwesome";
+    content: "\f073";
+    font-size: 17px;
+    position: absolute;
+    top: 4px;
+    right: 7px;
+    color: #6a6a6a;
+}
