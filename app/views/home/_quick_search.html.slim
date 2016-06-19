@@ -11,6 +11,7 @@ section
       select#resort_id.form-control name="resort_slug"
         option value=""= t('.choose_resort')
         option value=""= t('.choose_country_first')
+      input#previousValues type="hidden"
       = render 'properties/sleeps_select'
       = render 'properties/price_range_select'
       = render 'home/datepickers'
