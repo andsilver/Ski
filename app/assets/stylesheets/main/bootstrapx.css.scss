@@ -63,14 +63,14 @@
     }
     a {
         font-size: 16px;
-        color: white;
-        border: 1px solid white;
+        color: #ccc;
+        border: 1px solid #ccc;
         border-radius: 3px;
         padding: 5px 15px;
         background:#005ea5;
         transition:all 200ms ease-in-out;
         &:hover {
-            background:white;
+            background:#ccc;
             color:#005ea5;
             border-color:#005ea5;
         }
