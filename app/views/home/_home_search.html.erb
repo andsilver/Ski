@@ -5,6 +5,7 @@
       <input class="form-submit form-control" type="submit" value="Search">
     </form>
     <p>or</p>
+    <!--
     <div class="date search-datepicker" id="departure-datepicker">
       <select id="holiday-type-picker">
         <option value="none">Holiday Type...</option>
@@ -15,10 +16,15 @@
         <option value="spa">Spa Resorts</option>
       </select>
     </div>
+    -->
+      
+      <a href="/pages/holiday-ideas" class="omniSearchIdeasButton"></a>
   </div>
 </div>
 
+
 <script>
+/*
   $('#holiday-type-picker').change(function() {
     var holidayType = $('#holiday-type-picker').val();
 
@@ -43,7 +49,7 @@
           break;
       }
     }
-  });
+  }); */
 
   $('.search-form').on('submit', function() {
     var placeName = $('.tt-input').val();
