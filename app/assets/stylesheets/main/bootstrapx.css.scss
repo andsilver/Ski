@@ -57,6 +57,8 @@
     *zoom: 1;
 }
 
-#bloodhound form, #bloodhound p {
-    float:left!important;
+#bloodhound {
+    form, p, a {
+        float:left!important;
+    }
 }
