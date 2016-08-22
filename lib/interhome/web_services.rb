@@ -1,5 +1,5 @@
 # Production
-# Username/ ID: CH1000759
+# Username/ ID: GB1010781
 # Password: mychaletfinder
 # SO: 2048
 
@@ -36,12 +36,12 @@ module Interhome
       response_class = Interhome.const_get("#{action}Response")
       defaults = {
         url: 'https://webservices.interhome.com/partnerV3/WebService.asmx',
-        username: 'CH1000759',
+        username: 'GB1010781',
         password: 'mychaletfinder',
         language_code: 'EN',
         currency_code: 'EUR',
         sales_office_code: '2048',
-        retailer_code: 'CH1000759',
+        retailer_code: 'GB1010781',
 
         accommodation_code: 'PT6660.50.1',
         check_in: '2012-10-01',
