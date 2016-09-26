@@ -1,12 +1,12 @@
 # Production
 # Username/ ID: GB1010781
 # Password: mychaletfinder
-# SO: 2048
+# SO: SO3535 (3535)
 
 # Test
 # Partner ID: CH1000723
 # Pass: mychaletfinder
-# Sales office to use: SO2048 in EUR
+# Sales office to use: SO3535 in EUR
 
 module Interhome
   class WebServices
@@ -40,7 +40,7 @@ module Interhome
         password: 'mychaletfinder',
         language_code: 'EN',
         currency_code: 'EUR',
-        sales_office_code: '2048',
+        sales_office_code: '3535',
         retailer_code: 'GB1010781',
 
         accommodation_code: 'PT6660.50.1',

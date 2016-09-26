@@ -34,7 +34,7 @@ module Interhome
     end
 
     def import_prices
-      importer = PriceImporter.new('2048', 7)
+      importer = PriceImporter.new('3535', 7)
       importer.ftp_get unless skip_ftp?
       filenames = importer.split_xml(@opts[:max_xml_files])
       importer.import(filenames)
