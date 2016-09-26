@@ -21,7 +21,7 @@
     </tr>
 <% end -%>
   </table>
-    
-  <iframe src="https://www.interhome.com/PaymentGateway/Payment.aspx?Reservation=<%= @client_booking.booking_id %>&amp;Currency=EUR&amp;Amount=<%= @amount_in_cents %>&amp;Language=2&amp;Method=CC&amp;URLSuccess=https://mychaletfinder.com/properties/interhome_payment_success&amp;URLFailure=https://mychaletfinder.com/properties/interhome_payment_failure" frameborder="0" scrolling="no" style="width:100%;height:420px;border:0">
+
+  <iframe src="https://www.interhome.co.uk/PaymentGateway/Payment.aspx?Reservation=<%= @client_booking.booking_id %>&amp;Currency=EUR&amp;Amount=<%= @amount_in_cents %>&amp;Language=2&amp;Method=CC&amp;URLSuccess=https://mychaletfinder.com/properties/interhome_payment_success&amp;URLFailure=https://mychaletfinder.com/properties/interhome_payment_failure" frameborder="0" scrolling="no" style="width:100%;height:420px;border:0">
   </iframe>
 </div>
