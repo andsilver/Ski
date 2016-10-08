@@ -25,8 +25,16 @@ class ApplicationController < ActionController::Base
   end
 
   def restart
+    clear_failed_jobs
     restart_script
     redirect_to cms_path, notice: 'Application restarted.'
+  end
+
+  # Removes Delayed Jobs from the job queue that have failed at least once.
+  def clear_failed_jobs
+    ActiveRecord::Base.connection.execute(
+      'DELETE FROM delayed_jobs WHERE attempts > 0'
+    )
   end
 
   def precompile_assets
