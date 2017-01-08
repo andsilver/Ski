@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe AccommodationImporter do
   Accommodation = Struct.new(:dummy)
 
