@@ -146,7 +146,7 @@ module Interhome
       property.wifi = accommodation.features.include? 'wlan'
 
       unless property.save
-        Rails.logger.info(property.errors.to_s)
+        Rails.logger.info(property.errors.messages.to_s)
         accommodation.destroy
         return
       end
