@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'xmlsimple'
 
 module Interhome
-  describe AccommodationImporter do
+  RSpec.describe AccommodationImporter do
     describe '#import_pictures' do
       let(:accommodation) { FactoryGirl.create(:interhome_accommodation) }
       context 'with pictures containing all properties' do
@@ -49,6 +49,26 @@ module Interhome
           importer.import_pictures(accommodation, a)
           expect(accommodation.interhome_pictures.count).to eq 1
         end
+      end
+    end
+
+    describe '#create_property' do
+      it 'sets the property currency to GBP' do
+        gbp = FactoryGirl.create(:currency, code: 'GBP')
+        resort = FactoryGirl.create(:resort)
+        accommodation = double(
+          InterhomeAccommodation,
+          id: 1, bedrooms: 3, current_price: 123, features: [],
+          geodata_lat: 0, geodata_lng: 0,
+          inside_description: 'inside',
+          name: 'name', pax: 6
+        ).as_null_object
+        object = AccommodationImporter.new
+        object.user = FactoryGirl.create(:user)
+        object.create_property(accommodation, resort.id, 'address')
+
+        property = Property.last
+        expect(property.currency).to eq gbp
       end
     end
   end

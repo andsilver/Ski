@@ -130,7 +130,7 @@ module Interhome
       property.weekly_rent_price = accommodation.current_price
 
       return if property.weekly_rent_price.nil?
-      property.currency_id = @euro.id
+      property.currency = gbp
       property.sleeping_capacity = accommodation.pax
       property.number_of_bedrooms = accommodation.bedrooms
 
@@ -185,6 +185,10 @@ module Interhome
       end
 
       create_advert(property)
+    end
+
+    def gbp
+      @gbp ||= Currency.find_by(code: 'GBP')
     end
 
     def themes(a)
