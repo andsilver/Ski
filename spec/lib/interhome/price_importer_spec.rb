@@ -15,13 +15,13 @@ module Interhome
 
     describe '#ftp_get' do
       it 'gets the file corresponding to the sales office and 7 days via FTP' do
-        expect(FTP).to receive(:get).with('price_1234_eur.xml')
+        expect(FTP).to receive(:get).with('price_1234_gbp.xml')
         ipi = PriceImporter.new(sales_office, 7)
         ipi.ftp_get
       end
 
       it 'gets the file corresponding to the sales office and 14 days via FTP' do
-        expect(FTP).to receive(:get).with('price_1234_eur_14.xml')
+        expect(FTP).to receive(:get).with('price_1234_gbp_14.xml')
         ipi = PriceImporter.new(sales_office, 14)
         ipi.ftp_get
       end

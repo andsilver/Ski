@@ -63,7 +63,11 @@ module Interhome
     end
 
     def xml_filename
-      (days == 7) ? "price_#{@sales_office}_eur.xml" : "price_#{@sales_office}_eur_#{days}.xml"
+      if days == 7
+        "price_#{@sales_office}_gbp.xml"
+      else
+        "price_#{@sales_office}_gbp_#{days}.xml"
+      end
     end
   end
 end
