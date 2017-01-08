@@ -51,7 +51,7 @@ class Denormalize
       conditions = DirectoryAdvert::CURRENTLY_ADVERTISED.dup
       conditions[0] += " AND resort_id = ?"
       conditions << resort.id
-      resort.directory_advert_count = DirectoryAdvert.count(conditions: conditions)
+      resort.directory_advert_count = DirectoryAdvert.where(conditions).count
 
       resort.save
     end

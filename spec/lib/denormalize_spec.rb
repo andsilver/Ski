@@ -62,4 +62,15 @@ describe Denormalize do
       Denormalize.update_properties
     end
   end
+
+  describe '.update_resorts' do
+    it 'updates the for_rent count' do
+      r = FactoryGirl.create(:resort, visible: true)
+      FactoryGirl.create(
+        :property, listing_type: Property::LISTING_TYPE_FOR_RENT, resort: r
+      )
+      Denormalize.update_resorts
+      expect(r.reload.for_rent_count).to eq 1
+    end
+  end
 end
