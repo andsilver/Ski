@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.1'
+gem 'rails', '4.2.7'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'will_paginate'
@@ -17,7 +17,7 @@ gem 'curb'
 gem 'prawn'
 gem 'newrelic_rpm'
 gem 'exception_notification', git: 'git://github.com/smartinez87/exception_notification.git'
-gem 'liquid'
+gem 'liquid', '~> 3.0'
 gem 'aws-sdk', '~> 1'
 gem 'sanitize'
 gem 'slim', '~> 2.0.0'
