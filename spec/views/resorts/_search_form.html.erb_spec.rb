@@ -10,6 +10,11 @@ RSpec.describe 'resorts/_search_form.html.erb', type: :view do
   context 'rendered' do
     subject { rendered }
     before { render }
-    it { should have_selector "input[type=hidden][name='resort_slug'][value='#{resort.slug}']" }
+    it do
+      should have_selector(
+        "input[type=hidden][name='resort_slug'][value='#{resort.slug}']",
+        visible: false
+      )
+    end
   end
 end

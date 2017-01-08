@@ -12,7 +12,9 @@ RSpec.describe 'properties/_form.html.slim', type: :view do
     it 'renders listing_type as a hidden field' do
       assign(:property, Property.new)
       render
-      expect(rendered).to have_selector('input[type="hidden"]#property_listing_type')
+      expect(rendered).to have_selector(
+        'input[type="hidden"]#property_listing_type', visible: false
+      )
     end
 
     context 'with a property for sale' do
