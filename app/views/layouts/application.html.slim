@@ -147,7 +147,7 @@ html.no-js lang="#{@lang}"
             = render 'shared/footer_box'
             hr
             p#copyright
-              = "&copy; #{Time.now.year} My Holiday Home Ventures Limited".html_safe
+              = "&copy; #{Time.now.year} #{COMPANY_NAME}".html_safe
     - if Rails.env == 'production'
       javascript:
         (function (d, w, c) {

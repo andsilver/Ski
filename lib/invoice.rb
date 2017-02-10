@@ -29,7 +29,7 @@ class Invoice
       address_top = 700
 
       pdf.bounding_box([0, address_top], width: 200, height: 200) do
-        pdf.text "My Holiday Home Ventures Ltd\n14 Murrayfield Drive\nEdinburgh\nMidlothian\nEH12 6EB\nUnited Kingdom\nCompany no. SC391840\nVAT no. 111 7832 38", leading: 4
+        pdf.text "#{COMPANY_NAME}\n14 Murrayfield Drive\nEdinburgh\nMidlothian\nEH12 6EB\nUnited Kingdom\nCompany no. SC391840\nVAT no. 111 7832 38", leading: 4
       end
 
       pdf.bounding_box([300, address_top], width: 200, height: 200) do
@@ -38,7 +38,7 @@ class Invoice
 
       cells = []
       headers = ["Product", "Price"]
-      headers <<= 'Sterling' if @order.sterling_in_euros 
+      headers <<= 'Sterling' if @order.sterling_in_euros
       cells << headers
       @order.order_lines.each do |line|
         cells << [line.description, euros_from_cents(line.amount)]

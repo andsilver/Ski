@@ -13,7 +13,7 @@
       a href="/"
         = image_tag 'marker-grey.png', alt: ''
     #footer-copyright
-      p ©#{Time.now.year} My Holiday Home Ventures Ltd
+      p ©#{Time.now.year} #{COMPANY_NAME}
       ul.flat-list.flat-with-margin
         li= link_to I18n.t(:privacy), privacy_path, rel: 'nofollow'
         li= link_to I18n.t(:terms), terms_path, rel: 'nofollow'
