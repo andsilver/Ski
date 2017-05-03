@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226121422) do
+ActiveRecord::Schema.define(version: 20170503174954) do
 
   create_table "adverts", force: :cascade do |t|
     t.integer  "user_id",             limit: 4,                 null: false
@@ -76,7 +76,8 @@ ActiveRecord::Schema.define(version: 20150226121422) do
 
   add_index "alt_attributes", ["path"], name: "index_alt_attributes_on_path", using: :btree
 
-  create_table "availabilities", force: :cascade do |t|
+  create_table "availabilities", id: false, force: :cascade do |t|
+    t.integer  "id",           limit: 8
     t.integer  "property_id",  limit: 4
     t.date     "start_date"
     t.datetime "created_at"
