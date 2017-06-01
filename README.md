@@ -1,5 +1,13 @@
 # README
 
+## Dependencies
+
+On macOS:
+
+```
+brew install freeimage
+```
+
 ## Deployment
 
 This website is deployed by keeping a git repository on the server and pulling
