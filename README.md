@@ -8,6 +8,10 @@ On macOS:
 brew install freeimage
 ```
 
+## Running the test suite
+
+`bundle exec rspec`
+
 ## Deployment
 
 This website is deployed by keeping a git repository on the server and pulling
