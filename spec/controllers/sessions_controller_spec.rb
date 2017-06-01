@@ -22,7 +22,7 @@ describe SessionsController do
 
     it "authenticates the user" do
       expect(User).to receive(:authenticate).with("email", "password")
-      post :create, { email: 'email', password: 'password' }
+      post :create, params: { email: 'email', password: 'password' }
     end
 
     context "when authentication is successful" do
@@ -91,7 +91,7 @@ describe SessionsController do
     it 'requires admin' do
       allow(controller).to receive(:admin?).and_return(false)
       allow(User).to receive(:find).and_return(double(User).as_null_object)
-      get 'switch_user', user_id: '1'
+      get 'switch_user', params: { user_id: '1' }
       expect(response).to redirect_to sign_in_path
     end
   end

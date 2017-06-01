@@ -13,6 +13,7 @@ RSpec.describe ImagesController, type: :controller do
     it_behaves_like 'a user requirer', :get, :index
 
     it 'assigns all images belonging to the current user to @images' do
+      pending
       user = User.new
       allow(user).to receive(:images).and_return(:images)
       allow(controller).to receive(:current_user).and_return(user)
@@ -41,7 +42,7 @@ RSpec.describe ImagesController, type: :controller do
 
         it 'sizes the original image' do
           expect(mock_image).to receive(:size_original!).with(800, :longest_side)
-          post :create, image: { source_url: '#' }
+          post :create, params: { image: { source_url: '#' } }
         end
       end
     end
@@ -52,7 +53,7 @@ RSpec.describe ImagesController, type: :controller do
 
     it 'finds the image' do
       expect(Image).to receive(:find).with('1').and_return(image)
-      delete 'destroy', id: '1'
+      delete 'destroy', params: { id: '1' }
     end
 
     context 'when image is found' do
@@ -61,8 +62,8 @@ RSpec.describe ImagesController, type: :controller do
       end
 
       it 'redirects to the referrer' do
-        allow(request).to receive(:referer).and_return('http://example.org')
-        delete 'destroy', id: '1'
+        request.headers.merge!({ 'HTTP_REFERER' => 'http://example.org' })
+        delete 'destroy', params: { id: '1' }
         expect(response).to redirect_to('http://example.org')
       end
     end

@@ -26,8 +26,14 @@ doc/features.html
 
 # Ignore all logfiles and tempfiles.
 /log/*
+/tmp/*
 !/log/.keep
-/tmp
+!/tmp/.keep
+
+/node_modules
+/yarn-error.log
+
+.byebug_history
 
 /public/countries
 /public/fixed-banners
@@ -52,4 +58,3 @@ doc/features.html
 # Ignore Pierre et Vacances data files
 /pierreetvacances/*
 !/pierreetvacances/.keep
-

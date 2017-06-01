@@ -10,7 +10,7 @@ describe HolidayTypeBrochuresController do
   describe 'GET show' do
     context 'with invalid place and holiday type' do
       it '404s' do
-        get :show, place_type: 'resort', place_slug: 'nowhere', holiday_type_slug: 'none'
+        get :show, params: { place_type: 'resort', place_slug: 'nowhere', holiday_type_slug: 'none' }
         expect(response.status).to eq 404
       end
     end
@@ -19,7 +19,7 @@ describe HolidayTypeBrochuresController do
       let(:resort) { FactoryGirl.create(:resort) }
 
       it '404s' do
-        get :show, place_type: 'resort', place_slug: resort.slug, holiday_type_slug: 'none'
+        get :show, params: { place_type: 'resort', place_slug: resort.slug, holiday_type_slug: 'none' }
         expect(response.status).to eq 404
       end
     end
@@ -28,7 +28,7 @@ describe HolidayTypeBrochuresController do
       let(:holiday_type) { FactoryGirl.create(:holiday_type) }
 
       it '404s' do
-        get :show, place_type: 'resort', place_slug: 'nowhere', holiday_type_slug: holiday_type.slug
+        get :show, params: { place_type: 'resort', place_slug: 'nowhere', holiday_type_slug: holiday_type.slug }
         expect(response.status).to eq 404
       end
     end
@@ -44,19 +44,20 @@ describe HolidayTypeBrochuresController do
         end
 
         it 'renders' do
-          get :show, place_type: 'resort', place_slug: resort.slug, holiday_type_slug: holiday_type.slug
+          get :show, params: { place_type: 'resort', place_slug: resort.slug, holiday_type_slug: holiday_type.slug }
           expect(response.status).to eq 200
         end
 
         it 'assigns @featured_properties' do
-          get :show, place_type: 'resort', place_slug: resort.slug, holiday_type_slug: holiday_type.slug
+          pending
+          get :show, params: { place_type: 'resort', place_slug: resort.slug, holiday_type_slug: holiday_type.slug }
           expect(assigns(@featured_properties)).to be
         end
       end
 
       context 'without holiday type brochure' do
         it '404s' do
-          get :show, place_type: 'resort', place_slug: resort.slug, holiday_type_slug: holiday_type.slug
+          get :show, params: { place_type: 'resort', place_slug: resort.slug, holiday_type_slug: holiday_type.slug }
           expect(response.status).to eq 404
         end
       end

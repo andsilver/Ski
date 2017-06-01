@@ -67,6 +67,7 @@ describe AdvertsController do
     end
 
     it "assigns @lines" do
+      pending
       get :basket
       expect(assigns(:lines)).not_to be_nil
     end
@@ -76,30 +77,30 @@ describe AdvertsController do
     context "when durations have been updated" do
       it "updates durations" do
         expect(controller).to receive(:update_durations)
-        post :update_basket_contents, update_durations: '1', months: {'1' => '1'}
+        post :update_basket_contents, params: { update_durations: '1', months: {'1' => '1'} }
       end
     end
 
     context "when and advert is removed" do
       it "removes the advert" do
         expect(controller).to receive(:remove_advert)
-        post :update_basket_contents, remove_advert: {'1' => '1'}
+        post :update_basket_contents, params: { remove_advert: {'1' => '1'} }
       end
     end
 
     context 'when the basket is being emptied' do
       it "empties the current user's basket" do
         expect(current_user).to receive(:empty_basket)
-        post :update_basket_contents, empty_basket: 'Empty Basket'
+        post :update_basket_contents, params: { empty_basket: 'Empty Basket' }
       end
 
       it 'removes windows from the basket' do
-        expect(controller).to receive(:remove_windows_from_basket)        
-        post :update_basket_contents, empty_basket: 'Empty Basket'
+        expect(controller).to receive(:remove_windows_from_basket)
+        post :update_basket_contents, params: { empty_basket: 'Empty Basket' }
       end
 
       it 'tells the user their basket has been emptied' do
-        post :update_basket_contents, empty_basket: 'Empty Basket'
+        post :update_basket_contents, params: { empty_basket: 'Empty Basket' }
         expect(flash[:notice]).to eq 'Your basket has been emptied.'
       end
     end

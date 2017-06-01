@@ -29,8 +29,11 @@ module Interhome
 
     describe '#import' do
       it 'deletes all Interhome prices for @days days' do
-        expect(InterhomePrice).to receive(:delete_all).with(days: days)
+        p1 = FactoryGirl.create(:interhome_price, days: days)
+        p2 = FactoryGirl.create(:interhome_price, days: days + 1)
         PriceImporter.new(sales_office, days).import([])
+        expect(InterhomePrice.exists?(p1.id)).to be_falsey
+        expect(InterhomePrice.exists?(p2.id)).to be_truthy
       end
 
       it 'imports each file in the array' do

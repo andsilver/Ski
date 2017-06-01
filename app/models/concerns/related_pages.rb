@@ -29,9 +29,9 @@ module RelatedPages
   end
 
   def handle_slug_change
-    if slug_changed?
+    if saved_change_to_attribute? :slug
       page_names.each do |page_name|
-        p = Page.find_by(path: page_path(page_name, slug_was))
+        p = Page.find_by(path: page_path(page_name, slug_before_last_save))
         if p
           p.path = page_path(page_name)
           p.save

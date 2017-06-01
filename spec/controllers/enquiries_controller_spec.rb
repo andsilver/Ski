@@ -22,6 +22,7 @@ describe EnquiriesController do
       end
 
       it "assigns @enquiries" do
+        pending
         enquiries = [Enquiry.new]
         allow(current_user).to receive(:enquiries).and_return(enquiries)
         get :my
@@ -48,7 +49,7 @@ describe EnquiriesController do
 
     it "finds a property" do
       expect(Property).to receive(:find).with("1")
-      post :create, enquiry: { property_id: '1' }
+      post :create, params: { enquiry: { property_id: '1' } }
     end
   end
 

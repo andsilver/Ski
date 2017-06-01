@@ -22,11 +22,11 @@ describe PvPlaceResortsController do
 
       it 'instantiates a new P&V place resort with the given params' do
         expect(PvPlaceResort).to receive(:new).with(params[:pv_place_resort])
-        post 'create', params
+        post 'create', params: params
       end
 
       it 'redirects to the edit resort page' do
-        post 'create', params
+        post 'create', params: params
         expect(response).to redirect_to(edit_admin_resort_path(id: '1'))
       end
 
@@ -36,7 +36,7 @@ describe PvPlaceResortsController do
         end
 
         it 'sets a flash[:notice] message' do
-          post 'create', params
+          post 'create', params: params
           expect(flash[:notice]).to eq("Created.")
         end
       end
@@ -47,7 +47,7 @@ describe PvPlaceResortsController do
         end
 
         it 'sets a flash[:notice] message' do
-          post 'create', params
+          post 'create', params: params
           expect(flash[:notice]).to eq("Could not link that P&V place to this resort.")
         end
       end
@@ -63,21 +63,21 @@ describe PvPlaceResortsController do
 
       it 'finds the P&V place resort' do
         expect(PvPlaceResort).to receive(:find).with('1')
-        delete 'destroy', id: '1'
+        delete 'destroy', params: { id: '1' }
       end
 
       it 'destroys the P&V place resort' do
         expect(pv_place_resort).to receive(:destroy)
-        delete 'destroy', id: '1'
+        delete 'destroy', params: { id: '1' }
       end
 
       it 'redirects to the edit resort page' do
-        delete 'destroy', id: '1'
+        delete 'destroy', params: { id: '1' }
         expect(response).to redirect_to(edit_admin_resort_path(id: '2'))
       end
 
       it 'sets a flash[:notice] message' do
-        delete 'destroy', id: '1'
+        delete 'destroy', params: { id: '1' }
         expect(flash[:notice]).to eq('Unlinked.')
       end
     end

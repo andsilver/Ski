@@ -11,13 +11,13 @@ describe Admin::BuyingGuidesController do
 
   describe 'PATCH update' do
     context 'when buying guide found' do
-      before { allow(BuyingGuide).to receive(:find_by).and_return(buying_guide) }     
+      before { allow(BuyingGuide).to receive(:find_by).and_return(buying_guide) }
 
       context 'when update succeeds' do
         before { allow(buying_guide).to receive(:update_attributes).and_return(true) }
 
         it 'redirects to the edit action' do
-          patch 'update', id: '1', buying_guide: { 'some' => 'params' }
+          patch 'update', params: { id: '1', buying_guide: { 'some' => 'params' } }
           expect(response).to redirect_to edit_admin_buying_guide_path(buying_guide)
         end
       end

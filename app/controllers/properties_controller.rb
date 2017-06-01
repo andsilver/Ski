@@ -363,7 +363,7 @@ class PropertiesController < ApplicationController
   end
 
   def update
-    if params[:property][:image_id]
+    if params[:property][:image_id].present?
       image = Image.find(params[:property][:image_id])
       if image.user == @property.user
         @property.image = image

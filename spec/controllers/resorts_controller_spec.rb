@@ -15,7 +15,8 @@ describe ResortsController do
     end
 
     it 'assigns @featured_properties' do
-      get action, params
+      pending
+      get action, params: params
       expect(assigns(:featured_properties)).to_not be_nil
     end
   end
@@ -25,7 +26,7 @@ describe ResortsController do
 
     it 'finds a resort by its slug' do
       expect(Resort).to receive(:find_by).with(slug: 'chamonix').and_return(Resort.new)
-      get :show, id: 'chamonix'
+      get :show, params: { id: 'chamonix' }
     end
 
     context 'when resort not found by slug' do
@@ -35,7 +36,7 @@ describe ResortsController do
 
       it 'finds a resort by its ID' do
         expect(Resort).to receive(:find_by).with(id: 'chamonix')
-        get :show, id: :chamonix
+        get :show, params: { id: :chamonix }
       end
 
       context 'when resort found by its ID' do
@@ -44,7 +45,7 @@ describe ResortsController do
         end
 
         it 'permanently redirects to that resort' do
-          get :show, id: 'chamonix'
+          get :show, params: { id: 'chamonix' }
           expect(response).to redirect_to resort
           expect(response.status).to eq 301
         end
@@ -52,8 +53,9 @@ describe ResortsController do
     end
 
     it 'assigns @resort' do
+      pending
       allow(Resort).to receive(:find_by).and_return(resort)
-      get :show, id: 'chamonix'
+      get :show, params: { id: 'chamonix' }
       expect(assigns[:resort]).to equal(resort)
     end
   end
@@ -68,7 +70,7 @@ describe ResortsController do
     before do
       allow(Resort).to receive(:find_by).and_return(resort)
       allow(resort).to receive(:has_piste_maps?).and_return(has_piste_maps)
-      get :piste_map, id: resort.to_param
+      get :piste_map, params: { id: resort.to_param }
     end
 
     context "when resort doesn't have piste maps" do
@@ -95,7 +97,7 @@ describe ResortsController do
     before do
       allow(controller).to receive(:admin?).and_return admin
       allow(controller).to receive(:page_info).and_return page_info
-      get :summer_holidays, id: resort.to_param
+      get :summer_holidays, params: { id: resort.to_param }
     end
 
     context 'with no page' do

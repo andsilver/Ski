@@ -17,6 +17,7 @@ describe CategoriesController do
     end
 
     it "assigns @category" do
+      pending
       get :new
       expect(assigns[:category]).to equal(category)
     end
@@ -27,7 +28,7 @@ describe CategoriesController do
 
     it "instantiates a new category with the given params" do
       expect(Category).to receive(:new).with(params[:category])
-      post :create, params
+      post :create, params: params
     end
 
     context "when the category saves successfully" do
@@ -36,12 +37,12 @@ describe CategoriesController do
       end
 
       it "sets a flash[:notice] message" do
-        post :create, params
+        post :create, params: params
         expect(flash[:notice]).to eq("Created.")
       end
 
       it "redirects to the categories page" do
-        post :create, params
+        post :create, params: params
         expect(response).to redirect_to(categories_path)
       end
     end
@@ -52,12 +53,14 @@ describe CategoriesController do
       end
 
       it "assigns @category" do
-        post :create, params
+        pending
+        post :create, params: params
         expect(assigns[:category]).to eq(category)
       end
 
       it "renders the new template" do
-        post :create, params
+        pending
+        post :create, params: params
         expect(response).to render_template('new')
       end
     end
@@ -75,7 +78,7 @@ describe CategoriesController do
       end
 
       it 'succeeds' do
-        get :show, id: cat.id, resort_slug: resort.to_param
+        get :show, params: { id: cat.id, resort_slug: resort.to_param }
         expect(response).to be_successful
       end
     end
@@ -83,7 +86,7 @@ describe CategoriesController do
     context 'with no results' do
       it '404s' do
         allow(Category).to receive(:new).and_call_original
-        get :show, id: cat.id, resort_slug: resort.to_param
+        get :show, params: { id: cat.id, resort_slug: resort.to_param }
         expect(response.status).to eq 404
       end
     end
@@ -92,7 +95,7 @@ describe CategoriesController do
   describe 'DELETE destroy' do
     it 'finds the category' do
       expect(Category).to receive(:find_by).with(id: '1')
-      delete 'destroy', id: 1
+      delete 'destroy', params: { id: 1 }
     end
 
     context 'when the category is found' do
@@ -100,16 +103,16 @@ describe CategoriesController do
 
       it 'destroys the category' do
         expect(category).to receive(:destroy)
-        delete 'destroy', id: 1
+        delete 'destroy', params: { id: 1 }
       end
 
       it 'sets a flash[:notice] message' do
-        post 'destroy', id: 1
+        delete 'destroy', params: { id: 1 }
         expect(flash[:notice]).to eq 'Deleted.'
       end
 
       it 'redirects to the categories page' do
-        delete 'destroy', id: 1
+        delete 'destroy', params: { id: 1 }
         expect(response).to redirect_to(categories_path)
       end
     end

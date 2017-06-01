@@ -19,7 +19,7 @@ describe Admin::RegionsController do
         end
 
         it 'redirects to edit' do
-          patch :update, id: region.slug, region: { name: SecureRandom.hex }
+          patch :update, params: { id: region.slug, region: { name: SecureRandom.hex } }
           expect(response).to redirect_to edit_admin_region_path(region)
         end
       end

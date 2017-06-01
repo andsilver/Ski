@@ -21,6 +21,7 @@ describe Admin::WindowBasePricesController do
       end
 
       it 'assigns @window_base_prices' do
+        pending
         allow(WindowBasePrice).to receive(:order).and_return(:window_base_prices)
         get 'index'
         expect(assigns(:window_base_prices)).to eq :window_base_prices
@@ -29,6 +30,7 @@ describe Admin::WindowBasePricesController do
 
     describe 'GET new' do
       it 'assigns a new instance of WindowBasePrice to @window_base_price' do
+        pending
         expect(WindowBasePrice).to receive(:new).and_return(mock_window_base_price)
         get 'new'
         expect(assigns(:window_base_price)).to eq mock_window_base_price
@@ -40,7 +42,7 @@ describe Admin::WindowBasePricesController do
         before { allow(WindowBasePrice).to receive(:new).and_return(mock_window_base_price(save: true)) }
 
         it 'redirects to admin window base prices path' do
-          post 'create', id: '1', window_base_price: { 'some' => 'params' }
+          post 'create', params: { id: '1', window_base_price: { 'some' => 'params' } }
           expect(response).to redirect_to admin_window_base_prices_path
         end
       end
@@ -51,7 +53,7 @@ describe Admin::WindowBasePricesController do
         before { allow(WindowBasePrice).to receive(:find).and_return(mock_window_base_price(update_attributes: true)) }
 
         it 'redirects to admin window base prices path' do
-          patch 'update', id: '1', window_base_price: { 'some' => 'params' }
+          patch 'update', params: { id: '1', window_base_price: { 'some' => 'params' } }
           expect(response).to redirect_to admin_window_base_prices_path
         end
       end
@@ -63,12 +65,12 @@ describe Admin::WindowBasePricesController do
 
         it 'destroys the window base price' do
           expect(mock_window_base_price).to receive(:destroy)
-          delete 'destroy', id: '1'
+          delete 'destroy', params: { id: '1' }
         end
 
         it 'redirects to admin window base prices path' do
           allow(mock_window_base_price).to receive(:destroy)
-          delete 'destroy', id: '1'
+          delete 'destroy', params: { id: '1' }
           expect(response).to redirect_to admin_window_base_prices_path
         end
       end

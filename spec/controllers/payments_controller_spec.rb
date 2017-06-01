@@ -29,7 +29,7 @@ describe PaymentsController do
     context 'when FuturePay' do
       it 'sets the FuturePay ID' do
         expect(payment).to receive(:futurepay_id=).with('1234')
-        post 'worldpay_callback', futurePayId: '1234'
+        post 'worldpay_callback', params: { futurePayId: '1234' }
       end
 
       context 'when in test mode' do
@@ -44,7 +44,7 @@ describe PaymentsController do
           allow(controller).to receive(:complete_order)
           expect(payment).to receive(:accepted=).with(false) # expected first time, for safety
           expect(payment).to receive(:accepted=).with(true)
-          post 'worldpay_callback', params
+          post 'worldpay_callback', params: params
         end
       end
     end

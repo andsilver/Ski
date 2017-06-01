@@ -16,21 +16,21 @@ describe OrdersController do
         expect(Order).to receive(:find_by).and_return(order)
         allow(Invoice).to receive(:new).and_return(invoice)
         allow(invoice).to receive(:render)
-        get 'invoice', id: '1'
+        get 'invoice', params: { id: '1' }
       end
 
       it 'creates a new invoice with the order' do
         allow(Order).to receive(:find_by).and_return(order)
         expect(Invoice).to receive(:new).with(order).and_return(invoice)
         allow(invoice).to receive(:render)
-        get 'invoice', id: '1'
+        get 'invoice', params: { id: '1' }
       end
 
       it 'renders the invoice' do
         allow(Order).to receive(:find_by).and_return(order)
         allow(Invoice).to receive(:new).and_return(invoice)
         expect(invoice).to receive(:render)
-        get 'invoice', id: '1'
+        get 'invoice', params: { id: '1' }
       end
     end
   end

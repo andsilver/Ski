@@ -64,7 +64,9 @@ describe Resort do
       r.create_page('summer-holidays')
       r.slug = slug_post
       r.save
-      expect(r.page('summer-holidays').path).to match(slug_post)
+      summer_holidays = r.page('summer-holidays')
+      expect(summer_holidays).to be
+      expect(summer_holidays.path).to match(slug_post)
     end
   end
 

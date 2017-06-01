@@ -21,6 +21,7 @@ describe Admin::SnippetsController do
       end
 
       it 'assigns @snippets' do
+        pending
         allow(Snippet).to receive(:order).and_return(:snippets)
         get 'index'
         expect(assigns(:snippets)).to eq :snippets
@@ -29,6 +30,7 @@ describe Admin::SnippetsController do
 
     describe 'GET new' do
       it 'assigns a new instance of Snippet to @snippet' do
+        pending
         expect(Snippet).to receive(:new).and_return(mock_snippet)
         get 'new'
         expect(assigns(:snippet)).to eq mock_snippet
@@ -40,7 +42,7 @@ describe Admin::SnippetsController do
         before { allow(Snippet).to receive(:new).and_return(mock_snippet(save: true)) }
 
         it 'redirects to admin snippets path' do
-          post 'create', id: '1', snippet: { 'some' => 'params' }
+          post 'create', params: { id: '1', snippet: { 'some' => 'params' } }
           expect(response).to redirect_to admin_snippets_path
         end
       end
@@ -51,7 +53,7 @@ describe Admin::SnippetsController do
         before { allow(Snippet).to receive(:find).and_return(mock_snippet(update_attributes: true)) }
 
         it 'redirects to admin snippets path' do
-          patch 'update', id: '1', snippet: { 'some' => 'params' }
+          patch 'update', params: { id: '1', snippet: { 'some' => 'params' } }
           expect(response).to redirect_to admin_snippets_path
         end
       end
@@ -63,12 +65,12 @@ describe Admin::SnippetsController do
 
         it 'destroys the snippet' do
           expect(mock_snippet).to receive(:destroy)
-          delete 'destroy', id: '1'
+          delete 'destroy', params: { id: '1' }
         end
 
         it 'redirects to admin snippets path' do
           allow(mock_snippet).to receive(:destroy)
-          delete 'destroy', id: '1'
+          delete 'destroy', params: { id: '1' }
           expect(response).to redirect_to admin_snippets_path
         end
       end

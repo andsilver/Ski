@@ -25,7 +25,7 @@ module Interhome
     # Imports Interhome prices from an array of filenames of XML files.
     # All previously existing prices for the specified number of days are deleted.
     def import(filenames)
-      InterhomePrice.delete_all(days: @days)
+      InterhomePrice.where(days: @days).delete_all
       filenames.each {|f| import_file(f)}
     end
 

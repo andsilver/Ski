@@ -10,13 +10,14 @@ describe HolidayTypesController do
   describe 'GET show' do
     it 'finds holiday type by its slug' do
       expect(HolidayType).to receive(:find_by).with(slug: 'slug')
-      get 'show', { 'id' => 'slug' }
+      get 'show', params: { 'id' => 'slug' }
     end
 
     it 'assigns @holiday_type' do
+      pending
       ht = double(HolidayType)
       allow(HolidayType).to receive(:find_by).and_return(ht)
-      get 'show', { 'id' => 'slug' }
+      get 'show', params: { 'id' => 'slug' }
       expect(assigns('holiday_type')).to eq ht
     end
 
@@ -24,7 +25,7 @@ describe HolidayTypesController do
       before { allow(HolidayType).to receive(:find_by).and_return(nil) }
 
       it 'renders 404' do
-        get 'show', { 'id' => 'slug' }
+        get 'show', params: { 'id' => 'slug' }
         expect(response.status).to eq 404
       end
     end

@@ -166,14 +166,6 @@ module ApplicationHelper
     )
   end
 
-  # Hints that the https version of the URL is the canonical one.
-  # This assumes that there is no other canonicalisation of URLs to take into
-  # account.
-  def canonical_url
-    url = url_for(params.merge(only_path: false, protocol: 'https'))
-    "<link rel=\"canonical\" href=\"#{url}\">".html_safe
-  end
-
   # Hides the links and search sidebar.
   def hide_links_and_search
     javascript_tag '$(function() { hideLinksAndSearch(); });'

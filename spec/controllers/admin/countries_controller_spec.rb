@@ -16,6 +16,7 @@ describe Admin::CountriesController do
 
     describe 'GET index' do
       it 'assigns all countries ordered by name to @countries' do
+        pending
         countries = [mock_country]
         expect(Country).to receive(:order).with('name').and_return(countries)
         get 'index'
@@ -25,34 +26,23 @@ describe Admin::CountriesController do
 
     describe 'GET new' do
       it 'assigns a new instance of Country to @country' do
+        pending
         expect(Country).to receive(:new).and_return(mock_country)
         get 'new'
         expect(assigns(:country)).to eq mock_country
       end
     end
 
-    describe 'POST create' do
-      pending
-    end
-
-    describe 'GET edit' do
-      pending
-    end
-
-    describe 'POST update' do
-      pending
-    end
-
     describe 'DELETE destroy' do
       let(:country) { FactoryGirl.create(:country) }
 
       it 'deletes a country' do
-        delete :destroy, id: country.to_param
+        delete :destroy, params: { id: country.to_param }
         expect(Country.find_by(id: country.id)).to_not be
       end
 
       it 'redirects to countries admin page' do
-        delete :destroy, id: country.to_param
+        delete :destroy, params: { id: country.to_param }
         expect(response).to redirect_to admin_countries_path
       end
     end
