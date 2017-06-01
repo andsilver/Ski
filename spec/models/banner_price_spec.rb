@@ -18,6 +18,8 @@ describe BannerPrice do
   end
 
   it 'raises an error if no valid banner price' do
-    expect { BannerPrice.price_for_advert_number(1) }.to raise_error
+    expect { BannerPrice.price_for_advert_number(1) }.to raise_error(
+      'No valid banner price'
+    )
   end
 end
