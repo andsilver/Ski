@@ -1,6 +1,6 @@
 class Admin::CouponsController < ApplicationController
   before_action :admin_required
-  before_action :set_coupon, only: [:edit, :update]
+  before_action :set_coupon, only: %i[edit update destroy]
 
   layout 'admin'
 
@@ -31,6 +31,11 @@ class Admin::CouponsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @coupon.destroy
+    redirect_to admin_coupons_path, notice: t('notices.deleted')
   end
 
   protected
