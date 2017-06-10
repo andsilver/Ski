@@ -58,3 +58,7 @@ doc/features.html
 # Ignore Pierre et Vacances data files
 /pierreetvacances/*
 !/pierreetvacances/.keep
+
+# Ignore TripAdvisor data files
+/trip_advisor/*
+!/trip_advisor/.keep
