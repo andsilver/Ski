@@ -6,6 +6,13 @@ GIT
       actionmailer (>= 4.0, < 6)
       activesupport (>= 4.0, < 6)
 
+GIT
+  remote: https://github.com/net-ssh/net-sftp.git
+  revision: c1393ae1154c3a344308bd84120944f50935addd
+  specs:
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -184,6 +191,7 @@ GEM
     multi_test (0.1.2)
     mysql2 (0.4.6)
     nenv (0.3.0)
+    net-ssh (4.1.0)
     nio4r (2.1.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
@@ -359,6 +367,7 @@ DEPENDENCIES
   liquid (~> 3.0)
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.3.18, < 0.5)
+  net-sftp!
   prawn
   puma (~> 3.7)
   railroad (= 0.5.0)
