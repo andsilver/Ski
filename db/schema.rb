@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,842 +10,814 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503174954) do
+ActiveRecord::Schema.define(version: 20170610145445) do
 
-  create_table "adverts", force: :cascade do |t|
-    t.integer  "user_id",             limit: 4,                 null: false
-    t.integer  "months",              limit: 4, default: 3,     null: false
+  create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "user_id", null: false
+    t.integer "months", default: 3, null: false
     t.datetime "starts_at"
     t.datetime "expires_at"
-    t.boolean  "moderated",                     default: false, null: false
-    t.boolean  "paused",                        default: false, null: false
-    t.integer  "views",               limit: 4, default: 0,     null: false
-    t.integer  "banner_advert_id",    limit: 4
-    t.integer  "directory_advert_id", limit: 4
-    t.integer  "property_id",         limit: 4
+    t.boolean "moderated", default: false, null: false
+    t.boolean "paused", default: false, null: false
+    t.integer "views", default: 0, null: false
+    t.integer "banner_advert_id"
+    t.integer "directory_advert_id"
+    t.integer "property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "window",                        default: false, null: false
-    t.integer  "order_id",            limit: 4
+    t.boolean "window", default: false, null: false
+    t.integer "order_id"
+    t.index ["banner_advert_id"], name: "index_adverts_on_banner_advert_id"
+    t.index ["directory_advert_id"], name: "index_adverts_on_directory_advert_id"
+    t.index ["order_id"], name: "index_adverts_on_order_id"
+    t.index ["property_id"], name: "index_adverts_on_property_id"
+    t.index ["user_id"], name: "index_adverts_on_user_id"
   end
 
-  add_index "adverts", ["banner_advert_id"], name: "index_adverts_on_banner_advert_id", using: :btree
-  add_index "adverts", ["directory_advert_id"], name: "index_adverts_on_directory_advert_id", using: :btree
-  add_index "adverts", ["order_id"], name: "index_adverts_on_order_id", using: :btree
-  add_index "adverts", ["property_id"], name: "index_adverts_on_property_id", using: :btree
-  add_index "adverts", ["user_id"], name: "index_adverts_on_user_id", using: :btree
-
-  create_table "airport_distances", force: :cascade do |t|
-    t.integer  "resort_id",   limit: 4,             null: false
-    t.integer  "airport_id",  limit: 4,             null: false
-    t.integer  "distance_km", limit: 4, default: 0, null: false
+  create_table "airport_distances", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "resort_id", null: false
+    t.integer "airport_id", null: false
+    t.integer "distance_km", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["resort_id"], name: "index_airport_distances_on_resort_id"
   end
 
-  add_index "airport_distances", ["resort_id"], name: "index_airport_distances_on_resort_id", using: :btree
-
-  create_table "airport_transfers", force: :cascade do |t|
-    t.integer  "airport_id",       limit: 4,                null: false
-    t.integer  "resort_id",        limit: 4,                null: false
-    t.integer  "user_id",          limit: 4,                null: false
-    t.boolean  "publicly_visible",           default: true, null: false
+  create_table "airport_transfers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "airport_id", null: false
+    t.integer "resort_id", null: false
+    t.integer "user_id", null: false
+    t.boolean "publicly_visible", default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["airport_id"], name: "index_airport_transfers_on_airport_id"
+    t.index ["resort_id"], name: "index_airport_transfers_on_resort_id"
+    t.index ["user_id"], name: "index_airport_transfers_on_user_id"
   end
 
-  add_index "airport_transfers", ["airport_id"], name: "index_airport_transfers_on_airport_id", using: :btree
-  add_index "airport_transfers", ["resort_id"], name: "index_airport_transfers_on_resort_id", using: :btree
-  add_index "airport_transfers", ["user_id"], name: "index_airport_transfers_on_user_id", using: :btree
-
-  create_table "airports", force: :cascade do |t|
-    t.string   "name",       limit: 255, default: "", null: false
-    t.string   "code",       limit: 255, default: "", null: false
-    t.integer  "country_id", limit: 4,                null: false
+  create_table "airports", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name", default: "", null: false
+    t.string "code", default: "", null: false
+    t.integer "country_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "alt_attributes", force: :cascade do |t|
-    t.string   "path",       limit: 255,              null: false
-    t.string   "alt_text",   limit: 255, default: "", null: false
+  create_table "alt_attributes", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "path", null: false
+    t.string "alt_text", default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["path"], name: "index_alt_attributes_on_path"
+  end
+
+  create_table "availabilities", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.bigint "id"
+    t.integer "property_id"
+    t.date "start_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "availability", limit: 1, null: false
+    t.boolean "check_in", null: false
+    t.boolean "check_out", null: false
+    t.index ["created_at"], name: "index_availabilities_on_created_at"
+    t.index ["property_id", "start_date"], name: "index_availabilities_on_property_id_and_start_date"
+    t.index ["property_id"], name: "index_availabilities_on_property_id"
+    t.index ["start_date"], name: "index_availabilities_on_start_date"
+  end
+
+  create_table "banner_adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "user_id", null: false
+    t.integer "resort_id", null: false
+    t.integer "image_id"
+    t.string "url", null: false
+    t.integer "width", default: 0, null: false
+    t.integer "height", default: 0, null: false
+    t.integer "clicks", default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["resort_id"], name: "index_banner_adverts_on_resort_id"
+    t.index ["user_id"], name: "index_banner_adverts_on_user_id"
+  end
+
+  create_table "banner_prices", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "current_banner_number", default: 0, null: false
+    t.integer "price", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "alt_attributes", ["path"], name: "index_alt_attributes_on_path", using: :btree
-
-  create_table "availabilities", id: false, force: :cascade do |t|
-    t.integer  "id",           limit: 8
-    t.integer  "property_id",  limit: 4
-    t.date     "start_date"
+  create_table "buying_guides", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "country_id", null: false
+    t.text "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "availability", limit: 1, null: false
-    t.boolean  "check_in",               null: false
-    t.boolean  "check_out",              null: false
+    t.index ["country_id"], name: "index_buying_guides_on_country_id"
   end
 
-  add_index "availabilities", ["created_at"], name: "index_availabilities_on_created_at", using: :btree
-  add_index "availabilities", ["property_id", "start_date"], name: "index_availabilities_on_property_id_and_start_date", using: :btree
-  add_index "availabilities", ["property_id"], name: "index_availabilities_on_property_id", using: :btree
-  add_index "availabilities", ["start_date"], name: "index_availabilities_on_start_date", using: :btree
+  create_table "carousel_slides", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "position", null: false
+    t.string "image_url", null: false
+    t.string "caption", null: false
+    t.string "link", null: false
+    t.datetime "active_from", null: false
+    t.datetime "active_until", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "alt"
+  end
 
-  create_table "banner_adverts", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4,               null: false
-    t.integer  "resort_id",  limit: 4,               null: false
-    t.integer  "image_id",   limit: 4
-    t.string   "url",        limit: 255,             null: false
-    t.integer  "width",      limit: 4,   default: 0, null: false
-    t.integer  "height",     limit: 4,   default: 0, null: false
-    t.integer  "clicks",     limit: 4,   default: 0, null: false
+  create_table "categories", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "banner_adverts", ["resort_id"], name: "index_banner_adverts_on_resort_id", using: :btree
-  add_index "banner_adverts", ["user_id"], name: "index_banner_adverts_on_user_id", using: :btree
+  create_table "countries", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name", default: "", null: false
+    t.string "iso_3166_1_alpha_2", default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text "info"
+    t.boolean "popular_billing_country", default: false, null: false
+    t.boolean "in_eu", default: false, null: false
+    t.integer "image_id"
+    t.text "banner_advert_html"
+    t.integer "property_count", default: 0, null: false
+    t.string "slug", null: false
+    t.index ["slug"], name: "index_countries_on_slug"
+  end
 
-  create_table "banner_prices", force: :cascade do |t|
-    t.integer  "current_banner_number", limit: 4, default: 0, null: false
-    t.integer  "price",                 limit: 4, default: 0, null: false
+  create_table "coupons", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "code"
+    t.integer "number_of_adverts"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "percentage_off", default: 100, null: false
+    t.date "expires_on"
+  end
+
+  create_table "currencies", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name", default: "", null: false
+    t.string "unit", default: "", null: false
+    t.boolean "pre", default: true, null: false
+    t.string "code", default: "", null: false
+    t.decimal "in_euros", precision: 6, scale: 4, default: "1.0", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "buying_guides", force: :cascade do |t|
-    t.integer  "country_id", limit: 4,     null: false
-    t.text     "content",    limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "buying_guides", ["country_id"], name: "index_buying_guides_on_country_id", using: :btree
-
-  create_table "carousel_slides", force: :cascade do |t|
-    t.integer  "position",     limit: 4,   null: false
-    t.string   "image_url",    limit: 255, null: false
-    t.string   "caption",      limit: 255, null: false
-    t.string   "link",         limit: 255, null: false
-    t.datetime "active_from",              null: false
-    t.datetime "active_until",             null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "alt",          limit: 255
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "countries", force: :cascade do |t|
-    t.string   "name",                    limit: 255,   default: "",    null: false
-    t.string   "iso_3166_1_alpha_2",      limit: 255,   default: "",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "info",                    limit: 65535
-    t.boolean  "popular_billing_country",               default: false, null: false
-    t.boolean  "in_eu",                                 default: false, null: false
-    t.integer  "image_id",                limit: 4
-    t.text     "banner_advert_html",      limit: 65535
-    t.integer  "property_count",          limit: 4,     default: 0,     null: false
-    t.string   "slug",                    limit: 255,                   null: false
-  end
-
-  add_index "countries", ["slug"], name: "index_countries_on_slug", using: :btree
-
-  create_table "coupons", force: :cascade do |t|
-    t.string   "code",              limit: 255
-    t.integer  "number_of_adverts", limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "percentage_off",    limit: 4,   default: 100, null: false
-    t.date     "expires_on"
-  end
-
-  create_table "currencies", force: :cascade do |t|
-    t.string   "name",       limit: 255,                         default: "",   null: false
-    t.string   "unit",       limit: 255,                         default: "",   null: false
-    t.boolean  "pre",                                            default: true, null: false
-    t.string   "code",       limit: 255,                         default: "",   null: false
-    t.decimal  "in_euros",               precision: 6, scale: 4, default: 1.0,  null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   limit: 4,     default: 0, null: false
-    t.integer  "attempts",   limit: 4,     default: 0, null: false
-    t.text     "handler",    limit: 65535,             null: false
-    t.text     "last_error", limit: 65535
+  create_table "delayed_jobs", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by",  limit: 255
-    t.string   "queue",      limit: 255
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "directory_adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "user_id", null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "business_address", null: false
+    t.string "postcode", default: "", null: false
+    t.string "opening_hours", default: "", null: false
+    t.integer "resort_id"
+    t.string "phone", default: "", null: false
+    t.integer "image_id"
+    t.string "url", default: "", null: false
+    t.string "strapline", default: "", null: false
+    t.text "description"
+    t.boolean "is_banner_advert", default: false, null: false
+    t.integer "banner_image_id"
+    t.integer "width", default: 0, null: false
+    t.integer "height", default: 0, null: false
+    t.string "business_name", default: "", null: false
+    t.index ["resort_id"], name: "index_directory_adverts_on_resort_id"
+    t.index ["user_id"], name: "index_directory_adverts_on_user_id"
+  end
+
+  create_table "enquiries", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "user_id", null: false
+    t.integer "property_id"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "phone", null: false
+    t.date "date_of_arrival"
+    t.date "date_of_departure"
+    t.text "comments"
+    t.boolean "contact_me", default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "number_of_adults", default: 0, null: false
+    t.integer "number_of_children", default: 0, null: false
+    t.integer "number_of_infants", default: 0, null: false
+    t.boolean "permission_to_contact", default: false, null: false
+  end
+
+  create_table "favourites", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "property_id", null: false
+    t.integer "unregistered_user_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["property_id"], name: "index_favourites_on_property_id"
+    t.index ["unregistered_user_id"], name: "index_favourites_on_unregistered_user_id"
+  end
+
+  create_table "flip_key_locations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "rgt"
+    t.string "parent_path", null: false
+    t.integer "parent_id"
+    t.string "name", null: false
+    t.integer "lft"
+    t.integer "property_count", default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "resort_id"
+    t.index ["parent_id"], name: "index_flip_key_locations_on_parent_id"
+    t.index ["resort_id"], name: "index_flip_key_locations_on_resort_id"
+  end
+
+  create_table "flip_key_properties", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "url", null: false
+    t.text "json_data", limit: 16777215
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["url"], name: "index_flip_key_properties_on_url"
+  end
+
+  create_table "footers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name", null: false
+    t.text "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["name"], name: "index_footers_on_name"
+  end
+
+  create_table "holiday_type_brochures", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "brochurable_id"
+    t.integer "holiday_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "brochurable_type"
+    t.index ["brochurable_id"], name: "index_holiday_type_brochures_on_brochurable_id"
+    t.index ["holiday_type_id"], name: "index_holiday_type_brochures_on_holiday_type_id"
+  end
+
+  create_table "holiday_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean "visible_on_menu", default: true, null: false
+    t.text "sidebar_html"
+    t.text "mega_menu_html"
+  end
+
+  create_table "images", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "user_id"
+    t.string "filename", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "property_id"
+    t.text "source_url"
+    t.index ["property_id"], name: "index_images_on_property_id"
+  end
+
+  create_table "interhome_accommodations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "code", null: false
+    t.string "name", null: false
+    t.string "country", null: false
+    t.string "region", null: false
+    t.string "place", null: false
+    t.string "zip", null: false
+    t.string "accommodation_type", null: false
+    t.string "details", null: false
+    t.integer "quality", null: false
+    t.integer "brand", null: false
+    t.integer "pax", null: false
+    t.integer "sqm", null: false
+    t.integer "floor", null: false
+    t.integer "rooms", null: false
+    t.integer "bedrooms", null: false
+    t.integer "toilets", null: false
+    t.integer "bathrooms", null: false
+    t.string "geodata_lat", null: false
+    t.string "geodata_lng", null: false
+    t.text "features"
+    t.string "themes", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "permalink"
+    t.index ["code"], name: "index_interhome_accommodations_on_code"
+    t.index ["permalink"], name: "index_interhome_accommodations_on_permalink"
+  end
+
+  create_table "interhome_inside_descriptions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "accommodation_code", null: false
+    t.text "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["accommodation_code"], name: "index_interhome_inside_descriptions_on_accommodation_code"
+  end
+
+  create_table "interhome_outside_descriptions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "accommodation_code", null: false
+    t.text "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["accommodation_code"], name: "index_interhome_outside_descriptions_on_accommodation_code"
+  end
+
+  create_table "interhome_pictures", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "interhome_accommodation_id", null: false
+    t.string "picture_type", null: false
+    t.string "season", null: false
+    t.string "url", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["interhome_accommodation_id"], name: "index_interhome_pictures_on_interhome_accommodation_id"
+  end
+
+  create_table "interhome_place_resorts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "resort_id", null: false
+    t.string "interhome_place_code", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["resort_id"], name: "index_interhome_place_resorts_on_resort_id"
+  end
+
+  create_table "interhome_places", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "code", null: false
+    t.string "name", null: false
+    t.string "full_name", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["code"], name: "index_interhome_places_on_code"
+  end
+
+  create_table "interhome_prices", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "accommodation_code", null: false
+    t.integer "days", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.integer "rental_price", null: false
+    t.integer "min_rental_price", null: false
+    t.integer "max_rental_price", null: false
+    t.string "special_offer_code"
+    t.integer "special_offer_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "regular_price", default: 0, null: false
+    t.index ["accommodation_code"], name: "index_interhome_prices_on_accommodation_code"
+  end
+
+  create_table "interhome_vacancies", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "interhome_accommodation_id", null: false
+    t.string "accommodation_code", null: false
+    t.date "startday"
+    t.text "availability"
+    t.text "changeover"
+    t.text "minstay"
+    t.text "flexbooking"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["accommodation_code"], name: "index_interhome_vacancies_on_accommodation_code"
+    t.index ["interhome_accommodation_id"], name: "index_interhome_vacancies_on_interhome_accommodation_id"
+  end
+
+  create_table "order_lines", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "order_id", null: false
+    t.string "description", null: false
+    t.integer "amount", null: false
+    t.integer "advert_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "coupon_id"
+    t.integer "country_id"
+    t.integer "resort_id"
+    t.integer "windows", default: 0, null: false
+    t.index ["advert_id"], name: "index_order_lines_on_advert_id"
+    t.index ["country_id"], name: "index_order_lines_on_country_id"
+    t.index ["coupon_id"], name: "index_order_lines_on_coupon_id"
+    t.index ["order_id"], name: "index_order_lines_on_order_id"
+    t.index ["resort_id"], name: "index_order_lines_on_resort_id"
+  end
+
+  create_table "orders", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "user_id"
+    t.string "order_number", null: false
+    t.string "email", null: false
+    t.integer "status", null: false
+    t.string "name", null: false
+    t.string "address", null: false
+    t.integer "country_id", null: false
+    t.string "phone", null: false
+    t.integer "total", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "postcode", default: "", null: false
+    t.boolean "pay_monthly", default: false
+    t.integer "first_payment", default: 0
+    t.integer "subsequent_payments", default: 0
+    t.integer "tax_amount", default: 0, null: false
+    t.string "customer_vat_number", default: "", null: false
+    t.string "tax_description", default: "VAT", null: false
+    t.decimal "sterling_in_euros", precision: 6, scale: 4
+    t.index ["created_at"], name: "index_orders_on_created_at"
+    t.index ["email"], name: "index_orders_on_email"
+    t.index ["order_number"], name: "index_orders_on_order_number"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "pages", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "path", null: false
+    t.string "title", null: false
+    t.string "description", default: "", null: false
+    t.string "keywords", default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "footer_id"
+    t.text "content"
+    t.text "banner_advert_html"
+    t.boolean "visible", default: true, null: false
+    t.string "sidebar_snippet_name"
+    t.string "header_snippet_name"
+    t.integer "region_id"
+    t.integer "resort_id"
+    t.index ["path"], name: "index_pages_on_path"
+    t.index ["region_id"], name: "index_pages_on_region_id"
+    t.index ["resort_id"], name: "index_pages_on_resort_id"
+  end
+
+  create_table "payments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "order_id"
+    t.string "service_provider"
+    t.string "installation_id"
+    t.string "cart_id"
+    t.string "description"
+    t.string "amount"
+    t.string "currency"
+    t.boolean "test_mode"
+    t.string "name"
+    t.string "address"
+    t.string "postcode"
+    t.string "country"
+    t.string "telephone"
+    t.string "fax"
+    t.string "email"
+    t.string "transaction_id"
+    t.string "transaction_status"
+    t.string "transaction_time"
+    t.text "raw_auth_message"
+    t.boolean "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "futurepay_id", default: "", null: false
+    t.index ["created_at"], name: "index_payments_on_created_at"
+    t.index ["order_id"], name: "index_payments_on_order_id"
+  end
+
+  create_table "properties", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "user_id", null: false
+    t.integer "resort_id", null: false
+    t.string "name", default: "", null: false
+    t.string "strapline", default: "", null: false
+    t.integer "metres_from_lift", default: 0, null: false
+    t.integer "sleeping_capacity", default: 0, null: false
+    t.integer "number_of_bedrooms", default: 0, null: false
+    t.boolean "new_development", default: false, null: false
+    t.integer "listing_type", default: 0, null: false
+    t.integer "image_id"
+    t.integer "weekly_rent_price", default: 0, null: false
+    t.boolean "fully_equipped_kitchen", default: false, null: false
+    t.integer "tv", default: 0, null: false
+    t.boolean "wifi", default: false, null: false
+    t.boolean "disabled", default: false, null: false
+    t.integer "parking", default: 0, null: false
+    t.boolean "pets", default: false, null: false
+    t.boolean "smoking", default: false, null: false
+    t.integer "sale_price", default: 0, null: false
+    t.boolean "garden", default: false, null: false
+    t.integer "floor_area_metres_2", default: 0, null: false
+    t.integer "plot_size_metres_2", default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text "description"
+    t.integer "number_of_bathrooms", default: 0, null: false
+    t.string "address", default: "", null: false
+    t.string "postcode", default: "", null: false
+    t.string "latitude", default: "", null: false
+    t.string "longitude", default: "", null: false
+    t.boolean "long_term_lets_available", default: false, null: false
+    t.boolean "balcony", default: false, null: false
+    t.boolean "mountain_views", default: false, null: false
+    t.boolean "log_fire", default: false, null: false
+    t.boolean "cave", default: false, null: false
+    t.boolean "ski_in_ski_out", default: false, null: false
+    t.boolean "hot_tub", default: false, null: false
+    t.boolean "indoor_swimming_pool", default: false, null: false
+    t.boolean "outdoor_swimming_pool", default: false, null: false
+    t.boolean "sauna", default: false, null: false
+    t.integer "distance_from_town_centre_m", default: 0, null: false
+    t.integer "accommodation_type", default: 0, null: false
+    t.integer "currency_id", default: 1, null: false
+    t.integer "normalised_sale_price", default: 0, null: false
+    t.integer "normalised_weekly_rent_price", default: 0, null: false
+    t.boolean "children_welcome", default: false, null: false
+    t.boolean "short_stays", default: false, null: false
+    t.boolean "terrace", default: false, null: false
+    t.integer "pericles_id"
+    t.integer "board_basis", default: 0, null: false
+    t.integer "star_rating", default: 1, null: false
+    t.integer "interhome_accommodation_id"
+    t.integer "country_id"
+    t.boolean "publicly_visible", default: false, null: false
+    t.boolean "late_availability", default: true
+    t.integer "pv_accommodation_id"
+    t.integer "region_id"
+    t.string "booking_url", default: "", null: false
+    t.integer "flip_key_property_id"
+    t.string "price_description", default: "", null: false
+    t.string "layout"
+    t.index ["country_id"], name: "index_properties_on_country_id"
+    t.index ["flip_key_property_id"], name: "index_properties_on_flip_key_property_id"
+    t.index ["interhome_accommodation_id"], name: "index_properties_on_interhome_accommodation_id"
+    t.index ["late_availability"], name: "index_properties_on_late_availability"
+    t.index ["publicly_visible"], name: "index_properties_on_publicly_visible"
+    t.index ["pv_accommodation_id"], name: "index_properties_on_pv_accommodation_id"
+    t.index ["resort_id"], name: "index_properties_on_resort_id"
+    t.index ["user_id"], name: "index_properties_on_user_id"
+  end
+
+  create_table "property_base_prices", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "number_of_months", default: 0, null: false
+    t.integer "price", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
-
-  create_table "directory_adverts", force: :cascade do |t|
-    t.integer  "user_id",          limit: 4,                     null: false
-    t.integer  "category_id",      limit: 4,                     null: false
+  create_table "property_volume_discounts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "current_property_number", default: 0, null: false
+    t.integer "discount_percentage", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "business_address", limit: 255,                   null: false
-    t.string   "postcode",         limit: 255,   default: "",    null: false
-    t.string   "opening_hours",    limit: 255,   default: "",    null: false
-    t.integer  "resort_id",        limit: 4
-    t.string   "phone",            limit: 255,   default: "",    null: false
-    t.integer  "image_id",         limit: 4
-    t.string   "url",              limit: 255,   default: "",    null: false
-    t.string   "strapline",        limit: 255,   default: "",    null: false
-    t.text     "description",      limit: 65535
-    t.boolean  "is_banner_advert",               default: false, null: false
-    t.integer  "banner_image_id",  limit: 4
-    t.integer  "width",            limit: 4,     default: 0,     null: false
-    t.integer  "height",           limit: 4,     default: 0,     null: false
-    t.string   "business_name",    limit: 255,   default: "",    null: false
+    t.integer "discount_amount", default: 0, null: false
   end
 
-  add_index "directory_adverts", ["resort_id"], name: "index_directory_adverts_on_resort_id", using: :btree
-  add_index "directory_adverts", ["user_id"], name: "index_directory_adverts_on_user_id", using: :btree
-
-  create_table "enquiries", force: :cascade do |t|
-    t.integer  "user_id",               limit: 4,                     null: false
-    t.integer  "property_id",           limit: 4
-    t.string   "name",                  limit: 255,                   null: false
-    t.string   "email",                 limit: 255,                   null: false
-    t.string   "phone",                 limit: 255,                   null: false
-    t.date     "date_of_arrival"
-    t.date     "date_of_departure"
-    t.text     "comments",              limit: 65535
-    t.boolean  "contact_me",                          default: false, null: false
+  create_table "pv_accommodations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name", null: false
+    t.string "code", null: false
+    t.string "iso_3166_1", null: false
+    t.string "iso_3166_2", null: false
+    t.string "onu", null: false
+    t.text "accroche_liste"
+    t.text "accroche_fiche"
+    t.text "description"
+    t.string "address_1", null: false
+    t.string "address_2", null: false
+    t.string "town", null: false
+    t.string "postcode", null: false
+    t.string "latitude", null: false
+    t.string "longitude", null: false
+    t.text "sports"
+    t.text "services"
+    t.string "price_table_url", null: false
+    t.string "permalink", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "number_of_adults",      limit: 4,     default: 0,     null: false
-    t.integer  "number_of_children",    limit: 4,     default: 0,     null: false
-    t.integer  "number_of_infants",     limit: 4,     default: 0,     null: false
-    t.boolean  "permission_to_contact",               default: false, null: false
+    t.text "photos"
+    t.index ["code"], name: "index_pv_accommodations_on_code"
+    t.index ["permalink"], name: "index_pv_accommodations_on_permalink"
   end
 
-  create_table "favourites", force: :cascade do |t|
-    t.integer  "property_id",          limit: 4, null: false
-    t.integer  "unregistered_user_id", limit: 4, null: false
+  create_table "pv_place_resorts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "resort_id", null: false
+    t.string "pv_place_code", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["pv_place_code"], name: "index_pv_place_resorts_on_pv_place_code"
+    t.index ["resort_id"], name: "index_pv_place_resorts_on_resort_id"
   end
 
-  add_index "favourites", ["property_id"], name: "index_favourites_on_property_id", using: :btree
-  add_index "favourites", ["unregistered_user_id"], name: "index_favourites_on_unregistered_user_id", using: :btree
-
-  create_table "flip_key_locations", force: :cascade do |t|
-    t.integer  "rgt",            limit: 4
-    t.string   "parent_path",    limit: 255,             null: false
-    t.integer  "parent_id",      limit: 4
-    t.string   "name",           limit: 255,             null: false
-    t.integer  "lft",            limit: 4
-    t.integer  "property_count", limit: 4,   default: 0, null: false
+  create_table "pv_vacancies", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "destination_code", null: false
+    t.string "apartment_code", null: false
+    t.integer "typology"
+    t.date "start_date", null: false
+    t.integer "duration", null: false
+    t.integer "stock_quantity", null: false
+    t.decimal "base_price", precision: 10, scale: 2, null: false
+    t.decimal "promo_price_fr", precision: 10, scale: 2, null: false
+    t.decimal "promo_price_en", precision: 10, scale: 2, null: false
+    t.decimal "promo_price_de", precision: 10, scale: 2, null: false
+    t.decimal "promo_price_nl", precision: 10, scale: 2, null: false
+    t.decimal "promo_price_es", precision: 10, scale: 2, null: false
+    t.decimal "promo_price_it", precision: 10, scale: 2, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "resort_id",      limit: 4
+    t.index ["destination_code", "apartment_code"], name: "index_pv_vacancies_on_destination_code_and_apartment_code"
   end
 
-  add_index "flip_key_locations", ["parent_id"], name: "index_flip_key_locations_on_parent_id", using: :btree
-  add_index "flip_key_locations", ["resort_id"], name: "index_flip_key_locations_on_resort_id", using: :btree
-
-  create_table "flip_key_properties", force: :cascade do |t|
-    t.string   "url",        limit: 255,      null: false
-    t.text     "json_data",  limit: 16777215
+  create_table "regions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "country_id"
+    t.string "name", null: false
+    t.text "info"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "slug", null: false
+    t.boolean "visible", default: true, null: false
+    t.integer "property_count", default: 0, null: false
+    t.index ["country_id"], name: "index_regions_on_country_id"
+    t.index ["slug"], name: "index_regions_on_slug"
+    t.index ["visible"], name: "index_regions_on_visible"
   end
 
-  add_index "flip_key_properties", ["url"], name: "index_flip_key_properties_on_url", using: :btree
-
-  create_table "footers", force: :cascade do |t|
-    t.string   "name",       limit: 255,   null: false
-    t.text     "content",    limit: 65535
+  create_table "resorts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "country_id", default: 0, null: false
+    t.string "name", default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text "info"
+    t.integer "altitude_m"
+    t.integer "top_lift_m"
+    t.integer "piste_length_km"
+    t.integer "black"
+    t.integer "red"
+    t.integer "blue"
+    t.integer "green"
+    t.integer "longest_run_km"
+    t.integer "drags"
+    t.integer "chair"
+    t.integer "gondola"
+    t.integer "cable_car"
+    t.integer "funicular"
+    t.integer "railways"
+    t.string "slope_direction"
+    t.integer "snowboard_parks"
+    t.integer "cross_country_km"
+    t.integer "mountain_restaurants"
+    t.boolean "glacier_skiing"
+    t.boolean "creche"
+    t.boolean "babysitting_services"
+    t.boolean "visible", default: false, null: false
+    t.boolean "featured", default: false, null: false
+    t.text "feature"
+    t.text "introduction"
+    t.string "season", default: "", null: false
+    t.integer "beginner", default: 0, null: false
+    t.integer "intermediate", default: 0, null: false
+    t.integer "off_piste", default: 0, null: false
+    t.integer "expert", default: 0, null: false
+    t.boolean "heli_skiing"
+    t.boolean "summer_skiing"
+    t.integer "family", default: 0, null: false
+    t.text "visiting"
+    t.text "owning_a_property_in"
+    t.text "living_in"
+    t.text "insider_view"
+    t.text "weather_code"
+    t.string "apres_ski", default: "", null: false
+    t.boolean "local_area", default: false, null: false
+    t.integer "property_count", default: 0, null: false
+    t.integer "for_rent_count", default: 0, null: false
+    t.integer "for_sale_count", default: 0, null: false
+    t.integer "hotel_count", default: 0, null: false
+    t.integer "new_development_count", default: 0, null: false
+    t.text "gallery_content"
+    t.text "piste_map_content"
+    t.boolean "summer_only", default: false, null: false
+    t.integer "directory_advert_count", default: 0, null: false
+    t.integer "region_id"
+    t.string "slug", null: false
+    t.integer "ski_area_acre"
+    t.index ["country_id"], name: "index_resorts_on_country_id"
+    t.index ["featured"], name: "index_resorts_on_featured"
+    t.index ["region_id"], name: "index_resorts_on_region_id"
+    t.index ["slug"], name: "index_resorts_on_slug"
+    t.index ["visible"], name: "index_resorts_on_visible"
   end
 
-  add_index "footers", ["name"], name: "index_footers_on_name", using: :btree
-
-  create_table "holiday_type_brochures", force: :cascade do |t|
-    t.integer  "brochurable_id",   limit: 4
-    t.integer  "holiday_type_id",  limit: 4
+  create_table "roles", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name"
+    t.boolean "select_on_signup"
+    t.boolean "admin"
+    t.boolean "flag_new_development"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "brochurable_type", limit: 255
+    t.boolean "advertises_properties_for_rent", default: false, null: false
+    t.boolean "advertises_generally", default: false, null: false
+    t.boolean "has_business_details", default: false, null: false
+    t.boolean "has_a_website", default: false, null: false
+    t.boolean "new_development_by_default", default: false, null: false
+    t.text "sales_pitch"
+    t.boolean "advertises_properties_for_sale", default: false, null: false
+    t.boolean "advertises_through_windows", default: false, null: false
+    t.boolean "advertises_hotels", default: false, null: false
   end
 
-  add_index "holiday_type_brochures", ["brochurable_id"], name: "index_holiday_type_brochures_on_brochurable_id", using: :btree
-  add_index "holiday_type_brochures", ["holiday_type_id"], name: "index_holiday_type_brochures_on_holiday_type_id", using: :btree
-
-  create_table "holiday_types", force: :cascade do |t|
-    t.string   "name",            limit: 255,                  null: false
-    t.string   "slug",            limit: 255,                  null: false
+  create_table "snippets", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name", default: "", null: false
+    t.text "snippet"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "visible_on_menu",               default: true, null: false
-    t.text     "sidebar_html",    limit: 65535
-    t.text     "mega_menu_html",  limit: 65535
+    t.string "locale", default: "en", null: false
+    t.index ["name"], name: "index_snippets_on_name"
   end
 
-  create_table "images", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.string   "filename",    limit: 255,   null: false
+  create_table "tracked_actions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "remote_ip", default: "", null: false
+    t.integer "trackable_id", null: false
+    t.string "trackable_type", null: false
+    t.integer "action_type", null: false
+    t.string "http_user_agent", default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "property_id", limit: 4
-    t.text     "source_url",  limit: 65535
+    t.index ["created_at"], name: "index_tracked_actions_on_created_at"
+    t.index ["trackable_id", "action_type"], name: "index_tracked_actions_on_trackable_id_and_action_type"
+    t.index ["trackable_id"], name: "index_tracked_actions_on_trackable_id"
   end
 
-  add_index "images", ["property_id"], name: "index_images_on_property_id", using: :btree
-
-  create_table "interhome_accommodations", force: :cascade do |t|
-    t.string   "code",               limit: 255,   null: false
-    t.string   "name",               limit: 255,   null: false
-    t.string   "country",            limit: 255,   null: false
-    t.string   "region",             limit: 255,   null: false
-    t.string   "place",              limit: 255,   null: false
-    t.string   "zip",                limit: 255,   null: false
-    t.string   "accommodation_type", limit: 255,   null: false
-    t.string   "details",            limit: 255,   null: false
-    t.integer  "quality",            limit: 4,     null: false
-    t.integer  "brand",              limit: 4,     null: false
-    t.integer  "pax",                limit: 4,     null: false
-    t.integer  "sqm",                limit: 4,     null: false
-    t.integer  "floor",              limit: 4,     null: false
-    t.integer  "rooms",              limit: 4,     null: false
-    t.integer  "bedrooms",           limit: 4,     null: false
-    t.integer  "toilets",            limit: 4,     null: false
-    t.integer  "bathrooms",          limit: 4,     null: false
-    t.string   "geodata_lat",        limit: 255,   null: false
-    t.string   "geodata_lng",        limit: 255,   null: false
-    t.text     "features",           limit: 65535
-    t.string   "themes",             limit: 255,   null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "permalink",          limit: 255
+  create_table "trip_advisor_locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name", null: false
+    t.string "location_type", null: false
+    t.integer "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_trip_advisor_locations_on_parent_id"
   end
 
-  add_index "interhome_accommodations", ["code"], name: "index_interhome_accommodations_on_code", using: :btree
-  add_index "interhome_accommodations", ["permalink"], name: "index_interhome_accommodations_on_permalink", using: :btree
-
-  create_table "interhome_inside_descriptions", force: :cascade do |t|
-    t.string   "accommodation_code", limit: 255,   null: false
-    t.text     "description",        limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "interhome_inside_descriptions", ["accommodation_code"], name: "index_interhome_inside_descriptions_on_accommodation_code", using: :btree
-
-  create_table "interhome_outside_descriptions", force: :cascade do |t|
-    t.string   "accommodation_code", limit: 255,   null: false
-    t.text     "description",        limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "interhome_outside_descriptions", ["accommodation_code"], name: "index_interhome_outside_descriptions_on_accommodation_code", using: :btree
-
-  create_table "interhome_pictures", force: :cascade do |t|
-    t.integer  "interhome_accommodation_id", limit: 4,   null: false
-    t.string   "picture_type",               limit: 255, null: false
-    t.string   "season",                     limit: 255, null: false
-    t.string   "url",                        limit: 255, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "interhome_pictures", ["interhome_accommodation_id"], name: "index_interhome_pictures_on_interhome_accommodation_id", using: :btree
-
-  create_table "interhome_place_resorts", force: :cascade do |t|
-    t.integer  "resort_id",            limit: 4,   null: false
-    t.string   "interhome_place_code", limit: 255, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "interhome_place_resorts", ["resort_id"], name: "index_interhome_place_resorts_on_resort_id", using: :btree
-
-  create_table "interhome_places", force: :cascade do |t|
-    t.string   "code",       limit: 255, null: false
-    t.string   "name",       limit: 255, null: false
-    t.string   "full_name",  limit: 255, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "interhome_places", ["code"], name: "index_interhome_places_on_code", using: :btree
-
-  create_table "interhome_prices", force: :cascade do |t|
-    t.string   "accommodation_code",  limit: 255,             null: false
-    t.integer  "days",                limit: 4,               null: false
-    t.date     "start_date",                                  null: false
-    t.date     "end_date",                                    null: false
-    t.integer  "rental_price",        limit: 4,               null: false
-    t.integer  "min_rental_price",    limit: 4,               null: false
-    t.integer  "max_rental_price",    limit: 4,               null: false
-    t.string   "special_offer_code",  limit: 255
-    t.integer  "special_offer_price", limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "regular_price",       limit: 4,   default: 0, null: false
-  end
-
-  add_index "interhome_prices", ["accommodation_code"], name: "index_interhome_prices_on_accommodation_code", using: :btree
-
-  create_table "interhome_vacancies", force: :cascade do |t|
-    t.integer  "interhome_accommodation_id", limit: 4,     null: false
-    t.string   "accommodation_code",         limit: 255,   null: false
-    t.date     "startday"
-    t.text     "availability",               limit: 65535
-    t.text     "changeover",                 limit: 65535
-    t.text     "minstay",                    limit: 65535
-    t.text     "flexbooking",                limit: 65535
+  create_table "unregistered_users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "interhome_vacancies", ["accommodation_code"], name: "index_interhome_vacancies_on_accommodation_code", using: :btree
-  add_index "interhome_vacancies", ["interhome_accommodation_id"], name: "index_interhome_vacancies_on_interhome_accommodation_id", using: :btree
-
-  create_table "order_lines", force: :cascade do |t|
-    t.integer  "order_id",    limit: 4,               null: false
-    t.string   "description", limit: 255,             null: false
-    t.integer  "amount",      limit: 4,               null: false
-    t.integer  "advert_id",   limit: 4
+  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password"
+    t.string "salt"
+    t.string "website", default: "", null: false
+    t.text "description"
+    t.string "billing_street", null: false
+    t.string "billing_locality", default: "", null: false
+    t.string "billing_city", null: false
+    t.string "billing_county", default: "", null: false
+    t.string "billing_postcode", default: "", null: false
+    t.integer "billing_country_id"
+    t.string "phone", default: "", null: false
+    t.string "mobile", default: "", null: false
+    t.string "business_name", default: "", null: false
+    t.string "position", default: "", null: false
+    t.boolean "terms_and_conditions", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "coupon_id",   limit: 4
-    t.integer  "country_id",  limit: 4
-    t.integer  "resort_id",   limit: 4
-    t.integer  "windows",     limit: 4,   default: 0, null: false
+    t.integer "role_id", null: false
+    t.integer "coupon_id"
+    t.string "forgot_password_token", default: "", null: false
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.integer "image_id"
+    t.string "google_web_property_id", default: "", null: false
+    t.string "vat_number", default: "", null: false
+    t.integer "vat_country_id"
+    t.boolean "apply_price_override", default: false, null: false
+    t.integer "price_override", default: 0, null: false
+    t.text "enquiry_cc_emails"
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["last_name"], name: "index_users_on_last_name"
   end
 
-  add_index "order_lines", ["advert_id"], name: "index_order_lines_on_advert_id", using: :btree
-  add_index "order_lines", ["country_id"], name: "index_order_lines_on_country_id", using: :btree
-  add_index "order_lines", ["coupon_id"], name: "index_order_lines_on_coupon_id", using: :btree
-  add_index "order_lines", ["order_id"], name: "index_order_lines_on_order_id", using: :btree
-  add_index "order_lines", ["resort_id"], name: "index_order_lines_on_resort_id", using: :btree
-
-  create_table "orders", force: :cascade do |t|
-    t.integer  "user_id",             limit: 4
-    t.string   "order_number",        limit: 255,                                         null: false
-    t.string   "email",               limit: 255,                                         null: false
-    t.integer  "status",              limit: 4,                                           null: false
-    t.string   "name",                limit: 255,                                         null: false
-    t.string   "address",             limit: 255,                                         null: false
-    t.integer  "country_id",          limit: 4,                                           null: false
-    t.string   "phone",               limit: 255,                                         null: false
-    t.integer  "total",               limit: 4,                                           null: false
+  create_table "websites", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.text "terms"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "postcode",            limit: 255,                         default: "",    null: false
-    t.boolean  "pay_monthly",                                             default: false
-    t.integer  "first_payment",       limit: 4,                           default: 0
-    t.integer  "subsequent_payments", limit: 4,                           default: 0
-    t.integer  "tax_amount",          limit: 4,                           default: 0,     null: false
-    t.string   "customer_vat_number", limit: 255,                         default: "",    null: false
-    t.string   "tax_description",     limit: 255,                         default: "VAT", null: false
-    t.decimal  "sterling_in_euros",               precision: 6, scale: 4
+    t.text "privacy_policy"
+    t.text "home_content"
+    t.integer "directory_advert_price", default: 0, null: false
+    t.text "start_page_content"
+    t.string "worldpay_installation_id", default: "", null: false
+    t.boolean "worldpay_active", default: false, null: false
+    t.boolean "worldpay_test_mode", default: false, null: false
+    t.boolean "skip_payment", default: false, null: false
+    t.string "worldpay_payment_response_password", default: "", null: false
+    t.text "contact_details"
+    t.decimal "vat_rate", precision: 4, scale: 2, default: "20.0", null: false
+    t.text "resources_banner_html"
+    t.string "featured_properties_ids", default: "", null: false
+    t.text "sidebar_html"
   end
 
-  add_index "orders", ["created_at"], name: "index_orders_on_created_at", using: :btree
-  add_index "orders", ["email"], name: "index_orders_on_email", using: :btree
-  add_index "orders", ["order_number"], name: "index_orders_on_order_number", using: :btree
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
-
-  create_table "pages", force: :cascade do |t|
-    t.string   "path",                 limit: 255,                  null: false
-    t.string   "title",                limit: 255,                  null: false
-    t.string   "description",          limit: 255,   default: "",   null: false
-    t.string   "keywords",             limit: 255,   default: "",   null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "footer_id",            limit: 4
-    t.text     "content",              limit: 65535
-    t.text     "banner_advert_html",   limit: 65535
-    t.boolean  "visible",                            default: true, null: false
-    t.string   "sidebar_snippet_name", limit: 255
-    t.string   "header_snippet_name",  limit: 255
-    t.integer  "region_id",            limit: 4
-    t.integer  "resort_id",            limit: 4
-  end
-
-  add_index "pages", ["path"], name: "index_pages_on_path", using: :btree
-  add_index "pages", ["region_id"], name: "index_pages_on_region_id", using: :btree
-  add_index "pages", ["resort_id"], name: "index_pages_on_resort_id", using: :btree
-
-  create_table "payments", force: :cascade do |t|
-    t.integer  "order_id",           limit: 4
-    t.string   "service_provider",   limit: 255
-    t.string   "installation_id",    limit: 255
-    t.string   "cart_id",            limit: 255
-    t.string   "description",        limit: 255
-    t.string   "amount",             limit: 255
-    t.string   "currency",           limit: 255
-    t.boolean  "test_mode"
-    t.string   "name",               limit: 255
-    t.string   "address",            limit: 255
-    t.string   "postcode",           limit: 255
-    t.string   "country",            limit: 255
-    t.string   "telephone",          limit: 255
-    t.string   "fax",                limit: 255
-    t.string   "email",              limit: 255
-    t.string   "transaction_id",     limit: 255
-    t.string   "transaction_status", limit: 255
-    t.string   "transaction_time",   limit: 255
-    t.text     "raw_auth_message",   limit: 65535
-    t.boolean  "accepted"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "futurepay_id",       limit: 255,   default: "", null: false
-  end
-
-  add_index "payments", ["created_at"], name: "index_payments_on_created_at", using: :btree
-  add_index "payments", ["order_id"], name: "index_payments_on_order_id", using: :btree
-
-  create_table "properties", force: :cascade do |t|
-    t.integer  "user_id",                      limit: 4,                     null: false
-    t.integer  "resort_id",                    limit: 4,                     null: false
-    t.string   "name",                         limit: 255,   default: "",    null: false
-    t.string   "strapline",                    limit: 255,   default: "",    null: false
-    t.integer  "metres_from_lift",             limit: 4,     default: 0,     null: false
-    t.integer  "sleeping_capacity",            limit: 4,     default: 0,     null: false
-    t.integer  "number_of_bedrooms",           limit: 4,     default: 0,     null: false
-    t.boolean  "new_development",                            default: false, null: false
-    t.integer  "listing_type",                 limit: 4,     default: 0,     null: false
-    t.integer  "image_id",                     limit: 4
-    t.integer  "weekly_rent_price",            limit: 4,     default: 0,     null: false
-    t.boolean  "fully_equipped_kitchen",                     default: false, null: false
-    t.integer  "tv",                           limit: 4,     default: 0,     null: false
-    t.boolean  "wifi",                                       default: false, null: false
-    t.boolean  "disabled",                                   default: false, null: false
-    t.integer  "parking",                      limit: 4,     default: 0,     null: false
-    t.boolean  "pets",                                       default: false, null: false
-    t.boolean  "smoking",                                    default: false, null: false
-    t.integer  "sale_price",                   limit: 4,     default: 0,     null: false
-    t.boolean  "garden",                                     default: false, null: false
-    t.integer  "floor_area_metres_2",          limit: 4,     default: 0,     null: false
-    t.integer  "plot_size_metres_2",           limit: 4,     default: 0,     null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "description",                  limit: 65535
-    t.integer  "number_of_bathrooms",          limit: 4,     default: 0,     null: false
-    t.string   "address",                      limit: 255,   default: "",    null: false
-    t.string   "postcode",                     limit: 255,   default: "",    null: false
-    t.string   "latitude",                     limit: 255,   default: "",    null: false
-    t.string   "longitude",                    limit: 255,   default: "",    null: false
-    t.boolean  "long_term_lets_available",                   default: false, null: false
-    t.boolean  "balcony",                                    default: false, null: false
-    t.boolean  "mountain_views",                             default: false, null: false
-    t.boolean  "log_fire",                                   default: false, null: false
-    t.boolean  "cave",                                       default: false, null: false
-    t.boolean  "ski_in_ski_out",                             default: false, null: false
-    t.boolean  "hot_tub",                                    default: false, null: false
-    t.boolean  "indoor_swimming_pool",                       default: false, null: false
-    t.boolean  "outdoor_swimming_pool",                      default: false, null: false
-    t.boolean  "sauna",                                      default: false, null: false
-    t.integer  "distance_from_town_centre_m",  limit: 4,     default: 0,     null: false
-    t.integer  "accommodation_type",           limit: 4,     default: 0,     null: false
-    t.integer  "currency_id",                  limit: 4,     default: 1,     null: false
-    t.integer  "normalised_sale_price",        limit: 4,     default: 0,     null: false
-    t.integer  "normalised_weekly_rent_price", limit: 4,     default: 0,     null: false
-    t.boolean  "children_welcome",                           default: false, null: false
-    t.boolean  "short_stays",                                default: false, null: false
-    t.boolean  "terrace",                                    default: false, null: false
-    t.integer  "pericles_id",                  limit: 4
-    t.integer  "board_basis",                  limit: 4,     default: 0,     null: false
-    t.integer  "star_rating",                  limit: 4,     default: 1,     null: false
-    t.integer  "interhome_accommodation_id",   limit: 4
-    t.integer  "country_id",                   limit: 4
-    t.boolean  "publicly_visible",                           default: false, null: false
-    t.boolean  "late_availability",                          default: true
-    t.integer  "pv_accommodation_id",          limit: 4
-    t.integer  "region_id",                    limit: 4
-    t.string   "booking_url",                  limit: 255,   default: "",    null: false
-    t.integer  "flip_key_property_id",         limit: 4
-    t.string   "price_description",            limit: 255,   default: "",    null: false
-    t.string   "layout",                       limit: 255
-  end
-
-  add_index "properties", ["country_id"], name: "index_properties_on_country_id", using: :btree
-  add_index "properties", ["flip_key_property_id"], name: "index_properties_on_flip_key_property_id", using: :btree
-  add_index "properties", ["interhome_accommodation_id"], name: "index_properties_on_interhome_accommodation_id", using: :btree
-  add_index "properties", ["late_availability"], name: "index_properties_on_late_availability", using: :btree
-  add_index "properties", ["publicly_visible"], name: "index_properties_on_publicly_visible", using: :btree
-  add_index "properties", ["pv_accommodation_id"], name: "index_properties_on_pv_accommodation_id", using: :btree
-  add_index "properties", ["resort_id"], name: "index_properties_on_resort_id", using: :btree
-  add_index "properties", ["user_id"], name: "index_properties_on_user_id", using: :btree
-
-  create_table "property_base_prices", force: :cascade do |t|
-    t.integer  "number_of_months", limit: 4, default: 0, null: false
-    t.integer  "price",            limit: 4, default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "property_volume_discounts", force: :cascade do |t|
-    t.integer  "current_property_number", limit: 4, default: 0, null: false
-    t.integer  "discount_percentage",     limit: 4, default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "discount_amount",         limit: 4, default: 0, null: false
-  end
-
-  create_table "pv_accommodations", force: :cascade do |t|
-    t.string   "name",            limit: 255,   null: false
-    t.string   "code",            limit: 255,   null: false
-    t.string   "iso_3166_1",      limit: 255,   null: false
-    t.string   "iso_3166_2",      limit: 255,   null: false
-    t.string   "onu",             limit: 255,   null: false
-    t.text     "accroche_liste",  limit: 65535
-    t.text     "accroche_fiche",  limit: 65535
-    t.text     "description",     limit: 65535
-    t.string   "address_1",       limit: 255,   null: false
-    t.string   "address_2",       limit: 255,   null: false
-    t.string   "town",            limit: 255,   null: false
-    t.string   "postcode",        limit: 255,   null: false
-    t.string   "latitude",        limit: 255,   null: false
-    t.string   "longitude",       limit: 255,   null: false
-    t.text     "sports",          limit: 65535
-    t.text     "services",        limit: 65535
-    t.string   "price_table_url", limit: 255,   null: false
-    t.string   "permalink",       limit: 255,   null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "photos",          limit: 65535
-  end
-
-  add_index "pv_accommodations", ["code"], name: "index_pv_accommodations_on_code", using: :btree
-  add_index "pv_accommodations", ["permalink"], name: "index_pv_accommodations_on_permalink", using: :btree
-
-  create_table "pv_place_resorts", force: :cascade do |t|
-    t.integer  "resort_id",     limit: 4,   null: false
-    t.string   "pv_place_code", limit: 255, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "pv_place_resorts", ["pv_place_code"], name: "index_pv_place_resorts_on_pv_place_code", using: :btree
-  add_index "pv_place_resorts", ["resort_id"], name: "index_pv_place_resorts_on_resort_id", using: :btree
-
-  create_table "pv_vacancies", force: :cascade do |t|
-    t.string   "destination_code", limit: 255,                          null: false
-    t.string   "apartment_code",   limit: 255,                          null: false
-    t.integer  "typology",         limit: 4
-    t.date     "start_date",                                            null: false
-    t.integer  "duration",         limit: 4,                            null: false
-    t.integer  "stock_quantity",   limit: 4,                            null: false
-    t.decimal  "base_price",                   precision: 10, scale: 2, null: false
-    t.decimal  "promo_price_fr",               precision: 10, scale: 2, null: false
-    t.decimal  "promo_price_en",               precision: 10, scale: 2, null: false
-    t.decimal  "promo_price_de",               precision: 10, scale: 2, null: false
-    t.decimal  "promo_price_nl",               precision: 10, scale: 2, null: false
-    t.decimal  "promo_price_es",               precision: 10, scale: 2, null: false
-    t.decimal  "promo_price_it",               precision: 10, scale: 2, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "pv_vacancies", ["destination_code", "apartment_code"], name: "index_pv_vacancies_on_destination_code_and_apartment_code", using: :btree
-
-  create_table "regions", force: :cascade do |t|
-    t.integer  "country_id",     limit: 4
-    t.string   "name",           limit: 255,                  null: false
-    t.text     "info",           limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "slug",           limit: 255,                  null: false
-    t.boolean  "visible",                      default: true, null: false
-    t.integer  "property_count", limit: 4,     default: 0,    null: false
-  end
-
-  add_index "regions", ["country_id"], name: "index_regions_on_country_id", using: :btree
-  add_index "regions", ["slug"], name: "index_regions_on_slug", using: :btree
-  add_index "regions", ["visible"], name: "index_regions_on_visible", using: :btree
-
-  create_table "resorts", force: :cascade do |t|
-    t.integer  "country_id",             limit: 4,     default: 0,     null: false
-    t.string   "name",                   limit: 255,   default: "",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "info",                   limit: 65535
-    t.integer  "altitude_m",             limit: 4
-    t.integer  "top_lift_m",             limit: 4
-    t.integer  "piste_length_km",        limit: 4
-    t.integer  "black",                  limit: 4
-    t.integer  "red",                    limit: 4
-    t.integer  "blue",                   limit: 4
-    t.integer  "green",                  limit: 4
-    t.integer  "longest_run_km",         limit: 4
-    t.integer  "drags",                  limit: 4
-    t.integer  "chair",                  limit: 4
-    t.integer  "gondola",                limit: 4
-    t.integer  "cable_car",              limit: 4
-    t.integer  "funicular",              limit: 4
-    t.integer  "railways",               limit: 4
-    t.string   "slope_direction",        limit: 255
-    t.integer  "snowboard_parks",        limit: 4
-    t.integer  "cross_country_km",       limit: 4
-    t.integer  "mountain_restaurants",   limit: 4
-    t.boolean  "glacier_skiing"
-    t.boolean  "creche"
-    t.boolean  "babysitting_services"
-    t.boolean  "visible",                              default: false, null: false
-    t.boolean  "featured",                             default: false, null: false
-    t.text     "feature",                limit: 65535
-    t.text     "introduction",           limit: 65535
-    t.string   "season",                 limit: 255,   default: "",    null: false
-    t.integer  "beginner",               limit: 4,     default: 0,     null: false
-    t.integer  "intermediate",           limit: 4,     default: 0,     null: false
-    t.integer  "off_piste",              limit: 4,     default: 0,     null: false
-    t.integer  "expert",                 limit: 4,     default: 0,     null: false
-    t.boolean  "heli_skiing"
-    t.boolean  "summer_skiing"
-    t.integer  "family",                 limit: 4,     default: 0,     null: false
-    t.text     "visiting",               limit: 65535
-    t.text     "owning_a_property_in",   limit: 65535
-    t.text     "living_in",              limit: 65535
-    t.text     "insider_view",           limit: 65535
-    t.text     "weather_code",           limit: 65535
-    t.string   "apres_ski",              limit: 255,   default: "",    null: false
-    t.boolean  "local_area",                           default: false, null: false
-    t.integer  "property_count",         limit: 4,     default: 0,     null: false
-    t.integer  "for_rent_count",         limit: 4,     default: 0,     null: false
-    t.integer  "for_sale_count",         limit: 4,     default: 0,     null: false
-    t.integer  "hotel_count",            limit: 4,     default: 0,     null: false
-    t.integer  "new_development_count",  limit: 4,     default: 0,     null: false
-    t.text     "gallery_content",        limit: 65535
-    t.text     "piste_map_content",      limit: 65535
-    t.boolean  "summer_only",                          default: false, null: false
-    t.integer  "directory_advert_count", limit: 4,     default: 0,     null: false
-    t.integer  "region_id",              limit: 4
-    t.string   "slug",                   limit: 255,                   null: false
-    t.integer  "ski_area_acre",          limit: 4
-  end
-
-  add_index "resorts", ["country_id"], name: "index_resorts_on_country_id", using: :btree
-  add_index "resorts", ["featured"], name: "index_resorts_on_featured", using: :btree
-  add_index "resorts", ["region_id"], name: "index_resorts_on_region_id", using: :btree
-  add_index "resorts", ["slug"], name: "index_resorts_on_slug", using: :btree
-  add_index "resorts", ["visible"], name: "index_resorts_on_visible", using: :btree
-
-  create_table "roles", force: :cascade do |t|
-    t.string   "name",                           limit: 255
-    t.boolean  "select_on_signup"
-    t.boolean  "admin"
-    t.boolean  "flag_new_development"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "advertises_properties_for_rent",               default: false, null: false
-    t.boolean  "advertises_generally",                         default: false, null: false
-    t.boolean  "has_business_details",                         default: false, null: false
-    t.boolean  "has_a_website",                                default: false, null: false
-    t.boolean  "new_development_by_default",                   default: false, null: false
-    t.text     "sales_pitch",                    limit: 65535
-    t.boolean  "advertises_properties_for_sale",               default: false, null: false
-    t.boolean  "advertises_through_windows",                   default: false, null: false
-    t.boolean  "advertises_hotels",                            default: false, null: false
-  end
-
-  create_table "snippets", force: :cascade do |t|
-    t.string   "name",       limit: 255,   default: "",   null: false
-    t.text     "snippet",    limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "locale",     limit: 255,   default: "en", null: false
-  end
-
-  add_index "snippets", ["name"], name: "index_snippets_on_name", using: :btree
-
-  create_table "tracked_actions", force: :cascade do |t|
-    t.string   "remote_ip",       limit: 255, default: "", null: false
-    t.integer  "trackable_id",    limit: 4,                null: false
-    t.string   "trackable_type",  limit: 255,              null: false
-    t.integer  "action_type",     limit: 4,                null: false
-    t.string   "http_user_agent", limit: 255, default: "", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "tracked_actions", ["created_at"], name: "index_tracked_actions_on_created_at", using: :btree
-  add_index "tracked_actions", ["trackable_id", "action_type"], name: "index_tracked_actions_on_trackable_id_and_action_type", using: :btree
-  add_index "tracked_actions", ["trackable_id"], name: "index_tracked_actions_on_trackable_id", using: :btree
-
-  create_table "unregistered_users", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255,   default: "",    null: false
-    t.string   "encrypted_password",     limit: 255
-    t.string   "salt",                   limit: 255
-    t.string   "website",                limit: 255,   default: "",    null: false
-    t.text     "description",            limit: 65535
-    t.string   "billing_street",         limit: 255,                   null: false
-    t.string   "billing_locality",       limit: 255,   default: "",    null: false
-    t.string   "billing_city",           limit: 255,                   null: false
-    t.string   "billing_county",         limit: 255,   default: "",    null: false
-    t.string   "billing_postcode",       limit: 255,   default: "",    null: false
-    t.integer  "billing_country_id",     limit: 4
-    t.string   "phone",                  limit: 255,   default: "",    null: false
-    t.string   "mobile",                 limit: 255,   default: "",    null: false
-    t.string   "business_name",          limit: 255,   default: "",    null: false
-    t.string   "position",               limit: 255,   default: "",    null: false
-    t.boolean  "terms_and_conditions",                                 null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "role_id",                limit: 4,                     null: false
-    t.integer  "coupon_id",              limit: 4
-    t.string   "forgot_password_token",  limit: 255,   default: "",    null: false
-    t.string   "first_name",             limit: 255,   default: "",    null: false
-    t.string   "last_name",              limit: 255,   default: "",    null: false
-    t.integer  "image_id",               limit: 4
-    t.string   "google_web_property_id", limit: 255,   default: "",    null: false
-    t.string   "vat_number",             limit: 255,   default: "",    null: false
-    t.integer  "vat_country_id",         limit: 4
-    t.boolean  "apply_price_override",                 default: false, null: false
-    t.integer  "price_override",         limit: 4,     default: 0,     null: false
-    t.text     "enquiry_cc_emails",      limit: 65535
-  end
-
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
-  add_index "users", ["last_name"], name: "index_users_on_last_name", using: :btree
-
-  create_table "websites", force: :cascade do |t|
-    t.text     "terms",                              limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "privacy_policy",                     limit: 65535
-    t.text     "home_content",                       limit: 65535
-    t.integer  "directory_advert_price",             limit: 4,                             default: 0,     null: false
-    t.text     "start_page_content",                 limit: 65535
-    t.string   "worldpay_installation_id",           limit: 255,                           default: "",    null: false
-    t.boolean  "worldpay_active",                                                          default: false, null: false
-    t.boolean  "worldpay_test_mode",                                                       default: false, null: false
-    t.boolean  "skip_payment",                                                             default: false, null: false
-    t.string   "worldpay_payment_response_password", limit: 255,                           default: "",    null: false
-    t.text     "contact_details",                    limit: 65535
-    t.decimal  "vat_rate",                                         precision: 4, scale: 2, default: 20.0,  null: false
-    t.text     "resources_banner_html",              limit: 65535
-    t.string   "featured_properties_ids",            limit: 255,                           default: "",    null: false
-    t.text     "sidebar_html",                       limit: 65535
-  end
-
-  create_table "window_base_prices", force: :cascade do |t|
-    t.integer  "quantity",   limit: 4, default: 0, null: false
-    t.integer  "price",      limit: 4, default: 0, null: false
+  create_table "window_base_prices", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "quantity", default: 0, null: false
+    t.integer "price", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
