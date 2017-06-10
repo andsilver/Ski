@@ -1,4 +1,5 @@
 module TripAdvisor
+  # Imports TripAdvisor location data into the local database.
   class LocationImporter
     attr_reader :io
 
@@ -26,9 +27,8 @@ module TripAdvisor
         location_type: data['type'] || 'Earth',
         parent_id: parent_id
       )
-      if (children = data['children'])
-        children.each { |c| import_location(id, c) }
-      end
+      return unless (children = data['children'])
+      children.each { |c| import_location(id, c) }
     end
   end
 end
