@@ -34,6 +34,7 @@ gem 'bootstrap_form'
 # Run jobs in background processes
 gem 'daemons'
 gem 'delayed_job_active_record'
+gem 'whenever', require: false
 
 # Use Draper to decorate models
 gem 'draper'
