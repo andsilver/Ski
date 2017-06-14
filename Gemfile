@@ -77,6 +77,9 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+
+  # Run specs in parallel
+  gem 'parallel_tests'
 end
 
 group :development do
