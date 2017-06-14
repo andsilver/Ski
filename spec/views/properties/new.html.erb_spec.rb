@@ -5,7 +5,7 @@ RSpec.describe 'properties/new.html.erb', type: :view do
   let(:user) { FactoryGirl.create(:user) }
 
   before do
-    assign(:current_user, user)
+    allow(view).to receive(:current_user).and_return(user)
     assign(:property, property)
     allow(view).to receive(:admin?).and_return(admin)
   end

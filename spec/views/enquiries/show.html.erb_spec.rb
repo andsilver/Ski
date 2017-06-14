@@ -5,7 +5,7 @@ RSpec.describe 'enquiries/show.html.erb', type: :view do
   let(:enquiry) { FactoryGirl.create(:enquiry) }
 
   before do
-    assign(:current_user, user)
+    allow(view).to receive(:current_user).and_return(user)
     assign(:enquiry, enquiry)
   end
 

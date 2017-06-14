@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe FlipKeyPropertiesController do
+RSpec.describe FlipKeyPropertiesController, type: :controller do
   let(:website) { double(Website).as_null_object }
 
   before do

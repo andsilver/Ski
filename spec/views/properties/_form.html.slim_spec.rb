@@ -5,7 +5,7 @@ RSpec.describe 'properties/_form.html.slim', type: :view do
 
   context 'with a property developer' do
     before do
-      assign(:current_user, users(:bob)) # a property developer
+      allow(view).to receive(:current_user).and_return(users(:bob)) # a property developer
       allow(view).to receive(:admin?).and_return(false)
     end
 
@@ -43,7 +43,7 @@ RSpec.describe 'properties/_form.html.slim', type: :view do
   context 'when admin' do
     before do
       allow(view).to receive(:admin?).and_return(true)
-      assign(:current_user, users(:tony)) # an administrator
+      allow(view).to receive(:current_user).and_return(FactoryGirl.build(:admin_user))
       assign(:property, Property.new)
       render
     end

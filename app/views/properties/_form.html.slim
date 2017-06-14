@@ -48,9 +48,9 @@ javascript:
         = f.label :image_id, t('main_image')
         = select("property", "image_id", (@property.images.collect {|i| [ i.filename, i.id ] }).sort, {prompt: 'Select Image'})
 
-  - if @current_user.role.flag_new_development? or @property.for_rent?
+  - if current_user.role.flag_new_development? or @property.for_rent?
     .well
-      - if @current_user.role.flag_new_development? && !@property.for_rent?
+      - if current_user.role.flag_new_development? && !@property.for_rent?
         .checkbox
           label
             = f.check_box :new_development
