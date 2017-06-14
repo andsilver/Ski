@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   attr_reader :page_info
 
-  helper_method :admin?, :page_info, :signed_in?
+  helper_method :admin?, :current_user, :page_info, :signed_in?
 
   before_action :initialize_website, :set_locale, :initialize_user, :page_defaults
 

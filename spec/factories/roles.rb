@@ -21,4 +21,16 @@ FactoryGirl.define do
     advertises_through_windows     true
     advertises_hotels              false
   end
+
+  factory :admin_role, class: Role do
+    sequence(:name) { |n| "Admin #{n}" }
+    admin                          true
+    select_on_signup               false
+    advertises_generally           false
+    advertises_properties_for_rent false
+    advertises_properties_for_sale false
+    flag_new_development           false
+    advertises_through_windows     false
+    advertises_hotels              false
+  end
 end

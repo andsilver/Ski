@@ -6,32 +6,32 @@
 <%= user_action(my_details_path, t('users.my_details.my_details'), t('users.my_details.description')) %>
 <%= user_action(receipts_orders_path, t('receipts'), t('users.receipts.description')) %>
 <%= user_action(my_enquiries_path, t('my_enquiries'), t('users.my_enquiries.description')) %>
-<% if @current_user.advertises_through_windows? %>
+<% if current_user.advertises_through_windows? %>
 <%= user_action(buy_windows_adverts_path,
   t('adverts_controller.buy_advertising_windows'),
   t('users.buy_advertising_windows.description')) %>
 <% end %>
-<% if @current_user.role.advertises_properties_for_rent? %>
+<% if current_user.role.advertises_properties_for_rent? %>
 <%= user_action(new_property_path(listing_type: Property::LISTING_TYPE_FOR_RENT),
-  t('users.advertise_a_property_for_rent.advertise_a_property_for_rent'), 
+  t('users.advertise_a_property_for_rent.advertise_a_property_for_rent'),
   t('users.advertise_a_property_for_rent.description')) %>
 <% end %>
-<% if @current_user.role.advertises_properties_for_sale? %>
+<% if current_user.role.advertises_properties_for_sale? %>
 <%= user_action(new_property_path(listing_type: Property::LISTING_TYPE_FOR_SALE),
   t('users.advertise_a_property_for_sale.advertise_a_property_for_sale'),
   t('users.advertise_a_property_for_sale.description')) %>
 <% end %>
-<% if @current_user.role.advertises_hotels? %>
+<% if current_user.role.advertises_hotels? %>
 <%= user_action(new_property_path(listing_type: Property::LISTING_TYPE_HOTEL),
   t('users.advertise_a_hotel.advertise_a_hotel'),
   t('users.advertise_a_hotel.description')) %>
 <% end %>
-<% if @current_user.airport_transfer_company? %>
+<% if current_user.airport_transfer_company? %>
 <%= user_action(airport_transfers_path,
   t('users.manage_airport_transfers.manage_airport_transfers'),
   t('users.manage_airport_transfers.description')) %>
 <% end %>
-<% if @current_user.role.advertises_generally? %>
+<% if current_user.role.advertises_generally? %>
 <%= user_action(new_directory_advert_path,
   t('users.new_directory_advert.new_directory_advert'),
   t('users.new_directory_advert.description')) %>

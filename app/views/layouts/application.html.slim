@@ -66,9 +66,9 @@ html.no-js lang="#{@lang}"
           ul
             li= link_to '<i class="icon-heart"></i> '.html_safe + t('favourites.favourites'), favourites_path, rel: 'nofollow'
             - if signed_in?
-              - if @current_user.has_adverts_in_basket?
+              - if current_user.has_adverts_in_basket?
                 li
-                  a href="#{basket_path}"= '<i class="icon-shopping-cart"></i> '.html_safe + t('basket') +  "<span class=\"count\">#{@current_user.adverts_in_basket.count}</span>".html_safe
+                  a href="#{basket_path}"= '<i class="icon-shopping-cart"></i> '.html_safe + t('basket') +  "<span class=\"count\">#{current_user.adverts_in_basket.count}</span>".html_safe
                   i.icon-caret-right
               - elsif session[:windows_in_basket]
                 li
