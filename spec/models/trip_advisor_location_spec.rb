@@ -5,4 +5,8 @@ RSpec.describe TripAdvisorLocation, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:location_type) }
   end
+
+  describe 'associations' do
+    it { should have_many(:trip_advisor_properties).dependent(:nullify) }
+  end
 end

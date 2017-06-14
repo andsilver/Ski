@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610145445) do
+ActiveRecord::Schema.define(version: 20170614182559) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -753,6 +753,33 @@ ActiveRecord::Schema.define(version: 20170610145445) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_trip_advisor_locations_on_parent_id"
+  end
+
+  create_table "trip_advisor_properties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "property_type"
+    t.integer "bedrooms"
+    t.integer "beds"
+    t.integer "sleeps"
+    t.integer "bathrooms"
+    t.string "title"
+    t.string "country"
+    t.string "city"
+    t.string "url"
+    t.string "status"
+    t.decimal "review_average", precision: 2, scale: 1
+    t.boolean "show_pin", default: false, null: false
+    t.string "lat_long"
+    t.string "country_code"
+    t.string "postal_code"
+    t.string "search_url"
+    t.boolean "can_accept_inquiry", default: false, null: false
+    t.string "booking_option"
+    t.integer "min_stay_high"
+    t.integer "min_stay_low"
+    t.integer "trip_advisor_location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_advisor_location_id"], name: "index_trip_advisor_properties_on_trip_advisor_location_id"
   end
 
   create_table "unregistered_users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
