@@ -3,7 +3,7 @@
 </div>
 
 <p>
-  <%= link_to 'New Alt Attribute', new_alt_attribute_path, class: 'btn btn-primary' %>
+  <%= link_to 'New Alt Attribute', new_admin_alt_attribute_path, class: 'btn btn-primary' %>
 </p>
 <% if @alt_attributes.empty? %>
 <p>There are no alt attributes set up yet.</p>
@@ -19,9 +19,9 @@
   <tbody>
     <% @alt_attributes.each do |alt_attribute| %>
     <tr>
-      <td><%= link_to alt_attribute.path, edit_alt_attribute_path(alt_attribute) %></td>
+      <td><%= link_to alt_attribute.path, edit_admin_alt_attribute_path(alt_attribute) %></td>
       <td><%= alt_attribute.alt_text %></td>
-      <td><%= delete_button(alt_attribute) %></td>
+      <td><%= delete_button([:admin, alt_attribute]) %></td>
     </tr>
     <% end %>
   </tbody>

@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= form_for @alt_attribute do |f| %>
+<%= form_for [:admin, @alt_attribute] do |f| %>
   <%= f.label :path %>
   <%= f.text_field :path %>
 
