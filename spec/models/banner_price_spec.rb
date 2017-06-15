@@ -1,13 +1,17 @@
 require 'rails_helper'
 
-describe BannerPrice do
+RSpec.describe BannerPrice, type: :model do
   before do
     BannerPrice.delete_all
     BannerPrice.create!(current_banner_number: 100, price: 20)
   end
 
-  it { should validate_uniqueness_of(:current_banner_number) }
-  it { should validate_uniqueness_of(:price) }
+  describe 'validations' do
+    it { should validate_numericality_of(:current_banner_number) }
+    it { should validate_uniqueness_of(:current_banner_number) }
+    it { should validate_numericality_of(:price) }
+    it { should validate_uniqueness_of(:price) }
+  end
 
   it 'returns the correct price' do
     BannerPrice.create!(current_banner_number: 1, price: 60)
