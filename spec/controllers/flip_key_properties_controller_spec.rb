@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+require 'flip_key'
+
 RSpec.describe FlipKeyPropertiesController, type: :controller do
   let(:website) { double(Website).as_null_object }
 
