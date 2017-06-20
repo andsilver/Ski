@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CategoriesController do
+RSpec.describe CategoriesController, type: :controller do
   let(:website) { double(Website).as_null_object }
   let(:category) { double(Category).as_null_object }
 
@@ -8,62 +8,6 @@ describe CategoriesController do
     allow(Website).to receive(:first).and_return(website)
     allow(Category).to receive(:new).and_return(category)
     allow(controller).to receive(:admin?).and_return(true)
-  end
-
-  describe "GET new" do
-    it "instantiates a new category" do
-      expect(Category).to receive(:new)
-      get :new
-    end
-
-    it "assigns @category" do
-      pending
-      get :new
-      expect(assigns[:category]).to equal(category)
-    end
-  end
-
-  describe "POST create" do
-    let(:params) { {category: { "name" => "Restaurants" }} }
-
-    it "instantiates a new category with the given params" do
-      expect(Category).to receive(:new).with(params[:category])
-      post :create, params: params
-    end
-
-    context "when the category saves successfully" do
-      before do
-        allow(category).to receive(:save).and_return(true)
-      end
-
-      it "sets a flash[:notice] message" do
-        post :create, params: params
-        expect(flash[:notice]).to eq("Created.")
-      end
-
-      it "redirects to the categories page" do
-        post :create, params: params
-        expect(response).to redirect_to(categories_path)
-      end
-    end
-
-    context "when the category fails to save" do
-      before do
-        allow(category).to receive(:save).and_return(false)
-      end
-
-      it "assigns @category" do
-        pending
-        post :create, params: params
-        expect(assigns[:category]).to eq(category)
-      end
-
-      it "renders the new template" do
-        pending
-        post :create, params: params
-        expect(response).to render_template('new')
-      end
-    end
   end
 
   describe 'GET show' do
@@ -88,32 +32,6 @@ describe CategoriesController do
         allow(Category).to receive(:new).and_call_original
         get :show, params: { id: cat.id, resort_slug: resort.to_param }
         expect(response.status).to eq 404
-      end
-    end
-  end
-
-  describe 'DELETE destroy' do
-    it 'finds the category' do
-      expect(Category).to receive(:find_by).with(id: '1')
-      delete 'destroy', params: { id: 1 }
-    end
-
-    context 'when the category is found' do
-      before { allow(Category).to receive(:find_by).and_return(category) }
-
-      it 'destroys the category' do
-        expect(category).to receive(:destroy)
-        delete 'destroy', params: { id: 1 }
-      end
-
-      it 'sets a flash[:notice] message' do
-        delete 'destroy', params: { id: 1 }
-        expect(flash[:notice]).to eq 'Deleted.'
-      end
-
-      it 'redirects to the categories page' do
-        delete 'destroy', params: { id: 1 }
-        expect(response).to redirect_to(categories_path)
       end
     end
   end

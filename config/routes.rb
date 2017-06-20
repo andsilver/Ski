@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         post :move_up
       end
     end
+    resources :categories,        except: [:show]
     resources :countries,         except: [:show]
     resources :currencies,        except: [:show] do
       collection do
@@ -96,7 +97,6 @@ Rails.application.routes.draw do
   get "tools/rental-prices" => "rental_prices#index"
   get "tools/rental-prices/results" => "rental_prices#results"
 
-  resources :categories, except: [:show]
   get "categories/:id/:resort_slug" => "categories#show", as: :show_category
 
   get "sign_in" => "sessions#new"

@@ -1,0 +1,14 @@
+<%= page_header 'Categories' %>
+<p>
+  <%= link_to 'Add new category', new_admin_category_path, class: 'btn btn-default' %>
+</p>
+
+<table class="table table-bordered">
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.name %></td>
+    <td><%= edit_button([:admin, category]) %></td>
+    <td><%= delete_button([:admin, category]) %></td>
+  </tr>
+<% end %>
+</table>
