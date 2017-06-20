@@ -1,9 +1,6 @@
 module Admin
-  class AltAttributesController < ApplicationController
-    before_action :admin_required
+  class AltAttributesController < AdminController
     before_action :set_alt_attribute, only: [:edit, :update, :show, :destroy]
-
-    layout 'admin'
 
     def index
       @alt_attributes = AltAttribute.order('path')

@@ -1,44 +1,42 @@
-class Admin::AirportsController < ApplicationController
-  before_action :admin_required
-  before_action :set_airport, only: [:edit, :update, :destroy]
+module Admin
+  class AirportsController < AdminController
+    before_action :set_airport, only: [:edit, :update, :destroy]
 
-  layout 'admin'
-
-  def index
-    @airports = Airport.order('code')
-  end
-
-  def new
-    @airport = Airport.new
-  end
-
-  def create
-    @airport = Airport.new(airport_params)
-
-    if @airport.save
-      redirect_to(admin_airports_path, notice: t('notices.created'))
-    else
-      render "new"
+    def index
+      @airports = Airport.order('code')
     end
-  end
 
-  def edit
-  end
-
-  def update
-    if @airport.update_attributes(airport_params)
-      redirect_to(admin_airports_path, notice: t('notices.saved'))
-    else
-      render "edit"
+    def new
+      @airport = Airport.new
     end
-  end
 
-  def destroy
-    @airport.destroy
-    redirect_to admin_airports_path, notice: t('notices.deleted')
-  end
+    def create
+      @airport = Airport.new(airport_params)
 
-  protected
+      if @airport.save
+        redirect_to(admin_airports_path, notice: t('notices.created'))
+      else
+        render "new"
+      end
+    end
+
+    def edit
+    end
+
+    def update
+      if @airport.update_attributes(airport_params)
+        redirect_to(admin_airports_path, notice: t('notices.saved'))
+      else
+        render "edit"
+      end
+    end
+
+    def destroy
+      @airport.destroy
+      redirect_to admin_airports_path, notice: t('notices.deleted')
+    end
+
+    protected
 
     def set_airport
       @airport = Airport.find(params[:id])
@@ -47,4 +45,5 @@ class Admin::AirportsController < ApplicationController
     def airport_params
       params.require(:airport).permit(:code, :country_id, :name)
     end
+  end
 end

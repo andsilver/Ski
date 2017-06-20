@@ -1,53 +1,52 @@
-class Admin::CarouselSlidesController < ApplicationController
-  layout 'admin'
-  before_action :admin_required
-  before_action :set_carousel_slide, only: [:edit, :update, :destroy, :move_up, :move_down]
+module Admin
+  class CarouselSlidesController < AdminController
+    before_action :set_carousel_slide, only: [:edit, :update, :destroy, :move_up, :move_down]
 
-  def index
-    @carousel_slides = CarouselSlide.order(:position)
-  end
-
-  def new
-    @carousel_slide = CarouselSlide.new(active_until: DateTime.now + 5.years)
-  end
-
-  def edit
-  end
-
-  def create
-    @carousel_slide = CarouselSlide.new(carousel_slide_params)
-
-    if @carousel_slide.save
-      redirect_to admin_carousel_slides_path, notice: t('notices.added')
-    else
-      render :new
+    def index
+      @carousel_slides = CarouselSlide.order(:position)
     end
-  end
 
-  def update
-    if @carousel_slide.update_attributes(carousel_slide_params)
-      redirect_to admin_carousel_slides_path, notice: t('notices.saved')
-    else
-      render :edit
+    def new
+      @carousel_slide = CarouselSlide.new(active_until: DateTime.now + 5.years)
     end
-  end
 
-  def destroy
-    @carousel_slide.destroy
-    redirect_to admin_carousel_slides_path, notice: t('notices.deleted')
-  end
+    def edit
+    end
 
-  def move_up
-    @carousel_slide.move_higher
-    moved
-  end
+    def create
+      @carousel_slide = CarouselSlide.new(carousel_slide_params)
 
-  def move_down
-    @carousel_slide.move_lower
-    moved
-  end
+      if @carousel_slide.save
+        redirect_to admin_carousel_slides_path, notice: t('notices.added')
+      else
+        render :new
+      end
+    end
 
-  private
+    def update
+      if @carousel_slide.update_attributes(carousel_slide_params)
+        redirect_to admin_carousel_slides_path, notice: t('notices.saved')
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @carousel_slide.destroy
+      redirect_to admin_carousel_slides_path, notice: t('notices.deleted')
+    end
+
+    def move_up
+      @carousel_slide.move_higher
+      moved
+    end
+
+    def move_down
+      @carousel_slide.move_lower
+      moved
+    end
+
+    private
 
     def set_carousel_slide
       @carousel_slide = CarouselSlide.find_by(id: params[:id])
@@ -62,4 +61,5 @@ class Admin::CarouselSlidesController < ApplicationController
       flash[:notice] = t('notices.moved')
       redirect_to action: 'index'
     end
+  end
 end
