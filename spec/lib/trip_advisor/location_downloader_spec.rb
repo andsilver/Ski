@@ -17,7 +17,7 @@ module TripAdvisor
           )
 
         downloader = LocationDownloader.new(
-          host: 'sftp.tripadvisor.com', username: 'u', password: 'p'
+          sftp_details: SFTPDetails.new('sftp.tripadvisor.com', 'u', 'p')
         )
         downloader.download
       end

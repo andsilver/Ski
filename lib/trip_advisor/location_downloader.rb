@@ -4,10 +4,10 @@ module TripAdvisor
   class LocationDownloader
     attr_reader :host, :username, :password
 
-    def initialize(host:, username:, password:)
-      @host = host
-      @username = username
-      @password = password
+    def initialize(sftp_details:)
+      @host = sftp_details.host
+      @username = sftp_details.username
+      @password = sftp_details.password
     end
 
     # Connects to the TripAdvisor SFTP server and downloads locations.json.
