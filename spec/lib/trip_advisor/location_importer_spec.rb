@@ -4,7 +4,7 @@ module TripAdvisor
   RSpec.describe LocationImporter do
     describe '#import' do
       def json
-        %{
+        %(
           {
             "tripadvisorLocationId" : 0,
             "name" : "Earth",
@@ -18,7 +18,7 @@ module TripAdvisor
               "type" : "continent"
             } ]
           }
-        }
+        )
       end
 
       before do

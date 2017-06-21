@@ -2,7 +2,7 @@ require 'rails_helper'
 
 module TripAdvisor
   RSpec.describe PropertyImporter do
-    def json(id = 7363690)
+    def json(id = 7_363_690)
       File.read(
         File.join(
           Rails.root, 'test-files', 'trip_advisor', 'properties', "#{id}.json"
@@ -17,11 +17,11 @@ module TripAdvisor
       before { importer.import }
 
       it 'creates a TripAdvisor property with specified ID' do
-        expect(TripAdvisorProperty.exists?(7363690)).to be_truthy
+        expect(TripAdvisorProperty.exists?(7_363_690)).to be_truthy
       end
 
       it 'updates an existing TripAdvisorProperty' do
-        importer.import # run a second time
+        importer.import # run a second time
       end
 
       it 'sets number of bedrooms' do
@@ -74,7 +74,7 @@ module TripAdvisor
       end
 
       it 'sets trip_advisor_location_id (to 1 + ta_geo_location_id)' do
-        expect(property.trip_advisor_location_id).to eq 672999
+        expect(property.trip_advisor_location_id).to eq 672_999
       end
 
       it 'sets postal_code' do
