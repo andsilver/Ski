@@ -18,3 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+every :day, at: '5:00 am' do
+  runner 'TripAdvisorImportJob.perform_now'
+end
