@@ -19,7 +19,7 @@ module TripAdvisor
     def import_location(parent_id, data)
       id = data['tripadvisorLocationId']
 
-      create_location(id, parent_id, data) unless id.zero?
+      update_location(id, parent_id, data) unless id.zero?
 
       return unless (children = data['children'])
       children.each { |c| import_location(id, c) }
@@ -27,13 +27,12 @@ module TripAdvisor
 
     private
 
-    def create_location(id, parent_id, data)
-      TripAdvisorLocation.create!(
-        id: id,
-        name: data['name'],
-        location_type: data['type'],
-        parent_id: parent_id.zero? ? nil : parent_id
-      )
+    def update_location(id, parent_id, data)
+      location = TripAdvisorLocation.find_or_initialize_by(id: id)
+      location.name = data['name']
+      location.location_type = data['type']
+      location.parent_id =  parent_id.zero? ? nil : parent_id
+      location.save
     end
   end
 end

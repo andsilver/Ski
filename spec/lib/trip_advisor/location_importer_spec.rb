@@ -27,6 +27,9 @@ module TripAdvisor
       end
 
       before do
+        TripAdvisorLocation.create!(
+          id: 293808, name: 'Malawi', location_type: 'country', parent_id: 6
+        )
         io = StringIO.new(json)
         importer = LocationImporter.new(io)
         importer.import
@@ -47,6 +50,10 @@ module TripAdvisor
 
       it 'sets the id as the tripadvisorLocationId' do
         expect(TripAdvisorLocation.find_by(name: 'Africa').id).to eq 6
+      end
+
+      it 'updates existing locations' do
+        expect(TripAdvisorLocation.find_by(id: 293808).name).to eq 'Madagascar'
       end
 
       it "sets the parent_id to the parent's tripadvisorLocationId" do
