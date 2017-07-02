@@ -4,4 +4,3 @@
 0 2 * * * /bin/bash -c 'export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)"; ~/railsapps/myskichalet/interhome.sh'
 0 5 * * * /bin/bash -c 'export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)"; ~/railsapps/myskichalet/pierre_et_vacances.sh'
 0 6 * * * /bin/bash -c 'export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)"; ~/railsapps/myskichalet/generate_thumbnails.sh'
-0 3 * * * /bin/bash -c 'export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)"; ~/railsapps/myskichalet/flip_key.sh'
