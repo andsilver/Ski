@@ -1,0 +1,16 @@
+= content_for(:title, @location.name)
+= page_header(@location.name)
+
+- if @location.parent
+  p
+    | Parent:
+    =< link_to(@location.parent.name, [:admin, @location.parent])
+
+table.table.table-bordered
+  thead
+    tr
+      th= t('.location')
+  tbody
+    - @location.children.each do |l|
+      tr
+        td= link_to(l.name, [:admin, l])

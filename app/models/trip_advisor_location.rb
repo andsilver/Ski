@@ -5,4 +5,6 @@ class TripAdvisorLocation < ApplicationRecord
 
   # Associations
   has_many :trip_advisor_properties, dependent: :nullify
+
+  acts_as_tree order: 'name'
 end

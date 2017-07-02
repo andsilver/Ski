@@ -684,3 +684,8 @@ FlipKeyLocation.create!(id: 21, rgt: 206263, parent_path: '1,24', parent_id: 1, 
 FlipKeyLocation.create!(id: 191, rgt: 272593, parent_path: '1,191', parent_id: 1, name: 'USA', lft: 206264, property_count: 123423)
 
 Enquiry.create!(user: bob, name: 'Carol', email: 'carol@example.org', phone: '01234 567890')
+
+TripAdvisorLocation.create!([
+  { id: 6, name: 'Africa', location_type: 'continent' },
+  { id: 293808, name: 'Madagascar', location_type: 'country', parent_id: 6 }
+])

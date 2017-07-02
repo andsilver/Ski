@@ -9,4 +9,9 @@ RSpec.describe TripAdvisorLocation, type: :model do
   describe 'associations' do
     it { should have_many(:trip_advisor_properties).dependent(:nullify) }
   end
+
+  describe 'acts_as_tree' do
+    it { should respond_to(:parent) }
+    it { should respond_to(:children) }
+  end
 end

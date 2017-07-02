@@ -1,0 +1,6 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+ul
+  - @locations.each do |l|
+    li= link_to(l.name, [:admin, l])

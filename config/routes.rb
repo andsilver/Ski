@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       end
     end
     resources :snippets,          except: [:show]
+    resources :trip_advisor_locations, only: [:index, :show]
 
     resources :users, only: [:index, :destroy] do
       member do
