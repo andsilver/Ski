@@ -85,7 +85,7 @@ module TripAdvisor
     end
 
     def trip_advisor_location_id
-      details['ta_geo_location_id'] + 1
+      details['ta_geo_location_id']
     end
 
     def postal_code

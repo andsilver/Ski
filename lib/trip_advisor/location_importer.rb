@@ -17,18 +17,23 @@ module TripAdvisor
     # Imports a location and its children. Associates the location with its
     # parent.
     def import_location(parent_id, data)
-      # TripAdvisor locations start at 0. Since we're using MySQL, a 0 primary
-      # key would be considered an instruction to use the auto increment value
-      # by default. So we add one instead.
-      id = data['tripadvisorLocationId'] + 1
+      id = data['tripadvisorLocationId']
+
+      create_location(id, parent_id, data) unless id.zero?
+
+      return unless (children = data['children'])
+      children.each { |c| import_location(id, c) }
+    end
+
+    private
+
+    def create_location(id, parent_id, data)
       TripAdvisorLocation.create!(
         id: id,
         name: data['name'],
-        location_type: data['type'] || 'Earth',
-        parent_id: parent_id
+        location_type: data['type'],
+        parent_id: parent_id.zero? ? nil : parent_id
       )
-      return unless (children = data['children'])
-      children.each { |c| import_location(id, c) }
     end
   end
 end

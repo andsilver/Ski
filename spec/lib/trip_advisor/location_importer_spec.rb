@@ -11,7 +11,12 @@ module TripAdvisor
             "children" : [ {
               "tripadvisorLocationId" : 6,
               "name" : "Africa",
-              "type" : "continent"
+              "type" : "continent",
+              "children" : [ {
+                "tripadvisorLocationId" : 293808,
+                "name" : "Madagascar",
+                "type" : "country"
+              } ]
             }, {
               "tripadvisorLocationId" : 2,
               "name" : "Asia",
@@ -27,28 +32,30 @@ module TripAdvisor
         importer.import
       end
 
-      it 'creates a TripAdvisorLocation for each entry' do
+      it 'creates a TripAdvisorLocation for each entry except Earth' do
         expect(TripAdvisorLocation.count).to eq 3
       end
 
       it 'sets a name for each location' do
-        expect(TripAdvisorLocation.first.name).to eq 'Earth'
+        expect(TripAdvisorLocation.first.name).to eq 'Asia'
       end
 
       it 'sets a location_type for each location' do
-        expect(TripAdvisorLocation.last.location_type).to eq 'continent'
+        expect(TripAdvisorLocation.find_by(name: 'Africa').location_type)
+          .to eq 'continent'
       end
 
-      it 'sets a "planet" as the location_type for Earth' do
-        expect(TripAdvisorLocation.last.location_type).to eq 'continent'
+      it 'sets the id as the tripadvisorLocationId' do
+        expect(TripAdvisorLocation.find_by(name: 'Africa').id).to eq 6
       end
 
-      it 'sets the id as 1 + tripadvisorLocationId, as latter starts at 0' do
-        expect(TripAdvisorLocation.find_by(name: 'Africa').id).to eq 7
+      it "sets the parent_id to the parent's tripadvisorLocationId" do
+        expect(TripAdvisorLocation.find_by(name: 'Madagascar').parent_id)
+          .to eq 6
       end
 
-      it "sets the parent_id as 1 + the parent's tripadvisorLocationId" do
-        expect(TripAdvisorLocation.find_by(name: 'Africa').parent_id).to eq 1
+      it "sets the parent_id to nil when parent is Earth" do
+        expect(TripAdvisorLocation.find_by(name: 'Africa').parent_id).to be_nil
       end
     end
   end

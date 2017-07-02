@@ -73,8 +73,8 @@ module TripAdvisor
         expect(property.country_code).to eq 'FR'
       end
 
-      it 'sets trip_advisor_location_id (to 1 + ta_geo_location_id)' do
-        expect(property.trip_advisor_location_id).to eq 672_999
+      it 'sets trip_advisor_location_id ta_geo_location_id' do
+        expect(property.trip_advisor_location_id).to eq 672_998
       end
 
       it 'sets postal_code' do
