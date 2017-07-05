@@ -45,8 +45,9 @@ RSpec.describe 'properties/show_showcase', type: :view do
     render
   end
 
-  it 'links to the property booking URL' do
-    property.booking_url = 'http://example.org'
+  it 'uses booking_url helper for the booking link' do
+    allow(view)
+      .to receive(:booking_url).with(property).and_return 'http://example.org'
     render
     expect(response).to have_selector(".make-a-booking a[href='http://example.org']")
   end

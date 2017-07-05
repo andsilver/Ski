@@ -16,7 +16,7 @@ javascript:
         = star_rating(@property.star_rating)
       .make-a-booking
         = link_to 'Make a booking <span class="glyphicon glyphicon-play theme-color"></span>'.html_safe,\
-          hotel_booking_url(@property), target: booking_link_target(@property)
+          booking_url(@property), target: booking_link_target(@property)
 
     - if @property.image
       .gallery-container.layout-element.size-1of2

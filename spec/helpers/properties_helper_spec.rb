@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PropertiesHelper do
+RSpec.describe PropertiesHelper, type: :helper do
   describe '#featured_properties' do
     it 'returns an empty string when properties is nil' do
       expect(featured_properties(nil)).to eq ''
@@ -35,22 +35,22 @@ describe PropertiesHelper do
     end
   end
 
-  describe '#hotel_booking_url' do
-    let(:property) { FactoryGirl.build(:property, booking_url: booking_url) }
+  describe '#booking_url' do
+    let(:property) { FactoryGirl.build(:property, booking_url: url) }
 
     context 'when property has the booking URL set' do
-      let(:booking_url) { '#hotel' }
+      let(:url) { '#hotel' }
 
       it 'returns the booking URL' do
-        expect(hotel_booking_url(property)).to eq '#hotel'
+        expect(booking_url(property)).to eq '#hotel'
       end
     end
 
     context 'when property has no booking URL set' do
-      let(:booking_url) { '' }
+      let(:url) { '' }
 
       it 'returns a contact_property_path' do
-        expect(hotel_booking_url(property)).to eq contact_property_path(property)
+        expect(booking_url(property)).to eq contact_property_path(property)
       end
     end
   end

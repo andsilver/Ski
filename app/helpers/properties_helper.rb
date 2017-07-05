@@ -220,8 +220,10 @@ module PropertiesHelper
     end
   end
 
-  # Returns an appropriate booking URL for a hotel.
-  def hotel_booking_url(property)
+  # Returns an appropriate booking URL for a property. If one has been provided
+  # by the property owner then that is used, otherwise the contact property
+  # path is returned.
+  def booking_url(property)
     property.booking_url.present? ? property.booking_url : contact_property_path(property)
   end
 

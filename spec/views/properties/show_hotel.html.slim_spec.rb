@@ -3,12 +3,12 @@ require_relative 'property_header_image'
 
 describe 'properties/show_hotel' do
   let(:property) { FactoryGirl.create(:property, listing_type: Property::LISTING_TYPE_HOTEL) }
-  let(:hotel_booking_url_ret)   { '#hotel-booking-url' }
+  let(:booking_url_ret)   { '#hotel-booking-url' }
   let(:booking_link_target_ret) { '_blank' }
 
   before do
     assign(:property, property)
-    allow(view).to receive(:hotel_booking_url).and_return(hotel_booking_url_ret)
+    allow(view).to receive(:booking_url).and_return(booking_url_ret)
     allow(view).to receive(:booking_link_target).and_return(booking_link_target_ret)
   end
 
@@ -49,7 +49,7 @@ describe 'properties/show_hotel' do
 
   it 'links to the hotel booking URL' do
     render
-    expect(response).to have_selector("a[href='#{hotel_booking_url_ret}']")
+    expect(response).to have_selector("a[href='#{booking_url_ret}']")
   end
 
   it 'links to the target given by booking_link_target' do
