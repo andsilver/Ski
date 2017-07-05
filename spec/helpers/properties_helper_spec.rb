@@ -75,6 +75,21 @@ RSpec.describe PropertiesHelper, type: :helper do
     end
   end
 
+  describe '#booking_link_text_key' do
+    let(:property) { Property.new(listing_type: type) }
+    subject { booking_link_text_key(property) }
+
+    context 'when property is for sale' do
+      let(:type) { Property::LISTING_TYPE_FOR_SALE }
+      it { should eq '.enquire' }
+    end
+
+    context 'when any other property type' do
+      let(:type) { Property::LISTING_TYPE_FOR_RENT }
+      it { should eq '.make_a_booking' }
+    end
+  end
+
   describe '#search_results_page_type' do
     before do
       expect(controller).to receive(:action_name).and_return action_name

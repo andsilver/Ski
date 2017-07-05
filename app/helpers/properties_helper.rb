@@ -232,6 +232,13 @@ module PropertiesHelper
     property.booking_url.present? ? '_blank' : '_self'
   end
 
+  # Returns the i18n key to use for the link text of a link to a booking URL.
+  # For properties for sale, this represents 'Enquire'. For rentals it
+  # represents 'Make a booking'.
+  def booking_link_text_key(property)
+    property.for_sale? ? '.enquire' : '.make_a_booking'
+  end
+
   # Returns true if the current page is the first page in a pagniated set.
   def first_page?
     params[:page].nil?
