@@ -9,6 +9,7 @@ module TripAdvisor
       @path = path
     end
 
+    # Extracts the archive and yields the path of each extracted file.
     def extract
       return unless FileTest.exist?(path)
 
