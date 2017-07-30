@@ -13,8 +13,8 @@ module TripAdvisor
         dir = File.join('trip_advisor', 'listings', 'delta')
         FileUtils.rm_rf dir
 
-        sftp = instance_double(Net::SFTP::Session).as_null_object
-        allow(Net::SFTP).to receive(:start).and_yield(sftp)
+        sftp = instance_double(SFTP).as_null_object
+        allow(SFTP).to receive(:new).and_return(sftp)
 
         downloader = PropertyDownloader.new(sftp_details: test_details)
         downloader.download_delta(date: Date.today)
@@ -23,11 +23,12 @@ module TripAdvisor
       end
 
       it 'downloads listings_delta_yyyymmdd.json from /drop/listings/delta' do
-        sftp = instance_double(Net::SFTP::Session)
+        sftp = instance_double(SFTP)
 
-        expect(Net::SFTP).to receive(:start).with(*conn_info).and_yield(sftp)
+        expect(SFTP)
+          .to receive(:new).with(details: test_details).and_return(sftp)
         expect(sftp)
-          .to receive(:download!)
+          .to receive(:download)
           .with(
             '/drop/listings/delta/listings_delta_20170714.tar.gz',
             local_path
@@ -38,8 +39,8 @@ module TripAdvisor
       end
 
       it 'returns the local path of the downloaded file' do
-        sftp = instance_double(Net::SFTP::Session).as_null_object
-        allow(Net::SFTP).to receive(:start).and_yield(sftp)
+        sftp = instance_double(SFTP).as_null_object
+        allow(SFTP).to receive(:new).and_return(sftp)
 
         downloader = PropertyDownloader.new(sftp_details: test_details)
         expect(downloader.download_delta(date: Date.new(2017, 7, 14)))

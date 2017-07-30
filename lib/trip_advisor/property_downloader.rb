@@ -2,12 +2,8 @@ module TripAdvisor
   # Performs downloading of the property data files from the TripAdvisor SFTP
   # server.
   class PropertyDownloader
-    attr_reader :host, :username, :password
-
     def initialize(sftp_details:)
-      @host = sftp_details.host
-      @username = sftp_details.username
-      @password = sftp_details.password
+      @sftp_details = sftp_details
     end
 
     # Connects to the TripAdvisor SFTP server and downloads the gzipped listings
@@ -18,9 +14,9 @@ module TripAdvisor
       delta_fn = delta_filename(date)
       local = local_delta_path(delta_fn)
 
-      Net::SFTP.start(host, username, password: password) do |sftp|
-        sftp.download!(remote_delta_path(delta_fn), local)
-      end
+      sftp = SFTP.new(details: @sftp_details)
+      sftp.download(remote_delta_path(delta_fn), local)
+
       local
     end
 

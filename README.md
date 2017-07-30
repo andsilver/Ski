@@ -2,10 +2,26 @@
 
 ## Dependencies
 
+### ImageScience
+
 On macOS:
 
 ```
 brew install freeimage
+```
+
+### expect
+
+On macOS:
+
+```
+brew install expect
+```
+
+On Ubuntu:
+
+```
+sudo apt-get install expect
 ```
 
 ## Running the test suite

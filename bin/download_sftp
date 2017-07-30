@@ -1,0 +1,6 @@
+#!/usr/bin/expect
+
+spawn sftp $env(USERNAME)@$env(HOST):$env(REMOTE) $env(LOCAL)
+expect "assword:"
+send "$env(PASSWORD)\n"
+interact
