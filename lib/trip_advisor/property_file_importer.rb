@@ -11,5 +11,6 @@ module TripAdvisor
     def import
       File.foreach(path) { |json_line| PropertyImporter.new(json_line).import }
     end
+    handle_asynchronously :import
   end
 end

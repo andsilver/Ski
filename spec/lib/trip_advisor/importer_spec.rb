@@ -37,5 +37,57 @@ module TripAdvisor
 
       Importer.new(sftp_details: SFTPDetails.default).import_locations
     end
+
+    describe '#import_properties' do
+      let(:details) { instance_double(SFTPDetails) }
+      it 'downloads a listings delta archive' do
+        downloader = instance_double(PropertyDownloader)
+
+        allow(PropertyExtractor)
+          .to receive(:new)
+          .and_return(instance_double(PropertyExtractor).as_null_object)
+
+        expect(PropertyDownloader)
+          .to receive(:new)
+          .with(sftp_details: details)
+          .and_return(downloader)
+        expect(downloader).to receive(:download_delta)
+
+        Importer.new(sftp_details: details).import_properties
+      end
+
+      it 'extracts the delta archive' do
+        path = 'path/to/archive.tar.gz'
+        downloader = instance_double(PropertyDownloader, download_delta: path)
+        allow(PropertyDownloader).to receive(:new).and_return(downloader)
+
+        extractor = instance_double(PropertyExtractor)
+        expect(PropertyExtractor)
+          .to receive(:new).with(path: path)
+          .and_return(extractor)
+        expect(extractor).to receive(:extract)
+
+        Importer.new(sftp_details: details).import_properties
+      end
+
+      it 'queues up a property file importer for each path' do
+        path = 'path/to/archive.tar.gz'
+        downloader = instance_double(PropertyDownloader, download_delta: path)
+        allow(PropertyDownloader).to receive(:new).and_return(downloader)
+
+        extractor = instance_double(PropertyExtractor)
+        allow(PropertyExtractor).to receive(:new).and_return(extractor)
+        allow(extractor).to receive(:extract).and_yield('f1').and_yield('f2')
+
+        ['f1', 'f2'].each do |f|
+          fi = instance_double(PropertyFileImporter)
+          expect(PropertyFileImporter)
+            .to receive(:new).with(path: f).and_return(fi)
+          expect(fi).to receive(:import)
+        end
+
+        Importer.new(sftp_details: details).import_properties
+      end
+    end
   end
 end

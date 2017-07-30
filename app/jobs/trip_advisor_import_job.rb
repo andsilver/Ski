@@ -6,5 +6,6 @@ class TripAdvisorImportJob < ApplicationJob
       sftp_details: TripAdvisor::SFTPDetails.default
     )
     importer.import_locations
+    importer.import_properties
   end
 end

@@ -22,7 +22,7 @@ module TripAdvisor
         expect(pi2).to receive(:import)
 
         sut = PropertyFileImporter.new(path: path)
-        sut.import
+        sut.import_without_delay
       end
     end
   end
