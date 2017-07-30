@@ -13,14 +13,13 @@ module TripAdvisor
     def extract
       return unless FileTest.exist?(path)
 
-      `tar xzf #{path} -C #{File.dirname(path)}`
+      extract_dir = path.gsub('.tar.gz', '')
 
-      if block_given?
-        extracted_dir = path.gsub('.tar.gz', '')
-        Dir[extracted_dir + '/*'].each do |path|
-          yield path
-        end
-      end
+      FileUtils.mkdir_p extract_dir
+
+      `tar xzf #{path} -C #{extract_dir}`
+
+      Dir[extract_dir + '/*'].each { |path| yield path } if block_given?
     end
   end
 end
