@@ -14,8 +14,10 @@ module TripAdvisor
     # delta file.
     # Returns the local path of the downloaded file.
     def download_delta(date: Date.today)
+      mk_local_delta_dir
       delta_fn = delta_filename(date)
       local = local_delta_path(delta_fn)
+
       Net::SFTP.start(host, username, password: password) do |sftp|
         sftp.download!(remote_delta_path(delta_fn), local)
       end
@@ -28,8 +30,17 @@ module TripAdvisor
       "listings_delta_#{date.strftime('%Y%m%d')}.tar.gz"
     end
 
+    def mk_local_delta_dir
+      return if FileTest.exist?(local_delta_directory)
+      FileUtils.mkdir_p(local_delta_directory)
+    end
+
     def local_delta_path(filename)
-      File.join(Rails.root, 'trip_advisor', 'listings', 'delta', filename)
+      File.join(local_delta_directory, filename)
+    end
+
+    def local_delta_directory
+      File.join(Rails.root, 'trip_advisor', 'listings', 'delta')
     end
 
     def remote_delta_path(filename)
