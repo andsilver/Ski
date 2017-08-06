@@ -1,9 +1,12 @@
 module PierreEtVacances
   class Importer
     def self.import(opts = {})
-      @accommodation_importer = AccommodationImporter.new
-      @accommodation_importer.ftp_get unless opts[:skip_ftp]
-      @accommodation_importer.import(['pierreetvacances/' + @accommodation_importer.xml_filename], true)
+      ftp = FTP.new
+      ftp.get unless opts[:skip_ftp]
+      accommodation_importer = AccommodationImporter.new
+      accommodation_importer.import(
+        [File.join('pierreetvacances/', ftp.xml_filename)]
+      )
     end
   end
 end
