@@ -23,6 +23,9 @@ module TripAdvisor
     private
 
     def delta_filename(date)
+      if date.cwday == 7
+        date = date - 1.day
+      end
       "listings_delta_#{date.strftime('%Y%m%d')}.tar.gz"
     end
 

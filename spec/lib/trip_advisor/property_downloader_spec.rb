@@ -38,6 +38,22 @@ module TripAdvisor
         downloader.download_delta(date: Date.new(2017, 7, 14))
       end
 
+      it "downloads Saturday's delta listings on a Sunday" do
+        sftp = instance_double(SFTP)
+
+        expect(SFTP)
+          .to receive(:new).with(details: test_details).and_return(sftp)
+        expect(sftp)
+          .to receive(:download)
+          .with(
+            '/drop/listings/delta/listings_delta_20170805.tar.gz',
+            File.join(local_directory, 'listings_delta_20170805.tar.gz')
+          )
+
+        downloader = PropertyDownloader.new(sftp_details: test_details)
+        downloader.download_delta(date: Date.new(2017, 8, 6))
+      end
+
       it 'returns the local path of the downloaded file' do
         sftp = instance_double(SFTP).as_null_object
         allow(SFTP).to receive(:new).and_return(sftp)
@@ -49,10 +65,11 @@ module TripAdvisor
     end
 
     def local_path
-      File.join(
-        Rails.root, 'trip_advisor', 'listings', 'delta',
-        'listings_delta_20170714.tar.gz'
-      )
+      File.join(local_directory, 'listings_delta_20170714.tar.gz')
+    end
+
+    def local_directory
+      File.join(Rails.root, 'trip_advisor', 'listings', 'delta')
     end
   end
 end
