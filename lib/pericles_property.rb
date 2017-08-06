@@ -149,7 +149,7 @@ class PericlesProperty
     property.description += "<tr><td>Plot size</td><td>#{@plot_size} m²</td></tr>\n" unless @plot_size == 0
     property.description += "<tr><td>Floor</td><td>#{@floor}</td></tr>\n" unless @floor == 0
     property.description += "<tr><td>Number of floors</td><td>#{@number_of_floors}</td></tr>\n" unless @number_of_floors == 0
-    property.description += "<tr><td>Year of construction</td><td>#{@year_of_construction}</td></tr>\n" unless @year_of_construction = 0
+    property.description += "<tr><td>Year of construction</td><td>#{@year_of_construction}</td></tr>\n" unless @year_of_construction == 0
     property.description += "<tr><td>Number of toilets</td><td>#{@number_of_toilets}</td></tr>\n" unless @number_of_toilets == 0
     property.description += "<tr><td>Number of bathrooms</td><td>#{@number_of_bathrooms}</td></tr>\n" unless @number_of_bathrooms == 0
     property.description += "<tr><td>Number of shower rooms</td><td>#{@number_of_shower_rooms}</td></tr>\n" unless @number_of_shower_rooms == 0
