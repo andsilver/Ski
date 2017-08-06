@@ -88,7 +88,9 @@ class AccommodationImporter
   end
 
   def delete_old_adverts
-    Advert.delete_all(['user_id = ? AND updated_at < ?', @user.id, @import_start_time])
+    Advert
+      .where(['user_id = ? AND updated_at < ?', @user.id, @import_start_time])
+      .delete_all
   end
 
   def destroy_all

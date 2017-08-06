@@ -40,6 +40,26 @@ describe AccommodationImporter do
     end
   end
 
+  describe '#delete_old_adverts' do
+    it 'deletes adverts belonging to the user updated before the import ' \
+    'start time' do
+      start = Time.new(2017, 8, 6, 10, 0, 30)
+      user = FactoryGirl.create(:user)
+      a1 = FactoryGirl.create(:advert, user: user, updated_at: start - 1.second)
+      a2 = FactoryGirl.create(:advert, user: user, updated_at: start + 1.second)
+      a3 = FactoryGirl.create(:advert, updated_at: start - 1.second)
+      i = AccommodationImporter.new
+      i.user = user
+      i.import_start_time = start
+
+      i.delete_old_adverts
+
+      expect(Advert.exists?(a1.id)).to be_falsey
+      expect(Advert.exists?(a2.id)).to be_truthy
+      expect(Advert.exists?(a3.id)).to be_truthy
+    end
+  end
+
   describe '#destroy_all' do
     it 'destroys all accommodation objects updated before the import began' do
       i = AccommodationImporter.new
