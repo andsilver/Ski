@@ -63,11 +63,18 @@ describe AccommodationImporter do
   describe '#destroy_all' do
     it 'destroys all accommodation objects updated before the import began' do
       i = AccommodationImporter.new
-      allow(i).to receive(:model_class).and_return(Accommodation)
-      start_time = Time.now
-      i.import_start_time = start_time
-      expect(Accommodation).to receive(:destroy_all).with(['updated_at < ?', start_time])
+      allow(i).to receive(:model_class).and_return(InterhomeAccommodation)
+
+      start = Time.current
+
+      a1 = FactoryGirl.create(:interhome_accommodation, updated_at: start - 1.second)
+      a2 = FactoryGirl.create(:interhome_accommodation, updated_at: start + 1.second)
+
+      i.import_start_time = start
       i.destroy_all
+
+      expect(InterhomeAccommodation.exists?(a1.id)).to be_falsey
+      expect(InterhomeAccommodation.exists?(a2.id)).to be_truthy
     end
   end
 end

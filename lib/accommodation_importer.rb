@@ -94,7 +94,7 @@ class AccommodationImporter
   end
 
   def destroy_all
-    model_class.destroy_all(['updated_at < ?', @import_start_time])
+    model_class.where(['updated_at < ?', @import_start_time]).destroy_all
   end
 
   def accommodations(xml)
