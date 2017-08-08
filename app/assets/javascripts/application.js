@@ -12,6 +12,4 @@
 //
 //= require jquery
 //= require rails-ujs
-//= require turbolinks
-//= require google-analytics-turbolinks
 //= require_tree .
