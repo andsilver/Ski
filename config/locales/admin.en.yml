@@ -92,6 +92,9 @@ en:
         title: Snippets
       new:
         title: New Snippet
+    tracked_actions:
+      index:
+        title: 'Tracked Actions'
     trip_advisor_locations:
       index:
         title: TripAdvisor Locations

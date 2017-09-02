@@ -1,0 +1,17 @@
+= content_for :title, t('.title')
+= page_header t('.title')
+
+table.table.table-bordered
+  thead
+    tr
+      th ID
+      th What
+      th Action
+      th When
+  tbody
+    - @tracked_actions.each do |ta|
+      tr
+        td= ta.id
+        td= ta.trackable.to_s
+        td= ta.action_type
+        td= ta.created_at

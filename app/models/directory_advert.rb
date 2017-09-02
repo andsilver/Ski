@@ -21,6 +21,10 @@ class DirectoryAdvert < ActiveRecord::Base
   validates :strapline, presence: true, length: 1..255
   validates_format_of :url, with: /\A(#{URI::regexp(%w(http https))})\Z/, allow_blank: true
 
+  def to_s
+    "#{business_name} in #{resort}"
+  end
+
   def name
     business_name
   end
