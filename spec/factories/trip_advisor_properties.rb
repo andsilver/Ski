@@ -10,7 +10,7 @@ FactoryGirl.define do
     city "MyString"
     url "MyString"
     status "MyString"
-    review_average "9.99"
+    review_average "5.0"
     show_pin "MyString"
     lat_long "MyString"
     country_code "MyString"
