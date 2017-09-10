@@ -24,6 +24,13 @@ describe Currency do
     end
   end
 
+  describe '.euro' do
+    it 'returns the currency whose code is EUR' do
+      euro = FactoryGirl.create(:currency, code: 'EUR')
+      expect(Currency.euro).to eq euro
+    end
+  end
+
   describe '.update_exchange_rates' do
     it "updates each currency's exchange rate" do
       FactoryGirl.create(:currency, code: 'GBP', in_euros: 3)
