@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614182559) do
+ActiveRecord::Schema.define(version: 20170910121140) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -752,7 +752,9 @@ ActiveRecord::Schema.define(version: 20170614182559) do
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "resort_id"
     t.index ["parent_id"], name: "index_trip_advisor_locations_on_parent_id"
+    t.index ["resort_id"], name: "index_trip_advisor_locations_on_resort_id"
   end
 
   create_table "trip_advisor_properties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

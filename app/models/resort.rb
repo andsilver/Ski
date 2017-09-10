@@ -7,6 +7,7 @@ class Resort < ActiveRecord::Base
 
   has_many :directory_adverts, dependent: :restrict_with_exception
   has_many :flip_key_locations, dependent: :nullify
+  has_many :trip_advisor_locations, dependent: :nullify
   has_many :properties, dependent: :restrict_with_exception
   has_many :order_lines
   has_many :airport_distances, -> { order 'distance_km ASC' }, dependent: :delete_all

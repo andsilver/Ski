@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require_relative 'shared_model_examples'
 
-describe Resort do
-  # ActiveRecord
-  it { should have_many(:interhome_place_resorts) }
-  it { should respond_to(:summer_only?) }
+RSpec.describe Resort, type: :model do
+  describe 'associations' do
+    it { should have_many(:interhome_place_resorts) }
+    it { should respond_to(:summer_only?) }
+    it { should have_many(:trip_advisor_locations).dependent(:nullify) }
+  end
 
   before do
     # Accommodate leaky fixtures
