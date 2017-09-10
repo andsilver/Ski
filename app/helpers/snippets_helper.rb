@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SnippetsHelper
   # Returns the snippet whose name is +name+, or +default+ if no matching
   # snippet is found.

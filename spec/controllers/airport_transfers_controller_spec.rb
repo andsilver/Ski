@@ -17,10 +17,6 @@ describe AirportTransfersController do
     end
   end
 
-  describe 'POST create' do
-    pending
-  end
-
   describe 'POST results' do
     let(:airport) { FactoryGirl.create(:airport) }
     let(:resort)  { FactoryGirl.create(:resort) }

@@ -1,5 +1,7 @@
 require 'rails_helper'
 
-describe TrackedAction do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe TrackedAction, type: :model do
+  describe 'associations' do
+    it { should belong_to(:trackable) }
+  end
 end

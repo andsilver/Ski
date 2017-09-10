@@ -10,34 +10,6 @@ describe Admin::AirportDistancesController do
     allow(controller).to receive(:admin?).and_return(true)
   end
 
-  describe 'GET index' do
-    it 'finds all airport distances' do
-      expect(AirportDistance).to receive(:all)
-      get 'index'
-    end
-
-    it 'assigns @airport_distances' do
-      pending
-      allow(AirportDistance).to receive(:all).and_return([airport_distance])
-      get 'index'
-      expect(assigns(:airport_distances)).to eq [airport_distance]
-    end
-  end
-
-  describe 'GET new' do
-    it 'instantiates a new airport distance' do
-      expect(AirportDistance).to receive(:new)
-      get 'new'
-    end
-
-    it 'assigns a new airport distance' do
-      pending
-      allow(AirportDistance).to receive(:new).and_return(airport_distance)
-      get 'new'
-      expect(assigns(:airport_distance)).to eq airport_distance
-    end
-  end
-
   def post_params
     { airport_distance: { 'airport_id' => '1', 'distance_km' => '20', 'resort_id' => '1' } }
   end
@@ -148,31 +120,6 @@ describe Admin::AirportDistancesController do
         put 'update', params: put_params
         expect(assigns(:airport_distance)).to eq airport_distance
       end
-    end
-  end
-
-  describe 'DELETE destroy' do
-    it 'finds the airport distance' do
-      should_find_airport_distance
-      delete 'destroy', params: { 'id' => '1' }
-    end
-
-    it 'destroys the airport distance' do
-      allow(AirportDistance).to receive(:find).and_return(airport_distance)
-      expect(airport_distance).to receive(:destroy)
-      delete 'destroy', params: { 'id' => '1' }
-    end
-
-    it 'redirects to index' do
-      allow(AirportDistance).to receive(:find).and_return(airport_distance)
-      delete 'destroy', params: { 'id' => '1' }
-      expect(response).to redirect_to(action: 'index')
-    end
-
-    it 'sets a notice' do
-      allow(AirportDistance).to receive(:find).and_return(airport_distance)
-      delete 'destroy', params: { 'id' => '1' }
-      expect(flash[:notice]).to eq I18n.t('notices.deleted')
     end
   end
 end

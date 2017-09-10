@@ -12,7 +12,7 @@ class AirportTransfersController < ApplicationController
       at = AirportTransfer.new
       at.airport_id = params[:transfers][:airport_id]
       at.resort_id = resort_id
-      at.user = @current_user
+      at.user = current_user
       at.save
     end
     redirect_to airport_transfers_path, notice: t('notices.added')
