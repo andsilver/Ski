@@ -78,13 +78,7 @@ class AccommodationImporter
   end
 
   def create_advert(property)
-    advert = Advert.new
-    advert.user_id = @user.id
-    advert.property_id = property.id
-    advert.starts_at = Time.now
-    advert.expires_at = Time.now + 10.years
-    advert.months = 120
-    advert.save
+    LongTermAdvert.new(property).create
   end
 
   def delete_old_adverts
