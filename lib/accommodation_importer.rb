@@ -41,7 +41,7 @@ class AccommodationImporter
     @user = User.find_by(email: user_email)
     raise "A user with email #{user_email} is required" unless @user
 
-    @euro = Currency.find_by(code: 'EUR')
+    @euro = Currency.euro
     raise 'A currency with code EUR is required' unless @euro
 
     @import_start_time = Time.now

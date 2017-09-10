@@ -14,6 +14,11 @@ class Currency < ActiveRecord::Base
     find_by(code: 'GBP').try(:in_euros)
   end
 
+  # It returns the euro currency.
+  def self.euro
+    Currency.find_by(code: 'EUR')
+  end
+
   def self.update_exchange_rates
     currencies = Currency.all
     return if currencies.empty?
