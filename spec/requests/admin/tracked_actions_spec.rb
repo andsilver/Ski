@@ -18,9 +18,9 @@ RSpec.describe 'Tracked actions admin', type: :request do
       get '/admin/tracked_actions'
 
       expect(response.status).to eq 200
-      assert_select 'tr td', text: da2.id.to_s
+      assert_select 'tr td', text: da2.clicks.first.id.to_s
       assert_select 'tr td', text: da2.to_s
-      assert_select 'tr + tr td', text: da1.id.to_s
+      assert_select 'tr + tr td', text: da1.clicks.first.id.to_s
       assert_select 'tr + tr td', text: da1.to_s
     end
   end
