@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910121140) do
+ActiveRecord::Schema.define(version: 20170911085155) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -548,6 +548,7 @@ ActiveRecord::Schema.define(version: 20170910121140) do
     t.integer "flip_key_property_id"
     t.string "price_description", default: "", null: false
     t.string "layout"
+    t.integer "trip_advisor_property_id"
     t.index ["country_id"], name: "index_properties_on_country_id"
     t.index ["flip_key_property_id"], name: "index_properties_on_flip_key_property_id"
     t.index ["interhome_accommodation_id"], name: "index_properties_on_interhome_accommodation_id"
@@ -555,6 +556,7 @@ ActiveRecord::Schema.define(version: 20170910121140) do
     t.index ["publicly_visible"], name: "index_properties_on_publicly_visible"
     t.index ["pv_accommodation_id"], name: "index_properties_on_pv_accommodation_id"
     t.index ["resort_id"], name: "index_properties_on_resort_id"
+    t.index ["trip_advisor_property_id"], name: "index_properties_on_trip_advisor_property_id"
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
 

@@ -3,7 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe TripAdvisorProperty, type: :model do
-  it { should belong_to :trip_advisor_location }
+  describe 'associations' do
+    it { should have_one(:property).dependent(:destroy) }
+    it { should belong_to :trip_advisor_location }
+  end
 
   describe 'validations' do
     it do

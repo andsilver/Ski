@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe Property do
-  # ActiveRecord
-  it { should have_many(:images) }
-  it { should have_many(:adverts) }
+RSpec.describe Property, type: :model do
+  describe 'associations' do
+    it { should have_many(:images) }
+    it { should have_many(:adverts) }
+    it { should belong_to(:trip_advisor_property) }
+  end
 
   # ActiveModel
   it { should validate_length_of(:name).is_at_least(4).is_at_most(255) }

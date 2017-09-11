@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Property < ActiveRecord::Base
   include AdvertBehaviours
 
@@ -11,6 +13,7 @@ class Property < ActiveRecord::Base
   belongs_to :flip_key_property
   belongs_to :interhome_accommodation
   belongs_to :pv_accommodation
+  belongs_to :trip_advisor_property
 
   has_many :images, dependent: :destroy
 
