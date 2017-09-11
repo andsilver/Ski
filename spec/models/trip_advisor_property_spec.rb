@@ -6,6 +6,7 @@ RSpec.describe TripAdvisorProperty, type: :model do
   describe 'associations' do
     it { should have_one(:property).dependent(:destroy) }
     it { should belong_to :trip_advisor_location }
+    it { should delegate_method(:resort).to(:trip_advisor_location) }
   end
 
   describe 'validations' do
