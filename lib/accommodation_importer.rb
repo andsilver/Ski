@@ -102,25 +102,14 @@ class AccommodationImporter
   # Prepares a property by finding an existing +Property+ or initializing a
   # new one associated with the given accommodation key => id.
   #
-  # If the property exists then its current advert is deleted. The caller
-  # should create a new advert.
-  #
-  # The property is set to publicly_visible and its user is set to @user.
+  # See +PreparedProperty+ for more details.
   #
   # Example:
   #     p = prepare_property(my_accommodation_id: my_accommodation.id)
   #     ...
   #     create_advert(p)
   def prepare_property(accommodation_key_id)
-    property = Property.find_by(accommodation_key_id)
-    if property
-      property.current_advert.try(:delete)
-    else
-      property = Property.new(accommodation_key_id)
-    end
-    property.publicly_visible = true
-    property.user = @user
-    property
+    PreparedProperty.new(accommodation_key_id, @user).property
   end
 
   def model_class
