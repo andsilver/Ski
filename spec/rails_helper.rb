@@ -71,7 +71,6 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
-FactoryGirl.reload
 load "#{Rails.root}/config/routes.rb"
 
 Capybara.register_driver :chrome do |app|
