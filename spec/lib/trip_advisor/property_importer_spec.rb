@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 module TripAdvisor
@@ -11,95 +13,56 @@ module TripAdvisor
     end
 
     describe '#import' do
-      let(:property) { TripAdvisorProperty.last }
-      let(:importer) { PropertyImporter.new(json) }
-
-      before { importer.import }
-
-      it 'creates a TripAdvisor property with specified ID' do
-        expect(TripAdvisorProperty.exists?(7_363_690)).to be_truthy
+      def null_object(klass)
+        allow(klass)
+          .to receive(:new)
+          .and_return(instance_double(klass).as_null_object)
       end
 
-      it 'updates an existing TripAdvisorProperty' do
-        importer.import # run a second time
+      it 'copies details' do
+        details = instance_double(PropertyDetails).as_null_object
+        expect(PropertyDetails).to receive(:new).with(json).and_return(details)
+        expect(details).to receive(:import)
+
+        null_object(BaseProperty)
+        null_object(LongTermAdvert)
+
+        importer = PropertyImporter.new(json)
+        importer.import
       end
 
-      it 'sets number of bedrooms' do
-        expect(property.bedrooms).to eq 6
+      it 'creates a base property' do
+        ta_prop = TripAdvisorProperty.new
+        details = instance_double(PropertyDetails, property: ta_prop)
+          .as_null_object
+        allow(PropertyDetails).to receive(:new).and_return(details)
+
+        bp = instance_double(BaseProperty)
+        expect(BaseProperty).to receive(:new).with(ta_prop).and_return(bp)
+        expect(bp).to receive(:create).with(Currency.euro, TripAdvisor.user)
+
+        null_object(LongTermAdvert)
+
+        importer = PropertyImporter.new(json)
+        importer.import
       end
 
-      it 'sets number of beds' do
-        expect(property.beds).to eq 9
-      end
+      it 'advertises the property' do
+        ta_prop = TripAdvisorProperty.new
+        details = instance_double(PropertyDetails).as_null_object
+        allow(PropertyDetails).to receive(:new).and_return(details)
 
-      it 'sets sleeping capacity' do
-        expect(property.sleeps).to eq 16
-      end
+        prop = Property.new
+        allow(BaseProperty)
+          .to receive(:new)
+          .and_return(instance_double(BaseProperty, create: prop))
 
-      it 'sets number of bathrooms' do
-        expect(property.bathrooms).to eq 2
-      end
+        lta = instance_double(LongTermAdvert)
+        expect(LongTermAdvert).to receive(:new).with(prop).and_return(lta)
+        expect(lta).to receive(:create)
 
-      it 'sets country' do
-        expect(property.country).to eq 'France'
-      end
-
-      it 'sets city' do
-        expect(property.city).to eq 'Le Thillot'
-      end
-
-      it 'sets URL' do
-        expect(property.url).to eq 'https://www.tripadvisor.com/FeaturedRenta' \
-          'lReview?geo=672998&detail=10484294'
-      end
-
-      it 'sets status' do
-        expect(property.status).to eq 'ONLINE'
-      end
-
-      it 'sets review_average' do
-        expect(property.review_average).to eq 5.0
-      end
-
-      it 'sets show_pin' do
-        expect(property.show_pin?).to be_truthy
-      end
-
-      it 'sets lat_long' do
-        expect(property.lat_long).to eq '47.89399 6.77065'
-      end
-
-      it 'sets country_code' do
-        expect(property.country_code).to eq 'FR'
-      end
-
-      it 'sets trip_advisor_location_id ta_geo_location_id' do
-        expect(property.trip_advisor_location_id).to eq 672_998
-      end
-
-      it 'sets postal_code' do
-        expect(property.postal_code).to eq '88160'
-      end
-
-      it 'sets search_url' do
-        expect(property.search_url).to eq 'http://www.tripadvisor.com/VRACSea' \
-          'rch?geo=672998&firstVRs=10484294'
-      end
-
-      it 'sets can_accept_inquiry' do
-        expect(property.can_accept_inquiry?).to be_truthy
-      end
-
-      it 'sets booking_option' do
-        expect(property.booking_option).to eq 'TIP'
-      end
-
-      it 'sets min_stay_high' do
-        expect(property.min_stay_high).to eq 7
-      end
-
-      it 'sets min_stay_low' do
-        expect(property.min_stay_low).to eq 2
+        importer = PropertyImporter.new(json)
+        importer.import
       end
     end
   end

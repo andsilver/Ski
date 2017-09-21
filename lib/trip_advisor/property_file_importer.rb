@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TripAdvisor
   # Imports TripAdvisor properties (listings) from a file on the local
   # filesystem.
