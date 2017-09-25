@@ -43,5 +43,52 @@ RSpec.describe 'Trip Advisor locations admin', type: :request do
       get admin_trip_advisor_location_path(madagascar)
       assert_select "a[href='#{admin_trip_advisor_location_path(africa)}']"
     end
+
+    it 'displays a form to link the location to a resort' do
+      get admin_trip_advisor_location_path(madagascar)
+      assert_select(
+        "form[action='#{admin_trip_advisor_location_path(madagascar)}']"
+      ) do
+        assert_select 'select[name="trip_advisor_location[resort_id]"]'
+        assert_select 'input[type=submit]'
+      end
+    end
+  end
+
+  describe 'PATCH /admin/trip_advisor_locations/:id' do
+    let(:resort) { FactoryGirl.create(:resort) }
+    let!(:africa) do
+      FactoryGirl.create(:trip_advisor_location, name: 'Africa', parent: nil)
+    end
+    let!(:madagascar) do
+      FactoryGirl.create(
+        :trip_advisor_location, name: 'Madagascar', parent: africa
+      )
+    end
+
+    def perform
+      patch admin_trip_advisor_location_path(
+        africa, params: {
+          trip_advisor_location: { resort_id: resort.id }
+        }
+      )
+    end
+
+    it "updates location's resort recursively" do
+      perform
+      expect(africa.reload.resort).to eq resort
+      expect(madagascar.reload.resort).to eq resort
+    end
+
+    it 'sets a flash notice' do
+      perform
+      expect(flash[:notice]).to eq 'Updated.'
+    end
+
+    it 'redirects to the location page' do
+      perform
+      expect(response)
+        .to redirect_to(admin_trip_advisor_location_path(africa))
+    end
   end
 end

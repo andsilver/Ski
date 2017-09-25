@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     end
     resources :snippets,          except: [:show]
     resources :tracked_actions, only: [:index]
-    resources :trip_advisor_locations, only: [:index, :show]
+    resources :trip_advisor_locations, only: [:index, :show, :update]
 
     resources :users, only: [:index, :destroy] do
       member do
