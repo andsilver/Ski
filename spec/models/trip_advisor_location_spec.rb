@@ -17,4 +17,32 @@ RSpec.describe TripAdvisorLocation, type: :model do
     it { should respond_to(:parent) }
     it { should respond_to(:children) }
   end
+
+  describe '#cascade_resort_id=' do
+    it 'sets the resort_id of the location' do
+      l = TripAdvisorLocation.new
+      l.cascade_resort_id = -1
+      expect(l.resort_id).to eq -1
+    end
+
+    it 'saves the location' do
+      l = FactoryGirl.create(:trip_advisor_location)
+      l.cascade_resort_id = -1
+      expect(l.reload.resort_id).to eq -1
+    end
+
+    it 'sets the resort_id of child locations' do
+      l = FactoryGirl.create(:trip_advisor_location)
+      c = FactoryGirl.create(:trip_advisor_location, parent: l)
+      l.cascade_resort_id = -1
+      expect(c.reload.resort_id).to eq -1
+    end
+
+    it 'does not set the resort_id of other locations' do
+      l1 = FactoryGirl.create(:trip_advisor_location)
+      l2 = FactoryGirl.create(:trip_advisor_location)
+      l1.cascade_resort_id = -1
+      expect(l2.reload.resort_id).not_to eq -1
+    end
+  end
 end
