@@ -16,7 +16,7 @@ module TripAdvisor
           trip_advisor_property_id: ta_prop.id
         }, user
       ).property
-      prop.name = 'name'
+      prop.name = ta_prop.title
       prop.resort = ta_prop.resort
       prop.address = 'address'
       prop.currency = currency

@@ -26,6 +26,11 @@ module TripAdvisor
         details.import # run a second time
       end
 
+      it 'sets the title' do
+        expect(property.title).to eq('CHALET 16 PERS ACTIVITIES FREE POOL / ' \
+          'SPA BAR PANCAKES, PARK GAMES GIANT ...')
+      end
+
       it 'sets number of bedrooms' do
         expect(property.bedrooms).to eq 6
       end

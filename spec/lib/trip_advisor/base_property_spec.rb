@@ -11,6 +11,7 @@ module TripAdvisor
         FactoryGirl.create(
           :trip_advisor_property,
           sleeps: 8,
+          title: 'title',
           id: 1
         )
       end
@@ -23,6 +24,10 @@ module TripAdvisor
 
       it 'creates a property' do
         expect(Property.count).to eq 1
+      end
+
+      it 'sets the name' do
+        expect(@property.name).to eq 'title'
       end
 
       it 'sets the resort to the TripAdvisorProperty resort' do

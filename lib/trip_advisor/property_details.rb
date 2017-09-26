@@ -15,7 +15,7 @@ module TripAdvisor
         :city, :country,
         :country_code, :lat_long, :min_stay_high, :min_stay_low,
         :postal_code, :review_average, :search_url,
-        :show_pin, :sleeps, :status, :trip_advisor_location_id, :url
+        :show_pin, :sleeps, :status, :title, :trip_advisor_location_id, :url
       )
       property.save
     end
@@ -36,6 +36,14 @@ module TripAdvisor
 
     def details
       data['details']
+    end
+
+    def title
+      titles.select { |t| t['locale'] == 'en_US' }.first['text']
+    end
+
+    def titles
+      details['title']
     end
 
     def bedrooms
