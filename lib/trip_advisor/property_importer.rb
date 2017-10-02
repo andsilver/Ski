@@ -17,6 +17,9 @@ module TripAdvisor
 
       prop = BaseProperty.new(ta_prop).create(Currency.euro, TripAdvisor.user)
       LongTermAdvert.new(prop).create
+
+      images = PropertyImages.new(prop, json)
+      images.import
     end
   end
 end

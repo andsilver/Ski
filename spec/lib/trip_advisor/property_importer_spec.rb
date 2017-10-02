@@ -26,6 +26,7 @@ module TripAdvisor
 
         null_object(BaseProperty)
         null_object(LongTermAdvert)
+        null_object(PropertyImages)
 
         importer = PropertyImporter.new(json)
         importer.import
@@ -42,6 +43,7 @@ module TripAdvisor
         expect(bp).to receive(:create).with(Currency.euro, TripAdvisor.user)
 
         null_object(LongTermAdvert)
+        null_object(PropertyImages)
 
         importer = PropertyImporter.new(json)
         importer.import
@@ -60,6 +62,28 @@ module TripAdvisor
         lta = instance_double(LongTermAdvert)
         expect(LongTermAdvert).to receive(:new).with(prop).and_return(lta)
         expect(lta).to receive(:create)
+
+        null_object(PropertyImages)
+
+        importer = PropertyImporter.new(json)
+        importer.import
+      end
+
+      it 'imports images' do
+        ta_prop = TripAdvisorProperty.new
+        details = instance_double(PropertyDetails).as_null_object
+        allow(PropertyDetails).to receive(:new).and_return(details)
+
+        prop = Property.new
+        allow(BaseProperty)
+          .to receive(:new)
+          .and_return(instance_double(BaseProperty, create: prop))
+
+        pi = instance_double(PropertyImages)
+        expect(PropertyImages).to receive(:new).with(prop, json).and_return(pi)
+        expect(pi).to receive(:import)
+
+        null_object(LongTermAdvert)
 
         importer = PropertyImporter.new(json)
         importer.import
