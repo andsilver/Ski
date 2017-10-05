@@ -9,7 +9,7 @@ module TripAdvisor
     # Connects to the TripAdvisor SFTP server and downloads the gzipped listings
     # delta file.
     # Returns the local path of the downloaded file.
-    def download_delta(date: Date.today)
+    def download_delta(date: Date.today - 1.day)
       mk_local_delta_dir
       delta_fn = delta_filename(date)
       local = local_delta_path(delta_fn)
