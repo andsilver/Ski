@@ -10,7 +10,7 @@ module TripAdvisor
       @ta_prop = ta_property
     end
 
-    def create(currency, user)
+    def create(user)
       prop = PreparedProperty.new(
         {
           trip_advisor_property_id: ta_prop.id
@@ -19,7 +19,8 @@ module TripAdvisor
       prop.name = ta_prop.title
       prop.resort = ta_prop.resort
       prop.address = 'address'
-      prop.currency = currency
+      prop.currency = ta_prop.currency
+      prop.weekly_rent_price = ta_prop.starting_price * 7
       prop.sleeping_capacity = ta_prop.sleeps
       prop.save!
       prop

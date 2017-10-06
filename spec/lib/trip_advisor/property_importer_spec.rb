@@ -40,7 +40,7 @@ module TripAdvisor
 
         bp = instance_double(BaseProperty)
         expect(BaseProperty).to receive(:new).with(ta_prop).and_return(bp)
-        expect(bp).to receive(:create).with(Currency.euro, TripAdvisor.user)
+        expect(bp).to receive(:create).with(TripAdvisor.user)
 
         null_object(LongTermAdvert)
         null_object(PropertyImages)

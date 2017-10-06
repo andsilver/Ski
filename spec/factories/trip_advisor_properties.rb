@@ -21,5 +21,7 @@ FactoryGirl.define do
     min_stay_high "MyString"
     min_stay_low "MyString"
     association :trip_advisor_location
+    starting_price 123
+    association :currency
   end
 end

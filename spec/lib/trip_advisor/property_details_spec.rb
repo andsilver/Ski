@@ -13,6 +13,7 @@ module TripAdvisor
     end
 
     describe '#import' do
+      let!(:eur) { FactoryGirl.create(:currency, code: 'EUR') }
       let(:property) { TripAdvisorProperty.last }
       let(:details) { PropertyDetails.new(json) }
 
@@ -101,6 +102,14 @@ module TripAdvisor
         expect(property.booking_option).to eq 'TIP'
       end
 
+      it 'sets starting_price' do
+        expect(property.starting_price).to eq 112
+      end
+
+      it 'sets currency' do
+        expect(property.currency).to eq eur
+      end
+
       it 'sets min_stay_high' do
         expect(property.min_stay_high).to eq 7
       end
@@ -111,6 +120,8 @@ module TripAdvisor
     end
 
     describe '#property' do
+      let!(:eur) { FactoryGirl.create(:currency, code: 'EUR') }
+
       it 'creates a new TripAdvisorProperty with id equal to TripAdvisor id' do
         prop = PropertyDetails.new(json).property
         expect(prop.class).to eq TripAdvisorProperty

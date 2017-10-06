@@ -1,7 +1,13 @@
+# frozen_string_literal: true
+
 require 'csv'
 require 'open-uri'
 
 class Currency < ActiveRecord::Base
+  # Associations.
+  has_many :trip_advisor_properties, dependent: :destroy
+
+  # Validations.
   validates_uniqueness_of :code
 
   def to_s

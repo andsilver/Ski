@@ -1,6 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe Currency do
+RSpec.describe Currency, type: :model do
+  describe 'associations' do
+    it { should have_many(:trip_advisor_properties).dependent(:destroy) }
+  end
+
   describe '#to_s' do
     it 'returns its code' do
       currency = Currency.new(code: 'GBP')

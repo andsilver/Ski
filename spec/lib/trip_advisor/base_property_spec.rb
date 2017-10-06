@@ -7,19 +7,21 @@ module TripAdvisor
     describe '#create' do
       let(:user) { FactoryGirl.create(:user) }
       let(:resort) { FactoryGirl.create(:resort) }
+      let(:gbp) { FactoryGirl.create(:currency) }
       let(:ta_prop) do
         FactoryGirl.create(
           :trip_advisor_property,
           sleeps: 8,
           title: 'title',
-          id: 1
+          id: 1,
+          starting_price: 112,
+          currency: gbp
         )
       end
-      let(:currency) { FactoryGirl.create(:currency) }
 
       before do
         allow(ta_prop).to receive(:resort).and_return(resort)
-        @property = BaseProperty.new(ta_prop).create(currency, user)
+        @property = BaseProperty.new(ta_prop).create(user)
       end
 
       it 'creates a property' do
@@ -34,8 +36,8 @@ module TripAdvisor
         expect(@property.resort).to eq resort
       end
 
-      it 'sets the currency to the currency param' do
-        expect(@property.currency).to eq currency
+      it 'sets the currency to the TripAdvisorProperty currency' do
+        expect(@property.currency).to eq gbp
       end
 
       it 'sets the user to the user param' do
@@ -52,6 +54,10 @@ module TripAdvisor
 
       it 'sets the sleeping capacity' do
         expect(@property.sleeping_capacity).to eq 8
+      end
+
+      it 'sets the weekly rent price' do
+        expect(@property.weekly_rent_price).to eq(112 * 7)
       end
     end
   end

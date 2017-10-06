@@ -13,9 +13,10 @@ module TripAdvisor
       copy_details(
         :bathrooms, :bedrooms, :beds, :booking_option, :can_accept_inquiry,
         :city, :country,
-        :country_code, :lat_long, :min_stay_high, :min_stay_low,
+        :country_code, :currency, :lat_long, :min_stay_high, :min_stay_low,
         :postal_code, :review_average, :search_url,
-        :show_pin, :sleeps, :status, :title, :trip_advisor_location_id, :url
+        :show_pin, :sleeps, :starting_price, :status, :title,
+        :trip_advisor_location_id, :url
       )
       property.save
     end
@@ -113,6 +114,14 @@ module TripAdvisor
 
     def booking_option
       details['booking_option']
+    end
+
+    def starting_price
+      details['starting_price']['amount']
+    end
+
+    def currency
+      Currency.find_by(code: details['starting_price']['currency'])
     end
 
     def min_stay_high
