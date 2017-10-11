@@ -11,7 +11,10 @@ module TripAdvisor
 
     # Extracts the archive and yields the path of each extracted file.
     def extract
-      return unless FileTest.exist?(path)
+      unless FileTest.exist?(path)
+        Rails.logger.warn "Cannot extract nonexistent archive: #{path}"
+        return
+      end
 
       extract_dir = path.gsub('.tar.gz', '')
 
