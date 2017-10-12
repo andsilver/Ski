@@ -20,7 +20,9 @@ module TripAdvisor
       end
 
       it 'copies details' do
-        details = instance_double(PropertyDetails).as_null_object
+        details = instance_double(
+          PropertyDetails, property: TripAdvisorProperty.new
+        ).as_null_object
         expect(PropertyDetails).to receive(:new).with(json).and_return(details)
         expect(details).to receive(:import)
 
@@ -32,61 +34,82 @@ module TripAdvisor
         importer.import
       end
 
-      it 'creates a base property' do
-        ta_prop = TripAdvisorProperty.new
-        details = instance_double(PropertyDetails, property: ta_prop)
-          .as_null_object
-        allow(PropertyDetails).to receive(:new).and_return(details)
+      context 'when TA property persisted' do
+        let(:ta_prop) { instance_double(TripAdvisorProperty, persisted?: true) }
 
-        bp = instance_double(BaseProperty)
-        expect(BaseProperty).to receive(:new).with(ta_prop).and_return(bp)
-        expect(bp).to receive(:create).with(TripAdvisor.user)
+        it 'creates a base property' do
+          details = instance_double(PropertyDetails, property: ta_prop)
+                    .as_null_object
+          allow(PropertyDetails).to receive(:new).and_return(details)
 
-        null_object(LongTermAdvert)
-        null_object(PropertyImages)
+          bp = instance_double(BaseProperty)
+          expect(BaseProperty).to receive(:new).with(ta_prop).and_return(bp)
+          expect(bp).to receive(:create).with(TripAdvisor.user)
 
-        importer = PropertyImporter.new(json)
-        importer.import
+          null_object(LongTermAdvert)
+          null_object(PropertyImages)
+
+          importer = PropertyImporter.new(json)
+          importer.import
+        end
+
+        it 'advertises the property' do
+          details = instance_double(PropertyDetails, property: ta_prop)
+                    .as_null_object
+          allow(PropertyDetails).to receive(:new).and_return(details)
+
+          prop = Property.new
+          allow(BaseProperty)
+            .to receive(:new)
+            .and_return(instance_double(BaseProperty, create: prop))
+
+          lta = instance_double(LongTermAdvert)
+          expect(LongTermAdvert).to receive(:new).with(prop).and_return(lta)
+          expect(lta).to receive(:create)
+
+          null_object(PropertyImages)
+
+          importer = PropertyImporter.new(json)
+          importer.import
+        end
+
+        it 'imports images' do
+          details = instance_double(PropertyDetails, property: ta_prop)
+                    .as_null_object
+          allow(PropertyDetails).to receive(:new).and_return(details)
+
+          prop = Property.new
+          allow(BaseProperty)
+            .to receive(:new)
+            .and_return(instance_double(BaseProperty, create: prop))
+
+          pi = instance_double(PropertyImages)
+          expect(PropertyImages)
+            .to receive(:new).with(prop, json).and_return(pi)
+          expect(pi).to receive(:import)
+
+          null_object(LongTermAdvert)
+
+          importer = PropertyImporter.new(json)
+          importer.import
+        end
       end
 
-      it 'advertises the property' do
-        ta_prop = TripAdvisorProperty.new
-        details = instance_double(PropertyDetails).as_null_object
-        allow(PropertyDetails).to receive(:new).and_return(details)
+      context 'when TA property not persisted' do
+        let(:ta_prop) do
+          instance_double(TripAdvisorProperty, persisted?: false)
+        end
 
-        prop = Property.new
-        allow(BaseProperty)
-          .to receive(:new)
-          .and_return(instance_double(BaseProperty, create: prop))
+        it 'does not create a base property' do
+          details = instance_double(PropertyDetails, property: ta_prop)
+                    .as_null_object
+          allow(PropertyDetails).to receive(:new).and_return(details)
 
-        lta = instance_double(LongTermAdvert)
-        expect(LongTermAdvert).to receive(:new).with(prop).and_return(lta)
-        expect(lta).to receive(:create)
+          expect(BaseProperty).not_to receive(:new)
 
-        null_object(PropertyImages)
-
-        importer = PropertyImporter.new(json)
-        importer.import
-      end
-
-      it 'imports images' do
-        ta_prop = TripAdvisorProperty.new
-        details = instance_double(PropertyDetails).as_null_object
-        allow(PropertyDetails).to receive(:new).and_return(details)
-
-        prop = Property.new
-        allow(BaseProperty)
-          .to receive(:new)
-          .and_return(instance_double(BaseProperty, create: prop))
-
-        pi = instance_double(PropertyImages)
-        expect(PropertyImages).to receive(:new).with(prop, json).and_return(pi)
-        expect(pi).to receive(:import)
-
-        null_object(LongTermAdvert)
-
-        importer = PropertyImporter.new(json)
-        importer.import
+          importer = PropertyImporter.new(json)
+          importer.import
+        end
       end
     end
   end

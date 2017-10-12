@@ -13,7 +13,9 @@ module TripAdvisor
     def import
       details = PropertyDetails.new(json)
       details.import
+
       ta_prop = details.property
+      return unless ta_prop.persisted?
 
       prop = BaseProperty.new(ta_prop).create(TripAdvisor.user)
       LongTermAdvert.new(prop).create

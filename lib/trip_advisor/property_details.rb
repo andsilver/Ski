@@ -18,7 +18,11 @@ module TripAdvisor
         :show_pin, :sleeps, :starting_price, :status, :title,
         :trip_advisor_location_id, :url
       )
-      property.save
+      if property.resort
+        property.save
+      else
+        property.destroy
+      end
     end
 
     def property
