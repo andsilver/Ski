@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020093612) do
+ActiveRecord::Schema.define(version: 20171020102447) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -746,6 +746,15 @@ ActiveRecord::Schema.define(version: 20171020093612) do
     t.index ["created_at"], name: "index_tracked_actions_on_created_at"
     t.index ["trackable_id", "action_type"], name: "index_tracked_actions_on_trackable_id_and_action_type"
     t.index ["trackable_id"], name: "index_tracked_actions_on_trackable_id"
+  end
+
+  create_table "trip_advisor_calendar_entries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "trip_advisor_property_id"
+    t.string "status", null: false
+    t.date "inclusive_start", null: false
+    t.date "exclusive_end", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "trip_advisor_locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
