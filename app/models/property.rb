@@ -337,8 +337,6 @@ class Property < ActiveRecord::Base
             'hotel'
           elsif new_development?
             'new_development'
-          elsif flip_key_property
-            'flip_key'
           else
             'classic'
           end

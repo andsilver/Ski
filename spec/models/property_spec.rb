@@ -309,8 +309,7 @@ RSpec.describe Property, type: :model do
   end
 
   describe '#template' do
-    let(:flip_key_property) { nil }
-    let(:property) { Property.new(layout: layout, flip_key_property: flip_key_property) }
+    let(:property) { Property.new(layout: layout) }
     let(:hotel?) { false }
     let(:new_development?) { false }
 
@@ -341,11 +340,6 @@ RSpec.describe Property, type: :model do
       context 'when a new development' do
         let(:new_development?) { true }
         it { should eq 'show_new_development' }
-      end
-
-      context 'when FlipKey' do
-        let(:flip_key_property) { FactoryGirl.create(:flip_key_property) }
-        it { should eq 'show_flip_key' }
       end
     end
   end
