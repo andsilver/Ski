@@ -134,13 +134,6 @@ Rails.application.routes.draw do
   end
   get "my/adverts" => "adverts#my", as: :my_adverts
 
-  resources :flip_key_properties do
-    member do
-      get  'message_sent'
-      post 'send_message'
-    end
-  end
-
   resources :properties do
     member do
       post 'advertise_now'
