@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006190446) do
+ActiveRecord::Schema.define(version: 20171020093612) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -785,6 +785,7 @@ ActiveRecord::Schema.define(version: 20171006190446) do
     t.datetime "updated_at", null: false
     t.integer "starting_price", null: false
     t.integer "currency_id", null: false
+    t.text "description"
     t.index ["currency_id"], name: "index_trip_advisor_properties_on_currency_id"
     t.index ["trip_advisor_location_id"], name: "index_trip_advisor_properties_on_trip_advisor_location_id"
   end

@@ -13,6 +13,7 @@ module TripAdvisor
           :trip_advisor_property,
           sleeps: 8,
           title: 'title',
+          description: 'description',
           id: 1,
           starting_price: 112,
           currency: gbp
@@ -30,6 +31,14 @@ module TripAdvisor
 
       it 'sets the name' do
         expect(@property.name).to eq 'title'
+      end
+
+      it 'sets the description' do
+        expect(@property.description).to eq 'description'
+      end
+
+      it 'sets the strapline' do
+        expect(@property.strapline).to eq 'description'
       end
 
       it 'sets the resort to the TripAdvisorProperty resort' do

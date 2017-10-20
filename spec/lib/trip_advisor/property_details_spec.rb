@@ -38,6 +38,10 @@ module TripAdvisor
             ' / SPA BAR PANCAKES, PARK GAMES GIANT ...')
         end
 
+        it 'sets the description to en_US description' do
+          expect(property.description).to include('Independent chalet can')
+        end
+
         it 'sets number of bedrooms' do
           expect(property.bedrooms).to eq 6
         end

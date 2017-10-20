@@ -13,7 +13,8 @@ module TripAdvisor
       copy_details(
         :bathrooms, :bedrooms, :beds, :booking_option, :can_accept_inquiry,
         :city, :country,
-        :country_code, :currency, :lat_long, :min_stay_high, :min_stay_low,
+        :country_code, :currency, :description,
+        :lat_long, :min_stay_high, :min_stay_low,
         :postal_code, :review_average, :search_url,
         :show_pin, :sleeps, :starting_price, :status, :title,
         :trip_advisor_location_id, :url
@@ -49,6 +50,14 @@ module TripAdvisor
 
     def titles
       details['title']
+    end
+
+    def description
+      descriptions.select { |d| d['locale'] == 'en_US' }.first['text']
+    end
+
+    def descriptions
+      details['description']
     end
 
     def bedrooms

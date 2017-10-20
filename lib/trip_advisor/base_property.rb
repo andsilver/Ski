@@ -17,6 +17,8 @@ module TripAdvisor
         }, user
       ).property
       prop.name = ta_prop.title
+      prop.strapline = prop.description = ta_prop.description
+      prop.tidy_name_and_strapline
       prop.resort = ta_prop.resort
       prop.address = 'address'
       prop.currency = ta_prop.currency
