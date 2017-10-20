@@ -93,7 +93,7 @@ Rails.application.configure do
     email: {
       email_prefix: "[MyChaletFinder Error Report] ",
       sender_address: %{"MyChaletFinder" <noreply@mychaletfinder.com>},
-      exception_recipients: %w{ianfleeton@gmail.com}
+      exception_recipients: %w{ianfleeton+mychaletfinder@gmail.com}
     }
 
   config.action_mailer.delivery_method = :smtp

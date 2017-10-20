@@ -12,6 +12,9 @@ class InterhomeNotifier < ActionMailer::Base
     @accommodation = accommodation
     @details = details
 
-    mail(to: 'ianf@yesl.co.uk', subject: 'Unavailability Report')
+    mail(
+      to: 'ianfleeton+mychaletfinder@gmail.com',
+      subject: 'Unavailability Report'
+    )
   end
 end

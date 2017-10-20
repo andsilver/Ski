@@ -26,7 +26,7 @@ RSpec.describe FlipKeyPropertiesController, type: :controller do
       check_in: valid_check_in,
       check_out: valid_check_out,
       comment: 'Can my pet lizard stay?',
-      email: 'ianf@yesl.co.uk',
+      email: 'ian@example.com',
       guests: ok_guests,
       name: 'Ian',
       phone_number: '01234 567890'
