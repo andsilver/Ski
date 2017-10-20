@@ -6,7 +6,6 @@ class Resort < ActiveRecord::Base
   belongs_to :region, inverse_of: :resorts, touch: true
 
   has_many :directory_adverts, dependent: :restrict_with_exception
-  has_many :flip_key_locations, dependent: :nullify
   has_many :trip_advisor_locations, dependent: :nullify
   has_many :properties, dependent: :restrict_with_exception
   has_many :order_lines

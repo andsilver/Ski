@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020102447) do
+ActiveRecord::Schema.define(version: 20171020105301) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -230,20 +230,6 @@ ActiveRecord::Schema.define(version: 20171020102447) do
     t.datetime "updated_at"
     t.index ["property_id"], name: "index_favourites_on_property_id"
     t.index ["unregistered_user_id"], name: "index_favourites_on_unregistered_user_id"
-  end
-
-  create_table "flip_key_locations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.integer "rgt"
-    t.string "parent_path", null: false
-    t.integer "parent_id"
-    t.string "name", null: false
-    t.integer "lft"
-    t.integer "property_count", default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "resort_id"
-    t.index ["parent_id"], name: "index_flip_key_locations_on_parent_id"
-    t.index ["resort_id"], name: "index_flip_key_locations_on_resort_id"
   end
 
   create_table "flip_key_properties", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
