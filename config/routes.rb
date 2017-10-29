@@ -121,7 +121,12 @@ Rails.application.routes.draw do
 
   resources :holiday_types, only: [:show], path: 'holidays'
 
-  get ':place_type/:place_slug/holidays/:holiday_type_slug' => 'holiday_type_brochures#show', as: :holiday_type_brochure
+  get(
+    ':place_type/:place_slug/holidays/:holiday_type_slug' =>
+      'holiday_type_brochures#show',
+    as: :holiday_type_brochure,
+    constraints: { place_type: /resorts|regions/ }
+  )
 
   resources :adverts do
     collection do
