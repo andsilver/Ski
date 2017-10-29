@@ -125,7 +125,7 @@ Rails.application.routes.draw do
     ':place_type/:place_slug/holidays/:holiday_type_slug' =>
       'holiday_type_brochures#show',
     as: :holiday_type_brochure,
-    constraints: { place_type: /resorts|regions/ }
+    constraints: { place_type: /countries|regions|resorts/ }
   )
 
   resources :adverts do
