@@ -9,8 +9,13 @@ module TripAdvisor
 
     # Downloads and imports locations.
     def import_locations
+      # Remove old location file.
+      loc_path = LocationDownloader.local_path
+      FileUtils.rm(loc_path) if File.exist?(loc_path)
+
       LocationDownloader.new(sftp_details: sftp_details).download
-      LocationFileImporter.new(path: LocationDownloader.local_path).import
+
+      LocationFileImporter.new(path: loc_path).import
     end
 
     # Downloads, extracts and imports properties.
