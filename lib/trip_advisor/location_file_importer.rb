@@ -8,6 +8,11 @@ module TripAdvisor
     end
 
     def import
+      unless FileTest.exist?(path)
+        Rails.logger.warn "Cannot import nonexistent location file: #{path}"
+        return
+      end
+
       File.open(path) { |io| LocationImporter.new(io).import }
     end
   end
