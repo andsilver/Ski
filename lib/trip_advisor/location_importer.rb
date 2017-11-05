@@ -9,9 +9,11 @@ module TripAdvisor
 
     # Performs importing of the data.
     def import
+      Rails.logger.info('Beginning import of TripAdvisor location data')
       data = JSON.parse(io.read)
 
       import_location(nil, data)
+      Rails.logger.info('Finished import of TripAdvisor location data')
     end
 
     # Imports a location and its children. Associates the location with its
