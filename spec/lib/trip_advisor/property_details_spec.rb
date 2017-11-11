@@ -162,6 +162,19 @@ module TripAdvisor
           end
         end
 
+        context 'when starting_price is missing' do
+          let!(:trip_advisor_location) do
+            FactoryGirl.create(
+              :trip_advisor_location, id: 41_469, resort: resort
+            )
+          end
+          let(:details) { PropertyDetails.new(json(4_048_032)) }
+
+          it 'does not persist the property' do
+            expect(TripAdvisorProperty.exists?(4_048_032)).to be_falsey
+          end
+        end
+
         context 'when resort is later removed' do
           before { resort.destroy }
 

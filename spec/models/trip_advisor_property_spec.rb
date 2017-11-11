@@ -16,5 +16,6 @@ RSpec.describe TripAdvisorProperty, type: :model do
         .is_less_than_or_equal_to(5)
     end
     it { should validate_presence_of :currency }
+    it { should validate_presence_of :starting_price }
   end
 end

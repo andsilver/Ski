@@ -19,7 +19,7 @@ module TripAdvisor
         :show_pin, :sleeps, :starting_price, :status, :title,
         :trip_advisor_location_id, :url
       )
-      if property.resort
+      if property.valid?
         property.save
       else
         property.destroy
@@ -140,11 +140,15 @@ module TripAdvisor
     end
 
     def starting_price
-      details['starting_price']['amount']
+      if details['starting_price']
+        details['starting_price']['amount']
+      end
     end
 
     def currency
-      Currency.find_by(code: details['starting_price']['currency'])
+      if details['starting_price']
+        Currency.find_by(code: details['starting_price']['currency'])
+      end
     end
 
     def min_stay_high

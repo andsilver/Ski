@@ -8,4 +8,6 @@ class TripAdvisorProperty < ApplicationRecord
 
   validates_numericality_of :review_average, less_than_or_equal_to: 5
   validates_presence_of :currency
+  validates_presence_of :resort
+  validates_presence_of :starting_price
 end
