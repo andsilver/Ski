@@ -145,6 +145,23 @@ module TripAdvisor
           end
         end
 
+        context 'when no English locales are present' do
+          let!(:trip_advisor_location) do
+            FactoryGirl.create(
+              :trip_advisor_location, id: 1_728_795, resort: resort
+            )
+          end
+          let(:details) { PropertyDetails.new(json(8_760_274)) }
+
+          it 'sets the description to the first description' do
+            expect(property.description).to include('Así es como')
+          end
+
+          it 'sets the title to the first title' do
+            expect(property.title).to include('Boteros Home')
+          end
+        end
+
         context 'when resort is later removed' do
           before { resort.destroy }
 

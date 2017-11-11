@@ -45,10 +45,16 @@ module TripAdvisor
     end
 
     def title
-      titles.select { |t| locales.include? t['locale'] }.first['text']
+      suitable_locale_text(titles)
     end
 
-    def locales
+    # Returns the text for the most suitable locale provided.
+    def suitable_locale_text(texts)
+      english = texts.select { |t| english_locales.include? t['locale'] }
+      (english + texts).first['text']
+    end
+
+    def english_locales
       %w(en_GB en_US)
     end
 
@@ -57,7 +63,7 @@ module TripAdvisor
     end
 
     def description
-      descriptions.select { |d| locales.include? d['locale'] }.first['text']
+      suitable_locale_text(descriptions)
     end
 
     def descriptions
