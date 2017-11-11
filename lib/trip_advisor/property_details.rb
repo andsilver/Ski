@@ -10,6 +10,15 @@ module TripAdvisor
     end
 
     def import
+      begin
+        data
+      rescue
+        Rails.logger.warn(
+          'Malformed JSON found in TripAdvisor::PropertyDetails'
+        )
+        return
+      end
+
       copy_details(
         :bathrooms, :bedrooms, :beds, :booking_option, :can_accept_inquiry,
         :city, :country,

@@ -191,6 +191,22 @@ module TripAdvisor
           expect(TripAdvisorProperty.exists?(7_363_690)).to be_falsey
         end
       end
+
+      context 'with malformed JSON' do
+        let(:details) { PropertyDetails.new(json(1_941_864)) }
+
+        it 'does not persist the property' do
+          details.import
+          expect(TripAdvisorProperty.exists?(1_941_864)).to be_falsey
+        end
+
+        it 'logs a warning' do
+          expect(Rails.logger)
+            .to receive(:warn)
+            .with('Malformed JSON found in TripAdvisor::PropertyDetails')
+          details.import
+        end
+      end
     end
 
     describe '#property' do
