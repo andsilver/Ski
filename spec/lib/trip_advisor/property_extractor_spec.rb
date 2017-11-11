@@ -49,7 +49,9 @@ module TripAdvisor
           yielded << extracted
         end
 
-        expect(yielded).to eq [x_file1, x_file2]
+        expect(yielded.length).to eq 2
+        expect(yielded).to include x_file1
+        expect(yielded).to include x_file2
       end
     end
   end
