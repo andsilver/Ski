@@ -223,6 +223,15 @@ module TripAdvisor
         prop = PropertyDetails.new(json).property
         expect(prop).to eq existing
       end
+
+      context 'with malformed JSON' do
+        let(:details) { PropertyDetails.new(json(1_941_864)) }
+
+        it 'returns an unpersisted TripAdvisorProperty' do
+          prop = details.property
+          expect(prop.persisted?).to be_falsey
+        end
+      end
     end
   end
 end

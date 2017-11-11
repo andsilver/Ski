@@ -36,7 +36,11 @@ module TripAdvisor
     end
 
     def property
-      @property ||= TripAdvisorProperty.find_or_initialize_by(id: data['id'])
+      @property ||= begin
+        TripAdvisorProperty.find_or_initialize_by(id: data['id'])
+      rescue
+        TripAdvisorProperty.new
+      end
     end
 
     private
