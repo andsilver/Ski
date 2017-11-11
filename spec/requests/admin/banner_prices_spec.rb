@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Banner prices admin', type: :request do
   before do
-    FactoryGirl.create(:website)
+    FactoryBot.create(:website)
     allow_any_instance_of(ApplicationController)
       .to receive(:admin?)
       .and_return(true)
@@ -10,7 +10,7 @@ RSpec.describe 'Banner prices admin', type: :request do
 
   describe 'GET /admin/banner_prices' do
     it 'lists all banner prices' do
-      bp = FactoryGirl.create(
+      bp = FactoryBot.create(
         :banner_price, current_banner_number: 10, price: 95
       )
       get admin_banner_prices_path
@@ -79,7 +79,7 @@ RSpec.describe 'Banner prices admin', type: :request do
 
   describe 'GET /admin/banner_prices/:id/edit' do
     it 'shows a form to edit' do
-      bp = FactoryGirl.create(:banner_price)
+      bp = FactoryBot.create(:banner_price)
       get edit_admin_banner_price_path(bp)
       assert_select "form[action='#{admin_banner_price_path(bp)}']"
     end
@@ -87,7 +87,7 @@ RSpec.describe 'Banner prices admin', type: :request do
 
   describe 'PATCH /admin/banner_prices/:id' do
     context 'with valid params' do
-      let(:banner_price) { FactoryGirl.create(:banner_price) }
+      let(:banner_price) { FactoryBot.create(:banner_price) }
       before do
         patch(
           admin_banner_price_path(banner_price),
@@ -116,7 +116,7 @@ RSpec.describe 'Banner prices admin', type: :request do
     end
 
     context 'with invalid params' do
-      let(:bp) { FactoryGirl.create(:banner_price) }
+      let(:bp) { FactoryBot.create(:banner_price) }
       before do
         patch(
           admin_banner_price_path(bp),
@@ -133,7 +133,7 @@ RSpec.describe 'Banner prices admin', type: :request do
   end
 
   describe 'DELETE /admin/banner_prices/:id' do
-    let(:banner_price) { FactoryGirl.create(:banner_price) }
+    let(:banner_price) { FactoryBot.create(:banner_price) }
     before { delete admin_banner_price_path(banner_price) }
 
     it 'deletes the banner price' do

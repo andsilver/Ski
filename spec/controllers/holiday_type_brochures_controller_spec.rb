@@ -16,7 +16,7 @@ describe HolidayTypeBrochuresController do
     end
 
     context 'with valid place and invalid holiday type' do
-      let(:resort) { FactoryGirl.create(:resort) }
+      let(:resort) { FactoryBot.create(:resort) }
 
       it '404s' do
         get :show, params: { place_type: 'resort', place_slug: resort.slug, holiday_type_slug: 'none' }
@@ -25,7 +25,7 @@ describe HolidayTypeBrochuresController do
     end
 
     context 'with invalid place and valid holiday type' do
-      let(:holiday_type) { FactoryGirl.create(:holiday_type) }
+      let(:holiday_type) { FactoryBot.create(:holiday_type) }
 
       it '404s' do
         get :show, params: { place_type: 'resort', place_slug: 'nowhere', holiday_type_slug: holiday_type.slug }
@@ -34,8 +34,8 @@ describe HolidayTypeBrochuresController do
     end
 
     context 'with valid place and holiday type' do
-      let(:resort) { FactoryGirl.create(:resort) }
-      let(:holiday_type) { FactoryGirl.create(:holiday_type) }
+      let(:resort) { FactoryBot.create(:resort) }
+      let(:holiday_type) { FactoryBot.create(:holiday_type) }
 
       context 'with holiday type brochure' do
         before do

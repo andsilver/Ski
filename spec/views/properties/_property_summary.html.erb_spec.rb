@@ -3,10 +3,10 @@ require 'rails_helper'
 describe 'properties/_property_summary' do
   include ViewSpecHelpers
 
-  let(:property) { FactoryGirl.create(:property, metres_from_lift: 500).decorate }
+  let(:property) { FactoryBot.create(:property, metres_from_lift: 500).decorate }
 
   it 'includes the resort name (SEO)' do
-    property.resort = FactoryGirl.create(:resort, name: 'Sorrento')
+    property.resort = FactoryBot.create(:resort, name: 'Sorrento')
     render 'properties/property_summary', p: property
     expect(rendered).to have_content('Sorrento')
   end

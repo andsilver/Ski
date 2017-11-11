@@ -13,7 +13,7 @@ module TripAdvisor
     end
 
     describe '#import' do
-      let(:property) { FactoryGirl.create(:property) }
+      let(:property) { FactoryBot.create(:property) }
       let(:images) { PropertyImages.new(property, json) }
       let(:first_image) { property.images.first }
 
@@ -33,7 +33,7 @@ module TripAdvisor
       end
 
       it 'leaves the main image alone when present' do
-        image = FactoryGirl.create(
+        image = FactoryBot.create(
           :image, property_id: property.id,
           source_url: 'https://media-cdn.tripadvisor.com/media/vr-splice-j/03/3f/d9/d5.jpg'
         )
@@ -44,7 +44,7 @@ module TripAdvisor
       end
 
       it 'deletes old images' do
-        old_image = FactoryGirl.create(
+        old_image = FactoryBot.create(
           :image, property_id: property.id, updated_at: Time.current - 2.days
         )
         images.import
@@ -52,7 +52,7 @@ module TripAdvisor
       end
 
       it 'touches timestamp of older images still in set' do
-        old_image = FactoryGirl.create(
+        old_image = FactoryBot.create(
           :image, property_id: property.id, updated_at: Time.current - 2.days,
           source_url: 'https://media-cdn.tripadvisor.com/media/vr-splice-j/03/3f/d5/6e.jpg'
         )

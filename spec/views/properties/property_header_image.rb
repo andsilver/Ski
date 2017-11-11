@@ -13,7 +13,7 @@ shared_examples_for 'a property header image' do
   end
 
   context 'with an image' do
-    before { property.image = FactoryGirl.create(:image) }
+    before { property.image = FactoryBot.create(:image) }
 
     it 'displays the main property image as a header image' do
       render

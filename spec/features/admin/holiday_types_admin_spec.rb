@@ -4,7 +4,7 @@ feature 'Holiday types admin' do
   fixtures :roles, :users, :websites
 
   scenario 'List holiday types' do
-    FactoryGirl.create(:holiday_type, name: 'Cruises')
+    FactoryBot.create(:holiday_type, name: 'Cruises')
     sign_in_as_admin
     visit admin_holiday_types_path
     expect(page).to have_content 'Cruises'
@@ -23,7 +23,7 @@ feature 'Holiday types admin' do
   end
 
   scenario 'Edit holiday type' do
-    FactoryGirl.create(:holiday_type, name: 'Cruises')
+    FactoryBot.create(:holiday_type, name: 'Cruises')
     sign_in_as_admin
     visit admin_holiday_types_path
     click_link 'Edit Cruises'
@@ -34,7 +34,7 @@ feature 'Holiday types admin' do
   end
 
   scenario 'Delete holiday type' do
-    FactoryGirl.create(:holiday_type, name: 'Cruises')
+    FactoryBot.create(:holiday_type, name: 'Cruises')
     sign_in_as_admin
     visit admin_holiday_types_path
     click_link 'Delete Cruises'

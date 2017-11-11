@@ -4,7 +4,7 @@ require 'xmlsimple'
 module Interhome
   RSpec.describe AccommodationImporter do
     describe '#import_pictures' do
-      let(:accommodation) { FactoryGirl.create(:interhome_accommodation) }
+      let(:accommodation) { FactoryBot.create(:interhome_accommodation) }
       context 'with pictures containing all properties' do
         let(:a) {
           {
@@ -54,8 +54,8 @@ module Interhome
 
     describe '#create_property' do
       it 'sets the property currency to GBP' do
-        gbp = FactoryGirl.create(:currency, code: 'GBP')
-        resort = FactoryGirl.create(:resort)
+        gbp = FactoryBot.create(:currency, code: 'GBP')
+        resort = FactoryBot.create(:resort)
         accommodation = double(
           InterhomeAccommodation,
           id: 1, bedrooms: 3, current_price: 123, features: [],
@@ -64,7 +64,7 @@ module Interhome
           name: 'name', pax: 6
         ).as_null_object
         object = AccommodationImporter.new
-        object.user = FactoryGirl.create(:user)
+        object.user = FactoryBot.create(:user)
         object.create_property(accommodation, resort.id, 'address')
 
         property = Property.last

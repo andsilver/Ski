@@ -2,7 +2,7 @@ require 'rails_helper'
 require_relative 'property_header_image'
 
 RSpec.describe 'properties/show_showcase', type: :view do
-  let(:property) { FactoryGirl.create(:property, listing_type: Property::LISTING_TYPE_FOR_RENT) }
+  let(:property) { FactoryBot.create(:property, listing_type: Property::LISTING_TYPE_FOR_RENT) }
   let(:booking_link_target_ret) { '_blank' }
 
   before do
@@ -24,7 +24,7 @@ RSpec.describe 'properties/show_showcase', type: :view do
   it_behaves_like 'a property header image'
 
   it 'displays address and country' do
-    country = FactoryGirl.build(:country)
+    country = FactoryBot.build(:country)
     property.country = country
 
     render

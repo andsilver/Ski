@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :currency do
     sequence(:code) { |n| "AB#{n}" }
   end

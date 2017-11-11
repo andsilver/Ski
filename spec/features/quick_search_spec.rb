@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Quick search' do
   background do
-    FactoryGirl.create(:website)
+    FactoryBot.create(:website)
   end
 
   scenario 'Resort or region is required', js: true do

@@ -2,7 +2,7 @@ require 'rails_helper'
 require_relative 'property_header_image'
 
 describe 'properties/contact.html.slim' do
-  let(:property) { FactoryGirl.build(:property) }
+  let(:property) { FactoryBot.build(:property) }
 
   before do
     assign(:enquiry, Enquiry.new)
@@ -12,7 +12,7 @@ describe 'properties/contact.html.slim' do
 
   context 'when hotel' do
     before do
-      assign(:property, FactoryGirl.build(:property, listing_type: Property::LISTING_TYPE_HOTEL))
+      assign(:property, FactoryBot.build(:property, listing_type: Property::LISTING_TYPE_HOTEL))
     end
 
     it 'has introduction specific to hotels' do
@@ -23,7 +23,7 @@ describe 'properties/contact.html.slim' do
 
   context 'when for rent' do
     before do
-      assign(:property, FactoryGirl.build(:property, listing_type: Property::LISTING_TYPE_FOR_RENT))
+      assign(:property, FactoryBot.build(:property, listing_type: Property::LISTING_TYPE_FOR_RENT))
     end
 
     it 'has a general introduction' do

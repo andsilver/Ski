@@ -127,8 +127,8 @@ RSpec.describe Property, type: :model do
   end
 
   describe '#cache_availability' do
-    let(:interhome_accommodation) { FactoryGirl.create(:interhome_accommodation) }
-    let(:property) { FactoryGirl.create(:property, interhome_accommodation: interhome_accommodation) }
+    let(:interhome_accommodation) { FactoryBot.create(:interhome_accommodation) }
+    let(:property) { FactoryBot.create(:property, interhome_accommodation: interhome_accommodation) }
     let!(:interhome_vacancy) { InterhomeVacancy.create!(
       interhome_accommodation_id: interhome_accommodation.id,
       startday: '2015-02-23',
@@ -288,12 +288,12 @@ RSpec.describe Property, type: :model do
   end
 
   describe '#set_country_and_region' do
-    let(:property) { FactoryGirl.build(:property) }
+    let(:property) { FactoryBot.build(:property) }
 
     before do
-      @country = FactoryGirl.create(:country)
-      @region = FactoryGirl.create(:region, country_id: @country.id)
-      @resort = FactoryGirl.create(:resort, country_id: @country.id, region_id: @region.id)
+      @country = FactoryBot.create(:country)
+      @region = FactoryBot.create(:region, country_id: @country.id)
+      @resort = FactoryBot.create(:resort, country_id: @country.id, region_id: @region.id)
 
       property.resort = @resort
       property.set_country_and_region
@@ -345,7 +345,7 @@ RSpec.describe Property, type: :model do
   end
 
   describe 'before_save' do
-    let(:property) { FactoryGirl.build(:property) }
+    let(:property) { FactoryBot.build(:property) }
 
     it 'calls set_country_and_region' do
       expect(property).to receive(:set_country_and_region)
@@ -355,7 +355,7 @@ RSpec.describe Property, type: :model do
 
   describe 'before_validation' do
     it 'sets empty string layout to nil' do
-      property = FactoryGirl.build(:property, layout: '')
+      property = FactoryBot.build(:property, layout: '')
       property.save
       expect(property.layout).to be_nil
     end

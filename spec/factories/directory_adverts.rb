@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :directory_advert do
     business_name    'Business Ltd'
     business_address '123 Street'

@@ -221,7 +221,7 @@ describe DirectoryAdvertsController do
   end
 
   describe 'POST click' do
-    let(:directory_advert) { FactoryGirl.create(:directory_advert, url: 'http://example.org') }
+    let(:directory_advert) { FactoryBot.create(:directory_advert, url: 'http://example.org') }
 
     it 'redirects to the directory advert remote URL' do
       post :click, params: { id: directory_advert.id }

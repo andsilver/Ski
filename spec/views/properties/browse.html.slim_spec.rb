@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'properties/browse' do
-  let(:resort) { FactoryGirl.create(:resort) }
+  let(:resort) { FactoryBot.create(:resort) }
 
   before do
     assign(:breadcrumbs, {})
@@ -72,7 +72,7 @@ describe 'properties/browse' do
 
   context 'with results' do
     before do
-      FactoryGirl.create(:property)
+      FactoryBot.create(:property)
       @properties = Property.all.paginate(page: 1)
       assign(:properties, @properties)
     end

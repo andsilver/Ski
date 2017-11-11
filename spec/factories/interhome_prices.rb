@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :interhome_price do
     accommodation_code 'A'
     days 1

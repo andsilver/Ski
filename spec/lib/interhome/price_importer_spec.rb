@@ -29,8 +29,8 @@ module Interhome
 
     describe '#import' do
       it 'deletes all Interhome prices for @days days' do
-        p1 = FactoryGirl.create(:interhome_price, days: days)
-        p2 = FactoryGirl.create(:interhome_price, days: days + 1)
+        p1 = FactoryBot.create(:interhome_price, days: days)
+        p2 = FactoryBot.create(:interhome_price, days: days + 1)
         PriceImporter.new(sales_office, days).import([])
         expect(InterhomePrice.exists?(p1.id)).to be_falsey
         expect(InterhomePrice.exists?(p2.id)).to be_truthy

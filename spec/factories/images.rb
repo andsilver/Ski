@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :image do
     source_url '#'
   end

@@ -27,7 +27,7 @@ RSpec.describe DirectoryAdvert, type: :model do
 
   describe '#clicks' do
     it 'returns :click TrackedActions' do
-      da = FactoryGirl.create(:directory_advert)
+      da = FactoryBot.create(:directory_advert)
       3.times { TrackedAction.create(
         action_type: :click,
         trackable_id: da.id,

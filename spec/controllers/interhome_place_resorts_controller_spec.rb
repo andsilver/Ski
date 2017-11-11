@@ -13,7 +13,7 @@ describe InterhomePlaceResortsController do
     end
 
     describe 'POST create' do
-      let(:resort) { FactoryGirl.create(:resort) }
+      let(:resort) { FactoryBot.create(:resort) }
       let(:interhome_place_resort) { double(InterhomePlaceResort).as_null_object }
       let(:params) { { interhome_place_resort: { 'interhome_place_code' => 'AD_1_1450', 'resort_id' => resort.id.to_s } } }
 

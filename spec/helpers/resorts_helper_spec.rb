@@ -23,7 +23,7 @@ RSpec.describe ResortsHelper, type: :helper do
     end
 
     context 'with only region set' do
-      let(:region) { FactoryGirl.build(:region) }
+      let(:region) { FactoryBot.build(:region) }
 
       it 'returns header image URLs for regions' do
         urls = ['/path/to/r1.jpg']
@@ -39,7 +39,7 @@ RSpec.describe ResortsHelper, type: :helper do
     end
 
     context 'when @region set' do
-      let(:region) { FactoryGirl.build(:region) }
+      let(:region) { FactoryBot.build(:region) }
 
       before do
         allow(helper).to receive(:region_images).and_return ['r1.jpg']

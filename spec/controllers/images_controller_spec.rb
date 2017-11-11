@@ -28,7 +28,7 @@ RSpec.describe ImagesController, type: :controller do
     context 'when image saves' do
       before do
         allow_any_instance_of(Image).to receive(:save).and_return(true)
-        allow(controller).to receive(:object).and_return(FactoryGirl.create(:property))
+        allow(controller).to receive(:object).and_return(FactoryBot.create(:property))
       end
 
       context 'when image height or width > 800' do

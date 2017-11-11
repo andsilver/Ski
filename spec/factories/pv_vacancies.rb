@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :pv_vacancy do
     destination_code 'SWH'
     apartment_code '12-D4'

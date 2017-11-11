@@ -47,18 +47,18 @@ describe Country do
   describe '.page_names' do
     it 'returns an array of HolidayType slugs' do
       HolidayType.delete_all
-      FactoryGirl.create(:holiday_type, slug: 'page-1')
-      FactoryGirl.create(:holiday_type, slug: 'page-2')
+      FactoryBot.create(:holiday_type, slug: 'page-1')
+      FactoryBot.create(:holiday_type, slug: 'page-2')
       expect(Country.page_names).to eq ['page-1', 'page-2']
     end
   end
 
   describe '#region_brochures' do
-    let(:ht) { FactoryGirl.create(:holiday_type) }
-    let(:country) { FactoryGirl.create(:country) }
+    let(:ht) { FactoryBot.create(:holiday_type) }
+    let(:country) { FactoryBot.create(:country) }
 
     it 'returns brochures for child regions with specified holiday type' do
-      region = FactoryGirl.create(:region, country: country)
+      region = FactoryBot.create(:region, country: country)
       country.holiday_type_brochures.build(holiday_type: ht)
       region_brochure = region.holiday_type_brochures.build(holiday_type: ht)
       country.save
@@ -68,7 +68,7 @@ describe Country do
     end
 
     it 'excludes invisible resorts' do
-      region = FactoryGirl.create(:region, country: country, visible: false)
+      region = FactoryBot.create(:region, country: country, visible: false)
       country.holiday_type_brochures.build(holiday_type: ht)
       region_brochure = region.holiday_type_brochures.build(holiday_type: ht)
       country.save
@@ -80,10 +80,10 @@ describe Country do
 
   describe '#themes' do
     it 'returns an array of slugs for each associated holiday type' do
-      country = FactoryGirl.create(:country)
-      city = FactoryGirl.create(:holiday_type, slug: 'city')
-      lakes = FactoryGirl.create(:holiday_type, slug: 'lakes')
-      ski = FactoryGirl.create(:holiday_type, slug: 'ski')
+      country = FactoryBot.create(:country)
+      city = FactoryBot.create(:holiday_type, slug: 'city')
+      lakes = FactoryBot.create(:holiday_type, slug: 'lakes')
+      ski = FactoryBot.create(:holiday_type, slug: 'ski')
       country.holiday_type_brochures.build(holiday_type: lakes)
       country.holiday_type_brochures.build(holiday_type: ski)
       country.save

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :property do
     sequence(:name) { |n| "Property #{n}" }
     address           '123 Street'

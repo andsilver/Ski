@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'properties/email_a_friend.html.slim' do
-  let(:property) { FactoryGirl.create(:property) }
+  let(:property) { FactoryBot.create(:property) }
 
   before do
     assign(:property, property)

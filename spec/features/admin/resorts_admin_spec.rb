@@ -14,7 +14,7 @@ feature 'Resorts admin' do
 
   scenario 'Delete a resort with properties' do
     bow
-    FactoryGirl.create(:property, resort: bow)
+    FactoryBot.create(:property, resort: bow)
     sign_in_as_admin
     visit admin_resorts_path
     click_link 'Delete Bowness-on-Windermere'
@@ -23,7 +23,7 @@ feature 'Resorts admin' do
 
   scenario 'Delete properties after deleting resort' do
     bow
-    FactoryGirl.create(:property, resort: bow)
+    FactoryBot.create(:property, resort: bow)
     sign_in_as_admin
     visit admin_resorts_path
     click_link 'Delete Bowness-on-Windermere'
@@ -72,6 +72,6 @@ feature 'Resorts admin' do
   end
 
   def bow
-    @bow ||= FactoryGirl.create(:resort, name: 'Bowness-on-Windermere', country: countries(:united_kingdom))
+    @bow ||= FactoryBot.create(:resort, name: 'Bowness-on-Windermere', country: countries(:united_kingdom))
   end
 end

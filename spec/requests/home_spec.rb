@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Home', type: :request do
-  before { FactoryGirl.create(:website) }
+  before { FactoryBot.create(:website) }
 
   describe 'GET /home/search' do
     before { get '/home/search', params: { place_name: place_name } }
@@ -15,7 +15,7 @@ RSpec.describe 'Home', type: :request do
 
     context 'with place_name set' do
       context 'to a resort name`' do
-        let(:resort) { FactoryGirl.create(:resort) }
+        let(:resort) { FactoryBot.create(:resort) }
         let(:place_name) { resort.name }
 
         it 'redirects to the resort\'s page' do
@@ -24,7 +24,7 @@ RSpec.describe 'Home', type: :request do
       end
 
       context 'to a region name' do
-        let(:region) { FactoryGirl.create(:region) }
+        let(:region) { FactoryBot.create(:region) }
         let(:place_name) { region.name }
 
         it 'redirects to the region\'s page' do

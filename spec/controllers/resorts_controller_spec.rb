@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe ResortsController do
   let(:website) { double(Website).as_null_object }
-  let(:resort) { FactoryGirl.create(:resort) }
+  let(:resort) { FactoryBot.create(:resort) }
 
   before do
     allow(Website).to receive(:first).and_return(website)
@@ -65,7 +65,7 @@ describe ResortsController do
   end
 
   describe 'GET piste_map' do
-    let(:resort) { FactoryGirl.create(:resort) }
+    let(:resort) { FactoryBot.create(:resort) }
 
     before do
       allow(Resort).to receive(:find_by).and_return(resort)
@@ -91,7 +91,7 @@ describe ResortsController do
   end
 
   describe 'GET summer_holidays' do
-    let(:resort) { FactoryGirl.create(:resort) }
+    let(:resort) { FactoryBot.create(:resort) }
     let(:admin)  { false }
 
     before do

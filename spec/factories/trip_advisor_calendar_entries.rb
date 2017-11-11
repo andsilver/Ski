@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :trip_advisor_calendar_entry do
     trip_advisor_property_id 1
     status "MyString"

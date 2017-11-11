@@ -11,7 +11,7 @@ describe Admin::RegionsController do
     before { signed_in_as_admin }
 
     describe 'PATCH update' do
-      let(:region) { FactoryGirl.create(:region) }
+      let(:region) { FactoryBot.create(:region) }
 
       context 'when update succeeds' do
         before do

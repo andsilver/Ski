@@ -2,7 +2,7 @@ require 'rails_helper'
 require_relative 'property_header_image'
 
 describe 'properties/show_hotel' do
-  let(:property) { FactoryGirl.create(:property, listing_type: Property::LISTING_TYPE_HOTEL) }
+  let(:property) { FactoryBot.create(:property, listing_type: Property::LISTING_TYPE_HOTEL) }
   let(:booking_url_ret)   { '#hotel-booking-url' }
   let(:booking_link_target_ret) { '_blank' }
 
@@ -26,7 +26,7 @@ describe 'properties/show_hotel' do
   it_behaves_like 'a property header image'
 
   it 'displays address and country' do
-    country = FactoryGirl.build(:country)
+    country = FactoryBot.build(:country)
     property.country = country
 
     render

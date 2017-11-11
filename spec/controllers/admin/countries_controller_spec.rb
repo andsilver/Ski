@@ -34,7 +34,7 @@ describe Admin::CountriesController do
     end
 
     describe 'DELETE destroy' do
-      let(:country) { FactoryGirl.create(:country) }
+      let(:country) { FactoryBot.create(:country) }
 
       it 'deletes a country' do
         delete :destroy, params: { id: country.to_param }

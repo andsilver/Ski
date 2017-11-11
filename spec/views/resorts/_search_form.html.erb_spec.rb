@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'resorts/_search_form.html.erb', type: :view do
-  let(:resort) { FactoryGirl.create(:resort) }
+  let(:resort) { FactoryBot.create(:resort) }
 
   before do
     assign(:resort, resort)

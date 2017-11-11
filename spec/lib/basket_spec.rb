@@ -3,26 +3,26 @@ require 'rails_helper'
 describe Basket do
   describe '#initialize' do
     it 'sets @lines to an empty array' do
-      b = Basket.new(user: FactoryGirl.build(:user))
+      b = Basket.new(user: FactoryBot.build(:user))
       expect(b.lines).to eq []
     end
   end
 
   describe '#prepare' do
     it 'adds a line for windows' do
-      b = Basket.new(user: FactoryGirl.build(:user))
+      b = Basket.new(user: FactoryBot.build(:user))
       expect(b).to receive(:add_line_for_windows)
       b.prepare
     end
 
     it 'adds lines for adverts' do
-      b = Basket.new(user: FactoryGirl.build(:user))
+      b = Basket.new(user: FactoryBot.build(:user))
       expect(b).to receive(:add_lines_for_adverts)
       b.prepare
     end
 
     it 'applies any price override' do
-      b = Basket.new(user: FactoryGirl.build(:user))
+      b = Basket.new(user: FactoryBot.build(:user))
       expect(b).to receive(:apply_price_override)
       b.prepare
     end
@@ -38,7 +38,7 @@ describe Basket do
 
   describe '#apply_price_override' do
     context 'with a user price override' do
-      let(:b) { Basket.new(user: FactoryGirl.build(:user, apply_price_override: true, price_override: 10)) }
+      let(:b) { Basket.new(user: FactoryBot.build(:user, apply_price_override: true, price_override: 10)) }
 
       it 'creates a price override describing the override amount' do
         b.apply_price_override
@@ -49,7 +49,7 @@ describe Basket do
 
   describe '#subtotal' do
     it "returns the sum of each line's price" do
-      b = Basket.new(user: FactoryGirl.create(:user))
+      b = Basket.new(user: FactoryBot.create(:user))
 
       l1 = BasketLine.new
       l1.price = 3

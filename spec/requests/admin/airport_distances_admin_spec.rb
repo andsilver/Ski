@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Airport distances admin', type: :request do
   before do
-    FactoryGirl.create(:website)
+    FactoryBot.create(:website)
     allow_any_instance_of(ApplicationController)
       .to receive(:admin?)
       .and_return(true)
@@ -12,7 +12,7 @@ RSpec.describe 'Airport distances admin', type: :request do
 
   describe 'GET /admin/airport_distances' do
     it 'lists airport distances' do
-      dist = FactoryGirl.create(:airport_distance, distance_km: 1234)
+      dist = FactoryBot.create(:airport_distance, distance_km: 1234)
       get admin_airport_distances_path
       assert_select 'td', content: dist.distance_km
     end
@@ -26,7 +26,7 @@ RSpec.describe 'Airport distances admin', type: :request do
   end
 
   describe 'DELETE /admin/airport_distances/:id' do
-    let(:distance) { FactoryGirl.create(:airport_distance) }
+    let(:distance) { FactoryBot.create(:airport_distance) }
     before { delete admin_airport_distance_path(distance) }
 
     it 'deletes the airport distance' do

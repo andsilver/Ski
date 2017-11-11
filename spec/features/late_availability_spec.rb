@@ -22,8 +22,8 @@ feature 'Late Availability' do
   end
 
   def create_property(attributes)
-    @country ||= FactoryGirl.create(:country)
-    @resort ||= FactoryGirl.create(:resort, country: @country)
+    @country ||= FactoryBot.create(:country)
+    @resort ||= FactoryBot.create(:resort, country: @country)
     @currency ||= Currency.create!(name: 'sterling', code: 'gbp', in_euros: 1)
 
     attributes = {

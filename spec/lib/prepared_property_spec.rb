@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PreparedProperty do
   describe '#property' do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryBot.create(:user) }
     let(:object) { PreparedProperty.new({trip_advisor_property_id: 123}, user) }
     let(:property) { object.property }
 
@@ -17,7 +17,7 @@ RSpec.describe PreparedProperty do
     end
 
     context 'when property exists' do
-      let!(:existing_prop) { FactoryGirl.create(:property, trip_advisor_property_id: 123) }
+      let!(:existing_prop) { FactoryBot.create(:property, trip_advisor_property_id: 123) }
 
       context 'when property has existing advert' do
         let!(:advert) do

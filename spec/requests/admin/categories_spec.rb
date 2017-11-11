@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Categories admin', type: :request do
   before do
-    FactoryGirl.create(:website)
+    FactoryBot.create(:website)
     allow_any_instance_of(ApplicationController)
       .to receive(:admin?)
       .and_return(true)
@@ -10,7 +10,7 @@ RSpec.describe 'Categories admin', type: :request do
 
   describe 'GET /admin/categories' do
     it 'lists categories' do
-      category = FactoryGirl.create(:category)
+      category = FactoryBot.create(:category)
       get admin_categories_path
       assert_select 'td', content: category.name
     end
@@ -49,7 +49,7 @@ RSpec.describe 'Categories admin', type: :request do
 
     context 'with invalid params' do
       before do
-        FactoryGirl.create(:category, name: 'Taxi')
+        FactoryBot.create(:category, name: 'Taxi')
         post admin_categories_path, params: { category: { name: 'Taxi' } }
       end
 
@@ -63,7 +63,7 @@ RSpec.describe 'Categories admin', type: :request do
 
   describe 'GET /admin/categories/:id/edit' do
     it 'shows a form to edit the category' do
-      category = FactoryGirl.create(:category)
+      category = FactoryBot.create(:category)
       get edit_admin_category_path(category)
       assert_select "form[action='#{admin_category_path(category)}']"
     end
@@ -71,7 +71,7 @@ RSpec.describe 'Categories admin', type: :request do
 
   describe 'PATCH /admin/categories/:id' do
     context 'with valid params' do
-      let(:category) { FactoryGirl.create(:category) }
+      let(:category) { FactoryBot.create(:category) }
       before do
         patch(
           admin_category_path(category),
@@ -94,9 +94,9 @@ RSpec.describe 'Categories admin', type: :request do
     end
 
     context 'with invalid params' do
-      let(:category) { FactoryGirl.create(:category) }
+      let(:category) { FactoryBot.create(:category) }
       before do
-        FactoryGirl.create(:category, name: 'Taxi')
+        FactoryBot.create(:category, name: 'Taxi')
         patch(
           admin_category_path(category), params: { category: { name: 'Taxi' } }
         )
@@ -112,7 +112,7 @@ RSpec.describe 'Categories admin', type: :request do
   end
 
   describe 'DELETE /admin/categories/:id' do
-    let(:category) { FactoryGirl.create(:category) }
+    let(:category) { FactoryBot.create(:category) }
     before { delete admin_category_path(category) }
 
     it 'deletes the category' do

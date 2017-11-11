@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'properties/show_pv' do
   it 'displays the booking iframe' do
-    property = FactoryGirl.create(:property)
+    property = FactoryBot.create(:property)
     pv_accommodation = PvAccommodation.new(price_table_url: 'http://example.org')
     assign(:property, property.decorate)
     assign(:accommodation, pv_accommodation)

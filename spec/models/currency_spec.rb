@@ -16,7 +16,7 @@ RSpec.describe Currency, type: :model do
 
   describe '.sterling_in_euros' do
     context 'when GBP currency exists' do
-      before { FactoryGirl.create(:currency, code: 'GBP', in_euros: 1.5) }
+      before { FactoryBot.create(:currency, code: 'GBP', in_euros: 1.5) }
 
       it 'returns the amount of GBP in Euros' do
         expect(Currency.sterling_in_euros).to eq 1.5
@@ -32,15 +32,15 @@ RSpec.describe Currency, type: :model do
 
   describe '.euro' do
     it 'returns the currency whose code is EUR' do
-      euro = FactoryGirl.create(:currency, code: 'EUR')
+      euro = FactoryBot.create(:currency, code: 'EUR')
       expect(Currency.euro).to eq euro
     end
   end
 
   describe '.update_exchange_rates' do
     it "updates each currency's exchange rate" do
-      FactoryGirl.create(:currency, code: 'GBP', in_euros: 3)
-      FactoryGirl.create(:currency, code: 'USD', in_euros: 3)
+      FactoryBot.create(:currency, code: 'GBP', in_euros: 3)
+      FactoryBot.create(:currency, code: 'USD', in_euros: 3)
       allow(Currency).to receive(:exchange_rates_url).and_return('fakerates')
       rates = StringIO.new(
         '"GBPEUR=X",1.1711,"5/24/2013","11:13am",1.1709,1.1713' + "\n" +
@@ -56,8 +56,8 @@ RSpec.describe Currency, type: :model do
   describe '.exchange_rates_url' do
     it 'returns a Yahoo! URL with a param for each currency in our system' do
       Currency.delete_all
-      FactoryGirl.create(:currency, code: 'GBP')
-      FactoryGirl.create(:currency, code: 'USD')
+      FactoryBot.create(:currency, code: 'GBP')
+      FactoryBot.create(:currency, code: 'USD')
       expect(Currency.exchange_rates_url).to eq(
         'http://download.finance.yahoo.com/d/quotes.csv?f=sl1d1t1ba&e=.csv&s=GBPEUR=X,USDEUR=X'
       )

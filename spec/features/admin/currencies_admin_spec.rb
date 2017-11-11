@@ -4,7 +4,7 @@ feature 'Currencies admin' do
   fixtures :countries, :holiday_types, :roles, :users, :websites
 
   scenario 'List currencies' do
-    FactoryGirl.create(:currency, code: 'GBP')
+    FactoryBot.create(:currency, code: 'GBP')
     sign_in_as_admin
     visit admin_currencies_path
     expect(page).to have_content 'GBP'
@@ -25,7 +25,7 @@ feature 'Currencies admin' do
   end
 
   scenario 'Edit currency' do
-    FactoryGirl.create(:currency, code: 'GBP')
+    FactoryBot.create(:currency, code: 'GBP')
     sign_in_as_admin
     visit admin_currencies_path
     click_link 'Edit GBP'

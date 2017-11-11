@@ -2,13 +2,13 @@ require 'rails_helper'
 
 describe Admin::UsersController do
   before do
-    FactoryGirl.create(:website)
-    FactoryGirl.create(:user)
+    FactoryBot.create(:website)
+    FactoryBot.create(:user)
     signed_in_as_admin
   end
 
   describe 'POST extend_windows' do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryBot.create(:user) }
     let!(:advert) { Advert.create(user: user, window: true, expires_at: '2015-01-01' )}
 
     it 'adds params[:days] to the expiry date of each window' do

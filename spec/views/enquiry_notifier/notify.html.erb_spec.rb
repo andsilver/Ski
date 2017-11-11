@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'enquiry_notifier/notify.html.erb', type: :view do
-  let(:property) { FactoryGirl.create(:property) }
-  let(:enquiry) { FactoryGirl.create(:enquiry) }
+  let(:property) { FactoryBot.create(:property) }
+  let(:enquiry) { FactoryBot.create(:enquiry) }
 
   before do
     assign(:property, property)

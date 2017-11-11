@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'resorts/piste_map.html.slim', type: :view do
-  let(:resort) { FactoryGirl.create(:resort) }
+  let(:resort) { FactoryBot.create(:resort) }
 
   before do
     assign(:resort, resort)

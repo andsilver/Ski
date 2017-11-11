@@ -4,7 +4,7 @@ describe Invoice do
   describe '#render' do
     it 'creates a PDF document' do
       pending "Aller font cannot be redistributed so absent from repo"
-      order = FactoryGirl.build(:order)
+      order = FactoryBot.build(:order)
       order.save!
       invoice = Invoice.new(order)
       invoice.render

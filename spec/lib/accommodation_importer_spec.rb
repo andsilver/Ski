@@ -44,10 +44,10 @@ describe AccommodationImporter do
     it 'deletes adverts belonging to the user updated before the import ' \
     'start time' do
       start = Time.new(2017, 8, 6, 10, 0, 30)
-      user = FactoryGirl.create(:user)
-      a1 = FactoryGirl.create(:advert, user: user, updated_at: start - 1.second)
-      a2 = FactoryGirl.create(:advert, user: user, updated_at: start + 1.second)
-      a3 = FactoryGirl.create(:advert, updated_at: start - 1.second)
+      user = FactoryBot.create(:user)
+      a1 = FactoryBot.create(:advert, user: user, updated_at: start - 1.second)
+      a2 = FactoryBot.create(:advert, user: user, updated_at: start + 1.second)
+      a3 = FactoryBot.create(:advert, updated_at: start - 1.second)
       i = AccommodationImporter.new
       i.user = user
       i.import_start_time = start
@@ -67,8 +67,8 @@ describe AccommodationImporter do
 
       start = Time.current
 
-      a1 = FactoryGirl.create(:interhome_accommodation, updated_at: start - 1.second)
-      a2 = FactoryGirl.create(:interhome_accommodation, updated_at: start + 1.second)
+      a1 = FactoryBot.create(:interhome_accommodation, updated_at: start - 1.second)
+      a2 = FactoryBot.create(:interhome_accommodation, updated_at: start + 1.second)
 
       i.import_start_time = start
       i.destroy_all

@@ -9,8 +9,8 @@ describe Category do
   end
 
   it 'prevents deletion with associated directory adverts' do
-    category = FactoryGirl.create(:category)
-    da = FactoryGirl.create(:directory_advert, category_id: category.id)
+    category = FactoryBot.create(:category)
+    da = FactoryBot.create(:directory_advert, category_id: category.id)
     da.save!
     expect { category.destroy }.to raise_error(ActiveRecord::DeleteRestrictionError)
   end

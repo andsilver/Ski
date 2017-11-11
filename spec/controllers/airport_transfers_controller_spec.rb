@@ -18,8 +18,8 @@ describe AirportTransfersController do
   end
 
   describe 'POST results' do
-    let(:airport) { FactoryGirl.create(:airport) }
-    let(:resort)  { FactoryGirl.create(:resort) }
+    let(:airport) { FactoryBot.create(:airport) }
+    let(:resort)  { FactoryBot.create(:resort) }
 
     it 'should succeed' do
       post :results, params: { airport_transfer_search: { airport_id: airport.id, resort_id: resort.id } }

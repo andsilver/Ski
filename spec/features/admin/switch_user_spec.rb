@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Switch user' do
   fixtures :roles, :users, :websites
 
-  let!(:user) { FactoryGirl.create(:user, first_name: 'RegularUser') }
+  let!(:user) { FactoryBot.create(:user, first_name: 'RegularUser') }
 
   scenario 'Switching to a regular user lands on advertise page' do
     sign_in_as_admin

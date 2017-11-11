@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Airport transfers', type: :request do
-  before { FactoryGirl.create(:website) }
+  before { FactoryBot.create(:website) }
 
   describe 'POST /airport_transfers' do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:r1) { FactoryGirl.create(:resort) }
-    let(:r2) { FactoryGirl.create(:resort) }
-    let(:airport) { FactoryGirl.create(:airport) }
+    let(:user) { FactoryBot.create(:user) }
+    let(:r1) { FactoryBot.create(:resort) }
+    let(:r2) { FactoryBot.create(:resort) }
+    let(:airport) { FactoryBot.create(:airport) }
 
     def perform
       sign_in(user)

@@ -64,7 +64,7 @@ RSpec.describe Resort, type: :model do
       require 'securerandom'
       slug_pre = SecureRandom.hex
       slug_post = SecureRandom.hex
-      r = FactoryGirl.create(:resort, slug: slug_pre)
+      r = FactoryBot.create(:resort, slug: slug_pre)
       r.create_page('summer-holidays')
       r.slug = slug_post
       r.save
@@ -84,7 +84,7 @@ RSpec.describe Resort, type: :model do
     end
 
     def resort_with_holiday_type(slug)
-      r = FactoryGirl.create(:resort)
+      r = FactoryBot.create(:resort)
       ht = HolidayType.create!(name: 'X', slug: slug)
       r.holiday_type_brochures.build(holiday_type: ht)
       r.save

@@ -13,14 +13,14 @@ module TripAdvisor
     end
 
     describe '#import' do
-      let!(:eur) { FactoryGirl.create(:currency, code: 'EUR') }
+      let!(:eur) { FactoryBot.create(:currency, code: 'EUR') }
       let(:property) { TripAdvisorProperty.last }
       let(:details) { PropertyDetails.new(json) }
 
       context 'when resort is present' do
-        let!(:resort) { FactoryGirl.create(:resort) }
+        let!(:resort) { FactoryBot.create(:resort) }
         let!(:trip_advisor_location) do
-          FactoryGirl.create(:trip_advisor_location, id: 672998, resort: resort)
+          FactoryBot.create(:trip_advisor_location, id: 672998, resort: resort)
         end
 
         before { details.import }
@@ -130,7 +130,7 @@ module TripAdvisor
 
         context 'when locale en_GB is present but en_US is not' do
           let!(:trip_advisor_location) do
-            FactoryGirl.create(
+            FactoryBot.create(
               :trip_advisor_location, id: 1_079_337, resort: resort
             )
           end
@@ -147,7 +147,7 @@ module TripAdvisor
 
         context 'when no English locales are present' do
           let!(:trip_advisor_location) do
-            FactoryGirl.create(
+            FactoryBot.create(
               :trip_advisor_location, id: 1_728_795, resort: resort
             )
           end
@@ -164,7 +164,7 @@ module TripAdvisor
 
         context 'when starting_price is missing' do
           let!(:trip_advisor_location) do
-            FactoryGirl.create(
+            FactoryBot.create(
               :trip_advisor_location, id: 41_469, resort: resort
             )
           end
@@ -210,7 +210,7 @@ module TripAdvisor
     end
 
     describe '#property' do
-      let!(:eur) { FactoryGirl.create(:currency, code: 'EUR') }
+      let!(:eur) { FactoryBot.create(:currency, code: 'EUR') }
 
       it 'creates a new TripAdvisorProperty with id equal to TripAdvisor id' do
         prop = PropertyDetails.new(json).property
@@ -219,7 +219,7 @@ module TripAdvisor
       end
 
       it 'finds an existing TripAdvisorProperty with matching id' do
-        existing = FactoryGirl.create(:trip_advisor_property, id: 7_363_690)
+        existing = FactoryBot.create(:trip_advisor_property, id: 7_363_690)
         prop = PropertyDetails.new(json).property
         expect(prop).to eq existing
       end

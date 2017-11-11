@@ -2,7 +2,7 @@ require 'rails_helper'
 require_relative 'property_header_image'
 
 describe 'properties/show_new_development' do
-  let(:property) { FactoryGirl.create(:property, new_development: true).decorate }
+  let(:property) { FactoryBot.create(:property, new_development: true).decorate }
 
   before do
     assign(:property, property)
@@ -22,7 +22,7 @@ describe 'properties/show_new_development' do
   it_behaves_like 'a property header image'
 
   it 'displays address and country' do
-    country = FactoryGirl.build(:country)
+    country = FactoryBot.build(:country)
     property.country = country
 
     render

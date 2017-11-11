@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :order do
     sequence(:order_number) { |n| "#{n}" }
     address     '123 Street'

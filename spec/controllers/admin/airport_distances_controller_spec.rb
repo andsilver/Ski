@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Admin::AirportDistancesController do
   let(:website) { Website.new }
-  let(:current_user) { FactoryGirl.build(:user) }
+  let(:current_user) { FactoryBot.build(:user) }
   let(:airport_distance) { double(AirportDistance).as_null_object }
 
   before do

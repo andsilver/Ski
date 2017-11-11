@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :pv_accommodation do
     address_1       '123 Rue'
     address_2       ''

@@ -1,6 +1,6 @@
 shared_examples_for 'a flat namespace slug validator' do |model|
   before do
-    @object = FactoryGirl.build(model, slug: slug)
+    @object = FactoryBot.build(model, slug: slug)
     @object.save
   end
 

@@ -41,7 +41,7 @@ end
 
 def signed_in
   allow(controller).to receive(:signed_in?).and_return(true)
-  allow(controller).to receive(:current_user).and_return(FactoryGirl.create(:user))
+  allow(controller).to receive(:current_user).and_return(FactoryBot.create(:user))
 end
 
 def signed_in_as_admin

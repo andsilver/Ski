@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Alt attributes admin', type: :request do
   before do
-    FactoryGirl.create(:website)
+    FactoryBot.create(:website)
     allow_any_instance_of(ApplicationController)
       .to receive(:admin?)
       .and_return(true)
@@ -10,7 +10,7 @@ RSpec.describe 'Alt attributes admin', type: :request do
 
   describe 'GET /admin/alt_attributes' do
     it 'lists alt attributes' do
-      aa = FactoryGirl.create(:alt_attribute)
+      aa = FactoryBot.create(:alt_attribute)
       get admin_alt_attributes_path
       assert_select 'td', content: aa.path
     end
@@ -55,7 +55,7 @@ RSpec.describe 'Alt attributes admin', type: :request do
 
     context 'with invalid params' do
       before do
-        FactoryGirl.create(:alt_attribute, path: 'path')
+        FactoryBot.create(:alt_attribute, path: 'path')
         post(
           admin_alt_attributes_path,
           params: {
@@ -77,7 +77,7 @@ RSpec.describe 'Alt attributes admin', type: :request do
 
   describe 'GET /admin/alt_attributes/:id/edit' do
     it 'shows a form to edit the alt attribute' do
-      alt_attribute = FactoryGirl.create(:alt_attribute)
+      alt_attribute = FactoryBot.create(:alt_attribute)
       get edit_admin_alt_attribute_path(alt_attribute)
       assert_select "form[action='#{admin_alt_attribute_path(alt_attribute)}']"
     end
@@ -85,7 +85,7 @@ RSpec.describe 'Alt attributes admin', type: :request do
 
   describe 'PATCH /admin/alt_attributes/:id' do
     context 'with valid params' do
-      let(:alt_attribute) { FactoryGirl.create(:alt_attribute) }
+      let(:alt_attribute) { FactoryBot.create(:alt_attribute) }
       before do
         patch(
           admin_alt_attribute_path(alt_attribute),
@@ -114,9 +114,9 @@ RSpec.describe 'Alt attributes admin', type: :request do
     end
 
     context 'with invalid params' do
-      let(:aa) { FactoryGirl.create(:alt_attribute) }
+      let(:aa) { FactoryBot.create(:alt_attribute) }
       before do
-        FactoryGirl.create(:alt_attribute, path: 'exists')
+        FactoryBot.create(:alt_attribute, path: 'exists')
         patch(
           admin_alt_attribute_path(aa),
           params: { alt_attribute: { alt_text: 'alt', path: 'exists' } }
@@ -132,7 +132,7 @@ RSpec.describe 'Alt attributes admin', type: :request do
   end
 
   describe 'DELETE /admin/alt_attributes/:id' do
-    let(:alt_attribute) { FactoryGirl.create(:alt_attribute) }
+    let(:alt_attribute) { FactoryBot.create(:alt_attribute) }
     before { delete admin_alt_attribute_path(alt_attribute) }
 
     it 'deletes the alt attribute' do

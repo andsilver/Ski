@@ -4,7 +4,7 @@ feature 'Window base prices admin' do
   fixtures :roles, :users, :websites
 
   scenario 'List window base prices' do
-    FactoryGirl.create(:window_base_price, price: 95)
+    FactoryBot.create(:window_base_price, price: 95)
     sign_in_as_admin
     visit admin_window_base_prices_path
     expect(page).to have_content '95'
@@ -22,7 +22,7 @@ feature 'Window base prices admin' do
   end
 
   scenario 'Edit window base price' do
-    wbp = FactoryGirl.create(:window_base_price, price: 95)
+    wbp = FactoryBot.create(:window_base_price, price: 95)
     sign_in_as_admin
     visit admin_window_base_prices_path
     click_link "Edit #{wbp}"

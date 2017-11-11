@@ -8,10 +8,10 @@ RSpec.describe SearchController, type: :controller do
   end
 
   describe 'GET #place_names' do
-    let(:region) { FactoryGirl.create(:region, name: 'Lake Como', property_count: 2) }
-    let(:resort1) { FactoryGirl.create(:resort, name: 'Zel am See', property_count: 3) }
-    let(:resort2) { FactoryGirl.create(:resort, visible: 0) }
-    let(:resort3) { FactoryGirl.create(:resort, name: 'Chamonix', property_count: 0) }
+    let(:region) { FactoryBot.create(:region, name: 'Lake Como', property_count: 2) }
+    let(:resort1) { FactoryBot.create(:resort, name: 'Zel am See', property_count: 3) }
+    let(:resort2) { FactoryBot.create(:resort, visible: 0) }
+    let(:resort3) { FactoryBot.create(:resort, name: 'Chamonix', property_count: 0) }
 
     render_views
 

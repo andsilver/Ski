@@ -11,13 +11,13 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'GET show' do
-    let(:cat)    { FactoryGirl.create(:category) }
-    let(:resort) { FactoryGirl.create(:resort) }
+    let(:cat)    { FactoryBot.create(:category) }
+    let(:resort) { FactoryBot.create(:resort) }
 
     context 'with results' do
       before do
         allow(Category).to receive(:new).and_call_original
-        da = FactoryGirl.create(:directory_advert, category: cat, resort: resort)
+        da = FactoryBot.create(:directory_advert, category: cat, resort: resort)
         Advert.new_for(da).start_and_save!
       end
 

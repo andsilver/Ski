@@ -43,10 +43,10 @@ describe Denormalize do
     end
 
     context 'with a website' do
-      let!(:website) { Website.first || FactoryGirl.create(:website) }
+      let!(:website) { Website.first || FactoryBot.create(:website) }
 
       it 'assigns featured properties to the website' do
-        featured_properties = [FactoryGirl.create(:property)]
+        featured_properties = [FactoryBot.create(:property)]
         expect(Property).to receive(:featured).and_return featured_properties
         Denormalize.update_featured_properties
         website.reload
@@ -65,8 +65,8 @@ describe Denormalize do
 
   describe '.update_resorts' do
     it 'updates the for_rent count' do
-      r = FactoryGirl.create(:resort, visible: true)
-      FactoryGirl.create(
+      r = FactoryBot.create(:resort, visible: true)
+      FactoryBot.create(
         :property, listing_type: Property::LISTING_TYPE_FOR_RENT, resort: r
       )
       Denormalize.update_resorts

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe LongTermAdvert do
   describe '#initialize' do
     let(:user) { User.new }
-    let(:prop) { FactoryGirl.build(:property, user: user) }
+    let(:prop) { FactoryBot.build(:property, user: user) }
     let(:advert) { @object.advert }
     before do
       @object = LongTermAdvert.new(prop)
@@ -39,7 +39,7 @@ RSpec.describe LongTermAdvert do
 
   describe '#create' do
     it 'persists the new advert' do
-      @object = LongTermAdvert.new(FactoryGirl.create(:property))
+      @object = LongTermAdvert.new(FactoryBot.create(:property))
       @object.create
       expect(@object.advert).to be_persisted
     end

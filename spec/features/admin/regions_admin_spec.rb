@@ -4,7 +4,7 @@ feature 'Regions admin' do
   fixtures :countries, :holiday_types, :regions, :roles, :users, :websites
 
   scenario 'List regions' do
-    FactoryGirl.create(:region, name: 'Alsace')
+    FactoryBot.create(:region, name: 'Alsace')
     sign_in_as_admin
     visit admin_regions_path
     expect(page).to have_content 'Alsace'
@@ -25,7 +25,7 @@ feature 'Regions admin' do
   end
 
   scenario 'Edit region' do
-    FactoryGirl.create(:region, name: 'Alsace')
+    FactoryBot.create(:region, name: 'Alsace')
     sign_in_as_admin
     visit admin_regions_path
     click_link 'Edit Alsace'
@@ -36,7 +36,7 @@ feature 'Regions admin' do
   end
 
   scenario 'Delete region' do
-    FactoryGirl.create(:region, name: 'Alsace')
+    FactoryBot.create(:region, name: 'Alsace')
     sign_in_as_admin
     visit admin_regions_path
     click_link 'Delete Alsace'

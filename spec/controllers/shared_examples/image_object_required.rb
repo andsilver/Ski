@@ -1,5 +1,5 @@
 shared_examples_for 'an image object requirer' do |method, action, params|
-  let(:country) { FactoryGirl.create(:country) }
+  let(:country) { FactoryBot.create(:country) }
   let(:image_mode) { 'country' }
   let(:country_id) { country.id }
 

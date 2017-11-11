@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Trip Advisor locations admin', type: :request do
   before do
-    FactoryGirl.create(:website)
+    FactoryBot.create(:website)
     allow_any_instance_of(ApplicationController)
       .to receive(:admin?)
       .and_return(true)
@@ -10,10 +10,10 @@ RSpec.describe 'Trip Advisor locations admin', type: :request do
 
   describe 'GET /admin/trip_advisor_locations' do
     it 'lists each top-level location' do
-      africa = FactoryGirl.create(
+      africa = FactoryBot.create(
         :trip_advisor_location, name: 'Africa', parent: nil
       )
-      FactoryGirl.create(
+      FactoryBot.create(
         :trip_advisor_location, name: 'Madagascar', parent: africa
       )
 
@@ -26,10 +26,10 @@ RSpec.describe 'Trip Advisor locations admin', type: :request do
 
   describe 'GET /admin/trip_advisor_locations/:id' do
     let!(:africa) do
-      FactoryGirl.create(:trip_advisor_location, name: 'Africa', parent: nil)
+      FactoryBot.create(:trip_advisor_location, name: 'Africa', parent: nil)
     end
     let!(:madagascar) do
-      FactoryGirl.create(
+      FactoryBot.create(
         :trip_advisor_location, name: 'Madagascar', parent: africa
       )
     end
@@ -56,12 +56,12 @@ RSpec.describe 'Trip Advisor locations admin', type: :request do
   end
 
   describe 'PATCH /admin/trip_advisor_locations/:id' do
-    let(:resort) { FactoryGirl.create(:resort) }
+    let(:resort) { FactoryBot.create(:resort) }
     let!(:africa) do
-      FactoryGirl.create(:trip_advisor_location, name: 'Africa', parent: nil)
+      FactoryBot.create(:trip_advisor_location, name: 'Africa', parent: nil)
     end
     let!(:madagascar) do
-      FactoryGirl.create(
+      FactoryBot.create(
         :trip_advisor_location, name: 'Madagascar', parent: africa
       )
     end

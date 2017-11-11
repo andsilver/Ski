@@ -83,7 +83,7 @@ describe PagesController do
 
       it 'duplicates the page' do
         pending
-        allow(Page).to receive(:find).and_return(FactoryGirl.create(:page, title: 'xyzzy'))
+        allow(Page).to receive(:find).and_return(FactoryBot.create(:page, title: 'xyzzy'))
         get 'copy', params: { id: '1' }
         expect(assigns(:page).title).to eq 'xyzzy'
         expect(assigns(:page).new_record?).to be_truthy

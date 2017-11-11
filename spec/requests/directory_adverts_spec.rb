@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Directory adverts', type: :request do
-  before { FactoryGirl.create(:website) }
+  before { FactoryBot.create(:website) }
   describe 'GET /directory_adverts/:id' do
-    let!(:ad) { FactoryGirl.create(:directory_advert) }
+    let!(:ad) { FactoryBot.create(:directory_advert) }
     def perform
       get "/directory_adverts/#{ad.id}"
     end
 
     context 'advert is currently advertised' do
       before do
-        FactoryGirl.create(
+        FactoryBot.create(
           :advert, directory_advert_id: ad.id, expires_at: Date.tomorrow
         )
       end

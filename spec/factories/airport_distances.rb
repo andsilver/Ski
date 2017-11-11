@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :airport_distance do
     association :resort
     association :airport

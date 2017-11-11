@@ -5,11 +5,11 @@ require 'rails_helper'
 module TripAdvisor
   RSpec.describe BaseProperty do
     describe '#create' do
-      let(:user) { FactoryGirl.create(:user) }
-      let(:resort) { FactoryGirl.create(:resort) }
-      let(:gbp) { FactoryGirl.create(:currency) }
+      let(:user) { FactoryBot.create(:user) }
+      let(:resort) { FactoryBot.create(:resort) }
+      let(:gbp) { FactoryBot.create(:currency) }
       let(:ta_prop) do
-        FactoryGirl.create(
+        FactoryBot.create(
           :trip_advisor_property,
           sleeps: 8,
           title: 'title',

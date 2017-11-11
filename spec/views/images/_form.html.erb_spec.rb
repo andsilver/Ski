@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'images/_form.html.erb', type: :view do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   before do
     assign(:image, Image.new)
@@ -10,7 +10,7 @@ RSpec.describe 'images/_form.html.erb', type: :view do
   end
 
   context 'with a Property object' do
-    let(:object) { FactoryGirl.create(:property) }
+    let(:object) { FactoryBot.create(:property) }
 
     context 'with no images uploaded' do
       it 'states no images have been uploaded' do

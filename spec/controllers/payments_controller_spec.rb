@@ -52,7 +52,7 @@ describe PaymentsController do
 
   describe 'GET complete_payment_not_required' do
     context 'with windows and 0 order value' do
-      let(:order) { FactoryGirl.create(:order, status: Order::PAYMENT_NOT_REQUIRED, total: 0) }
+      let(:order) { FactoryBot.create(:order, status: Order::PAYMENT_NOT_REQUIRED, total: 0) }
 
       before do
         OrderLine.create!(

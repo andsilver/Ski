@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 feature 'Email a friend' do
-  let!(:property) { FactoryGirl.create(:property) }
+  let!(:property) { FactoryBot.create(:property) }
 
   background do
-    FactoryGirl.create(:website)
+    FactoryBot.create(:website)
   end
 
   scenario 'Send email to a friend' do

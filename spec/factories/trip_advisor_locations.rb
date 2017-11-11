@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :trip_advisor_location do
     association :resort
     name "MyString"

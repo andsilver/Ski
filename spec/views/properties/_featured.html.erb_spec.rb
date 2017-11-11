@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe 'properties/_featured.html.erb' do
-  let(:property) { FactoryGirl.create(:property) }
+  let(:property) { FactoryBot.create(:property) }
 
   context 'with property image' do
     before do
-      property.image = FactoryGirl.create(:image)
+      property.image = FactoryBot.create(:image)
       allow(property.image).to receive(:url).and_return('/up/images/chalet.png')
     end
 

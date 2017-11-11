@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :a_property_developer, class: User do
     first_name           'Zach'
     last_name            'Anyman'

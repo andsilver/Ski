@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'properties/new.html.erb', type: :view do
   let(:property) { Property.new }
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   before do
     allow(view).to receive(:current_user).and_return(user)

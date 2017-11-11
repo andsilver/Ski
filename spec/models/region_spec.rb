@@ -6,11 +6,11 @@ describe Region do
 
   describe '#airport_distances' do
     it 'returns airport distances for all child resorts' do
-      region = FactoryGirl.create(:region)
-      r1 = FactoryGirl.create(:resort, region: region)
-      ad1 = FactoryGirl.create(:airport_distance, resort: r1)
-      r2 = FactoryGirl.create(:resort, region: region)
-      ad2 = FactoryGirl.create(:airport_distance, resort: r2)
+      region = FactoryBot.create(:region)
+      r1 = FactoryBot.create(:resort, region: region)
+      ad1 = FactoryBot.create(:airport_distance, resort: r1)
+      r2 = FactoryBot.create(:resort, region: region)
+      ad2 = FactoryBot.create(:airport_distance, resort: r2)
       expect(region.airport_distances).to include(ad1)
       expect(region.airport_distances).to include(ad2)
     end
@@ -29,11 +29,11 @@ describe Region do
   end
 
   describe '#resort_brochures' do
-    let(:ht) { FactoryGirl.create(:holiday_type) }
-    let(:region) { FactoryGirl.create(:region) }
+    let(:ht) { FactoryBot.create(:holiday_type) }
+    let(:region) { FactoryBot.create(:region) }
 
     it 'returns brochures for child resorts with specified holiday type' do
-      resort = FactoryGirl.create(:resort, region: region)
+      resort = FactoryBot.create(:resort, region: region)
       region.holiday_type_brochures.build(holiday_type: ht)
       resort_brochure = resort.holiday_type_brochures.build(holiday_type: ht)
       region.save
@@ -43,7 +43,7 @@ describe Region do
     end
 
     it 'excludes invisible resorts' do
-      resort = FactoryGirl.create(:resort, region: region, visible: false)
+      resort = FactoryBot.create(:resort, region: region, visible: false)
       region.holiday_type_brochures.build(holiday_type: ht)
       resort_brochure = resort.holiday_type_brochures.build(holiday_type: ht)
       region.save

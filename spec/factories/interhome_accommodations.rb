@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :interhome_accommodation do
     accommodation_type 'T'
     bathrooms          1

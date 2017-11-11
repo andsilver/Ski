@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Coupons admin', type: :request do
   before do
-    FactoryGirl.create(:website)
+    FactoryBot.create(:website)
     allow_any_instance_of(ApplicationController)
       .to receive(:admin?)
       .and_return(true)
@@ -10,7 +10,7 @@ RSpec.describe 'Coupons admin', type: :request do
 
   describe 'GET /admin/coupons' do
     it 'lists coupons' do
-      coupon = FactoryGirl.create(:coupon)
+      coupon = FactoryBot.create(:coupon)
       get admin_coupons_path
       assert_select 'td', content: coupon.code
     end
@@ -76,7 +76,7 @@ RSpec.describe 'Coupons admin', type: :request do
 
   describe 'GET /admin/coupons/:id/edit' do
     it 'shows a form to edit the coupon' do
-      coupon = FactoryGirl.create(:coupon)
+      coupon = FactoryBot.create(:coupon)
       get edit_admin_coupon_path(coupon)
       assert_select "form[action='#{admin_coupon_path(coupon)}']"
     end
@@ -84,8 +84,8 @@ RSpec.describe 'Coupons admin', type: :request do
 
   describe 'PATCH /admin/coupons/:id' do
     context 'with valid params' do
-      let(:coupon) { FactoryGirl.create(:coupon) }
-      let(:country) { FactoryGirl.create(:country) }
+      let(:coupon) { FactoryBot.create(:coupon) }
+      let(:country) { FactoryBot.create(:country) }
       before do
         patch(
           admin_coupon_path(coupon),
@@ -114,7 +114,7 @@ RSpec.describe 'Coupons admin', type: :request do
     end
 
     context 'with invalid params' do
-      let(:coupon) { FactoryGirl.create(:coupon) }
+      let(:coupon) { FactoryBot.create(:coupon) }
       before do
         patch(
           admin_coupon_path(coupon),
@@ -131,7 +131,7 @@ RSpec.describe 'Coupons admin', type: :request do
   end
 
   describe 'DELETE /admin/coupons/:id' do
-    let(:coupon) { FactoryGirl.create(:coupon) }
+    let(:coupon) { FactoryBot.create(:coupon) }
     before { delete admin_coupon_path(coupon) }
 
     it 'deletes the coupon' do

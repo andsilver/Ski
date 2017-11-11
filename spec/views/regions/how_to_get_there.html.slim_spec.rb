@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'regions/how_to_get_there' do
   before do
-    assign(:region, FactoryGirl.create(:region))
+    assign(:region, FactoryBot.create(:region))
   end
 
   it 'displays the page content' do

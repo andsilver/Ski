@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PropertiesController, type: :controller do
-  let(:property) { FactoryGirl.create(:property) }
+  let(:property) { FactoryBot.create(:property) }
   let(:website) { double(Website).as_null_object }
   let(:non_admin_role) { Role.new(admin: false) }
 
@@ -20,8 +20,8 @@ RSpec.describe PropertiesController, type: :controller do
         pending
         Property.delete_all
         properties = [
-          FactoryGirl.create(:property),
-          FactoryGirl.create(:property)
+          FactoryBot.create(:property),
+          FactoryBot.create(:property)
         ]
         get :index
         expect(assigns(:properties)).to eq(properties)
@@ -39,7 +39,7 @@ RSpec.describe PropertiesController, type: :controller do
   end
 
   shared_examples 'a protector of hidden resorts' do |method, action|
-    let(:resort) { FactoryGirl.create(:resort, visible: false) }
+    let(:resort) { FactoryBot.create(:resort, visible: false) }
 
     context 'with search results' do
       before { allow(controller).to receive(:search_status).and_return 200 }
@@ -68,7 +68,7 @@ RSpec.describe PropertiesController, type: :controller do
   end
 
   shared_examples 'a country scoped search' do |method, action|
-    let(:country) { FactoryGirl.create(:country) }
+    let(:country) { FactoryBot.create(:country) }
 
     it 'searches within a country' do
       pending
@@ -78,7 +78,7 @@ RSpec.describe PropertiesController, type: :controller do
   end
 
   shared_examples 'an availability filter' do |method, action|
-    let(:property) { FactoryGirl.create(:property) }
+    let(:property) { FactoryBot.create(:property) }
 
     before do
       Availability.create!(property: property, start_date: '2015-02-23', availability: Availability::AVAILABLE,   check_in: true,  check_out: false)
@@ -133,7 +133,7 @@ RSpec.describe PropertiesController, type: :controller do
     end
 
     context 'given a resort slug that refers to a resort' do
-      let(:resort) { FactoryGirl.create(:resort) }
+      let(:resort) { FactoryBot.create(:resort) }
       let(:resort_slug)  { resort.slug }
 
       it 'sets the resort' do
@@ -142,7 +142,7 @@ RSpec.describe PropertiesController, type: :controller do
       end
     end
     context 'given a resort slug that refers to a region' do
-      let(:region) { FactoryGirl.create(:region) }
+      let(:region) { FactoryBot.create(:region) }
       let(:resort_slug) { region.slug }
 
       it 'sets the region' do
@@ -152,7 +152,7 @@ RSpec.describe PropertiesController, type: :controller do
     end
 
     context 'given a region slug' do
-      let(:region) { FactoryGirl.create(:region) }
+      let(:region) { FactoryBot.create(:region) }
       let(:region_slug) { region.slug }
 
       it 'sets the region' do
@@ -171,22 +171,22 @@ RSpec.describe PropertiesController, type: :controller do
 
   shared_examples_for 'it requires a resort or region' do |method, action, listing_type|
     it 'shows with a resort' do
-      resort = FactoryGirl.create(:resort)
-      FactoryGirl.create(:property, resort: resort, listing_type: listing_type)
+      resort = FactoryBot.create(:resort)
+      FactoryBot.create(:property, resort: resort, listing_type: listing_type)
       send(method, action, params: { resort_slug: resort.slug })
       expect(response.status).to eq 200
     end
 
     it 'shows with a region' do
-      region = FactoryGirl.create(:region)
-      resort = FactoryGirl.create(:resort, region: region)
-      FactoryGirl.create(:property, resort: resort, listing_type: listing_type)
+      region = FactoryBot.create(:region)
+      resort = FactoryBot.create(:resort, region: region)
+      FactoryBot.create(:property, resort: resort, listing_type: listing_type)
       send(method, action, params: { resort_slug: region.slug })
       expect(response.status).to eq 200
     end
 
     it '404s with neither a resort nor region' do
-      FactoryGirl.create(:property, listing_type: listing_type)
+      FactoryBot.create(:property, listing_type: listing_type)
       send(method, action, params: { resort_slug: 'nonexistent' })
       expect(response.status).to eq 404
     end
@@ -211,7 +211,7 @@ RSpec.describe PropertiesController, type: :controller do
 
   describe 'GET new_developments' do
     let(:properties) { double(ActiveRecord::Relation).as_null_object }
-    let!(:resort) { FactoryGirl.create(:resort) }
+    let!(:resort) { FactoryBot.create(:resort) }
 
     before do
       # FIXME
@@ -302,14 +302,14 @@ RSpec.describe PropertiesController, type: :controller do
   end
 
   describe "POST create" do
-    let(:current_user) { FactoryGirl.create(:user) }
+    let(:current_user) { FactoryBot.create(:user) }
     let(:role) { double(Role).as_null_object }
     let(:property_attributes) {{
       layout: 'Showcase',
       name: 'Property',
       address: 'Address',
-      resort_id: FactoryGirl.create(:resort).id,
-      currency_id: FactoryGirl.create(:currency).id
+      resort_id: FactoryBot.create(:resort).id,
+      currency_id: FactoryBot.create(:currency).id
     }}
     let(:create_params) { { property: property_attributes } }
 
@@ -356,7 +356,7 @@ RSpec.describe PropertiesController, type: :controller do
   end
 
   describe 'GET contact' do
-    let(:resort) { FactoryGirl.create(:resort) }
+    let(:resort) { FactoryBot.create(:resort) }
 
     def get_contact
       get :contact, params: { id: '1' }
@@ -385,7 +385,7 @@ RSpec.describe PropertiesController, type: :controller do
   end
 
   describe "GET show" do
-    let(:property) { FactoryGirl.create(:property) }
+    let(:property) { FactoryBot.create(:property) }
 
     context "when a property is found" do
       let(:publicly_visible?) { true }
@@ -463,11 +463,11 @@ RSpec.describe PropertiesController, type: :controller do
   end
 
   describe 'GET interhome_booking_form' do
-    let!(:accommodation) { FactoryGirl.create(:interhome_accommodation) }
+    let!(:accommodation) { FactoryBot.create(:interhome_accommodation) }
 
     context 'with vacancy information' do
       before do
-        FactoryGirl.create(:interhome_vacancy, interhome_accommodation_id: accommodation.id)
+        FactoryBot.create(:interhome_vacancy, interhome_accommodation_id: accommodation.id)
       end
 
       it 'renders the default template' do
@@ -559,8 +559,8 @@ RSpec.describe PropertiesController, type: :controller do
       end
 
       context 'when image_id is set' do
-        let(:property_owner) { FactoryGirl.create(:user) }
-        let(:image)    { FactoryGirl.create(:image, source_url: '#', user: image_owner) }
+        let(:property_owner) { FactoryBot.create(:user) }
+        let(:image)    { FactoryBot.create(:image, source_url: '#', user: image_owner) }
         let(:image_id) { image.id }
         before         { allow(property).to receive(:user).and_return(property_owner) }
 
@@ -574,7 +574,7 @@ RSpec.describe PropertiesController, type: :controller do
         end
 
         context 'when image not owned by property owner' do
-          let(:image_owner) { FactoryGirl.create(:user) }
+          let(:image_owner) { FactoryBot.create(:user) }
 
           it 'does not set the property image' do
             expect(property).not_to receive(:image=)

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Airports admin', type: :request do
   before do
-    FactoryGirl.create(:website)
+    FactoryBot.create(:website)
     allow_any_instance_of(ApplicationController)
       .to receive(:admin?)
       .and_return(true)
@@ -10,7 +10,7 @@ RSpec.describe 'Airports admin', type: :request do
 
   describe 'GET /admin/airports' do
     it 'lists airports' do
-      airport = FactoryGirl.create(:airport)
+      airport = FactoryBot.create(:airport)
       get admin_airports_path
       assert_select 'td', content: airport.code
     end
@@ -25,7 +25,7 @@ RSpec.describe 'Airports admin', type: :request do
 
   describe 'POST /admin/airports' do
     context 'with valid params' do
-      let(:country) { FactoryGirl.create(:country) }
+      let(:country) { FactoryBot.create(:country) }
       before do
         post(
           admin_airports_path,
@@ -79,7 +79,7 @@ RSpec.describe 'Airports admin', type: :request do
 
   describe 'GET /admin/airports/:id/edit' do
     it 'shows a form to edit the airport' do
-      airport = FactoryGirl.create(:airport)
+      airport = FactoryBot.create(:airport)
       get edit_admin_airport_path(airport)
       assert_select "form[action='#{admin_airport_path(airport)}']"
     end
@@ -87,8 +87,8 @@ RSpec.describe 'Airports admin', type: :request do
 
   describe 'PATCH /admin/airports/:id' do
     context 'with valid params' do
-      let(:airport) { FactoryGirl.create(:airport) }
-      let(:country) { FactoryGirl.create(:country) }
+      let(:airport) { FactoryBot.create(:airport) }
+      let(:country) { FactoryBot.create(:country) }
       before do
         patch(
           admin_airport_path(airport),
@@ -119,7 +119,7 @@ RSpec.describe 'Airports admin', type: :request do
     end
 
     context 'with invalid params' do
-      let(:airport) { FactoryGirl.create(:airport) }
+      let(:airport) { FactoryBot.create(:airport) }
       before do
         patch(
           admin_airport_path(airport),
@@ -136,7 +136,7 @@ RSpec.describe 'Airports admin', type: :request do
   end
 
   describe 'DELETE /admin/airports/:id' do
-    let(:airport) { FactoryGirl.create(:airport) }
+    let(:airport) { FactoryBot.create(:airport) }
     before { delete admin_airport_path(airport) }
 
     it 'deletes the airport' do
