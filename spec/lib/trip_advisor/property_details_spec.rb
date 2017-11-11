@@ -128,6 +128,23 @@ module TripAdvisor
           expect(property.min_stay_low).to eq 2
         end
 
+        context 'when locale en_GB is present but en_US is not' do
+          let!(:trip_advisor_location) do
+            FactoryGirl.create(
+              :trip_advisor_location, id: 1_079_337, resort: resort
+            )
+          end
+          let(:details) { PropertyDetails.new(json(6_865_661)) }
+
+          it 'sets the description to en_GB description' do
+            expect(property.description).to include('This beautiful barn')
+          end
+
+          it 'sets the title to en_GB title' do
+            expect(property.title).to include('Vieille Grange de')
+          end
+        end
+
         context 'when resort is later removed' do
           before { resort.destroy }
 

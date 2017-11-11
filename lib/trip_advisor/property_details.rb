@@ -45,7 +45,11 @@ module TripAdvisor
     end
 
     def title
-      titles.select { |t| t['locale'] == 'en_US' }.first['text']
+      titles.select { |t| locales.include? t['locale'] }.first['text']
+    end
+
+    def locales
+      %w(en_GB en_US)
     end
 
     def titles
@@ -53,7 +57,7 @@ module TripAdvisor
     end
 
     def description
-      descriptions.select { |d| d['locale'] == 'en_US' }.first['text']
+      descriptions.select { |d| locales.include? d['locale'] }.first['text']
     end
 
     def descriptions
