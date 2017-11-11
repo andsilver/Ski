@@ -60,6 +60,14 @@ module TripAdvisor
         old_image.reload
         expect(old_image.updated_at).to be > (Time.current - 5.seconds)
       end
+
+      context 'when property has no photos' do
+        let(:images) { PropertyImages.new(property, json(8_500_992)) }
+        it 'imports no images without error' do
+          images.import
+          expect(property.images.count).to eq 0
+        end
+      end
     end
   end
 end

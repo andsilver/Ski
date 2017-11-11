@@ -11,12 +11,16 @@ module TripAdvisor
     end
 
     def import
-      data['photo_urls'].each { |pu| import_photo(pu['jumbo_url']) }
+      photo_urls.each { |pu| import_photo(pu['jumbo_url']) }
       delete_old_photos
       set_main_photo
     end
 
     private
+
+    def photo_urls
+      data['photo_urls'] || []
+    end
 
     def data
       @data ||= JSON.parse(json)
