@@ -4,7 +4,7 @@ require 'rails_helper'
 
 module TripAdvisor
   RSpec.describe PropertyDetails do
-    def json(id = 7_363_690)
+    def json(id)
       File.read(
         File.join(
           Rails.root, 'test-files', 'trip_advisor', 'properties', "#{id}.json"
@@ -12,10 +12,14 @@ module TripAdvisor
       )
     end
 
+    def data(id = 7_363_690)
+      JSON.parse(json(id))
+    end
+
     describe '#import' do
       let!(:eur) { FactoryBot.create(:currency, code: 'EUR') }
       let(:property) { TripAdvisorProperty.last }
-      let(:details) { PropertyDetails.new(json) }
+      let(:details) { PropertyDetails.new(data) }
 
       context 'when resort is present' do
         let!(:resort) { FactoryBot.create(:resort) }
@@ -134,7 +138,7 @@ module TripAdvisor
               :trip_advisor_location, id: 1_079_337, resort: resort
             )
           end
-          let(:details) { PropertyDetails.new(json(6_865_661)) }
+          let(:details) { PropertyDetails.new(data(6_865_661)) }
 
           it 'sets the description to en_GB description' do
             expect(property.description).to include('This beautiful barn')
@@ -151,7 +155,7 @@ module TripAdvisor
               :trip_advisor_location, id: 1_728_795, resort: resort
             )
           end
-          let(:details) { PropertyDetails.new(json(8_760_274)) }
+          let(:details) { PropertyDetails.new(data(8_760_274)) }
 
           it 'sets the description to the first description' do
             expect(property.description).to include('Así es como')
@@ -168,7 +172,7 @@ module TripAdvisor
               :trip_advisor_location, id: 41_469, resort: resort
             )
           end
-          let(:details) { PropertyDetails.new(json(4_048_032)) }
+          let(:details) { PropertyDetails.new(data(4_048_032)) }
 
           it 'does not persist the property' do
             expect(TripAdvisorProperty.exists?(4_048_032)).to be_falsey
@@ -179,7 +183,7 @@ module TripAdvisor
           before { resort.destroy }
 
           it 'destroys the existing property' do
-            PropertyDetails.new(json).import
+            PropertyDetails.new(data).import
             expect(TripAdvisorProperty.exists?(7_363_690)).to be_falsey
           end
         end
@@ -191,46 +195,21 @@ module TripAdvisor
           expect(TripAdvisorProperty.exists?(7_363_690)).to be_falsey
         end
       end
-
-      context 'with malformed JSON' do
-        let(:details) { PropertyDetails.new(json(1_941_864)) }
-
-        it 'does not persist the property' do
-          details.import
-          expect(TripAdvisorProperty.exists?(1_941_864)).to be_falsey
-        end
-
-        it 'logs a warning' do
-          expect(Rails.logger)
-            .to receive(:warn)
-            .with('Malformed JSON found in TripAdvisor::PropertyDetails')
-          details.import
-        end
-      end
     end
 
     describe '#property' do
       let!(:eur) { FactoryBot.create(:currency, code: 'EUR') }
 
       it 'creates a new TripAdvisorProperty with id equal to TripAdvisor id' do
-        prop = PropertyDetails.new(json).property
+        prop = PropertyDetails.new(data).property
         expect(prop.class).to eq TripAdvisorProperty
         expect(prop.new_record?).to be_truthy
       end
 
       it 'finds an existing TripAdvisorProperty with matching id' do
         existing = FactoryBot.create(:trip_advisor_property, id: 7_363_690)
-        prop = PropertyDetails.new(json).property
+        prop = PropertyDetails.new(data).property
         expect(prop).to eq existing
-      end
-
-      context 'with malformed JSON' do
-        let(:details) { PropertyDetails.new(json(1_941_864)) }
-
-        it 'returns an unpersisted TripAdvisorProperty' do
-          prop = details.property
-          expect(prop.persisted?).to be_falsey
-        end
       end
     end
   end

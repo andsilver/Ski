@@ -19,11 +19,30 @@ module TripAdvisor
           .and_return(instance_double(klass).as_null_object)
       end
 
+      context 'with malformed JSON' do
+        let(:importer) { PropertyImporter.new(json(1_941_864)) }
+
+        it 'does not persist the property' do
+          importer.import
+          expect(TripAdvisorProperty.exists?(1_941_864)).to be_falsey
+        end
+
+        it 'logs a warning' do
+          expect(Rails.logger)
+            .to receive(:warn)
+            .with('Malformed JSON found in TripAdvisor::PropertyImporter')
+          importer.import
+        end
+      end
+
       it 'copies details' do
         details = instance_double(
           PropertyDetails, property: TripAdvisorProperty.new
         ).as_null_object
-        expect(PropertyDetails).to receive(:new).with(json).and_return(details)
+        expect(PropertyDetails)
+          .to receive(:new)
+          .with(JSON.parse(json))
+          .and_return(details)
         expect(details).to receive(:import)
 
         null_object(BaseProperty)

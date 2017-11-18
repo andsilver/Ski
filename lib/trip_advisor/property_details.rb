@@ -3,22 +3,13 @@
 module TripAdvisor
   # Imports a single TripAdvisor property from a JSON-encoded string.
   class PropertyDetails
-    attr_reader :json
+    attr_reader :data
 
-    def initialize(json)
-      @json = json
+    def initialize(data)
+      @data = data
     end
 
     def import
-      begin
-        data
-      rescue
-        Rails.logger.warn(
-          'Malformed JSON found in TripAdvisor::PropertyDetails'
-        )
-        return
-      end
-
       copy_details(
         :bathrooms, :bedrooms, :beds, :booking_option, :can_accept_inquiry,
         :city, :country,
@@ -36,21 +27,13 @@ module TripAdvisor
     end
 
     def property
-      @property ||= begin
-        TripAdvisorProperty.find_or_initialize_by(id: data['id'])
-      rescue
-        TripAdvisorProperty.new
-      end
+      @property ||= TripAdvisorProperty.find_or_initialize_by(id: data['id'])
     end
 
     private
 
     def copy_details(*attributes)
       attributes.each { |a| property.send("#{a}=", send(a)) }
-    end
-
-    def data
-      @data ||= JSON.parse(json)
     end
 
     def details

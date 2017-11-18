@@ -11,7 +11,9 @@ module TripAdvisor
     end
 
     def import
-      details = PropertyDetails.new(json)
+      return unless data_valid?
+
+      details = PropertyDetails.new(data)
       details.import
 
       ta_prop = details.property
@@ -22,6 +24,23 @@ module TripAdvisor
 
       images = PropertyImages.new(prop, json)
       images.import
+    end
+
+    private
+
+    def data_valid?
+      begin
+        data
+      rescue
+        Rails.logger.warn(
+          'Malformed JSON found in TripAdvisor::PropertyImporter'
+        )
+        false
+      end
+    end
+
+    def data
+      @data ||= JSON.parse(json)
     end
   end
 end
