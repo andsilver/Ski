@@ -278,7 +278,9 @@ class Property < ActiveRecord::Base
   end
 
   def cache_availability(dates)
-    interhome_accommodation.try(:cache_availability, dates)
+    [interhome_accommodation, trip_advisor_property].each do |prop|
+      prop.try(:cache_availability, dates)
+    end
   end
 
   # Returns the default number of months that a property advert should be

@@ -10,4 +10,8 @@ class TripAdvisorProperty < ApplicationRecord
   validates_presence_of :currency
   validates_presence_of :resort
   validates_presence_of :starting_price
+
+  def cache_availability(dates)
+    # method temporarily empty
+  end
 end

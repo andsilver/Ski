@@ -127,15 +127,18 @@ RSpec.describe Property, type: :model do
   end
 
   describe '#cache_availability' do
-    it 'delegates to its interhome_accommodation' do
-      property = Property.new
-      accommodation = InterhomeAccommodation.new
-      property.interhome_accommodation = accommodation
-      dates = [Date.current]
+    [TripAdvisorProperty, InterhomeAccommodation].each do |klass|
+      it "delegates to its #{klass}" do
+        property = Property.new
+        sub_prop = klass.new
+        setter = klass.to_s.underscore + '='
+        property.send(setter, sub_prop)
+        dates = [Date.current]
 
-      expect(accommodation).to receive(:cache_availability).with(dates)
+        expect(sub_prop).to receive(:cache_availability).with(dates)
 
-      property.cache_availability(dates)
+        property.cache_availability(dates)
+      end
     end
   end
 
