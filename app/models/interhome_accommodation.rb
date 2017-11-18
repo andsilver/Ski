@@ -45,4 +45,18 @@ class InterhomeAccommodation < ActiveRecord::Base
   def feature_list
     features.try(:split, ',') || []
   end
+
+  def cache_availability(dates)
+    return unless interhome_vacancy
+
+    dates.each do |date|
+      Availability.create!(
+        property_id: property.id,
+        start_date: date,
+        check_in: check_in_on?(date),
+        check_out: check_out_on?(date),
+        availability: Availability.availability_from_interhome(availability_on(date)) || Availability::UNAVAILABLE
+      )
+    end
+  end
 end
