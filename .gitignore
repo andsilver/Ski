@@ -47,10 +47,6 @@ doc/features.html
 # Ignore generated RDOC
 /doc/app/*
 
-# Ignore FlipKey data files
-/flip_key/*
-!/flip_key/.keep
-
 # Ignore Interhome data files
 /interhome/*
 !/interhome/.keep
