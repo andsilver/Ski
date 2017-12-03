@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Availability < ActiveRecord::Base
   belongs_to :property
 
@@ -8,6 +10,7 @@ class Availability < ActiveRecord::Base
   ]
 
   validates_inclusion_of :availability, in: AVAILABILITIES
+  validates_presence_of :start_date
 
   # Converts an availability code from an <tt>InterhomeVacancy</tt> into an
   # appropriate value for <tt>availability</tt>.

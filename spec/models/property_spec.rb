@@ -6,6 +6,7 @@ RSpec.describe Property, type: :model do
   describe 'associations' do
     it { should have_many(:images) }
     it { should have_many(:adverts) }
+    it { should have_many(:availabilities).dependent(:delete_all) }
     it { should belong_to(:trip_advisor_property) }
   end
 

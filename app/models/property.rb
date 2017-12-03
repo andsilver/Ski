@@ -21,6 +21,8 @@ class Property < ActiveRecord::Base
   has_many :adverts_in_basket, -> { where starts_at: nil }, class_name: 'Advert', dependent: :delete_all
   has_many :adverts, dependent: :nullify
 
+  has_many :availabilities, dependent: :delete_all
+
   validates_presence_of :resort
   validates_presence_of :address
 
