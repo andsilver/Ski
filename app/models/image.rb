@@ -130,7 +130,7 @@ class Image < ActiveRecord::Base
     if !FileTest.exist?(path) || File.size(path) == 0
       begin
         ImageScience.with_image(original_path) do |img|
-          puts "Generating thumbnail: #{path}"
+          Rails.logger.debug "Generating thumbnail: #{path}"
           send("size_#{method}", img, size, path)
         end
       rescue
@@ -140,7 +140,7 @@ class Image < ActiveRecord::Base
         # Thumbnail generation failed; assume problem with original.
         if FileTest.exist?(original_path) && source_url.present?
           FileUtils.rm(original_path, force: true)
-          puts "Deleting original: #{original_path}"
+          Rails.logger.debug "Deleting original: #{original_path}"
         end
         return IMAGE_MISSING
       end
