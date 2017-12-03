@@ -4,4 +4,5 @@ spawn sftp $env(USERNAME)@$env(HOST):$env(REMOTE) $env(LOCAL)
 expect "assword:"
 send "$env(PASSWORD)\n"
 expect eof
+sleep 120
 exit
