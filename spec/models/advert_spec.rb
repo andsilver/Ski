@@ -36,7 +36,25 @@ RSpec.describe Advert, type: :model do
   end
 
   describe ".basket_contains?" do
-    pending
+    it 'returns true if advert of the same type and id exists in basket' do
+      ad = Advert.new(id: 1, directory_advert_id: 123)
+      da1 = DirectoryAdvert.new(id: 123)
+      allow(ad).to receive(:directory_advert).and_return(da1)
+      user = User.new(first_name: 'x')
+      allow(user).to receive(:adverts_in_basket).and_return([ad])
+      da2 = DirectoryAdvert.new(id: 123, user: user)
+      expect(Advert.basket_contains?(da2)).to be_truthy
+    end
+
+    it 'returns false if advert of different type, same id exists in basket' do
+      ad = Advert.new(id: 1, property_id: 123)
+      prop = Property.new(id: 123)
+      allow(ad).to receive(:property).and_return(prop)
+      user = User.new(first_name: 'x')
+      allow(user).to receive(:adverts_in_basket).and_return([ad])
+      da = DirectoryAdvert.new(id: 123, user: user)
+      expect(Advert.basket_contains?(da)).to be_falsey
+    end
   end
 
   describe ".new_for" do
