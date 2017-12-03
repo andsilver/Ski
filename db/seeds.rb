@@ -414,10 +414,10 @@ interhome = User.create!(
   role: estate_agent,
   phone: '+441234567890'
 )
-flip_key = User.create!(
-  first_name: 'FlipKey',
-  last_name: 'FlipKey',
-  email: 'flipkey@mychaletfinder.com',
+trip_advisor = User.create!(
+  first_name: 'TripAdvisor',
+  last_name: 'TripAdvisor',
+  email: 'tripadvisor@mychaletfinder.com',
   password: 'secret',
   billing_street: '1, High St',
   billing_city: 'Portsmouth',

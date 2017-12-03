@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020105301) do
+ActiveRecord::Schema.define(version: 20171203110409) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -230,14 +230,6 @@ ActiveRecord::Schema.define(version: 20171020105301) do
     t.datetime "updated_at"
     t.index ["property_id"], name: "index_favourites_on_property_id"
     t.index ["unregistered_user_id"], name: "index_favourites_on_unregistered_user_id"
-  end
-
-  create_table "flip_key_properties", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string "url", null: false
-    t.text "json_data", limit: 16777215
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["url"], name: "index_flip_key_properties_on_url"
   end
 
   create_table "footers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
