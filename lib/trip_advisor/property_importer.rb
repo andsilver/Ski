@@ -19,6 +19,8 @@ module TripAdvisor
       ta_prop = details.property
       return unless ta_prop.persisted?
 
+      PropertyCalendarImporter.new(ta_prop.id, data['calendar']).import
+
       prop = BaseProperty.new(ta_prop).create(TripAdvisor.user)
       LongTermAdvert.new(prop).create
 

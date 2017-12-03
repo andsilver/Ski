@@ -54,7 +54,27 @@ module TripAdvisor
       end
 
       context 'when TA property persisted' do
-        let(:ta_prop) { instance_double(TripAdvisorProperty, persisted?: true) }
+        let(:ta_prop) { instance_double(TripAdvisorProperty, persisted?: true, id: 123) }
+
+        it 'imports the calendar' do
+          details = instance_double(PropertyDetails, property: ta_prop)
+                    .as_null_object
+          allow(PropertyDetails).to receive(:new).and_return(details)
+
+          pci = instance_double(PropertyCalendarImporter)
+          expect(PropertyCalendarImporter)
+            .to receive(:new)
+            .with(123, JSON.parse(json)['calendar'])
+            .and_return(pci)
+          expect(pci).to receive(:import)
+
+          null_object(BaseProperty)
+          null_object(LongTermAdvert)
+          null_object(PropertyImages)
+
+          importer = PropertyImporter.new(json)
+          importer.import
+        end
 
         it 'creates a base property' do
           details = instance_double(PropertyDetails, property: ta_prop)
@@ -65,6 +85,7 @@ module TripAdvisor
           expect(BaseProperty).to receive(:new).with(ta_prop).and_return(bp)
           expect(bp).to receive(:create).with(TripAdvisor.user)
 
+          null_object(PropertyCalendarImporter)
           null_object(LongTermAdvert)
           null_object(PropertyImages)
 
@@ -86,6 +107,7 @@ module TripAdvisor
           expect(LongTermAdvert).to receive(:new).with(prop).and_return(lta)
           expect(lta).to receive(:create)
 
+          null_object(PropertyCalendarImporter)
           null_object(PropertyImages)
 
           importer = PropertyImporter.new(json)
@@ -107,6 +129,7 @@ module TripAdvisor
             .to receive(:new).with(prop, json).and_return(pi)
           expect(pi).to receive(:import)
 
+          null_object(PropertyCalendarImporter)
           null_object(LongTermAdvert)
 
           importer = PropertyImporter.new(json)
