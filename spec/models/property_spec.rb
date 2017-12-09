@@ -245,7 +245,10 @@ RSpec.describe Property, type: :model do
   end
 
   describe '#template' do
-    let(:property) { Property.new(layout: layout) }
+    let(:property) do
+      Property.new(layout: layout, trip_advisor_property: ta_prop)
+    end
+    let(:ta_prop) { nil }
     let(:hotel?) { false }
     let(:new_development?) { false }
 
@@ -276,6 +279,11 @@ RSpec.describe Property, type: :model do
       context 'when a new development' do
         let(:new_development?) { true }
         it { should eq 'show_new_development' }
+      end
+
+      context 'when a TripAdvisor property' do
+        let(:ta_prop) { TripAdvisorProperty.new }
+        it { should eq 'show_trip_advisor' }
       end
     end
   end

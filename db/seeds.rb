@@ -9,6 +9,7 @@
 Image.destroy_all
 Page.destroy_all
 HolidayType.destroy_all
+TripAdvisorProperty.destroy_all
 Property.destroy_all
 PropertyBasePrice.destroy_all
 DirectoryAdvert.destroy_all
@@ -515,6 +516,26 @@ images[51] = img
 
 PropertyBasePrice.create!(number_of_months: 12, price: 150)
 
+TripAdvisorLocation.delete_all
+
+TripAdvisorLocation.create!([
+  { id: 6, name: 'Africa', location_type: 'continent' },
+  { id: 293808, name: 'Madagascar', location_type: 'country', parent_id: 6 }
+])
+
+trip_advisor_chamonix = TripAdvisorLocation.create!(
+  name: 'Chamonix',
+  resort: chamonix,
+  location_type: 'town'
+)
+
+trip_advisor_property = TripAdvisorProperty.create!(
+  review_average: 4.5,
+  trip_advisor_location: trip_advisor_chamonix,
+  starting_price: 1400,
+  currency: euros
+)
+
 properties = Property.create!([
   { resort: chamonix, user: alice, name: "Alpen Lounge",      address: '123 street', sleeping_capacity: 6,   metres_from_lift: 2500, weekly_rent_price: 1750, currency: euros, image:  images[1], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, layout: 'Showcase' },
   { resort: chamonix, user: alice, name: "Apartment Teracce", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4700, weekly_rent_price: 2000, currency: euros, image:  images[2], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
@@ -545,7 +566,14 @@ properties = Property.create!([
   { resort: chamonix, user: alice, name: "Chalet Guapa",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, currency: euros, image: images[27], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Ibex",       address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, currency: euros, image: images[28], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Jomain",     address: '123 street', sleeping_capacity: 18,  metres_from_lift: 10200, weekly_rent_price: 2050, currency: euros, image: images[29], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Kushi",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9800, weekly_rent_price: 1500, currency: euros, image: images[30], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true }
+  {
+    resort: chamonix, user: trip_advisor, name: 'A TripAdvisor Chalet',
+    address: 'On a mountain', sleeping_capacity: 9, number_of_bedrooms: 6,
+    number_of_bathrooms: 2, weekly_rent_price: 1400, currency: euros,
+    image: images[30], listing_type: Property::LISTING_TYPE_FOR_RENT,
+    publicly_visible: true, trip_advisor_property: trip_advisor_property,
+    description: 'This amazing chalet...'
+  }
   ])
 
 
@@ -671,23 +699,4 @@ Payment.create!(
   amount: '50'
 )
 
-FlipKeyLocation.delete_all
-
-FlipKeyLocation.create!(id: 1, rgt: nil, parent_path: '1', parent_id: nil, name: 'Earth', lft: nil, property_count: 0)
-# These ones can probably be imported from the data provided by FlipKey:
-FlipKeyLocation.create!(id: 2, rgt: 21787, parent_path: '1,2', parent_id: 1, name: 'Asia', lft: 2, property_count: 8459)
-FlipKeyLocation.create!(id: 4, rgt: 170697, parent_path: '1,4', parent_id: 1, name: 'Europe', lft: 21788, property_count: 120983)
-FlipKeyLocation.create!(id: 6, rgt: 178249, parent_path: '1,6', parent_id: 1, name: 'Africa', lft: 170698, property_count: 2894)
-FlipKeyLocation.create!(id: 8, rgt: 188135, parent_path: '1,8', parent_id: 1, name: 'Australia & South Pacific', lft: 178250, property_count: 3369)
-FlipKeyLocation.create!(id: 13, rgt: 204273, parent_path: '1,13', parent_id: 1, name: 'South America', lft: 188202, property_count: 5679)
-FlipKeyLocation.create!(id: 21, rgt: 206263, parent_path: '1,24', parent_id: 1, name: 'Middle East', lft: 204276, property_count: 1529)
-FlipKeyLocation.create!(id: 191, rgt: 272593, parent_path: '1,191', parent_id: 1, name: 'USA', lft: 206264, property_count: 123423)
-
 Enquiry.create!(user: bob, name: 'Carol', email: 'carol@example.org', phone: '01234 567890')
-
-TripAdvisorLocation.delete_all
-
-TripAdvisorLocation.create!([
-  { id: 6, name: 'Africa', location_type: 'continent' },
-  { id: 293808, name: 'Madagascar', location_type: 'country', parent_id: 6 }
-])

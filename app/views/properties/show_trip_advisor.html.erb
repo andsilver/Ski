@@ -1,0 +1,63 @@
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading) %>
+
+<%= content_for :theme, @property.theme %>
+
+<%= render partial: 'google_map',
+    locals: { lat: @property.latitude, lng: @property.longitude } %>
+<script>
+  $(function() {
+    $('#property-thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
+	});
+</script>
+<div id="property">
+  <%= render partial: 'user_logo', locals: { property: @property } %>
+<h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %></h1>
+<%= render partial: 'price_and_id', locals: { property: @property } %>
+
+<% if fav = favourite_for_property(@property) %>
+<%= form_for(fav, method: :delete) do |f| %>
+<p>
+  <%= f.submit t('favourites.remove'), class: 'btn btn-large btn-danger' %>
+</p>
+<% end %>
+<% else %>
+<% @favourite = Favourite.new(property_id: @property.id) %>
+<%= form_for @favourite do |f| %>
+<%= f.hidden_field :property_id %>
+<p>
+  <button type="submit" class="btn btn-primary btn-large btn-property"><i class='icon-heart icon-white'></i>
+  <%= t('favourites.add') %></button>
+</p>
+<% end %>
+<% end %>
+
+<%= render partial: 'images', locals: { property: @property } %>
+
+<h2><%= t('features') %></h2>
+
+<div id="features">
+  <div class="column">
+    <%= I18n.t('bedrooms') %>: <%= @property.number_of_bedrooms %>
+  </div>
+  <div class="column">
+    <%= I18n.t('bathrooms') %>: <%= @property.number_of_bathrooms %>
+  </div>
+  <div class="column">
+<% unless @property.for_sale? -%>
+    <%= I18n.t('sleeping_capacity') %>: <%= @property.sleeping_capacity %>
+<% end -%>
+  </div>
+  <%= clear %>
+</div>
+
+<% unless @property.description.nil? %>
+<h2><%= I18n.t('description') %></h2>
+<%= md @property.description %>
+<% end %>
+
+<%= render 'location_button_and_modal' if @property.latitude.present? %>
+
+<%= clear %>
+
+</div><!--#property-->
+<%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>

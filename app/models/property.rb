@@ -330,6 +330,8 @@ class Property < ActiveRecord::Base
             'hotel'
           elsif new_development?
             'new_development'
+          elsif trip_advisor_property
+            'trip_advisor'
           else
             'classic'
           end
