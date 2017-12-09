@@ -11,7 +11,9 @@ module TripAdvisor
       let(:ta_prop) do
         FactoryBot.create(
           :trip_advisor_property,
+          bedrooms: 6,
           sleeps: 8,
+          bathrooms: 2,
           title: 'title',
           description: 'description',
           id: 1,
@@ -61,8 +63,16 @@ module TripAdvisor
         expect(@property.listing_type).to eq Property::LISTING_TYPE_FOR_RENT
       end
 
+      it 'sets the number of bedrooms' do
+        expect(@property.number_of_bedrooms).to eq 6
+      end
+
       it 'sets the sleeping capacity' do
         expect(@property.sleeping_capacity).to eq 8
+      end
+
+      it 'sets the number of bathrooms' do
+        expect(@property.number_of_bathrooms).to eq 2
       end
 
       it 'sets the weekly rent price' do

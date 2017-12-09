@@ -23,7 +23,9 @@ module TripAdvisor
       prop.address = 'address'
       prop.currency = ta_prop.currency
       prop.weekly_rent_price = ta_prop.starting_price * 7
+      prop.number_of_bedrooms = ta_prop.bedrooms
       prop.sleeping_capacity = ta_prop.sleeps
+      prop.number_of_bathrooms = ta_prop.bathrooms
       prop.save!
       prop
     end
