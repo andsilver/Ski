@@ -24,6 +24,10 @@ class TripAdvisorProperty < ApplicationRecord
     end
   end
 
+  def booked_on?(date)
+    (@booked_dates ||= booked_dates)[date]
+  end
+
   private
 
   def availability_for(date)
@@ -32,10 +36,6 @@ class TripAdvisorProperty < ApplicationRecord
     else
       Availability::AVAILABLE
     end
-  end
-
-  def booked_on?(date)
-    (@booked_dates ||= booked_dates)[date]
   end
 
   def booked_dates
