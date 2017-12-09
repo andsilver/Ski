@@ -185,10 +185,6 @@ en:
   featured_resorts: 'Featured Resorts'
   features: 'Features'
   first_name: First name
-  flip_key_properties:
-    message_sent:
-      heading: 'Your message has been sent!'
-      return_to: 'Return to %{property_name}'
   floor_area: 'Floor area'
   for_rent: 'For Rent'
   for_sale: 'For Sale'

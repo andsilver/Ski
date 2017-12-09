@@ -168,13 +168,6 @@ class PropertiesController < ApplicationController
     show_shared
     @advertiser_web_property_id = @property.user.google_web_property_id unless @property.user.google_web_property_id.blank?
 
-    if @property.flip_key_property
-      begin
-        @json = @property.flip_key_property.parsed_json
-      rescue
-      end
-    end
-
     render @property.template
   end
 
