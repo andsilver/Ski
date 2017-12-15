@@ -37,6 +37,20 @@ module TripAdvisor
           details.import # run a second time
         end
 
+        it 'touches an existing TripAdvisorProperty' do
+          # (account for database subsecond truncation)
+          recentish = Time.current - 1.second
+
+          prop = TripAdvisorProperty.last
+          prop.updated_at = Time.current - 1.day
+          prop.save
+
+          details.import
+
+          prop = TripAdvisorProperty.last
+          expect(prop.updated_at).to be >= recentish
+        end
+
         it 'sets the title' do
           expect(property.title).to eq('CHALET 16 PERS ACTIVITIES FREE POOL' \
             ' / SPA BAR PANCAKES, PARK GAMES GIANT ...')

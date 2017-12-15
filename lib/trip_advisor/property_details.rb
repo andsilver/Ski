@@ -20,6 +20,10 @@ module TripAdvisor
         :trip_advisor_location_id, :url
       )
       if property.valid?
+        # ensure the updated_at timestamp is updated
+        # the save won't touch the database if all attributes remain
+        # unchanged
+        property.touch if property.persisted?
         property.save
       else
         property.destroy
