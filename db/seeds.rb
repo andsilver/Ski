@@ -533,7 +533,10 @@ trip_advisor_property = TripAdvisorProperty.create!(
   review_average: 4.5,
   trip_advisor_location: trip_advisor_chamonix,
   starting_price: 1400,
-  currency: euros
+  currency: euros,
+  min_stay_low: 2,
+  min_stay_high: 7,
+  sleeps: 9
 )
 
 properties = Property.create!([

@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class TripAdvisorCalendarEntry < ApplicationRecord
-  STATUSES = %w(BOOKED RESERVED)
+  BOOKED = 'BOOKED'
+  RESERVED = 'RESERVED'
+  STATUSES = [BOOKED, RESERVED]
 
   belongs_to :trip_advisor_property
 

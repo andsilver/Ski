@@ -1,0 +1,71 @@
+h2 Interested?
+.row
+  .col-md-6
+    p Fill in when you want to stay and how many adult guests will be staying.
+    p Then we will transfer you to our partner site to search for availability, prices, and more details.
+    p You will then be able to book or make an enquiry.
+  .col-md-6
+    = form_tag(get_details_trip_advisor_property_path(@property.trip_advisor_property))
+      javascript:
+        $(function() {
+          var checkOutDates = {
+            #{javascript_check_out_dates(@property.trip_advisor_property)}
+          };
+          var checkOutPicker = null;
+          var now = new Date();
+          var nextYear = new Date();
+          nextYear.setYear(now.getFullYear() + 1);
+          $('.check-in').pickadate({
+            min: now,
+            max: nextYear,
+            disable: [
+             true,
+             #{javascript_dates(@property.trip_advisor_property.check_in_dates)}
+            ],
+            onClose: function() {
+              if(this.get('select') == null) {
+                // check-in date cleared so disable all dates in the
+                // check-out picker, if set
+                if(checkOutPicker) {
+                  checkOutPicker.set('clear');
+                  checkOutPicker.set('disable', true);
+                }
+              } else {
+                var checkInPicker = this;
+                var checkOuts = checkOutDates[checkInPicker.get('select', 'yyyy-mm-dd')];
+
+                if(checkOutPicker) {
+                  // set to new check-out dates
+                  checkOutPicker.set('clear');
+                  checkOutPicker.set('disable', true);
+                  checkOutPicker.set('disable', checkOuts);
+                } else {
+                  // initialize the check-out picker
+                  $('.check-out').pickadate({
+                    min: now,
+                    max: nextYear,
+                    disable: checkOuts,
+                    onStart: function() {
+                      // save a reference to the check-out picker
+                      checkOutPicker = this;
+                    }
+                  });
+                }
+              }
+            }
+          });
+        });
+      .enquiry-dates
+        .form-group
+          = text_field_tag('check_in', '', required: true, class: 'form-control datepicker check-in', placeholder: 'Check-in')
+        .form-group
+          = text_field_tag('check_out', '', required: true, class: 'form-control datepicker check-out', placeholder: 'Check-out')
+      .form-group
+        select.form-control name="adults"
+          - (1..@property.trip_advisor_property.sleeps).each do |guests|
+            - if guests == @property.trip_advisor_property.sleeps
+              option= pluralize(guests, 'adult guest') + ' (max occupancy)'
+            - else
+              option= pluralize(guests, 'adult guest')
+      .form-group
+        input.form-control.btn.btn-primary type="submit" value="Get Details"

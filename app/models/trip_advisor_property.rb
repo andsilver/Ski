@@ -9,6 +9,9 @@ class TripAdvisorProperty < ApplicationRecord
 
   validates_numericality_of :review_average, less_than_or_equal_to: 5
   validates_presence_of :currency
+  validates_numericality_of :min_stay_high
+  validates_numericality_of :min_stay_low
+  validates_numericality_of :sleeps
   validates_presence_of :resort
   validates_presence_of :starting_price
 
@@ -26,6 +29,34 @@ class TripAdvisorProperty < ApplicationRecord
 
   def booked_on?(date)
     (@booked_dates ||= booked_dates)[date]
+  end
+
+  # Returns an array of Dates where check-in is possible.
+  def check_in_dates
+    dates = []
+    today = Date.today
+    (0..365).each do |days|
+      date = today + days.days
+      dates << date if check_in_on?(date)
+    end
+    dates
+  end
+
+  # TODO: Improve this naive test.
+  def check_in_on?(date)
+    return !booked_on?(date)
+  end
+
+  # Returns valid check out dates for the given check in date, up to a
+  # maximum stay length of 30 days.
+  def check_out_dates(check_in)
+    dates = []
+    (min_stay_low..30).each do |days|
+      date = check_in + days.days
+      dates << date
+      break if booked_on?(date)
+    end
+    dates
   end
 
   private

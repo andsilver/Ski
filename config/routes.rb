@@ -230,6 +230,10 @@ Rails.application.routes.draw do
   end
   get "welcome/:role" => "roles#sales_pitch", as: :sales_pitch
 
+  resources :trip_advisor_properties, only: [] do
+    post 'get_details', on: :member
+  end
+
   resources :websites
   get 'cms/directory-price' => 'websites#edit_prices', as: :directory_price
 

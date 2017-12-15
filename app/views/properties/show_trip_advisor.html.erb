@@ -52,6 +52,8 @@
 
 <%= render partial: 'trip_advisor_calendar' %>
 
+<%= render partial: 'trip_advisor_enquiry' %>
+
 <% unless @property.description.nil? %>
 <h2><%= I18n.t('description') %></h2>
 <%= md @property.description %>

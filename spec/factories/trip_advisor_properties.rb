@@ -18,8 +18,8 @@ FactoryBot.define do
     search_url "MyString"
     can_accept_inquiry "MyString"
     booking_option "MyString"
-    min_stay_high "MyString"
-    min_stay_low "MyString"
+    min_stay_high 6
+    min_stay_low 2
     association :trip_advisor_location
     starting_price 123
     association :currency
