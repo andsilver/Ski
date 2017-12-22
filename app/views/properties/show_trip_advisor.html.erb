@@ -49,7 +49,7 @@
   </div>
   <% if (amenities = @property.amenities).any? %>
     <p class="divider">&nbsp;</p>
-    <% amenities.each_slice(amenities.count / 3) do |group| %>
+    <% amenities.each_slice((amenities.count / 3.0).ceil) do |group| %>
       <div class="column">
         <% group.each do |amenity| %>
         <%= feature_tick(true, amenity.name.capitalize.sub('_', ' ')) %><br>
