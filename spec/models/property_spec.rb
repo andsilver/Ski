@@ -6,6 +6,7 @@ RSpec.describe Property, type: :model do
   describe 'associations' do
     it { should have_many(:images) }
     it { should have_many(:adverts) }
+    it { should have_and_belong_to_many(:amenities) }
     it { should have_many(:availabilities).dependent(:delete_all) }
     it { should belong_to(:trip_advisor_property) }
   end
@@ -83,6 +84,18 @@ RSpec.describe Property, type: :model do
 
   describe '#price' do
     pending
+  end
+
+  describe '#has_amenity?' do
+    it 'returns truthy if property has an amenity with the given name' do
+      property = FactoryBot.create(:property)
+      property.amenities << Amenity.create(name: 'DVD')
+      expect(property).to have_amenity 'DVD'
+    end
+
+    it 'returns falsey if property has no amenity with the given name' do
+      expect(Property.new).not_to have_amenity 'DVD'
+    end
   end
 
   describe '#features' do

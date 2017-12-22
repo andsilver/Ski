@@ -20,6 +20,7 @@ class Property < ActiveRecord::Base
   has_many :adverts_in_basket, -> { where starts_at: nil }, class_name: 'Advert', dependent: :delete_all
   has_many :adverts, dependent: :nullify
 
+  has_and_belongs_to_many :amenities
   has_many :availabilities, dependent: :delete_all
 
   validates_presence_of :resort
@@ -205,6 +206,10 @@ class Property < ActiveRecord::Base
   def price(advert, property_number)
     pp = PropertyPricer.new(months: advert.months, property_number: property_number)
     pp.price_in_cents
+  end
+
+  def has_amenity?(amenity_name)
+    amenities.where(name: amenity_name).any?
   end
 
   # Snaps distances (from town centre and from lift) to the closest

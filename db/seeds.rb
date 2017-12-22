@@ -569,16 +569,32 @@ properties = Property.create!([
   { resort: chamonix, user: alice, name: "Chalet Guapa",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, currency: euros, image: images[27], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Ibex",       address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, currency: euros, image: images[28], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Jomain",     address: '123 street', sleeping_capacity: 18,  metres_from_lift: 10200, weekly_rent_price: 2050, currency: euros, image: images[29], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
-  {
-    resort: chamonix, user: trip_advisor, name: 'A TripAdvisor Chalet',
-    address: 'On a mountain', sleeping_capacity: 9, number_of_bedrooms: 6,
-    number_of_bathrooms: 2, weekly_rent_price: 1400, currency: euros,
-    image: images[30], listing_type: Property::LISTING_TYPE_FOR_RENT,
-    publicly_visible: true, trip_advisor_property: trip_advisor_property,
-    description: 'This amazing chalet...'
-  }
   ])
 
+a_trip_advisor_chalet = Property.create!(
+  resort: chamonix, user: trip_advisor, name: 'A TripAdvisor Chalet',
+  address: 'On a mountain', sleeping_capacity: 9, number_of_bedrooms: 6,
+  number_of_bathrooms: 2, weekly_rent_price: 1400, currency: euros,
+  image: images[30], listing_type: Property::LISTING_TYPE_FOR_RENT,
+  publicly_visible: true, trip_advisor_property: trip_advisor_property,
+  description: 'This amazing chalet...'
+)
+
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'BBQ')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'IRON')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'FRIDGE')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'AIR_CONDITIONING')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'DRYER')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'DVD')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'INTERNET_ACCESS')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'MICROWAVE')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'PARKING')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'SATELLITE_TV')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'TV')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'WASHING_MACHINE')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'STOVE')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'DECK')
+a_trip_advisor_chalet.amenities << Amenity.create(name: 'WATERFRONT')
 
 n = 0
 properties.each do |property|

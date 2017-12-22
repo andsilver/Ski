@@ -5,6 +5,7 @@ require_relative '../trip_advisor'
 module TripAdvisor
   class PropertyImporter
     attr_reader :json
+    attr_accessor :property, :ta_property
 
     def initialize(json)
       @json = json
@@ -13,19 +14,49 @@ module TripAdvisor
     def import
       return unless data_valid?
 
+      import_details
+      return unless ta_property.persisted?
+
+      import_calendar
+      create_base_property
+      advertise
+      import_images
+      import_amenities
+    end
+
+    def import_details
       details = PropertyDetails.new(data)
       details.import
+      self.ta_property = details.property
+    end
 
-      ta_prop = details.property
-      return unless ta_prop.persisted?
+    def import_calendar
+      PropertyCalendarImporter.new(ta_property.id, data['calendar']).import
+    end
 
-      PropertyCalendarImporter.new(ta_prop.id, data['calendar']).import
+    def create_base_property
+      self.property = BaseProperty.new(ta_property).create(TripAdvisor.user)
+    end
 
-      prop = BaseProperty.new(ta_prop).create(TripAdvisor.user)
-      LongTermAdvert.new(prop).create
+    def advertise
+      return unless property
+      LongTermAdvert.new(property).create
+    end
 
-      images = PropertyImages.new(prop, json)
+    def import_images
+      return unless property
+
+      images = PropertyImages.new(property, json)
       images.import
+    end
+
+    def import_amenities
+      return unless property && data['details']['amenities']
+
+      data['details']['amenities'].each do |a|
+        property.amenities << Amenity.find_or_create_by(name: a)
+      end
+      property.save
     end
 
     private

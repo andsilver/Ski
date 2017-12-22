@@ -35,7 +35,7 @@
 
 <h2><%= t('features') %></h2>
 
-<div id="features">
+<div id="features" class="group">
   <div class="column">
     <%= I18n.t('bedrooms') %>: <%= @property.number_of_bedrooms %>
   </div>
@@ -47,7 +47,16 @@
     <%= I18n.t('sleeping_capacity') %>: <%= @property.sleeping_capacity %>
 <% end -%>
   </div>
-  <%= clear %>
+  <% if (amenities = @property.amenities).any? %>
+    <p class="divider">&nbsp;</p>
+    <% amenities.each_slice(amenities.count / 3) do |group| %>
+      <div class="column">
+        <% group.each do |amenity| %>
+        <%= feature_tick(true, amenity.name.capitalize.sub('_', ' ')) %><br>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
 </div>
 
 <%= render partial: 'trip_advisor_calendar' %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203110409) do
+ActiveRecord::Schema.define(version: 20171222110517) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -69,6 +69,19 @@ ActiveRecord::Schema.define(version: 20171203110409) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["path"], name: "index_alt_attributes_on_path"
+  end
+
+  create_table "amenities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "amenities_properties", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+    t.bigint "amenity_id"
+    t.bigint "property_id"
+    t.index ["amenity_id"], name: "index_amenities_properties_on_amenity_id"
+    t.index ["property_id"], name: "index_amenities_properties_on_property_id"
   end
 
   create_table "availabilities", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|

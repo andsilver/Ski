@@ -61,18 +61,10 @@ module TripAdvisor
                     .as_null_object
           allow(PropertyDetails).to receive(:new).and_return(details)
 
-          pci = instance_double(PropertyCalendarImporter)
-          expect(PropertyCalendarImporter)
-            .to receive(:new)
-            .with(123, JSON.parse(json)['calendar'])
-            .and_return(pci)
-          expect(pci).to receive(:import)
-
-          null_object(BaseProperty)
-          null_object(LongTermAdvert)
-          null_object(PropertyImages)
-
           importer = PropertyImporter.new(json)
+          allow(importer).to receive(:create_base_property)
+
+          expect(importer).to receive(:import_calendar)
           importer.import
         end
 
@@ -81,15 +73,10 @@ module TripAdvisor
                     .as_null_object
           allow(PropertyDetails).to receive(:new).and_return(details)
 
-          bp = instance_double(BaseProperty)
-          expect(BaseProperty).to receive(:new).with(ta_prop).and_return(bp)
-          expect(bp).to receive(:create).with(TripAdvisor.user)
-
-          null_object(PropertyCalendarImporter)
-          null_object(LongTermAdvert)
-          null_object(PropertyImages)
-
           importer = PropertyImporter.new(json)
+          allow(importer).to receive(:import_calendar)
+
+          expect(importer).to receive(:create_base_property)
           importer.import
         end
 
@@ -119,20 +106,24 @@ module TripAdvisor
                     .as_null_object
           allow(PropertyDetails).to receive(:new).and_return(details)
 
-          prop = Property.new
-          allow(BaseProperty)
-            .to receive(:new)
-            .and_return(instance_double(BaseProperty, create: prop))
+          importer = PropertyImporter.new(json)
+          allow(importer).to receive(:import_calendar)
+          allow(importer).to receive(:create_base_property)
 
-          pi = instance_double(PropertyImages)
-          expect(PropertyImages)
-            .to receive(:new).with(prop, json).and_return(pi)
-          expect(pi).to receive(:import)
+          expect(importer).to receive(:import_images)
+          importer.import
+        end
 
-          null_object(PropertyCalendarImporter)
-          null_object(LongTermAdvert)
+        it 'imports amenities' do
+          details = instance_double(PropertyDetails, property: ta_prop)
+                    .as_null_object
+          allow(PropertyDetails).to receive(:new).and_return(details)
 
           importer = PropertyImporter.new(json)
+          allow(importer).to receive(:import_calendar)
+          allow(importer).to receive(:create_base_property)
+
+          expect(importer).to receive(:import_amenities)
           importer.import
         end
       end
@@ -152,6 +143,66 @@ module TripAdvisor
           importer = PropertyImporter.new(json)
           importer.import
         end
+      end
+    end
+
+    describe '#import_calendar' do
+      it 'uses a PropertyCalendarImporter' do
+        ta_prop = instance_double(TripAdvisorProperty, id: 123)
+
+        pci = instance_double(PropertyCalendarImporter)
+        expect(PropertyCalendarImporter)
+          .to receive(:new)
+          .with(123, JSON.parse(json)['calendar'])
+          .and_return(pci)
+        expect(pci).to receive(:import)
+
+        importer = TripAdvisor::PropertyImporter.new(json)
+        importer.ta_property = ta_prop
+        importer.import_calendar
+      end
+    end
+
+    describe '#create_base_property' do
+      it 'creates a new base property with the TA property and user' do
+        ta_prop = instance_double(TripAdvisorProperty)
+        bp = instance_double(BaseProperty)
+        expect(BaseProperty).to receive(:new).with(ta_prop).and_return(bp)
+        expect(bp).to receive(:create).with(TripAdvisor.user)
+
+        importer = TripAdvisor::PropertyImporter.new('{}')
+        importer.ta_property = ta_prop
+        importer.create_base_property
+      end
+    end
+
+    describe '#import_images' do
+      it 'uses PropertyImages to import images for the Property' do
+        json = '{}'
+        prop = instance_double(Property)
+
+        pi = instance_double(PropertyImages)
+        expect(PropertyImages)
+          .to receive(:new).with(prop, json).and_return(pi)
+        expect(pi).to receive(:import)
+
+        importer = TripAdvisor::PropertyImporter.new(json)
+        importer.property = prop
+        importer.import_images
+      end
+    end
+
+    describe '#import_amenities' do
+      it 'imports amenities from the details/amenities JSON array' do
+        property = FactoryBot.create(:property)
+
+        importer = TripAdvisor::PropertyImporter.new(json)
+        importer.property = property
+        importer.import_amenities
+
+        expect(property.amenities.count).to eq 2
+        expect(property).to have_amenity 'DVD'
+        expect(property).to have_amenity 'ELDERLY_ACCESSIBLE'
       end
     end
   end

@@ -293,6 +293,12 @@ textarea {
   color: #000;
 }
 
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .clear {
   font-size: 1px;
   line-height: 1px;
