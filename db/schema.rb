@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106124237) do
+ActiveRecord::Schema.define(version: 20180106124937) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 20180106124237) do
     t.integer "availability", limit: 1, null: false
     t.boolean "check_in", null: false
     t.boolean "check_out", null: false
-    t.index ["created_at"], name: "index_availabilities_on_created_at"
     t.index ["property_id", "start_date"], name: "index_availabilities_on_property_id_and_start_date"
     t.index ["property_id"], name: "index_availabilities_on_property_id"
     t.index ["start_date"], name: "index_availabilities_on_start_date"
