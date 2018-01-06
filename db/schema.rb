@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106124937) do
+ActiveRecord::Schema.define(version: 20180106125413) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -84,16 +84,16 @@ ActiveRecord::Schema.define(version: 20180106124937) do
     t.index ["property_id"], name: "index_amenities_properties_on_property_id"
   end
 
-  create_table "availabilities", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.integer "property_id"
-    t.date "start_date"
+  create_table "availabilities", primary_key: ["start_date", "property_id"], force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "property_id", null: false
+    t.date "start_date", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "availability", limit: 1, null: false
     t.boolean "check_in", null: false
     t.boolean "check_out", null: false
-    t.index ["property_id", "start_date"], name: "index_availabilities_on_property_id_and_start_date"
     t.index ["property_id"], name: "index_availabilities_on_property_id"
+    t.index ["start_date", "property_id"], name: "index_availabilities_on_start_date_and_property_id"
     t.index ["start_date"], name: "index_availabilities_on_start_date"
   end
 
