@@ -7,6 +7,9 @@ class TripAdvisorProperty < ApplicationRecord
   belongs_to :currency
   has_many :trip_advisor_calendar_entries, dependent: :delete_all
 
+  validates_length_of(
+    :title, within: Property::MIN_NAME_LENGTH..Property::MAX_NAME_LENGTH
+  )
   validates_numericality_of :review_average, less_than_or_equal_to: 5
   validates_presence_of :currency
   validates_numericality_of :min_stay_high

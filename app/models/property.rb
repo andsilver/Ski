@@ -29,7 +29,9 @@ class Property < ActiveRecord::Base
   validates_presence_of :currency
   validates :price_description, length: { maximum: 30 }
 
-  validates_length_of :name, within: 4..255
+  MIN_NAME_LENGTH = 4
+  MAX_NAME_LENGTH = 255
+  validates_length_of :name, within: MIN_NAME_LENGTH..MAX_NAME_LENGTH
   validates_length_of :strapline, within: 0..255
 
   VALID_DISTANCES = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
