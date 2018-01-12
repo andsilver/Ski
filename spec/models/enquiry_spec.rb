@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe Enquiry do
+RSpec.describe Enquiry, type: :model do
   # ActiveModel
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:phone) }
 
   def valid_enquiry
     Enquiry.new(name: 'Alice', email: 'alice@mychaletfinder.com',
-      phone: '01234 567890')
+      phone: '01234 567890', user: FactoryBot.create(:user))
   end
 
   it "validates format of email" do

@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Late Availability' do
   fixtures :websites
+
+  let(:owner) { FactoryBot.create(:user) }
 
   scenario 'Visit the page' do
     visit '/late-availability'
@@ -31,7 +35,7 @@ feature 'Late Availability' do
       address: 'address',
       name: 'property',
       currency: @currency,
-      user_id: 1
+      user_id: owner.id
     }.merge(attributes)
 
     Property.create!(attributes)

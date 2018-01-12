@@ -1,3 +1,5 @@
-class Payment < ActiveRecord::Base
-  belongs_to :order
+# frozen_string_literal: true
+
+class Payment < ApplicationRecord
+  belongs_to :order, optional: true
 end

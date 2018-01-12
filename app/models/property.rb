@@ -4,15 +4,15 @@ class Property < ActiveRecord::Base
   include AdvertBehaviours
 
   belongs_to :user
-  belongs_to :country
-  belongs_to :region
+  belongs_to :country, optional: true
+  belongs_to :region, optional: true
   belongs_to :resort, touch: true
-  belongs_to :image
+  belongs_to :image, optional: true
   belongs_to :currency
 
-  belongs_to :interhome_accommodation
-  belongs_to :pv_accommodation
-  belongs_to :trip_advisor_property
+  belongs_to :interhome_accommodation, optional: true
+  belongs_to :pv_accommodation, optional: true
+  belongs_to :trip_advisor_property, optional: true
 
   has_many :images, dependent: :destroy
 

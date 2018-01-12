@@ -61,9 +61,8 @@ RSpec.describe Resort, type: :model do
 
   describe '#handle_slug_change' do
     it 'updates the paths of affected pages' do
-      require 'securerandom'
-      slug_pre = SecureRandom.hex
-      slug_post = SecureRandom.hex
+      slug_pre = 'pre'
+      slug_post = 'post'
       r = FactoryBot.create(:resort, slug: slug_pre)
       r.create_page('summer-holidays')
       r.slug = slug_post

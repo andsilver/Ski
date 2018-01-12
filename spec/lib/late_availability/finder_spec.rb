@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 module LateAvailability
-  describe Finder do
+  RSpec.describe Finder do
     describe '#find_featured' do
       it 'returns at most 5 properties when limit is 5' do
         6.times { create_featured_late_availability_property! }
@@ -19,6 +21,7 @@ module LateAvailability
     def create_featured_late_availability_property!
       @resort ||= FactoryBot.create(:resort)
       @currency ||= Currency.create!(name: 'sterling', code: 'gbp', in_euros: 1)
+      @owner ||= FactoryBot.create(:user)
 
       Property.create!(
         late_availability: true,
@@ -26,7 +29,7 @@ module LateAvailability
         address: 'address',
         name: 'property',
         currency: @currency,
-        user_id: 1
+        user: @owner
       )
     end
   end

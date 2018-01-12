@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Image < ActiveRecord::Base
   IMAGE_STORAGE_PATH = "#{Rails.root.to_s}/public/up/images"
   IMAGE_STORAGE_URL = "/up/images"
@@ -8,8 +10,8 @@ class Image < ActiveRecord::Base
   after_save    :write_file
   after_destroy :delete_files
 
-  belongs_to :property
-  belongs_to :user
+  belongs_to :property, optional: true
+  belongs_to :user, optional: true
 
   attr_reader :was_sized
 

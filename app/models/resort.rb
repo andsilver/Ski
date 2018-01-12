@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Resort < ActiveRecord::Base
   include Brochures
   include RelatedPages
 
   belongs_to :country
-  belongs_to :region, inverse_of: :resorts, touch: true
+  belongs_to :region, inverse_of: :resorts, touch: true, optional: true
 
   has_many :directory_adverts, dependent: :restrict_with_exception
   has_many :trip_advisor_locations, dependent: :nullify

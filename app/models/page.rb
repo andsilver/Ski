@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Page < ActiveRecord::Base
   validates :path, :title, presence: true
 
@@ -5,10 +7,10 @@ class Page < ActiveRecord::Base
 
   validates :description, :keywords, :path, :title, length: { maximum: 255 }
 
-  belongs_to :footer
+  belongs_to :footer, optional: true
 
-  belongs_to :region, touch: true
-  belongs_to :resort, touch: true
+  belongs_to :region, touch: true, optional: true
+  belongs_to :resort, touch: true, optional: true
 
   def header_html(locale)
     Snippet.find_by(name: header_snippet_name, locale: locale).try(:snippet)

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe DirectoryAdvertsController do
   let(:website) { double(Website).as_null_object }
-  let(:current_user) { double(User).as_null_object }
+  let(:current_user) { FactoryBot.create(:user) }
 
   before do
     allow(Website).to receive(:first).and_return(website)
@@ -118,16 +118,28 @@ describe DirectoryAdvertsController do
     before do
       allow(DirectoryAdvert).to receive(:new).and_return(directory_advert)
       allow(directory_advert).to receive(:default_months).and_return(12)
-      allow(directory_advert).to receive(:user_id).and_return(1)
-      allow(Advert).to receive(:new_for).with(directory_advert).and_return(Advert.new(user_id: 1))
+      allow(directory_advert).to receive(:user_id).and_return(current_user.id)
+      allow(Advert)
+        .to receive(:new_for)
+        .with(directory_advert)
+        .and_return(Advert.new(user_id: current_user.id))
     end
 
     def post_valid
-      post "create", params: { directory_advert: { category_id: '1', business_address: '123 av', resort_id: ['1'] } }
+      post(
+        'create', params: {
+          directory_advert: {
+            category_id: '1', business_address: '123 av', resort_id: ['1']
+          }
+        }
+      )
     end
 
     it "instantiates a new directory advert" do
-      expect(DirectoryAdvert).to receive(:new).with({"category_id" => "1", "business_address" => "123 av"}).and_return(directory_advert)
+      expect(DirectoryAdvert)
+        .to receive(:new)
+        .with({"category_id" => "1", "business_address" => "123 av"})
+        .and_return(directory_advert)
       post_valid
     end
 

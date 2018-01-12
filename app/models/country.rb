@@ -2,7 +2,7 @@ class Country < ActiveRecord::Base
   include Brochures
   include RelatedPages
 
-  belongs_to :image, dependent: :destroy
+  belongs_to :image, dependent: :destroy, optional: true
 
   has_many :regions, -> { order 'name' }, inverse_of: :country, dependent: :destroy
   has_many :visible_regions, -> { where(visible: true).order('name') }, class_name: 'Region'

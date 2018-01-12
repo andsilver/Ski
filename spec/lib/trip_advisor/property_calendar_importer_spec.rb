@@ -13,10 +13,11 @@ module TripAdvisor
     end
 
     let(:calendar) { JSON.parse(json)['calendar'] }
+    let(:ta_prop) { FactoryBot.create(:trip_advisor_property) }
 
     describe '#import' do
       before do
-        importer = PropertyCalendarImporter.new(123, calendar)
+        importer = PropertyCalendarImporter.new(ta_prop.id, calendar)
         importer.import
       end
 
@@ -26,7 +27,7 @@ module TripAdvisor
 
       it 'associates entries with the TripAdvisorProperty' do
         e = TripAdvisorCalendarEntry.first
-        expect(e.trip_advisor_property_id).to eq 123
+        expect(e.trip_advisor_property_id).to eq ta_prop.id
       end
 
       it 'sets the inclusive start date' do

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Advert < ActiveRecord::Base
   belongs_to :user
-  belongs_to :property
-  belongs_to :directory_advert
+  belongs_to :property, optional: true
+  belongs_to :directory_advert, optional: true
 
   has_one :order_line
 

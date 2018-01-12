@@ -113,7 +113,7 @@ class DirectoryAdvertsController < ApplicationController
   def update_images
     begin
       banner_image = Image.new(image: params['banner_image'])
-      banner_image.user_id = @current_user.id
+      banner_image.user_id = current_user.id
 
       if banner_image.save
         if valid_banner_size?(banner_image)
@@ -132,7 +132,7 @@ class DirectoryAdvertsController < ApplicationController
 
     begin
       directory_image = Image.new(image: params[:image])
-      directory_image.user_id = @current_user.id
+      directory_image.user_id = current_user.id
 
       if directory_image.save
         @directory_advert.image.destroy unless @directory_advert.image.nil?

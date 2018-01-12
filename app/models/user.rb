@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class User < ActiveRecord::Base
   VALID_EMAIL_FORMAT = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   belongs_to :role
-  belongs_to :billing_country, class_name: 'Country'
-  belongs_to :vat_country, class_name: 'Country'
-  belongs_to :coupon
-  belongs_to :image
+  belongs_to :billing_country, class_name: 'Country', optional: true
+  belongs_to :vat_country, class_name: 'Country', optional: true
+  belongs_to :coupon, optional: true
+  belongs_to :image, optional: true
 
   has_many :directory_adverts, dependent: :destroy
   has_many :enquiries, -> { order 'created_at DESC' }, dependent: :delete_all

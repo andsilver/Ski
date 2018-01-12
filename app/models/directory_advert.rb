@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DirectoryAdvert < ActiveRecord::Base
   include AdvertBehaviours
 
@@ -6,8 +8,8 @@ class DirectoryAdvert < ActiveRecord::Base
   belongs_to :category
   belongs_to :resort
   belongs_to :user
-  belongs_to :image, dependent: :destroy
-  belongs_to :banner_image, class_name: 'Image', dependent: :destroy
+  belongs_to :image, dependent: :destroy, optional: true
+  belongs_to :banner_image, class_name: 'Image', dependent: :destroy, optional: true
 
   has_many :adverts, dependent: :nullify
 
