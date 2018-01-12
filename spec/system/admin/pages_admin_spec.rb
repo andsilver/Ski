@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Pages admin' do
+RSpec.describe 'Pages admin', type: :system do
   fixtures :roles, :users, :websites
 
-  background do
+  before do
     sign_in_as_admin
   end
 

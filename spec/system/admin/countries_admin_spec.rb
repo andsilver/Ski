@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Countries admin' do
+RSpec.describe 'Countries admin', type: :system do
   fixtures :countries, :holiday_types, :roles, :users, :websites
 
   scenario 'Link holiday type' do

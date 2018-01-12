@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Resorts admin' do
+RSpec.describe 'Resorts admin', type: :system do
   fixtures :countries, :holiday_types, :regions, :roles, :users, :websites
 
   scenario 'Delete a resort' do

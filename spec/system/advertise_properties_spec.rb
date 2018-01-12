@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Advertise Properties' do
+RSpec.describe 'Advertise Properties', type: :system do
   fixtures :countries, :currencies, :resorts, :roles, :users, :websites
 
   let(:booking_url) { 'http://example.com/booking.url' }

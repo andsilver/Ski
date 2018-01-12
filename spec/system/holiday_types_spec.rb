@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature "Holiday types" do
+RSpec.describe 'Holiday types', type: :system do
   fixtures :countries, :holiday_types, :resorts, :websites
 
   after(:each) do

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Email a friend' do
+RSpec.describe 'Email a friend', type: :system do
   let!(:property) { FactoryBot.create(:property) }
 
-  background do
+  before do
     FactoryBot.create(:website)
   end
 

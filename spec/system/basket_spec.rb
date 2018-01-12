@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Basket' do
+RSpec.describe 'Basket', type: :system do
   fixtures :banner_prices, :categories, :countries, :resorts, :roles, :users, :websites
 
   scenario 'Empty basket' do

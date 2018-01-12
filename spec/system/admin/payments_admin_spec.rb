@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-feature 'Payments admin' do
+RSpec.describe 'Payments admin', type: :system do
   fixtures :roles, :users, :websites
 
   scenario 'View payment' do

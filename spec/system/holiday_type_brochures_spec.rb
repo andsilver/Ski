@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature "Holiday type brochures" do
+RSpec.describe 'Holiday type brochures', type: :system do
   fixtures :websites
 
   let(:france) { FactoryBot.create(:country) }

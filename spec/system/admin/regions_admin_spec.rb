@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Regions admin' do
+RSpec.describe 'Regions admin', type: :system do
   fixtures :countries, :holiday_types, :regions, :roles, :users, :websites
 
   scenario 'List regions' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-feature 'Late Availability' do
+RSpec.describe 'Late Availability', type: :system do
   fixtures :websites
 
   let(:owner) { FactoryBot.create(:user) }

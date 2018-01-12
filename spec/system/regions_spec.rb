@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Regions' do
+RSpec.describe 'Regions', type: :system do
   fixtures :websites
 
   scenario 'Region page shows region info' do

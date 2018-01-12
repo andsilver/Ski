@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'My Adverts' do
+RSpec.describe 'My Adverts', type: :system do
   fixtures :categories, :countries, :resorts, :roles, :users, :websites
 
   scenario 'Delete all new adverts' do

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Window base prices admin' do
+RSpec.describe 'Window base prices admin', type: :system do
   fixtures :roles, :users, :websites
 
   scenario 'List window base prices' do

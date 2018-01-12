@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Switch user' do
+RSpec.describe 'Switch user', type: :system do
   fixtures :roles, :users, :websites
 
   let!(:user) { FactoryBot.create(:user, first_name: 'RegularUser') }

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Advertise' do
+RSpec.describe 'Advertise', type: :system do
 
   # In order to manage my contact details and advertisements
   # As an advertiser

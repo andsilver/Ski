@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Import Pierre et Vacances' do
+RSpec.describe 'Import Pierre et Vacances', type: :system do
   before { setup_website }
 
   fixtures :countries, :currencies, :roles, :users

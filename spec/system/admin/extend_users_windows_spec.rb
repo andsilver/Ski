@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature "Extend a user's windows" do
+RSpec.describe "Extend a user's windows", type: :system do
   fixtures :users, :roles
 
   let(:advertiser) { FactoryBot.create(:a_property_developer) }
   let!(:advert) { Advert.create(user: advertiser, window: true, starts_at: Time.zone.now, expires_at: '2015-01-01') }
 
-  background do
+  before do
     FactoryBot.create(:website)
     sign_in_as_admin
   end

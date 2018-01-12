@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Banner adverts' do
+RSpec.describe 'Banner adverts', type: :system do
   fixtures :banner_prices, :categories, :countries, :resorts, :roles, :users, :websites
 
   scenario 'Create multiple banner adverts' do

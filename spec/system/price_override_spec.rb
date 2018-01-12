@@ -1,7 +1,8 @@
-# encoding: utf-8
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Price Override' do
+RSpec.describe 'Price Override', type: :system do
   fixtures :banner_prices, :categories, :countries, :resorts, :websites
 
   scenario 'Price override shows in basket' do

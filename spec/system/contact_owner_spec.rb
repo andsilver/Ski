@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Contact owner' do
+RSpec.describe 'Contact owner', type: :system do
 
   # In order to express my interest in renting or buying the property
   # and ask further questions that I may have

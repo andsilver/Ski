@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Currencies admin' do
+RSpec.describe 'Currencies admin', type: :system do
   fixtures :countries, :holiday_types, :roles, :users, :websites
 
   scenario 'List currencies' do

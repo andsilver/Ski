@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'Holiday types admin' do
+RSpec.describe 'Holiday types admin', type: :system do
   fixtures :roles, :users, :websites
 
   scenario 'List holiday types' do

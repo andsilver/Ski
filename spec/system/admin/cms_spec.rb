@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature 'CMS' do
+RSpec.describe 'CMS', type: :system do
   # In order to maintain the website and instil confidence in larger customers
   # As a website owner
   # I want a professional, presentable and functional CMS that will allow me to
