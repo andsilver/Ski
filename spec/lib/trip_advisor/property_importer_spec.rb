@@ -148,12 +148,12 @@ module TripAdvisor
 
     describe '#import_calendar' do
       it 'uses a PropertyCalendarImporter' do
-        ta_prop = instance_double(TripAdvisorProperty, id: 123)
+        ta_prop = instance_double(TripAdvisorProperty)
 
         pci = instance_double(PropertyCalendarImporter)
         expect(PropertyCalendarImporter)
           .to receive(:new)
-          .with(123, JSON.parse(json)['calendar'])
+          .with(ta_prop, JSON.parse(json)['calendar'])
           .and_return(pci)
         expect(pci).to receive(:import)
 

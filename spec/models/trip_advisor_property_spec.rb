@@ -78,6 +78,17 @@ RSpec.describe TripAdvisorProperty, type: :model do
     end
   end
 
+  describe '#clear_calendar' do
+    it 'deletes all TripAdvisorCalendarEntries' do
+      ta_prop = FactoryBot.create(:trip_advisor_property)
+      FactoryBot.create(
+        :trip_advisor_calendar_entry, trip_advisor_property: ta_prop
+      )
+      ta_prop.clear_calendar
+      expect(ta_prop.trip_advisor_calendar_entries.count).to eq 0
+    end
+  end
+
   describe '#booked_on?' do
     it 'returns falsey for any date when there are no bookings' do
       expect(TripAdvisorProperty.new.booked_on?(Date.current)).to be_falsey

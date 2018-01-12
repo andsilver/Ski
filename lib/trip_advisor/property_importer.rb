@@ -31,7 +31,7 @@ module TripAdvisor
     end
 
     def import_calendar
-      PropertyCalendarImporter.new(ta_property.id, data['calendar']).import
+      PropertyCalendarImporter.new(ta_property, data['calendar']).import
     end
 
     def create_base_property

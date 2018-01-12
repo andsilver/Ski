@@ -27,6 +27,11 @@ class TripAdvisorProperty < ApplicationRecord
     end
   end
 
+  # Deletes all calendar entries.
+  def clear_calendar
+    trip_advisor_calendar_entries.delete_all
+  end
+
   def booked_on?(date)
     (@booked_dates ||= booked_dates)[date]
   end
