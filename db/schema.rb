@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106125413) do
+ActiveRecord::Schema.define(version: 20180112122915) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -744,6 +744,7 @@ ActiveRecord::Schema.define(version: 20180106125413) do
     t.date "exclusive_end", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["trip_advisor_property_id"], name: "index_trip_advisor_calendar_entries_on_trip_advisor_property_id"
   end
 
   create_table "trip_advisor_locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
