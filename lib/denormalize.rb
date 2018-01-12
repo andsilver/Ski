@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Denormalize
   def self.denormalize
     update_featured_properties
@@ -86,7 +88,7 @@ class Denormalize
     end
     Property.resume_geocoding
 
-    Availability.where('created_at < ?', start_time).delete_all
+    Availability.delete_past
   end
 
   def self.generate_thumbnails

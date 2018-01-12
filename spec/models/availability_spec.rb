@@ -8,4 +8,18 @@ RSpec.describe Availability, type: :model do
     end
     it { should validate_presence_of(:start_date) }
   end
+
+  describe '.delete_past' do
+    it 'deletes availabilities with start_date before today' do
+      av = FactoryBot.create(:availability, start_date: Date.yesterday)
+      Availability.delete_past
+      expect(Availability.count).to eq 0
+    end
+
+    it 'keeps availabilities with start_date of today' do
+      av = FactoryBot.create(:availability, start_date: Date.current)
+      Availability.delete_past
+      expect(Availability.count).to eq 1
+    end
+  end
 end

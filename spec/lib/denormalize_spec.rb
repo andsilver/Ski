@@ -73,4 +73,11 @@ describe Denormalize do
       expect(r.reload.for_rent_count).to eq 1
     end
   end
+
+  describe '.cache_availability' do
+    it 'deletes past availabilities' do
+      expect(Availability).to receive(:delete_past)
+      Denormalize.cache_availability
+    end
+  end
 end

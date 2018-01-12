@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Availability < ActiveRecord::Base
+class Availability < ApplicationRecord
   belongs_to :property
 
   AVAILABILITIES = [
@@ -10,7 +10,14 @@ class Availability < ActiveRecord::Base
   ]
 
   validates_inclusion_of :availability, in: AVAILABILITIES
+  validates_inclusion_of :check_in, in: [true, false]
+  validates_inclusion_of :check_out, in: [true, false]
   validates_presence_of :start_date
+
+  # Deletes all availabilities where start_date is in the past.
+  def self.delete_past
+    Availability.where('start_date < ?', Date.current).delete_all
+  end
 
   # Converts an availability code from an <tt>InterhomeVacancy</tt> into an
   # appropriate value for <tt>availability</tt>.
