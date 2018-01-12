@@ -141,6 +141,15 @@ RSpec.describe Property, type: :model do
   end
 
   describe '#cache_availability' do
+    it 'deletes existing availabilities for the property' do
+      property = FactoryBot.create(:property)
+      FactoryBot.create(:availability, property: property)
+
+      property.cache_availability([])
+
+      expect(property.availabilities.count).to eq 0
+    end
+
     [TripAdvisorProperty, InterhomeAccommodation].each do |klass|
       it "delegates to its #{klass}" do
         property = Property.new

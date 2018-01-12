@@ -284,6 +284,7 @@ class Property < ActiveRecord::Base
   end
 
   def cache_availability(dates)
+    availabilities.delete_all
     [interhome_accommodation, trip_advisor_property].each do |prop|
       prop.try(:cache_availability, dates)
     end
