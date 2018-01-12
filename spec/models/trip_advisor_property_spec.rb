@@ -27,8 +27,9 @@ RSpec.describe TripAdvisorProperty, type: :model do
 
   describe '#cache_availability' do
     it 'accepts an array of dates' do
-      prop = TripAdvisorProperty.new
-      prop.cache_availability([Date.current])
+      prop = FactoryBot.build_stubbed(:property)
+      ta_prop = TripAdvisorProperty.new(property: prop)
+      ta_prop.cache_availability([Date.current])
     end
 
     it 'creates an AVAILABLE entry for each date with no booked calendar' do
