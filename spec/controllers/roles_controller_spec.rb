@@ -1,63 +1,10 @@
 require 'rails_helper'
 
-describe RolesController do
+RSpec.describe RolesController, type: :controller do
   let(:website) { double(Website).as_null_object }
 
   before do
     allow(Website).to receive(:first).and_return(website)
-  end
-
-  describe "PUT update" do
-    let(:role) { double(Role).as_null_object }
-    let(:update_params) {{ id: '1', role: { name: 'A Role'}}}
-
-    context "when signed in as admin" do
-      before do
-        allow(controller).to receive(:admin?).and_return(true)
-        allow(Role).to receive(:find).and_return(role)
-      end
-
-      it "finds the role" do
-        expect(Role).to receive(:find).with("1")
-        put 'update', params: update_params
-      end
-
-      it "assigns @role" do
-        pending
-        put 'update', params: update_params
-        expect(assigns(:role)).to eq(role)
-      end
-
-      it "updates the role" do
-        expect(role).to receive(:update_attributes)
-        put 'update', params: update_params
-      end
-
-      context "when the role updates successfully" do
-        it "redirects to the edit role page" do
-          allow(role).to receive(:update_attributes).and_return(true)
-          put 'update', params: update_params
-          expect(response).to redirect_to(edit_role_path(role))
-        end
-      end
-
-      context "when the role doesn't update successfully" do
-        it "renders the edit role page" do
-          pending
-          allow(role).to receive(:update_attributes).and_return(false)
-          put 'update', params: update_params
-          expect(response).to render_template('edit')
-        end
-      end
-    end
-
-    context "when not signed in as admin" do
-      it "redirects to the sign in page" do
-        allow(controller).to receive(:admin?).and_return(false)
-        put 'update', params: update_params
-        expect(response).to redirect_to(sign_in_path)
-      end
-    end
   end
 
   describe "GET sales_pitch" do

@@ -1,0 +1,32 @@
+<%= bootstrap_form_for([:admin, @role]) do |f| %>
+
+  <%= f.text_field :name, required: true %>
+
+  <%= f.check_box :admin %>
+
+  <%= f.check_box :select_on_signup %>
+
+  <%= f.check_box :advertises_properties_for_rent %>
+
+  <%= f.check_box :advertises_properties_for_sale %>
+
+  <%= f.check_box :advertises_hotels %>
+
+  <%= f.check_box :advertises_through_windows %>
+
+  <%= f.check_box :flag_new_development %>
+
+  <%= f.check_box :new_development_by_default %>
+
+  <%= f.check_box :advertises_generally %>
+
+  <%= f.check_box :has_business_details %>
+
+  <%= f.check_box :has_a_website %>
+
+  <%= editor(f, :sales_pitch, :html) %>
+
+<div class="form-actions">
+  <%= f.submit class: 'btn btn-primary' %>
+</div>
+<% end %>

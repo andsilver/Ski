@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         post 'destroy_properties'
       end
     end
+    resources :roles,             except: [:show]
     resources :snippets,          except: [:show]
     resources :tracked_actions, only: [:index]
     resources :trip_advisor_locations, only: [:index, :show, :update]
@@ -225,10 +226,7 @@ Rails.application.routes.draw do
   resources :regions, only: [:show]
   get 'regions/:id/how-to-get-there' => 'regions#how_to_get_there', as: :how_to_get_to_region
 
-  resources :roles do
-    get 'sales_pitch', on: :member
-  end
-  get "welcome/:role" => "roles#sales_pitch", as: :sales_pitch
+  get 'welcome/:role' => 'roles#sales_pitch', as: :sales_pitch
 
   resources :trip_advisor_properties, only: [] do
     post 'get_details', on: :member
