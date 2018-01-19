@@ -46,11 +46,11 @@
 }
 
 .ticked_feature {
-  background-image: url(/images/ticked-feature.png);
+  background-image: url(<%= image_path('ticked-feature.png') %>);
 }
 
 .unticked_feature {
-  background-image: url(/images/unticked-feature.png);
+  background-image: url(<%= image_path('unticked-feature.png') %>);
 }
 
 .property_name span:first-child {
@@ -75,7 +75,7 @@ p#property-thumbnails {
   width: 620px;
   height: 155px;
   overflow: auto;
-  white-space: nowrap; 
+  white-space: nowrap;
 
   img {
     max-height: 135px;
@@ -165,7 +165,7 @@ p#property_main_image {
   height: 193px;
   width: 620px;
   overflow: auto;
-  background-image: image-url('special-offers.png');
+  background-image: url(<%= image_path('special-offers.png') %>);
   padding: 15px 40px 15px 320px;
   margin-bottom: 10px;
 }
@@ -208,7 +208,7 @@ body a.special-offers {
     font-size: 34px;
     font-weight: bold;
   }
-  
+
   .rental-price-scope {
     color: #444;
     font-size: 14px;

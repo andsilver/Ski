@@ -13,8 +13,9 @@
 
 <% if banners.empty? and @banner_advert_html.blank? %>
   <% if rand() > 0.5 %>
-    <a href="/welcome/other-business"><img
-src="/images/small-banner-advertise-here.png" alt="Advertise in this space"></a>
+    <a href="/welcome/other-business">
+      <%= image_tag('small-banner-advertise-here.png', alt: 'Advertise in this space') %>
+    </a>
   <% else %>
   <script>
   google_ad_client = "ca-pub-7770897489479846";

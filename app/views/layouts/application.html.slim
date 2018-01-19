@@ -91,7 +91,7 @@ html.no-js lang="#{@lang}"
               li
                 = link_to '<i class="icon-edit"></i> '.html_safe + 'CMS', cms_path
                 i.icon-caret-right
-        img#marker src="/images/marker.svg" alt="Marker"
+        = image_tag('marker.svg', id: 'marker', alt: 'Marker')
         a#logo href="#{root_path}" title="Home"
           = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
         ul#social

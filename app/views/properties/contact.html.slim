@@ -44,7 +44,7 @@ p.clear-fix
     - if @property.for_rent?
       javascript:
         $(function() {
-          $('.date').datepicker({format: 'D d MM yyyy', showOn: 'both', buttonImage: '/images/calendar.png'});
+          $('.date input').pickadate();
         });
 
       .form-group.input-append.date
