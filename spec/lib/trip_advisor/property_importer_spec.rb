@@ -205,5 +205,17 @@ module TripAdvisor
         expect(property).to have_amenity 'ELDERLY_ACCESSIBLE'
       end
     end
+
+    it 'deletes existing amenities' do
+      property = FactoryBot.build(:property)
+      property.amenities << FactoryBot.create(:amenity)
+      property.save!
+
+      importer = TripAdvisor::PropertyImporter.new(json)
+      importer.property = property
+      importer.import_amenities
+
+      expect(property.amenities.count).to eq 2
+    end
   end
 end

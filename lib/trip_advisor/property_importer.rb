@@ -53,6 +53,8 @@ module TripAdvisor
     def import_amenities
       return unless property && data['details']['amenities']
 
+      property.amenities.delete_all
+
       data['details']['amenities'].each do |a|
         property.amenities << Amenity.find_or_create_by(name: a)
       end
