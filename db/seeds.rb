@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Amenity.destroy_all
 Image.destroy_all
 Page.destroy_all
 HolidayType.destroy_all
@@ -37,7 +38,10 @@ Page.create!([
   { path: '/pages/about', title: 'About' }
 ])
 
-ski_holidays = HolidayType.create!(name: 'Ski Holidays', slug: 'ski-holidays')
+ski_holidays = HolidayType.create!(
+  name: 'Ski Holidays', slug: 'ski-holidays',
+  mega_menu_html: '<ul><li><a href="/airport_transfers/find">Airport Transfers</a></li></ul>'
+)
 lakes_and_mountains = HolidayType.create!(name: 'Lakes & Mountains', slug: 'lakes-and-mountains')
 summer_villas = HolidayType.create!(name: 'Summer Villas', slug: 'summer-villas')
 city_breaks = HolidayType.create!(name: 'City Breaks', slug: 'city-breaks')
@@ -373,7 +377,56 @@ other_business = Role.create!(
 advertiser = Role.create!(
   name: 'Advertiser',
   admin: false,
-  select_on_signup: false
+  select_on_signup: false,
+  sales_pitch: <<~HEREDOC
+  <div class="column">
+    <div class="advertiser_type" id="property_owners">
+      <h3>Property Owners</h3>
+      <p>If you own a chalet or apartment
+      and are looking to rent it out or
+      even sell it</p>
+      <a class="learn_more" href="/welcome/property-owner">Learn More</a>
+    </div>
+
+    <div class="advertiser_type" id="estate_agents">
+      <h3>Estate Agents</h3>
+      <p>Access key features designed specifically
+      for estate agents</p>
+      <a class="learn_more" href="/welcome/estate-agent">Learn More</a>
+    </div>
+
+    <div class="advertiser_type" id="property_developers">
+      <h3>Property Developers</h3>
+      <p>MyChaletFinder.com can help you
+      market your new developments to a
+      wider audience</p>
+      <a class="learn_more" href="/welcome/property-developer">Learn More</a>
+    </div>
+  </div><!--.column-->
+
+  <div class="column">
+    <div class="advertiser_type" id="letting_agents">
+      <h3>Letting Agents</h3>
+      <p>MyChaletFinder.com complements your existing
+      letting marketing strategy</p>
+      <a class="learn_more" href="/welcome/letting-agent">Learn More</a>
+    </div>
+
+    <div class="advertiser_type" id="hoteliers">
+      <h3>Hoteliers &amp; Residences</h3>
+      <p>Hotel owners can access international exposure,
+      boosting existing marketing strategies</p>
+      <a class="learn_more" href="/welcome/hotelier">Learn More</a>
+    </div>
+
+    <div class="advertiser_type" id="other_businesses">
+      <h3>Banner &amp; Directory Ads</h3>
+      <p>Cafés, bars and restaurants are among other
+      businesses that will benefit from our site</p>
+      <a class="learn_more" href="/welcome/other-business">Learn More</a>
+    </div>
+  </div><!--.column-->
+  HEREDOC
 )
 
 alice = User.create!(
@@ -536,7 +589,8 @@ trip_advisor_property = TripAdvisorProperty.create!(
   currency: euros,
   min_stay_low: 2,
   min_stay_high: 7,
-  sleeps: 9
+  sleeps: 9,
+  title: 'TA Prop'
 )
 
 properties = Property.create!([
