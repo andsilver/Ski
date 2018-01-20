@@ -15,6 +15,7 @@
         img src="#{t}" alt="Photo of #{@resort}"
   = clear
 
-  - images.each do |i|
-    div id="pic_#{Digest::MD5.hexdigest(gallery_thumbnail(@resort, i))}"
-      img src="#{gallery_photo(@resort, i)}" alt="Large photo of #{@resort}"
+  div style="display: none;"
+    - images.each do |i|
+      div id="pic_#{Digest::MD5.hexdigest(gallery_thumbnail(@resort, i))}"
+        img src="#{gallery_photo(@resort, i)}" alt="Large photo of #{@resort}"

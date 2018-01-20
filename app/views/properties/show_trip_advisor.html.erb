@@ -4,11 +4,6 @@
 
 <%= render partial: 'google_map',
     locals: { lat: @property.latitude, lng: @property.longitude } %>
-<script>
-  $(function() {
-    $('#property-thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
-	});
-</script>
 <div id="property">
   <%= render partial: 'user_logo', locals: { property: @property } %>
 <h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %></h1>

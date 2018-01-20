@@ -24,7 +24,7 @@ animateMarker = ->
   $("#marker").delay(1000).animate({"top":"45px"}, 500, "easeOutBounce")
 
 galleryZoom = ->
-  $('#gallery_thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true})
+  $('#gallery_thumbnails a').featherlight({targetAttr: 'href'})
 
 activateNavTabs = ->
   $('.nav-tabs a').click((e) ->

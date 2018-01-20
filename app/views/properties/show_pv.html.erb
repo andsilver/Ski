@@ -6,7 +6,7 @@
     locals: { lat: @property.latitude, lng: @property.longitude } %>
 <script>
   $(function() {
-    $('#property-thumbnails a').fancyZoom({scaleImg: true, closeOnClick: true});
+    $('#property-thumbnails a').featherlight({targetAttr: 'href'});
 	});
 </script>
 <div id="property">
@@ -31,13 +31,15 @@
 <% end %>
 
 <p class="thumbnails" id="property-thumbnails">
-<% @accommodation.photo_array.each_with_index do |i, idx| %>
-<a href="#pic_<%= idx %>"><%= image_tag(i, alt: "Photo of #{@property.name}") %></a>
-<% end %>
+  <% @accommodation.photo_array.each_with_index do |i, idx| %>
+  <a href="#pic_<%= idx %>"><%= image_tag(i, alt: "Photo of #{@property.name}") %></a>
+  <% end %>
 </p>
-<% @accommodation.photo_array.each_with_index do |i, idx| %>
-<div id="pic_<%= idx %>"><img src="<%= i %>" alt="Larger photo of <%= @property.name %>"></div>
-<% end %>
+<div style="display: none;">
+  <% @accommodation.photo_array.each_with_index do |i, idx| %>
+  <div id="pic_<%= idx %>"><img src="<%= i %>" alt="Larger photo of <%= @property.name %>"></div>
+  <% end %>
+</div>
 <%= clear %>
 
 <h2><%= I18n.t('features') %></h2>
