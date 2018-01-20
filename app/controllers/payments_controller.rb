@@ -1,18 +1,7 @@
 class PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:worldpay_callback]
 
-  before_action :admin_required, only: [:index, :show]
-  layout 'admin', only: [:index, :show]
-
   FAILURE_MESSAGE = 'Some information was incorrect and your payment may not have gone through properly. Please contact us.'
-
-  def index
-    @payments = Payment.order('created_at DESC')
-  end
-
-  def show
-    @payment = Payment.find(params[:id])
-  end
 
   def worldpay_callback
     @payment = Payment.new

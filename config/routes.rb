@@ -27,12 +27,13 @@ Rails.application.routes.draw do
     resources :coupons,           except: [:show]
     resources :footers,           except: [:show]
     resources :holiday_types,     except: [:show]
+    resources :holiday_type_brochures, only: [:create, :destroy]
+    resources :payments,          only: [:index, :show]
     resources :regions,           except: [:show] do
       member do
         get 'edit_page'
       end
     end
-    resources :holiday_type_brochures, only: [:create, :destroy]
     resources :resorts,           except: [:show] do
       member do
         get 'edit_page'
