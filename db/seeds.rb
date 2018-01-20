@@ -468,6 +468,19 @@ interhome = User.create!(
   role: estate_agent,
   phone: '+441234567890'
 )
+pv = User.create!(
+  first_name: 'Pierre',
+  last_name: 'et Vacances',
+  email: 'pierreetvacances@mychaletfinder.com',
+  password: 'secret',
+  billing_street: '1, High St',
+  billing_city: 'Portsmouth',
+  billing_country: united_kingdom,
+  terms_and_conditions: true,
+  description: '',
+  role: estate_agent,
+  phone: '+441234567890'
+)
 trip_advisor = User.create!(
   first_name: 'TripAdvisor',
   last_name: 'TripAdvisor',
