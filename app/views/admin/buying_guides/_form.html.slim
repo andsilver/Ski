@@ -1,18 +1,16 @@
 - if @buying_guide.errors.any?
   .alert.alert-error
     h2
-      =' pluralize(@buying_guide.errors.count, "error")
+      => pluralize(@buying_guide.errors.count, 'error')
       | prohibited this buying guide from being saved:
 
     ul
       - @buying_guide.errors.full_messages.each do |msg|
         li= msg
 
-= form_for [:admin, @buying_guide] do |f|
-  = f.label :country_id, t('countries.country')
-  = select("buying_guide", "country_id", Country.order(:name).collect {|c| [ c.name, c.id ] }, {prompt: t('countries.select_country')})
+= bootstrap_form_for [:admin, @buying_guide] do |f|
+  = f.select(:country_id, Country.order(:name).collect {|c| [ c.name, c.id ] }, {prompt: t('countries.select_country')})
 
-  = f.label :content
   = editor(f, :content, :html)
 
   .form-actions

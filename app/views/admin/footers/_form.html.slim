@@ -1,16 +1,14 @@
 - if @footer.errors.any?
   .alert.alert-error
     h2
-      =' pluralize(@footer.errors.count, "error")
+      => pluralize(@footer.errors.count, "error")
       | prohibited this footer from being saved:
     ul
       - @footer.errors.full_messages.each do |msg|
         li= msg
 
-= form_for [:admin, @footer] do |f|
-  = f.label :name
+= bootstrap_form_for [:admin, @footer] do |f|
   = f.text_field :name
-  = f.label :content
   = editor(f, :content, :html)
   .form-actions
     = f.submit class: 'btn btn-primary'

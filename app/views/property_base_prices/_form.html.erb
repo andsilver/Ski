@@ -10,16 +10,8 @@
   </div>
 <% end %>
 
-<%= form_for @property_base_price do |f| %>
-<div class="field">
-  <%= f.label :number_of_months %>
+<%= bootstrap_form_for @property_base_price do |f| %>
   <%= f.number_field :number_of_months %>
-</div>
-<div class="field">
-  <%= f.label :price %>
-  <%= f.number_field :price %> EUR
-</div>
-<div class="field">
+  <%= f.number_field :price, append: 'EUR' %>
   <%= f.submit class: 'btn btn-primary' %>
-</div>
 <% end %>

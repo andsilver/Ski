@@ -10,11 +10,8 @@
   </div>
 <% end %>
 
-<%= form_for [:admin, @alt_attribute] do |f| %>
-  <%= f.label :path %>
+<%= bootstrap_form_for [:admin, @alt_attribute] do |f| %>
   <%= f.text_field :path %>
-
-  <%= f.label :alt_text %>
   <%= f.text_field :alt_text %>
 
   <br><%= f.submit class: 'btn btn-primary' %>
