@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AirportTransfersController do
+RSpec.describe AirportTransfersController, type: :controller do
   let(:website) { double(Website).as_null_object }
   let(:current_user) { double(User).as_null_object }
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PagesController do
+RSpec.describe PagesController, type: :controller do
   let(:website) { double(Website).as_null_object }
 
   before do
@@ -27,17 +27,6 @@ describe PagesController do
 
       it 'redirects to pages index' do
         expect(response).to redirect_to(pages_path)
-      end
-    end
-
-    context 'with invalid page params' do
-      let(:page_params) {{
-        title: ''
-      }}
-
-      it 'renders new' do
-        pending
-        expect(response).to render_template :new
       end
     end
   end
@@ -76,25 +65,6 @@ describe PagesController do
     it 'finds the page' do
       expect(Page).to receive(:find).with('1').and_return(page)
       get 'copy', params: { id: '1' }
-    end
-
-    context 'when the page is found' do
-      let(:page) { double(Page).as_null_object }
-
-      it 'duplicates the page' do
-        pending
-        allow(Page).to receive(:find).and_return(FactoryBot.create(:page, title: 'xyzzy'))
-        get 'copy', params: { id: '1' }
-        expect(assigns(:page).title).to eq 'xyzzy'
-        expect(assigns(:page).new_record?).to be_truthy
-      end
-
-      it 'renders the new template' do
-        pending
-        allow(Page).to receive(:find).and_return(page)
-        get 'copy', params: { id: '1' }
-        expect(response).to render_template('new')
-      end
     end
   end
 end

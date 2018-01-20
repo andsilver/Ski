@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe DirectoryAdvertsController do
+RSpec.describe DirectoryAdvertsController, type: :controller do
   let(:website) { double(Website).as_null_object }
   let(:current_user) { FactoryBot.create(:user) }
 
@@ -19,12 +19,6 @@ describe DirectoryAdvertsController do
       expect(DirectoryAdvert).to receive(:all)
       get "index"
     end
-
-    it "assigns @directory_adverts" do
-      pending
-      get "index"
-      expect(assigns(:directory_adverts)).not_to be_nil
-    end
   end
 
   describe "GET new" do
@@ -37,12 +31,6 @@ describe DirectoryAdvertsController do
     it "instantiates a new directory advert" do
       expect(DirectoryAdvert).to receive(:new)
       get "new"
-    end
-
-    it "assigns @directory_advert" do
-      pending
-      get "new"
-      expect(assigns(:directory_advert)).not_to be_nil
     end
   end
 
@@ -65,12 +53,6 @@ describe DirectoryAdvertsController do
         allow(directory_advert).to receive(:category).and_return(category)
         allow(directory_advert).to receive(:resort).and_return(resort)
         allow(resort).to receive(:country).and_return(country)
-      end
-
-      it "assigns @directory_advert" do
-        pending
-        get 'show', params: { id: '1' }
-        expect(assigns[:directory_advert]).to equal(directory_advert)
       end
 
       it "sets the default page title" do
@@ -161,24 +143,6 @@ describe DirectoryAdvertsController do
       it "redirects to the basket" do
         post_valid
         expect(response).to redirect_to(basket_path)
-      end
-    end
-
-    context "when the directory advert fails to save" do
-      before do
-        allow(directory_advert).to receive(:save).and_return(false)
-      end
-
-      it "assigns @directory_advert" do
-        pending
-        post_valid
-        expect(assigns[:directory_advert]).to eq(directory_advert)
-      end
-
-      it "renders the new template" do
-        pending
-        post_valid
-        expect(response).to render_template('new')
       end
     end
   end

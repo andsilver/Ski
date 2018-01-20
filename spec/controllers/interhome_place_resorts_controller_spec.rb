@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe InterhomePlaceResortsController do
+RSpec.describe InterhomePlaceResortsController, type: :controller do
   let(:website) { double(Website).as_null_object }
 
   before do

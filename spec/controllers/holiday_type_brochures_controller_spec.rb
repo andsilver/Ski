@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe HolidayTypeBrochuresController do
+RSpec.describe HolidayTypeBrochuresController, type: :controller do
   let(:website) { double(Website).as_null_object }
 
   before do
@@ -46,12 +46,6 @@ describe HolidayTypeBrochuresController do
         it 'renders' do
           get :show, params: { place_type: 'resorts', place_slug: resort.slug, holiday_type_slug: holiday_type.slug }
           expect(response.status).to eq 200
-        end
-
-        it 'assigns @featured_properties' do
-          pending
-          get :show, params: { place_type: 'resorts', place_slug: resort.slug, holiday_type_slug: holiday_type.slug }
-          expect(assigns(@featured_properties)).to be
         end
       end
 

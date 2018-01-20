@@ -7,12 +7,8 @@ class BuyingGuidesController < ApplicationController
 
   protected
 
-    def set_buying_guide
-      @buying_guide = BuyingGuide.find_by(id: params[:id])
-      if admin?
-        redirect_to(admin_buying_guides_path) unless @buying_guide
-      else
-        not_found if !@buying_guide
-      end
-    end
+  def set_buying_guide
+    @buying_guide = BuyingGuide.find_by(id: params[:id])
+    not_found unless @buying_guide
+  end
 end

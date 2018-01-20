@@ -65,12 +65,6 @@ describe AdvertsController do
       expect(current_user).to receive(:adverts_in_basket)
       get :basket
     end
-
-    it "assigns @lines" do
-      pending
-      get :basket
-      expect(assigns(:lines)).not_to be_nil
-    end
   end
 
   describe "POST update_basket_contents" do
@@ -113,10 +107,6 @@ describe AdvertsController do
       allow(website).to receive(:vat_for).and_return 0
       allow(current_user).to receive(:adverts_in_basket).and_return([])
       allow(current_user).to receive(:apply_price_override?).and_return(false)
-    end
-
-    context "with adverts in the basket" do
-      pending
     end
 
     it "deletes a previous unpaid order, if any" do

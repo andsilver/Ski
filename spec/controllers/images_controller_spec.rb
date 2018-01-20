@@ -11,15 +11,6 @@ RSpec.describe ImagesController, type: :controller do
 
   describe 'GET index' do
     it_behaves_like 'a user requirer', :get, :index
-
-    it 'assigns all images belonging to the current user to @images' do
-      pending
-      user = User.new
-      allow(user).to receive(:images).and_return(:images)
-      allow(controller).to receive(:current_user).and_return(user)
-      get 'index'
-      expect(assigns(:images)).to eq :images
-    end
   end
 
   describe 'POST create' do

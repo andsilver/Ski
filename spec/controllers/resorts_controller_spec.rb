@@ -51,13 +51,6 @@ describe ResortsController do
         end
       end
     end
-
-    it 'assigns @resort' do
-      pending
-      allow(Resort).to receive(:find_by).and_return(resort)
-      get :show, params: { id: 'chamonix' }
-      expect(assigns[:resort]).to equal(resort)
-    end
   end
 
   describe 'GET resort_guide' do

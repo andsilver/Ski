@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PaymentsController do
+RSpec.describe PaymentsController, type: :controller do
   let(:website) { double(Website).as_null_object }
   let(:payment) { double(Payment).as_null_object }
 

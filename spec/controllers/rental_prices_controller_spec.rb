@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe RentalPricesController do
+RSpec.describe RentalPricesController, type: :controller do
   let(:website) { double(Website).as_null_object }
 
   before do

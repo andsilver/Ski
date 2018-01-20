@@ -11,23 +11,6 @@ RSpec.describe PropertiesController, type: :controller do
   end
 
   describe "GET index" do
-    context "when signed in as admin" do
-      before do
-        allow(controller).to receive(:admin?).and_return(true)
-      end
-
-      it 'assigns @properties a page of properties ordered by id' do
-        pending
-        Property.delete_all
-        properties = [
-          FactoryBot.create(:property),
-          FactoryBot.create(:property)
-        ]
-        get :index
-        expect(assigns(:properties)).to eq(properties)
-      end
-    end
-
     context "when not signed in as admin" do
       it "redirects to the sign in page" do
         allow(controller).to receive(:signed_in?).and_return(true)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PvAccommodationsController do
+RSpec.describe PvAccommodationsController, type: :controller do
   let(:website) { double(Website).as_null_object }
 
   before { allow(Website).to receive(:first).and_return(website) }

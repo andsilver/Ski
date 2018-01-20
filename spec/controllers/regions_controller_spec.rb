@@ -15,26 +15,12 @@ describe RegionsController do
       get :show, params: { id: 'lake-como' }
     end
 
-    it 'assigns @region' do
-      pending
-      allow(Region).to receive(:find_by).and_return(region)
-      get :show, params: { id: 'lake-como' }
-      expect(assigns[:region]).to equal(region)
-    end
-
     context 'when region found' do
       before { allow(Region).to receive(:find_by).and_return(region) }
 
       it 'gets featured properties for the region' do
         expect(region).to receive(:featured_properties)
         get :show, params: { id: 'lake-como' }
-      end
-
-      it 'assigns @featured_properties' do
-        pending
-        allow(region).to receive(:featured_properties).and_return(:featured_properties)
-        get :show, params: { id: 'lake-como' }
-        expect(assigns(:featured_properties)).to eq :featured_properties
       end
     end
 

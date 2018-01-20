@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe UsersController do
+RSpec.describe UsersController, type: :controller do
   let(:website) { double(Website).as_null_object }
   let(:user) { double(User).as_null_object }
 
@@ -46,23 +46,6 @@ describe UsersController do
         it 'sets a notice' do
           patch :update, params: update_params
           expect(flash.notice).to eq I18n.t('my_details_saved')
-        end
-
-        context 'when the user fails to update' do
-          before { allow(user).to receive(:update_attributes).and_return(false) }
-
-          it 'renders the edit template' do
-            pending
-            patch :update, params: update_params
-            expect(response).to render_template(:edit)
-          end
-
-          it 'assigns @heading and @breadcrumbs' do
-            pending
-            patch :update, params: update_params
-            expect(assigns(:heading)).to be
-            expect(assigns(:breadcrumbs)).to be
-          end
         end
       end
     end

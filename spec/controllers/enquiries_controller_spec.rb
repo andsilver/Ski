@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe EnquiriesController do
+RSpec.describe EnquiriesController, type: :controller do
   let(:website) { double(Website).as_null_object }
 
   before do
@@ -19,14 +19,6 @@ describe EnquiriesController do
       it "finds enquiries belonging to the current user" do
         expect(current_user).to receive(:enquiries)
         get :my
-      end
-
-      it "assigns @enquiries" do
-        pending
-        enquiries = [Enquiry.new]
-        allow(current_user).to receive(:enquiries).and_return(enquiries)
-        get :my
-        expect(assigns(:enquiries)).to eq(enquiries)
       end
     end
 
