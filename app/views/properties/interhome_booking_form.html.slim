@@ -12,7 +12,7 @@ javascript:
       url: '/properties/check_interhome_booking',
       type: 'POST',
       data: valuesToSubmit
-    }).success(function(data) {
+    }).done(function(data) {
       $('#booking_results').replaceWith(data);
       $('#checking').modal('hide');
       if(data.indexOf('unavailable') == -1) {
@@ -26,7 +26,7 @@ javascript:
         window.scrollTo(new_position.left, new_position.top);
         $('#unavailable').modal('show');
       }
-    }).error(function(data) {
+    }).fail(function(data) {
       $('#checking').modal('hide');
       $('#retry_modal').modal('show');
       $('#retry').click(
@@ -115,14 +115,14 @@ javascript:
       url: '/properties/update_day_of_month_select',
       type: 'GET',
       data: valuesToSubmit
-    }).success(function(data) {
+    }).done(function(data) {
       $('#day-of-month').replaceWith(data);
       if(window.selectDay) {
         $('#interhome_booking_arrival_day').val(selectDay);
         window.selectDay = 0;
       }
       submitCheck();
-    }).error(function(data) {
+    }).fail(function(data) {
       $('#day-of-month').replaceWith('<span id="day-of-month"><h2>An error occurred. Please <a id="retry-day-of-month">try again</a>.</h2></div>');
       $('#retry-day-of-month').click(updateDayOfMonthSelect);
     });
@@ -135,9 +135,9 @@ javascript:
       url: '/properties/update_booking_durations_select',
       type: 'GET',
       data: valuesToSubmit
-    }).success(function(data) {
+    }).done(function(data) {
       $('#booking-durations').replaceWith(data);
-    }).error(function(data) {
+    }).fail(function(data) {
       $('#booking-durations').replaceWith('<span id="booking-durations"><h2>An error occurred. Please <a id="retry-booking-durations">try again</a>.</h2></div>');
       $('#retry-booking-durations').click(updateBookingDurationsSelect);
     });

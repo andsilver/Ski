@@ -6,7 +6,7 @@ function getQuickSearchCountries() {
     url: '/home/country_options_for_quick_search',
     type: 'GET',
     data: valuesToSubmit
-  }).success(function(data) {
+  }).done(function(data) {
     $('#resort_id').remove();
     $('#country_id').replaceWith(data);
 
@@ -35,7 +35,7 @@ function getQuickSearchResorts() {
     url: '/home/resort_options_for_quick_search',
     type: 'GET',
     data: valuesToSubmit
-  }).success(function(data) {
+  }).done(function(data) {
     $('#resort_id').replaceWith(data);
 
     if($("#previousValues").val() !== "") {
