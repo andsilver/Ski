@@ -11,7 +11,7 @@ function getQuickSearchCountries() {
     $('#country_id').replaceWith(data);
 
       if($("#previousValues").val() !== "") {
-          arrayOfChoices = JSON.parse($("#previousValues").val());
+          arrayOfChoices = JSON.parse($("#previousValues"));
 
           $('#country_id option').each(function(){
               if(this.value == arrayOfChoices[0]) {
@@ -35,7 +35,7 @@ function getQuickSearchResorts() {
     $('#resort_id').replaceWith(data);
 
     if($("#previousValues").val() !== "") {
-        arrayOfChoices = JSON.parse($("#previousValues").val());
+        arrayOfChoices = JSON.parse($("#previousValues"));
 
       $('#resort_id option').each(function(){
         if(this.value == arrayOfChoices[1]) {
