@@ -1,5 +1,3 @@
-var arrayOfChoices;
-
 function getQuickSearchCountries() {
   var valuesToSubmit = $('#quick-search form').serialize();
   $.ajax({
@@ -10,17 +8,10 @@ function getQuickSearchCountries() {
     $('#resort_id').remove();
     $('#country_id').replaceWith(data);
 
-      if($("#previousValues").val() !== "") {
-          arrayOfChoices = JSON.parse($("#previousValues"));
-
-          $('#country_id option').each(function(){
-              if(this.value == arrayOfChoices[0]) {
-                  $('#resort_id').val(arrayOfChoices[0]);
-                  return false;
-              }
-          });
-
-      }
+    if($.cookie('quick_search_country_id') != null) {
+      $('#country_id').val($.cookie('quick_search_country_id'));
+      $.removeCookie('quick_search_country_id');
+    }
   });
   return false;
 }
@@ -34,16 +25,15 @@ function getQuickSearchResorts() {
   }).done(function(data) {
     $('#resort_id').replaceWith(data);
 
-    if($("#previousValues").val() !== "") {
-        arrayOfChoices = JSON.parse($("#previousValues"));
-
+    if($.cookie('quick_search_resort_slug') != null) {
+      var slug = $.cookie('quick_search_resort_slug');
       $('#resort_id option').each(function(){
-        if(this.value == arrayOfChoices[1]) {
-          $('#resort_id').val(arrayOfChoices[1]);
+        if(this.value == slug) {
+          $('#resort_id').val(slug);
+          $.removeCookie('quick_search_resort_slug');
           return false;
         }
       });
-
     }
   });
   return false;
