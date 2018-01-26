@@ -1,8 +1,8 @@
 <div id="booking_results">
 <% if @availability.unavailable? -%>
-  <h3>The property is unavailable for the dates you have requested.</h3>
+  <h3 id="quote">The property is unavailable for the dates you have requested.</h3>
 <% else -%>
-  <div style="padding: 10px; background: #fff;">
+  <div id="quote" style="padding: 10px; background: #fff;">
   <table class="table">
     <tr>
       <td>Travel period</td>
