@@ -5,10 +5,7 @@
 
   javascript:
     $(function() {
-      if (!window.ChaletJS) window.ChaletJS = {};
-      ChaletJS.currentPageResortID = '#{@resort.slug}';
-      ChaletJS.currentPageCountryID = '#{@resort.country_id}';
-      //$.cookie('quick_search_resort_slug', '#{@resort.slug}', { path: '/' });
+      $.cookie('quick_search_resort_slug', '#{@resort.slug}', { path: '/' });
     });
 - elsif @region
   = content_for :theme, @region.theme

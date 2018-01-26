@@ -65,8 +65,7 @@ class PropertiesController < ApplicationController
     end
 
     @properties = Property.where(@conditions).order(order).paginate(page: params[:page])
-
-    render :browse, status: search_status, resort: @resort # FIXME: Adding resort here is only for transporting the Resort ID. Check if it has side effects!
+    render :browse, status: search_status
   end
 
   def browse_for_rent
@@ -93,7 +92,7 @@ class PropertiesController < ApplicationController
 
     find_properties(order)
 
-    render :browse, status: search_status, resort: @resort # FIXME: Adding resort here is only for transporting the Resort ID. Check if it has side effects!
+    render :browse, status: search_status
   end
 
   def browse_for_sale
@@ -112,7 +111,7 @@ class PropertiesController < ApplicationController
     filter_conditions
     find_properties(order)
 
-    render :browse, status: search_status, resort: @resort # FIXME: Adding resort here is only for transporting the Resort ID. Check if it has side effects!
+    render :browse, status: search_status
   end
 
   def new_developments
@@ -128,7 +127,7 @@ class PropertiesController < ApplicationController
     filter_conditions
     find_properties(order)
 
-    render :browse, status: search_status, resort: @resort # FIXME: Adding resort here is only for transporting the Resort ID. Check if it has side effects!
+    render :browse, status: search_status
   end
 
   def browse_hotels
@@ -145,7 +144,7 @@ class PropertiesController < ApplicationController
     filter_conditions
     find_properties(order)
 
-    render :browse, status: search_status, resort: @resort # FIXME: Adding resort here is only for transporting the Resort ID. Check if it has side effects!
+    render :browse, status: search_status
   end
 
   def new
