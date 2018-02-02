@@ -32,13 +32,39 @@ doc/features.html
 
 .byebug_history
 
+/fonts/
+/public/IP LOGO.JPG
+/public/advertisers/
+/public/assets/
+/public/blog-posts/
+/public/christmas-cards/
 /public/countries
+/public/countries-city-holiday-rentals/
+/public/email-signature/
 /public/fixed-banners
+/public/holiday-ideas/
+/public/images/
 /public/invoices
+/public/marketing/
+/public/medicaresolutions/
+/public/mega-region/
+/public/mychaletfinderlogos/
+/public/newsletters/
+/public/pages/
+/public/pisa/
+/public/regions/
 /public/resorts
+/public/resources-page.html
+/public/ski-regions/
+/public/ski-spa-hotels-austria/
+/public/ski-spa-hotels-france/
+/public/ski-spa-hotels-switzerland/
+/public/snow-reports/
 /public/test
 /public/up
 /public/uploads
+/public/vienna/
+/vendor/bundle
 .sass-cache/
 
 # Ignore generated RDOC
