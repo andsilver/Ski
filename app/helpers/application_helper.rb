@@ -75,11 +75,11 @@ module ApplicationHelper
   end
 
   def star
-    '<span class="glyphicon glyphicon-star"></span>'.html_safe
+    '<span class="fas fa-star"></span>'.html_safe
   end
 
   def empty_star
-    '<span class="glyphicon glyphicon-star-empty"></span>'.html_safe
+    '<span class="far fa-star"></span>'.html_safe
   end
 
   def alt_attribute(path, fallback)
@@ -88,7 +88,7 @@ module ApplicationHelper
   end
 
   def delete_button(object)
-    link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe,
+    link_to '<i class="fas fa-trash"></i> Delete'.html_safe,
     object,
     data: { confirm: 'Are you sure?' },
     method: :delete,
@@ -97,27 +97,27 @@ module ApplicationHelper
   end
 
   def edit_button(object)
-    link_to '<i class="icon-edit"></i> Edit'.html_safe,
+    link_to '<i class="fas fa-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),
     class: 'btn btn-default',
     title: "Edit #{object_title(object)}"
   end
 
   def new_button(type)
-    link_to '<i class="icon-plus"></i> New'.html_safe,
+    link_to '<i class="fas fa-plus"></i> New'.html_safe,
     new_polymorphic_path(type),
     class: 'btn btn-default',
     title: "New #{object_title(type)}"
   end
 
   def view_button(object)
-    link_to '<i class="icon-eye-open"></i> View'.html_safe,
+    link_to '<i class="fas fa-eye"></i> View'.html_safe,
     object,
     class: 'btn btn-default'
   end
 
   def copy_button(object)
-    link_to '<i class="icon-plus-sign"></i> Copy'.html_safe,
+    link_to '<i class="fas fa-plus"></i> Copy'.html_safe,
     polymorphic_path(object, {action: :copy}),
     data: { method: :get},
     class: 'btn btn-default', title: "Copy #{object_title(object)}"

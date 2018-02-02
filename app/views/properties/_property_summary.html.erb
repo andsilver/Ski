@@ -33,8 +33,8 @@
         <%= t('.plot_size') %> <%= p.plot_size_metres_2 %> m<sup>2</sup>
       </p>
       <% end %>
-      <p class="contact_owner btn-property"><%= link_to 'More info', link, title: "More info about #{p.name}" %><i class="icon-caret-right"></i></p>
-      <p class="email_a_friend btn-property"><%= link_to t('.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}" %><i class="icon-caret-right"></i></p>
+      <p class="contact_owner btn-property"><%= link_to 'More info', link, title: "More info about #{p.name}" %><i class="fas fa-caret-right"></i></p>
+      <p class="email_a_friend btn-property"><%= link_to t('.email_a_friend'), email_a_friend_property_path(p), rel: 'nofollow', title: "Email a friend about #{p.name}" %><i class="fas fa-caret-right"></i></p>
     </div>
   </div>
 <% end -%>

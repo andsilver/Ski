@@ -15,7 +15,7 @@ javascript:
       p.star-rating.theme-color
         = star_rating(@property.star_rating)
       .make-a-booking
-        = link_to "#{t(booking_link_text_key(@property))} <span class=\"glyphicon glyphicon-play theme-color\"></span>".html_safe, booking_url(@property), target: booking_link_target(@property)
+        = link_to "#{t(booking_link_text_key(@property))} <span class=\"fas fa-play theme-color\"></span>".html_safe, booking_url(@property), target: booking_link_target(@property)
 
     - if @property.image
       .gallery-container.layout-element.size-1of2

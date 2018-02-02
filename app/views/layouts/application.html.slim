@@ -15,7 +15,7 @@ html.no-js lang="#{@lang}"
       meta name="keywords" content="#{@meta_keywords}"
     meta name="alexaVerifyID" content="0IVBlNZ4wkIe-rLrsQkQNVUS9to"
     link rel="icon" type="image/x-icon" href="/favicon.ico"
-    link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"
+    script defer="defer" src="/font-awesome/fontawesome-all.js"
     = stylesheet_link_tag 'application-main', media: 'screen', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application-print', media: 'print', 'data-turbolinks-track': 'reload'
     /! TradeDoubler site verification 1980597
@@ -64,33 +64,33 @@ html.no-js lang="#{@lang}"
           = raw @page_header_html
         nav#session
           ul
-            li= link_to '<i class="icon-heart"></i> '.html_safe + t('favourites.favourites'), favourites_path, rel: 'nofollow'
+            li= link_to '<i class="fas fa-heart"></i> '.html_safe + t('favourites.favourites'), favourites_path, rel: 'nofollow'
             - if signed_in?
               - if current_user.has_adverts_in_basket?
                 li
-                  a href="#{basket_path}"= '<i class="icon-shopping-cart"></i> '.html_safe + t('basket') +  "<span class=\"count\">#{current_user.adverts_in_basket.count}</span>".html_safe
-                  i.icon-caret-right
+                  a href="#{basket_path}"= '<i class="fas fa-shopping-cart"></i> '.html_safe + t('basket') +  "<span class=\"count\">#{current_user.adverts_in_basket.count}</span>".html_safe
+                  i.fas.fa-caret-right
               - elsif session[:windows_in_basket]
                 li
-                  a href="#{basket_path}"= '<i class="icon-shopping-cart"></i> '.html_safe + t('basket') + '<span class="count">1</span>'.html_safe
-                  i.icon-caret-right
+                  a href="#{basket_path}"= '<i class="fas fa-shopping-cart"></i> '.html_safe + t('basket') + '<span class="count">1</span>'.html_safe
+                  i.fas.fa-caret-right
               li
-                = link_to '<i class="icon-user"></i> '.html_safe + t('account'), advertise_path
-                i.icon-caret-right
+                = link_to '<i class="fas fa-user"></i> '.html_safe + t('account'), advertise_path
+                i.fas.fa-caret-right
               li
-                = link_to '<i class="icon-signout"></i> '.html_safe + t('sign_out'), sign_out_path, data: { 'no-turbolink' => true }
-                i.icon-caret-right
+                = link_to '<i class="fas fa-sign-out"></i> '.html_safe + t('sign_out'), sign_out_path, data: { 'no-turbolink' => true }
+                i.fas.fa-caret-right
             - else
               li
-                = link_to '<i class="icon-signin"></i> '.html_safe + t('sign_in'), sign_in_path, rel: 'nofollow'
-                i.icon-caret-right
+                = link_to '<i class="fas fa-signin"></i> '.html_safe + t('sign_in'), sign_in_path, rel: 'nofollow'
+                i.fas.fa-caret-right
               li
-                = link_to '<i class="icon-user"></i> '.html_safe + t('sign_up'), '/welcome/advertiser', id: 'sign-up'
-                i.icon-caret-right
+                = link_to '<i class="fas fa-user"></i> '.html_safe + t('sign_up'), '/welcome/advertiser', id: 'sign-up'
+                i.fas.fa-caret-right
             - if admin?
               li
-                = link_to '<i class="icon-edit"></i> '.html_safe + 'CMS', cms_path
-                i.icon-caret-right
+                = link_to '<i class="fas fa-edit"></i> '.html_safe + 'CMS', cms_path
+                i.fas.fa-caret-right
         = image_tag('marker.svg', id: 'marker', alt: 'Marker')
         a#logo href="#{root_path}" title="Home"
           = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
@@ -107,13 +107,13 @@ html.no-js lang="#{@lang}"
               })();
           li
             a#blogger title="Blogger" href="http://mychaletfinder.blogspot.com"
-              i.icon-rss
+              i.fas.fa-rss
           li
             a#twitter title="Twitter" href="https://twitter.com/#!/MyChaletFinder"
-              i.icon-twitter
+              i.fab.fa-twitter
           li
             a#facebook title="Facebook" href="https://www.facebook.com/MyChaletFinder" target="_blank"
-              i.icon-facebook
+              i.fab.fa-facebook
         nav#main-menu role="navigation"
           ul
             li= raw snippet('layouts.application.top_left_menu_item', '<a>&nbsp;</a>')

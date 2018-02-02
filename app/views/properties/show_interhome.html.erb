@@ -41,7 +41,7 @@
     <%= form_for @favourite do |f| %>
     <%= f.hidden_field :property_id %>
     <p>
-      <button type="submit" class="btn btn-primary btn-large"><i class='icon-heart icon-white'></i>
+      <button type="submit" class="btn btn-primary btn-large"><i class="fas fa-heart"></i>
       <%= t('favourites.add') %></button>
       <%= render 'location_button_and_modal' if @accommodation.geodata_lat.present? %>
     </p>

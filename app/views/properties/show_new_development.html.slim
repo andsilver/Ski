@@ -17,7 +17,7 @@ javascript:
         br
         = @property.country
       .make-a-booking
-        = link_to (t('enquire') + ' <span class="glyphicon glyphicon-play theme-color"></span>').html_safe,\
+        = link_to (t('enquire') + ' <span class="fas fa-play"></span>').html_safe,\
           contact_property_path(@property)
 
     - if @property.image
