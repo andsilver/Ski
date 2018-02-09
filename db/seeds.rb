@@ -663,6 +663,16 @@ a_trip_advisor_chalet.amenities << Amenity.create(name: 'STOVE')
 a_trip_advisor_chalet.amenities << Amenity.create(name: 'DECK')
 a_trip_advisor_chalet.amenities << Amenity.create(name: 'WATERFRONT')
 
+a_trip_advisor_chalet.reviews << Review.create!(
+  author_location: 'Bergheim, France',
+  author_name: 'Laetitia P',
+  content: "Connu sous le nom de Chalet des Ayes, nous y avons trouvé notre bonheur. Nous sommes la même bande d'ami(e)s qui partons quasiment tous les ans à Pâques, pour le WE, bande qui s'est agrandie avec les conjoints et les enfants au fil des années. Nous avons loué le chalet 26 (18 personnes) et 21 (7 personnes) à un prix correct. Les chalets sont beaux et bien agencés (draps fournis) et équipés  (juste un problème avec le lave vaisselle et le four que nous avons signalé). Sur place, une grande aire de jeux, une salle d'accueil avec un bar en libre service  (bière, café, sirop et pâte à crêpes!), magazines, table de ping-pong, baby-foot et quelques tables ou s'installer. Terrain de tennis, de pétanque. Piscine et jacuzzi intérieur. Piste de bowling. Piscine extérieure en saison  (tout est gratuit mais sur réservation pour les locataires). Haras tout près  (le Closel) pour faire une balade à cheval  (18€/personne). Boulangerie et Intermarche à 5 minutes en voiture. Bref, un paradis pour les enfants et les parents ! Je recommande vivement. ",
+  property: a_trip_advisor_chalet,
+  rating: 5,
+  title: 'Super!',
+  visited_on: Date.new(2017, 4, 1)
+)
+
 n = 0
 properties.each do |property|
   n += 1

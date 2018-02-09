@@ -67,5 +67,27 @@
 
 <%= clear %>
 
+<% if @property.reviews.any? %>
+<h2 id="reviews">Reviews</h2>
+<div class="reviews">
+  <% @property.reviews.each do |review| %>
+  <div class="review">
+    <h3 class="review-title"><%= review.rating %>/5 <%= review.title %></h3>
+    <p class="review-author-details">
+      <span class="review-author-name"><%= review.author_name %></span>,
+      <span class="review-author-location"><%= review.author_location %></span>
+      -
+      <span class="review-visited-on">
+        <%= review.visited_on.strftime('%B %Y') %>
+      </span>
+    </p>
+    <p class="review-content">
+      <%= review.content %>
+    </p>
+  </div>
+  <% end %>
+</div>
+<% end %>
+
 </div><!--#property-->
 <%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>
