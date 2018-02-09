@@ -22,6 +22,7 @@ module TripAdvisor
       advertise
       import_images
       import_amenities
+      import_reviews
     end
 
     def import_details
@@ -57,6 +58,26 @@ module TripAdvisor
 
       data['details']['amenities'].each do |a|
         property.amenities << Amenity.find_or_create_by(name: a)
+      end
+      property.save
+    end
+
+    def import_reviews
+      return unless property && data['reviews']
+
+      property.reviews.delete_all
+
+      data['reviews']['reviews'].each do |r|
+        review = Review.create(
+          author_location: r['author_location'],
+          author_name: r['author_name'],
+          content: r['text'],
+          property: property,
+          rating: r['rating'],
+          title: r['title'],
+          visited_on: Date.parse("#{r['visit_date']}-01")
+        )
+        property.reviews << review
       end
       property.save
     end

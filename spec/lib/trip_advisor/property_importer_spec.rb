@@ -63,6 +63,7 @@ module TripAdvisor
 
           importer = PropertyImporter.new(json)
           allow(importer).to receive(:create_base_property)
+          allow(importer).to receive(:import_reviews)
 
           expect(importer).to receive(:import_calendar)
           importer.import
@@ -75,6 +76,7 @@ module TripAdvisor
 
           importer = PropertyImporter.new(json)
           allow(importer).to receive(:import_calendar)
+          allow(importer).to receive(:import_reviews)
 
           expect(importer).to receive(:create_base_property)
           importer.import
@@ -98,6 +100,7 @@ module TripAdvisor
           null_object(PropertyImages)
 
           importer = PropertyImporter.new(json)
+          allow(importer).to receive(:import_reviews)
           importer.import
         end
 
@@ -109,6 +112,7 @@ module TripAdvisor
           importer = PropertyImporter.new(json)
           allow(importer).to receive(:import_calendar)
           allow(importer).to receive(:create_base_property)
+          allow(importer).to receive(:import_reviews)
 
           expect(importer).to receive(:import_images)
           importer.import
@@ -122,8 +126,23 @@ module TripAdvisor
           importer = PropertyImporter.new(json)
           allow(importer).to receive(:import_calendar)
           allow(importer).to receive(:create_base_property)
+          allow(importer).to receive(:import_reviews)
 
           expect(importer).to receive(:import_amenities)
+          importer.import
+        end
+
+        it 'imports reviews' do
+          details = instance_double(PropertyDetails, property: ta_prop)
+                    .as_null_object
+          allow(PropertyDetails).to receive(:new).and_return(details)
+
+          importer = PropertyImporter.new(json)
+          allow(importer).to receive(:import_calendar)
+          allow(importer).to receive(:create_base_property)
+          allow(importer).to receive(:import_amenities)
+
+          expect(importer).to receive(:import_reviews)
           importer.import
         end
       end
@@ -215,6 +234,37 @@ module TripAdvisor
         importer.import_amenities
 
         expect(property.amenities.count).to eq 2
+      end
+    end
+
+    describe '#import_reviews' do
+      it 'imports reviews from the details/reviews JSON array' do
+        property = FactoryBot.create(:property)
+
+        importer = TripAdvisor::PropertyImporter.new(json)
+        importer.property = property
+        importer.import_reviews
+
+        expect(property.reviews.count).to eq 1
+        review = property.reviews.first
+        expect(review.author_location).to eq 'Bergheim, France'
+        expect(review.author_name).to eq 'Laetitia P'
+        expect(review.content).to include 'Connu sous le nom de Chalet des Ayes'
+        expect(review.rating).to eq 5
+        expect(review.title).to eq 'Super!'
+        expect(review.visited_on).to eq Date.new(2017, 4, 1)
+      end
+
+      it 'deletes existing reviews' do
+        property = FactoryBot.build(:property)
+        property.reviews << FactoryBot.create(:review)
+        property.save!
+
+        importer = TripAdvisor::PropertyImporter.new(json)
+        importer.property = property
+        importer.import_reviews
+
+        expect(property.reviews.count).to eq 1
       end
     end
   end
