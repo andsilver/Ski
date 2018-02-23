@@ -32,10 +32,7 @@ a img {
 
 #wrapper {
   background: #fff;
-  width: 1000px;
   padding: 0;
-  margin-left: auto;
-  margin-right: auto;
   color: #2b1d24;
   position: relative;
 }
@@ -112,7 +109,6 @@ a img {
 #content {
   float: left;
   min-height: 10px;
-  width: 620px;
 
   ul {
     font-size: 13px;
@@ -650,7 +646,6 @@ textarea.narrow {
 
 #header-images, #header-images img {
   height: 270px;
-  width: 620px;
 }
 
 .wide #header-images, .wide #header-images img {
