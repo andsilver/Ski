@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 module TripAdvisor
@@ -39,7 +41,11 @@ module TripAdvisor
     end
 
     describe '#import_properties' do
+      let(:date) { Date.new(2018, 3, 9) } # A Friday
       let(:details) { instance_double(SFTPDetails) }
+
+      before { allow(Date).to receive(:current).and_return(date) }
+
       it 'downloads a listings delta archive' do
         downloader = instance_double(PropertyDownloader)
 
@@ -87,6 +93,26 @@ module TripAdvisor
         end
 
         Importer.new(sftp_details: details).import_properties
+      end
+
+      context 'on a Sunday' do
+        let(:date) { Date.new(2018, 3, 11) }
+
+        it 'downloads a full listings archive' do
+          downloader = instance_double(PropertyDownloader)
+
+          allow(PropertyExtractor)
+            .to receive(:new)
+            .and_return(instance_double(PropertyExtractor).as_null_object)
+
+          expect(PropertyDownloader)
+            .to receive(:new)
+            .with(sftp_details: details)
+            .and_return(downloader)
+          expect(downloader).to receive(:download_full)
+
+          Importer.new(sftp_details: details).import_properties
+        end
       end
     end
   end

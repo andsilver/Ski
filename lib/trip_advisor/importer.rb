@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TripAdvisor
   # Handles the downloading and importing of the TripAdvisor data feeds.
   class Importer
@@ -20,8 +22,13 @@ module TripAdvisor
 
     # Downloads, extracts and imports properties.
     def import_properties
-      delta_archive = PropertyDownloader.new(sftp_details: sftp_details).download_delta
-      PropertyExtractor.new(path: delta_archive).extract do |extracted|
+      downloader = PropertyDownloader.new(sftp_details: sftp_details)
+      archive = if Date.current.sunday?
+                  downloader.download_full
+                else
+                  downloader.download_delta
+                end
+      PropertyExtractor.new(path: archive).extract do |extracted|
         PropertyFileImporter.new(path: extracted).import
       end
     end
