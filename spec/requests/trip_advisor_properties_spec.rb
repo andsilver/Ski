@@ -24,10 +24,12 @@ RSpec.describe 'TripAdvisor properties', type: :request do
       )
     end
 
-    it 'redirects to the TripAdvisor website with embedded params' do
+    it 'redirects to the TripAdvisor website with embedded params and MCID ' \
+    'number for referral attribution' do
       expect(response).to redirect_to(
         'https://www.tripadvisor.com/FeaturedRentalReview?geo=1&detail=2' \
-        '&inDay=7&inMonth=12%2F2017&outDay=21&outMonth=12%2F2017&adults=1'
+        '&inDay=7&inMonth=12%2F2017&outDay=21&outMonth=12%2F2017&adults=1' \
+        '&m=56482'
       )
     end
   end

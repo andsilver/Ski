@@ -9,7 +9,7 @@ class TripAdvisorPropertiesController < ApplicationController
 
     url = "#{prop.url}&inDay=#{check_in.day}&inMonth=#{check_in.month}%2F" \
     "#{check_in.year}&outDay=#{check_out.day}&outMonth=#{check_out.month}%2F" \
-    "#{check_out.year}&adults=#{adults}"
+    "#{check_out.year}&adults=#{adults}&m=56482"
 
     redirect_to url
   end
