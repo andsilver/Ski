@@ -36,33 +36,44 @@ RSpec.describe 'Properties', type: :request do
           assert_select '#property'
         end
 
-        context 'when TripAdvisor with reviews' do
+        context 'when TripAdvisor' do
           let(:template) { 'show_trip_advisor' }
-          before do
+          let!(:ta_prop) do
             FactoryBot.create(:trip_advisor_property, property: property)
-            Review.create!(
-              author_location: 'Bergheim, France',
-              author_name: 'Laetitia P',
-              content: 'Connu sous le nom de Chalet des Ayes...',
-              property: property,
-              rating: 5,
-              title: 'Super!',
-              visited_on: Date.new(2017, 4, 1)
-            )
           end
 
-          it 'displays reviews' do
+          it 'displays an enquiry form with a _blank target' do
             perform
-            assert_select 'h2#reviews'
-            assert_select '.reviews'
-            assert_select '.review-author-name', text: 'Laetitia P'
-            assert_select '.review-author-location', text: 'Bergheim, France'
-            assert_select(
-              '.review-content',
-              text: 'Connu sous le nom de Chalet des Ayes...'
-            )
-            assert_select '.review-title', text: '5/5 Super!'
-            assert_select '.review-visited-on', text: 'April 2017'
+            url = get_details_trip_advisor_property_path(ta_prop)
+            assert_select "form[action='#{url}'][target='_blank']"
+          end
+
+          context 'with reviews' do
+            before do
+              Review.create!(
+                author_location: 'Bergheim, France',
+                author_name: 'Laetitia P',
+                content: 'Connu sous le nom de Chalet des Ayes...',
+                property: property,
+                rating: 5,
+                title: 'Super!',
+                visited_on: Date.new(2017, 4, 1)
+              )
+            end
+
+            it 'displays reviews' do
+              perform
+              assert_select 'h2#reviews'
+              assert_select '.reviews'
+              assert_select '.review-author-name', text: 'Laetitia P'
+              assert_select '.review-author-location', text: 'Bergheim, France'
+              assert_select(
+                '.review-content',
+                text: 'Connu sous le nom de Chalet des Ayes...'
+              )
+              assert_select '.review-title', text: '5/5 Super!'
+              assert_select '.review-visited-on', text: 'April 2017'
+            end
           end
         end
       end
