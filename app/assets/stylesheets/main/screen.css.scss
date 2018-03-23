@@ -45,3 +45,22 @@ textarea {
 .home-datepicker td + td + td + td + td + td + td .picker__day {
   font-weight: bold;
 }
+
+.session {
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  a {
+    color: #7a7979;
+    text-decoration: none;
+    padding: 1rem;
+    transition: 0.3s;
+  }
+
+  a:hover {
+    color: #231f20;
+  }
+}

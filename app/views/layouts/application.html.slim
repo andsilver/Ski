@@ -62,34 +62,27 @@ html.no-js lang="#{@lang}"
       header role="banner"
         div.header-snippet
           = raw @page_header_html
-        nav#session
+        nav.session
           ul
             - if signed_in?
               - if current_user.has_adverts_in_basket?
                 li
                   a href="#{basket_path}"= '<i class="fas fa-shopping-cart"></i> '.html_safe + t('basket') +  "<span class=\"count\">#{current_user.adverts_in_basket.count}</span>".html_safe
-                  i.fas.fa-caret-right
               - elsif session[:windows_in_basket]
                 li
                   a href="#{basket_path}"= '<i class="fas fa-shopping-cart"></i> '.html_safe + t('basket') + '<span class="count">1</span>'.html_safe
-                  i.fas.fa-caret-right
               li
                 = link_to '<i class="fas fa-user"></i> '.html_safe + t('account'), advertise_path
-                i.fas.fa-caret-right
               li
                 = link_to '<i class="fas fa-sign-out"></i> '.html_safe + t('sign_out'), sign_out_path, data: { 'no-turbolink' => true }
-                i.fas.fa-caret-right
             - else
               li
                 = link_to '<i class="fas fa-sign-in"></i> '.html_safe + t('sign_in'), sign_in_path, rel: 'nofollow'
-                i.fas.fa-caret-right
               li
                 = link_to '<i class="fas fa-user"></i> '.html_safe + t('sign_up'), '/welcome/advertiser', id: 'sign-up'
-                i.fas.fa-caret-right
             - if admin?
               li
                 = link_to '<i class="fas fa-edit"></i> '.html_safe + 'CMS', cms_path
-                i.fas.fa-caret-right
         = image_tag('marker.svg', id: 'marker', alt: 'Marker')
         a#logo href="#{root_path}" title="Home"
           = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
