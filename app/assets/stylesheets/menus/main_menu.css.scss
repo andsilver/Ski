@@ -18,7 +18,7 @@ nav {
   border-bottom: 4px solid #000;
   color: #ffffff;
   display: inline-block;
-  font-size: 12px;
+  font-size: 0.9rem;
   line-height: 28px;
   min-width: 160px;
   padding: 0 10px;
@@ -71,7 +71,7 @@ nav {
   border-radius: 20px;
   padding: 3px 6px;
   height: 18px;
-  font-size: 12px;
+  font-size: 0.9rem;
   position: relative;
   vertical-align: baseline;
   top: -1px;
@@ -90,10 +90,10 @@ nav {
     border-bottom: 4px solid #000000;
     color: #ededed;
     display: inline-block;
-    font-size: 12px;
+    font-size: 0.9rem;
     line-height: 26px;
     margin-left: 5px;
-    min-width: 145px;
+    min-width: 160px;
     text-align: left;
 
     a {
@@ -102,7 +102,7 @@ nav {
       margin-right: 2px;
       padding: 0px 15px 0px 10px;
       text-decoration: none;
-      width: 110px;
+      width: 125px;
     }
   }
 }
