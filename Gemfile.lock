@@ -7,6 +7,13 @@ GIT
       activesupport (>= 4.0, < 6)
 
 GIT
+  remote: https://github.com/bootstrap-ruby/bootstrap_form.git
+  revision: 077b91d0bf6513e4f6b40d38cdb6a5c71d58dd7b
+  specs:
+    bootstrap_form (4.0.0.dev)
+      rails (>= 5.0)
+
+GIT
   remote: https://github.com/net-ssh/net-sftp.git
   revision: 7b6f5fb6338012d5304faf60132a6edd7a9e8159
   specs:
@@ -67,13 +74,18 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
+    autoprefixer-rails (8.2.0)
+      execjs
     aws-sdk (1.67.0)
       aws-sdk-v1 (= 1.67.0)
     aws-sdk-v1 (1.67.0)
       json (~> 1.4)
       nokogiri (~> 1)
     bindex (0.5.0)
-    bootstrap_form (2.7.0)
+    bootstrap (4.0.0)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (>= 1.12.9, < 2)
+      sass (>= 3.5.2)
     brakeman (4.1.1)
     builder (3.2.3)
     byebug (9.1.0)
@@ -210,6 +222,7 @@ GEM
     parallel_tests (2.19.0)
       parallel
     pdf-core (0.7.0)
+    popper_js (1.12.9)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -352,7 +365,8 @@ DEPENDENCIES
   acts_as_list
   acts_as_tree
   aws-sdk (~> 1)
-  bootstrap_form
+  bootstrap (~> 4.0.0)
+  bootstrap_form!
   brakeman
   byebug
   capybara (~> 2.13)

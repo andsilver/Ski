@@ -28,8 +28,10 @@ gem 'liquid', '~> 3.0'
 gem 'aws-sdk', '~> 1'
 gem 'sanitize'
 gem 'slim', '~> 2.0.0'
+
+gem 'bootstrap', '~> 4.0.0'
 # Easier Bootstrap forms
-gem 'bootstrap_form'
+gem 'bootstrap_form', github: 'bootstrap-ruby/bootstrap_form'
 
 # Run jobs in background processes
 gem 'daemons'
