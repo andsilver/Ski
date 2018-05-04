@@ -122,8 +122,6 @@ html.no-js lang="#{@lang}"
           = render 'layouts/region_nav' if @region
           = render 'layouts/resort_nav' if @resort
           = raw sidebar_html
-        - if content_for? :carousel
-          = yield :carousel
       #page-surround
         #content role="main" class="#{'wide' unless content_for? :advertising}"
           = flash_notice
