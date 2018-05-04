@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/smartinez87/exception_notification.git
-  revision: dec18c97698035dd720e5f1078e265ef55db7ee2
-  specs:
-    exception_notification (4.2.2)
-      actionmailer (>= 4.0, < 6)
-      activesupport (>= 4.0, < 6)
-
-GIT
   remote: https://github.com/bootstrap-ruby/bootstrap_form.git
   revision: 96ce4f73197adfd54651be364b90bf5ce32f1ac9
   specs:
@@ -19,6 +11,14 @@ GIT
   specs:
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
+
+GIT
+  remote: https://github.com/smartinez87/exception_notification.git
+  revision: dec18c97698035dd720e5f1078e265ef55db7ee2
+  specs:
+    exception_notification (4.2.2)
+      actionmailer (>= 4.0, < 6)
+      activesupport (>= 4.0, < 6)
 
 GEM
   remote: https://rubygems.org/
