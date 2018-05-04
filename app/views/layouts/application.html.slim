@@ -122,7 +122,7 @@ html.no-js lang="#{@lang}"
           = render 'layouts/region_nav' if @region
           = render 'layouts/resort_nav' if @resort
           = raw sidebar_html
-      #page-surround
+      .page-surround
         #content role="main" class="#{'wide' unless content_for? :advertising}"
           = flash_notice
           - unless header_image_urls.empty?
