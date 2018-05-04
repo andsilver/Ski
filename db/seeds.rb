@@ -23,8 +23,127 @@ Role.delete_all
 Currency.destroy_all
 Payment.delete_all
 Enquiry.delete_all
+Website.delete_all
 
-website = Website.create!
+website = Website.create!(
+  home_content: <<~EOF
+  <div id="col-mid" class="wide clear-fix">
+
+      	<div id="welcome-message">
+          <h1 class="home">Welcome to Mychaletfinder®</h1>
+          <p>One of Europe's leading self catering holiday accommodation
+          website offering <strong>ski chalets</strong>, apartments,
+          <strong>villas</strong> and holiday homes for rent.</p>
+          <br>
+          <p>We have a large selection of <strong>holiday
+          rentals</strong> in top destinations
+          around the world to suit all budgets
+          and tastes.</p>
+          <br>
+
+          <p>Whether a city centre apartment, a cabin in Lapland, beach villa
+          in the Caribbean or ski chalet in the lakes &amp; mountains, MyChaletfinder has the perfect <strong>vacation
+          rental</strong> waiting for you.
+          </p>
+        </div>
+
+      	<div id="featured-properties">
+          <h2>Popular Holiday Destinations</h2>
+
+          <div class="clear-fix">
+
+            <a href="/resorts/chamonix/properties/rent" class="size-1of3 layout-element">
+              <img src="/countries/home-page/destinations/chamonix-chalets.jpg" alt="chalet rentals" title="Chamonix summer holidays">
+              <p class="header-title">Chamonix</p>
+
+              <div class="header-text-cont">
+                <p class="header-text">France</p>
+              </div>
+            </a>
+
+                 <a href="/regions/lake-como" class="lakes-and-mountains-theme size-1of3 layout-element">
+              <img src="/countries/home-page/destinations/lake-como-villa-rentals.jpg" alt="lakes and mountains chalet holiday rentals" title="Lake Como villas">
+              <p class="header-title">Lake Como</p>
+
+              <div class="header-text-cont">
+                <p class="header-text">Italy</p>
+              </div>
+            </a>
+          </div>
+          <!-- clearfix 1of 3 row -->
+          <div class="clear-fix">
+            <a href="/regions/puglia" class="summer-villas-theme size-1of3 layout-element">
+              <img src="/countries/home-page/destinations/puglia-holiday-rentals.jpg" alt="puglia holiday rentals" title="Puglia holiday rentals">
+              <p class="header-title">Puglia</p>
+
+              <div class="header-text-cont">
+                <p class="header-text">Italy</p>
+              </div>
+            </a>
+
+
+            <a href="/resorts/madrid" class="city-breaks-theme size-1of3 layout-element">
+              <img src="/countries/home-page/destinations/madrid-apartments.jpg" alt="madrid apartments" title="Madrid apartments">
+              <p class="header-title">Madrid</p>
+
+              <div class="header-text-cont">
+                <p class="header-text">Spain</p>
+              </div>
+            </a>
+          </div>
+          <!-- clearfix 1of 3 row -->
+
+               <div class="clear-fix">
+
+
+
+            <a href="/regions/lake-tahoe" class="size-1of3 layout-element">
+              <img src="/countries/home-page/destinations/lake-tahoe-cabin-rentals.jpg" alt="vacation rentals" title="Lake Tahoe cabins">
+              <p class="header-title">Lake Tahoe</p>
+
+              <div class="header-text-cont">
+                <p class="header-text">America</p>
+              </div>
+            </a>
+
+                 <a href="/resorts/zell-am-see-kaprun" class="lakes-and-mountains-theme size-1of3 layout-element">
+              <img src="/countries/home-page/destinations/zell-am-see-chalet-rentals.jpg" alt="lakes and mountains holiday rentals" title="Zell am See chalets">
+              <p class="header-title">Zell am See</p>
+
+              <div class="header-text-cont">
+                <p class="header-text">Austria</p>
+              </div>
+            </a>
+          </div>
+          <!-- clearfix 1of 3 row -->
+
+
+
+          <div class="clear-fix">
+            <a href="/pages/caribbean-holidays" class="summer-villas-theme size-1of3 layout-element">
+              <img src="/countries/home-page/destinations/caribbean-vacation-rentals.jpg" alt="caribbean vacation rentals, villas to rent" title="Caribbean holiday rentals">
+              <p class="header-title">British Virgin Islands</p>
+
+              <div class="header-text-cont">
+                <p class="header-text">Caribbean</p>
+              </div>
+            </a>
+
+
+            <a href="/resorts/vancouver" class="city-breaks-theme size-1of3 layout-element">
+              <img src="/countries/home-page/destinations/vancouver-vacation-rentals.jpg" alt="vancouver vacation rentals" title="Vancouver vacation rentals">
+              <p class="header-title">Vancouver</p>
+
+              <div class="header-text-cont">
+                <p class="header-text">Canada</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+  EOF
+)
 
 CarouselSlide.delete_all
 CarouselSlide.create!([
