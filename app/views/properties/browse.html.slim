@@ -12,7 +12,7 @@
 
 = content_for :links_and_search do
   section
-    #search-options
+    #search-options.search-options
       = form_tag request.path, method: 'get' do
         - if @resort
           input type="hidden" name="resort_slug" value="#{@resort.slug}"
