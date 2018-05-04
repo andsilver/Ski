@@ -106,22 +106,22 @@ html.no-js lang="#{@lang}"
         = image_tag('marker.svg', id: 'marker', alt: 'Marker')
         a#logo href="#{root_path}" title="Home"
           = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
-        nav#main-menu role="navigation"
-          ul
-            li= raw snippet('layouts.application.top_left_menu_item', '<a>&nbsp;</a>')
-            - HolidayType.on_menu.each do |ht|
-              li class="mega-parent #{ht.slug}"
-                = link_to ht.name, ht
-                .mega-menu
-                  = raw ht.mega_menu_html
-            li= raw snippet('layouts.application.top_right_menu_item', '<a>&nbsp;</a>')
       = render 'layouts/breadcrumbs_and_heading'
       #slider-content
-        #links-and-search
-          = yield :links_and_search
+        .search
+          = yield :search
+        .links
+          = yield :links
           = render 'layouts/region_nav' if @region
           = render 'layouts/resort_nav' if @resort
           = raw sidebar_html
+      nav.main-menu role="navigation"
+        ul
+          - HolidayType.on_menu.each do |ht|
+            li class="mega-parent #{ht.slug}"
+              = link_to ht.name, ht
+              .mega-menu
+                = raw ht.mega_menu_html
       .page-surround
         #content role="main" class="#{'wide' unless content_for? :advertising}"
           = flash_notice

@@ -18,7 +18,7 @@ RSpec.describe 'Holiday type brochures', type: :system do
     morzine.save
 
     visit holiday_type_brochure_path('countries', france, ski_holidays.slug)
-    expect(page.find('#links-and-search')).to have_content('Morzine')
-    expect(page.find('#links-and-search')).not_to have_content('Flaine')
+    expect(page.find('.links')).to have_content('Morzine')
+    expect(page.find('.links')).not_to have_content('Flaine')
   end
 end

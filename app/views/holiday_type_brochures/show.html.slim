@@ -2,8 +2,8 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home_page') => root_path, @holiday_type => @holiday_type}, t('.heading', place: @brochurable, holiday_type: @holiday_type))
 
-= content_for :links_and_search do
-  = render 'home/quick_search'
+- content_for :search, render('home/quick_search')
+- content_for :links do
   = render partial: 'brochure_list', locals: { heading: t('.regions'), method: :region_brochures, brochurable: @brochurable, holiday_type: @holiday_type }
   = render partial: 'brochure_list', locals: { heading: t('.resorts'), method: :resort_brochures, brochurable: @brochurable, holiday_type: @holiday_type }
 
