@@ -43,16 +43,16 @@ $(document).ready(function() {
       <td class="view_image">
         <% if a.image %>
         <a href="#<%= "#{a.class}_img_#{a.id}" %>"><%= t 'images_controller.directory_image' %></a>
-        <div style="display: none;" id="<%= "#{a.class}_img_#{a.id}" %>">
-          <img src="<%= a.image.url %>">
+        <div style="display: none;">
+          <img src="<%= a.image.url %>" id="<%= "#{a.class}_img_#{a.id}" %>">
         </div>
         <% end %>
       </td>
       <td class="view_image">
         <% if a.banner_image %>
         <a href="#<%= "#{a.class}_bimg_#{a.id}" %>"><%= t 'images_controller.banner_image' %></a>
-        <div style="display: none;" id="<%= "#{a.class}_bimg_#{a.id}" %>">
-          <img src="<%= a.banner_image.url %>">
+        <div style="display: none;">
+          <img src="<%= a.banner_image.url %>" id="<%= "#{a.class}_bimg_#{a.id}" %>">
         </div>
         <% end %>
       </td>
@@ -60,8 +60,8 @@ $(document).ready(function() {
       <td class="view_image">
         <% if a.image %>
         <a href="#<%= "#{a.class}_img_#{a.id}" %>"><%= t 'images_controller.image' %></a>
-        <div style="display: none;" id="<%= "#{a.class}_img_#{a.id}" %>">
-          <img src="<%= a.image.url %>">
+        <div style="display: none;">
+          <img src="<%= a.image.url %>" id="<%= "#{a.class}_img_#{a.id}" %>">
         </div>
         <% end %>
       </td>
