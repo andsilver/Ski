@@ -60,9 +60,14 @@ img {
 
 .session {
   ul {
-    list-style: none;
-    display: flex;
     justify-content: flex-end;
+  }
+}
+
+.secondary-nav {
+  ul {
+    display: flex;
+    list-style: none;
   }
 
   a {

@@ -63,7 +63,7 @@ html.no-js lang="#{@lang}"
       header role="banner"
         div.header-snippet
           = raw @page_header_html
-        nav.session.content-inset
+        nav.session.secondary-nav.content-inset
           ul
             - if signed_in?
               - if current_user.has_adverts_in_basket?
@@ -84,25 +84,6 @@ html.no-js lang="#{@lang}"
             - if admin?
               li
                 = link_to '<i class="fas fa-edit"></i> '.html_safe + 'CMS', cms_path
-            li.google-plus-one
-              .g-plusone data-annotation="none" data-size="medium"
-              javascript:
-                window.___gcfg = {lang: 'en-GB'};
-
-                (function() {
-                  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                  po.src = 'https://apis.google.com/js/platform.js';
-                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                })();
-            li
-              a title="Blogger" href="https://mychaletfinder.blogspot.co.uk/"
-                i.fas.fa-rss
-            li
-              a title="Twitter" href="https://twitter.com/#!/MyChaletFinder"
-                i.fab.fa-twitter
-            li
-              a. title="Facebook" href="https://www.facebook.com/MyChaletFinder" target="_blank"
-                i.fab.fa-facebook
 
         = image_tag('marker.svg', id: 'marker', alt: 'Marker')
         .content-inset
@@ -137,6 +118,27 @@ html.no-js lang="#{@lang}"
           #advertising
             = yield :advertising
 
+        .social.secondary-nav
+          ul
+            li.google-plus-one
+              .g-plusone data-annotation="none" data-size="medium"
+              javascript:
+                window.___gcfg = {lang: 'en-GB'};
+
+                (function() {
+                  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                  po.src = 'https://apis.google.com/js/platform.js';
+                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                })();
+            li
+              a title="Blogger" href="https://mychaletfinder.blogspot.co.uk/"
+                i.fas.fa-rss
+            li
+              a title="Twitter" href="https://twitter.com/#!/MyChaletFinder"
+                i.fab.fa-twitter
+            li
+              a. title="Facebook" href="https://www.facebook.com/MyChaletFinder" target="_blank"
+                i.fab.fa-facebook
         - if content_for? :custom_footer
           = yield :custom_footer
         - else
