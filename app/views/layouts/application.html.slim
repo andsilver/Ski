@@ -63,7 +63,7 @@ html.no-js lang="#{@lang}"
       header role="banner"
         div.header-snippet
           = raw @page_header_html
-        nav.session
+        nav.session.content-inset
           ul
             - if signed_in?
               - if current_user.has_adverts_in_basket?
