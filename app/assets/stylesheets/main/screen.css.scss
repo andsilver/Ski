@@ -39,6 +39,10 @@ textarea {
   font-size: 1.2rem;
 }
 
+img {
+  max-width: 100%;
+}
+
 .group:after {
   content: "";
   display: table;
@@ -73,6 +77,14 @@ textarea {
   }
 }
 
+.logo img {
+  height: 31px;
+}
+
 .page-surround {
   padding: 10vh 15vw;
+}
+
+.content-inset {
+  padding: 0 15vw;
 }
