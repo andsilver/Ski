@@ -6,7 +6,7 @@
     = render partial: 'carousel_slide', collection: CarouselSlide.active.order(:position)
 
 = content_for :custom_footer do
-  footer.clear-fix role="contentinfo"
+  footer.content-inset role="contentinfo"
     = raw @footer_box
 
     #footer-marker

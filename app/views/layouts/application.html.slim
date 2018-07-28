@@ -118,32 +118,32 @@ html.no-js lang="#{@lang}"
           #advertising
             = yield :advertising
 
-        .social.secondary-nav
-          ul
-            li.google-plus-one
-              .g-plusone data-annotation="none" data-size="medium"
-              javascript:
-                window.___gcfg = {lang: 'en-GB'};
+      .social.secondary-nav
+        ul
+          li.google-plus-one
+            .g-plusone data-annotation="none" data-size="medium"
+            javascript:
+              window.___gcfg = {lang: 'en-GB'};
 
-                (function() {
-                  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                  po.src = 'https://apis.google.com/js/platform.js';
-                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                })();
-            li
-              a title="Blogger" href="https://mychaletfinder.blogspot.co.uk/"
-                i.fas.fa-rss
-            li
-              a title="Twitter" href="https://twitter.com/#!/MyChaletFinder"
-                i.fab.fa-twitter
-            li
-              a. title="Facebook" href="https://www.facebook.com/MyChaletFinder" target="_blank"
-                i.fab.fa-facebook
-        - if content_for? :custom_footer
+              (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/platform.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+              })();
+          li
+            a title="Blogger" href="https://mychaletfinder.blogspot.co.uk/"
+              i.fas.fa-rss
+          li
+            a title="Twitter" href="https://twitter.com/#!/MyChaletFinder"
+              i.fab.fa-twitter
+          li
+            a. title="Facebook" href="https://www.facebook.com/MyChaletFinder" target="_blank"
+              i.fab.fa-facebook
+      - if content_for? :custom_footer
           = yield :custom_footer
-        - else
-          footer role="contentinfo"
-            = render 'shared/footer_box'
-            hr
-            p#copyright
-              = "&copy; #{Time.now.year} #{COMPANY_NAME}".html_safe
+      - else
+        footer.content-inset role="contentinfo"
+          = render 'shared/footer_box'
+          hr
+          p#copyright
+            = "&copy; #{Time.now.year} #{COMPANY_NAME}".html_safe
