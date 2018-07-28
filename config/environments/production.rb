@@ -98,10 +98,10 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.mandrillapp.com',
+    address:              'smtp.mailgun.org',
     port:                 587,
-    user_name:            'ianf@yesl.co.uk',
-    password:             'DDNWTklSlBvIpa41MtDW9A',
+    user_name:            'postmaster@mg.mychaletfinder.com',
+    password:             '8535a3a8b39856f65975c81192c3c1c8-3b1f59cf-cf637821',
     authentication:       'login',
     enable_starttls_auto: true,
     domain:               'mychaletfinder.com'
