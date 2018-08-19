@@ -26,5 +26,3 @@
   - unless @resort.insider_view.blank?
     h2= t('resorts_controller.detail.insider_view', resort: @resort)
     = lt(@resort.insider_view, template_params)
-
-= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort)

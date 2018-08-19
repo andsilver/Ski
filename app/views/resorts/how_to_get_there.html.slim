@@ -2,11 +2,8 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@resort.breadcrumbs, t('.heading'))
 
-#content-with-side-banners
-  h2= t('resorts_controller.detail.how_to_get_there')
-  = render 'airport_distances/table', airport_distances: @resort.airport_distances
+h2= t('resorts_controller.detail.how_to_get_there')
+= render 'airport_distances/table', airport_distances: @resort.airport_distances
 
-  - unless @page_content.blank?
-    = raw Liquid::Template.parse(@page_content).render()
-
-= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort)
+- unless @page_content.blank?
+  = raw Liquid::Template.parse(@page_content).render()

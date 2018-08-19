@@ -85,5 +85,3 @@ p.clear-fix
   h2= t('contact_details')
   p= "#{t('phone')}: #{@property.user.phone}"
   p= "#{t('mobile')}: #{@property.user.mobile}"
-
-= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort)

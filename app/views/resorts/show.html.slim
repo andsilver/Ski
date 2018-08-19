@@ -5,15 +5,12 @@
 - content_for :search, render('search_form')
 
 - cache(@resort) do
-  #content-with-side-banners
-    - ski_facts_short = @resort.ski? ? render('ski_facts_short') : ''
-    - featured_properties = render('shared/featured_properties')
-    - template_params = {'featured_properties' => featured_properties, 'ski_facts_short' => ski_facts_short}
+  - ski_facts_short = @resort.ski? ? render('ski_facts_short') : ''
+  - featured_properties = render('shared/featured_properties')
+  - template_params = {'featured_properties' => featured_properties, 'ski_facts_short' => ski_facts_short}
 
-    - unless @resort.introduction.blank?
-      = lt(@resort.introduction, template_params)
+  - unless @resort.introduction.blank?
+    = lt(@resort.introduction, template_params)
 
-    - unless @resort.weather_code.blank?
-      #weather_code= raw @resort.weather_code
-
-= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort)
+  - unless @resort.weather_code.blank?
+    #weather_code= raw @resort.weather_code
