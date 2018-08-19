@@ -15,3 +15,45 @@
     }
   }
 }
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-field {
+  label {
+    display: block;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  input[type=text], .twitter-typeahead {
+    height: 2.625rem;
+    width: 100%;
+  }
+
+  input[type=text] {
+    border: none;
+    border-radius: 0;
+    padding: 0.75rem;
+  }
+}
+
+.search-field-destination {
+  flex-grow: 2;
+}
+
+.search-field-submit {
+  background: #fff;
+  border-left: 1px solid #f3f3f3;
+  box-sizing: border-box;
+  flex-grow: 1;
+  height: 2.625rem;
+  margin-top: 1.5rem;
+  padding: 0.3125rem 0.5rem 0 1rem;
+
+  .action-button {
+    width: 100%;
+  }
+}
