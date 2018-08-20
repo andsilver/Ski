@@ -100,7 +100,7 @@
 <% end %>
 
 <%= render 'location_button_and_modal' if @property.latitude.present? %>
-<%= link_to t('enquire'), contact_property_path(@property), class: 'btn btn-large btn-primary' %>
+<%= link_to t('enquire'), contact_property_path(@property), class: 'action-button' %>
 
 <%= clear %>
 
