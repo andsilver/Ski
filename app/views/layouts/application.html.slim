@@ -85,8 +85,8 @@ html lang="#{@lang}"
               li
                 = link_to '<i class="fas fa-edit"></i> '.html_safe + 'CMS', cms_path
 
-        = image_tag('marker.svg', id: 'marker', alt: 'Marker')
-        .content-inset
+        .content-inset.logo-container
+          = image_tag('marker-blue.svg', class: 'logo-marker', alt: '')
           a.logo href="#{root_path}" title="Home"
             = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
       = render 'layouts/breadcrumbs_and_heading'

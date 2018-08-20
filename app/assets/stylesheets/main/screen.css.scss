@@ -82,6 +82,16 @@ img {
   }
 }
 
+.logo-container {
+  position: relative;
+}
+
+.logo-marker {
+  left: 200px;
+  position: absolute;
+  top: -33px;
+}
+
 .logo img {
   height: 31px;
 }
@@ -91,5 +101,5 @@ img {
 }
 
 .content-inset {
-  padding: 0 15vw;
+  margin: 0 15vw;
 }
