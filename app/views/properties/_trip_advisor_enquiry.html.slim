@@ -5,7 +5,7 @@ h2 Interested?
     p Then we will transfer you to our partner site to search for availability, prices, and more details.
     p You will then be able to book or make an enquiry.
   .col-md-6
-    = form_tag(get_details_trip_advisor_property_path(@property.trip_advisor_property), target: '_blank')
+    = form_tag(get_details_trip_advisor_property_path(@property.trip_advisor_property), id: 'get-details')
       javascript:
         $(function() {
           var checkOutDates = {
@@ -52,6 +52,16 @@ h2 Interested?
                   });
                 }
               }
+            }
+          });
+          $('#get-details').submit(function(e) {
+            if (!$('#check_in').val()) {
+              window.alert('Please choose a check-in date.');
+              return false;
+            }
+            if (!$('#check_out').val()) {
+              window.alert('Please choose a check-out date.');
+              return false;
             }
           });
         });
