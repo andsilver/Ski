@@ -93,11 +93,6 @@ html lang="#{@lang}"
       .search-container.content-inset
         .search
           = yield :search
-      .links
-        = yield :links
-        = render 'layouts/region_nav' if @region
-        = render 'layouts/resort_nav' if @resort
-        = raw sidebar_html
       nav.main-menu.content-inset role="navigation"
         ul
           - HolidayType.on_menu.each do |ht|
@@ -117,6 +112,12 @@ html lang="#{@lang}"
         - if content_for? :advertising
           #advertising
             = yield :advertising
+
+      .links
+        = yield :links
+        = render 'layouts/region_nav' if @region
+        = render 'layouts/resort_nav' if @resort
+        = raw sidebar_html
 
       .social.secondary-nav
         ul
