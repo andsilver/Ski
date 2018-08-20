@@ -90,9 +90,10 @@ html lang="#{@lang}"
           a.logo href="#{root_path}" title="Home"
             = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
       = render 'layouts/breadcrumbs_and_heading'
-      .search-container.content-inset
-        .search
-          = yield :search
+      - if content_for? :search
+        .search-container
+          .content-inset.search
+            = yield :search
       nav.main-menu.content-inset role="navigation"
         ul
           - HolidayType.on_menu.each do |ht|
@@ -143,8 +144,9 @@ html lang="#{@lang}"
       - if content_for? :custom_footer
           = yield :custom_footer
       - else
-        footer.content-inset role="contentinfo"
-          = render 'shared/footer_box'
-          hr
-          p#copyright
-            = "&copy; #{Time.now.year} #{COMPANY_NAME}".html_safe
+        footer role="contentinfo"
+          .content-inset
+            = render 'shared/footer_box'
+            hr
+            p#copyright
+              = "&copy; #{Time.now.year} #{COMPANY_NAME}".html_safe

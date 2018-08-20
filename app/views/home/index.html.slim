@@ -6,22 +6,23 @@
     = render partial: 'carousel_slide', collection: CarouselSlide.active.order(:position)
 
 = content_for :custom_footer do
-  footer.content-inset role="contentinfo"
-    = raw @footer_box
+  footer role="contentinfo"
+    .content-inset
+      = raw @footer_box
 
-    #footer-marker
-      a href="/"
-        = image_tag 'marker-grey.png', alt: ''
-    #footer-copyright
-      p ©#{Time.now.year} #{COMPANY_NAME}
-      ul.flat-list.flat-with-margin
-        li= link_to I18n.t(:privacy), privacy_path, rel: 'nofollow'
-        li= link_to I18n.t(:terms), terms_path, rel: 'nofollow'
-        li= link_to I18n.t(:contact), contact_path
-        li
-          a href="/pages/resources" Resources
-        li
-          a#advertise_link href="/welcome/advertiser"= t('advertise')
+      #footer-marker
+        a href="/"
+          = image_tag 'marker-grey.png', alt: ''
+      #footer-copyright
+        p ©#{Time.now.year} #{COMPANY_NAME}
+        ul.flat-list.flat-with-margin
+          li= link_to I18n.t(:privacy), privacy_path, rel: 'nofollow'
+          li= link_to I18n.t(:terms), terms_path, rel: 'nofollow'
+          li= link_to I18n.t(:contact), contact_path
+          li
+            a href="/pages/resources" Resources
+          li
+            a#advertise_link href="/welcome/advertiser"= t('advertise')
 
 - cache [@w, Date.today] do
   = raw Liquid::Template.parse(@w.home_content).render('featured_properties' => render('shared/featured_properties'))
