@@ -1,12 +1,8 @@
 <%= content_for :title, 'Find Airport Transfers' %>
 
-<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({}, 'Find Airport Transfers') %>
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({}, 'Find Airport Transfers') %><%= render 'search_form' %>
 
 <div id="airport-transfers">
-  <div class="search-panel"></div>
-  <div class="search">
-    <%= render 'search_form' %>
-  </div><!--.search-->
   <div class="results">
     <% if defined? @results %>
     <% if @results.empty? %>

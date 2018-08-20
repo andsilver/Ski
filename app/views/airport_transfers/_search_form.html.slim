@@ -1,12 +1,13 @@
-= form_tag action: 'results' do
-  legend Choose which airport and resort you want to travel between and we'll find you the airport transfer companies with those connections.
-  .col-lg-6
-    .form-group
-      label To/from airport
-      = select("airport_transfer_search", "airport_id", (Airport.all.collect {|a| [ a.name, a.id ] }).sort, {prompt: 'Choose Airport'}, class: 'form-control')
-  .col-lg-6
-    .form-group
-      label To/from resort
-      = select("airport_transfer_search", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: 'Choose Resort'}, class: 'form-control')
-
-  = submit_tag 'Find Transfers', class: 'btn btn-primary'
+- content_for :search do
+  p Choose which airport and resort you want to travel between and we'll find you the airport transfer companies with those connections.
+  = form_tag({ action: 'results' }, class: 'search-form') do
+    .search-field.search-field-transfers-airport
+      label for="airport_transfer_search_airport_id" To/from airport
+      .search-control
+        = select("airport_transfer_search", "airport_id", (Airport.all.collect {|a| [ a.name, a.id ] }).sort, {prompt: 'Choose Airport'}, class: 'form-control')
+    .search-field.search-field-transfers-resort
+      label for="airport_transfer_search_resort_id" To/from resort
+      .search-control
+        = select("airport_transfer_search", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: 'Choose Resort'}, class: 'form-control')
+    .search-field-submit
+      = submit_tag 'Find Transfers', class: 'action-button'
