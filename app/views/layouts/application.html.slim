@@ -94,8 +94,8 @@ html lang="#{@lang}"
         .search-container
           .content-inset.search
             = yield :search
-      nav.main-menu.content-inset role="navigation"
-        ul
+      nav.main-menu role="navigation"
+        ul.content-inset
           - HolidayType.on_menu.each do |ht|
             li class="mega-parent #{ht.slug}"
               = link_to ht.name, ht
