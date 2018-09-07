@@ -39,16 +39,14 @@
       p
         = submit_tag 'Refine Search', class: 'btn btn-default'
 
-#content-with-side-banners
+= raw @page_content if first_page?
 
-  = raw @page_content if first_page?
+- if @properties.empty?
+  p= t('properties.no_matching_properties')
+- else
+  .results-count= pagination_start(@properties).to_s +  ' - ' + pagination_end(@properties).to_s + ' of ' + @properties.count.to_s
+  .property-summaries
+    - @properties.each do |p|
+      = render partial: 'properties/property_summary', locals: {p: p.decorate}
 
-  #property_summaries
-    - if @properties.empty?
-      p= t('properties.no_matching_properties')
-    - else
-      .results-count= pagination_start(@properties).to_s +  ' - ' + pagination_end(@properties).to_s + ' of ' + @properties.count.to_s
-      - @properties.each do |p|
-        = render partial: 'properties/property_summary', locals: {p: p.decorate}
-
-      = will_paginate @properties
+  = will_paginate @properties
