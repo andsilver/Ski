@@ -20,17 +20,6 @@
   }
 
   $(function() {
-    $('#location').click(function() {
-      $('#location-modal').modal('show');
-      // prevent the default action, e.g., following a link
-      return false;
-    });
-
-    $('#location-modal').on('shown.bs.modal', function() {
-      google.maps.event.trigger(map, 'resize');
-      map.setCenter(marker.getPosition());
-    });
-
     showMap();
   });
 </script>
