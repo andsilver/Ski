@@ -5,7 +5,7 @@ h2 Interested?
     p Then we will transfer you to our partner site to search for availability, prices, and more details.
     p You will then be able to book or make an enquiry.
   .col-md-6
-    = form_tag(get_details_trip_advisor_property_path(@property.trip_advisor_property), id: 'get-details')
+    = form_tag(get_details_trip_advisor_property_path(@property.trip_advisor_property), id: 'get-details', target: '_blank')
       javascript:
         $(function() {
           var checkOutDates = {
