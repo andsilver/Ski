@@ -8,7 +8,7 @@ class PropertiesController < ApplicationController
     :browse_for_rent, :browse_for_sale,
     :new_developments, :browse_hotels, :contact,
     :email_a_friend, :current_time, :show,
-    :show_interhome, :show_pv, :check_interhome_booking,
+    :show_interhome, :check_interhome_booking,
     :interhome_booking_form,
     :interhome_payment_success, :interhome_payment_failure,
     :update_booking_durations_select, :update_day_of_month_select]
@@ -205,21 +205,6 @@ class PropertiesController < ApplicationController
     else
       render template: 'properties/interhome_no_vacancy_info', layout: false
     end
-  end
-
-  def show_pv
-    @accommodation = PvAccommodation.find_by(permalink: params[:permalink])
-    not_found and return if @accommodation.nil?
-    @property = @accommodation.property
-
-    if @property.nil?
-      @accommodation.destroy
-      not_found
-      return
-    end
-
-    show_shared
-    render 'show_pv'
   end
 
   def check_interhome_booking

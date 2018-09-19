@@ -166,7 +166,6 @@ Rails.application.routes.draw do
   end
 
   get 'accommodation/:permalink' => 'properties#show_interhome', as: :interhome_property
-  get 'holiday-rentals/:permalink' => 'properties#show_pv', as: :pv_property
 
   resources :property_base_prices
 
@@ -197,11 +196,6 @@ Rails.application.routes.draw do
   end
 
   resources :interhome_place_resorts
-  resources :pv_place_resorts
-
-  resources :pv_accommodations do
-    post 'import_accommodations', on: :collection
-  end
 
   resources :images
 

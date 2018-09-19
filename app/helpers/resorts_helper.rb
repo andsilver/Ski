@@ -137,10 +137,6 @@ module ResortsHelper
     end
   end
 
-  def pv_place_codes
-    ActiveRecord::Base.connection.execute("SELECT DISTINCT(CONCAT_WS('-', iso_3166_1, iso_3166_2, onu)) FROM `pv_accommodations`").map{|c| c[0]}.sort
-  end
-
   def has_summer_holidays_page?(resort)
     resort.ski? && !resort.summer_only? && resort.has_visible_page?('summer-holidays')
   end

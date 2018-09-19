@@ -213,8 +213,6 @@ module PropertiesHelper
   def property_detail_path(property)
     if property.interhome_accommodation_id
       interhome_property_path(property.interhome_accommodation.permalink)
-    elsif property.pv_accommodation_id
-      pv_property_path(property.pv_accommodation.permalink)
     else
       property_path(property)
     end

@@ -27,12 +27,6 @@ RSpec.describe PropertiesHelper, type: :helper do
       property.interhome_accommodation = interhome_accommodation
       expect(property_detail_path(property)).to eq interhome_property_path(interhome_accommodation.permalink)
     end
-
-    it 'returns a pv_property_path for a Pierre et Vacances property' do
-      pv_accommodation = FactoryBot.create(:pv_accommodation)
-      property.pv_accommodation = pv_accommodation
-      expect(property_detail_path(property)).to eq pv_property_path(pv_accommodation.permalink)
-    end
   end
 
   describe '#booking_url' do

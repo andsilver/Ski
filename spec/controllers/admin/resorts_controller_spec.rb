@@ -55,7 +55,6 @@ module Admin
 
     describe 'GET edit' do
       let(:interhome_place_resort) { InterhomePlaceResort.new }
-      let(:pv_place_resort) { PvPlaceResort.new }
 
       it 'finds a resort' do
         expect(Resort).to receive(:find_by).with(slug: 'chamonix')
@@ -69,11 +68,6 @@ module Admin
 
         it 'creates a new Interhome place resort and sets its resort_id' do
           expect(InterhomePlaceResort).to receive(:new).with(resort_id: resort.id)
-          get 'edit', params: { id: '1' }
-        end
-
-        it 'creates a new P&V place resort and sets its resort_id' do
-          expect(PvPlaceResort).to receive(:new).with(resort_id: resort.id)
           get 'edit', params: { id: '1' }
         end
       end

@@ -468,19 +468,6 @@ interhome = User.create!(
   role: estate_agent,
   phone: '+441234567890'
 )
-pv = User.create!(
-  first_name: 'Pierre',
-  last_name: 'et Vacances',
-  email: 'pierreetvacances@mychaletfinder.com',
-  password: 'secret',
-  billing_street: '1, High St',
-  billing_city: 'Portsmouth',
-  billing_country: united_kingdom,
-  terms_and_conditions: true,
-  description: '',
-  role: estate_agent,
-  phone: '+441234567890'
-)
 trip_advisor = User.create!(
   first_name: 'TripAdvisor',
   last_name: 'TripAdvisor',
@@ -746,23 +733,6 @@ InterhomeVacancy.create!(
   interhome_accommodation_id: interhome_accommodation.id,
   minstay: 'CCCCCCCCCCCCCCCGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG',
   startday: Date.today
-)
-
-les_citronniers = PvAccommodation.create!(
-  property: Property.find_by(name: 'Les Citronniers'),
-  name: 'Les Citronniers',
-  code: '01L',
-  iso_3166_1: 'FR',
-  iso_3166_2: 'FR-06',
-  onu: 'FR-NCE',
-  address_1: '17, rue Partouneaux',
-  address_2: '',
-  town: 'MENTON',
-  postcode: '06500',
-  latitude: '43.77880000',
-  longitude: '7.50567000',
-  price_table_url: 'http://www.pv-holidays.com/gb-en/tabprice/?code=01L&season=SUMMER&currencyCode=EUR',
-  permalink: '01L'
 )
 
 DirectoryAdvert.destroy_all

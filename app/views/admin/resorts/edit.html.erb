@@ -33,35 +33,6 @@
       <% end %>
     </div>
   </div>
-  <div class="span6">
-    <div class="well">
-      <legend>Pierre et Vacances Places</legend>
-      <%= form_for(@pv_place_resort) do |f| %>
-      <%= f.hidden_field :resort_id %>
-      <%= f.label :pv_place_code, 'P&V place code' %>
-      <%= select("pv_place_resort", "pv_place_code",
-      pv_place_codes.collect {|p| [ p, p ] },
-      {prompt: 'Select P&V place'},
-      class: 'form-control') %>
-      <div>
-        <%= f.submit 'Link P&V place to this resort', class: 'btn btn-default' %>
-      </div>
-      <% end %>
-      <% if @resort.pv_place_resorts.empty? %>
-      <p>
-        There are no P&amp;V places represented by this resort.
-      </p>
-      <% else %>
-      <ul>
-        <% @resort.pv_place_resorts.each do |pr| %>
-        <li>
-          <%= pr.pv_place_code %>
-          <%= link_to 'Unlink', pr, confirm: t('are_you_sure'), method: :delete, class: 'btn btn-default' %>
-        </li>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
 </div>
 
 <div class="row">

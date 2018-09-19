@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180828093720) do
+ActiveRecord::Schema.define(version: 20180919144831) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -531,7 +531,6 @@ ActiveRecord::Schema.define(version: 20180828093720) do
     t.integer "country_id"
     t.boolean "publicly_visible", default: false, null: false
     t.boolean "late_availability", default: true
-    t.integer "pv_accommodation_id"
     t.integer "region_id"
     t.string "booking_url", default: "", null: false
     t.integer "flip_key_property_id"
@@ -543,7 +542,6 @@ ActiveRecord::Schema.define(version: 20180828093720) do
     t.index ["interhome_accommodation_id"], name: "index_properties_on_interhome_accommodation_id"
     t.index ["late_availability"], name: "index_properties_on_late_availability"
     t.index ["publicly_visible"], name: "index_properties_on_publicly_visible"
-    t.index ["pv_accommodation_id"], name: "index_properties_on_pv_accommodation_id"
     t.index ["resort_id"], name: "index_properties_on_resort_id"
     t.index ["trip_advisor_property_id"], name: "index_properties_on_trip_advisor_property_id"
     t.index ["user_id"], name: "index_properties_on_user_id"
@@ -562,60 +560,6 @@ ActiveRecord::Schema.define(version: 20180828093720) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "discount_amount", default: 0, null: false
-  end
-
-  create_table "pv_accommodations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string "name", null: false
-    t.string "code", null: false
-    t.string "iso_3166_1", null: false
-    t.string "iso_3166_2", null: false
-    t.string "onu", null: false
-    t.text "accroche_liste"
-    t.text "accroche_fiche"
-    t.text "description"
-    t.string "address_1", null: false
-    t.string "address_2", null: false
-    t.string "town", null: false
-    t.string "postcode", null: false
-    t.string "latitude", null: false
-    t.string "longitude", null: false
-    t.text "sports"
-    t.text "services"
-    t.string "price_table_url", null: false
-    t.string "permalink", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text "photos"
-    t.index ["code"], name: "index_pv_accommodations_on_code"
-    t.index ["permalink"], name: "index_pv_accommodations_on_permalink"
-  end
-
-  create_table "pv_place_resorts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.integer "resort_id", null: false
-    t.string "pv_place_code", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["pv_place_code"], name: "index_pv_place_resorts_on_pv_place_code"
-    t.index ["resort_id"], name: "index_pv_place_resorts_on_resort_id"
-  end
-
-  create_table "pv_vacancies", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.string "destination_code", null: false
-    t.string "apartment_code", null: false
-    t.integer "typology"
-    t.date "start_date", null: false
-    t.integer "duration", null: false
-    t.integer "stock_quantity", null: false
-    t.decimal "base_price", precision: 10, scale: 2, null: false
-    t.decimal "promo_price_fr", precision: 10, scale: 2, null: false
-    t.decimal "promo_price_en", precision: 10, scale: 2, null: false
-    t.decimal "promo_price_de", precision: 10, scale: 2, null: false
-    t.decimal "promo_price_nl", precision: 10, scale: 2, null: false
-    t.decimal "promo_price_es", precision: 10, scale: 2, null: false
-    t.decimal "promo_price_it", precision: 10, scale: 2, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["destination_code", "apartment_code"], name: "index_pv_vacancies_on_destination_code_and_apartment_code"
   end
 
   create_table "regions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|

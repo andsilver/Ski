@@ -11,7 +11,6 @@ class Property < ActiveRecord::Base
   belongs_to :currency
 
   belongs_to :interhome_accommodation, optional: true
-  belongs_to :pv_accommodation, optional: true
   belongs_to :trip_advisor_property, optional: true
 
   has_many :images, dependent: :destroy
