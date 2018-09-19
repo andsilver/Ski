@@ -945,6 +945,23 @@ trip_advisor_property = TripAdvisorProperty.create!(
   title: 'TA Prop'
 )
 
+chalet_bibendum = Property.create!(
+  resort: chamonix,
+  user: alice,
+  name: "Chalet Bibendum",
+  address: '123 street',
+  sleeping_capacity: 8,
+  metres_from_lift: 5500, weekly_rent_price: 1350, currency: euros,
+  image:  images[8], listing_type: Property::LISTING_TYPE_FOR_RENT,
+  publicly_visible: true,
+  description: 'Stylish and sophisticated, Radisson Blu Edinburgh is located ' \
+    'on the historic Royal Mile in the heart of the city. Popular ' \
+    'attractions such as Edinburgh Castle, Holyrood Palace and Edinburgh ' \
+    'Vaults are within walking distance. Each of the 238 elegant bedrooms ' \
+    'and suites offer modern...',
+  latitude: 51.509865, longitude: -0.118092
+)
+
 properties = Property.create!([
   { resort: chamonix, user: alice, name: "Alpen Lounge",      address: '123 street', sleeping_capacity: 6,   metres_from_lift: 2500, weekly_rent_price: 1750, currency: euros, image:  images[1], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, layout: 'Showcase' },
   { resort: chamonix, user: alice, name: "Apartment Teracce", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4700, weekly_rent_price: 2000, currency: euros, image:  images[2], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
@@ -953,9 +970,7 @@ properties = Property.create!([
   { resort: chamonix, user: alice, name: "Chalet Anchorage",  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5000, weekly_rent_price: 1650, currency: euros, image:  images[5], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Arkle",      address: '123 street', sleeping_capacity: 14,  metres_from_lift: 4000, weekly_rent_price: 1725, currency: euros, image:  images[6], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Azimuth",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6300, weekly_rent_price: 2150, currency: euros, image:  images[7], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Bibendum",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 5500, weekly_rent_price: 1350, currency: euros, image:  images[8], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true,
-    description: 'Stylish and sophisticated, Radisson Blu Edinburgh is located on the historic Royal Mile in the heart of the city. Popular attractions such as Edinburgh Castle, Holyrood Palace and Edinburgh Vaults are within walking distance. Each of the 238 elegant bedrooms and suites offer modern...',
-    latitude: 51.509865, longitude: -0.118092 },
+  chalet_bibendum,
   { resort: chamonix, user: alice, name: "Chalet Bornian",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4400, weekly_rent_price: 1400, currency: euros, image:  images[9], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Chachat",    address: '123 street', sleeping_capacity: 14,  metres_from_lift: 3500, weekly_rent_price: 1500, currency: euros, image: images[10], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
   { resort: chamonix, user: alice, name: "Chalet Cachemire",  address: '123 street', sleeping_capacity: 20,  metres_from_lift: 1400, weekly_rent_price: 1375, currency: euros, image: images[11], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
