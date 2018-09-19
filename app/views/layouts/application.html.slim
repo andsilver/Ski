@@ -64,7 +64,6 @@ html.no-js lang="#{@lang}"
           = raw @page_header_html
         nav#session
           ul
-            li= link_to '<i class="fas fa-heart"></i> '.html_safe + t('favourites.favourites'), favourites_path, rel: 'nofollow'
             - if signed_in?
               - if current_user.has_adverts_in_basket?
                 li

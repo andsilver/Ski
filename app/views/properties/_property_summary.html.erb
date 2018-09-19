@@ -38,9 +38,4 @@
     </div>
   </div>
 <% end -%>
-  <% if fav = favourite_for_property(p) %>
-  <%= form_for(fav, method: :delete) do |f| %>
-  <p><%= f.submit t('favourites.remove') %></p>
-  <% end %>
-  <% end %>
 </div>

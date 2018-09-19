@@ -9,23 +9,6 @@
 <h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %></h1>
 <%= render partial: 'price_and_id', locals: { property: @property } %>
 
-<% if fav = favourite_for_property(@property) %>
-<%= form_for(fav, method: :delete) do |f| %>
-<p>
-  <%= f.submit t('favourites.remove'), class: 'btn btn-large btn-danger' %>
-</p>
-<% end %>
-<% else %>
-<% @favourite = Favourite.new(property_id: @property.id) %>
-<%= form_for @favourite do |f| %>
-<%= f.hidden_field :property_id %>
-<p>
-  <button type="submit" class="btn btn-primary btn-large btn-property"><i class="fas fa-heart"></i>
-  <%= t('favourites.add') %></button>
-</p>
-<% end %>
-<% end %>
-
 <%= render partial: 'images', locals: { property: @property } %>
 
 <h2><%= t('features') %></h2>

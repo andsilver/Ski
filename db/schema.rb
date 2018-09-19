@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180919144831) do
+ActiveRecord::Schema.define(version: 20180919150628) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -232,15 +232,6 @@ ActiveRecord::Schema.define(version: 20180919144831) do
     t.integer "number_of_children", default: 0, null: false
     t.integer "number_of_infants", default: 0, null: false
     t.boolean "permission_to_contact", default: false, null: false
-  end
-
-  create_table "favourites", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.integer "property_id", null: false
-    t.integer "unregistered_user_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["property_id"], name: "index_favourites_on_property_id"
-    t.index ["unregistered_user_id"], name: "index_favourites_on_unregistered_user_id"
   end
 
   create_table "footers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
@@ -745,11 +736,6 @@ ActiveRecord::Schema.define(version: 20180919144831) do
     t.index ["currency_id"], name: "index_trip_advisor_properties_on_currency_id"
     t.index ["trip_advisor_location_id"], name: "index_trip_advisor_properties_on_trip_advisor_location_id"
     t.index ["updated_at"], name: "index_trip_advisor_properties_on_updated_at"
-  end
-
-  create_table "unregistered_users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|

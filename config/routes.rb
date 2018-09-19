@@ -234,8 +234,6 @@ Rails.application.routes.draw do
     get 'copy', on: :member
   end
 
-  resources :favourites
-
   get "cms" => "cms#index"
   get "guide" => "cms#guide"
   get "management_information" => "cms#management_information"

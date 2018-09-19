@@ -4,9 +4,9 @@ class ExportController < ApplicationController
   layout 'admin'
 
   CLASSES = %w{Advert AirportDistance Airport
-    Category Country Coupon Currency DirectoryAdvert Enquiry Favourite Image
+    Category Country Coupon Currency DirectoryAdvert Enquiry Image
     Order OrderLine Page Payment Property PropertyBasePrice
-    PropertyVolumeDiscount Resort Role UnregisteredUser User Website}
+    PropertyVolumeDiscount Resort Role User Website}
 
   def index
     @classes = CLASSES

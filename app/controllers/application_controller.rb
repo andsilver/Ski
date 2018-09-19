@@ -103,7 +103,6 @@ class ApplicationController < ActionController::Base
 
   def initialize_user
     current_user
-    @unregistered_user = UnregisteredUser.find_by(id: session[:unregistered_user])
   end
 
   def current_user
@@ -139,13 +138,6 @@ class ApplicationController < ActionController::Base
   def user_required
     unless signed_in?
       redirect_to sign_in_path, notice: t('notices.sign_in_required')
-    end
-  end
-
-  def unregistered_user_required
-    if(!@unregistered_user)
-      @unregistered_user = UnregisteredUser.create!
-      session[:unregistered_user] = @unregistered_user.id
     end
   end
 
