@@ -146,7 +146,6 @@ Rails.application.routes.draw do
       post 'advertise_now'
       get 'choose_window'
       get  'contact'
-      get  'email_a_friend'
       get  'interhome_booking_form'
       post 'place_in_window'
       post 'remove_from_window'
@@ -189,10 +188,6 @@ Rails.application.routes.draw do
       get 'current_time'
       get 'my'
     end
-  end
-
-  resources :email_a_friend_forms do
-    post 'current_time', on: :collection
   end
 
   resources :interhome_place_resorts

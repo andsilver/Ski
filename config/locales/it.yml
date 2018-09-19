@@ -154,8 +154,6 @@ it:
   duration: Duration
   edit: Edit
   email: 'Email'
-  email_a_friend_form_controller:
-    confirmation: "We've sent your friend an email. Thanks for sharing My Chalet Finder."
   enquire: Enquire
   enquiries_controller:
     check_in_date: Check-in date
@@ -397,9 +395,6 @@ it:
     contact:
       heading: 'Enquire about %{property}'
       title: 'Enquire about %{property} in %{resort}, %{country}'
-    email_a_friend:
-      heading: 'Email a friend about %{property}'
-      title: 'Email a friend about %{property} in %{resort}, %{country}'
     featured:
       alt_for_rent: '%{resort} accommodation chalets for rent in %{resort} apartments to rent in %{resort} holiday homes to rent in %{resort}'
       alt_for_sale: '%{resort} accommodation chalets for sale in %{resort} apartments to buy in %{resort} holiday homes to buy in %{resort}'
@@ -459,7 +454,6 @@ it:
     no_matching_properties: 'There are no properties advertised at this resort that match your search criteria. Many holiday rentals only accept check-ins on Saturdays and have a minimum stay of 7 days. If possible and you are flexible with your dates, please try amending your check-in dates and / or duration of your holiday - thank you.'
     place_in_window: 'Place in Window'
     property_summary:
-      email_a_friend: 'Email a friend'
       nearest_lift: 'Nearest lift'
       sleeps: Sleeps
     select_resort: Select resort

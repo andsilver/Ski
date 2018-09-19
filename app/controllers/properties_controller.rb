@@ -7,16 +7,16 @@ class PropertiesController < ApplicationController
     :index, :quick_search,
     :browse_for_rent, :browse_for_sale,
     :new_developments, :browse_hotels, :contact,
-    :email_a_friend, :current_time, :show,
+    :current_time, :show,
     :show_interhome, :check_interhome_booking,
     :interhome_booking_form,
     :interhome_payment_success, :interhome_payment_failure,
     :update_booking_durations_select, :update_day_of_month_select]
 
-  before_action :no_header!, only: [:contact, :email_a_friend, :show, :show_interhome, :show_pierret_et_vacances]
+  before_action :no_header!, only: [:contact, :show, :show_interhome, :show_pierret_et_vacances]
 
-  before_action :find_property, only: [:show, :contact, :email_a_friend]
-  before_action :ensure_property_visibility, only: [:show, :contact, :email_a_friend]
+  before_action :find_property, only: [:show, :contact]
+  before_action :ensure_property_visibility, only: [:show, :contact]
 
   before_action :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
@@ -305,11 +305,6 @@ class PropertiesController < ApplicationController
 
   def contact
     @enquiry = Enquiry.new(property: @property)
-  end
-
-  def email_a_friend
-    @form = EmailAFriendForm.new
-    @form.property_id = @property.id
   end
 
   def edit
