@@ -94,6 +94,8 @@ html lang="#{@lang}"
         .search-container
           .content-inset.search
             = yield :search
+      - else
+        .divider-bar
       nav.main-menu role="navigation"
         ul.content-inset
           - HolidayType.on_menu.each do |ht|

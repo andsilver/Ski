@@ -2,9 +2,9 @@
   - if property.image
     .cycle-slideshow data-cycle-fx="scrollHorz" data-cycle-timeout="8000" data-cycle-pager="#adv-custom-pager" data-cycle-pager-template="<a href='#' class='fk-thumb'><img src='{{src}}' width=96 height=72></a>"
       .cycle-prev
-        span.fas.fa-arrow-circle-left
+        span.fas.fa-angle-left
       .cycle-next
-        span.fas.fa-arrow-circle-right
+        span.fas.fa-angle-right
       - property.images.each do |i|
         = image_tag(i.sized_url([640, 480], :cropped), alt: "Photo of #{property.name}")
       #adv-custom-pager.center.external

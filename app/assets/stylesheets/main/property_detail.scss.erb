@@ -1,11 +1,43 @@
-#property {
+.property {
   h1 {
     font-size: 1.2rem;
   }
 
   img {
-    max-width: 100%;
+    max-width: none;
   }
+
+  .cycle-slide {
+    width: 100%;
+  }
+
+  .classic-features ul {
+    list-style: none;
+    padding: 0;
+    text-transform: uppercase;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .classic-images-features {
+
+    .cycle-slideshow {
+      float: left;
+      width: 67%;
+    }
+
+    .classic-features {
+      box-sizing: border-box;
+      float: left;
+      padding-left: 1rem;
+      width: 33%;
+
+      h2 {
+        margin-top: 0;
+      }
+    }
+  }
+
 }
 
 #features {
@@ -51,11 +83,11 @@
   background-image: url(<%= image_path('unticked-feature.png') %>);
 }
 
-.property_name span:first-child {
+.property-name span:first-child {
   color: #999;
 }
 
-#map_canvas {
+.map-canvas {
   width: 100%;
   height: 350px;
 }
@@ -217,7 +249,7 @@ body a.special-offers {
 
 #adv-custom-pager {
   border-top: 2px solid #fff;
-  width: 640px;
+  width: 100%;
   height: 94px;
   overflow-x: auto;
   white-space: nowrap;
@@ -236,16 +268,19 @@ body a.special-offers {
 }
 
 .cycle-prev, .cycle-next {
+  background-color: #333;
+  box-sizing: border-box;
   color: #fff;
-  font-size: 50px;
+  font-size: 40px;
+  height: 60px;
+  line-height: 60px;
   text-align: center;
   position: absolute;
-  top: 0;
-  width: 30%;
-  opacity: 0.5;
+  top: calc(50% - 60px);
+  width: 60px;
+  opacity: 0.7;
   filter: alpha(opacity=0.5);
   z-index: 800;
-  height: 480px;
   cursor: pointer;
 
   span {

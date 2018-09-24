@@ -438,7 +438,9 @@ en:
       weekly_price_from: 'From %{price} weekly'
     features:
       balcony: Balcony
+      bathrooms: 'Bathrooms: %{bathrooms}'
       bed_and_breakfast: 'Bed & breakfast'
+      bedrooms: 'Bedrooms: %{bedrooms}'
       board_basis: Board basis
       cable_or_satellite: Cable or Satellite
       cave: Cave
@@ -467,6 +469,7 @@ en:
       self_catering: Self catering
       short_stays: Short stays
       ski_in_ski_out: Ski in/ski out
+      sleeping_capacity: 'Sleeping capacity: %{sleeping_capacity}'
       smoking: Smoking allowed
       swimming_pool: Swimming pool
       terrace: Terrace

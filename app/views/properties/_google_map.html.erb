@@ -1,4 +1,4 @@
-<% unless lat.empty? -%>
+<% if lat.present? -%>
 <script>
   var map;
   var marker;
@@ -10,7 +10,7 @@
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    map = new google.maps.Map(document.getElementById("map_canvas"),
+    map = new google.maps.Map(document.getElementById("map-canvas"),
       myOptions);
     marker = new google.maps.Marker({
       position: latlng,

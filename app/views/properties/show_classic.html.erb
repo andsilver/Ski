@@ -4,104 +4,35 @@
 
 <%= render partial: 'google_map',
     locals: { lat: @property.latitude, lng: @property.longitude } %>
-<div id="property">
+<div class="property classic-property">
   <%= render partial: 'user_logo', locals: { property: @property } %>
-<h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %></h1>
-<%= render partial: 'price_and_id', locals: { property: @property } %>
+  <h1 class="property-name">
+    <span><%= t('property_name') %>:</span>
+    <%= @property.name %>
+  </h1>
+  <%= render partial: 'price_and_id', locals: { property: @property } %>
 
-<%= render partial: 'images', locals: { property: @property } %>
+  <div class="classic-images-features group">
+    <%= render partial: 'images', locals: { property: @property } %>
+    <div class="classic-features">
+      <h2 class="subhead"><%= I18n.t('features') %></h2>
+      <ul>
+        <% classic_features(@property).each do |feature| %>
+        <li><%= feature %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 
-<h2><%= I18n.t('features') %></h2>
+  <% if @property.description.present? %>
+  <h2><%= I18n.t('description') %></h2>
+  <%= md @property.description %>
+  <% end %>
 
-<div id="features">
-  <div class="column">
-    <%= I18n.t('bedrooms') %>: <%= @property.number_of_bedrooms %>
-  </div>
-  <div class="column">
-    <%= I18n.t('bathrooms') %>: <%= @property.number_of_bathrooms %>
-  </div>
-  <div class="column">
-<% unless @property.for_sale? -%>
-    <%= I18n.t('sleeping_capacity') %>: <%= @property.sleeping_capacity %>
-<% end -%>
-  </div>
-  <div class="column">
-<% if @property.for_rent? -%>
-    <%= @property.board_basis_description %>
-<% else -%>
-    &nbsp;
-<% end -%>
-  </div>
-  <p class="divider">&nbsp;</p>
-<% if @property.for_rent? -%>
-  <div class="column">
-    <%= feature_tick(true, @property.tv_description) %><br>
-    <%= feature_tick(@property.wifi?,
-      I18n.t('properties.features.wifi')) %>
-  </div>
-  <div class="column">
-    <%= feature_tick(@property.long_term_lets_available?,
-      I18n.t('properties.features.long_term_lets_available')) %><br>
-    <%= feature_tick(@property.short_stays?,
-      I18n.t('properties.features.short_stays')) %>
-  </div>
-  <div class="column">
-    <%= feature_tick(@property.smoking?,
-      I18n.t('properties.features.smoking')) %><br>
-    <%= feature_tick(@property.disabled?,
-      I18n.t('properties.features.disabled')) %>
-  </div>
-  <div class="column">
-    <%= feature_tick(@property.pets?,
-      I18n.t('properties.features.pets')) %><br>
-    <%= feature_tick(@property.children_welcome?,
-      I18n.t('properties.features.children_welcome')) %>
-  </div>
-  <p class="divider">&nbsp;</p>
-<% end -%>
-  <div class="column">
-    <%= feature_tick(@property.balcony?,
-      I18n.t('properties.features.balcony')) %><br>
-    <%= feature_tick(@property.terrace?,
-      I18n.t('properties.features.terrace')) %><br>
-    <%= feature_tick(@property.mountain_views?,
-      I18n.t('properties.features.mountain_views')) %>
-  </div>
-  <div class="column">
-    <%= feature_tick(@property.garden?,
-      I18n.t('properties.features.garden')) %><br>
-    <%= feature_tick(true, @property.parking_description) %><br>
-    <%= feature_tick(@property.fully_equipped_kitchen?,
-      I18n.t('properties.features.fully_equipped_kitchen')) %>
-  </div>
-  <div class="column">
-    <%= feature_tick(@property.ski_in_ski_out?,
-      I18n.t('properties.features.ski_in_ski_out')) %><br>
-    <%= feature_tick(@property.cave?,
-      I18n.t('properties.features.cave')) %><br>
-    <%= feature_tick(@property.log_fire?,
-      I18n.t('properties.features.log_fire')) %>
-  </div>
-  <div class="column">
-    <%= feature_tick(@property.hot_tub?,
-      I18n.t('properties.features.hot_tub')) %><br>
-    <%= feature_tick(@property.sauna?,
-      I18n.t('properties.features.sauna')) %><br>
-    <%= feature_tick(@property.indoor_swimming_pool? ||
-      @property.outdoor_swimming_pool?,
-      I18n.t('properties.features.swimming_pool')) %>
-  </div>
+  <%= render 'location_button_and_modal' if @property.latitude.present? %>
+  <p>
+    <%= link_to t('enquire'), contact_property_path(@property), class: 'action-button' %>
+  </p>
+
   <%= clear %>
-</div>
-
-<% unless @property.description.nil? %>
-<h2><%= I18n.t('description') %></h2>
-<%= md @property.description %>
-<% end %>
-
-<%= render 'location_button_and_modal' if @property.latitude.present? %>
-<%= link_to t('enquire'), contact_property_path(@property), class: 'action-button' %>
-
-<%= clear %>
-
-</div><!--#property-->
+</div><!--.property-->

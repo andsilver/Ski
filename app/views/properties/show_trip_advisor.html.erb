@@ -4,7 +4,7 @@
 
 <%= render partial: 'google_map',
     locals: { lat: @property.latitude, lng: @property.longitude } %>
-<div id="property">
+<div class="property">
   <%= render partial: 'user_logo', locals: { property: @property } %>
 <h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %></h1>
 <%= render partial: 'price_and_id', locals: { property: @property } %>
@@ -72,4 +72,4 @@
 </div>
 <% end %>
 
-</div><!--#property-->
+</div><!--.property-->

@@ -11,6 +11,37 @@ module PropertiesHelper
     html
   end
 
+  def classic_features(property)
+    [].tap do |features|
+      features << I18n.t('properties.features.bedrooms', bedrooms: property.number_of_bedrooms)
+      features << I18n.t('properties.features.bathrooms', bathrooms: property.number_of_bathrooms)
+      features << I18n.t('properties.features.sleeping_capacity', sleeping_capacity: property.sleeping_capacity)
+      features << property.board_basis_description if property.for_rent?
+      if property.for_rent?
+        features << property.tv_description
+        features << I18n.t('properties.features.wifi') if property.wifi?
+        features << I18n.t('properties.features.long_term_lets_available') if property.long_term_lets_available?
+        features << I18n.t('properties.features.short_stays') if property.short_stays?
+        features << I18n.t('properties.features.smoking') if property.smoking?
+        features << I18n.t('properties.features.disabled') if property.disabled?
+        features << I18n.t('properties.features.pets') if property.pets?
+        features << I18n.t('properties.features.children_welcome') if property.children_welcome?
+      end
+      features << I18n.t('properties.features.balcony') if property.balcony?
+      features << I18n.t('properties.features.terrace') if property.terrace?
+      features << I18n.t('properties.features.mountain_views') if property.mountain_views?
+      features << I18n.t('properties.features.garden') if property.garden?
+      features << property.parking_description
+      features << I18n.t('properties.features.fully_equipped_kitchen') if property.fully_equipped_kitchen?
+      features << I18n.t('properties.features.ski_in_ski_out') if property.ski_in_ski_out?
+      features << I18n.t('properties.features.cave') if property.cave?
+      features << I18n.t('properties.features.log_fire') if property.log_fire?
+      features << I18n.t('properties.features.hot_tub') if property.hot_tub?
+      features << I18n.t('properties.features.sauna') if property.sauna?
+      features << I18n.t('properties.features.swimming_pool') if property.indoor_swimming_pool? || property.outdoor_swimming_pool?
+    end
+  end
+
   def feature_tick ticked, label
     html = ''
     if ticked
