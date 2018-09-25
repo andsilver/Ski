@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180925145909) do
+ActiveRecord::Schema.define(version: 20180925164410) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -615,7 +615,6 @@ ActiveRecord::Schema.define(version: 20180925145909) do
     t.integer "property_count", default: 0, null: false
     t.integer "for_rent_count", default: 0, null: false
     t.integer "for_sale_count", default: 0, null: false
-    t.integer "hotel_count", default: 0, null: false
     t.integer "new_development_count", default: 0, null: false
     t.text "gallery_content"
     t.text "piste_map_content"
@@ -659,7 +658,6 @@ ActiveRecord::Schema.define(version: 20180925145909) do
     t.text "sales_pitch"
     t.boolean "advertises_properties_for_sale", default: false, null: false
     t.boolean "advertises_through_windows", default: false, null: false
-    t.boolean "advertises_hotels", default: false, null: false
   end
 
   create_table "snippets", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|

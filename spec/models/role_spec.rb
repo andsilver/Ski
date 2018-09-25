@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-describe Role do
-  it { should respond_to(:advertises_hotels?) }
-
+RSpec.describe Role, type: :model do
   describe "#only_advertises_properties_for_rent?" do
     it "only returns true when there are no other advertising options" do
       role = Role.new

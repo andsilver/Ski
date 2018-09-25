@@ -187,11 +187,6 @@ RSpec.describe PropertiesController, type: :controller do
     it_behaves_like 'a region and resort setter', :get, :browse_for_sale
   end
 
-  describe 'GET browse_hotels' do
-    it_behaves_like 'a protector of hidden resorts', :get, :browse_hotels
-    it_behaves_like 'a region and resort setter', :get, :browse_hotels
-  end
-
   describe 'GET new_developments' do
     let(:properties) { double(ActiveRecord::Relation).as_null_object }
     let!(:resort) { FactoryBot.create(:resort) }

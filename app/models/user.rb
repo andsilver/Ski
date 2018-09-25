@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   has_many :properties, dependent: :destroy
   has_many :properties_for_rent, -> { where listing_type: Property::LISTING_TYPE_FOR_RENT }, class_name: 'Property'
   has_many :properties_for_sale, -> { where listing_type: Property::LISTING_TYPE_FOR_SALE }, class_name: 'Property'
-  has_many :hotels, -> { where listing_type: Property::LISTING_TYPE_HOTEL }, class_name: 'Property'
   has_many :images, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :orders_with_receipts, -> { where("status NOT IN (#{Order::WAITING_FOR_PAYMENT})").order('created_at DESC') }, class_name: 'Order'

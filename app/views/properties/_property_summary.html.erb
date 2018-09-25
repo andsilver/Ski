@@ -11,7 +11,7 @@
   <div class="property-summary-description">
     <h3>
       <%= link_to content_tag(:span, p.truncated_name, itemprop: 'name'), link, title: "Read more about #{p.name}", itemprop: 'url' %>
-      <% unless p.hotel? || p.for_sale? %>&middot; <%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
+      <% unless p.for_sale? %>&middot; <%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
       <% if sort_method == 'metres_from_lift ASC' %>&middot; <%= t('.nearest_lift' )%> <%= p.nearest_lift %><% end %>
       &middot;
       <% if p.price_description.present? %>

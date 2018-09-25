@@ -21,11 +21,6 @@
   t('users.advertise_a_property_for_sale.advertise_a_property_for_sale'),
   t('users.advertise_a_property_for_sale.description')) %>
 <% end %>
-<% if current_user.role.advertises_hotels? %>
-<%= user_action(new_property_path(listing_type: Property::LISTING_TYPE_HOTEL),
-  t('users.advertise_a_hotel.advertise_a_hotel'),
-  t('users.advertise_a_hotel.description')) %>
-<% end %>
 <% if current_user.airport_transfer_company? %>
 <%= user_action(airport_transfers_path,
   t('users.manage_airport_transfers.manage_airport_transfers'),

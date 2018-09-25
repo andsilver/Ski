@@ -53,8 +53,6 @@
   <% if @object.for_sale? %><%= link_to 'Add a new property for sale', new_property_path + "?listing_type=#{Property::LISTING_TYPE_FOR_SALE}" %>
   <% elsif @object.for_rent? %>
   <%= link_to 'Add a new property for rent', new_property_path + "?listing_type=#{Property::LISTING_TYPE_FOR_RENT}" %>
-  <% elsif @object.hotel? %>
-  <%= link_to 'Add a new hotel', new_property_path + "?listing_type=#{Property::LISTING_TYPE_HOTEL}" %>
   <% end %>
 </p>
 

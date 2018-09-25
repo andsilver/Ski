@@ -13,7 +13,6 @@ chamonix:
   directory_advert_count: 1
   for_rent_count: 1
   for_sale_count: 1
-  hotel_count: 1
   slug: chamonix
 
 italian_alps:

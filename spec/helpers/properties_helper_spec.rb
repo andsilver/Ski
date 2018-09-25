@@ -33,10 +33,10 @@ RSpec.describe PropertiesHelper, type: :helper do
     let(:property) { FactoryBot.build(:property, booking_url: url) }
 
     context 'when property has the booking URL set' do
-      let(:url) { '#hotel' }
+      let(:url) { '#booking' }
 
       it 'returns the booking URL' do
-        expect(booking_url(property)).to eq '#hotel'
+        expect(booking_url(property)).to eq '#booking'
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe PropertiesHelper, type: :helper do
     let(:property) { FactoryBot.build(:property, booking_url: booking_url) }
 
     context 'when property has the booking URL set' do
-      let(:booking_url) { '#hotel' }
+      let(:booking_url) { '#booking' }
 
       it 'returns _blank' do
         expect(booking_link_target(property)).to eq '_blank'

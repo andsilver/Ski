@@ -61,8 +61,6 @@ RSpec.describe Property, type: :model do
     it 'returns false when listing_type is anything else' do
       property = Property.new(listing_type: Property::LISTING_TYPE_FOR_SALE)
       expect(property.for_rent?).to be_falsey
-      property = Property.new(listing_type: Property::LISTING_TYPE_HOTEL)
-      expect(property.for_rent?).to be_falsey
     end
   end
 
@@ -70,13 +68,6 @@ RSpec.describe Property, type: :model do
     it 'returns true when listing_type is LISTING_TYPE_FOR_SALE' do
       property = Property.new(listing_type: Property::LISTING_TYPE_FOR_SALE)
       expect(property.for_sale?).to be_truthy
-    end
-  end
-
-  describe '#hotel?' do
-    it 'returns true when listing_type is LISTING_TYPE_HOTEL' do
-      property = Property.new(listing_type: Property::LISTING_TYPE_HOTEL)
-      expect(property.hotel?).to be_truthy
     end
   end
 
@@ -269,11 +260,9 @@ RSpec.describe Property, type: :model do
       Property.new(layout: layout, trip_advisor_property: ta_prop)
     end
     let(:ta_prop) { nil }
-    let(:hotel?) { false }
     let(:new_development?) { false }
 
     before do
-      allow(property).to receive(:hotel?).and_return hotel?
       allow(property).to receive(:new_development?).and_return new_development?
     end
 
@@ -287,13 +276,8 @@ RSpec.describe Property, type: :model do
     context 'when layout not set' do
       let(:layout) { nil }
 
-      context 'when neither a hotel, new development or FlipKey' do
+      context 'when neither a new development nor FlipKey' do
         it { should eq 'show_classic' }
-      end
-
-      context 'when a hotel' do
-        let(:hotel?) { true }
-        it { should eq 'show_hotel' }
       end
 
       context 'when a new development' do

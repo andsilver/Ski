@@ -44,8 +44,7 @@ module PropertiesHelper
   def featured_property_alt_attribute(p)
     keys = {
       Property::LISTING_TYPE_FOR_RENT => '.alt_for_rent',
-      Property::LISTING_TYPE_FOR_SALE => '.alt_for_sale',
-      Property::LISTING_TYPE_HOTEL => '.alt_hotel'
+      Property::LISTING_TYPE_FOR_SALE => '.alt_for_sale'
     }
     t(keys[p.listing_type], resort: p.resort)
   end
@@ -53,8 +52,7 @@ module PropertiesHelper
   def listing_type_options
     [
       ["For rent", Property::LISTING_TYPE_FOR_RENT],
-      ["For sale", Property::LISTING_TYPE_FOR_SALE],
-      ["Hotel",    Property::LISTING_TYPE_HOTEL]
+      ["For sale", Property::LISTING_TYPE_FOR_SALE]
     ]
   end
 
@@ -154,11 +152,7 @@ module PropertiesHelper
     if property.interhome_accommodation_id
       property_type_for_interhome(property.interhome_accommodation)
     else
-      if property.listing_type == Property::LISTING_TYPE_HOTEL
-        property_type_i18n(:hotel)
-      else
-        property_type_for_accommodation_type(property.accommodation_type)
-      end
+      property_type_for_accommodation_type(property.accommodation_type)
     end
   end
 
@@ -253,7 +247,7 @@ module PropertiesHelper
     action = controller.action_name
     if ['browse_for_sale', 'new_developments'].include? action
       :sales
-    elsif ['browse_hotels', 'browse_for_rent', 'quick_search'].include? action
+    elsif ['browse_for_rent', 'quick_search'].include? action
       :rentals
     end
   end

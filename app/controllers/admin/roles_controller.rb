@@ -40,7 +40,7 @@ module Admin
     def role_params
       params.require(:role).permit(:admin, :advertises_properties_for_rent,
         :advertises_properties_for_sale, :advertises_generally,
-        :advertises_hotels, :advertises_through_windows, :flag_new_development,
+        :advertises_through_windows, :flag_new_development,
         :has_a_website, :has_business_details, :name,
         :new_development_by_default, :sales_pitch, :select_on_signup)
     end

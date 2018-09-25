@@ -7,7 +7,6 @@
       = link_with_count(resort_property_rent_path(@resort), "Property for rent in #{@resort.name}", t('views.layouts.application.resort_nav.for_rent'), @resort.for_rent_count)
       = link_with_count(resort_property_sale_path(@resort), "Property for sale in #{@resort.name}", t('for_sale'), @resort.for_sale_count)
       = link_with_count(resort_property_new_developments_path(@resort), "New property developments in #{@resort.name}", t('resort_options.new_developments'), @resort.new_development_count)
-      = link_with_count(resort_property_hotels_path(@resort), "Hotels in #{@resort.name}", t('resort_options.hotels'), @resort.hotel_count)
       / hide temporarily - issue #150
       / link_with_count(directory_resort_path(@resort), "#{@resort.name} directory", t('directory'), @resort.directory_advert_count)
 

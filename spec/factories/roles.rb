@@ -19,7 +19,6 @@ FactoryBot.define do
     advertises_properties_for_sale true
     flag_new_development           true
     advertises_through_windows     true
-    advertises_hotels              false
   end
 
   factory :admin_role, class: Role do
@@ -31,6 +30,5 @@ FactoryBot.define do
     advertises_properties_for_sale false
     flag_new_development           false
     advertises_through_windows     false
-    advertises_hotels              false
   end
 end

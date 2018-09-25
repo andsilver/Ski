@@ -47,11 +47,6 @@ describe AdvertsController do
       expect(current_user).to receive(:properties_for_sale)
       get "my"
     end
-
-    it "finds hotels belonging to the current user" do
-      expect(current_user).to receive(:hotels)
-      get "my"
-    end
   end
 
   describe "GET basket" do

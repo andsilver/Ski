@@ -54,7 +54,6 @@ class ApplicationController < ActionController::Base
       '/users/forgot_password',
       '/welcome/advertiser',
       '/welcome/estate-agent',
-      '/welcome/hotelier',
       '/welcome/letting-agent',
       '/welcome/other-business',
       '/welcome/property-owner',
@@ -65,7 +64,6 @@ class ApplicationController < ActionController::Base
         @urls << resort_guide_url(resort) if resort.has_resort_guide?
         @urls << gallery_resort_url(resort)
         @urls << piste_map_resort_url(resort) if resort.has_piste_maps?
-        @urls << resort_property_hotels_url(resort) unless resort.hotel_count == 0
         @urls << resort_property_rent_url(resort) unless resort.for_rent_count == 0
         @urls << resort_property_sale_url(resort) unless resort.for_sale_count == 0
         @urls << resort_property_new_developments_url(resort) unless resort.new_development_count == 0

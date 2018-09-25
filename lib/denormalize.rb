@@ -46,9 +46,9 @@ class Denormalize
     Resort.visible.each do |resort|
       resort.for_rent_count = count_properties(resort, :listing_type, Property::LISTING_TYPE_FOR_RENT)
       resort.for_sale_count = count_properties(resort, :listing_type, Property::LISTING_TYPE_FOR_SALE)
-      resort.hotel_count = count_properties(resort, :listing_type, Property::LISTING_TYPE_HOTEL)
       resort.new_development_count = count_properties(resort, :new_development, true)
-      resort.property_count = resort.for_rent_count + resort.for_sale_count + resort.hotel_count + resort.new_development_count
+      resort.property_count = resort.for_rent_count + resort.for_sale_count +
+        resort.new_development_count
 
       conditions = DirectoryAdvert::CURRENTLY_ADVERTISED.dup
       conditions[0] += " AND resort_id = ?"
@@ -107,7 +107,7 @@ class Denormalize
           # Thumbnail for properties/show.html.erb and
           # properties/show_interhome.html.erb.
           image.sized_url(135, :height)
-          # Thumbnail for hotels and new developments.
+          # Thumbnail for new developments.
           image.sized_url(99, :square)
         end
       end

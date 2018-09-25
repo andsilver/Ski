@@ -412,13 +412,6 @@ advertiser = Role.create!(
       <a class="learn_more" href="/welcome/letting-agent">Learn More</a>
     </div>
 
-    <div class="advertiser_type" id="hoteliers">
-      <h3>Hoteliers &amp; Residences</h3>
-      <p>Hotel owners can access international exposure,
-      boosting existing marketing strategies</p>
-      <a class="learn_more" href="/welcome/hotelier">Learn More</a>
-    </div>
-
     <div class="advertiser_type" id="other_businesses">
       <h3>Banner &amp; Directory Ads</h3>
       <p>Cafés, bars and restaurants are among other
@@ -529,7 +522,6 @@ chamonix.create_page('how-to-get-there')
 
 les_houches = Resort.find_by(slug: 'les-houches')
 les_houches.holiday_type_brochures.build(holiday_type: ski_holidays)
-les_houches.hotel_count = 1
 les_houches.save!
 
 Airport.destroy_all
@@ -561,11 +553,6 @@ images = []
   img.save!
   images[i] = img
 end
-
-img = Image.new
-img.image = File.open("test-files/properties/hotel1.jpg", 'rb')
-img.save!
-images[51] = img
 
 PropertyBasePrice.create!(number_of_months: 12, price: 150)
 
@@ -666,22 +653,6 @@ properties.each do |property|
   images[n].property = property
   images[n].save!
 end
-
-hotel = Property.create!({
-  resort: les_houches,
-  user: alice,
-  name: 'Les Granges d’en Haut',
-  address: "Route des Chavants,\n74310 Les Houches",
-  sleeping_capacity: 100,
-  metres_from_lift: 1000,
-  weekly_rent_price: 1050,
-  currency: euros,
-  image: images[31],
-  listing_type: Property::LISTING_TYPE_HOTEL,
-  publicly_visible: true
-})
-
-51.downto(41).each {|i| hotel.images << images[i]}
 
 InterhomeAccommodation.destroy_all
 interhome_accommodation = InterhomeAccommodation.create!(

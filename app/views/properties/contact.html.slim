@@ -7,9 +7,7 @@
 = render partial: '/properties/user_logo', locals: { property: @property }
 
 p.clear-fix
-  - if @property.hotel?
-    = t('.introduction.hotel')
-  - elsif @property.for_sale?
+  - if @property.for_sale?
     = t('.introduction.for_sale')
   - else
     = t('.introduction.general')

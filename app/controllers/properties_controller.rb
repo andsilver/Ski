@@ -6,7 +6,7 @@ class PropertiesController < ApplicationController
   before_action :user_required, except: [
     :index, :quick_search,
     :browse_for_rent, :browse_for_sale,
-    :new_developments, :browse_hotels, :contact,
+    :new_developments, :contact,
     :current_time, :show,
     :show_interhome, :check_interhome_booking,
     :interhome_booking_form,
@@ -20,7 +20,9 @@ class PropertiesController < ApplicationController
 
   before_action :find_property_for_user, only: [:edit, :update, :destroy, :advertise_now, :choose_window, :place_in_window, :remove_from_window]
 
-  SEARCH_PAGES = [:browse_for_rent, :browse_for_sale, :browse_hotels, :new_developments, :quick_search]
+  SEARCH_PAGES = [
+    :browse_for_rent, :browse_for_sale, :new_developments, :quick_search
+  ]
 
   before_action :set_resort_and_region, only: SEARCH_PAGES
   before_action :set_country, only: [:quick_search]
@@ -44,7 +46,7 @@ class PropertiesController < ApplicationController
     @heading = t('properties_controller.quick_search.heading')
 
     order = selected_order(whitelist: order_whitelist, sort_method: params[:sort_method])
-    @conditions[0] += " AND (listing_type = #{Property::LISTING_TYPE_FOR_RENT} OR listing_type = #{Property::LISTING_TYPE_HOTEL})"
+    @conditions[0] += " AND (listing_type = #{Property::LISTING_TYPE_FOR_RENT})"
 
     @search_filters = [:parking, :children_welcome, :pets, :smoking, :tv, :wifi,
       :disabled, :ski_in_ski_out]
@@ -123,23 +125,6 @@ class PropertiesController < ApplicationController
     order = selected_order(whitelist: for_sale_order_whitelist, sort_method: params[:sort_method])
 
     @search_filters = [:garage, :parking, :garden]
-
-    filter_conditions
-    find_properties(order)
-
-    render :browse, status: search_status
-  end
-
-  def browse_hotels
-    default_page_title t('properties.titles.hotels', resort: @resort)
-    @breadcrumbs = {@resort.name => @resort}
-    @heading = t('properties_controller.titles.browse_hotels', resort: @resort)
-
-    order = selected_order(whitelist: hotel_order_whitelist, sort_method: params[:sort_method])
-
-    @conditions[0] += " AND listing_type = #{Property::LISTING_TYPE_HOTEL}"
-
-    @search_filters = []
 
     filter_conditions
     find_properties(order)

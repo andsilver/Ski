@@ -16,8 +16,6 @@ class PropertyDecorator < Draper::Decorator
       crumbs[I18n.t('for_sale')] = resort_property_sale_path(resort)
     elsif for_rent?
       crumbs[I18n.t('for_rent')] = resort_property_rent_path(resort)
-    elsif hotel?
-      crumbs[I18n.t('hotels')] =  resort_property_hotels_path(resort)
     end
 
     crumbs

@@ -191,7 +191,6 @@ en:
         bungalow: 'Bungalow'
         chalet: 'Chalet'
         holiday_resort: 'Holiday Resort'
-        hotel: 'Hotel'
         house: 'House'
         villa: 'Villa'
   holiday_type_brochures:
@@ -219,7 +218,6 @@ en:
       heading: 'Terms and Conditions'
       title: 'Terms and Conditions'
   home_page: 'Home'
-  hotels: Hotels
   images:
     form:
       none_uploaded: 'No images have been uploaded yet.'
@@ -422,8 +420,6 @@ en:
       heading: 'Search Results'
     removed_from_window: "Your property advert has been removed from its window."
     saved: "Your property advert details have been saved."
-    titles:
-      browse_hotels: "%{resort} Hotels"
   properties:
     accommodation_type: Accommodation type
     browse:
@@ -434,12 +430,10 @@ en:
       introduction:
         for_sale: 'For further information about this new development such as floor plans, completion dates and the buying process, please complete the enquiry form below and one of our partner sales consultants will contact you straight away to answer any questions you may have and provide you with additional information. We wish you all the best in purchasing your holiday home.'
         general: 'To enquire about the availability and prices of your selected accommodation, you can either call the owner or agent directly on the number below or complete the details in the form and send an email. We hope you have a great holiday.'
-        hotel: 'To enquire about the availability and prices of your selected accommodation, you can either call the hotel directly on the number below or complete the details in the form and send an email. We hope you have a great holiday.'
       title: 'Enquire about %{property} in %{resort}, %{country}'
     featured:
       alt_for_rent: '%{resort} accommodation chalets for rent in %{resort} apartments to rent in %{resort} holiday homes to rent in %{resort}'
       alt_for_sale: '%{resort} accommodation chalets for sale in %{resort} apartments to buy in %{resort} holiday homes to buy in %{resort}'
-      alt_hotel: '%{resort} accommodation - hotels in %{resort}'
       sale_price: 'Sale price %{price}'
       weekly_price_from: 'From %{price} weekly'
     features:
@@ -516,7 +510,6 @@ en:
       browse_for_rent: "Chalets and Apartments for Rent in %{place}"
       browse_for_sale: "Chalets and Apartments for Sale in %{place}"
       edit: 'Edit Property'
-      hotels: "Hotels in %{resort}"
       new_developments: "New Property Developments in %{resort}"
       show: "%{property_name} - Holiday Rentals / Chalet Rentals / Apartment %{rent_or_sale} in %{resort}, %{country}"
   receipts: Receipts
@@ -601,7 +594,6 @@ en:
       show: "%{resort} | Ski Holiday Accommodation | Chalets & Apartments for Rent & Sale"
       summer_holidays: "Summer Holidays in %{resort}"
   resort_options:
-    hotels: Hotels
     new_developments: New Build
     resort_info: Resort Summary
   roles:
@@ -609,8 +601,6 @@ en:
     advertiser: Advertiser
     estate_agent: Estate agent
     estate_agents: Estate agents
-    hotelier: Hotelier
-    hoteliers: Hoteliers
     letting_agent: Letting agent
     letting_agents: Letting agents
     other_business: Other business
@@ -642,9 +632,6 @@ en:
     account_created: 'Your account was successfully created.'
     account_type: Account type
     advertiser_account: "%{name}’s Advertiser Account"
-    advertise_a_hotel:
-      advertise_a_hotel: Advertise a Hotel
-      description: "Advertise your hotel in a resort's hotels area."
     advertise_a_property_for_rent:
       advertise_a_property_for_rent: Advertise a Property for Rent
       description: "Advertise your property in a resort's property rentals area."

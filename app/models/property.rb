@@ -62,9 +62,8 @@ class Property < ActiveRecord::Base
 
   LISTING_TYPE_FOR_RENT = 0
   LISTING_TYPE_FOR_SALE = 1
-  LISTING_TYPE_HOTEL = 2
 
-  validates :listing_type, inclusion: { in: (LISTING_TYPE_FOR_RENT..LISTING_TYPE_HOTEL) }
+  validates :listing_type, inclusion: { in: (LISTING_TYPE_FOR_RENT..LISTING_TYPE_FOR_SALE) }
 
   ACCOMMODATION_TYPE_CHALET = 0
   ACCOMMODATION_TYPE_APARTMENT = 1
@@ -199,10 +198,6 @@ class Property < ActiveRecord::Base
     listing_type == LISTING_TYPE_FOR_SALE
   end
 
-  def hotel?
-    listing_type == LISTING_TYPE_HOTEL
-  end
-
   def price(advert, property_number)
     pp = PropertyPricer.new(months: advert.months, property_number: property_number)
     pp.price_in_cents
@@ -332,8 +327,6 @@ class Property < ActiveRecord::Base
   def template
     tpl = if layout
             layout.downcase.tr(' ', '_')
-          elsif hotel?
-            'hotel'
           elsif new_development?
             'new_development'
           elsif trip_advisor_property

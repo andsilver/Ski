@@ -22,13 +22,3 @@ chalet_alaska:
   currency: euros
   publicly_visible: 1
   late_availability: false
-
-hotel_le_chamonix:
-  resort: chamonix
-  user: bob
-  name: Hotel Le Chamonix
-  listing_type: 2 # Hotel
-  weekly_rent_price: 700
-  currency: euros
-  publicly_visible: 1
-  late_availability: false

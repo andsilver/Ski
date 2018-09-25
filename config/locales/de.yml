@@ -203,7 +203,6 @@ de:
       heading: 'Terms and Conditions'
       title: 'Terms and Conditions'
   home_page: 'Home'
-  hotels: Hotels
   images_controller:
     banner_image: 'Banner Image'
     deleted: 'Image deleted.'
@@ -398,7 +397,6 @@ de:
     featured:
       alt_for_rent: '%{resort} accommodation chalets for rent in %{resort} apartments to rent in %{resort} holiday homes to rent in %{resort}'
       alt_for_sale: '%{resort} accommodation chalets for sale in %{resort} apartments to buy in %{resort} holiday homes to buy in %{resort}'
-      alt_hotel: '%{resort} accommodation - hotels in %{resort}'
       sale_price: 'Sale price %{price}'
       weekly_price_from: 'From %{price} weekly'
     features:
@@ -463,7 +461,6 @@ de:
       browse_for_rent: "Properties for Rent in %{resort}"
       browse_for_sale: "Properties for Sale in %{resort}"
       edit: 'Bearbeiten Immobilien'
-      hotels: "Hotels in %{resort}"
       new: New Property
       new_developments: "New Property Developments in %{resort}"
       show: "%{property_name} - Chalet / Apartment %{rent_or_sale} in %{resort}, %{country}"
@@ -544,7 +541,6 @@ de:
       show: "%{resort} | Ski Holiday Accommodation | Chalets & Apartments for Rent & Sale"
       summer_holidays: "Summer Holidays in %{resort}"
   resort_options:
-    hotels: Hotels
     new_developments: New Build
     resort_info: Resort Info
   roles:
@@ -552,8 +548,6 @@ de:
     advertiser: Advertiser
     estate_agent: Estate agent
     estate_agents: Estate agents
-    hotelier: Hotelier
-    hoteliers: Hoteliers
     letting_agent: Letting agent
     letting_agents: Letting agents
     other_business: Other business
@@ -584,9 +578,6 @@ de:
   users:
     account_created: 'Your account was successfully created.'
     account_type: Account type
-    advertise_a_hotel:
-      advertise_a_hotel: Advertise a Hotel
-      description: "Advertise your hotel in a resort's hotels area."
     advertise_a_property_for_rent:
       advertise_a_property_for_rent: Advertise a Property for Rent
       description: "Advertise your property in a resort's property rentals area."
