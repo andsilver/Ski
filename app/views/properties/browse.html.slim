@@ -32,8 +32,6 @@
           - else
             = content_tag(:option, t('sleeping_capacity'), value: 'sleeping_capacity ASC', selected: sort_method=='sleeping_capacity ASC')
           = content_tag(:option, 'Number of bedrooms', value: 'number_of_bedrooms ASC', selected: sort_method == 'number_of_bedrooms ASC')
-          - if params[:action] == 'browse_hotels'
-            = content_tag(:option, 'Star rating', value: 'star_rating DESC', selected: sort_method == 'star_rating DESC')
         - if search_results_page_type == :rentals
           = render 'sleeps_select'
           = render 'board_basis_select'

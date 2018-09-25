@@ -14,8 +14,6 @@ RSpec.describe Property, type: :model do
   # ActiveModel
   it { should validate_length_of(:name).is_at_least(4).is_at_most(255) }
   it { should validate_presence_of(:resort) }
-  it { should validate_inclusion_of(:star_rating).in_range(1..5).with_message("is not in the range 1-5") }
-  it { should respond_to(:star_rating) }
   it { should validate_inclusion_of(:layout).in_array(Property::LAYOUTS) }
 
   describe '.parking_description' do

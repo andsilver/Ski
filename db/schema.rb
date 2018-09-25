@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180919150628) do
+ActiveRecord::Schema.define(version: 20180925145909) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -517,7 +517,6 @@ ActiveRecord::Schema.define(version: 20180919150628) do
     t.boolean "terrace", default: false, null: false
     t.integer "pericles_id"
     t.integer "board_basis", default: 0, null: false
-    t.integer "star_rating", default: 1, null: false
     t.integer "interhome_accommodation_id"
     t.integer "country_id"
     t.boolean "publicly_visible", default: false, null: false

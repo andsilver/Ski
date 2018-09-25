@@ -41,12 +41,6 @@ describe 'properties/show_hotel' do
     expect(response).to have_selector 'h1#hotel'
   end
 
-  it 'displays star rating' do
-    property.star_rating = 3
-    expect(view).to receive(:star_rating).with(3)
-    render
-  end
-
   it 'links to the hotel booking URL' do
     render
     expect(response).to have_selector("a[href='#{booking_url_ret}']")

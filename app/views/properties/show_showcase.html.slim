@@ -12,8 +12,6 @@ javascript:
     .contact-availability.layout-element.size-1of2
       h1= @property.name
       = simple_format("#{@property.address}\n#{@property.country}")
-      p.star-rating.theme-color
-        = star_rating(@property.star_rating)
       .make-a-booking
         = link_to "#{t(booking_link_text_key(@property))} <span class=\"fas fa-play theme-color\"></span>".html_safe, booking_url(@property), target: booking_link_target(@property)
 

@@ -39,12 +39,6 @@ RSpec.describe 'properties/show_showcase', type: :view do
     expect(response).to have_selector 'h1#rental'
   end
 
-  it 'displays star rating' do
-    property.star_rating = 3
-    expect(view).to receive(:star_rating).with(3)
-    render
-  end
-
   it 'uses booking_url helper for the booking link' do
     allow(view)
       .to receive(:booking_url).with(property).and_return 'http://example.org'

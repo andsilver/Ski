@@ -16,6 +16,6 @@ module PropertyOrdering
 
   def hotel_order_whitelist
     [ "normalised_weekly_rent_price ASC", "normalised_weekly_rent_price DESC",
-      "metres_from_lift ASC", "sleeping_capacity ASC", "star_rating DESC" ]
+      "metres_from_lift ASC", "sleeping_capacity ASC" ]
   end
 end

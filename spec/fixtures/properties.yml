@@ -30,6 +30,5 @@ hotel_le_chamonix:
   listing_type: 2 # Hotel
   weekly_rent_price: 700
   currency: euros
-  star_rating: 4
   publicly_visible: 1
   late_availability: false

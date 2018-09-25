@@ -51,6 +51,5 @@ RSpec.describe 'properties/_form.html.slim', type: :view do
     subject { rendered }
 
     it { should have_selector('select#property_listing_type') }
-    it { should have_selector('select#property_star_rating') }
   end
 end
