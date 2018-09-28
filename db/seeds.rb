@@ -988,6 +988,30 @@ chalet_bibendum = Property.create!(
 
 assign_property_images(chalet_bibendum)
 
+new_development = Property.create!(
+  address: '45 Rue',
+  balcony: true,
+  currency: euros,
+  description: 'Imagine the stunning location, in the heart of the authentic ' \
+    'village of Les Houches, just 7kms from the centre of Chamonix and all ' \
+    'under the gaze of the snow capped Mont Blanc. It is in this exceptional ' \
+    'setting, that our love affair with the Chamonix Valley continues with ' \
+    'the creation of "Chalets Delys" our new outright purchase development.',
+  latitude: 51.509865, longitude: -0.118092,
+  listing_type: Property::LISTING_TYPE_FOR_SALE,
+  metres_from_lift: 5500,
+  name: 'Chalet Delys',
+  new_development: true,
+  number_of_bathrooms: 1,
+  number_of_bedrooms: 3,
+  publicly_visible: true,
+  resort: chamonix,
+  sleeping_capacity: 8,
+  user: alice,
+)
+
+assign_property_images(new_development)
+
 properties = Property.create!([
   { resort: chamonix, user: alice, name: "Alpen Lounge",      address: '123 street', sleeping_capacity: 6,   metres_from_lift: 2500, weekly_rent_price: 1750, currency: euros, image:  images[1], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, layout: 'Showcase' },
   { resort: chamonix, user: alice, name: "Apartment Teracce", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4700, weekly_rent_price: 2000, currency: euros, image:  images[2], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
