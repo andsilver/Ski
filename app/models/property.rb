@@ -328,7 +328,7 @@ class Property < ActiveRecord::Base
     tpl = if layout
             layout.downcase.tr(' ', '_')
           elsif new_development?
-            'new_development'
+            'showcase'
           elsif trip_advisor_property
             'trip_advisor'
           else

@@ -282,7 +282,7 @@ RSpec.describe Property, type: :model do
 
       context 'when a new development' do
         let(:new_development?) { true }
-        it { should eq 'show_new_development' }
+        it { should eq 'show_showcase' }
       end
 
       context 'when a TripAdvisor property' do
