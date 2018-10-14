@@ -33,7 +33,7 @@ RSpec.describe 'Properties', type: :request do
 
         it 'renders the property template (classic by default)' do
           perform
-          assert_select '#property'
+          assert_select '.property'
         end
 
         context 'when TripAdvisor' do

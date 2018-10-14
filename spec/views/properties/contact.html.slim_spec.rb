@@ -1,7 +1,7 @@
 require 'rails_helper'
 require_relative 'property_header_image'
 
-describe 'properties/contact.html.slim' do
+RSpec.describe 'properties/contact.html.slim', type: :view do
   let(:property) { FactoryBot.build(:property) }
 
   before do

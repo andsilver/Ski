@@ -15,9 +15,9 @@ module PropertiesHelper
     [].tap do |features|
       features << I18n.t('properties.features.bedrooms', bedrooms: property.number_of_bedrooms)
       features << I18n.t('properties.features.bathrooms', bathrooms: property.number_of_bathrooms)
-      features << I18n.t('properties.features.sleeping_capacity', sleeping_capacity: property.sleeping_capacity)
-      features << property.board_basis_description if property.for_rent?
       if property.for_rent?
+        features << I18n.t('properties.features.sleeping_capacity', sleeping_capacity: property.sleeping_capacity)
+        features << property.board_basis_description
         features << property.tv_description
         features << I18n.t('properties.features.wifi') if property.wifi?
         features << I18n.t('properties.features.long_term_lets_available') if property.long_term_lets_available?
