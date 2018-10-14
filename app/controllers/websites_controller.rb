@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WebsitesController < ApplicationController
   before_action :admin_required
   before_action :find_website, only: [:edit, :edit_prices, :update]
@@ -12,11 +14,7 @@ class WebsitesController < ApplicationController
 
   def update
     if @website.update_attributes(website_params)
-      if params[:website][:banner_advert_price]
-        redirect_to(banner_directory_advert_prices_path, notice: t('notices.saved'))
-      else
-        redirect_to(edit_website_path(@website), notice: t('notices.saved'))
-      end
+      redirect_to(edit_website_path(@website), notice: t('notices.saved'))
     else
       render 'edit'
     end

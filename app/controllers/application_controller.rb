@@ -116,7 +116,6 @@ class ApplicationController < ActionController::Base
       @meta_keywords = @page_info.keywords
       @page_content = @page_info.content
       @footer_box = @page_info.footer.content unless @page_info.footer.nil?
-      @banner_advert_html = @page_info.banner_advert_html unless @page_info.banner_advert_html.blank?
       @page_sidebar_html = @page_info.sidebar_html(@lang)
       @page_header_html = @page_info.header_html(@lang)
     end

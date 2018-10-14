@@ -129,11 +129,6 @@ class User < ActiveRecord::Base
     nil
   end
 
-  def banner_adverts_so_far
-    Advert.where(['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
-      id]).count
-  end
-
   def directory_adverts_so_far
     Advert.where(['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
       id]).count
@@ -145,7 +140,7 @@ class User < ActiveRecord::Base
   end
 
   def adverts_so_far
-    banner_adverts_so_far + directory_adverts_so_far + property_adverts_so_far
+    directory_adverts_so_far + property_adverts_so_far
   end
 
   def basket_contains? advert_object
@@ -181,17 +176,6 @@ class User < ActiveRecord::Base
 
   def name
     "#{first_name} #{last_name}"
-  end
-
-  def airport_transfer_company?
-    airport_transfer_banner_advert
-  end
-
-  def airport_transfer_banner_advert
-    directory_adverts.each do |a|
-      return a if a.is_banner_advert? && a.currently_advertised? && a.category.name == 'category_names.airport_transfer'
-    end
-    nil
   end
 
   def empty_basket

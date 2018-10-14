@@ -21,11 +21,6 @@
   t('users.advertise_a_property_for_sale.advertise_a_property_for_sale'),
   t('users.advertise_a_property_for_sale.description')) %>
 <% end %>
-<% if current_user.airport_transfer_company? %>
-<%= user_action(airport_transfers_path,
-  t('users.manage_airport_transfers.manage_airport_transfers'),
-  t('users.manage_airport_transfers.description')) %>
-<% end %>
 <% if current_user.role.advertises_generally? %>
 <%= user_action(new_directory_advert_path,
   t('users.new_directory_advert.new_directory_advert'),

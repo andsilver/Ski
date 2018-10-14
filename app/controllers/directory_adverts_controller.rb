@@ -1,8 +1,6 @@
-class DirectoryAdvertsController < ApplicationController
-  VALID_BANNER_SIZES = [
-    [160, 200]
-  ]
+# frozen_string_literal: true
 
+class DirectoryAdvertsController < ApplicationController
   before_action :user_required, except: [:show, :click]
   before_action :admin_required, only: [:index]
   layout 'admin', only: [:index]
@@ -35,7 +33,6 @@ class DirectoryAdvertsController < ApplicationController
 
   def create
     resort_ids = params[:directory_advert][:resort_id]
-    is_banner_advert = params[:directory_advert].delete(:is_banner_advert) || false
 
     resort_ids.each do |resort_id|
       next if resort_id == ''
@@ -43,7 +40,6 @@ class DirectoryAdvertsController < ApplicationController
       params[:directory_advert].delete(:resort_id)
       @directory_advert = DirectoryAdvert.new(directory_advert_params)
       @directory_advert.resort_id = resort_id
-      @directory_advert.is_banner_advert = is_banner_advert
 
       @directory_advert.user_id = current_user.id
 
@@ -112,25 +108,6 @@ class DirectoryAdvertsController < ApplicationController
 
   def update_images
     begin
-      banner_image = Image.new(image: params['banner_image'])
-      banner_image.user_id = current_user.id
-
-      if banner_image.save
-        if valid_banner_size?(banner_image)
-          @directory_advert.banner_image.destroy unless @directory_advert.banner_image.nil?
-          @directory_advert.banner_image_id = banner_image.id
-          @directory_advert.record_dimensions(banner_image.dimensions)
-          @directory_advert.save
-        else
-          banner_image.destroy
-          flash[:notice] = t('images_controller.invalid_dimensions')
-        end
-      end
-    rescue
-      logger.info "Failed to update banner image for DirectoryAdvert ##{@directory_advert.id}"
-    end
-
-    begin
       directory_image = Image.new(image: params[:image])
       directory_image.user_id = current_user.id
 
@@ -142,10 +119,6 @@ class DirectoryAdvertsController < ApplicationController
     rescue
       logger.info "Failed to update directory image for DirectoryAdvert ##{@directory_advert.id}"
     end
-  end
-
-  def valid_banner_size?(image)
-    VALID_BANNER_SIZES.include? image.dimensions
   end
 
   def find_directory_advert_for_current_user

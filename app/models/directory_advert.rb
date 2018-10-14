@@ -9,7 +9,6 @@ class DirectoryAdvert < ActiveRecord::Base
   belongs_to :resort
   belongs_to :user
   belongs_to :image, dependent: :destroy, optional: true
-  belongs_to :banner_image, class_name: 'Image', dependent: :destroy, optional: true
 
   has_many :adverts, dependent: :nullify
 
@@ -32,11 +31,7 @@ class DirectoryAdvert < ActiveRecord::Base
   end
 
   def price(advert, directory_adverts_so_far)
-    if is_banner_advert?
-      BannerPrice.price_for_advert_number(directory_adverts_so_far) * 100
-    else
-      Website.first.directory_advert_price * 100
-    end
+    Website.first.directory_advert_price * 100
   end
 
   def valid_months
@@ -53,7 +48,7 @@ class DirectoryAdvert < ActiveRecord::Base
   end
 
   def basket_advert_type_description
-    is_banner_advert? ? 'Banner Advert + Free Directory Advert' : 'Directory Advert'
+    'Directory Advert'
   end
 
   def self.advertised_in(category, resort)
@@ -62,34 +57,5 @@ class DirectoryAdvert < ActiveRecord::Base
     conditions << category.id
     conditions << resort.id
     DirectoryAdvert.where(conditions)
-  end
-
-  def self.banner_adverts_for(resort, dimensions, qty)
-    conditions = CURRENTLY_ADVERTISED.dup
-    conditions[0] += " AND resort_id = ?" if resort
-    conditions[0] += " AND width = ? AND height = ?"
-    conditions[0] += " AND banner_image_id IS NOT NULL"
-    conditions[0] += " AND is_banner_advert = 1"
-    conditions << resort.id if resort
-    conditions << dimensions[0]
-    conditions << dimensions[1]
-
-    ads = []
-    uncached do
-      ads = DirectoryAdvert.where(conditions).order('RAND()').limit(qty)
-    end
-
-    ads.each {|ad| ad.current_advert.record_view}
-    ads
-  end
-
-  # Returns small banner adverts for a place. Only resorts support advertising
-  # at the moment so any other type of place will return an empty array.
-  def self.small_banners_for(place, qty = 6)
-    if place.is_a?(Resort)
-      self.banner_adverts_for(place, [160, 200], qty)
-    else
-      []
-    end
   end
 end

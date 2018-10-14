@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     resources :airport_distances, except: [:show]
     resources :airports,          except: [:show]
     resources :alt_attributes,    except: [:show]
-    resources :banner_prices,     except: [:show]
     resources :buying_guides,     except: [:show]
     resources :carousel_slides,   except: [:show] do
       member do

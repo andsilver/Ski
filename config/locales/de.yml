@@ -150,7 +150,7 @@ de:
     added_to_basket: 'Your directory advert has been added to your basket.'
     created: "Your directory advert was successfully created."
     saved: "Your directory advert was successfully updated."
-  directory_and_banner_adverts: 'Directory and Banner Adverts'
+  directory_adverts: 'Directory Adverts'
   duration: Duration
   edit: Bearbeiten
   email: 'Email'
@@ -204,7 +204,6 @@ de:
       title: 'Terms and Conditions'
   home_page: 'Home'
   images_controller:
-    banner_image: 'Banner Image'
     deleted: 'Image deleted.'
     directory_image: 'Directory Image'
     image: 'Image'
