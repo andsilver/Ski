@@ -104,7 +104,7 @@ html lang="#{@lang}"
               .mega-menu
                 = raw ht.mega_menu_html
       .page-surround
-        #content role="main" class="#{'wide' unless content_for? :advertising}"
+        #content.group.wide role="main"
           = flash_notice
           - unless header_image_urls.empty?
             #header-images
