@@ -1,0 +1,81 @@
+.abta {
+  display: block;
+  padding: 0.5rem;
+  margin: 0 0 1rem 0;
+  border: 1px solid #ddd;
+  font-size: 0.875rem;
+  float: right;
+}
+
+.interhome {
+  label {
+    font-weight: bold;
+  }
+
+  .form-control {
+    background-color: #fff;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .meta, .well {
+    background: #f3f3f3;
+    padding: 0.5rem;
+  }
+}
+
+.interhome-calendar {
+  border-bottom: 0;
+  width: 100%;
+
+  td, th {
+    font-size: 0.875rem;
+    padding: 3px 4px;
+    border: 2px solid #fff;
+  }
+
+  td {
+    color: #fff;
+    text-align: right;
+  }
+
+  th {
+    background: #333;
+    color: #fff;
+  }
+
+  td.empty {
+    background: #fff;
+  }
+
+  td.availability-N, td.availability-unknown {
+    background: red;
+  }
+
+  td.availability-Y {
+    background: green;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  td.availability-Y-no-check-in {
+    background: #555;
+  }
+
+  td.availability-Q {
+    background: orange;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.month {
+  width: 33%;
+  float: left;
+  margin: 6px 0.3% 0 0;
+}

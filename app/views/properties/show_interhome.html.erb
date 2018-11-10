@@ -13,11 +13,11 @@
     });
   });
 </script>
-<div class="property" itemscope itemtype="http://schema.org/LodgingBusiness">
-  <div class="clearfix">
+<div class="property interhome" itemscope itemtype="http://schema.org/LodgingBusiness">
+  <div class="group">
     <%= render partial: 'user_logo', locals: { property: @property } %>
-    <div class="thumbnail abta">
-      <%= image_tag 'abta.png', alt: 'ABTA Member' %>
+    <div class="abta">
+      <%= image_tag 'abta.png', alt: 'ABTA Member' %><br>
       The tour operator<br>
       (Interhome) is an<br>
       ABTA Member<br>
@@ -33,7 +33,7 @@
   <%= render partial: 'images', locals: { property: @property } %>
 
 <h2><%= I18n.t('features') %></h2>
-<div id="features" class="interhome-features">
+<div id="features" class="interhome-features group">
   <div class="column">
     <%= I18n.t('bedrooms') %>: <%= @accommodation.bedrooms %>
   </div>
@@ -79,7 +79,8 @@ $(function() {
 <div class="meta">
   <h2>Additional Information</h2>
   <p>
-    <a href="<%= interhome_property_path(@accommodation.permalink) %>" itemprop="url">Permalink</a>
+    <a href="<%= interhome_property_path(@accommodation.permalink) %>"
+      itemprop="url">Permalink</a>
   </p>
   <% if @accommodation.geodata_lat.present? -%>
   <p itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
