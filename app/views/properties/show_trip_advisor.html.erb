@@ -9,32 +9,19 @@
 <h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %></h1>
 <%= render partial: 'price_and_id', locals: { property: @property } %>
 
-<%= render partial: 'images', locals: { property: @property } %>
-
-<h2><%= t('features') %></h2>
-
-<div id="features" class="group">
-  <div class="column">
-    <%= I18n.t('bedrooms') %>: <%= @property.number_of_bedrooms %>
+<div class="classic-images-features group">
+  <%= render partial: 'images', locals: { property: @property } %>
+  <div class="classic-features">
+    <h2 class="subhead"><%= I18n.t('features') %></h2>
+    <ul>
+      <% classic_features(@property).each do |feature| %>
+      <li><%= feature %></li>
+      <% end %>
+      <% @property.amenities.each do |amenity| %>
+      <li><%= amenity.name.capitalize.sub('_', ' ') %></li>
+      <% end %>
+    </ul>
   </div>
-  <div class="column">
-    <%= I18n.t('bathrooms') %>: <%= @property.number_of_bathrooms %>
-  </div>
-  <div class="column">
-<% unless @property.for_sale? -%>
-    <%= I18n.t('sleeping_capacity') %>: <%= @property.sleeping_capacity %>
-<% end -%>
-  </div>
-  <% if (amenities = @property.amenities).any? %>
-    <p class="divider">&nbsp;</p>
-    <% amenities.each_slice((amenities.count / 3.0).ceil) do |group| %>
-      <div class="column">
-        <% group.each do |amenity| %>
-        <%= feature_tick(true, amenity.name.capitalize.sub('_', ' ')) %><br>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
 </div>
 
 <%= render partial: 'trip_advisor_calendar' %>

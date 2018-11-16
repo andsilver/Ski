@@ -1078,11 +1078,11 @@ a_trip_advisor_chalet.reviews << Review.create!(
   visited_on: Date.new(2017, 4, 1)
 )
 
-n = 0
-properties.each do |property|
-  n += 1
-  images[n].property = property
-  images[n].save!
+properties << a_trip_advisor_chalet
+
+properties.each_with_index do |property, index|
+  images[index + 1].property = property
+  images[index + 1].save!
 end
 
 InterhomeAccommodation.destroy_all
