@@ -9,7 +9,13 @@ javascript:
       }
     });
   });
-.date#arrival-datepicker.home-datepicker
-  input.form-control type="text" value="#{params[:start_date] ? params[:start_date] : t('.check_in_date')}" name="start_date"
-.date#departure-datepicker.home-datepicker
-  input.form-control type="text" value="#{params[:end_date] ? params[:end_date] : t('.check_out_date')}" name="end_date"
+.search-field
+  label for="start_date" Check-In
+  .search-field-input
+    .date#arrival-datepicker.home-datepicker
+      input#start_date type="text" value="#{params[:start_date] ? params[:start_date] : t('.check_in_date')}" name="start_date"
+.search-field
+  label for="end_date" Check-Out
+  .search-field-input
+    .date#departure-datepicker.home-datepicker
+      input.form-control type="text" value="#{params[:end_date] ? params[:end_date] : t('.check_out_date')}" name="end_date"

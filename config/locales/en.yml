@@ -207,11 +207,9 @@ en:
       check_out_date: 'Check-Out Date'
       help: 'Many properties only accept check-ins on Saturdays and have a minimum stay of 7 nights.'
     quick_search:
-      choose_country: 'Choose Country'
       choose_country_first: 'Choose Country First ↑'
-      choose_holiday: 'Choose Holiday'
       choose_holiday_first: 'Choose Holiday First ↑'
-      choose_resort: 'Choose Resort'
+      choose_resort: 'Choose'
       heading: 'Accommodation Search'
       search: 'Search'
     terms:
