@@ -10,4 +10,4 @@
       .search-control
         = select("airport_transfer_search", "resort_id", (Resort.visible.collect {|r| [ r.country.name + ' > ' + r.name, r.id ] }).sort, {prompt: 'Choose Resort'}, class: 'form-control')
     .search-field-submit
-      = submit_tag 'Find Transfers', class: 'action-button'
+      = submit_tag 'Find Transfers', class: 'button action-button'
