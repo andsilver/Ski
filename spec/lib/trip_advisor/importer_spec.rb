@@ -95,8 +95,8 @@ module TripAdvisor
         Importer.new(sftp_details: details).import_properties
       end
 
-      context 'on a Sunday' do
-        let(:date) { Date.new(2018, 3, 11) }
+      context 'on a Monday' do
+        let(:date) { Date.new(2018, 3, 12) }
 
         it 'downloads a full listings archive' do
           downloader = instance_double(PropertyDownloader)

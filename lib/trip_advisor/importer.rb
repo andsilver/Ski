@@ -23,7 +23,10 @@ module TripAdvisor
     # Downloads, extracts and imports properties.
     def import_properties
       downloader = PropertyDownloader.new(sftp_details: sftp_details)
-      archive = if Date.current.sunday?
+      # As there is no delta feed on a Sunday, we need to download the full feed
+      # instead for that day. As we download yesterday's data, we need to pull
+      # the full Sunday feed on a Monday.
+      archive = if Date.current.monday?
                   downloader.download_full
                 else
                   downloader.download_delta
