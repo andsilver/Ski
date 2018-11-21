@@ -1,5 +1,10 @@
 # README
 
+## Gettings started
+
+Copy config/database.sample.yml to config/database.yml and make any edits
+as needed. Then install dependencies as below.
+
 ## Dependencies
 
 ### ImageScience
