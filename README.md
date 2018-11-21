@@ -7,6 +7,8 @@ as needed. Then install dependencies as below.
 
 ## Dependencies
 
+Install Node.js (https://nodejs.org/) and Yarn (https://yarnpkg.com/).
+
 ### ImageScience
 
 On macOS:
