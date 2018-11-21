@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ResortsController < ApplicationController
   include ResortSetter
 
@@ -61,11 +63,16 @@ class ResortsController < ApplicationController
 
   protected
 
-    def set_resort
-      set_resort_with params[:id]
-    end
+  def set_resort
+    set_resort_with params[:id]
+  end
 
-    def find_featured_properties
-      @featured_properties = Property.order('RAND()').limit(9).where(publicly_visible: true, resort_id: @resort.id)
-    end
+  def find_featured_properties
+    @featured_properties = Property.order(Arel.sql('RAND()'))
+                                   .limit(9)
+                                   .where(
+                                     publicly_visible: true,
+                                     resort_id: @resort.id
+                                   )
+  end
 end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe Country do
+RSpec.describe Country, type: :model do
   describe "scope :with_resorts" do
     before do
       # create countries and resorts such that at
