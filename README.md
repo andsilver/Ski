@@ -1,6 +1,10 @@
 # README
 
-## Gettings started
+## Contributing
+
+See CONTRIBUTING.md.
+
+## Getting started
 
 Copy config/database.sample.yml to config/database.yml and make any edits
 as needed. Then install dependencies as below.
@@ -39,7 +43,18 @@ sudo apt-get install expect
 
 ## Running the test suite
 
+We use RSpec.
+
 `bundle exec rspec`
+
+We also use parallel_tests that utilised all your CPU cores:
+
+`rake parallel:spec`
+
+While developing you should use guard which will run tests on your files as you
+save changes to them:
+
+`bundle exec guard`
 
 ## Deployment
 
