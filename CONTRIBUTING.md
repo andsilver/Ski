@@ -6,6 +6,10 @@ Here are guidelines to contributing effectively to this project.
 support it. This will help keep indentation, whitespace, newlines, etc.,
 consistent.
 
+* Ensure your ~/.gitignore_global file ignores metadata files for your operating
+system and editor. This project's .gitignore file only ignores certain
+project-related files.
+
 * Make the smallest change in code to be effective.
 
 * Make small commits that are focused on one concept.
