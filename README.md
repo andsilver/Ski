@@ -17,6 +17,12 @@ On macOS:
 brew install freeimage
 ```
 
+On Ubuntu:
+
+```
+sudo apt-get install libfreeimage3 libfreeimage-dev
+```
+
 ### expect
 
 On macOS:
@@ -65,25 +71,18 @@ resize2fs /dev/sda
 reboot
 ```
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Troubleshooting
 
-Things you may want to cover:
+Errors you may face during setup:
 
-* Ruby version
+```
+fatal error: FreeImage.h: No such file or directory #include "FreeImage.h"
+```
 
-* System dependencies
+Install image ImageScience dependencies as described above.
 
-* Configuration
+Ubuntu Webpacker issues:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+sudo apt install webpack
+```

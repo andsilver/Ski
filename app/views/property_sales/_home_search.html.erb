@@ -1,0 +1,60 @@
+<div id="bloodhound">
+  <form class="search-form cf" action="<%= home_search_path %>">
+    <div class="search-field search-field-destination">
+      <label for="destination">Find properties here</label>
+      <input id="destination" class="typeahead" type="text" placeholder="Enter place name" name="place_name">
+    </div>
+    <div class="search-field search-field-submit">
+      <input class="button action-button form-control" type="submit" value="Search">
+    </div>
+  </form>
+</div>
+
+
+<script>
+  $('.search-form').on('submit', function() {
+    var placeName = $('.tt-input').val();
+
+    if(placeName) {
+      return true;
+    } else {
+      alert('Please select a destination');
+    }
+
+    return false;
+  });
+
+  // constructs the suggestion engine
+  var places = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: '/search/place_names.json'
+  });
+
+  places.clearPrefetchCache();
+
+  $('#bloodhound .typeahead').typeahead({
+    hint: true,
+    highlight: true
+  }, {
+    name: 'places',
+    source: places,
+    display: 'name',
+    limit: 15,
+    templates: {
+      suggestion: function(data) {
+         return '<div>' + data.name + ' <div class="property-count">' + data.count + ' <div>For Sale</div></div></div>';
+      }
+    }
+  }).keypress(function (e) {
+    if (e.which == 13) {
+      $('.tt-suggestion:first-child').trigger('click');
+    }
+  });
+
+   $(function() {
+     $('.search-datepicker input').pickadate({
+       format: 'd mmm, yyyy'
+     });
+   });
+</script>

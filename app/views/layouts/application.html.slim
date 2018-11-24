@@ -91,6 +91,10 @@ html lang="#{@lang}"
           = image_tag('marker-blue.svg', class: 'logo-marker', alt: '')
           a.logo href="#{root_path}" title="Home"
             = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
+        .content-inset.rentals-sales
+          ul
+            li: a.button.action-button href="/" Rentals
+            li: a.button.action-button href="/property_sales" Sales
       = render 'layouts/breadcrumbs_and_heading'
       - if content_for? :search
         .search-container

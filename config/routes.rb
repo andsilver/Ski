@@ -59,6 +59,9 @@ Rails.application.routes.draw do
   get 'late-availability' => 'late_availability#index'
 
   get 'properties/search' => 'properties#quick_search'
+
+  resources :property_sales, only: [:index]
+
   get "resorts/:resort_slug/properties/rent" => "properties#browse_for_rent", as: :resort_property_rent
   get "resorts/:resort_slug/properties/sale" => "properties#browse_for_sale", as: :resort_property_sale
   get "resorts/:resort_slug/properties/new-developments" => "properties#new_developments",
@@ -246,6 +249,8 @@ Rails.application.routes.draw do
   get 'search/place_names' => 'search#place_names'
 
   get 'home/search' => 'home#search', as: :home_search
+  get 'home/search_sales' => 'home#search_sales', as: :home_search_sales
+
   get 'home/country_options_for_quick_search' => 'home#country_options_for_quick_search'
   get 'home/resort_options_for_quick_search' => 'home#resort_options_for_quick_search'
   root 'home#index'

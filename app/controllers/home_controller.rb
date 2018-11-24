@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
-  before_action :set_resort_and_region_from_place_name, only: [:search]
+  before_action :set_resort_and_region_from_place_name,
+                only: %i[search search_sales]
 
   def index
     @featured_properties = @w.featured_properties
@@ -10,6 +13,16 @@ class HomeController < ApplicationController
       redirect_to resort_property_rent_path(@resort)
     elsif @region
       redirect_to region_property_rent_path(@region)
+    else
+      redirect_to root_path
+    end
+  end
+
+  def search_sales
+    if @resort
+      redirect_to resort_property_sale_path(@resort)
+    elsif @region
+      redirect_to region_property_sale_path(@region)
     else
       redirect_to root_path
     end
