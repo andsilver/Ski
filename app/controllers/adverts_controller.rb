@@ -47,6 +47,7 @@ class AdvertsController < ApplicationController
     end
 
     @order = Order.new
+    @order.currency = Currency.gbp
 
     copy_user_details_to_order
 
