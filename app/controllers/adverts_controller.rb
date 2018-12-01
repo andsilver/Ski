@@ -28,6 +28,8 @@ class AdvertsController < ApplicationController
 
     update_durations unless params[:months].nil?
     remove_advert if params[:remove_advert]
+
+    # TODO: Move 'place_order' from GET to POST
     redirect_to action: 'place_order' and return if params[:place_order]
 
     if params[:empty_basket]
