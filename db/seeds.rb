@@ -420,6 +420,7 @@ currencies.each do |c|
   Currency.create!(name: c[:name], unit: c[:unit], pre: c[:pre], code: c[:code], in_euros: c[:in_euros])
 end
 gbp = Currency.find_by(code: 'GBP')
+euro = Currency.find_by(code: 'EUR')
 
 countries = [
   { name: 'Andorra',               iso_3166_1_alpha_2: 'AD' },
@@ -955,7 +956,7 @@ trip_advisor_property = TripAdvisorProperty.create!(
   review_average: 4.5,
   trip_advisor_location: trip_advisor_chamonix,
   starting_price: 1400,
-  currency: gbp,
+  currency: euro,
   min_stay_low: 2,
   min_stay_high: 7,
   sleeps: 9,
@@ -965,7 +966,7 @@ trip_advisor_property = TripAdvisorProperty.create!(
 chalet_bibendum = Property.create!(
   address: '123 street',
   balcony: true,
-  currency: gbp,
+  currency: euro,
   description: 'Stylish and sophisticated, Radisson Blu Edinburgh is located ' \
     'on the historic Royal Mile in the heart of the city. Popular ' \
     'attractions such as Edinburgh Castle, Holyrood Palace and Edinburgh ' \
@@ -993,7 +994,7 @@ assign_property_images(chalet_bibendum)
 new_development = Property.create!(
   address: '45 Rue',
   balcony: true,
-  currency: gbp,
+  currency: euro,
   description: 'Imagine the stunning location, in the heart of the authentic ' \
     'village of Les Houches, just 7kms from the centre of Chamonix and all ' \
     'under the gaze of the snow capped Mont Blanc. It is in this exceptional ' \
@@ -1015,40 +1016,40 @@ new_development = Property.create!(
 assign_property_images(new_development)
 
 properties = Property.create!([
-  { resort: chamonix, user: alice, name: "Alpen Lounge",      address: '123 street', sleeping_capacity: 6,   metres_from_lift: 2500, weekly_rent_price: 1750, currency: gbp, image:  images[1], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, layout: 'Showcase' },
-  { resort: chamonix, user: alice, name: "Apartment Teracce", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4700, weekly_rent_price: 2000, currency: gbp, image:  images[2], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Brigitte's Mazot",  address: '123 street', sleeping_capacity: 2,   metres_from_lift: 3100, weekly_rent_price: 1825, currency: gbp, image:  images[3], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Alaska",     address: '123 street', sleeping_capacity: 5,   metres_from_lift: 8300, weekly_rent_price: 1950, currency: gbp, image:  images[4], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Anchorage",  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5000, weekly_rent_price: 1650, currency: gbp, image:  images[5], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Arkle",      address: '123 street', sleeping_capacity: 14,  metres_from_lift: 4000, weekly_rent_price: 1725, currency: gbp, image:  images[6], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Azimuth",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6300, weekly_rent_price: 2150, currency: gbp, image:  images[7], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Bornian",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4400, weekly_rent_price: 1400, currency: gbp, image:  images[9], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Chachat",    address: '123 street', sleeping_capacity: 14,  metres_from_lift: 3500, weekly_rent_price: 1500, currency: gbp, image: images[10], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Cachemire",  address: '123 street', sleeping_capacity: 20,  metres_from_lift: 1400, weekly_rent_price: 1375, currency: gbp, image: images[11], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Chardonnet", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9300, weekly_rent_price: 2000, currency: gbp, image: images[12], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Chintalaya", address: '123 street', sleeping_capacity: 10,  metres_from_lift: 6500, weekly_rent_price: 1475, currency: gbp, image: images[13], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Chosalet",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 5900, weekly_rent_price: 2025, currency: gbp, image: images[14], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet D'Or",       address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6000, weekly_rent_price: 1550, currency: gbp, image: images[15], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet des Sapins", address: '123 street', sleeping_capacity: 10,  metres_from_lift: 4300, weekly_rent_price: 1650, currency: gbp, image: images[16], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet des Isles",  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 2600, weekly_rent_price: 1850, currency: gbp, image: images[17], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet des Islouts", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 8500, weekly_rent_price: 1550, currency: gbp, image: images[18], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Dubrulle",   address: '123 street', sleeping_capacity: 11,  metres_from_lift: 5000, weekly_rent_price: 1575, currency: gbp, image: images[19], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Eco-Farm",   address: '123 street', sleeping_capacity: 10,  metres_from_lift: 7200, weekly_rent_price: 2100, currency: gbp, image: images[20], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Edelweiss",  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 4200, weekly_rent_price: 1900, currency: gbp, image: images[21], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Eftikhia" ,  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5900, weekly_rent_price: 1600, currency: gbp, image: images[22], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Flegere",    address: '123 street', sleeping_capacity: 10,  metres_from_lift: 3400, weekly_rent_price: 1700, currency: gbp, image: images[23], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Gauthier",   address: '123 street', sleeping_capacity: 16,  metres_from_lift: 4300, weekly_rent_price: 1600, currency: gbp, image: images[24], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Les Citronniers",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, currency: gbp, image: images[25], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Grassonnets", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 3500, weekly_rent_price: 1300, currency: gbp, image: images[26], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, layout: 'Showcase' },
-  { resort: chamonix, user: alice, name: "Chalet Guapa",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, currency: gbp, image: images[27], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Ibex",       address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, currency: gbp, image: images[28], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Jomain",     address: '123 street', sleeping_capacity: 18,  metres_from_lift: 10200, weekly_rent_price: 2050, currency: gbp, image: images[29], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Alpen Lounge",      address: '123 street', sleeping_capacity: 6,   metres_from_lift: 2500, weekly_rent_price: 1750, currency: euro, image:  images[1], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, layout: 'Showcase' },
+  { resort: chamonix, user: alice, name: "Apartment Teracce", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4700, weekly_rent_price: 2000, currency: euro, image:  images[2], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Brigitte's Mazot",  address: '123 street', sleeping_capacity: 2,   metres_from_lift: 3100, weekly_rent_price: 1825, currency: euro, image:  images[3], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Alaska",     address: '123 street', sleeping_capacity: 5,   metres_from_lift: 8300, weekly_rent_price: 1950, currency: euro, image:  images[4], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Anchorage",  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5000, weekly_rent_price: 1650, currency: euro, image:  images[5], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Arkle",      address: '123 street', sleeping_capacity: 14,  metres_from_lift: 4000, weekly_rent_price: 1725, currency: euro, image:  images[6], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Azimuth",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6300, weekly_rent_price: 2150, currency: euro, image:  images[7], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Bornian",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4400, weekly_rent_price: 1400, currency: euro, image:  images[9], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Chachat",    address: '123 street', sleeping_capacity: 14,  metres_from_lift: 3500, weekly_rent_price: 1500, currency: euro, image: images[10], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Cachemire",  address: '123 street', sleeping_capacity: 20,  metres_from_lift: 1400, weekly_rent_price: 1375, currency: euro, image: images[11], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Chardonnet", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9300, weekly_rent_price: 2000, currency: euro, image: images[12], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Chintalaya", address: '123 street', sleeping_capacity: 10,  metres_from_lift: 6500, weekly_rent_price: 1475, currency: euro, image: images[13], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Chosalet",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 5900, weekly_rent_price: 2025, currency: euro, image: images[14], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet D'Or",       address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6000, weekly_rent_price: 1550, currency: euro, image: images[15], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet des Sapins", address: '123 street', sleeping_capacity: 10,  metres_from_lift: 4300, weekly_rent_price: 1650, currency: euro, image: images[16], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet des Isles",  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 2600, weekly_rent_price: 1850, currency: euro, image: images[17], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet des Islouts", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 8500, weekly_rent_price: 1550, currency: euro, image: images[18], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Dubrulle",   address: '123 street', sleeping_capacity: 11,  metres_from_lift: 5000, weekly_rent_price: 1575, currency: euro, image: images[19], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Eco-Farm",   address: '123 street', sleeping_capacity: 10,  metres_from_lift: 7200, weekly_rent_price: 2100, currency: euro, image: images[20], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Edelweiss",  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 4200, weekly_rent_price: 1900, currency: euro, image: images[21], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Eftikhia" ,  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5900, weekly_rent_price: 1600, currency: euro, image: images[22], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Flegere",    address: '123 street', sleeping_capacity: 10,  metres_from_lift: 3400, weekly_rent_price: 1700, currency: euro, image: images[23], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Gauthier",   address: '123 street', sleeping_capacity: 16,  metres_from_lift: 4300, weekly_rent_price: 1600, currency: euro, image: images[24], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Les Citronniers",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, currency: euro, image: images[25], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Grassonnets", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 3500, weekly_rent_price: 1300, currency: euro, image: images[26], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, layout: 'Showcase' },
+  { resort: chamonix, user: alice, name: "Chalet Guapa",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, currency: euro, image: images[27], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Ibex",       address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, currency: euro, image: images[28], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
+  { resort: chamonix, user: alice, name: "Chalet Jomain",     address: '123 street', sleeping_capacity: 18,  metres_from_lift: 10200, weekly_rent_price: 2050, currency: euro, image: images[29], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
   ])
 
 a_trip_advisor_chalet = Property.create!(
   resort: chamonix, user: trip_advisor, name: 'A TripAdvisor Chalet',
   address: 'On a mountain', sleeping_capacity: 9, number_of_bedrooms: 6,
-  number_of_bathrooms: 2, weekly_rent_price: 1400, currency: gbp,
+  number_of_bathrooms: 2, weekly_rent_price: 1400, currency: euro,
   image: images[30], listing_type: Property::LISTING_TYPE_FOR_RENT,
   publicly_visible: true, trip_advisor_property: trip_advisor_property,
   description: 'This amazing chalet...'
@@ -1119,7 +1120,7 @@ interhome_property = Property.create!(
   address: '123 street',
   sleeping_capacity: 8,
   metres_from_lift: 9800, weekly_rent_price: 1500,
-  currency: gbp,
+  currency: euro,
   image_id: 30,
   listing_type: Property::LISTING_TYPE_FOR_RENT,
   publicly_visible: true,
