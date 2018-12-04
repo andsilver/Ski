@@ -4,6 +4,7 @@ FactoryBot.define do
     address     { '123 Street' }
     association :country
     association :user
+    association :currency
     email       { 'advertiser@example.org' }
     name        { 'Alice Advertiser' }
     phone       { '01234 567890' }
