@@ -1,35 +1,135 @@
+ol, ul {
+	list-style: none;
+}
+
+.clearfix {
+	display: block;
+	min-height: 1%;
+}
+
+.clearfix:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
 .main-menu {
+
   border-bottom: 1px solid #f2f3f3;
 
-  ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
+  > ul {
+    padding: 0 15px;
+    max-width: 1140px;
+    margin: 0 auto;
 
     > li {
-      border-left: 1px solid #ecedee;
-      flex-grow: 1;
+      float: left;
+      width: 25%;
+      position: relative;
+      box-sizing: border-box;
+      padding: 0 !important;
+
+      &+li {
+        border-left: 2px solid #f2f3f3;
+      }
 
       a {
         display: block;
-        font-weight: normal;
-        padding-left: 1rem;
+        background: #fff url('/assets/icon_arrow_down.png') no-repeat scroll right 30px center;
+        font-size: 16px;
+        color: #231f20;
+        padding: 20px 0 20px 15px;
         text-decoration: none;
       }
     }
+  }
 
-    > li:first-child {
-      border-left: none;
+  @media screen and (max-width: 768px) {
+
+    >ul {
+      padding: 0 !important;
+      > li {
+        display: block;
+        width: 100% !important;
+        clear: both;
+        border-left: none !important;
+        border-bottom: 1px solid #ececec;
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
     }
   }
 
-  .mega-parent {
-    color: #231f20;
-    padding: 1rem 0;
-    line-height: 1.5rem;
-  }
+  &-item-links {
 
-  .mega-menu {
     display: none;
+    position: absolute;
+    width: 92%;
+    top: 68px;
+    left: 4%;
+    background: #fff;
+    padding: 12px 0 0 !important;
+    box-shadow: 0 0 17px -7px #000;
+    z-index: 2;
+    border-radius: 4px;
+
+    li {
+      border: none !important;
+      width: 100% !important;
+
+      a {
+        padding: 12px 22px !important;
+        background: none !important;
+
+        &:hover {
+          background: #f2f2f2 !important;
+        }
+      }
+
+      &:last-child a {
+        background: #606a70 url('/assets/more.png') no-repeat scroll right 17px center !important;
+        color: #fff !important;
+        padding: 15px 22px !important;
+        box-sizing: border-box;
+        border-top: 2px solid #f2f3f3;
+        position: relative;
+
+        svg {
+          position: absolute;
+          right: 22px;
+        }
+      }
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      left: 50%;
+      top: -8px;
+      margin: 0 0 0 -9px;
+      background: url('/assets/icon_arrow_up.png') no-repeat scroll 0 0;
+      height: 10px;
+      width: 18px;
+    }
+
+    @media screen and (max-width: 768px) {
+      position: unset;
+      box-shadow: none;
+      padding: 0 !important;
+      width: 100%;
+
+      &::before {
+        display: none;
+      }
+
+      li {
+        border-top: 1px solid #ececec !important;
+      }
+    }
+
   }
 }
