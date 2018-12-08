@@ -25,6 +25,11 @@ module ApplicationHelper
     number_to_currency(number / 100.00, unit: '€', precision: 2)
   end
 
+  def gbps_from_cents(number)
+    currency = Currency.gbp
+    number_to_currency(number / 100.00, unit: currency.unit, precision: 2)
+  end
+
   def format_currency(number, currency)
     format = currency.pre? ? "%u%n" : "%n %u"
     number_to_currency(number, unit: currency.unit, precision: 0, format: format)
