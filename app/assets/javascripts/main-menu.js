@@ -2,8 +2,6 @@ $(() => {
 
   $('li.main-menu-item').on('click', function(event){
 
-    event.preventDefault();
-
     const showDropDown = (e) => {
       e.attr('aria-expanded', true);
       e.find('ul').show(300);
