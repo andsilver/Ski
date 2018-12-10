@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :country
   belongs_to :user
+  belongs_to :currency
 
   has_many :order_lines, dependent: :delete_all
 

@@ -1,5 +1,9 @@
 FactoryBot.define do
   factory :currency do
-    sequence(:code) { |n| "AB#{n}" }
+    code     { 'GBP' }
+    name     { 'GBP' }
+    unit     { '£' }
+    pre      { true }
+    in_euros { 0.89 }
   end
 end

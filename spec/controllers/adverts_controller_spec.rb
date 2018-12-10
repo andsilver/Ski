@@ -95,7 +95,7 @@ describe AdvertsController do
     end
   end
 
-  describe "POST place order" do
+  describe "GET place order" do
     let(:order) { double(Order).as_null_object }
 
     before do
@@ -114,7 +114,7 @@ describe AdvertsController do
       allow(Order).to receive(:new).and_return(order)
       allow(order).to receive(:save!).and_return(order)
 
-      post :place_order
+      get '/adverts/place_order'
     end
 
     it "creates a new order" do
@@ -124,13 +124,13 @@ describe AdvertsController do
       # ignore saving of the order
       allow(order).to receive(:save!).and_return(order)
 
-      post :place_order
+      get '/adverts/place_order'
     end
 
     it "copies the user's details to the order" do
       allow(Order).to receive(:new).and_return(order)
       expect(controller).to receive(:copy_user_details_to_order)
-      post 'place_order'
+      get '/adverts/place_order'
     end
   end
 

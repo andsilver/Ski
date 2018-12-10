@@ -16,7 +16,7 @@
     <tr>
       <td><%= link_to order.order_number, order %></td>
       <td><%= order.created_at %></td>
-      <td class="numeric price"><%= gbps_from_cents(order.total) %></td>
+      <td class="numeric price"><%= gbps_from_pence(order.total) %></td>
       <td><%= link_to order.user, order.user %></td>
       <td><%= delete_button(order) %></td>
     </tr>
