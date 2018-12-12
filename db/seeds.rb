@@ -405,7 +405,7 @@ Page.create!(
 
 ski_holidays = HolidayType.create!(
   name: 'Ski Holidays', slug: 'ski-holidays',
-  mega_menu_html: '<ul><li><a href="/airport_transfers/find">Airport Transfers</a></li></ul>'
+  mega_menu_html: '<li><a href="/airport_transfers/find">Airport Transfers</a></li>'
 )
 lakes_and_mountains = HolidayType.create!(name: 'Lakes & Mountains', slug: 'lakes-and-mountains')
 summer_villas = HolidayType.create!(name: 'Summer Villas', slug: 'summer-villas')

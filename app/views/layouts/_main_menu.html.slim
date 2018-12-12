@@ -2,7 +2,7 @@ nav.main-menu role="navigation"
   ul.clearfix
     - HolidayType.on_menu.each do |ht|
       li class="main-menu-item #{ht.slug}" aria-expanded=false
-        a = ht.name
+        button = ht.name
         ul.main-menu-item-links.match-height
           li
             = link_to ht.name, ht

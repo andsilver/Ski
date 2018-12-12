@@ -35,7 +35,15 @@ ol, ul {
         border-left: 2px solid #f2f3f3;
       }
 
-      a {
+      button {
+        border: none;
+        width: 100%;
+        &:active {
+          outline: none;
+        }
+      }
+
+      button, a {
         display: block;
         background: #fff url('/assets/icon_arrow_down.png') no-repeat scroll right 30px center;
         font-size: 16px;
