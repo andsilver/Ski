@@ -257,7 +257,7 @@ javascript:
           .col-lg-2
             = f.text_field :weekly_rent_price, class: 'form-control'
         .col-lg-2
-          = select("property", "currency_id", (Currency.order('code').collect {|c| [ c.code, c.id ] }).sort, {prompt: 'Select Currency', selected: Currency.gbp.id}, class: 'form-control')
+          = select("property", "currency_id", (Currency.order('code').collect {|c| [ c.code, c.id ] }).sort, {prompt: 'Select Currency', selected: Currency.gbp ? Currency.gbp.id : -1 }, class: 'form-control')
       .form-group
         .col-lg-2
           = f.label :price_description

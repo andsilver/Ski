@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Create an order', type: :request do
+  fixtures :currencies
+
   before { FactoryBot.create(:website) }
   let(:user) { FactoryBot.create(:user) }
 
@@ -14,14 +16,17 @@ RSpec.describe 'Create an order', type: :request do
     let(:order) { FactoryBot.create(:order) }
 
     it "deletes a previous unpaid order, if any" do
+
+      @session = { order_id: 1 }
+
       allow(Order).to receive(:find_by).with(id: 1).and_return(order)
+      allow(order).to receive(:status).and_return(Order::WAITING_FOR_PAYMENT)
       expect(order).to receive(:destroy)
 
       # ignore order creation
       allow(Order).to receive(:new).and_return(order)
       allow(order).to receive(:save!).and_return(order)
-
-      @session = { order_id: 1 }
+      
       get place_order_adverts_path
     end
 
@@ -48,7 +53,8 @@ RSpec.describe 'Create an order', type: :request do
 
     it "set the currency as GBP" do
       allow(Order).to receive(:new).and_return(order)
-      expect(order.currency).to eq Currency.gbp
+      allow(order).to receive(:currency).and_return(Currency.gbp)
+      expect(order.currency.code).to eq 'GBP'
 
       # ignore saving of the order
       allow(order).to receive(:save!).and_return(order)
