@@ -102,13 +102,9 @@ html lang="#{@lang}"
             = yield :search
       - else
         .divider-bar
-      nav.main-menu role="navigation"
-        ul.content-inset
-          - HolidayType.on_menu.each do |ht|
-            li class="mega-parent #{ht.slug}"
-              = link_to ht.name, ht
-              .mega-menu
-                = raw ht.mega_menu_html
+
+      = render "layouts/main_menu"
+
       .page-surround
         #content.group.wide role="main"
           = flash_notice

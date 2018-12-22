@@ -1,0 +1,13 @@
+nav.main-menu role="navigation"
+  ul.clearfix
+    - HolidayType.on_menu.each do |ht|
+      li class="main-menu-item #{ht.slug}" aria-expanded=false
+        button = ht.name
+        ul.main-menu-item-links.match-height
+          li
+            = link_to ht.name, ht
+          = raw ht.mega_menu_html
+          li.fix-height-match
+            a
+              | View All
+              i.fa.fa-more
