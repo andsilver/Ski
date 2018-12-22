@@ -52,7 +52,7 @@ describe 'properties/_property_summary' do
     it 'displays price in the heading' do
       render 'properties/property_summary', p: property
       within 'h3' do |h3|
-        expect(h3).to have_content I18n.t('properties.property_summary.weekly_price', price: '1,500')
+        expect(h3).to have_content I18n.t('properties.property_summary.weekly_price', price: "#{property.currency.unit}1,500")
       end
     end
 

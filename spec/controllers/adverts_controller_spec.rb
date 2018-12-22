@@ -95,45 +95,6 @@ describe AdvertsController do
     end
   end
 
-  describe "POST place order" do
-    let(:order) { double(Order).as_null_object }
-
-    before do
-      allow(website).to receive(:vat_for).and_return 0
-      allow(current_user).to receive(:adverts_in_basket).and_return([])
-      allow(current_user).to receive(:apply_price_override?).and_return(false)
-    end
-
-    it "deletes a previous unpaid order, if any" do
-      session[:order_id] = 1
-      allow(Order).to receive(:find_by).with(id: 1).and_return(order)
-      allow(order).to receive(:status).and_return(Order::WAITING_FOR_PAYMENT)
-      expect(order).to receive(:destroy)
-
-      # ignore order creation
-      allow(Order).to receive(:new).and_return(order)
-      allow(order).to receive(:save!).and_return(order)
-
-      post :place_order
-    end
-
-    it "creates a new order" do
-      allow(Order).to receive(:new).and_return(order)
-      expect(Order).to receive(:new)
-
-      # ignore saving of the order
-      allow(order).to receive(:save!).and_return(order)
-
-      post :place_order
-    end
-
-    it "copies the user's details to the order" do
-      allow(Order).to receive(:new).and_return(order)
-      expect(controller).to receive(:copy_user_details_to_order)
-      post 'place_order'
-    end
-  end
-
   describe 'DELETE delete_all_new_advertisables' do
     it 'gets all new adverts from the user' do
       expect(current_user).to receive(:new_advertisables)

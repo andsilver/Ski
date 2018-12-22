@@ -19,7 +19,7 @@
     <% @window_base_prices.each do |window_base_price| %>
     <tr>
       <td class="numeric"><%= window_base_price.quantity %></td>
-      <td class="numeric price"><%= window_base_price.price %> EUR</td>
+      <td class="numeric price"><%= window_base_price.price %> GBP</td>
       <td>
         <%= edit_button [:admin, window_base_price] %>
         <%= delete_button [:admin, window_base_price] %>

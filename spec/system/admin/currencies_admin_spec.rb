@@ -5,6 +5,10 @@ require 'rails_helper'
 RSpec.describe 'Currencies admin', type: :system do
   fixtures :countries, :holiday_types, :roles, :users, :websites
 
+  before(:each) do
+    Currency.delete_all
+  end
+
   scenario 'List currencies' do
     FactoryBot.create(:currency, code: 'GBP')
     sign_in_as_admin

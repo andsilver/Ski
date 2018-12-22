@@ -402,7 +402,9 @@ ActiveRecord::Schema.define(version: 2018_12_22_115423) do
     t.string "customer_vat_number", default: "", null: false
     t.string "tax_description", default: "VAT", null: false
     t.decimal "sterling_in_euros", precision: 6, scale: 4
+    t.bigint "currency_id"
     t.index ["created_at"], name: "index_orders_on_created_at"
+    t.index ["currency_id"], name: "index_orders_on_currency_id"
     t.index ["email"], name: "index_orders_on_email"
     t.index ["order_number"], name: "index_orders_on_order_number"
     t.index ["user_id"], name: "index_orders_on_user_id"

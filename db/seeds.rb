@@ -411,13 +411,16 @@ lakes_and_mountains = HolidayType.create!(name: 'Lakes & Mountains', slug: 'lake
 summer_villas = HolidayType.create!(name: 'Summer Villas', slug: 'summer-villas')
 city_breaks = HolidayType.create!(name: 'City Breaks', slug: 'city-breaks')
 
-euros = Currency.create!(
-  name: 'Euro',
-  unit: '€',
-  pre: true,
-  code: 'EUR',
-  in_euros: 1
-)
+
+currencies = [
+  { name: 'Euro', unit: '€', pre: true, code: 'EUR', in_euros: 1    },
+  { name: 'GBP',  unit: '£', pre: true, code: 'GBP', in_euros: 0.89 }
+]
+currencies.each do |c|
+  Currency.create!(name: c[:name], unit: c[:unit], pre: c[:pre], code: c[:code], in_euros: c[:in_euros])
+end
+gbps = Currency.find_by(code: 'GBP')
+euros = Currency.find_by(code: 'EUR')
 
 countries = [
   { name: 'Andorra',               iso_3166_1_alpha_2: 'AD' },
@@ -1158,7 +1161,8 @@ order = Order.create!(
   country: alice.billing_country,
   phone: '+44.1234567890',
   status: Order::PAYMENT_RECEIVED,
-  total: 50
+  total: 50,
+  currency: gbps
 )
 
 Payment.create!(

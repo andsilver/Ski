@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'adverts/basket' do
-  fixtures :countries, :users
+  fixtures :countries, :users, :currencies
 
   before { assign(:current_user, users(:alice)) }
 
