@@ -15,9 +15,10 @@ RSpec.describe 'Create an order', type: :request do
 
     let(:order) { FactoryBot.create(:order) }
 
-    it "deletes a previous unpaid order, if any" do
-
-      @session = { order_id: 1 }
+    it 'deletes a previous unpaid order, if any' do
+      session = { order_id: 1 }
+      allow_any_instance_of(ApplicationController)
+          .to receive(:session).and_return(session)
 
       allow(Order).to receive(:find_by).with(id: 1).and_return(order)
       allow(order).to receive(:status).and_return(Order::WAITING_FOR_PAYMENT)
@@ -26,7 +27,7 @@ RSpec.describe 'Create an order', type: :request do
       # ignore order creation
       allow(Order).to receive(:new).and_return(order)
       allow(order).to receive(:save!).and_return(order)
-      
+
       get place_order_adverts_path
     end
 
