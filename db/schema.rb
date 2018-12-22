@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180925164410) do
+ActiveRecord::Schema.define(version: 20181222115423) do
 
   create_table "adverts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "user_id", null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20180925164410) do
     t.integer "property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean "window", default: false, null: false
+    t.boolean "window_spot", default: false, null: false
     t.integer "order_id"
     t.index ["banner_advert_id"], name: "index_adverts_on_banner_advert_id"
     t.index ["directory_advert_id"], name: "index_adverts_on_directory_advert_id"

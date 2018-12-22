@@ -10,7 +10,9 @@ module Admin
 
     describe 'POST extend_windows' do
       let(:user) { FactoryBot.create(:user) }
-      let!(:advert) { Advert.create(user: user, window: true, expires_at: '2015-01-01' )}
+      let!(:advert) do
+        Advert.create(user: user, window_spot: true, expires_at: '2015-01-01')
+      end
 
       it 'adds params[:days] to the expiry date of each window' do
         post :extend_windows, params: { id: user.id, days: 10 }

@@ -6,7 +6,7 @@ class WindowGroups
   end
 
   def <<(advert)
-    return unless advert.window?
+    return unless advert.window_spot?
 
     # Compare date instead of time for less granular grouping
     group = @groups.find {|group| group.starts_at.to_date == advert.starts_at.to_date}

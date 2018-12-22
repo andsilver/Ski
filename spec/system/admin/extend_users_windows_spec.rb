@@ -6,7 +6,12 @@ RSpec.describe "Extend a user's windows", type: :system do
   fixtures :users, :roles
 
   let(:advertiser) { FactoryBot.create(:a_property_developer) }
-  let!(:advert) { Advert.create(user: advertiser, window: true, starts_at: Time.zone.now, expires_at: '2015-01-01') }
+  let!(:advert) do
+    Advert.create(
+      user: advertiser, window_spot: true, starts_at: Time.zone.now,
+      expires_at: '2015-01-01'
+    )
+  end
 
   before do
     FactoryBot.create(:website)
