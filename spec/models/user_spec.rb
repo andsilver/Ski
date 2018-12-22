@@ -6,24 +6,38 @@ describe User do
   describe '#empty_windows' do
     it 'returns adverts that are windows' do
       user = users(:alice)
-      window_advert = Advert.create!(window: true, user_id: user.id, expires_at: Time.zone.now + 1.hour)
-      non_window_advert = Advert.create!(window: false, user_id: user.id, expires_at: Time.zone.now + 1.hour)
+      window_advert = Advert.create!(
+        window_spot: true, user_id: user.id, expires_at: Time.zone.now + 1.hour
+      )
+      non_window_advert = Advert.create!(
+        window_spot: false, user_id: user.id, expires_at: Time.zone.now + 1.hour
+      )
       expect(user.empty_windows).to include(window_advert)
       expect(user.empty_windows).to_not include(non_window_advert)
     end
 
     it 'returns empty windows' do
       user = users(:alice)
-      empty_window_advert = Advert.create!(window: true, property_id: nil, user_id: user.id, expires_at: Time.zone.now + 1.hour)
-      full_window_advert = Advert.create!(window: true, property_id: 123, user_id: user.id, expires_at: Time.zone.now + 1.hour)
+      empty_window_advert = Advert.create!(
+        window_spot: true, property_id: nil, user_id: user.id,
+        expires_at: Time.zone.now + 1.hour
+      )
+      full_window_advert = Advert.create!(
+        window_spot: true, property_id: 123, user_id: user.id,
+        expires_at: Time.zone.now + 1.hour
+      )
       expect(user.empty_windows).to include(empty_window_advert)
       expect(user.empty_windows).to_not include(full_window_advert)
     end
 
     it 'returns windows that have not yet expired' do
       user = users(:alice)
-      unexpired_window_advert = Advert.create!(window: true, user_id: user.id, expires_at: Time.zone.now + 1.hour)
-      expired_window_advert = Advert.create!(window: true, user_id: user.id, expires_at: Time.zone.now - 1.hour)
+      unexpired_window_advert = Advert.create!(
+        window_spot: true, user_id: user.id, expires_at: Time.zone.now + 1.hour
+      )
+      expired_window_advert = Advert.create!(
+        window_spot: true, user_id: user.id, expires_at: Time.zone.now - 1.hour
+      )
       expect(user.empty_windows).to include(unexpired_window_advert)
       expect(user.empty_windows).to_not include(expired_window_advert)
     end

@@ -51,7 +51,7 @@ class Advert < ActiveRecord::Base
         advert = Advert.new
         advert.order_id = order.id
         advert.user_id = order.user.id
-        advert.window = true
+        advert.window_spot = true
         advert.months = months
         advert.start_and_save!
       end

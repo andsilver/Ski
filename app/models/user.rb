@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :adverts_in_basket, -> { where starts_at: nil }, class_name: 'Advert'
 
   # TODO: these should probably exclude expired windows
-  has_many :windows, -> { where(window: true).order('expires_at DESC') }, class_name: 'Advert'
+  has_many :windows, -> { where(window_spot: true).order('expires_at DESC') }, class_name: 'Advert'
 
   has_many :properties, dependent: :destroy
   has_many :properties_for_rent, -> { where listing_type: Property::LISTING_TYPE_FOR_RENT }, class_name: 'Property'
@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
   before_validation :tidy_vat_number
 
   def empty_windows
-    adverts.where('property_id IS NULL AND window = 1 AND expires_at > ?', Time.zone.now).order('expires_at DESC')
+    adverts.where('property_id IS NULL AND window_spot = 1 AND expires_at > ?', Time.zone.now).order('expires_at DESC')
   end
 
   def delete_old_windows
