@@ -5,6 +5,8 @@ RSpec.describe PropertiesController, type: :controller do
   let(:website) { double(Website).as_null_object }
   let(:non_admin_role) { Role.new(admin: false) }
 
+  render_views
+
   before do
     allow(Website).to receive(:first).and_return(website)
     allow(non_admin_role).to receive(:admin?).and_return(false)
@@ -61,7 +63,7 @@ RSpec.describe PropertiesController, type: :controller do
   end
 
   shared_examples 'an availability filter' do |method, action|
-    let(:property) { FactoryBot.create(:property) }
+    let(:property) { FactoryBot.create(:property, name: 'Alpen Lounge') }
 
     before do
       Availability.create!(property: property, start_date: '2015-02-23', availability: Availability::AVAILABLE,   check_in: true,  check_out: false)
@@ -74,27 +76,51 @@ RSpec.describe PropertiesController, type: :controller do
     end
 
     it 'assumes a one night stay when only start date is specified' do
-      pending
-      send(method, action, start_date: '2015-02-23')
-      expect(assigns(:properties)).to include(property)
+      send(method, action, params: { start_date: '2015-02-23' })
+      expect(response.body).to have_content 'Alpen Lounge'
     end
 
     it 'does not allow check-in on no check-in days' do
-      pending
-      send(method, action, start_date: '2015-02-24')
-      expect(assigns(:properties)).not_to include(property)
+      send(method, action, params: { start_date: '2015-02-24' })
+      expect(response.body).not_to have_content 'Alpen Lounge'
     end
 
     it 'disallows a two night stay when day in the middle is unavailable' do
-      pending
-      send(method, action, start_date: '2015-02-23', end_date: '2015-02-25')
-      expect(assigns(:properties)).not_to include(property)
+      send(method, action, params: { start_date: '2015-02-23', end_date: '2015-02-25' })
+      expect(response.body).not_to have_content 'Alpen Lounge'
+    end
+
+    it 'disallows a three night stay when one day in the middle is available ' \
+    'but another is not' do
+      Availability.create!(
+        property: property,
+        start_date: '2018-01-01', availability: Availability::AVAILABLE,
+        check_in: true, check_out: false
+      )
+      Availability.create!(
+        property: property,
+        start_date: '2018-01-02', availability: Availability::AVAILABLE,
+        check_in: true, check_out: true
+      )
+      Availability.create!(
+        property: property,
+        start_date: '2018-01-03', availability: Availability::UNAVAILABLE,
+        check_in: false, check_out: true
+      )
+      Availability.create!(
+        property: property,
+        start_date: '2018-01-04', availability: Availability::AVAILABLE,
+        check_in: true, check_out: true
+      )
+
+      send(method, action, params: { start_date: '2018-01-01', end_date: '2018-01-04' })
+
+      expect(response.body).not_to have_content 'Alpen Lounge'
     end
 
     it 'allows a two night stay when day in the middle is available' do
-      pending
-      send(method, action, start_date: '2015-02-26', end_date: '2015-02-28')
-      expect(assigns(:properties)).to include(property)
+      send(method, action, params: { start_date: '2015-02-26', end_date: '2015-02-28' })
+      expect(response.body).to have_content 'Alpen Lounge'
     end
   end
 

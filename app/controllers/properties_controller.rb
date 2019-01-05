@@ -375,7 +375,7 @@ class PropertiesController < ApplicationController
   include PropertyOrdering
 
   def find_properties(order)
-    @properties = Property.where(@conditions).order(order).paginate(page: params[:page], per_page: Property.per_page)
+    @properties = Property.where(@conditions).order(order).paginate(page: params[:page])
   end
 
   def show_shared
@@ -564,6 +564,7 @@ class PropertiesController < ApplicationController
       internal_dates = *(day_after_check_in..day_before_check_out)
       if internal_dates.any?
         @conditions[0] += " AND (SELECT COUNT(property_id) FROM availabilities WHERE start_date IN (?) AND availability = #{Availability::AVAILABLE} AND availabilities.property_id = properties.id) = ?"
+        @conditions << internal_dates
         @conditions << internal_dates.count
       end
 
