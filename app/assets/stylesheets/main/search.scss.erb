@@ -9,7 +9,7 @@
   }
 
   .search {
-    background: rgba(0,47,102,0.9);
+    background: rgba(0,47,102,0.8);
     color: #fff;
     padding: 0.7rem;
 
@@ -30,7 +30,6 @@
 }
 
 .search-field {
-  flex-grow: 1;
 
   label {
     display: block;
@@ -52,19 +51,53 @@
     padding: 0.75rem;
   }
 
+  ::placeholder {
+    font-size: 14px;
+  }
+
   select {
     -webkit-appearance: none; /* TODO: Dropdown indicator needed */
-    background: #fff;
+    background: #fff url('/assets/icon_arrow_down.png') no-repeat scroll right 10px center;
     border: none;
     border-radius: 0;
     cursor: pointer;
     height: 2.625rem;
-    padding: 0.75rem;
-    width: 100%;
+    padding: 0 0.75rem;
+    font-size: 14px;
+    white-space: pre-line;
+    border-left: 1px solid #ececec;
+    border-right: 1px slid #ececec;
+    &:focus, &:active {
+      outline: none;
+    }
+    width: 150px;
+  }
+
+  select#search_countries {
+    width: 200px;
   }
 
   .search-control {
     background: #fff;
+  }
+
+  .date-range-pick {
+    height: 2.625rem;
+    background: #fff;
+    border-left: 1px solid #ececec;
+    border-right: 1px solid #ececec;
+    display: flex;
+    color: #b1b1b1;
+    justify-content: start;
+    align-items: center;
+    padding: 0 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    svg {
+      margin-right: 12px;
+      font-size: 24px;
+    }
   }
 }
 

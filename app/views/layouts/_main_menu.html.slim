@@ -4,8 +4,6 @@ nav.main-menu role="navigation"
       li class="main-menu-item #{ht.slug}" aria-expanded=false
         button = ht.name
         ul.main-menu-item-links.match-height
-          li
-            = link_to ht.name, ht
           = raw ht.mega_menu_html
           li.fix-height-match
             a

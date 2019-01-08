@@ -42,61 +42,61 @@ website = Website.create!(
       	<div id="featured-properties">
           <h2>Popular ski holiday destinations</h2>
           <div class="preview-layout">
-            <div class="preview-item">
+            <a class="preview-item" href="/resorts/st-anton/properties/rent">
               <img src="/assets/home/st_anton_austria.png">
               <div class="overlay">
                 <h3 class="title">ST ANTON AUSTRIA</h3>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/regions/ziller-valley/properties/rent">
               <img src="/assets/home/ziller_valley_austria.png">
               <div class="overlay">
                 <h3 class="title">ZILLER VALLEY AUSTRIA</h3>
                 <div class="description">(81 PROPERTIES)</div>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/resorts/ruka-kuusamo/properties/rent">
               <img src="/assets/home/ruka_kuusamo_finland.png">
               <div class="overlay">
                 <h3 class="title">RUKA-KUUSAMO FINLAND</h3>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/resorts/chamonix/properties/rent">
               <img src="/assets/home/chamonix_france.png">
               <div class="overlay">
                 <h3 class="title">CHAMONIX FRANCE</h3>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/resorts/verbier-st-bernard/properties/rent">
               <img src="/assets/home/verbier_switzerland.png">
               <div class="overlay">
                 <h3 class="title">VERBIER Switzerland</h3>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/resorts/lenk/properties/rent">
               <img src="/assets/home/lenk_switzerland.png">
               <div class="overlay">
                 <h3 class="title">LENK Switzerland</h3>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/resorts/bormio/properties/rent">
               <img src="/assets/home/bormio_italy.png">
               <div class="overlay">
                 <h3 class="title">BORMIO Italy</h3>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/resorts/canazei/properties/rent">
               <img src="/assets/home/canazei_italy.png">
               <div class="overlay">
                 <h3 class="title">CANAZEI Italy</h3>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/resorts/salen/properties/rent">
               <img src="/assets/home/salen_sweden.png">
               <div class="overlay">
                 <h3 class="title">SALEN Sweden</h3>
               </div>
-            </div>
+            </a>
           </div>
         </div>
         <br>
@@ -120,42 +120,42 @@ website = Website.create!(
         <div id="ski-holiday-experiences">
           <h2>Ski Holiday Experiences</h2>
           <div class="preview-layout">
-            <div class="preview-item">
+            <a class="preview-item" href="/pages/heli-skiing">
               <img src="/assets/home/heli-skiing.png">
               <div class="overlay">
                 <h3 class="title">HELI-SKIING</h3>
               </div>
-            </div>
-            <div class="preview-item">
-              <img src="/assets/home/gastronomic_delights.png">
+            </a>
+            <a class="preview-item" href="/pages/lapland-ski-holidays">
+              <img src="/assets/home/northern-lights-lapland-mychaletfinder.jpg">
               <div class="overlay">
-                <h3 class="title">GASTRONOMIC DELIGHTS</h3>
+                <h3 class="title">Lapland Ski Holidays</h3>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/holidays/spa-resorts">
               <img src="/assets/home/spa_wellbeing.png">
               <div class="overlay">
                 <h3 class="title">SPA & WELLBEING</h3>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/pages/best-ski-tours-alps">
               <img src="/assets/home/ski_tours.png">
               <div class="overlay">
                 <h3 class="title">SKI TOURS</h3>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/pages/beginner-ski-resorts">
               <img src="/assets/home/beginner_resorts.png">
               <div class="overlay">
                 <h3 class="title">BEGINNER RESORTS</h3>
               </div>
-            </div>
-            <div class="preview-item">
+            </a>
+            <a class="preview-item" href="/pages/best-christmas-markets-ski-resorts">
               <img src="/assets/home/eco_friendly.png">
               <div class="overlay">
-                <h3 class="title">ECO FRIENDLY</h3>
+                <h3 class="title">Christmas Markets</h3>
               </div>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -352,7 +352,7 @@ Page.create!(
     </div>
 
   <h2>Hot Property - Villas</h2>
-  <p>Some of the hottest villas, condo residences and apartments on the market are in the ever popular Cote d'Azur in
+  <p>Some of the hottest villas, condo residences and apartments on the market are in the ever popular Cote dAzur in
   the south of France and Florida in the United States.
   </p>
   <div class="clear-fix">
@@ -422,12 +422,60 @@ Page.create!(
 )
 
 ski_holidays = HolidayType.create!(
-  name: 'Ski Holidays', slug: 'ski-holidays',
-  mega_menu_html: '<li><a href="/airport_transfers/find">Airport Transfers</a></li>'
+  name: 'Ski Holidays in...',
+  slug: 'ski-holidays',
+  mega_menu_html: '
+    <li><a href="/countries/france/holidays/ski-holidays">France</a></li>
+    <li><a href="/countries/switzerland/holidays/ski-holidays">Switzerland</a></li>
+    <li><a href="/countries/austria/holidays/ski-holidays">Austria</a></li>
+    <li><a href="/countries/united-states/holidays/ski-holidays">United States</a></li>
+    <li><a href="/countries/canada/holidays/ski-holidays">Canada</a></li>
+    <li><a href="/countries/united-kingdom/holidays/ski-holidays">United Kingdom</a></li>
+    <li><a href="/countries/norway/holidays/ski-holidays">Norway</a></li>
+    <li><a href="/countries/finland/holidays/ski-holidays">Finland</a></li>
+    <li><a href="/countries/andora/holidays/ski-holidays">Andora</a></li>
+    <li><a href="/countries/germany/holidays/ski-holidays">Germany</a></li>'
 )
-lakes_and_mountains = HolidayType.create!(name: 'Lakes & Mountains', slug: 'lakes-and-mountains')
-summer_villas = HolidayType.create!(name: 'Summer Villas', slug: 'summer-villas')
-city_breaks = HolidayType.create!(name: 'City Breaks', slug: 'city-breaks')
+besk_ski_resorts = HolidayType.create!(
+  name: 'Besk Ski Resorts for...',
+  slug: 'best-ski-resorts',
+  mega_menu_html: '
+    <li><a href="/pages/best-christmas-markets-ski-resorts">Christmas Markets</a></li>
+    <li><a href="/pages/christmas-ski-holidays">Skiing at Christmas</a></li>
+    <li><a href="/pages/best-ski-tours-alps">Ski Touring</a></li>
+    <li><a href="/pages/heli-skiing">Heli-Skiing</a></li>
+    <li><a href="/pages/beginner-ski-resorts">Beginners</a></li>
+    <li><a href="/pages/intermediate-ski-resorts">Intermediates</a></li>
+    <li><a href="/pages/summer-skiing">Summer Skiing</a></li>
+    <li><a href="/pages/ski-in-ski-out-ski-resorts-chalets">Ski-in, Ski-out Chalets</a></li>
+    <li><a href="/pages/lapland-ski-holidays">Northern Lights</a></li>
+    <li><a href="">Families</a></li>
+    '
+)
+experiences = HolidayType.create!(
+  name: 'Experiences',
+  slug: 'experiences',
+  mega_menu_html: '
+    <li><a href="">Lapland Ski Resorts</a></li>
+    <li><a href="">Ski Tours</a></li>
+    <li><a href="">Eco Friendly</a></li>
+    <li><a href="">Spa and Wellbeing</a></li>
+    <li><a href="">Beginner Resorts</a></li>
+    <li><a href="">Gastronomic Delights</a></li>
+  ')
+services = HolidayType.create!(
+  name: 'Services',
+  slug: 'services',
+  mega_menu_html: '
+    <li><a href="/pages/snow-reports-snow-forecasts">Snow Forecasts</a></li>
+    <li><a href="/pages/ski-rentals-ski-hire">Ski Rental</a></li>
+    <li><a href="/pages/airport-transfers">Airport Transfers</a></li>
+    <li><a href="/pages/travel-insurance">Travel Insurance</a></li>
+    <li><a href="/pages/car-hire-car-rentals">Car Hire</a></li>
+    <li><a href="">Newsletters</a></li>
+    <li><a href="/pages/fc-exchange">Foreign Exchange</a></li>
+  '
+)
 
 
 currencies = [

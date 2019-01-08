@@ -17,6 +17,7 @@ html lang="#{@lang}"
     meta name="alexaVerifyID" content="0IVBlNZ4wkIe-rLrsQkQNVUS9to"
     link rel="icon" type="image/x-icon" href="/favicon.ico"
     script defer="defer" src="/font-awesome/fontawesome-all.js"
+    script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"
     = stylesheet_link_tag 'application-main', media: 'screen', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application-print', media: 'print', 'data-turbolinks-track': 'reload'
     /! TradeDoubler site verification 1980597
@@ -95,8 +96,6 @@ html lang="#{@lang}"
           ul
             li: a.button.action-button href="/" Rentals
             li: a.button.action-button href="/property_sales" Sales
-            li: a.button.action-button href="/luxury" Luxury
-            li: a.button.action-button href="/new-development" New Development
       = render 'layouts/breadcrumbs_and_heading'
       - if content_for? :search
         .search-container
