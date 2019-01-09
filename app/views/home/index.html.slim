@@ -1,28 +1,54 @@
 - content_for :search do
   = render 'home_search'
 
+
 = content_for :carousel do
   ul#carousel-slides
     = render partial: 'carousel_slide', collection: CarouselSlide.active.order(:position)
 
 = content_for :custom_footer do
   footer role="contentinfo"
-    .content-inset
+    .content-inset.footer-block-container
       = raw @footer_box
 
-      #footer-marker
-        a href="/"
-          = image_tag 'marker-grey.png', alt: ''
-      #footer-copyright
-        p ©#{Time.now.year} #{COMPANY_NAME}
+      / #footer-marker
+      /   a href="/"
+      /     = image_tag 'marker-grey.png', alt: ''
+      .footer-block
+        p MyChaletFinder
+        p One of Europe's leading self catering holiday accommodation website offering ski chalets apartments, villas and holiday homes for rent.
+        p We also have a wide selection of alpine property for sale here
+      .footer-block
+        /
+        p Explore MyChaletFinder
         ul.flat-list.flat-with-margin
-          li= link_to I18n.t(:privacy), privacy_path, rel: 'nofollow'
-          li= link_to I18n.t(:terms), terms_path, rel: 'nofollow'
-          li= link_to I18n.t(:contact), contact_path
-          li
-            a href="/pages/resources" Resources
-          li
-            a#advertise_link href="/welcome/advertiser"= t('advertise')
+          li About Us
+          li Contact Us
+          li List your property
+          li Business Advertising
+          li Chalets for sale
+          li Blog
+          / li= link_to I18n.t(:privacy), privacy_path, rel: 'nofollow'
+          / li= link_to I18n.t(:terms), terms_path, rel: 'nofollow'
+          / li= link_to I18n.t(:contact), contact_path
+          / li
+          /   a href="/pages/resources" Resources
+          / li
+          /   a#advertise_link href="/welcome/advertiser"= t('advertise')
+      .footer-block
+        p Continent Traveller Family
+        ul.flat-list.flat-with-margin
+          li MyCabin Finder
+          li MyVilla Finder
+          li MyCottage Finder
+          li MyCaribbean Villas
+          li MyCityFlat Finder
+          li MyHolidayLodge Park
+    ul#footer-copyright
+      li ©#{Time.now.year} #{COMPANY_NAME}.
+      li All rights reserved.  |
+      li Terms & Conditions  |
+      li Privacy Policy
 
 - cache [@w, Date.today] do
   = raw Liquid::Template.parse(@w.home_content).render('featured_properties' => render('shared/featured_properties'))

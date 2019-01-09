@@ -88,6 +88,10 @@ img {
   ul {
     display: flex;
     list-style: none;
+    li {
+      padding: 0 6px;
+      font-size: 20px;
+    }
   }
 
   a {
@@ -146,4 +150,10 @@ img {
   .logo-container {
     margin-top: 0;
   }
+}
+
+.footer-logo-container {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
 }

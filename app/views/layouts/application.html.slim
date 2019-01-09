@@ -125,27 +125,43 @@ html lang="#{@lang}"
         = render 'layouts/resort_nav' if @resort
         = raw sidebar_html
 
+      .footer-logo-container
+        .logo-container
+          = image_tag('marker-blue.svg', class: 'logo-marker', alt: '')
+          a.logo href="#{root_path}" title="Home"
+            = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
+
+
       .social.secondary-nav
         ul
-          li.google-plus-one
-            .g-plusone data-annotation="none" data-size="medium"
-            javascript:
-              window.___gcfg = {lang: 'en-GB'};
+          / li.google-plus-one
+          /   .g-plusone data-annotation="none" data-size="medium"
+          /   javascript:
+          /     window.___gcfg = {lang: 'en-GB'};
 
-              (function() {
-                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                po.src = 'https://apis.google.com/js/platform.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-              })();
+          /     (function() {
+          /       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          /       po.src = 'https://apis.google.com/js/platform.js';
+          /       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          /     })();
           li
             a title="Blogger" href="https://mychaletfinder.blogspot.co.uk/"
               i.fas.fa-rss
           li
-            a title="Twitter" href="https://twitter.com/#!/MyChaletFinder"
-              i.fab.fa-twitter
+            a title="Square on Pinterest" href="https://www.pinterest.com/square/"
+              i.fab.fa-pinterest-square
           li
             a. title="Facebook" href="https://www.facebook.com/MyChaletFinder" target="_blank"
               i.fab.fa-facebook
+          li
+            a. title="Linkedin" href="https://www.linkedin.com/MyChaletFinder" target="_blank"
+              i.fab.fa-linkedin-in
+          li
+            a. title="Youtube" href="https://www.youtube.com/MyChaletFinder" target="_blank"
+              i.fab.fa-youtube
+          li
+            a title="Twitter" href="https://twitter.com/#!/MyChaletFinder"
+              i.fab.fa-twitter
       - if content_for? :custom_footer
           = yield :custom_footer
       - else
