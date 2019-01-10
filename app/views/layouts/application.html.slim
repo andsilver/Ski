@@ -166,8 +166,13 @@ html lang="#{@lang}"
           = yield :custom_footer
       - else
         footer role="contentinfo"
-          .content-inset
+          .content-inset.footer-block-container
             = render 'shared/footer_box'
-            hr
-            p#copyright
-              = "&copy; #{Time.now.year} #{COMPANY_NAME}".html_safe
+            / hr
+            / p#copyright
+            /   = "&copy; #{Time.now.year} #{COMPANY_NAME}".html_safe
+          ul#footer-copyright
+            li ©#{Time.now.year} #{COMPANY_NAME}.
+            li All rights reserved.  |
+            li Terms & Conditions  |
+            li Privacy Policy

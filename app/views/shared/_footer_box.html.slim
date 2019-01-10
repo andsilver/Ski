@@ -1,11 +1,48 @@
-.footer-box.clear-fix
-  ul
-    li Help
-    li= link_to I18n.t(:privacy), privacy_path, rel: 'nofollow'
-    li= link_to I18n.t(:terms), terms_path, rel: 'nofollow'
-    li= link_to I18n.t(:contact), contact_path
-    li
-      a href="/pages/resources" Resources
-    li
-      a#advertise_link href="/welcome/advertiser"= t('advertise')
-  = raw @footer_box
+/ .footer-box.clear-fix
+/   ul
+/     li Help
+/     li= link_to I18n.t(:privacy), privacy_path, rel: 'nofollow'
+/     li= link_to I18n.t(:terms), terms_path, rel: 'nofollow'
+/     li= link_to I18n.t(:contact), contact_path
+/     li
+/       a href="/pages/resources" Resources
+/     li
+/       a#advertise_link href="/welcome/advertiser"= t('advertise')
+/   = raw @footer_box
+
+/ = raw @footer_box
+
+/ #footer-marker
+/   a href="/"
+/     = image_tag 'marker-grey.png', alt: ''
+.footer-block
+  p MyChaletFinder
+  p One of Europe's leading self catering holiday accommodation website offering ski chalets apartments, villas and holiday homes for rent.
+  p We also have a wide selection of alpine property for sale here
+
+.footer-block
+  /
+  p Explore MyChaletFinder
+  ul.flat-list.flat-with-margin
+    li About Us
+    li Contact Us
+    li List your property
+    li Business Advertising
+    li Chalets for sale
+    li Blog
+    / li= link_to I18n.t(:privacy), privacy_path, rel: 'nofollow'
+    / li= link_to I18n.t(:terms), terms_path, rel: 'nofollow'
+    / li= link_to I18n.t(:contact), contact_path
+    / li
+    /   a href="/pages/resources" Resources
+    / li
+    /   a#advertise_link href="/welcome/advertiser"= t('advertise')
+.footer-block
+  p Continent Traveller Family
+  ul.flat-list.flat-with-margin
+    li MyCabin Finder
+    li MyVilla Finder
+    li MyCottage Finder
+    li MyCaribbean Villas
+    li MyCityFlat Finder
+    li MyHolidayLodge Park

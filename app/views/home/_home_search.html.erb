@@ -17,7 +17,7 @@
       <label for="search_countries">Country</label>
       <select id="search_countries" name="country">
         <% Country.all.each do |country| %>
-          <option value=<%= country.iso_3166_1_alpha_2 %>><%= country.name %></option>
+          <option value="<%= country.iso_3166_1_alpha_2 %>"><%= country.name %></option>
         <% end %>
       </select>
     </div>
