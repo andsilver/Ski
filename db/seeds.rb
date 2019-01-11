@@ -172,7 +172,293 @@ CarouselSlide.create!([
 ])
 
 Page.create!([
-  { path: '/pages/about', title: 'About' }
+  {
+    path: '/pages/about',
+    title: 'About'
+  },
+  {
+    path: '/pages/heli-skiing-in-greenland',
+    title: 'Greenland Heli-skiing | Ski Tours Kangaamiut, Greenland',
+    content: <<~EOF
+    <div class="wide clear-fix experience-details">
+      <div class="page-description">
+          <h1>Heli-skiing, the ultimate adrenaline rush</h1>
+          <br>
+          <p>Heli-skiing - the ultimate ride, with untracked pristine powder snow, no lift queues,</p>
+          <p>spectacular vistas and the adrenaline rush of a lifetime.</p>
+          <br>
+          <p>Bored of the pistes? not enough challenge? weel, if you get the opportunity, try heli-skiing,</p>
+          <p>it's an experience you'll never forget. There are some very interesting places around</p>
+          <p>the world to try out heli-skiing such as the , Greeland and even the high glacial basin of the</p>
+          <p>Annapurna Sanctuary in Nepal.</p>
+          <br>
+          <p>However, these areas tend to be for the die hard heli-skiers and boarders as</p>
+          <p>there are very few with ski resorts to return back to!</p>
+          <br>
+          <p>In this article, we feature some of the best places outside of Europe to go heli-skiing including</p>
+          <p>those remote areas where there is not a ski resort in sight! From the Atlas mountains of Morocco, </p>
+          <p>Tien Shan mountains in Central Asia and Kashmir in India to the frozen lands of Alaska and </p>
+          <p>Greenland, heli-skiing takes you on an adrenalin trip you wont forget!</p>
+          <br>
+          <p>The resorts feaured below are just examples of what you can expect when heli-skiing in a particular region.<p>
+          <p>For further information on the best locations for heli-skiing and the operators who organise the package holidays,</p>
+          <p>please click on the "more information" buttons.</p>
+      </div>
+
+      <div class="page-description">
+          <h2>Popular ski holiday destinations</h2>
+          <div class="preview-layout">
+              <a class="preview-item" href="/pages/heli-skiing-in-greenland">
+              <img src="/assets/home/st_anton_austria.png">
+              <div class="overlay">
+                  <h3 class="title">KANNGAAMUIT GREENLAND</h3>
+              </div>
+              </a>
+              <a class="preview-item" href="/regions/ziller-valley/properties/rent">
+              <img src="/assets/home/ziller_valley_austria.png">
+              <div class="overlay">
+                  <h3 class="title">TIEN SHAN MOUNTAINS KYRGYZSTAN</h3>
+              </div>
+              </a>
+              <a class="preview-item" href="/resorts/ruka-kuusamo/properties/rent">
+              <img src="/assets/home/ruka_kuusamo_finland.png">
+              <div class="overlay">
+                  <h3 class="title">WHISTLER, BLACKCOMB CANADA</h3>
+              </div>
+              </a>
+              <a class="preview-item" href="/resorts/chamonix/properties/rent">
+              <img src="/assets/home/chamonix_france.png">
+              <div class="overlay">
+                  <h3 class="title">OUKAIMEDEN MOROCCO</h3>
+              </div>
+              </a>
+              <a class="preview-item" href="/resorts/verbier-st-bernard/properties/rent">
+              <img src="/assets/home/verbier_switzerland.png">
+              <div class="overlay">
+                  <h3 class="title">GULMARG, KASHMIR INDIA</h3>
+              </div>
+              </a>
+              <a class="preview-item" href="/resorts/lenk/properties/rent">
+              <img src="/assets/home/lenk_switzerland.png">
+              <div class="overlay">
+                  <h3 class="title">AOSTA VALLEY ITALY</h3>
+              </div>
+              </a>
+          </div>
+      </div>
+      <br>
+      <br>
+      <div class="page-description" id="list-properties">
+        <p>
+            <img alt="" src="/assets/marker-blue-6ab58c513405cdba0d8e092cda36219911a882653a9822f9559a58ade5d375f3.svg">
+        </p>
+        <h2>List your Ski Chalet</h2>
+        <br>
+        <p>Ski holiday rentals are getting more popular with travellers from families to adventurers.</p>
+        <p>List your chalet on MyChaletFinder today!</p>
+        <br>
+        <br>
+        <a class="button action-button">List your property</a>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <ul class="experience-slide">
+          <li>
+            <img src="/assets/home/heli-skiing.png" alt="">
+          </li>
+          <li>
+            <img src="/assets/home/ski_tours.png" alt="">
+          </li>
+          <li>
+            <img src="/assets/home/northern-lights-lapland-mychaletfinder.jpg" alt="">
+          </li>
+      </ul>
+      <div class="page-description">
+          <br>
+          <br>
+          <h1>Kangaamuit</h1>
+          <br>
+          <h3>G R E E N L A N D</h3>
+          <br>
+          <p>Kangaamiut is a tiny island off the west coast and is used as a base for the </p>
+          <p>heli-skiing operators. The area is packed with literally hundreds of glacial runs with </p>
+          <p>2000m decents that end up at the edge of the 3 fjords that surround this remote island.</p>
+          <p>If you like "remote", this is probably as good as it gets without visiting the polar ice caps!</p>
+      </div>
+      <div style="margin-top: 20px;">
+          <ul id="tabs">
+              <li><a id="tab1">OVERVIEW</a></li>
+              <li><a id="tab2">OPERATORS</a></li>
+          </ul>
+          <div class="tab-container preview-layout content-space-between" id="tab1C">
+              <div class="preview-layout-basis-50">
+                  <p>With fjords and glaciers everywhere, the scenery is spectacular and being north of the Arctic Circle means long days from April onwards - which coincides with the start of the heli-skiing season!</p>
+                  <br>
+                  <p>The north slopes offer powder whilst south facing slopes deliver spring com snow. The terrain is varied from short stepp couloirs to traversing across mighty glaciers with many runs ending up at the beach!</p>
+                  <br>
+                  <br>
+                  <div style="color: #000">GETTING THERE</div>
+                  <br>
+                  <p>The easiest transfter by far is via Copenhagen. From there it is a 4 and half hour Airbus flight to the International Airport at Kanger-lussuaaq, floowed by a short turbo-prop flight to Maniitsoq. We depart Copenhagen on the Monday morning (gam) and will be in Maniitsoq early afternoon. From Maniitsq airport we either connect via helicopter to Kangaamuit (skiing our way north) or via boat if weather restricts flying. The following Monday, after a night in the hotel in Maniitsq, we retrace our steps and arrive back in Copenhagen around 7pm.
+                  </p>
+              </div>
+              <div class="preview-layout-basis-50" style="font-size: 14px">
+                  <div class="preview-map" style="width:100%; height: 300px;"></div>
+                  <br>
+                  <br>
+                  <div style="color: #000">KANGAAMUIT EXPERIENCES</div>
+                  <br>
+                  <div>SNOWMOBILE SAFARI</div>
+                  <br>
+                  <div>MOUNTAIN BIKING ON THE ICE CAP</div>
+                  <br>
+                  <div>NORDIC SKIING</div>
+                  <br>
+                  <div>ICE FISHING</div>
+                  <br>
+                  <div>EXPLORING THE FJORDS BY KAYAK</div>
+                  <br>
+                  <div>DOG SLEDGING</div>
+              </div>
+          </div>
+          <div class="tab-container" id="tab2C">
+              <h1 style="text-align: center">Greenland heli Skiing.com</h1>
+              <br>
+              <br>
+              <div class="preview-layout content-space-between">
+                  <div class="preview-layout-basis-50">
+                      <p>Come ski the wild terrain of West Greenland. With 2000m runs to the fjord''s edge, deep powder and corn snow, our heli-skiing trps give you the experience of a life time.</p>
+                      <br>
+                      <p>We base our tours 60km north of Maniitsoq, in the tiny village of Kangaamiut, where we stay in rented accommodation and experience life as the locals do.</p>
+                      <br>
+                      <p>Heli-skiing options are virtually unlimited with literally hundreds of glacier runs down to the fjords.</p>
+                      <br>
+                      <p>And just in case the weather is against us, we swap the helicopter for touring skis and explore the terrain on other islands via our boat.</p>
+                      <br>
+                      <br>
+                      <h3>Helicopters/Safety</h3>
+                      <br>
+                      <p>Air Greenland supply AeroSpatiale Squirrel (aka A Star/Ecureil) AS350 B3 helicopters equipped for Arctic flying (HF radio, inflatable skids, survival bags). These are operated with four guests in the rear seat and the guide flying up front in a single seat.</p>
+                      <br>
+                      <p>pilots have both heliski and Arctic experience.</p>
+                      <br>
+                      <p>Each machine has sat phone and GPS. Flight following is via VHF radio to the Tower in Kangerlussuaaq and Air Greenland heli-base in Nuuk. There is emergency back up from another Squirrel operating to the south of us and if required a 19 seat Sikorsky is one and a half hours away in Nuuk.</p>
+                      <br>
+                      <p>All guides carry a sat phone.</p>
+                  </div>
+                  <div class="preview-layout-basis-50">
+                      <div style="color: #000">PACKAGE FEATURES</div>
+                      <div style="border-top: 1px solid #ececec; border-bottom: 1px solid #ececec; padding: 24px 0; margin:24px 0">
+                          <table>
+                              <tbody>
+                                  <tr>
+                                      <td style="width: 167px;">BASE</td>
+                                      <td>
+                                          <p>Kangaamuit Island</p>
+                                      </td>
+                                  <tr>
+                                      <td>ACTIVITIES</td>
+                                      <td>
+                                          <p>Heli-ski and Ski Touring</p>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>DURATION</td>
+                                      <td>
+                                          <p>1 week</p>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>MEALS</td>
+                                      <td>
+                                          <p>All inclusive</p>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>FITNESS RATING</td>
+                                      <td>
+                                          <p>3/5</p>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>SKILL LEAVEL</td>
+                                      <td>
+                                          <p>Good off-piste</p>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>MAX VERTICLE</td>
+                                      <td>
+                                          <p>2000m</p>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>HELI-TIME</td>
+                                      <td>
+                                          <p>6 hours</p>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>TRIP SIZE</td>
+                                      <td>
+                                          <p>12 people</p>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>GROUPS</td>
+                                      <td>
+                                          <p>3 groups of 4 with 3 guides</p>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                      <div>
+                          <a class="button action-button" style="padding: 1rem 5rem">ENQUIRE</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="page-description">
+        <br>
+        <h1>Other Operators</h1>
+        <br>
+        <div class="preview-layout content-center">
+            <a class="preview-item" href="/pages/lapland-ski-holidays">
+            <img src="/assets/home/northern-lights-lapland-mychaletfinder.jpg">
+            <div class="overlay">
+                <h3 class="title">SKI PRO KYRGYZSTAN</h3>
+            </div>
+            </a>
+            <a class="preview-item" href="/holidays/spa-resorts">
+            <img src="/assets/home/spa_wellbeing.png">
+            <div class="overlay">
+                <h3 class="title">HELI-SPORT ADVENTURES</h3>
+            </div>
+            </a>
+        </div>
+    </div>
+  </div>
+  <script>
+      $('.preview-map').mapify({
+          zoom: 5,
+          responsive: true,
+          center: {
+              lat: 65.825511,
+              lng: -53.343690,
+          },
+          points: [{
+              lat: 65.825511,
+              lng: -53.343690,
+              marker: true
+          }]
+      });
+  </script>
+    EOF
+  }
 ])
 
 Page.create!(
@@ -194,6 +480,15 @@ Page.create!(
         <br>
         <p>However, these areas tend to be for the die hard heli-skiers and boarders as</p>
         <p>there are very few with ski resorts to return back to!</p>
+        <br>
+        <p>In this article, we feature some of the best places outside of Europe to go heli-skiing including</p>
+        <p>those remote areas where there is not a ski resort in sight! From the Atlas mountains of Morocco, </p>
+        <p>Tien Shan mountains in Central Asia and Kashmir in India to the frozen lands of Alaska and </p>
+        <p>Greenland, heli-skiing takes you on an adrenalin trip you wont forget!</p>
+        <br>
+        <p>The resorts feaured below are just examples of what you can expect when heli-skiing in a particular region.<p>
+        <p>For further information on the best locations for heli-skiing and the operators who organise the package holidays,</p>
+        <p>please click on the "more information" buttons.</p>
       </div>
 
       <div class="page-description">

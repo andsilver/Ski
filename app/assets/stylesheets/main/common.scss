@@ -72,4 +72,20 @@
       flex-basis: 31.3%;
     }
   }
+
+  &-basis-50 {
+    flex-basis: 98%;
+    margin-bottom: 24px;
+    @media screen and (min-width: 968px) {
+      flex-basis: 45%;
+    }
+  }
+}
+
+.content-center {
+  justify-content: center;
+}
+
+.content-space-between {
+  justify-content: space-between;
 }
