@@ -111,7 +111,7 @@ website = Website.create!(
           <p>List your chalet on MyChaletFinder today!</p>
           <br>
           <br>
-          <a class="button action-button">List your property</a>
+          <a class="button action-button" href="/welcome/advertiser">List your property</a>
         </div>
         <br>
         <br>
@@ -388,7 +388,7 @@ Page.create!(
       </div>
 
       <div class="page-description">
-        <h2>Popular ski holiday destinations</h2>
+        <h2>Popular heli-skiing destinations</h2>
         <div class="preview-layout">
           <a class="preview-item" href="/pages/heli-skiing-in-greenland">
             <img src="/assets/home/st_anton_austria.png">
@@ -440,7 +440,7 @@ Page.create!(
         <p>List your chalet on MyChaletFinder today!</p>
         <br>
         <br>
-        <a class="button action-button">List your property</a>
+        <a class="button action-button" href="/welcome/advertiser">List your property</a>
       </div>
       <br>
       <br>
