@@ -84,9 +84,22 @@
 
 .flex-layout {
   display: flex;
+
+  > div {
+    margin-right: 24px;
+  }
+
+  > div:last-of-type {
+    margin-right: 0;
+  }
+
   @media screen and (max-width: 968px) {
     flex-wrap: wrap;
+    > div {
+      margin-right: 0;
+    }
   }
+
   .flex-2 {
     flex-basis: 100%;
     margin-bottom: 24px;
@@ -102,4 +115,9 @@
 
 .content-space-between {
   justify-content: space-between;
+}
+
+.row-divided {
+  border-bottom: 1px solid #ececec;
+  padding: 12px 0;
 }
