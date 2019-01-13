@@ -563,8 +563,8 @@ class PropertiesController < ApplicationController
 
       internal_dates = *(day_after_check_in..day_before_check_out)
       if internal_dates.any?
-        @conditions[0] += " AND id IN (SELECT property_id FROM availabilities WHERE start_date IN (?) AND availability = #{Availability::AVAILABLE})"
-        @conditions << internal_dates
+        @conditions[0] += " AND (SELECT COUNT(property_id) FROM availabilities WHERE start_date IN (?) AND availability = #{Availability::AVAILABLE} AND availabilities.property_id = properties.id) = ?"
+        @conditions << internal_dates.count
       end
 
       @conditions[0] += " AND id IN (SELECT property_id FROM availabilities WHERE start_date = ? AND check_out = 1)"

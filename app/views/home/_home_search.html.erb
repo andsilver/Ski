@@ -14,18 +14,10 @@
       <input id="check_out" name="check_out" style="display: none">
     </div>
     <div class="search-field">
-      <label for="search_countries">Country</label>
-      <select id="search_countries" name="country">
-        <% Country.all.each do |country| %>
-          <option value="<%= country.iso_3166_1_alpha_2 %>"><%= country.name %></option>
-        <% end %>
-      </select>
-    </div>
-    <div class="search-field">
       <label for="search_bedrooms">Bedrooms</label>
       <select id="search_bedrooms" name="bedrooms">
         <% (1..20).each do |i| %>
-          <option value=<%= i %>><%= i %></option>
+          <option value="<%= i %>"><%= i %></option>
         <% end %>
       </select>
     </div>
@@ -33,7 +25,7 @@
       <label for="search_sleeps">Sleeps</label>
       <select id="search_sleeps" name="sleeps">
         <% (1..40).each do |i| %>
-          <option value=<%= i %>><%= i %></option>
+          <option value="<%= i %>"><%= i %></option>
         <% end %>
       </select>
     </div>
