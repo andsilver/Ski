@@ -82,6 +82,20 @@
   }
 }
 
+.flex-layout {
+  display: flex;
+  @media screen and (max-width: 968px) {
+    flex-wrap: wrap;
+  }
+  .flex-2 {
+    flex-basis: 100%;
+    margin-bottom: 24px;
+    @media screen and (min-width: 968px) {
+      flex-basis: 50%;
+    }
+  }
+}
+
 .content-center {
   justify-content: center;
 }
