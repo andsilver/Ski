@@ -90,7 +90,7 @@ $(document).ready(function() {
       </td>
       <td class="numeric">
         <% if a.currently_advertised? %>
-          <% if a.current_advert.window? %>
+          <% if a.current_advert.window_spot? %>
             <%= form_tag controller: 'properties', action: 'remove_from_window', id: a.id do %>
             <%= submit_tag t('advertise_action.remove_from_window'), class: 'btn' %>
             <% end %>
