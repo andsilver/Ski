@@ -1,6 +1,15 @@
 .property {
-  h1 {
-    font-size: 1.2rem;
+  &-name {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  &-price {
+    padding: 1rem 1.5rem;
+    font-size: 16px;
+    strong {
+      font-size: 24px;
+    }
   }
 
   img {
@@ -21,12 +30,41 @@
       list-style: none;
       padding: 0;
       text-transform: uppercase;
+      li {
+        line-height: 32px;
+      }
     }
   }
 
   .get-details {
     background: #f1f1f1;
     padding: 1rem;
+  }
+
+  &-details {
+
+    > div:first-of-type {
+      margin-right: 10%;
+      flex-basis: 100%;
+
+      @media screen and (max-width: 968px) {
+        margin-right: 0;
+      }
+    }
+
+    h3 {
+      border-bottom: 1px solid #ccc;
+      padding: 1rem 0;
+      margin-bottom: 1rem;
+    }
+
+    .property-enquire {
+      margin-top: 5rem;
+      width: 100%;
+      padding: 16px 0;
+      display: block;
+      text-align: center;
+    }
   }
 }
 

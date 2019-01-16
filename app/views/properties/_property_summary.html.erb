@@ -1,12 +1,10 @@
 <div class="property-summary" itemscope itemtype="http://schema.org/LodgingBusiness">
 <% cache(p) do -%>
-  <%
-  link = property_detail_path(p)
-  %>
+  <% link = property_detail_path(p) %>
   <p class="property-thumbnail">
-<% unless p.image.nil? -%>
+  <% unless p.image.nil? -%>
     <span><%= link_to(image_tag(property_summary_thumbnail(p), alt: "#{p.name} #{property_type(p)} in #{p.resort}"), link) %></span>
-<% end -%>
+  <% end -%>
   </p>
   <div class="property-summary-description">
     <h3>

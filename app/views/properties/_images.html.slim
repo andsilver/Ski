@@ -1,6 +1,19 @@
 - cache(property) do
   - if property.image
-    .cycle-slideshow data-cycle-fx="scrollHorz" data-cycle-timeout="8000" data-cycle-pager="#adv-custom-pager" data-cycle-pager-template="<a href='#' class='fk-thumb'><img src='{{src}}' width=96 height=72></a>"
+    ul#images_slider
+      - property.images.each do |i|
+        li
+          = image_tag(i.sized_url([640, 300], :cropped), alt: "Photo of #{property.name}")
+    javascript:
+      $('#images_slider').partialViewSlider({
+        width: 100,
+        controls: true,
+        controlsPosition: 'inside',
+        backdrop: true,
+        dots: false
+      });
+
+    / .cycle-slideshow data-cycle-fx="scrollHorz" data-cycle-timeout="8000" data-cycle-pager="#adv-custom-pager" data-cycle-pager-template="<a href='#' class='fk-thumb'><img src='{{src}}' width=96 height=72></a>"
       .cycle-prev
         span.fas.fa-angle-left
       .cycle-next

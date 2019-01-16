@@ -48,6 +48,12 @@
       align-items: center;
     }
 
+    &:hover {
+      .overlay {
+        background-color: rgba(35, 31, 32, 0.8);
+      }
+    }
+
     .title, .description {
       color: #ffffff;
       width: 59%;
@@ -56,12 +62,6 @@
     .description {
       font-size: 16px;
       font-weight: bold;
-    }
-
-    &:hover {
-      .overlay {
-        background-color: rgba(35, 31, 32, 0.8);
-      }
     }
 
     @media screen and (min-width: 640px) {
@@ -107,6 +107,26 @@
       flex-basis: 50%;
     }
   }
+
+  .flex-3 {
+    flex-basis: 100%;
+    margin-bottom: 24px;
+    @media screen and (min-width: 640px) {
+      flex-basis: 33%;
+    }
+  }
+
+  .flex-4 {
+    flex-basis: 100%;
+    margin-bottom: 24px;
+    @media screen and (min-width: 640px) {
+      flex-basis: 50%;
+    }
+
+    @media screen and (min-width: 968px) {
+      flex-basis: 25%;
+    }
+  }
 }
 
 .content-center {
@@ -115,6 +135,18 @@
 
 .content-space-between {
   justify-content: space-between;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-end {
+  align-items: flex-end;
 }
 
 .row-divided {

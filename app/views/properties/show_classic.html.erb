@@ -1,9 +1,7 @@
 <%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading) %>
 
 <%= content_for :theme, @property.theme %>
-
-<%= render partial: 'google_map',
-    locals: { lat: @property.latitude, lng: @property.longitude } %>
+<!--
 <div class="property classic-property">
   <%= render partial: 'user_logo', locals: { property: @property } %>
   <h1 class="property-name">
@@ -35,4 +33,50 @@
   </p>
 
   <%= clear %>
-</div><!--.property-->
+</div>
+-->
+
+<div class="property classic-property">
+  <%= render partial: 'user_logo', locals: { property: @property } %>
+  <h1 class="property-name"><%= @property.name %></h1>
+  <div>
+    <%= render partial: 'images', locals: { property: @property } %>
+    <div class="flex-layout property-details">
+      <div>
+        <div class="flex-layout content-space-between align-end">
+          <div>
+            <h1><%= @property.name %></h1>
+          </div>
+          <div class="property-price action-button button">
+            <span><%= @property.for_sale? ? 'Sale price ' : 'Weekly price from ' %></span>
+            <strong><%= @property.for_sale? ? format_currency(@property.sale_price, @property.currency) : format_currency(@property.weekly_rent_price, @property.currency) %></strong>
+          </div>
+        </div>
+        <% if @property.description.present? %>
+        <p><%= md @property.description %></p>
+        <% end %>
+        <div>
+          <h3><%= I18n.t('helpers.properties.property_type.accommodation') %></h3>
+          <%= render 'location_button_and_modal' if @property.latitude.present? %>
+          <%= render partial: 'google_map', locals: { lat: @property.latitude, lng: @property.longitude } %>
+        </div>
+        <div>
+          <%= link_to t('enquire'), contact_property_path(@property), class: 'property-enquire button action-button' %>
+        </div>
+      </div>
+      <div class="flex-4">
+        <div class="classic-features">
+          <h3><%= I18n.t('features') %></h3>
+          <ul>
+            <% classic_features(@property).each do |feature| %>
+            <li><%= feature %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <%= clear %>
+</div>
