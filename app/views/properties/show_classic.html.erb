@@ -53,7 +53,7 @@
           </div>
         </div>
         <% if @property.description.present? %>
-        <p><%= md @property.description %></p>
+        <p style="padding: 1rem 0"><%= md @property.description %></p>
         <% end %>
         <div>
           <h3><%= I18n.t('helpers.properties.property_type.accommodation') %></h3>
