@@ -1,0 +1,18 @@
+<% if lat.present? -%>
+<script>
+  var panorama;
+
+  function showMap() {
+    panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('map-canvas'), {
+        position: {lat: <%= lat %>, lng: <%= lng%>},
+        pov: {heading: 165, pitch: 0},
+        zoom: 1
+      });
+  }
+
+  $(function() {
+    showMap();
+  });
+</script>
+<% end -%>

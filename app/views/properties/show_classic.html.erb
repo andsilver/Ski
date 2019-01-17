@@ -58,7 +58,7 @@
         <div>
           <h3><%= I18n.t('helpers.properties.property_type.accommodation') %></h3>
           <%= render 'location_button_and_modal' if @property.latitude.present? %>
-          <%= render partial: 'google_map', locals: { lat: @property.latitude, lng: @property.longitude } %>
+          <%= render partial: 'google_map_street_view', locals: { lat: @property.latitude, lng: @property.longitude } %>
         </div>
         <div>
           <%= link_to t('enquire'), contact_property_path(@property), class: 'property-enquire button action-button' %>

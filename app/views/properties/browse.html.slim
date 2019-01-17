@@ -51,6 +51,6 @@
         - @properties.each do |p|
           = render partial: 'properties/property_summary', locals: {p: p.decorate}
     #map_canvas.properties-map
-    = render partial: 'properties/map_properties_markers', locals: {properties: @properties.decorate}
+    = render partial: 'properties/google_map_markers', locals: {properties: @properties.decorate}
 
   = will_paginate @properties
