@@ -1,8 +1,24 @@
 <div id="bloodhound">
-  <form class="search-form cf" action="<%= home_search_path %>">
+  <form class="search-form cf" action="<%= home_search_sales_path %>">
     <div class="search-field search-field-destination">
       <label for="destination">Find properties here</label>
       <input id="destination" class="typeahead" type="text" placeholder="Enter place name" name="place_name">
+    </div>
+    <div class="search-field">
+      <label for="min_price">Min Price</label>
+      <div class="drop-down">
+        <a class="price-range-pick">Minimum price</a>
+        <ul id="min_prices_list" class="drop-down-menu"></ul>
+        <input id="min_price" name="min" style="display: none">
+      </div>
+    </div>
+    <div class="search-field">
+      <label for="max_price">Max Price</label>
+      <div class="drop-down">
+        <a class="price-range-pick">Maximum price</a>
+        <ul id="max_prices_list" class="drop-down-menu"></ul>
+        <input id="max_price" name="max" style="display: none">
+      </div>
     </div>
     <div class="search-field search-field-submit">
       <input class="button action-button form-control" type="submit" value="Search">
@@ -10,11 +26,100 @@
   </form>
 </div>
 
-
 <script>
+
+  const prices = {
+    min: [100, 150, 200, 250],
+    max: [100, 150, 200, 250]
+  };
+
+  const formatPrice = (price) => {
+    return `€${price},000`;
+  }
+
+  const extractPrice = (price) => {
+    if (price[0] != '€') {
+      return false;
+    }
+    return Number(price.split('€')[1].split(',')[0]);
+  }
+
+  const showDropDown = (e) => {
+    e.attr('aria-expanded', true);
+    e.find('ul').show(300);
+  }
+
+  const hideDropDown = (e) => {
+    e.attr('aria-expanded', false);
+    e.find('ul').hide(200);
+  }
+
+  const setPricesHtml = (minOrMax) => {
+    var html = prices[minOrMax].map(price => `<li class="drop-down-menu-item">${formatPrice(price)}</li>`).join('');
+    html += '<li class="drop-down-menu-item">+ above</li>';
+    return html;
+  }
+
+  $('#min_prices_list').html(setPricesHtml('min'));
+  $('#max_prices_list').html(setPricesHtml('max'));
+
+  $('.drop-down .price-range-pick').on('click', function() {
+
+    const _el = $(this).parent();
+
+    hideDropDown(_el.siblings());
+    
+    if (_el.attr('aria-expanded') === 'true') {
+      hideDropDown(_el);
+    } else {
+     showDropDown(_el);
+
+      $(document).mouseup((e) => {
+
+        if(_el.has(e.target).length !== 0){
+          return;
+        }
+
+        $(document).unbind('mouseup');
+        hideDropDown(_el);
+      });
+
+    };
+  });
+
+  function onSelectPrice(event) {
+
+    const _el = $(this).parent().parent();
+    const price = extractPrice($(this).html());
+    const minOrMax = (_el.find('#max_price').length) ? 'max' : 'min';
+
+    if (!price) {
+      var val = prices[minOrMax][prices[minOrMax].length - 1];
+      [1, 2, 3, 4].forEach(i => {
+        prices[minOrMax].push(val + 50 * i);
+      });
+      $('#min_prices_list').html(setPricesHtml('min'));
+      $('#max_prices_list').html(setPricesHtml('max'));
+      $('.drop-down-menu .drop-down-menu-item').on('click', onSelectPrice);
+      minOrMax === 'max' ? $('#max_price').parent().find('ul').children().last().remove() : $('#min_price').parent().find('ul').children().last().remove()
+      return;
+    }
+
+    hideDropDown(_el);
+
+    _el.find('.price-range-pick').html($(this).html());
+    _el.find('.price-range-pick').css('cssText', 'color: black !important;');
+    if (minOrMax === 'max') {
+      $('#max_price').val(price);
+    } else {
+      $('#min_price').val(price);
+    }
+  }
+
+  $('.drop-down-menu .drop-down-menu-item').on('click', onSelectPrice);
+
   $('.search-form').on('submit', function() {
     var placeName = $('.tt-input').val();
-
     if(placeName) {
       return true;
     } else {
