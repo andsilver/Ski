@@ -12,32 +12,41 @@
 
 - content_for :search do
   #search-options.search-options
-    = form_tag request.path, method: 'get' do
+    = form_tag request.path, class: 'search-form cf', method: 'get' do
       - if @resort
         input type="hidden" name="resort_slug" value="#{@resort.slug}"
       - if @region # region also uses resort_slug param name
         input type="hidden" name="resort_slug" value="#{@region.slug}"
-      select#sort_method.form-control name="sort_method"
-        - if search_results_page_type == :sales
-          = content_tag(:option, 'Price low to high', value: 'normalised_sale_price ASC', selected: sort_method=='normalised_sale_price ASC')
-          = content_tag(:option, 'Price high to low', value: 'normalised_sale_price DESC', selected: sort_method=='normalised_sale_price DESC')
-        - else
-          = content_tag(:option, 'Price low to high', value: 'normalised_weekly_rent_price ASC', selected: sort_method=='normalised_weekly_rent_price ASC')
-          = content_tag(:option, 'Price high to low', value: 'normalised_weekly_rent_price DESC', selected: sort_method=='normalised_weekly_rent_price DESC')
-        - if @resort.try(:ski?)
-          = content_tag(:option, t('.distance_from_lift'), value: 'metres_from_lift ASC', selected: sort_method=='metres_from_lift ASC')
-        - if search_results_page_type == :sales
-          = content_tag(:option, 'Number of bathrooms', value: 'number_of_bathrooms ASC', selected: sort_method=='number_of_bathrooms ASC')
-        - else
-          = content_tag(:option, t('sleeping_capacity'), value: 'sleeping_capacity ASC', selected: sort_method=='sleeping_capacity ASC')
-        = content_tag(:option, 'Number of bedrooms', value: 'number_of_bedrooms ASC', selected: sort_method == 'number_of_bedrooms ASC')
+      .search-field
+        label for='sort_method' Sort Method
+        select#sort_method.form-control name="sort_method"
+          - if search_results_page_type == :sales
+            = content_tag(:option, 'Price low to high', value: 'normalised_sale_price ASC', selected: sort_method=='normalised_sale_price ASC')
+            = content_tag(:option, 'Price high to low', value: 'normalised_sale_price DESC', selected: sort_method=='normalised_sale_price DESC')
+          - else
+            = content_tag(:option, 'Price low to high', value: 'normalised_weekly_rent_price ASC', selected: sort_method=='normalised_weekly_rent_price ASC')
+            = content_tag(:option, 'Price high to low', value: 'normalised_weekly_rent_price DESC', selected: sort_method=='normalised_weekly_rent_price DESC')
+          - if @resort.try(:ski?)
+            = content_tag(:option, t('.distance_from_lift'), value: 'metres_from_lift ASC', selected: sort_method=='metres_from_lift ASC')
+          - if search_results_page_type == :sales
+            = content_tag(:option, 'Number of bathrooms', value: 'number_of_bathrooms ASC', selected: sort_method=='number_of_bathrooms ASC')
+          - else
+            = content_tag(:option, t('sleeping_capacity'), value: 'sleeping_capacity ASC', selected: sort_method=='sleeping_capacity ASC')
+          = content_tag(:option, 'Number of bedrooms', value: 'number_of_bedrooms ASC', selected: sort_method == 'number_of_bedrooms ASC')
+      .search-field
+        label for="search_bedrooms" Bedrooms
+        select#search_bedrooms name="bedrooms"
+          - (1..20).each do |i|
+            = content_tag(:option, i, value: i)
       - if search_results_page_type == :rentals
         = render 'sleeps_select'
-        = render 'board_basis_select'
-        = render 'home/datepickers'
+        .search-field
+          = render 'board_basis_select'
+        = render 'home/date_range_picker', start_date: params[:start_date], end_date: params[:end_date]
+        / = render 'home/datepickers'
       p= raw property_search_filters @search_filters
       p
-        = submit_tag 'Refine Search', class: 'btn btn-default'
+        = submit_tag 'Refine Search', class: 'btn btn-action'
 
 = raw @page_content if first_page?
 

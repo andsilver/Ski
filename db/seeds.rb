@@ -177,6 +177,31 @@ Page.create!([
     title: 'About'
   },
   {
+    path: '/resorts/chamonix/properties/rent',
+    title: 'Chamonix Chalets & Apartments to Rent | Chamonix Holiday Rental Accommodation',
+    description: 'Looking for a Chamonix chalet or apartment? Over 100 self catering holiday rental chalets and apartments to choose from for all budgets and tastes for your ski or summer holidays - enquire or book online',
+    keywords: 'chamonix chalets, accommodation in chamonix, chalet rentals in chamonix, chamonix holiday rentals , chamonix vacation rentals, apartments for rent in chamonix, luxury chamonix chalets, hot tubs, ski-in, ski-out, mychaletfinder',
+    header_snippet_name: 'intersport',
+    content: <<~EOF
+      <h1>Chamonix Chalets
+      <span>Holiday Rentals - Ski Chalets, Apartments &amp; Holiday Homes For Rent, Chamonix</span>
+      </h1>
+      
+      <p>Mychaletfinder has the perfect <strong>Chamonix chalet</strong> for you to rent for your 
+        summer or ski holidays. Chamonix is a world famous all year round ski resort providing some of the most challenging
+      off-piste terrain around whilst catering equally as well for absolute beginners. Summer is 
+      even busier with hikers and mountain bikers who come to explore the high alpine trails. A wonderful town
+      to visit any time of year.</p>
+      
+      <p>Staying in <strong>Chamonix holiday rentals</strong>, whether ski chalet or apartment, is
+      ideal for families, groups and friends. Self catering holiday accommodation provides the freedom, flexibility and space to 
+      do what you want, when you you want - home from home.</p>
+      <br>
+      <br>
+      <br>
+      EOF
+  },
+  {
     path: '/pages/heli-skiing-in-greenland',
     title: 'Greenland Heli-skiing | Ski Tours Kangaamiut, Greenland',
     content: <<~EOF

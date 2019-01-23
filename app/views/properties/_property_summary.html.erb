@@ -3,22 +3,24 @@
   <% link = property_detail_path(p) %>
   <p class="property-thumbnail">
   <% unless p.image.nil? -%>
-    <span><%= link_to(image_tag(property_summary_thumbnail(p), alt: "#{p.name} #{property_type(p)} in #{p.resort}"), link) %></span>
+    <span><%= link_to(image_tag(property_summary_thumbnail(p), title: "#{p.name}", alt: "#{p.name} #{property_type(p)} in #{p.resort}"), link) %></span>
   <% end -%>
   </p>
   <div class="property-summary-description">
     <h3>
       <%= link_to content_tag(:span, p.truncated_name, itemprop: 'name'), link, title: "Read more about #{p.name}", itemprop: 'url' %>
-      <% unless p.for_sale? %>&middot; <%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
+      <p>
+        <% unless p.for_sale? %><%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
+      </p>
       <% if sort_method == 'metres_from_lift ASC' %>&middot; <%= t('.nearest_lift' )%> <%= p.nearest_lift %><% end %>
-      &middot;
       <% if p.price_description.present? %>
         <%= p.price_description %>
       <% else %>
         <%= p.for_sale? ? t('.sale_price', price: format_currency(p.sale_price, p.currency)) : t('.weekly_price', price: format_currency(p.weekly_rent_price, p.currency)) %>
       <% end %>
-      &middot;
-      <%= property_type(p) %> in <%= p.resort %>
+      <p>
+        <%= property_type(p) %> in <%= p.resort %>
+      </p>
     </h3>
     <p class="strapline" itemprop="description">
       <%= p.strapline %>
@@ -31,9 +33,6 @@
         <%= t('.plot_size') %> <%= p.plot_size_metres_2 %> m<sup>2</sup>
       </p>
       <% end %>
-      <p class="contact_owner btn-property">
-        <%= link_to 'More info', link, title: "More info about #{p.name}", class: 'button action-button' %>
-      </p>
     </div>
   </div>
 <% end -%>

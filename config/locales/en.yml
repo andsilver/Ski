@@ -499,7 +499,7 @@ en:
       plot_size: 'Total'
       sale_price: 'Prices from %{price}'
       sleeps: Sleeps
-      weekly_price: 'From %{price} weekly'
+      weekly_price: 'From %{price}/week'
     select_resort: Select resort
     show_showcase:
       enquire: 'Enquire'

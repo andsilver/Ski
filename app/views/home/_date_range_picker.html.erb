@@ -1,0 +1,35 @@
+<div class="search-field search-field-checkin-checkout">
+    <label>Check in - Check out</label>
+    <div id="check_in_out" class="date-range-pick">
+        <i class="far fa-calendar"></i>
+        <span> Check in - Check out</span>
+    </div>
+    <input id="check_in" name="start_date" style="display: none">
+    <input id="check_out" name="end_date" style="display: none">
+</div>
+
+<script>
+
+    $(function () {
+        <% if start_date.present? && end_date.present? %>
+            $('#check_in').val("<%= start_date %>");
+            $('#check_out').val("<%= end_date %>");
+            $('#check_in_out span').html("<%= Date.parse(start_date).strftime("%Y.%m.%d") %>" + ' - ' + "<%= Date.parse(end_date).strftime("%Y.%m.%d") %>");
+            $('#check_in_out span').css('color', 'black');
+        <% else %>
+            $('#check_in').val(null);
+            $('#check_out').val(null);
+        <% end %>
+    });
+
+    $('#check_in_out').daterangepicker({
+        "autoApply": true,
+        "opens": "center",
+        "linkedCalendars": false
+    }, function(start, end, label) {
+        $('#check_in_out span').html(start.format('YYYY.MM.DD') + ' - ' + end.format('YYYY.MM.DD'));
+        $('#check_in_out span').css('color', 'black');
+        $('#check_in').val(start);
+        $('#check_out').val(end);
+    });
+</script>

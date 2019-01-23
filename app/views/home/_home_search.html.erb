@@ -4,15 +4,7 @@
       <label for="destination">Find rentals here</label>
       <input id="destination" class="typeahead" type="text" placeholder="Find rentals here" name="place_name">
     </div>
-    <div class="search-field search-field-checkin-checkout">
-      <label>Check in - Check out</label>
-      <div id="check_in_out" class="date-range-pick">
-        <i class="far fa-calendar"></i>
-        <span> Check in - Check out</span>
-      </div>
-      <input id="check_in" name="check_in" style="display: none">
-      <input id="check_out" name="check_out" style="display: none">
-    </div>
+    <%= render 'home/date_range_picker', start_date: '', end_date: '' %>
     <div class="search-field">
       <label for="search_bedrooms">Bedrooms</label>
       <select id="search_bedrooms" name="bedrooms">
@@ -81,16 +73,5 @@
     $('.search-datepicker input').pickadate({
       format: 'd mmm, yyyy'
     });
-  });
-
-  $('#check_in_out').daterangepicker({
-    "autoApply": true,
-    "opens": "center",
-    "linkedCalendars": false
-  }, function(start, end, label) {
-    $('#check_in_out span').html(start.format('YYYY.MM.DD') + ' - ' + end.format('YYYY.MM.DD'));
-    $('#check_in_out span').css('color', 'black');
-    $('#check_in').val(start);
-    $('#check_out').val(end);
   });
 </script>

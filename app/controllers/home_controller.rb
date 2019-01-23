@@ -10,9 +10,9 @@ class HomeController < ApplicationController
 
   def search
     if @resort
-      check_in  = params[:check_in].present?  ? params[:check_in].to_date.strftime("%m-%d-%Y") : nil
-      check_out = params[:check_out].present? ? params[:check_out].to_date.strftime("%m-%d-%Y") : nil
-      redirect_to resort_property_rent_path(@resort, :start_date => check_in, :end_date => check_out, :bedrooms => params[:bedrooms], :sleeps => params[:sleeps])
+      start_date  = params[:start_date].present?  ? params[:start_date].to_date.strftime("%Y.%m.%d") : nil
+      end_date = params[:end_date].present? ? params[:end_date].to_date.strftime("%Y.%m.%d") : nil
+      redirect_to resort_property_rent_path(@resort, :start_date => start_date, :end_date => end_date, :bedrooms => params[:bedrooms], :sleeps => params[:sleeps])
     elsif @region
       redirect_to region_property_rent_path(@region)
     else
