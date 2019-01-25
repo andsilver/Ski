@@ -53,13 +53,15 @@
 - if @properties.empty?
   p= t('properties.no_matching_properties')
 - else
-  .results-count= pagination_start(@properties).to_s +  ' - ' + pagination_end(@properties).to_s + ' of ' + @properties.count.to_s
-  .flex-layout
+  .properties-view
+    #map_canvas.properties-map
+    = render partial: 'properties/google_map_markers', locals: {properties: @properties.decorate}
     .properties-container
+      .results-count
+        div= pagination_start(@properties).to_s +  ' - ' + pagination_end(@properties).to_s + ' of ' + @properties.count.to_s
+        = will_paginate @properties
       .property-summaries
         - @properties.each do |p|
           = render partial: 'properties/property_summary', locals: {p: p.decorate}
-    #map_canvas.properties-map
-    = render partial: 'properties/google_map_markers', locals: {properties: @properties.decorate}
-
-  = will_paginate @properties
+  .flex-layout.content-center style="padding: 3rem 0"
+        = will_paginate @properties

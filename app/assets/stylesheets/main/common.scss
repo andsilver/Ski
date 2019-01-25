@@ -86,11 +86,11 @@
 .flex-layout {
   display: flex;
 
-  > div {
+  & > div {
     margin-right: 24px;
   }
 
-  > div:last-of-type {
+  & > div:last-of-type {
     margin-right: 0;
   }
 

@@ -375,7 +375,7 @@ class PropertiesController < ApplicationController
   include PropertyOrdering
 
   def find_properties(order)
-    @properties = Property.where(@conditions).order(order).paginate(page: params[:page])
+    @properties = Property.where(@conditions).order(order).paginate(page: params[:page], per_page: Property.per_page)
   end
 
   def show_shared

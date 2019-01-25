@@ -1,18 +1,40 @@
-.properties-container {
-  flex-basis: 100%;
-  margin-bottom: 24px;
+.properties-view {
+  display: block;
+
   @media screen and (min-width: 1200px) {
-    flex-basis: 60%;
+    display: flex;
+
+    &>div:last-of-type {
+      margin-right: 20px;
+    }
+  }
+}
+
+.results-count {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 10px;
+  color: black;
+  font-weight: bold;
+}
+
+.properties-container {
+  margin-bottom: 24px;
+
+  @media screen and (min-width: 1200px) {
+    width: 60%;
   }
 }
 
 .properties-map {
-  flex-basis: 100%;
-  display: flex;
+  margin: 1rem 0;
   min-height: 600px;
   max-height: 2000px;
+  order: 2;
+
   @media screen and (min-width: 1200px) {
-    flex-basis: 40%;
+    width: 40%;
+    margin-bottom: 0;
   }
 }
 
@@ -26,7 +48,8 @@
   border: 1px solid #f2f2f2;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  margin: 1%;
+  margin-bottom: 10px;
+  flex-basis: 100%;
 
   img {
     width: 100%;
@@ -51,6 +74,18 @@
       margin-top: 0;
     }
   }
+
+  @media screen and (min-width: 968px) {
+    flex-basis: 49%;
+
+    &:nth-of-type(2n) {
+      margin-left: 1%;
+    }
+
+    &:nth-of-type(2n - 1) {
+      margin-right: 1%;
+    }
+  }
 }
 
 .property-thumbnail {
@@ -59,22 +94,4 @@
 
 .property-summary-description {
   padding: 0.5rem;
-}
-
-@media screen and (min-width: 640px) {
-  .property-summary {
-    flex-basis: 100%;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .property-summary {
-    flex-basis: 100%;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .property-summary {
-    flex-basis: 48%;
-  }
 }

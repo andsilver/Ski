@@ -50,7 +50,7 @@ class Property < ActiveRecord::Base
   delegate :theme, to: :resort
 
   cattr_reader :per_page
-  @@per_page = 50
+  @@per_page = 10
 
   # Use in single-threaded batch imports with #stop_geocoding and
   # #resume_geocoding.

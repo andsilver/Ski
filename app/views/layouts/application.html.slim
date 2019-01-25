@@ -121,7 +121,7 @@ html lang="#{@lang}"
 
       .links
         = yield :links
-        = render 'layouts/region_nav' if @region
+        / = render 'layouts/region_nav' if @region
         = render 'layouts/resort_nav' if @resort
         = raw sidebar_html
 
@@ -131,6 +131,7 @@ html lang="#{@lang}"
           a.logo href="#{root_path}" title="Home"
             = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
 
+      
 
       .social.secondary-nav
         ul
