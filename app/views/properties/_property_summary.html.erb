@@ -7,33 +7,41 @@
   <% end -%>
   </p>
   <div class="property-summary-description">
-    <h3>
-      <%= link_to content_tag(:span, p.truncated_name, itemprop: 'name'), link, title: "Read more about #{p.name}", itemprop: 'url' %>
-      <p>
-        <% unless p.for_sale? %><%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
-      </p>
+    <h4>
+      <%= link_to content_tag(:h3, p.truncated_name, itemprop: 'name'), link, title: "Read more about #{p.name}", itemprop: 'url' %>
+      <div class="property-type">
+        <%= p.resort %> <%= property_type(p) %>
+      </div>
+      <br>
       <% if sort_method == 'metres_from_lift ASC' %>&middot; <%= t('.nearest_lift' )%> <%= p.nearest_lift %><% end %>
-      <% if p.price_description.present? %>
-        <%= p.price_description %>
-      <% else %>
-        <%= p.for_sale? ? t('.sale_price', price: format_currency(p.sale_price, p.currency)) : t('.weekly_price', price: format_currency(p.weekly_rent_price, p.currency)) %>
-      <% end %>
       <p>
-        <%= property_type(p) %> in <%= p.resort %>
+        <% if p.price_description.present? %>
+          <%= p.price_description %>
+        <% else %>
+          <% if p.for_sale? %>
+            <%= t('.sale_price') %> <strong><%= format_currency(p.sale_price, p.currency) %></strong>
+          <% else %>
+            <%= t('.weekly_price') %> <strong><%= format_currency(p.weekly_rent_price, p.currency) %></strong>
+          <% end %>
+        <% end %>
       </p>
-    </h3>
-    <p class="strapline" itemprop="description">
-      <%= p.strapline %>
-    </p>
-
-    <div class="actions">
-      <% if p.for_sale? %>
-      <p class="additional-info">
-        <%= t('.floor_area') %> <%= p.floor_area_metres_2 %> m<sup>2</sup><br>
-        <%= t('.plot_size') %> <%= p.plot_size_metres_2 %> m<sup>2</sup>
-      </p>
+      <% unless p.for_sale? %>
+        <p><%= t('.sleeps') %> - <%= p.sleeping_capacity %></p>
+        <p><%= t('.bedrooms') %> - <%= p.number_of_bedrooms %></p>
       <% end %>
-    </div>
+      <p class="strapline" itemprop="description">
+        <%= p.strapline %>
+      </p>
+
+      <div class="actions">
+        <% if p.for_sale? %>
+        <p class="additional-info">
+          <%= t('.floor_area') %> - <strong><%= p.floor_area_metres_2 %> m<sup>2</sup></strong>, 
+          <%= t('.plot_size') %> - <strong><%= p.plot_size_metres_2 %> m<sup>2</sup></strong>
+        </p>
+        <% end %>
+      </div>
+    </h4>
   </div>
 <% end -%>
 </div>

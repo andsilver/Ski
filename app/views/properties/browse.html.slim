@@ -33,20 +33,23 @@
           - else
             = content_tag(:option, t('sleeping_capacity'), value: 'sleeping_capacity ASC', selected: sort_method=='sleeping_capacity ASC')
           = content_tag(:option, 'Number of bedrooms', value: 'number_of_bedrooms ASC', selected: sort_method == 'number_of_bedrooms ASC')
+      - if search_results_page_type == :rentals
       .search-field
         label for="search_bedrooms" Bedrooms
         select#search_bedrooms name="bedrooms"
+          = content_tag(:option, "Choose", "")
           - (1..20).each do |i|
-            = content_tag(:option, i, value: i)
-      - if search_results_page_type == :rentals
+            = content_tag(:option, i, value: i, selected: params[:bedrooms].to_i == i)
+      .search-field      
         = render 'sleeps_select'
-        .search-field
-          = render 'board_basis_select'
+      .search-field
+        = render 'board_basis_select'
+      .search-field.search-field-checkin-checkout
         = render 'home/date_range_picker', start_date: params[:start_date], end_date: params[:end_date]
-        / = render 'home/datepickers'
+        / = render 'home/datepickers'  
+      .search-field.search-field-submit
+        = submit_tag 'Refine Search', class: 'button action-button form-control'
       p= raw property_search_filters @search_filters
-      p
-        = submit_tag 'Refine Search', class: 'btn btn-action'
 
 = raw @page_content if first_page?
 

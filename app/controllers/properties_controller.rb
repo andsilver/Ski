@@ -85,6 +85,7 @@ class PropertiesController < ApplicationController
 
     filter_availability
     filter_sleeps
+    filter_bedrooms
     filter_conditions
 
     unless params[:board_basis].nil? or params[:board_basis]=="-1"
@@ -375,7 +376,7 @@ class PropertiesController < ApplicationController
   include PropertyOrdering
 
   def find_properties(order)
-    @properties = Property.where(@conditions).order(order).paginate(page: params[:page])
+    @properties = Property.where(@conditions).order(order).paginate(page: params[:page], per_page: Property.per_page)
   end
 
   def show_shared
@@ -525,6 +526,14 @@ class PropertiesController < ApplicationController
     @conditions[0] += " AND sleeping_capacity >= ? AND sleeping_capacity <= ?"
     @conditions << sleeps
     @conditions << sleeps * 2
+  end
+
+  def filter_bedrooms
+    return if params[:bedrooms].blank?
+    bedrooms = params[:bedrooms].to_i
+    @conditions[0] += " AND number_of_bedrooms >= ? AND number_of_bedrooms <= ?"
+    @conditions << bedrooms
+    @conditions << bedrooms + 2
   end
 
   def filter_duration

@@ -4,10 +4,13 @@
       <label for="destination">Find rentals here</label>
       <input id="destination" class="typeahead" type="text" placeholder="Find rentals here" name="place_name">
     </div>
-    <%= render 'home/date_range_picker', start_date: '', end_date: '' %>
+    <div class="search-field search-field-checkin-checkout">
+      <%= render 'home/date_range_picker', start_date: '', end_date: '' %>
+    </div>
     <div class="search-field">
       <label for="search_bedrooms">Bedrooms</label>
       <select id="search_bedrooms" name="bedrooms">
+        <option value="">Choose</option>
         <% (1..20).each do |i| %>
           <option value="<%= i %>"><%= i %></option>
         <% end %>
@@ -16,6 +19,7 @@
     <div class="search-field">
       <label for="search_sleeps">Sleeps</label>
       <select id="search_sleeps" name="sleeps">
+        <option value="">Choose</option>
         <% (1..40).each do |i| %>
           <option value="<%= i %>"><%= i %></option>
         <% end %>

@@ -202,6 +202,26 @@ Page.create!([
       EOF
   },
   {
+    path: '/resorts/chamonix/properties/sale',
+    title: 'Chamonix Chalets & Apartments for Sale | Chamonix Real Estate',
+    description: 'Chamonix ski chalets & apartments for sale in Chamonix for all budgets - from studio apartments, holiday homes & luxury ski chalets in Chamonix  to buy - see our selection at MyChaletFinder...',
+    keywords: 'accommodation-in-chamonix, chamonix chalets for sale, chamonix apartments for sale, ski holiday accommodation to buy, mychaletfinder',
+    header_snippet_name: 'intersport',
+    banner: '<a href="https://www.fcexchange.com?&utm_source=mychaletfinder" target=" blank"><img src="/fixed-banners/fc-exchange-banner.jpg" alt="chamonix apartments for sale" title="Chamonix chalets for sale"></a>',
+    content:
+      <<~EOF
+        <h1>Chamonix Properties For Sale
+        <span>Chalets &amp; Apartments for Sale in Chamonix and the Chamonix Valley<span></span></h1>
+        
+        <p>Browse through our wide selection of <strong>Chamonix chalets and apartments for sale</strong>. 
+          From town centre apartments to luxurious chalets with amazing views of the Mont Blanc Massif, buying
+          a holiday home in this part of the French Alps has the major advantage of Chamonix being 
+          a year round resort. So if you are planning on renting your property, Chamonix can provide rental income
+          throughout the year.
+        </p>
+      EOF
+  },
+  {
     path: '/pages/heli-skiing-in-greenland',
     title: 'Greenland Heli-skiing | Ski Tours Kangaamiut, Greenland',
     content: <<~EOF

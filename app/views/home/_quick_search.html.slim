@@ -1,7 +1,7 @@
 section
   #quick-search
     = form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do
-      h2= t('.heading')
+      h5 style="margin-top: 0" = t('.heading')
       .search-form
         .search-field
           label for="holiday_type_id" Holiday
@@ -21,9 +21,10 @@ section
             select#resort_id.form-control name="resort_slug"
               option value=""= t('.choose')
               option value=""= t('.choose_country_first')
-        = render 'properties/sleeps_select'
+        .search-field
+          = render 'properties/sleeps_select'
         = render 'properties/price_range_select'
-      .search-form
-        = render 'home/datepickers'
+        .search-field.search-field-checkin-checkout
+          = render 'home/date_range_picker', start_date: '', end_date: ''
         .search-field-submit
           input type="submit" value="#{t('.search')}" class="button action-button"

@@ -1,11 +1,9 @@
-<div class="search-field">
-  <label for="sleeps">Sleeps</label>
-  <div class="search-field-input">
-    <select id="sleeps" name="sleeps" class="form-control">
-      <option value="">Choose</option>
-      <% [1, 2, 3, 4, 5, 6, 8, 10].each do |sleeps| %>
-      <option value="<%= sleeps %>"<%= ' selected' if params[:sleeps] == sleeps.to_s %>>Sleeps <%= sleeps %><%= '+' if sleeps == 10 %></option>
-      <% end %>
-    </select>
-  </div>
+<label for="sleeps">Sleeps</label>
+<div class="search-field-input">
+  <select id="sleeps" name="sleeps" class="form-control">
+    <option value="">Choose</option>
+    <% [1, 2, 3, 4, 5, 6, 8, 10].each do |sleeps| %>
+    <option value="<%= sleeps %>"<%= ' selected' if params[:sleeps] == sleeps.to_s %>><%= sleeps %><%= '+' if sleeps == 10 %></option>
+    <% end %>
+  </select>
 </div>
