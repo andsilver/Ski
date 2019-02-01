@@ -1,6 +1,6 @@
 - cache(@resort) do
   section
-    h2= @resort.name
+    / h2= @resort.name
     ul#resort-nav
       = nav_link(resort_path(@resort), "#{@resort.name} resort information", t('resort_options.resort_info'))
       = nav_link(resort_guide_path(@resort), "#{@resort.name} resort guide", t('.resort_guide')) if @resort.has_resort_guide?
@@ -20,7 +20,7 @@
       - if @resort.has_page?('how-to-get-there')
         = nav_link(how_to_get_there_path(@resort), "How to Get to #{@resort.name}", 'How to Get There')
 
-- cache(@resort.region) do
+/ - cache(@resort.region) do
   - if @resort.region && @resort.region.visible_resorts.any?
     section
       h2= @resort.region.name
@@ -28,7 +28,7 @@
         - @resort.region.visible_resorts.each do |resort|
           li= link_to_with_count resort, resort, resort.property_count
 
-- holiday_type = @resort.holiday_types.first
-- if holiday_type
+/ - holiday_type = @resort.holiday_types.first
+/ - if holiday_type
   = render partial: 'holiday_type_brochures/brochure_list', locals: { heading: t('.regions'), method: :region_brochures, brochurable: @resort.country, holiday_type: holiday_type }
   = render partial: 'holiday_type_brochures/brochure_list', locals: { heading: t('.resorts'), method: :resort_brochures, brochurable: @resort.country, holiday_type: holiday_type }

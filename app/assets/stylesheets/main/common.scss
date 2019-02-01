@@ -1,4 +1,7 @@
-#welcome-message, #featured-properties, #list-properties, #ski-holiday-experiences {
+#welcome-message,
+#featured-properties,
+#list-properties,
+#ski-holiday-experiences {
   text-align: center;
 }
 
@@ -11,6 +14,19 @@
 .page-description {
   text-align: center;
   margin-bottom: 6rem;
+}
+
+.static-page-content,
+.page-description p,
+.page-table {
+  strong {
+    color: #2e2c2f;
+  }
+
+  a {
+    text-decoration: unset;
+    color: #005e9c;
+  }
 }
 
 .preview-layout {
@@ -55,7 +71,8 @@
       }
     }
 
-    .title, .description {
+    .title,
+    .description {
       color: #ffffff;
       width: 59%;
     }
@@ -77,49 +94,64 @@
   &-basis-50 {
     flex-basis: 98%;
     margin-bottom: 24px;
+
     @media screen and (min-width: 968px) {
       flex-basis: 45%;
     }
   }
 }
 
+%flex-property {
+  flex-basis: 100%;
+  margin-bottom: 24px;
+}
+
 .flex-layout {
   display: flex;
 
-  & > div {
+  &>div {
     margin-right: 24px;
   }
 
-  & > div:last-of-type {
+  &>div:last-of-type {
     margin-right: 0;
   }
 
   @media screen and (max-width: 968px) {
     flex-wrap: wrap;
-    > div {
+
+    &>div {
       margin-right: 0;
     }
   }
 
   .flex-2 {
-    flex-basis: 100%;
-    margin-bottom: 24px;
+    @extend %flex-property;
+
     @media screen and (min-width: 968px) {
       flex-basis: 50%;
     }
   }
 
   .flex-3 {
-    flex-basis: 100%;
-    margin-bottom: 24px;
-    @media screen and (min-width: 640px) {
-      flex-basis: 33%;
+    @extend %flex-property;
+
+    @media screen and (min-width: 968px) {
+      flex-basis: 33.333333%;
+    }
+  }
+
+  .flex-32 {
+    @extend %flex-property;
+
+    @media screen and (min-width: 968px) {
+      flex-basis: 66.6666667%
     }
   }
 
   .flex-4 {
-    flex-basis: 100%;
-    margin-bottom: 24px;
+    @extend %flex-property;
+
     @media screen and (min-width: 640px) {
       flex-basis: 50%;
     }
@@ -128,37 +160,48 @@
       flex-basis: 25%;
     }
   }
+
+  .flex-43 {
+    @extend %flex-property;
+
+    @media screen and (min-width: 968px) {
+      flex-basis: 75%;
+    }
+  }
 }
 
-.content-center {
-  justify-content: center;
+.responsive-sm {
+  @media screen and (max-width: 968px) {
+    flex-wrap: wrap;
+
+    >div {
+      margin-right: 0;
+    }
+  }
 }
 
-.content-space-between {
-  justify-content: space-between;
-}
+.responsive-lg {
+  @media screen and (max-width: 1400px) {
+    flex-wrap: wrap;
 
-.align-start {
-  align-items: flex-start;
-}
+    >div {
+      margin-right: 0;
+    }
+  }
 
-.align-center {
-  align-items: center;
-}
+  .flex-2 {
+    @extend %flex-property;
 
-.align-end {
-  align-items: flex-end;
+    @media screen and (min-width: 1400px) {
+      flex-basis: 50%;
+    }
+  }
 }
-
-.row-divided {
-  border-bottom: 1px solid #ececec;
-  padding: 12px 0;
-}
-
 
 .drop-down {
   position: relative;
   min-width: 195px;
+
   &-menu {
     display: none;
     position: absolute;
@@ -193,6 +236,121 @@
       background: url('/assets/icon_arrow_up.png') no-repeat scroll 0 0;
       height: 10px;
       width: 18px;
+    }
+  }
+}
+
+.theme-table {
+  width: 100%;
+  border-top: 2px solid #005e9c;
+  border-bottom: 2px solid #005e9c;
+  border-spacing: 0;
+
+  td,
+  th {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ececec;
+  }
+
+  th {
+    color: #005e9c;
+    border-bottom: 1px solid #005e9c;
+  }
+
+  tbody tr:last-of-type td {
+    border-bottom: none;
+  }
+}
+
+.ski-holidays-ad {
+
+  padding: 24px;
+  border: 1px solid #005e9c;
+
+  table td:nth-child(2) {
+    text-align: right;
+  }
+
+  &-content {
+    display: flex;
+
+    @media screen and (max-width: 1400px) {
+      flex-wrap: wrap;
+    }
+
+    &>div {
+      &:first-of-type {
+        flex-basis: 100%;
+        margin-right: 0;
+
+        a {
+          display: block;
+          text-align: center;
+        }
+
+        @media screen and (min-width: 1400px) {
+          flex-basis: 28%;
+          margin-right: 24px;
+        }
+      }
+
+      &:last-of-type {
+        flex-basis: 100%;
+
+        @media screen and (min-width: 1400px) {
+          flex-basis: 72%;
+        }
+      }
+    }
+  }
+
+  .ad-block {
+
+    :first-child {
+      margin-bottom: 24px;
+      width: 100%;
+      max-width: 280px;
+
+      @media screen and (max-width: 968px) {
+        margin-right: 24px;
+
+        @media screen and (min-width: 640px) {
+          flex-basis: 100% !important;
+        }
+      }
+    }
+
+    @media screen and (max-width: 1400px) {
+      display: flex;
+      margin-bottom: 24px;
+    }
+
+    @media screen and (max-width: 640px) {
+      display: block;
+    }
+  }
+
+  .description-col {
+    vertical-align: top;
+    width: 40%;
+    border-bottom: 1px solid #005e9c;
+  }
+
+  .ad-table-title {
+    margin: 0;
+    padding: 12px;
+    border-top: 2px solid #005e9c;
+  }
+}
+
+.experience-slide,
+#header-images {
+  img {
+    min-height: 200px;
+
+    @media screen and (min-width: 1400px) {
+      height: 400px;
     }
   }
 }

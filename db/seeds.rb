@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -5,6 +7,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Dir["./db/pages/*.rb"].each {|file| require file }
+include StaticContent
 
 Amenity.destroy_all
 Image.destroy_all
@@ -25,907 +29,87 @@ Payment.delete_all
 Enquiry.delete_all
 Website.delete_all
 
-website = Website.create!(
-  home_content: <<~EOF
-  <div id="col-mid" class="wide clear-fix">
-
-      	<div id="welcome-message">
-          <h1 class="home">Ski Chalet Rentals</h1>
-          <p>Welcome to MyChaletFinder, the ultimate ski holiday rental website for mountain enthusiasts.</p>
-          <br>
-          <p>Book your ski chalet, cabin, condo or lodge today and enjoy the freedom,</p>
-          <p>flexibility and space to do what you want, when you want - home from home.</p>
-          <br>
-          <br>
-        </div>
-
-      	<div id="featured-properties">
-          <h2>Popular ski holiday destinations</h2>
-          <div class="preview-layout">
-            <a class="preview-item" href="/resorts/st-anton/properties/rent">
-              <img src="/assets/home/st_anton_austria.png">
-              <div class="overlay">
-                <h3 class="title">ST ANTON AUSTRIA</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/regions/ziller-valley/properties/rent">
-              <img src="/assets/home/ziller_valley_austria.png">
-              <div class="overlay">
-                <h3 class="title">ZILLER VALLEY AUSTRIA</h3>
-                <div class="description">(81 PROPERTIES)</div>
-              </div>
-            </a>
-            <a class="preview-item" href="/resorts/ruka-kuusamo/properties/rent">
-              <img src="/assets/home/ruka_kuusamo_finland.png">
-              <div class="overlay">
-                <h3 class="title">RUKA-KUUSAMO FINLAND</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/resorts/chamonix/properties/rent">
-              <img src="/assets/home/chamonix_france.png">
-              <div class="overlay">
-                <h3 class="title">CHAMONIX FRANCE</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/resorts/verbier-st-bernard/properties/rent">
-              <img src="/assets/home/verbier_switzerland.png">
-              <div class="overlay">
-                <h3 class="title">VERBIER Switzerland</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/resorts/lenk/properties/rent">
-              <img src="/assets/home/lenk_switzerland.png">
-              <div class="overlay">
-                <h3 class="title">LENK Switzerland</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/resorts/bormio/properties/rent">
-              <img src="/assets/home/bormio_italy.png">
-              <div class="overlay">
-                <h3 class="title">BORMIO Italy</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/resorts/canazei/properties/rent">
-              <img src="/assets/home/canazei_italy.png">
-              <div class="overlay">
-                <h3 class="title">CANAZEI Italy</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/resorts/salen/properties/rent">
-              <img src="/assets/home/salen_sweden.png">
-              <div class="overlay">
-                <h3 class="title">SALEN Sweden</h3>
-              </div>
-            </a>
-          </div>
-        </div>
-        <br>
-        <br>
-        <div id="list-properties">
-          <p>
-            <img alt="" src="/assets/marker-blue-6ab58c513405cdba0d8e092cda36219911a882653a9822f9559a58ade5d375f3.svg">
-          </p>
-          <h2>List your Ski Chalet</h2>
-          <br>
-          <p>Ski holiday rentals are getting more popular with travellers from families to adventurers.</p>
-          <p>List your chalet on MyChaletFinder today!</p>
-          <br>
-          <br>
-          <a class="button action-button" href="/welcome/advertiser">List your property</a>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div id="ski-holiday-experiences">
-          <h2>Ski Holiday Experiences</h2>
-          <div class="preview-layout">
-            <a class="preview-item" href="/pages/heli-skiing">
-              <img src="/assets/home/heli-skiing.png">
-              <div class="overlay">
-                <h3 class="title">HELI-SKIING</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/pages/lapland-ski-holidays">
-              <img src="/assets/home/northern-lights-lapland-mychaletfinder.jpg">
-              <div class="overlay">
-                <h3 class="title">Lapland Ski Holidays</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/holidays/spa-resorts">
-              <img src="/assets/home/spa_wellbeing.png">
-              <div class="overlay">
-                <h3 class="title">SPA & WELLBEING</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/pages/best-ski-tours-alps">
-              <img src="/assets/home/ski_tours.png">
-              <div class="overlay">
-                <h3 class="title">SKI TOURS</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/pages/beginner-ski-resorts">
-              <img src="/assets/home/beginner_resorts.png">
-              <div class="overlay">
-                <h3 class="title">BEGINNER RESORTS</h3>
-              </div>
-            </a>
-            <a class="preview-item" href="/pages/best-christmas-markets-ski-resorts">
-              <img src="/assets/home/eco_friendly.png">
-              <div class="overlay">
-                <h3 class="title">Christmas Markets</h3>
-              </div>
-            </a>
-          </div>
-        </div>
-
-      </div>
-  EOF
-)
+website = Website.create!(home_content: WEBSITE)
 
 CarouselSlide.delete_all
 CarouselSlide.create!([
-  { caption: '<p>Ski Holidays</p><p>A wide choice of international<br>ski resorts around the world</p>', link: '/holidays/ski-holidays', image_url: 'home/sh-home.png' },
-  { caption: '<p>City Breaks</p><p>All year round destinations – <br>explore something new</p>', link: '/holidays/city-breaks', image_url: 'home/ex-slider.png' },
-  { caption: '<p>Summer Villas</p><p>A great choice from the blue seas of <br>the Amalfi Coast to the Florida Keys</p>', link: '/holidays/summer-villas', image_url: 'home/sv-home.png' },
-  { caption: '<p>Lakes & Mountains<p><p>Beautiful lakeside resorts in picture <br>postcard settings</p>', link: '/holidays/lakes-and-mountains', image_url: 'home/lm-home.png' }
-])
+                        { caption: '<p>Ski Holidays</p><p>A wide choice of international<br>ski resorts around the world</p>', link: '/holidays/ski-holidays', image_url: 'home/sh-home.png' },
+                        { caption: '<p>City Breaks</p><p>All year round destinations – <br>explore something new</p>', link: '/holidays/city-breaks', image_url: 'home/ex-slider.png' },
+                        { caption: '<p>Summer Villas</p><p>A great choice from the blue seas of <br>the Amalfi Coast to the Florida Keys</p>', link: '/holidays/summer-villas', image_url: 'home/sv-home.png' },
+                        { caption: '<p>Lakes & Mountains<p><p>Beautiful lakeside resorts in picture <br>postcard settings</p>', link: '/holidays/lakes-and-mountains', image_url: 'home/lm-home.png' }
+                      ])
 
 Page.create!([
-  {
-    path: '/pages/about',
-    title: 'About'
-  },
-  {
-    path: '/resorts/chamonix/properties/rent',
-    title: 'Chamonix Chalets & Apartments to Rent | Chamonix Holiday Rental Accommodation',
-    description: 'Looking for a Chamonix chalet or apartment? Over 100 self catering holiday rental chalets and apartments to choose from for all budgets and tastes for your ski or summer holidays - enquire or book online',
-    keywords: 'chamonix chalets, accommodation in chamonix, chalet rentals in chamonix, chamonix holiday rentals , chamonix vacation rentals, apartments for rent in chamonix, luxury chamonix chalets, hot tubs, ski-in, ski-out, mychaletfinder',
-    header_snippet_name: 'intersport',
-    content: <<~EOF
-      <h1>Chamonix Chalets
-      <span>Holiday Rentals - Ski Chalets, Apartments &amp; Holiday Homes For Rent, Chamonix</span>
-      </h1>
-      
-      <p>Mychaletfinder has the perfect <strong>Chamonix chalet</strong> for you to rent for your 
-        summer or ski holidays. Chamonix is a world famous all year round ski resort providing some of the most challenging
-      off-piste terrain around whilst catering equally as well for absolute beginners. Summer is 
-      even busier with hikers and mountain bikers who come to explore the high alpine trails. A wonderful town
-      to visit any time of year.</p>
-      
-      <p>Staying in <strong>Chamonix holiday rentals</strong>, whether ski chalet or apartment, is
-      ideal for families, groups and friends. Self catering holiday accommodation provides the freedom, flexibility and space to 
-      do what you want, when you you want - home from home.</p>
-      <br>
-      <br>
-      <br>
-      EOF
-  },
-  {
-    path: '/resorts/chamonix/properties/sale',
-    title: 'Chamonix Chalets & Apartments for Sale | Chamonix Real Estate',
-    description: 'Chamonix ski chalets & apartments for sale in Chamonix for all budgets - from studio apartments, holiday homes & luxury ski chalets in Chamonix  to buy - see our selection at MyChaletFinder...',
-    keywords: 'accommodation-in-chamonix, chamonix chalets for sale, chamonix apartments for sale, ski holiday accommodation to buy, mychaletfinder',
-    header_snippet_name: 'intersport',
-    banner: '<a href="https://www.fcexchange.com?&utm_source=mychaletfinder" target=" blank"><img src="/fixed-banners/fc-exchange-banner.jpg" alt="chamonix apartments for sale" title="Chamonix chalets for sale"></a>',
-    content:
-      <<~EOF
-        <h1>Chamonix Properties For Sale
-        <span>Chalets &amp; Apartments for Sale in Chamonix and the Chamonix Valley<span></span></h1>
-        
-        <p>Browse through our wide selection of <strong>Chamonix chalets and apartments for sale</strong>. 
-          From town centre apartments to luxurious chalets with amazing views of the Mont Blanc Massif, buying
-          a holiday home in this part of the French Alps has the major advantage of Chamonix being 
-          a year round resort. So if you are planning on renting your property, Chamonix can provide rental income
-          throughout the year.
-        </p>
-      EOF
-  },
-  {
-    path: '/pages/heli-skiing-in-greenland',
-    title: 'Greenland Heli-skiing | Ski Tours Kangaamiut, Greenland',
-    content: <<~EOF
-    <div class="wide clear-fix experience-details">
-    <div>
-        <div class="page-description">
-            <img src="/assets/home/maniitsoq-heli-skiing.jpg" alt="" width="100%">
-            <br>
-            <br>
-            <br>
-            <h1>Greenland Heli-skiing and Ski Tours</h1>
-            <h2>Wild & remote - Spectacular Scenery, Icebergs, Glaciers and Fjords</h2>
-            <br>
-            <p>Everyone has heard of heli-skiing in Canada - afterall, it is the world's heli-skiing capital with around 80% of the market for this adrenaline fuelled sport. However,as the lesser known mountainous nations have started to promote their national assets ie mountains and ice, the areas often thought as being too remote are proving to be just as good and better value than the established players - Greenland, the world's largest island, is no exception.</p>
-        </div>
-        <div class="flex-layout content-space-between">
-            <div class="flex-2">
-                <img src="/assets/home/glacier-skiing-greenland.jpg" alt="" width="100%">
-            </div>
-            <div class="flex-2">
-                <p>Some of the best heli-skiing can be found on the many islands surrounding Greenland's huge coastline. These regions often have the deepest fjords with many permanently covered by glacial ice. On some of the decents, you can ski from the drop-off point, right the way down to the waters edge - something you won't experience when heli-skiing in the Alps.</p>
-                <br>
-                <h2>Greenland - facts & figures</h2>
-                <div style="border-top: 1px solid #ececec; padding: 24px 0;">
-                    <table style="width: 100%">
-                        <tbody>
-                            <tr>
-                                <td class="row-divided" style="width: 50%;">Heli skiing main season</td>
-                                <td class="row-divided">April to Mid May</td>
-                            <tr>
-                                <td class="row-divided">Northern Lights</td>
-                                <td class="row-divided">Dec to March</td>
-                            </tr>
-                            <tr>
-                                <td class="row-divided">Midnight Sun</td>
-                                <td class="row-divided">Mid May to the end of July</td>
-                            </tr>
-                            <tr>
-                                <td class="row-divided">Capital</td>
-                                <td class="row-divided">Nuuk</td>
-                            </tr>
-                            <tr>
-                                <td class="row-divided">Currency</td>
-                                <td class="row-divided">Danish Kroner</td>
-                            </tr>
-                            <tr>
-                                <td class="row-divided">Time (Nuuk)</td>
-                                <td class="row-divided">GMT -3 hours</td>
-                            </tr>
-                            <tr>
-                                <td class="row-divided">More info</td>
-                                <td class="row-divided">www.greenland.com</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <br>
-        <p style="text-align: center">
-            When deciding on a heli-skiing adventure in Greenland, you have a choice of several areas each having its own unique characteristics. And, if you are planning on visiting several areas on your heli-skiing trip, its worth noting that the roads end where a city or town perimeter ends. After that, its snow, ice, mountains and fjords so transport is by boat, plane or helicopter.
-        </p>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div>
-        <ul id="tabs">
-            <li><a id="tab1">OVERVIEW</a></li>
-            <li><a id="tab2">OPERATORS</a></li>
-        </ul>
-        <div class="tab-container" id="tab1C">
-            <div class="flex-layout">
-                <div class="flex-2">
-                    <p>With fjords and glaciers everywhere, the scenery is spectacular and being north of the Arctic Circle means long days from April onwards - which coincides with the start of the heli-skiing season!</p>
-                    <br>
-                    <p>The north slopes offer powder whilst south facing slopes deliver spring com snow. The terrain is varied from short stepp couloirs to traversing across mighty glaciers with many runs ending up at the beach!</p>
-                    <br>
-                    <div>
-                        <h3>GETTING THERE</h3>
-                        <h4>From Denmark</h4>
-                        <p>Air Greenland flies all year around from Copenhagen to Kangerlussuaq in West Greenland and to Narsarsuaq in South Greenland  (summer). The flight time to either city is just 4.5 hours.</p>
-                        <h4>From Iceland</h4>
-                        <p>Air Iceland (not to be confused with Icelandair) flies from Reykjavik to Kulusuk and Nerlerit Inaat on Greenland's east coast. Kulusuk is served twice a week in the winter season and every day during the summer.</p>
-                        <h4>From Canada</h4>
-                        <p>Air Greenland flies between Nuuk and Iqaluit in Canada. From Iqaluit, there are same-day connections to all major cities throughout Canada including Ottawa, Vancouver, St. John's and Goose Bay.</p>
-                    </div>
-                </div>
-                <div class="flex-2" style="font-size: 14px">
-                    <div class="preview-map" style="width:100%; height: 250px;"></div>
-                    <br>
-                    <br>
-                    <iframe src="https://www.meteoblue.com/en/weather/widget/daily/nuuk_greenland_3421319?days=5&amp;tempunit=CELSIUS&amp;windunit=MILE_PER_HOUR&amp;pictoicon=0&amp;pictoicon=1&amp;maxtemperature=0&amp;maxtemperature=1&amp;mintemperature=0&amp;mintemperature=1&amp;windspeed=0&amp;windgust=0&amp;winddirection=0&amp;uv=0&amp;humidity=0&amp;precipitation=0&amp;precipitation=1&amp;precipitationprobability=0&amp;spot=0&amp;pressure=0&amp;layout=light" scrolling="NO" allowtransparency="true" style="width: 100%;height:300px"></iframe>
-                    <br>
-                    <div style="color: #000">GREENLAND EXPERIENCES</div>
-                    <br>
-                    <div>SNOWMOBILE SAFARI</div>
-                    <br>
-                    <div>MOUNTAIN BIKING ON THE ICE CAP</div>
-                    <br>
-                    <div>NORDIC SKIING</div>
-                    <br>
-                    <div>ICE FISHING</div>
-                    <br>
-                    <div>EXPLORING THE FJORDS BY KAYAK</div>
-                    <br>
-                    <div>DOG SLEDGING</div>
-                </div>
-            </div>
-            <div>
-                <h3>Adventures</h3>
-                <div class="flex-layout">
-                    <div class="flex-2">
-                        <p>And when you are not heli-skiing, there are are many natural wonders everywhere from the fjords and icebergs to the amazing northern lights (from Dec to March). Also possible on down days, if the weather is too bad for the helicopter, you can try...</p>
-                        <ul style="list-style: inherit; padding-left: 18px;">
-                            <li><p>Snowmobile safari</p></li>
-                            <li><p>Mountain biking on the ice cap</p></li>
-                            <li><p>Nordic skiing</p></li>
-                            <li><p>Ice fishing</p></li>
-                            <li><p>Exploring the fjords by kayak</p></li>
-                            <li><p>Dog sledding</p></li>
-                        </ul>
-                    </div>
-                    <div class="flex-2">
-                        <img src="/assets/home/greenland-mountain-biking-ice-cap-6.jpg" alt="src" width="100%">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-container" id="tab2C">
-            <h1 style="text-align: center">Greenland heli Skiing.com</h1>
-            <br>
-            <br>
-            <div class="flex-layout">
-                <div class="flex-2">
-                    <p>Come ski the wild terrain of West Greenland. With 2000m runs to the fjord''s edge, deep powder and corn snow, our heli-skiing trps give you the experience of a life time.</p>
-                    <br>
-                    <p>We base our tours 60km north of Maniitsoq, in the tiny village of Kangaamiut, where we stay in rented accommodation and experience life as the locals do.</p>
-                    <br>
-                    <p>Heli-skiing options are virtually unlimited with literally hundreds of glacier runs down to the fjords.</p>
-                    <br>
-                    <p>And just in case the weather is against us, we swap the helicopter for touring skis and explore the terrain on other islands via our boat.</p>
-                </div>
-                <div class="flex-2">
-                    <div style="color: #000">PACKAGE FEATURES</div>
-                    <div style="border-top: 1px solid #ececec; border-bottom: 1px solid #ececec; padding: 24px 0; margin:24px 0">
-                        <table>
-                            <tbody>
-                                <tr >
-                                    <td style="width: 167px;">BASE</td>
-                                    <td><p>Kangaamuit Island</p></td>
-                                <tr>
-                                    <td>ACTIVITIES</td>
-                                    <td><p>Heli-ski and Ski Touring</p></td>
-                                </tr>
-                                <tr>
-                                    <td>DURATION</td>
-                                    <td><p>1 week</p></td>
-                                </tr>
-                                <tr>
-                                    <td>MEALS</td>
-                                    <td><p>All inclusive</p></td>
-                                </tr>
-                                <tr>
-                                    <td>FITNESS RATING</td>
-                                    <td><p>3/5</p></td>
-                                </tr>
-                                <tr>
-                                    <td>SKILL LEAVEL</td>
-                                    <td><p>Good off-piste</p></td>
-                                </tr>
-                                <tr>
-                                    <td>MAX VERTICLE</td>
-                                    <td><p>2000m</p></td>
-                                </tr>
-                                <tr>
-                                    <td>HELI-TIME</td>
-                                    <td><p>6 hours</p></td>
-                                </tr>
-                                <tr>
-                                    <td>TRIP SIZE</td>
-                                    <td><p>12 people</p></td>
-                                </tr>
-                                <tr>
-                                    <td>GROUPS</td>
-                                    <td><p>3 groups of 4 with 3 guides</p></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                        <a class="button action-button" href="http://www.greenlandheliskiing.com/Greenland_Heli_Skiing.html" style="padding: 1rem 5rem">ENQUIRE</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <h2 style="text-align: center">G R E E N L A N D</h2>
-    <br>
-    <br>
-    <ul class="experience-slide">
-        <li>
-            <img src="/assets/home/greenland-glacier-5.jpg" alt="">
-        </li>
-        <li>
-            <img src="/assets/home/greenland-iceberg-sunset-4jpg.jpg" alt="">
-        </li>
-        <li>
-            <img src="/assets/home/greenland-northern-lights-1.jpg" alt="">
-        </li>
-    </ul>
-    <br>
-    <br>
-    <div>
-        <div>
-            <h1>Maniitsoq</h1>
-            <div class="flex-layout">
-            <div class="flex-2">
-                <p>Maniitsoq is an archipelago of islands, glaciers and fjords on the South West side of Greenland.</p>
-                <br>
-                <p>There is huge variety and quality of terrain with drop-offs from the top of the Ice Cap to the beach! Adam peak on the edge of Eternity Fjord is the highest mountain in the area at 2000m and together with the other heli-ski drop-off points, give vertical decents ranging from 600 to 1500m.</p>
-                <h2>Getting there</h2>
-                <p>Fly to Kangerlussuaq International and then take the 40 minute flight to Maniitsoq.</p>
-            </div>
-            <div class="flex-2">
-                <img src="/assets/home/maniitsoq-heli-skiing-ledge12.jpg" alt="" width="100%">
-            </div>
-            </div>
-        </div>
-        <br>
-        <div>
-            <h1>Kangaamiut</h1>
-            <div class="flex-layout">
-            <div class="flex-2">
-                <p>Kangaamiut is a tiny island off the west coast and is used as a base for the heli-skiing operators. The area is packed with literally hundreds of glacial runs with 2000m decents that end up at the edge of the 3 fjords that surround this remote island.</p>
-                <br>
-                <p>If you like "remote", this is probably as good as it gets without visiting the polar ice caps!</p>
-                <h2>Getting there</h2>
-                <p>The closest domestic airport is Maniitsoq which is just 50km away. However, there are no roads to Kangaamiut from Maniitsoq so you can either catch a boat or take a helicopter to the island. If you are travelling on a tour, the onwards transpot from Maniitsoq airport will be provided.</p>
-            </div>
-            <div class="flex-2">
-                <img src="/assets/home/kangaamiut-heli-skiing-greenland.jpg" alt="" width="100%">
-            </div>
-            </div>
-        </div>
-        <br>
-        <div>
-            <h1>Kulusuk</h1>
-            <div class="flex-layout">
-            <div class="flex-2">
-                <p>Kulusuk is the gateway to the East coast. Its a small settlement in the Ammassalik region of Greenland built on a rocky island typically surrounded by fjords and mountains! From the top of the local Isikajia Mountain at 300m, you can see the huge icebergs that normally surround the island and beyond in to the Danish Straits.</p>
-                <h2>Getting there</h2>
-                <p>Kulusuk airport is just 40 minutes flying time from Kangerlussuaq International. Alternatively, its about a 2 hour flight from the capital, Nuuk.</p>
-            </div>
-            <div class="flex-2">
-                <img src="/assets/home/kusuluk-panorama-9.jpg" alt="" width="100%">
-            </div>
-            </div>
-        </div>
-        <br>
-        <div>
-            <h1>Uummannaq</h1>
-            <div class="flex-layout">
-            <div class="flex-2">
-                <p>Uummannaq is a small village of nearly 1300 residents on an island 500km north of the Arctic Circle. Being so far north, daylight hours in the peak winter months are minimal. However, from mid May to mid August, its the complete opposite with the Midnight Sun from mid May to the end of July. This means heli-skiing is possible nearly 24 hours a day and there is nothing better than skiing virgin snow under an orange sky!</p>
-                <br>
-                <p>One of the best places for heli-skiing is on the Sernersuaq glacier on the Nuussuaqq peninsula.</p>
-                <h2>Getting there</h2>
-                <p>From Kangerlussuaq International airport, catch a flight to Qaarsut and from there, its a 10 minute ride in a helicopter or you can drive.</p>
-            </div>
-            <div class="flex-2">
-                <img src="/assets/home/uummannaq-heli-skiing-11.jpg" alt="" width="100%">
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="page-description">
-        <br>
-        <h1>Other Operators</h1>
-        <br>
-        <div class="preview-layout content-center">
-            <a class="preview-item" href="/pages/lapland-ski-holidays">
-            <img src="/assets/home/northern-lights-lapland-mychaletfinder.jpg">
-            <div class="overlay">
-                <h3 class="title">SKI PRO KYRGYZSTAN</h3>
-            </div>
-            </a>
-            <a class="preview-item" href="/holidays/spa-resorts">
-            <img src="/assets/home/spa_wellbeing.png">
-            <div class="overlay">
-                <h3 class="title">HELI-SPORT ADVENTURES</h3>
-            </div>
-            </a>
-        </div>
-    </div>
-</div>
-<script>
-    $('.preview-map').mapify({
-        zoom: 5,
-        responsive: true,
-        center: {
-            lat: 65.825511,
-            lng: -53.343690,
-        },
-        points: [{
-            lat: 65.825511,
-            lng: -53.343690,
-            marker: true
-        }]
-    });
+               { path: '/pages/about', title: 'About' },
+               {
+                 path: '/resorts/chamonix/properties/rent',
+                 title: 'Chamonix Chalets & Apartments to Rent | Chamonix Holiday Rental Accommodation',
+                 description: 'Looking for a Chamonix chalet or apartment? Over 100 self catering holiday rental chalets and apartments to choose from for all budgets and tastes for your ski or summer holidays - enquire or book online',
+                 keywords: 'chamonix chalets, accommodation in chamonix, chalet rentals in chamonix, chamonix holiday rentals , chamonix vacation rentals, apartments for rent in chamonix, luxury chamonix chalets, hot tubs, ski-in, ski-out, mychaletfinder',
+                 header_snippet_name: 'intersport',
+                 content: CHAMONIX_RENT_PAGE
+               },
+               {
+                 path: '/resorts/chamonix/properties/sale',
+                 title: 'Chamonix Chalets & Apartments for Sale | Chamonix Real Estate',
+                 description: 'Chamonix ski chalets & apartments for sale in Chamonix for all budgets - from studio apartments, holiday homes & luxury ski chalets in Chamonix  to buy - see our selection at MyChaletFinder...',
+                 keywords: 'accommodation-in-chamonix, chamonix chalets for sale, chamonix apartments for sale, ski holiday accommodation to buy, mychaletfinder',
+                 header_snippet_name: 'intersport',
+                 banner: '<a href="https://www.fcexchange.com?&utm_source=mychaletfinder" target=" blank"><img src="/fixed-banners/fc-exchange-banner.jpg" alt="chamonix apartments for sale" title="Chamonix chalets for sale"></a>',
+                 content: CHAMONIX_SALE_PAGE
 
-    $('.experience-slide').partialViewSlider({
-      width: 50,
-      controls: true,
-      controlsPosition: 'inside',
-      backdrop: true,
-      dots: false
-    });
-</script>
-    EOF
-  }
-])
-
-Page.create!(
-  path: '/pages/heli-skiing',
-  title: 'Heli-skiing',
-  header_snippet_name: 'search',
-  content: <<~EOF
-    <div class="wide clear-fix">
-      <div class="page-description">
-        <h1>Heli-skiing, the ultimate adrenaline rush</h1>
-        <br>
-        <p>Heli-skiing - the ultimate ride, with untracked pristine powder snow, no lift queues,</p>
-        <p>spectacular vistas and the adrenaline rush of a lifetime.</p>
-        <br>
-        <p>Bored of the pistes? not enough challenge? weel, if you get the opportunity, try heli-skiing,</p>
-        <p>it's an experience you'll never forget. There are some very interesting places around</p>
-        <p>the world to try out heli-skiing such as the , Greeland and even the high glacial basin of the</p>
-        <p>Annapurna Sanctuary in Nepal.</p>
-        <br>
-        <p>However, these areas tend to be for the die hard heli-skiers and boarders as</p>
-        <p>there are very few with ski resorts to return back to!</p>
-        <br>
-        <p>In this article, we feature some of the best places outside of Europe to go heli-skiing including</p>
-        <p>those remote areas where there is not a ski resort in sight! From the Atlas mountains of Morocco, </p>
-        <p>Tien Shan mountains in Central Asia and Kashmir in India to the frozen lands of Alaska and </p>
-        <p>Greenland, heli-skiing takes you on an adrenalin trip you wont forget!</p>
-        <br>
-        <p>The resorts feaured below are just examples of what you can expect when heli-skiing in a particular region.<p>
-        <p>For further information on the best locations for heli-skiing and the operators who organise the package holidays,</p>
-        <p>please click on the "more information" buttons.</p>
-      </div>
-
-      <div class="page-description">
-        <h2>Popular heli-skiing destinations</h2>
-        <div class="preview-layout">
-          <a class="preview-item" href="/pages/heli-skiing-in-greenland">
-            <img src="/assets/home/st_anton_austria.png">
-            <div class="overlay">
-              <h3 class="title">KANNGAAMUIT GREENLAND</h3>
-            </div>
-          </a>
-          <a class="preview-item" href="/regions/ziller-valley/properties/rent">
-            <img src="/assets/home/ziller_valley_austria.png">
-            <div class="overlay">
-              <h3 class="title">TIEN SHAN MOUNTAINS KYRGYZSTAN</h3>
-            </div>
-          </a>
-          <a class="preview-item" href="/resorts/ruka-kuusamo/properties/rent">
-            <img src="/assets/home/ruka_kuusamo_finland.png">
-            <div class="overlay">
-              <h3 class="title">WHISTLER, BLACKCOMB CANADA</h3>
-            </div>
-          </a>
-          <a class="preview-item" href="/resorts/chamonix/properties/rent">
-            <img src="/assets/home/chamonix_france.png">
-            <div class="overlay">
-              <h3 class="title">OUKAIMEDEN MOROCCO</h3>
-            </div>
-          </a>
-          <a class="preview-item" href="/resorts/verbier-st-bernard/properties/rent">
-            <img src="/assets/home/verbier_switzerland.png">
-            <div class="overlay">
-              <h3 class="title">GULMARG, KASHMIR INDIA</h3>
-            </div>
-          </a>
-          <a class="preview-item" href="/resorts/lenk/properties/rent">
-            <img src="/assets/home/lenk_switzerland.png">
-            <div class="overlay">
-              <h3 class="title">AOSTA VALLEY ITALY</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-      <br>
-      <br>
-      <div class="page-description">
-        <p>
-          <img alt="" src="/assets/marker-blue-6ab58c513405cdba0d8e092cda36219911a882653a9822f9559a58ade5d375f3.svg">
-        </p>
-        <h2>List your Ski Chalet</h2>
-        <br>
-        <p>Ski holiday rentals are getting more popular with travellers from families to adventurers.</p>
-        <p>List your chalet on MyChaletFinder today!</p>
-        <br>
-        <br>
-        <a class="button action-button" href="/welcome/advertiser">List your property</a>
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <div class="page-description">
-        <h2>Other Ski Holiday Experiences</h2>
-        <div class="preview-layout">
-          <a class="preview-item" href="/pages/heli-skiing">
-            <img src="/assets/home/heli-skiing.png">
-            <div class="overlay">
-              <h3 class="title">HELI-SKIING</h3>
-            </div>
-          </a>
-          <a class="preview-item" href="/pages/lapland-ski-holidays">
-            <img src="/assets/home/northern-lights-lapland-mychaletfinder.jpg">
-            <div class="overlay">
-              <h3 class="title">Lapland Ski Holidays</h3>
-            </div>
-          </a>
-          <a class="preview-item" href="/holidays/spa-resorts">
-            <img src="/assets/home/spa_wellbeing.png">
-            <div class="overlay">
-              <h3 class="title">SPA & WELLBEING</h3>
-            </div>
-          </a>
-          <a class="preview-item" href="/pages/best-ski-tours-alps">
-            <img src="/assets/home/ski_tours.png">
-            <div class="overlay">
-              <h3 class="title">SKI TOURS</h3>
-            </div>
-          </a>
-          <a class="preview-item" href="/pages/beginner-ski-resorts">
-            <img src="/assets/home/beginner_resorts.png">
-            <div class="overlay">
-              <h3 class="title">BEGINNER RESORTS</h3>
-            </div>
-          </a>
-          <a class="preview-item" href="/pages/best-christmas-markets-ski-resorts">
-            <img src="/assets/home/eco_friendly.png">
-            <div class="overlay">
-              <h3 class="title">Christmas Markets</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  EOF
-)
-
-Page.create!(
-  path: '/pages/property-for-sale',
-  title: 'Property for Sale -  Luxury Ski Chalets, Villas & Apartments for Sale',
-  content: <<~EOF
-  <div class="clear-fix">
-  <img alt="new ski chalets for sale, real estate in the alps" src="/images/property-sale-main/header/tignes-ski-resort-kalinda-1-mychaletfinder.jpg">
-  </div>
-
-
-  <h1>Mychaletfinder International Property Sales<span>Chalets, Apartments, Beach Villas, Sale &amp; Leaseback</span></h1>
-
-  <div class="clear-fix">
-    <div class="size-2of3 layout-element">
-
-  <p>Mychaletfinder showcases some of the finest alpine real estate in the Alps from the
-  regions leading property developers. The ski <strong>chalets and apartments for sale</strong> are located
-  in both the well known international resorts as well as in those off the beaten track but
-  linked in to some of the world's largest ski carousels. </p>
-
-  <p>Our portfolio of exquisite villas and beach property for sale includes some
-    of the most sought after real estate locations around such as on the spectacular Cote d'Azur.
-  </p>
-
-  <p>If you are looking to invest in a holiday home, generate rental income or even move to the Alps,
-  we have a wide selection for you to choose from. For more information on any of the
-  <strong>properties for sale</strong>, simply send an email enquiry via the email form after clicking on a property.
-  One of our partner sales consultants will contact you straight away and
-  be happy to answer your questions, arrange a viewing of the property and offer useful
-  advice and guidance as to the buying process.</p>
-
-  <p>Together with our partners, we have compiled additional valuable information and
-  services on our website to help you with your
-  property purchase abroad including...</p>
-
-  <ul>
-    <li>Buying guides</li>
-    <li>Foreign exchange for buying or selling your overseas property, and</li>
-    <li>Raising finance to buy your holiday home, for example, specialist mortgage brokers</li>
-  </ul>
-
-  </div>
-
-    <div class="size-1of3 layout-element">
-
-
-  </div>
-  </div>
-
-
-  <h2>Hot Property - Ski Chalets</h2>
-  <p>Some of the hottest new chalet and residence apartment developments on the market
-  at the moment are in the ever popular Grand Massif ski resorts, Chamonix Valley and Three Valleys
-  in the French Alps.
-  </p>
-
-  <div class="clear-fix">
-
-   <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/1585744-chalet-delys-les-houches-france">
-      <img alt="chalets for sale in les houches" src="/images/chalets-for-sale/thumbnails/chalet-delys-thumbnail.JPG">
-      <p class="header-title">Les Houches - Chalet Delys</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €430,000</p>
-      </div>
-    </a>
-
-
-          <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/1586385-chalet-suzanne-chatel-france">
-      <img alt="chalets for sale in chatel" src="/images/chalets-for-sale/thumbnails/chatel-ferme-suzanne-thumbnail.jpg">
-      <p class="header-title">Châtel - La Ferme de Suzanne</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €355,000</p>
-      </div>
-    </a>
-
-
-   <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/1586475-chalet-saskya-samoens-france">
-      <img alt="samoens ski chalets and apartments for sale, grand massif" src="/images/chalets-for-sale/thumbnails/samoens-chalet-saskya-thumbnail.jpg">
-      <p class="header-title">Samoëns - Chalet Saskya</p>
-      <div class="header-text-cont">
-        <p class="header-text">€270,000</p>
-      </div>
-    </a>
-
-  </div>
-  <br>
-
-
-
-
-  <div class="clear-fix">
-
-   <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/82053-le-cristal-de-jade-chamonix-france">
-      <img alt="chamonix new property developments" src="/images/chalets-for-sale/chamonix-chalets-for-sale-jade454.jpg">
-      <p class="header-title">Chamonix</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €391,667</p>
-      </div>
-    </a>
-
-
-          <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/1479052-alpen-lodge-la-rosiere-france">
-      <img alt="chalets for sale in la rosiere" src="/images/chalets-for-sale/thumbnails/alpen-lodge-thumbnail.jpg">
-      <p class="header-title">La Rosière - Alpen Lodge</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €233,334</p>
-      </div>
-    </a>
-
-
-   <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/82052-les-chalets-de-layssia-samoens-france">
-      <img alt="samoens ski chalets and apartments for sale, grand massif" src="/images/chalets-for-sale/thumbnails/samoens-chalet-de-laesia.jpg">
-      <p class="header-title">Samoens - Les Chalets de Layssia</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €208,333</p>
-      </div>
-    </a>
-
-  </div>
-  <br>
-
-  <div class="clear-fix">
-      <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/82577-whistler-lodge-courchevel-france">
-      <img alt="property for sale in the three valleys, courchevel 1650" src="/images/athenaadvisors/courchevel-1650/whistler-lodge/courchevel-1650-chalet-development-for-sale.JPG">
-      <p class="header-title">Courchevel 1650 - Whistler Lodge</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €685,000</p>
-      </div>
-    </a>
-
-
-      <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/82226-le-coeur-des-loges-les-menuires-france">
-      <img alt="leaseback and sale new chalet property for sale in les menuires" src="/images/athenaadvisors/les-menuires/le-coeur-loges/les-menuires-new-chalet-coeur-loges.JPG">
-      <p class="header-title">Les Menuires - Le Coeur des Loges </p>
-      <div class="header-text-cont">
-        <p class="header-text">From €173,800</p>
-      </div>
-    </a>
-
-    <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/1478955-anitea-valmorel-france">
-      <img alt="les-carroz chalets and apartments for sale" src="/images/chalets-for-sale/valmorel/anitea/valmorel-property-sale.jpg">
-      <p class="header-title">Valmorel - Chalet Anitea</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €233,334</p>
-      </div>
-    </a>
-
-
-  </div>
-  <br>
-  <div class="clear-fix">
-      <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/1081467-les-chalets-elena-les-houches-france">
-      <img alt="chalets for sale in Les Houches" title="Chalets for sale in Les Houches" src="/images/chalets-for-sale/thumbnails/les-houches-chalet-elena-for-sale.png">
-      <p class="header-title">Les Houches, Chalet Éléna</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €225,000</p>
-      </div>
-    </a>
-
-       <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/1105923-les-balcons-etoiles-champagny-france">
-      <img alt="apartments for sale in Champagny - la plagne" title="Champagny - La Plagne apartments for sale" src="/images/chalets-for-sale/champagny/champagny_balcons-etoiles-sales.jpg">
-      <p class="header-title">Champagny en Vanoise</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €215,000</p>
-      </div>
-    </a>
-
-         <a class="ski-holidays-theme size-1of3 layout-element" href="/properties/1478013-le-lodge-des-neiges-tignes-france">
-      <img alt="Tignes 1800 property for sale" title="Tignes apartments for sale" src="/images/chalets-for-sale/thumbnails/tignes1800-lodge-des-neiges-apartments.jpg">
-      <p class="header-title">Tignes 1800</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €250,000</p>
-      </div>
-    </a>
-
-    </div>
-
-  <h2>Hot Property - Villas</h2>
-  <p>Some of the hottest villas, condo residences and apartments on the market are in the ever popular Cote dAzur in
-  the south of France and Florida in the United States.
-  </p>
-  <div class="clear-fix">
-
-     <a class="summer-villas-theme size-1of3 layout-element" href="/properties/82692-parc-eugenie-cannes-france">
-      <img alt="french riviera new apartments for sale" title="Cannes real estate" src="/images/athenaadvisors/cannes/parc-eugiene/cover/parc-eugenie-cannes-property.jpg">
-    <p class="header-title">Cannes - Oxford Quarter</p>
-      <div class="header-text-cont">
-      <p class="header-text">From €204,000</p>
-      </div>
-    </a>
-
-
-    <a class="summer-villas-theme size-1of3 layout-element" href="/properties/82766-cannes-pointe-croisette-sunline-cannes-france">
-      <img alt="cannes, pointe croisette, new apartments for sale" title="Cannes property sales" src="/images/athenaadvisors/cannes/pointe-croisette/cannes_pointe_croisette-apartment-sale.jpg">
-    <p class="header-title">Cannes - Pointe Croisette</p>
-      <div class="header-text-cont">
-      <p class="header-text">From €220,000</p>
-      </div>
-    </a>
-
-    <a class="summer-villas-theme size-1of3 layout-element" href="/properties/82666-riviera-rahpsody-menton-france">
-      <img alt="french riviera new apartments for sale" src="/images/france-villas-for-sale/cote-d-azur-property.jpg">
-    <p class="header-title">Roquebrune - Cap Martin</p>
-      <div class="header-text-cont">
-      <p class="header-text">From €216,000</p>
-      </div>
-    </a>
-
-  </div>
-  <br>
-
-
-
-  <h2>Hot Property - Lakes &amp; Mountains</h2>
-  <p>Some of the hottest new apartments in the lakes and mountains of the Alps.
-  </p>
-  <div class="clear-fix">
-
-           <a class="lakes-and-mountains-theme size-1of3 layout-element" href="/properties/224816-villa-elisee-annecy-le-vieux-france">
-      <img alt="lake annecy apartments for sale" title="Annecy apartments for sale" src="/images/villas-for-sale/annecy-le-vieux/villa-elisee/annecy-le-vieux-villa-elisee-thumbnail.jpg">
-      <p class="header-title">Annecy Le Vieux - Villa Élisée</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €585,000</p>
-      </div>
-    </a>
-
-
-            <a class="lakes-and-mountains-theme size-1of3 layout-element" href="/properties/1586669-jardin-cardinal-annecy-france">
-      <img alt="lake annecy apartments for sale" title="Annecy apartments for sale" src="/images/villas-for-sale/annecy/jardin-cardinal/jardin-cardinal-thumbnail.jpg">
-      <p class="header-title">Annecy - Jardin Cardinal</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €205,000</p>
-      </div>
-    </a>
-
-              <a class="lakes-and-mountains-theme size-1of3 layout-element" href="/properties/1586756-villa-sienna-annecy-france">
-      <img alt="lake annecy apartments for sale" title="Annecy apartments for sale" src="/images/villas-for-sale/annecy/villa-sienna/annecy-villa-sienna.-thumbnail.jpg">
-      <p class="header-title">Annecy - Villa Sienna</p>
-      <div class="header-text-cont">
-        <p class="header-text">From €500,000</p>
-      </div>
-    </a>
-
-  </div>
-  EOF
-)
+               },
+               {
+                 path: '/pages/heli-skiing-in-greenland',
+                 title: 'Greenland Heli-skiing | Ski Tours Kangaamiut, Greenland',
+                 content: HELI_IN_GREENLAND_PAGE
+               },
+               {
+                 path: '/pages/heli-skiing',
+                 title: 'Heli-skiing',
+                 header_snippet_name: 'search',
+                 content: HELI_SKIING_PAGE
+               },
+               {
+                 path: '/pages/property-for-sale',
+                 title: 'Property for Sale -  Luxury Ski Chalets, Villas & Apartments for Sale',
+                 content: PROPERTY_FOR_SALE_PAGE
+               },
+               {
+                 path: '/countries/switzerland/holidays/ski-holidays',
+                 title: 'Switzerland Ski Chalet Holidays | Swiss Ski Resorts | Chalets',
+                 content: SWISS_SKI_HOLIDAYS_PAGE,
+                 description: 'Swiss ski holidays - search through our comprehensive list of Swiss ski resorts for fantastic self catering ski chalets amongst breathtaking scenery - ideal for family holidays. Book your accommodation online for great deals',
+                 keywords: ''
+               },
+               {
+                 path: '/regions/bernese-oberland',
+                 title: 'Bernese Oberland Ski Holidays | Ski Resorts | Chalet Rentals',
+                 description: 'Bernese Oberland ski holidays - with 38 ski resorts including Grindelwald & Wengen in the Jungfrau Region and glitzy Gstaad, the region is a treasure chest waiting to be explored - book ski holiday rentals online...',
+                 keywords: 'bernese oberland, ski, holidays, resorts, chalets, mychaletfinder'
+               },
+               {
+                 path: '/resorts/verbier-st-bernard/ski-and-guiding-schools',
+                 title: 'Verbier Ski Schools | Ski Lessons | Off-Piste Ski Tours | Mountain Guides',
+                 description: 'Verbier ski schools cater for absolute beginners to experts with private  and group lessons for skiing, snowboarding, off-piste and guided tours including the famous Haute Route to Zermatt',
+                 keywords: 'verbier ski schools, ski touring in verbier, verbier ski guides, haute route guides, snowboarding lessons in verbier, private ski lessons, group snowboarding lessons',
+                 content: VERBIER_ST_BERNARD_RESORT_SKI_SCHOOLS
+               },
+               {
+                 path: '/resorts/chamonix/summer-holidays',
+                 title: 'Chamonix Summer Holidays Guide | Chalets & Apartments to Rent',
+                 description: 'Summer rental accommodation in Chamonix - a resort busier in summer than in winter. Great choice of chalet rentals & apartments to rent in Chamonix for your summer holiday.  Book a holiday rental in Chamonix activities for all ages...',
+                 keywords: 'chamonix chalets, chalet rentals in chamonix, holiday rentals in chamonix, summer holidays in chamonix, accommodation in chamonix, holiday homes for rent in chamonix, mychaletfinder',
+                 content: CHAMONIX_RESORT_SUMMER_HOLIDAY
+               },
+               {
+                 path: '/resorts/chamonix/how-to-get-there',
+                 title: 'How to get to Chamonix - transfers, car & train',
+                 description: 'Chamonix is one of the easiest resorts to get to in the Alps with transfers taking a little over 1 hour and its motorway all the way from Geneva. Car rentals and airport transfers are available at the airport - book online',
+                 keywords: 'airport transfers to chamonix, transfers to chamonix, directions to chamonix, cheap transfers to chamonix, geneva to chamonix transfers, mychaletfinder',
+                 content: CHAMONIX_RESORT_HOW_TO_GET_THERE
+               }
+             ])
 
 ski_holidays = HolidayType.create!(
   name: 'Ski Holidays in...',
@@ -968,7 +152,8 @@ experiences = HolidayType.create!(
     <li><a href="">Spa and Wellbeing</a></li>
     <li><a href="">Beginner Resorts</a></li>
     <li><a href="">Gastronomic Delights</a></li>
-  ')
+  '
+)
 services = HolidayType.create!(
   name: 'Services',
   slug: 'services',
@@ -982,7 +167,6 @@ services = HolidayType.create!(
     <li><a href="/pages/fc-exchange">Foreign Exchange</a></li>
   '
 )
-
 
 currencies = [
   { name: 'Euro', unit: '€', pre: true, code: 'EUR', in_euros: 1    },
@@ -1250,9 +434,13 @@ austria = Country.find_by(name: 'Austria')
 france = Country.find_by(name: 'France')
 italy = Country.find_by(name: 'Italy')
 united_kingdom = Country.find_by(name: 'United Kingdom')
+switzerland = Country.find_by(name: 'Switzerland')
 
 france.holiday_type_brochures.build(holiday_type: ski_holidays)
 france.save!
+
+switzerland.holiday_type_brochures.build(holiday_type: ski_holidays)
+switzerland.save!
 
 admin = Role.create!(
   name: 'Administrator',
@@ -1319,46 +507,42 @@ advertiser = Role.create!(
   admin: false,
   select_on_signup: false,
   sales_pitch: <<~HEREDOC
-  <div class="column">
-    <div class="advertiser_type" id="property_owners">
-      <h3>Property Owners</h3>
-      <p>If you own a chalet or apartment
-      and are looking to rent it out or
-      even sell it</p>
-      <a class="learn_more" href="/welcome/property-owner">Learn More</a>
-    </div>
-
-    <div class="advertiser_type" id="estate_agents">
-      <h3>Estate Agents</h3>
-      <p>Access key features designed specifically
-      for estate agents</p>
-      <a class="learn_more" href="/welcome/estate-agent">Learn More</a>
-    </div>
-
-    <div class="advertiser_type" id="property_developers">
-      <h3>Property Developers</h3>
-      <p>MyChaletFinder.com can help you
-      market your new developments to a
-      wider audience</p>
-      <a class="learn_more" href="/welcome/property-developer">Learn More</a>
-    </div>
-  </div><!--.column-->
-
-  <div class="column">
-    <div class="advertiser_type" id="letting_agents">
-      <h3>Letting Agents</h3>
-      <p>MyChaletFinder.com complements your existing
-      letting marketing strategy</p>
-      <a class="learn_more" href="/welcome/letting-agent">Learn More</a>
-    </div>
-
-    <div class="advertiser_type" id="other_businesses">
-      <h3>Banner &amp; Directory Ads</h3>
-      <p>Cafés, bars and restaurants are among other
-      businesses that will benefit from our site</p>
-      <a class="learn_more" href="/welcome/other-business">Learn More</a>
-    </div>
-  </div><!--.column-->
+    <div class="column">
+      <div class="advertiser_type" id="property_owners">
+        <h3>Property Owners</h3>
+        <p>If you own a chalet or apartment
+        and are looking to rent it out or
+        even sell it</p>
+        <a class="learn_more" href="/welcome/property-owner">Learn More</a>
+      </div>
+       <div class="advertiser_type" id="estate_agents">
+        <h3>Estate Agents</h3>
+        <p>Access key features designed specifically
+        for estate agents</p>
+        <a class="learn_more" href="/welcome/estate-agent">Learn More</a>
+      </div>
+       <div class="advertiser_type" id="property_developers">
+        <h3>Property Developers</h3>
+        <p>MyChaletFinder.com can help you
+        market your new developments to a
+        wider audience</p>
+        <a class="learn_more" href="/welcome/property-developer">Learn More</a>
+      </div>
+    </div><!--.column-->
+     <div class="column">
+      <div class="advertiser_type" id="letting_agents">
+        <h3>Letting Agents</h3>
+        <p>MyChaletFinder.com complements your existing
+        letting marketing strategy</p>
+        <a class="learn_more" href="/welcome/letting-agent">Learn More</a>
+      </div>
+       <div class="advertiser_type" id="other_businesses">
+        <h3>Banner &amp; Directory Ads</h3>
+        <p>Cafés, bars and restaurants are among other
+        businesses that will benefit from our site</p>
+        <a class="learn_more" href="/welcome/other-business">Learn More</a>
+      </div>
+    </div><!--.column-->
   HEREDOC
 )
 
@@ -1415,8 +599,37 @@ trip_advisor = User.create!(
   phone: '+441234567890'
 )
 
+# Regions
+
+rhone_alpes = Region.create!(country: france, name: 'Rhône Alpes', slug: 'rhone-alpes')
+rhone_alpes.holiday_type_brochures.build(holiday_type: ski_holidays)
+rhone_alpes.save!
+
+bernese_oberland = Region.create!(
+  country: switzerland,
+  name: 'Bernese Oberland',
+  slug: 'bernese-oberland',
+  info: BERNESE_OBERLAND_REGION
+)
+bernese_oberland.holiday_type_brochures.build(holiday_type: ski_holidays)
+bernese_oberland.save!
+
+valais = Region.create!(
+  country: switzerland,
+  name: 'Valais',
+  slug: 'valais',
+  info: VALAIS_REGION
+)
+valais.holiday_type_brochures.build(holiday_type: ski_holidays)
+valais.save!
+
+htgt = rhone_alpes.create_page('how-to-get-there')
+htgt.content = '<p>How to get to Rhône Alpes...</p>'
+htgt.save
+
+# Resorts
 Resort.create!([
-  { country: austria, name: 'Alpbach',      slug: 'alphach' },
+  { country: austria, name: 'Alpbach', slug: 'alphach' },
   { country: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
   { country: austria, name: 'St Anton',     slug: 'st-anton' },
   { country: austria, name: 'Tyrol',        slug: 'tyrol' },
@@ -1428,32 +641,24 @@ Resort.create!([
   { country: france,  name: 'Morzine',      slug: 'morzine' },
   { country: italy,   name: 'Cervinia',     slug: 'cervinia' },
   { country: italy,   name: 'Dolomites',    slug: 'dolomites' },
-  { country: italy,   name: 'Italian Alps', slug: 'italian-alps' },
+  { country: italy,   name: 'Italian Alps', slug: 'italian-alps' }
 ])
 
-rhone_alpes = Region.create!(
-  country: france, name: 'Rhône Alpes', slug: 'rhone-alpes'
-)
-
-rhone_alpes.holiday_type_brochures.build(holiday_type: ski_holidays)
-rhone_alpes.save!
-
-htgt = rhone_alpes.create_page('how-to-get-there')
-htgt.content = '<p>How to get to Rhône Alpes...</p>'
-htgt.save
+verbier_st_bernard = Resort.create!(country: switzerland, name: 'Verbier St-Bernard', info: '', altitude_m: 1500, top_lift_m: 3300, piste_length_km: 410, visible: true, black: 10, red: 55, blue: 35, green: 2, longest_run_km: 15, drags: 46, chair: 24, gondola: 10, cable_car: 5, funicular: 0, railways: 0, slope_direction: 'N,S,E,W', snowboard_parks: 3, mountain_restaurants: 14, glacier_skiing: true, creche: true, babysitting_services: true, featured: false, introduction: VERBIER_ST_BERNARD_RESORT_INTRODUCTION, season: 'Winter & Summer', beginner: 4, intermediate: 5, off_piste: 5, expert: 5, heli_skiing: true, summer_skiing: false, family: 4, visiting: VERBIER_ST_BERNARD_RESORT_RESORT_GUIDE, apres_ski: 'Sophisticated, lively', gallery_content: '<h1>Seasonal Photos of Verbier<span></span></h1>', piste_map_content: VERBIER_ST_BERNARD_RESORT_PISTE_MAP, region: valais, slug: 'verbier-st-bernard')
+verbier_st_bernard.holiday_type_brochures.build(holiday_type: ski_holidays)
+verbier_st_bernard.save!
 
 chamonix = Resort.create!(country: france, name: 'Chamonix',
-  slug: 'chamonix',
-  piste_map_content: '{{ piste_table }}',
-  altitude_m: 1035,
-  top_lift_m: 3842,
-  piste_length_km: 550,
-  visible: true,
-  info: 'Chamonix, with a population of approximately 10,000, is a world famous resort and was the location of the first winter Olympics in 1924.',
-  for_rent_count: 25,
-  for_sale_count: 5,
-  region: rhone_alpes
-)
+                          slug: 'chamonix',
+                          piste_map_content: '{{ piste_table }}',
+                          altitude_m: 1035,
+                          top_lift_m: 3842,
+                          piste_length_km: 550,
+                          visible: true,
+                          info: 'Chamonix, with a population of approximately 10,000, is a world famous resort and was the location of the first winter Olympics in 1924.',
+                          for_rent_count: 25,
+                          for_sale_count: 5,
+                          region: rhone_alpes)
 
 chamonix.holiday_type_brochures.build(holiday_type: ski_holidays)
 chamonix.save!
@@ -1468,33 +673,33 @@ Airport.destroy_all
 geneva = Airport.create!(name: 'Geneva', code: 'GVA', country: france)
 grenoble = Airport.create!(name: 'Grenoble', code: 'GNB', country: france)
 AirportDistance.create!([
-  {airport: geneva, resort: chamonix, distance_km: 90},
-  {airport: grenoble, resort: chamonix, distance_km: 255}
-])
+                          { airport: geneva, resort: chamonix, distance_km: 90 },
+                          { airport: grenoble, resort: chamonix, distance_km: 255 }
+                        ])
 
 bars = Category.create!(name: 'Bars')
 
 Category.create!([
-  { name: 'Restaurants' },
-  { name: 'Nightclubs' },
-  { name: 'Babysitters' },
-  { name: 'Child Clubs' },
-  { name: 'Car Hire' },
-  { name: 'Mountain Guides' },
-  { name: 'Estate Agents' },
-  { name: 'Lawyers' },
-])
+                   { name: 'Restaurants' },
+                   { name: 'Nightclubs' },
+                   { name: 'Babysitters' },
+                   { name: 'Child Clubs' },
+                   { name: 'Car Hire' },
+                   { name: 'Mountain Guides' },
+                   { name: 'Estate Agents' },
+                   { name: 'Lawyers' }
+                 ])
 
 def random_image
   Image.new.tap do |img|
-    n = 1 + rand(30)
+    n = rand(1..30)
     img.image = File.open("test-files/properties/chalet#{n}.jpg", 'rb')
     img.save!
   end
 end
 
 def assign_property_images(property)
-  num = 5 + rand(10)
+  num = rand(5..14)
   num.times { property.images << random_image }
   property.image = property.images.first
   property.save
@@ -1514,9 +719,9 @@ PropertyBasePrice.create!(number_of_months: 12, price: 150)
 TripAdvisorLocation.delete_all
 
 TripAdvisorLocation.create!([
-  { id: 6, name: 'Africa', location_type: 'continent' },
-  { id: 293808, name: 'Madagascar', location_type: 'country', parent_id: 6 }
-])
+                              { id: 6, name: 'Africa', location_type: 'continent' },
+                              { id: 293_808, name: 'Madagascar', location_type: 'country', parent_id: 6 }
+                            ])
 
 trip_advisor_chamonix = TripAdvisorLocation.create!(
   name: 'Chamonix',
@@ -1548,7 +753,7 @@ chalet_bibendum = Property.create!(
   latitude: 51.509865, longitude: -0.118092,
   listing_type: Property::LISTING_TYPE_FOR_RENT,
   metres_from_lift: 5500,
-  name: "Chalet Bibendum",
+  name: 'Chalet Bibendum',
   number_of_bathrooms: 1,
   number_of_bedrooms: 3,
   publicly_visible: true,
@@ -1582,41 +787,41 @@ new_development = Property.create!(
   publicly_visible: true,
   resort: chamonix,
   sleeping_capacity: 8,
-  user: alice,
+  user: alice
 )
 
 assign_property_images(new_development)
 
 properties = Property.create!([
-  { resort: chamonix, user: alice, name: "Alpen Lounge",      address: '123 street', sleeping_capacity: 6,   metres_from_lift: 2500, weekly_rent_price: 1750, currency: euros, image:  images[1], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, layout: 'Showcase', latitude: 51.509865, longitude: -0.018092},
-  { resort: chamonix, user: alice, name: "Apartment Teracce", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4700, weekly_rent_price: 2000, currency: euros, image:  images[2], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.619865, longitude: -0.118092 },
-  { resort: chamonix, user: alice, name: "Brigitte's Mazot",  address: '123 street', sleeping_capacity: 2,   metres_from_lift: 3100, weekly_rent_price: 1825, currency: euros, image:  images[3], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.72865, longitude: -0.218092 },
-  { resort: chamonix, user: alice, name: "Chalet Alaska",     address: '123 street', sleeping_capacity: 5,   metres_from_lift: 8300, weekly_rent_price: 1950, currency: euros, image:  images[4], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.839865, longitude: -0.318092 },
-  { resort: chamonix, user: alice, name: "Chalet Anchorage",  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5000, weekly_rent_price: 1650, currency: euros, image:  images[5], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.949865, longitude: -0.448092 },
-  { resort: chamonix, user: alice, name: "Chalet Arkle",      address: '123 street', sleeping_capacity: 14,  metres_from_lift: 4000, weekly_rent_price: 1725, currency: euros, image:  images[6], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.159865, longitude: -0.518092 },
-  { resort: chamonix, user: alice, name: "Chalet Azimuth",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6300, weekly_rent_price: 2150, currency: euros, image:  images[7], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.269865, longitude: -0.618092 },
-  { resort: chamonix, user: alice, name: "Chalet Bornian",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4400, weekly_rent_price: 1400, currency: euros, image:  images[9], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.379865, longitude: -0.718092 },
-  { resort: chamonix, user: alice, name: "Chalet Chachat",    address: '123 street', sleeping_capacity: 14,  metres_from_lift: 3500, weekly_rent_price: 1500, currency: euros, image: images[10], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.489865, longitude: -0.818092 },
-  { resort: chamonix, user: alice, name: "Chalet Cachemire",  address: '123 street', sleeping_capacity: 20,  metres_from_lift: 1400, weekly_rent_price: 1375, currency: euros, image: images[11], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.599865, longitude: -0.918092 },
-  { resort: chamonix, user: alice, name: "Chalet Chardonnet", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9300, weekly_rent_price: 2000, currency: euros, image: images[12], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.009865, longitude: -1.018092 },
-  { resort: chamonix, user: alice, name: "Chalet Chintalaya", address: '123 street', sleeping_capacity: 10,  metres_from_lift: 6500, weekly_rent_price: 1475, currency: euros, image: images[13], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.119865, longitude: -1.118092 },
-  { resort: chamonix, user: alice, name: "Chalet Chosalet",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 5900, weekly_rent_price: 2025, currency: euros, image: images[14], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.229865, longitude: -1.218092 },
-  { resort: chamonix, user: alice, name: "Chalet D'Or",       address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6000, weekly_rent_price: 1550, currency: euros, image: images[15], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.339865, longitude: -1.318092 },
-  { resort: chamonix, user: alice, name: "Chalet des Sapins", address: '123 street', sleeping_capacity: 10,  metres_from_lift: 4300, weekly_rent_price: 1650, currency: euros, image: images[16], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.449865, longitude: -1.418092 },
-  { resort: chamonix, user: alice, name: "Chalet des Isles",  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 2600, weekly_rent_price: 1850, currency: euros, image: images[17], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.559865, longitude: -1.518092 },
-  { resort: chamonix, user: alice, name: "Chalet des Islouts", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 8500, weekly_rent_price: 1550, currency: euros, image: images[18], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.669865, longitude: -1.618092 },
-  { resort: chamonix, user: alice, name: "Chalet Dubrulle",   address: '123 street', sleeping_capacity: 11,  metres_from_lift: 5000, weekly_rent_price: 1575, currency: euros, image: images[19], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.779865, longitude: -1.718092 },
-  { resort: chamonix, user: alice, name: "Chalet Eco-Farm",   address: '123 street', sleeping_capacity: 10,  metres_from_lift: 7200, weekly_rent_price: 2100, currency: euros, image: images[20], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.889865, longitude: -1.818092 },
-  { resort: chamonix, user: alice, name: "Chalet Edelweiss",  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 4200, weekly_rent_price: 1900, currency: euros, image: images[21], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.999865, longitude: -1.918092 },
-  { resort: chamonix, user: alice, name: "Chalet Eftikhia" ,  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5900, weekly_rent_price: 1600, currency: euros, image: images[22], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.709865, longitude: -2.118092 },
-  { resort: chamonix, user: alice, name: "Chalet Flegere",    address: '123 street', sleeping_capacity: 10,  metres_from_lift: 3400, weekly_rent_price: 1700, currency: euros, image: images[23], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.819865, longitude: -2.218092 },
-  { resort: chamonix, user: alice, name: "Chalet Gauthier",   address: '123 street', sleeping_capacity: 16,  metres_from_lift: 4300, weekly_rent_price: 1600, currency: euros, image: images[24], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.929865, longitude: -2.318092 },
-  { resort: chamonix, user: alice, name: "Les Citronniers",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, currency: euros, image: images[25], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.339865, longitude: -2.418092 },
-  { resort: chamonix, user: alice, name: "Chalet Grassonnets", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 3500, weekly_rent_price: 1300, currency: euros, image: images[26], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, layout: 'Showcase', latitude: 53.049865, longitude: -2.518092 },
-  { resort: chamonix, user: alice, name: "Chalet Guapa",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, currency: euros, image: images[27], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, latitude: 54.159865, longitude: -3.118092 },
-  { resort: chamonix, user: alice, name: "Chalet Ibex",       address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, currency: euros, image: images[28], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, latitude: 54.369865, longitude: -3.218092 },
-  { resort: chamonix, user: alice, name: "Chalet Jomain",     address: '123 street', sleeping_capacity: 18,  metres_from_lift: 10200, weekly_rent_price: 2050, currency: euros, image: images[29], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, latitude: 55.779865, longitude: -4.118092 },
-])
+                                { resort: chamonix, user: alice, name: 'Alpen Lounge', address: '123 street', sleeping_capacity: 6, metres_from_lift: 2500, weekly_rent_price: 1750, currency: euros, image: images[1], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, layout: 'Showcase', latitude: 51.509865, longitude: -0.018092 },
+                                { resort: chamonix, user: alice, name: 'Apartment Teracce', address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4700, weekly_rent_price: 2000, currency: euros, image:  images[2], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.619865, longitude: -0.118092 },
+                                { resort: chamonix, user: alice, name: "Brigitte's Mazot",  address: '123 street', sleeping_capacity: 2,   metres_from_lift: 3100, weekly_rent_price: 1825, currency: euros, image:  images[3], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.72865, longitude: -0.218092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Alaska',     address: '123 street', sleeping_capacity: 5,   metres_from_lift: 8300, weekly_rent_price: 1950, currency: euros, image:  images[4], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.839865, longitude: -0.318092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Anchorage',  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5000, weekly_rent_price: 1650, currency: euros, image:  images[5], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.949865, longitude: -0.448092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Arkle',      address: '123 street', sleeping_capacity: 14,  metres_from_lift: 4000, weekly_rent_price: 1725, currency: euros, image:  images[6], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.159865, longitude: -0.518092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Azimuth',    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6300, weekly_rent_price: 2150, currency: euros, image:  images[7], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.269865, longitude: -0.618092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Bornian',    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4400, weekly_rent_price: 1400, currency: euros, image:  images[9], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.379865, longitude: -0.718092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Chachat',    address: '123 street', sleeping_capacity: 14,  metres_from_lift: 3500, weekly_rent_price: 1500, currency: euros, image: images[10], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.489865, longitude: -0.818092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Cachemire',  address: '123 street', sleeping_capacity: 20,  metres_from_lift: 1400, weekly_rent_price: 1375, currency: euros, image: images[11], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.599865, longitude: -0.918092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Chardonnet', address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9300, weekly_rent_price: 2000, currency: euros, image: images[12], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.009865, longitude: -1.018092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Chintalaya', address: '123 street', sleeping_capacity: 10,  metres_from_lift: 6500, weekly_rent_price: 1475, currency: euros, image: images[13], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.119865, longitude: -1.118092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Chosalet',   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 5900, weekly_rent_price: 2025, currency: euros, image: images[14], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.229865, longitude: -1.218092 },
+                                { resort: chamonix, user: alice, name: "Chalet D'Or",       address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6000, weekly_rent_price: 1550, currency: euros, image: images[15], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.339865, longitude: -1.318092 },
+                                { resort: chamonix, user: alice, name: 'Chalet des Sapins', address: '123 street', sleeping_capacity: 10,  metres_from_lift: 4300, weekly_rent_price: 1650, currency: euros, image: images[16], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.449865, longitude: -1.418092 },
+                                { resort: chamonix, user: alice, name: 'Chalet des Isles',  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 2600, weekly_rent_price: 1850, currency: euros, image: images[17], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.559865, longitude: -1.518092 },
+                                { resort: chamonix, user: alice, name: 'Chalet des Islouts', address: '123 street', sleeping_capacity: 8,  metres_from_lift: 8500, weekly_rent_price: 1550, currency: euros, image: images[18], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.669865, longitude: -1.618092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Dubrulle',   address: '123 street', sleeping_capacity: 11,  metres_from_lift: 5000, weekly_rent_price: 1575, currency: euros, image: images[19], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.779865, longitude: -1.718092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Eco-Farm',   address: '123 street', sleeping_capacity: 10,  metres_from_lift: 7200, weekly_rent_price: 2100, currency: euros, image: images[20], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.889865, longitude: -1.818092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Edelweiss',  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 4200, weekly_rent_price: 1900, currency: euros, image: images[21], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.999865, longitude: -1.918092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Eftikhia', address: '123 street', sleeping_capacity: 10, metres_from_lift: 5900, weekly_rent_price: 1600, currency: euros, image: images[22], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.709865, longitude: -2.118092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Flegere',    address: '123 street', sleeping_capacity: 10,  metres_from_lift: 3400, weekly_rent_price: 1700, currency: euros, image: images[23], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.819865, longitude: -2.218092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Gauthier',   address: '123 street', sleeping_capacity: 16,  metres_from_lift: 4300, weekly_rent_price: 1600, currency: euros, image: images[24], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.929865, longitude: -2.318092 },
+                                { resort: chamonix, user: alice, name: 'Les Citronniers',   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, currency: euros, image: images[25], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.339865, longitude: -2.418092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Grassonnets', address: '123 street', sleeping_capacity: 8,  metres_from_lift: 3500, weekly_rent_price: 1300, currency: euros, image: images[26], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, layout: 'Showcase', latitude: 53.049865, longitude: -2.518092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Guapa',      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, currency: euros, image: images[27], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, latitude: 54.159865, longitude: -3.118092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Ibex',       address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, currency: euros, image: images[28], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, latitude: 54.369865, longitude: -3.218092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Jomain',     address: '123 street', sleeping_capacity: 18,  metres_from_lift: 10_200, weekly_rent_price: 2050, currency: euros, image: images[29], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, latitude: 55.779865, longitude: -4.118092 }
+                              ])
 
 a_trip_advisor_chalet = Property.create!(
   resort: chamonix, user: trip_advisor, name: 'A TripAdvisor Chalet',
@@ -1699,7 +904,7 @@ interhome_property = Property.create!(
   interhome_accommodation_id: interhome_accommodation.id,
   image: images[31]
 )
-40.downto(31).each {|i| interhome_property.images << images[i]}
+40.downto(31).each { |i| interhome_property.images << images[i] }
 
 InterhomeVacancy.destroy_all
 InterhomeVacancy.create!(

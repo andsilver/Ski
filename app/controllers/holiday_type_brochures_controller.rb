@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class HolidayTypeBrochuresController < ApplicationController
   def show
     @brochurable = find_brochurable
     @holiday_type = HolidayType.find_by(slug: params[:holiday_type_slug])
-    
+
     if @brochurable && @holiday_type
       @brochure = HolidayTypeBrochure.find_by(
         brochurable_id: @brochurable.id,
@@ -21,7 +23,7 @@ class HolidayTypeBrochuresController < ApplicationController
 
   protected
 
-    def find_brochurable
-      params[:place_type].classify.constantize.find_by(slug: params[:place_slug])
-    end
+  def find_brochurable
+    params[:place_type].classify.constantize.find_by(slug: params[:place_slug])
+  end
 end

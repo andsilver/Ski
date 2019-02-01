@@ -2,8 +2,12 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@resort.breadcrumbs, t('.heading'))
 
-h2= t('resorts_controller.detail.how_to_get_there')
-= render 'airport_distances/table', airport_distances: @resort.airport_distances
+- airport_distance_table = render('airport_distances/table', airport_distances: @resort.airport_distances)
+- template_params = {'airport_distance_table' => airport_distance_table}
+
+br
+h1 style="text-align: center"= t('resorts_controller.detail.how_to_get_there')
 
 - unless @page_content.blank?
-  = raw Liquid::Template.parse(@page_content).render()
+  = lt(@page_content, template_params)
+  /= raw Liquid::Template.parse(@page_content).render(template_params)

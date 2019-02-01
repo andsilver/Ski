@@ -110,19 +110,21 @@ html lang="#{@lang}"
         #content.group.wide role="main"
           = flash_notice
           - unless header_image_urls.empty?
-            #header-images
+            ul#header-images
               - header_image_urls.each do |url|
-                img src="#{url}" alt="#{alt_attribute(url, 'My Chalet Finder Ski Accommodation')}"
+                li
+                  img src="#{url}" alt="#{alt_attribute(url, 'My Chalet Finder Ski Accommodation')}"
+          
+          = render 'layouts/resort_nav' if @resort
           = yield
 
         - if content_for? :advertising
           #advertising
             = yield :advertising
-
+      
       .links
-        = yield :links
-        / = render 'layouts/region_nav' if @region
-        = render 'layouts/resort_nav' if @resort
+        / = yield :links
+        = render 'layouts/region_nav' if @region
         = raw sidebar_html
 
       .footer-logo-container

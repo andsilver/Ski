@@ -1,5 +1,16 @@
 $(() => {
 
+  $('#header-images').partialViewSlider({
+    width: 70,
+    controls: true,
+    controlsPosition: 'inside',
+    backdrop: true,
+    dots: false,
+    transitionSpeed: 1000,
+    delay: 5000,
+    perspective: true
+  });
+
   $('li.main-menu-item').on('click', function(event){
 
     const showDropDown = (e) => {

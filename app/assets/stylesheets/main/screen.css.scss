@@ -161,3 +161,77 @@ img {
   justify-content: center;
   margin: 24px 0;
 }
+
+.display-flex {
+  display: flex;
+}
+
+.direction-column {
+  flex-direction: column;
+}
+
+.content-center {
+  justify-content: center;
+}
+
+.content-space-between {
+  justify-content: space-between;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.hide-md {
+  @media screen and (max-width: 968px) {
+    display: none;
+  }
+}
+
+.show-md {
+  display: none;
+
+  @media screen and (max-width: 968px) {
+    display: inherit;
+  }
+}
+
+.tick {
+  color: green;
+}
+
+.cross {
+  color: red;
+}
+
+.fa-star {
+  color: #005e9e;
+  font-size: 12px;
+}
+
+#resort-nav {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  margin-top: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid #005e9c;
+  border-bottom: 1px solid #005e9c;
+  li {
+    // padding: 15px;
+    // background: #005e9c;
+    margin-left: 24px;
+  }
+  a {
+    color: #005e9c;
+    text-decoration: unset;
+  }
+}
