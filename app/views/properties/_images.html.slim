@@ -10,18 +10,5 @@
       $(function() {
         $('.cycle-slideshow').cycle();
       });
-  /- if property.image
-    ul#images_slider
-      - property.images.each do |i|
-        li
-          = image_tag(i.sized_url([640, 300], :cropped), alt: "Photo of #{property.name}")
-    javascript:
-      $('#images_slider').partialViewSlider({
-        width: 100,
-        controls: true,
-        controlsPosition: 'inside',
-        backdrop: true,
-        dots: false
-      });
 
 

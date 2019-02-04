@@ -55,7 +55,6 @@ Page.create!([
                  description: 'Chamonix ski chalets & apartments for sale in Chamonix for all budgets - from studio apartments, holiday homes & luxury ski chalets in Chamonix  to buy - see our selection at MyChaletFinder...',
                  keywords: 'accommodation-in-chamonix, chamonix chalets for sale, chamonix apartments for sale, ski holiday accommodation to buy, mychaletfinder',
                  header_snippet_name: 'intersport',
-                 banner: '<a href="https://www.fcexchange.com?&utm_source=mychaletfinder" target=" blank"><img src="/fixed-banners/fc-exchange-banner.jpg" alt="chamonix apartments for sale" title="Chamonix chalets for sale"></a>',
                  content: CHAMONIX_SALE_PAGE
 
                },

@@ -1,11 +1,11 @@
-javascript:
+/ javascript:
   $(function() {
     calendarControls();
   });
 
-h2 Availability
-- cal = TripAdvisor::Calendar.new(@property.trip_advisor_property)
-.well
+/ h2 Availability
+/ - cal = TripAdvisor::Calendar.new(@property.trip_advisor_property)
+/ .well
   .btn-group
     button.button.secondary-button#earlier
       i.fas.fa-backward>
@@ -27,3 +27,25 @@ h2 Availability
       - month = 1
       - year += 1
   .clear
+
+#availability_calendar
+  h2 Availability
+
+javascript:
+  $(function () {
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1;
+      var yyyy = today.getFullYear();
+      today = mm + '/' + dd + '/' + yyyy;
+
+      $('#availability_calendar').daterangepicker({
+        'opens': 'right',
+        'autoApply': true,
+        'parentEl': '#availability_calendar',
+        'minDate': today,
+        'maxDate': '3/18/2019'
+      }, function(start, end, label) {});
+
+      $('#availability_calendar').click()
+  });

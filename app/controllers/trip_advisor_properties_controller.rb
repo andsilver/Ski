@@ -3,8 +3,8 @@
 class TripAdvisorPropertiesController < ApplicationController
   def get_details
     prop = TripAdvisorProperty.find(params[:id])
-    check_in = Date.parse(params[:check_in])
-    check_out = Date.parse(params[:check_out])
+    check_in = Date.parse(params[:check_in] || params[:start_date])
+    check_out = Date.parse(params[:check_out] || params[:end_date])
     adults = params[:adults].to_i
 
     url = "#{prop.url}&inDay=#{check_in.day}&inMonth=#{check_in.month}%2F" \

@@ -1,40 +1,6 @@
 <%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading) %>
 
 <%= content_for :theme, @property.theme %>
-<!--
-<div class="property classic-property">
-  <%= render partial: 'user_logo', locals: { property: @property } %>
-  <h1 class="property-name">
-    <span><%= t('property_name') %>:</span>
-    <%= @property.name %>
-  </h1>
-  <%= render partial: 'price_and_id', locals: { property: @property } %>
-
-  <div class="classic-images-features group">
-    <%= render partial: 'images', locals: { property: @property } %>
-    <div class="classic-features">
-      <h2 class="subhead"><%= I18n.t('features') %></h2>
-      <ul>
-        <% classic_features(@property).each do |feature| %>
-        <li><%= feature %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-
-  <% if @property.description.present? %>
-  <h2><%= I18n.t('description') %></h2>
-  <%= md @property.description %>
-  <% end %>
-
-  <%= render 'location_button_and_modal' if @property.latitude.present? %>
-  <p>
-    <%= link_to t('enquire'), contact_property_path(@property), class: 'button action-button' %>
-  </p>
-
-  <%= clear %>
-</div>
--->
 
 <div class="property classic-property">
   <%= render partial: 'user_logo', locals: { property: @property } %>

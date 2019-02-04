@@ -20,10 +20,10 @@
 
 .properties-container {
   margin-bottom: 24px;
-
-  @media screen and (min-width: 1200px) {
-    width: 60%;
-  }
+  width: 100%;
+  // @media screen and (min-width: 1200px) {
+  //   width: 60%;
+  // }
 }
 
 .properties-map {
@@ -31,11 +31,12 @@
   min-height: 600px;
   max-height: 2000px;
   order: 2;
+  width: 100%;
 
-  @media screen and (min-width: 1200px) {
-    width: 40%;
-    margin-bottom: 0;
-  }
+  // @media screen and (min-width: 1200px) {
+  //   width: 40%;
+  //   margin-bottom: 0;
+  // }
 }
 
 .property-summaries {
@@ -71,7 +72,7 @@
     }
   }
 
-  @media screen and (min-width: 968px) {
+  @media screen and (min-width: 524px) {
     flex-basis: 49%;
 
     &:nth-of-type(2n) {
@@ -91,19 +92,105 @@
 .property-summary-description {
   padding: 0.5rem;
   text-align: center;
+
   a {
     text-decoration: none;
+
     h3 {
       color: #005e9c;
       transition: .4s ease;
       margin: 0;
     }
-    &:hover h3{
+
+    &:hover h3 {
       color: rgba(0, 95, 155, 0.5)
     }
   }
+
   p {
     color: #000;
     font-weight: normal;
+  }
+}
+
+
+.property-block {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-top: 2px solid #005e9c;
+
+  &:last-of-type {
+    border-bottom: 2px solid #005e9c;
+  }
+
+  &-images {
+    max-height: 350px;
+    width: 40%;
+    overflow: hidden;
+    .cycle-prev, .cycle-next {
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      top: calc(50% - 20px);
+    }
+  }
+
+  &-details {
+    width: 57%;
+    font-size: 14px;
+
+    &-location {
+      color: black;
+      font-weight: bold;
+    }
+
+    &-title {
+      color: #005e9c;
+      font-size: 21px;
+      margin: 0.5rem 0;
+    }
+
+    &-description {
+      font-weight: 700;
+    }
+
+    h4 {
+      color: black;
+      text-transform: uppercase;
+      margin: 1rem 0 0.5rem;
+    }
+
+    ul {
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+      li {
+        width: 50%;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+    }
+
+    .button {
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-top: 24px;
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    display: block;
+    &-images, &-details {
+      width: 100%;
+    }
+    &-details {
+      margin-top: 24px;
+    }
   }
 }
