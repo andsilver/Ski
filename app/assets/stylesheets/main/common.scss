@@ -13,7 +13,14 @@
 
 .page-description {
   text-align: center;
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
+  h1 > span {
+    display: block;
+    font-size: 1.25rem;
+    color: #231f20;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
 }
 
 .static-page-content,
@@ -334,7 +341,6 @@
   .description-col {
     vertical-align: top;
     width: 40%;
-    border-bottom: 1px solid #005e9c;
   }
 
   .ad-table-title {

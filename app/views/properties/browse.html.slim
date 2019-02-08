@@ -49,7 +49,7 @@
         / = render 'home/datepickers'
       .search-field.search-field-submit
         = submit_tag 'Refine Search', class: 'button action-button form-control'
-      p= raw property_search_filters @search_filters
+    p= raw property_search_filters @search_filters
 
 = raw @page_content if first_page?
 
@@ -57,8 +57,6 @@
   p= t('properties.no_matching_properties')
 - else
   .properties-view
-    #map_canvas.properties-map
-    = render partial: 'properties/google_map_markers', locals: {properties: @properties.decorate}
     .properties-container
       .results-count
         div= pagination_start(@properties).to_s +  ' - ' + pagination_end(@properties).to_s + ' of ' + @properties.count.to_s
@@ -74,5 +72,7 @@
           backdrop: true,
           dots: false
         });
-  .flex-layout.content-center style="padding: 3rem 0"
+    .flex-layout.content-center style="padding: 3rem 0"
         = will_paginate @properties
+    #map_canvas.properties-map
+    = render partial: 'properties/google_map_markers', locals: {properties: @properties.decorate}

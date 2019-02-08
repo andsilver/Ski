@@ -12,6 +12,7 @@ pageLoad = ->
   galleryZoom()
   activateNavTabs()
   homeCarousel()
+  searchFixOnScroll()
 
 cycleHeaderImages = ->
   $('#header-images').cycle({
@@ -38,6 +39,14 @@ homeCarousel = ->
     timeout: 6000,
     containerheight: '528px'
   })
+
+searchFixOnScroll = ->
+  $(window).scroll(() ->
+    if $(this).scrollTop() > 300
+      $('.search-fields').addClass('search-fixed')
+    else
+      $('.search-fields').removeClass('search-fixed')
+  )
 
 window.hideLinksAndSearch = ->
   $('body').addClass('hide-links-and-search')

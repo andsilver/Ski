@@ -1,36 +1,38 @@
 <div class="property-block">
-    <div class="property-block-images">
+    <a href="<%= property_detail_path(p) %>" class="property-block-images">
         <%= render partial: 'images', locals: { property: p } %>
-    </div>
+    </a>
     <div class="property-block-details">
-        <div class="display-flex content-space-between">
-            <span class="property-block-details-location"><%= p.resort %>, <%= p.country %></span>
-            <span>EXCL. VAT</span>
-        </div>
-        <div class="property-block-details-title display-flex content-space-between">
-            <span><%= p.name %></span>
-            <span>
-                <% if p.price_description.present? %>
-                    <%= p.price_description %>
-                <% else %>
-                    <% if p.for_sale? %>
-                        <strong><%= format_currency(p.sale_price, p.currency) %></strong>
+        <div>
+            <div class="display-flex content-space-between">
+                <span class="property-block-details-location"><%= p.resort %>, <%= p.country %></span>
+                <span>EXCL. VAT</span>
+            </div>
+            <div class="property-block-details-title display-flex content-space-between">
+                <span><%= p.name %></span>
+                <span>
+                    <% if p.price_description.present? %>
+                        <%= p.price_description %>
                     <% else %>
-                        <strong><%= format_currency(p.weekly_rent_price, p.currency) %></strong>
+                        <% if p.for_sale? %>
+                            <strong><%= format_currency(p.sale_price, p.currency) %></strong>
+                        <% else %>
+                            <strong><%= format_currency(p.weekly_rent_price, p.currency) %></strong>
+                        <% end %>
                     <% end %>
-                <% end %>
-            </span>
-        </div>
-        <div class="property-block-details-description"><%= p.description %></div>
-        <div class="property-block-details-features">
-            <h4>Features</h4>
-            <ul>
-                <% classic_features(p).each do |feature| %>
-                <li>
-                    <strong><%= feature %></strong>
-                </li>
-                <% end %>
-            </ul>
+                </span>
+            </div>
+            <div class="property-block-details-description"><%= p.description %></div>
+            <div class="property-block-details-features">
+                <h4>Features</h4>
+                <ul>
+                    <% classic_features(p).each do |feature| %>
+                    <li>
+                        <strong><%= feature %></strong>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
         </div>
         <div class="display-flex content-end">
             <a class="button action-button" href="<%= property_detail_path(p) %>">View Property</a>

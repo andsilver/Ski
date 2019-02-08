@@ -238,4 +238,13 @@ img {
     color: #005e9c;
     text-decoration: unset;
   }
+
+  @media screen and (max-width: 968px) {
+      flex-wrap: wrap;
+      li {
+        width: 40%;
+        margin: 0;
+        margin-bottom: 12px;
+      }
+  }
 }

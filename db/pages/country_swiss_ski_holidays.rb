@@ -7,8 +7,9 @@ module StaticContent
           <div class="page-description">
               <br>
               <br>
-              <h1>Swiss Ski Holidays - Skiing in Switzerland</h1>
-              <h2>Self Catering Holidays Rentals - Chalets & Apartments to Rent in Swiss Ski Resorts</h2>
+              <h1>Swiss Ski Holidays - Skiing in Switzerland
+                <span>Self Catering Holidays Rentals - Chalets & Apartments to Rent in Swiss Ski Resorts</span>
+              </h1>
               <br>
               <img src="/assets/home/wengen-ski-resort-002.jpg" alt="swiss ski resorts, ski holidays in switzerland" title="Ski holidays in Switzerland"
                   width="100%">
@@ -61,7 +62,7 @@ module StaticContent
                   through to April, Swiss ski holidays offer relaible snow conditions but also great food and superb
                   levels of service both on and off the slopes.</p>
           </div>
-          <div class="flex-layout content-space-between">
+          <div class="static-page-content flex-layout content-space-between">
               <div class="flex-2">
                   <div>
                       <table class="theme-table">

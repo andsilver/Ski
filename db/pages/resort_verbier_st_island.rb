@@ -7,8 +7,9 @@ module StaticContent
         <div class="page-description">
             <br>
             <br>
-            <h1>Verbier SKi Resort Guide & Reviews</h1>
-            <h2>Ski Area, Apres-Ski, Spa & Wellness, Accommodation, Other Activities</h2>
+            <h1>Verbier SKi Resort Guide & Reviews
+                <span>Ski Area, Apres-Ski, Spa & Wellness, Accommodation, Other Activities</span>
+            </h1>
         </div>
         <div style="margin-top: 2rem">
             <h1 style="text-align: center">Resort Review</h1>
@@ -225,8 +226,9 @@ module StaticContent
         <div class="page-description">
           <br>
           <br>
-          <h1>Verbier Piste Map</h1>
-          <h2>Skiing in Verbier and around The 4 Valleys, Valais</h2>
+          <h1>Verbier Piste Map
+            <span>Skiing in Verbier and around The 4 Valleys, Valais</span>
+          </h1>
           <br>
           <p>Ski holidays in Verbier - St Bernard - at the heart of the impressive 4-Valleys ski area, the
               piste map shows the ease in which you can ski around the 410km of pistes that cater for all
@@ -286,8 +288,9 @@ module StaticContent
           <div class="page-description">
               <br>
               <br>
-              <h1>Verbier Ski Holidays</h1>
-              <h2>Skiing & snowboarding in Verbier, 4 Valleys, Valais</h2>
+              <h1>Verbier Ski Holidays
+                <span>Skiing & snowboarding in Verbier, 4 Valleys, Valais</span>
+              </h1>
           </div>
           <div style="margin-top: 2rem">
               <h1 style="text-align: center">Overview</h1>
@@ -359,10 +362,11 @@ module StaticContent
 
   VERBIER_ST_BERNARD_RESORT_SKI_SCHOOLS =
     <<~EOF
-          <div class="page-description">
+        <div class="page-description">
           <br>
-          <h1>Verbier Ski Schools</h1>
-          <h2>Skiing Lessons, Off-Piste Ski Clinics, Ski Touring & Mountain Guiding in Verbier</h2>
+          <h1>Verbier Ski Schools
+            <span>Skiing Lessons, Off-Piste Ski Clinics, Ski Touring & Mountain Guiding in Verbier</span>
+          </h1>
           <br>
           <p>There are several <strong>Verbier Ski Schools</strong> and <strong>High Mountain Guide</strong> companies in the
               resort each offering a comprehensive ranges of lessons for all ages and abilities, for both skiing and snow
@@ -373,7 +377,7 @@ module StaticContent
               steeps, fantastic intermediate and advanced on-piste and is renowned as one of the best off-piste adventure
               playgrounds in Europe. From novice to expert, the ski chools and guided off-piste tours will ensure you get to
               experience the best of Verbier and Les 4 Vallees.</p>
-      </div>
+       </div>
        <div class="flex-layout">
           <div class="flex-2">
               <h1>Summer Activities</h1>

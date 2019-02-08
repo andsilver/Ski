@@ -3,32 +3,35 @@
 module StaticContent
   CHAMONIX_RENT_PAGE =
     <<~EOF
-      <h1>Chamonix Chalets
-      <span>Holiday Rentals - Ski Chalets, Apartments &amp; Holiday Homes For Rent, Chamonix</span>
-      </h1>
-       <p>Mychaletfinder has the perfect <strong>Chamonix chalet</strong> for you to rent for your
-        summer or ski holidays. Chamonix is a world famous all year round ski resort providing some of the most challenging
-      off-piste terrain around whilst catering equally as well for absolute beginners. Summer is
-      even busier with hikers and mountain bikers who come to explore the high alpine trails. A wonderful town
-      to visit any time of year.</p>
-       <p>Staying in <strong>Chamonix holiday rentals</strong>, whether ski chalet or apartment, is
-      ideal for families, groups and friends. Self catering holiday accommodation provides the freedom, flexibility and space to
-      do what you want, when you you want - home from home.</p>
-      <br>
-      <br>
-      <br>
+    <div class="page-description">
+        <br>
+        <h1>Chamonix Chalets
+            <span>Holiday Rentals - Ski Chalets, Apartments &amp; Holiday Homes For Rent, Chamonix</span>
+        </h1>
+        <p>Mychaletfinder has the perfect <strong>Chamonix chalet</strong> for you to rent for your
+            summer or ski holidays. Chamonix is a world famous all year round ski resort providing some of the most challenging
+        off-piste terrain around whilst catering equally as well for absolute beginners. Summer is
+        even busier with hikers and mountain bikers who come to explore the high alpine trails. A wonderful town
+        to visit any time of year.</p>
+        <p>Staying in <strong>Chamonix holiday rentals</strong>, whether ski chalet or apartment, is
+        ideal for families, groups and friends. Self catering holiday accommodation provides the freedom, flexibility and space to
+        do what you want, when you you want - home from home.</p>
+    </div>
     EOF
 
   CHAMONIX_SALE_PAGE =
     <<~EOF
-      <h1>Chamonix Properties For Sale
-      <span>Chalets &amp; Apartments for Sale in Chamonix and the Chamonix Valley<span></span></h1>
-       <p>Browse through our wide selection of <strong>Chamonix chalets and apartments for sale</strong>.
-        From town centre apartments to luxurious chalets with amazing views of the Mont Blanc Massif, buying
-        a holiday home in this part of the French Alps has the major advantage of Chamonix being
-        a year round resort. So if you are planning on renting your property, Chamonix can provide rental income
-        throughout the year.
-      </p>
+        <div class="page-description">
+            <h1>Chamonix Properties For Sale
+                <span>Chalets &amp; Apartments for Sale in Chamonix and the Chamonix Valley</span>
+            </h1>
+            <p>Browse through our wide selection of <strong>Chamonix chalets and apartments for sale</strong>.
+                From town centre apartments to luxurious chalets with amazing views of the Mont Blanc Massif, buying
+                a holiday home in this part of the French Alps has the major advantage of Chamonix being
+                a year round resort. So if you are planning on renting your property, Chamonix can provide rental income
+                throughout the year.
+            </p>
+        </div>
     EOF
 
   CHAMONIX_RESORT_HOW_TO_GET_THERE =
@@ -93,12 +96,13 @@ module StaticContent
 
   CHAMONIX_RESORT_SUMMER_HOLIDAY =
     <<~EOF
-                                      <div class="wide clear-fix experience-details">
+        <div class="wide clear-fix experience-details">
           <div class="page-description">
               <br>
               <br>
-              <h1>Chamonix Summer Holidays Guide</h1>
-              <h2>Self Catering Holiday rentals - Chalets, Apartments, Holiday homes & Hotels</h2>
+              <h1>Chamonix Summer Holidays Guide
+                <span>Self Catering Holiday rentals - Chalets, Apartments, Holiday homes & Hotels</span>
+              </h1>
           </div>
           <br>
           <div>

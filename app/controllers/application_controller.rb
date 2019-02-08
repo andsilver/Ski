@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   attr_reader :page_info
-
-  helper_method :admin?, :current_user, :page_info, :signed_in?
+  
+  helper_method :admin?, :current_user, :page_info, :signed_in?, :page_for_sale?, :page_for_rent?
 
   before_action :initialize_website, :set_locale, :initialize_user, :page_defaults
 
@@ -81,6 +81,14 @@ class ApplicationController < ActionController::Base
   # Returns +true+ if +user_agent+ is a known robot user agent.
   def bot?(user_agent)
     `cat #{Shellwords.escape(bot_file)} | grep #{Shellwords.escape(user_agent)}`.present?
+  end
+
+  def page_for_sale?
+    request.env['PATH_INFO'].downcase.include? 'sale'
+  end
+
+  def page_for_rent?
+    request.env['PATH_INFO'] == '/' || request.env['PATH_INFO'].downcase.include?('rent')
   end
 
   protected

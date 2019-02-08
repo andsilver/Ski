@@ -94,13 +94,23 @@ html lang="#{@lang}"
             = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
         .content-inset.rentals-sales
           ul
-            li: a.button.action-button href="/" Rentals
-            li: a.button.action-button href="/property_sales" Sales
+            li: a.button.action-button href="/" class=('button-disable' if !page_for_rent?) Rentals
+            li: a.button.action-button href="/property_sales" class=('button-disable' if !page_for_sale?) Sales
       = render 'layouts/breadcrumbs_and_heading'
       - if content_for? :search
-        .search-container
-          .content-inset.search
-            = yield :search
+          - unless header_image_urls.empty?
+            .search-container-carousel
+              ul#carousel-slides
+                - header_image_urls.each do |url|
+                  li
+                    img src="#{url}" alt="#{alt_attribute(url, 'My Chalet Finder Ski Accommodation')}"
+              .search-fields
+                .content-inset.search
+                  = yield :search
+          - else
+            .search-container
+              .content-inset.search
+                = yield :search
       - else
         .divider-bar
 
@@ -109,13 +119,6 @@ html lang="#{@lang}"
       .page-surround
         #content.group.wide role="main"
           = flash_notice
-          - unless header_image_urls.empty?
-            ul#header-images
-              - header_image_urls.each do |url|
-                li
-                  img src="#{url}" alt="#{alt_attribute(url, 'My Chalet Finder Ski Accommodation')}"
-          
-          = render 'layouts/resort_nav' if @resort
           = yield
 
         - if content_for? :advertising

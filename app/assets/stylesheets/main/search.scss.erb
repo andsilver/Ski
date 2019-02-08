@@ -1,3 +1,25 @@
+#carousel-slides {
+  padding: 0;
+  margin: 0;
+  height: 500px !important;
+  li {
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: 968px) {
+    height: 350px !important;
+  }
+
+  @media screen and (max-width: 640px) {
+    height: 250px !important;
+  }
+}
+
 .search-container {
   background-image: url(<%= asset_path('rental-search-bg-1200.jpg') %>);
   background-size: cover;
@@ -7,7 +29,9 @@
   h2 {
     margin: 0;
   }
+}
 
+.search-container, .search-container-carousel {
   .search {
     background: rgba(0,47,102,0.8);
     color: #fff;
@@ -15,6 +39,43 @@
 
     a {
       color: #fff;
+    }
+  }
+}
+
+.search-fixed {
+  position: fixed !important;
+  display: block !important;
+  height: unset !important;
+  .search {
+    z-index: 99;
+    margin: 0;
+  }
+}
+
+.search-container-carousel {
+  position: relative;
+  .search-fields {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+
+    .search {
+      transition: all .4s ease;
+    }
+
+    @media screen and (max-width: 968px) {
+      align-items: start;
+      .search {
+        z-index: 99;
+        margin: 0;
+      }
     }
   }
 }
@@ -31,11 +92,14 @@
 
 .search-field {
 
+  flex-grow: 1;
+
   label {
     display: block;
     font-size: 0.875rem;
     line-height: 1rem;
     margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
   }
 
   input[type=text], .twitter-typeahead {
@@ -70,7 +134,7 @@
     &:focus, &:active {
       outline: none;
     }
-    width: 150px;
+    width: 100%;
   }
 
   select#search_countries {
@@ -111,10 +175,12 @@
   background: #fff;
   border-left: 1px solid #f3f3f3;
   box-sizing: border-box;
-  flex-grow: 1;
+  flex-grow: unset !important;
+  align-self: flex-end;
   height: 2.625rem;
   margin-top: 1.49rem;
   padding: 0.3125rem 0.5rem 0 1rem;
+  min-width: 200px;
 
   .action-button {
     width: 100%;
@@ -125,6 +191,6 @@ div.date::after {
   top: 10px;
 }
 
-#search-options select {
-  min-width: 220px;
+.search-field select {
+  min-width: 180px;
 }

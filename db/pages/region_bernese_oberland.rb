@@ -10,8 +10,9 @@ module StaticContent
                   width="100%">
               <br>
               <br>
-              <h1>Bernese Oberland Ski Resorts</h1>
-              <h2>Snowboarding & Skiing Holidays in Bernese Oberland, Switzerland</h2>
+              <h1>Bernese Oberland Ski Resorts
+                <span>Snowboarding & Skiing Holidays in Bernese Oberland, Switzerland</span>
+              </h1>
           </div>
           <div style="margin-top: 2rem">
               <h1 style="text-align: center">Overview</h1>

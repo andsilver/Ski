@@ -21,12 +21,10 @@ ol, ul {
 
   > ul {
     padding: 0 15px;
-    max-width: 1140px;
-    margin: 0 auto;
+    display: flex;
 
     > li {
-      float: left;
-      width: 25%;
+      width: 100%;
       position: relative;
       box-sizing: border-box;
       padding: 0 !important;
@@ -58,9 +56,9 @@ ol, ul {
 
     >ul {
       padding: 0 !important;
+      display: block;
       > li {
         display: block;
-        width: 100% !important;
         clear: both;
         border-left: none !important;
         border-bottom: 1px solid #ececec;

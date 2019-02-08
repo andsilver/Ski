@@ -667,7 +667,7 @@ $.fn.cycle.defaults = {
     manualFx:         undefined,
     manualSpeed:      undefined,
     manualTrump:      true,
-    maxZ:             100,
+    maxZ:             95,
     pauseOnHover:     false,
     reverse:          false,
     slideActiveClass: 'cycle-slide-active',

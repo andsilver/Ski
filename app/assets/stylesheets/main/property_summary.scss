@@ -1,13 +1,5 @@
 .properties-view {
   display: block;
-
-  @media screen and (min-width: 1200px) {
-    display: flex;
-
-    &>div:last-of-type {
-      margin-right: 20px;
-    }
-  }
 }
 
 .results-count {
@@ -21,9 +13,6 @@
 .properties-container {
   margin-bottom: 24px;
   width: 100%;
-  // @media screen and (min-width: 1200px) {
-  //   width: 60%;
-  // }
 }
 
 .properties-map {
@@ -32,11 +21,6 @@
   max-height: 2000px;
   order: 2;
   width: 100%;
-
-  // @media screen and (min-width: 1200px) {
-  //   width: 40%;
-  //   margin-bottom: 0;
-  // }
 }
 
 .property-summaries {
@@ -140,6 +124,10 @@
   &-details {
     width: 57%;
     font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
 
     &-location {
       color: black;
@@ -181,6 +169,7 @@
       padding-bottom: 10px;
       margin-top: 24px;
       text-align: center;
+      max-width: 250px;
     }
   }
 
