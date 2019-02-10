@@ -64,14 +64,6 @@
       div
         - @properties.each do |p|
           = render partial: 'properties/new_property_summary', locals: {p: p.decorate}
-      javascript:
-        $('.property-block-slider').partialViewSlider({
-          width: 100,
-          controls: true,
-          controlsPosition: 'inside',
-          backdrop: true,
-          dots: false
-        });
     .flex-layout.content-center style="padding: 3rem 0"
         = will_paginate @properties
     #map_canvas.properties-map

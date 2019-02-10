@@ -14,7 +14,8 @@
 .page-description {
   text-align: center;
   margin-bottom: 4rem;
-  h1 > span {
+
+  h1>span {
     display: block;
     font-size: 1.25rem;
     color: #231f20;
@@ -201,6 +202,12 @@
 
     @media screen and (min-width: 1400px) {
       flex-basis: 50%;
+    }
+  }
+
+  .flex-4 {
+    @media screen and (max-width: 968px) {
+      flex-basis: 100%;
     }
   }
 }

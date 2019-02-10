@@ -5,10 +5,128 @@
   }
 
   &-price {
-    padding: 1rem 1.5rem;
-    font-size: 16px;
-    strong {
-      font-size: 24px;
+    padding: 0.6rem 1.2rem;
+    background: #002f66;
+    color: white;
+    text-align: center;
+  }
+
+  &-features-container {
+    justify-content: flex-end;
+    > div {
+      width: 80%;
+    }
+  }
+
+  &-features {
+    margin: 24px 0;
+    h2 {
+      color: #002f66;
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      color: black;
+      td {
+        padding: 12px 0;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &-details-container {
+    ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    a {
+        padding: 0.5rem 1rem;
+    }
+
+    > div:first-of-type {
+      align-items: flex-end;
+    }
+
+    .property-details {
+      &-tabs {
+        display: flex;
+        margin-right: 24px;
+        width: 100%;
+
+        a {
+            display: block;
+        }
+
+        > li {
+          text-align: center;
+          margin-right: 12px;
+          flex-grow: 1;
+        }
+
+        .inactive {
+          color: #002f66;
+          transition: .5s ease;
+        }
+
+        @media screen and (max-width: 1200px) {
+            margin-right: 0;
+            flex-wrap: wrap;
+            justify-content: start !important;
+            > li a {
+                margin-bottom: 24px;
+            }
+        }
+
+        #drop_down {
+            min-width: unset;
+            ul {
+                width: 180px;
+                left: unset;
+                right: 0;
+                li {
+                    padding: 0;
+                    a {
+                        font-size: 14px;
+                        text-decoration: none;
+                        &:hover {
+                            background: #002f66;
+                            color: white;
+                            opacity: 1;
+                        }
+                    }
+                }
+                &::before{
+                    display: none;
+                }
+            }
+        }
+
+      }
+      &-actions {
+        a {
+          display: block;
+          width: 200px;
+          text-align: center;
+        }
+
+        @media screen and (max-width: 1200px) {
+          order: -1;
+          margin-bottom: 24px;
+          display: flex;
+          a {
+              margin-bottom: 0 !important;
+              margin-left: 12px;
+              width: unset;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 1200px) {
+      > div {
+        flex-direction: column;
+      }
     }
   }
 
@@ -143,6 +261,7 @@
 
 .map-canvas {
   width: 100%;
+  min-width: 700px;
   height: 350px;
 }
 

@@ -39,6 +39,7 @@ li class="main-menu-item" aria-expanded=false
     - if @resort.has_piste_maps? 
     li= nav_link(piste_map_resort_path(@resort), "#{@resort.name} piste maps", t('piste_map'))
     - if has_summer_holidays_page? @resort
+    li= link_with_count(resort_property_rent_path(@resort), "Property for rent in #{@resort.name}", t('views.layouts.application.resort_nav.for_rent'), @resort.for_rent_count)
     li= nav_link(summer_holidays_path(@resort), "Summer holidays in #{@resort.name}", t('resorts_controller.summer_holidays'))
     - if @resort.has_page?('how-to-get-there')
     li= nav_link(how_to_get_there_path(@resort), "How to Get to #{@resort.name}", 'How to Get There')

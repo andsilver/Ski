@@ -197,7 +197,7 @@ module StaticContent
           <br>
           <br>
           <div>
-              <ul id="tabs">
+              <ul id="tabs" class="default-tabs">
                   <li><a id="tab1">OVERVIEW</a></li>
                   <li><a id="tab2">OPERATORS</a></li>
               </ul>

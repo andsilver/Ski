@@ -74,17 +74,15 @@ ol, ul {
 
     display: none;
     position: absolute;
-    width: 92%;
     top: 68px;
     left: 4%;
     background: #fff;
     padding: 12px 0 0 !important;
     box-shadow: 0 0 17px -7px #000;
-    z-index: 2;
-    border-radius: 4px;
+    z-index: 99;
+    border-radius: 3px;
 
     li {
-      border: none !important;
       width: 100% !important;
 
       a {

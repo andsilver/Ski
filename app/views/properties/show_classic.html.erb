@@ -1,7 +1,5 @@
 <%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading) %>
-
 <%= content_for :theme, @property.theme %>
-
 <div class="property classic-property">
   <%= render partial: 'user_logo', locals: { property: @property } %>
   <h1 class="property-name"><%= @property.name %></h1>
@@ -19,7 +17,7 @@
           </div>
         </div>
         <% if @property.description.present? %>
-        <p style="padding: 1rem 0"><%= md @property.description %></p>
+          <p style="padding: 1rem 0"><%= md @property.description %></p>
         <% end %>
         <div>
           <h3><%= I18n.t('helpers.properties.property_type.accommodation') %></h3>
@@ -35,14 +33,12 @@
           <h3><%= I18n.t('features') %></h3>
           <ul>
             <% classic_features(@property).each do |feature| %>
-            <li><%= feature %></li>
+              <li><%= feature %></li>
             <% end %>
           </ul>
         </div>
       </div>
-
     </div>
   </div>
-
   <%= clear %>
 </div>

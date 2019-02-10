@@ -1,18 +1,7 @@
 $(() => {
 
-  $('#header-images').partialViewSlider({
-    width: 60,
-    controls: false,
-    controlsPosition: 'inside',
-    backdrop: true,
-    dots: false,
-    transitionSpeed: 1000,
-    delay: 5000,
-    // perspective: true
-  });
-
-  $('li.main-menu-item').on('click', function(event){
-
+  function setDropDown() {
+    
     const showDropDown = (e) => {
       e.attr('aria-expanded', true);
       e.find('ul').show(300);
@@ -48,8 +37,11 @@ $(() => {
       });
 
     };
+  }
 
-  });
+  $('li.main-menu-item').on('click', setDropDown);
+
+  $('#drop_down').on('click', setDropDown);
 
   $('ul.main-menu-item-links > li').on('click', () => {
     $(this).parent().hide(200);

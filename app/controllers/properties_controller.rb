@@ -153,7 +153,8 @@ class PropertiesController < ApplicationController
     show_shared
     @advertiser_web_property_id = @property.user.google_web_property_id unless @property.user.google_web_property_id.blank?
 
-    render @property.template
+    # render @property.template
+    render 'show_property_for_sale'
   end
 
   def show_interhome

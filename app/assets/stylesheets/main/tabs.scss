@@ -1,10 +1,10 @@
-#tabs {
+#tabs.default-tabs {
   width: 100%;
   padding: 0 10px;
   margin-top: 30px;
   display: flex;
   justify-content: center;
-  li {
+  > li {
     list-style:none;
     border:1px solid #ededee;
     border-radius: 3px;
@@ -16,15 +16,16 @@
       color: #231f20;
       background: #ededee;
       font-size: 14px;
-      &.inactive {
-        background: #fff;
-      }
       transition: ease .5s;
     }
   }
 }
 
-#tabs li a:hover, #tabs li a.inactive:hover {
+#tabs a.inactive {
+  background: #fff;
+}
+
+#tabs li > a:hover, #tabs li > a.inactive:hover {
   opacity: .6;
 }
 

@@ -375,6 +375,7 @@ fr:
   property_name: 'Nom de la propriété'
   property_rentals: 'Location de Biens'
   property_sales: 'Propriétés à Vendre'
+  property_type: 'Type de propriété'
   properties_controller:
     added_to_basket: 'Your property advert has been added to your basket.'
     created: "Your property advert was successfully created. Now let's add some photos."

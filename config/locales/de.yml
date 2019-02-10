@@ -374,6 +374,7 @@ de:
   property_name: 'Property name'
   property_rentals: 'Property Rentals'
   property_sales: 'Property Sales'
+  property_type: 'Property Type'
   properties_controller:
     added_to_basket: 'Your property advert has been added to your basket.'
     created: "Your property advert was successfully created. Now let's add some photos."

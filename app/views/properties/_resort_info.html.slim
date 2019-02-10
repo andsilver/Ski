@@ -1,0 +1,10 @@
+ul.drop-down-menu.match-height
+    - if @resort.has_resort_guide?
+    = content_tag(:li, link_to(h(t('cms_controller.guide')), resort_guide_path(@resort), title: "#{@resort.name} resort guide"), { class: "drop-down-menu-item"})
+    - if @resort.has_piste_maps? 
+    = content_tag(:li, link_to(h(t('piste_map')), piste_map_resort_path(@resort), title: "#{@resort.name} piste maps" ), { class: "drop-down-menu-item"})
+    - if has_summer_holidays_page? @resort
+    = content_tag(:li, link_to(h('Summer'), summer_holidays_path(@resort), title: "Summer holidays in #{@resort.name}" ), { class: "drop-down-menu-item"})
+    = content_tag(:li, link_to(h('Rentals'), resort_property_rent_path(@resort), title: "Property for rent in #{@resort.name}" ), { class: "drop-down-menu-item"})
+    - if @resort.has_page?('how-to-get-there')
+    = content_tag(:li, link_to(h('Directions'), how_to_get_there_path(@resort), title: "How to Get to #{@resort.name}" ), { class: "drop-down-menu-item"})
