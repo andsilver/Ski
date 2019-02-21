@@ -13,11 +13,11 @@ h2 Interested?
           };
           var checkOutPicker = null;
           var now = new Date();
-          var nextYear = new Date();
-          nextYear.setYear(now.getFullYear() + 1);
+          var twoYearsAhead = new Date();
+          twoYearsAhead.setYear(now.getFullYear() + 2);
           $('.check-in').pickadate({
             min: now,
-            max: nextYear,
+            max: twoYearsAhead,
             disable: [
              true,
              #{javascript_dates(@property.trip_advisor_property.check_in_dates)}
@@ -43,7 +43,7 @@ h2 Interested?
                   // initialize the check-out picker
                   $('.check-out').pickadate({
                     min: now,
-                    max: nextYear,
+                    max: twoYearsAhead,
                     disable: checkOuts,
                     onStart: function() {
                       // save a reference to the check-out picker
