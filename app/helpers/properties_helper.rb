@@ -100,7 +100,7 @@ module PropertiesHelper
       p.price_description
     else
       price = p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency)
-      key = p.for_sale? ? ".sale_price" : ".weekly_price_from"
+      key = p.for_sale? ? "properties.featured.sale_price" : "properties.featured.weekly_price_from"
       t(key, price: price)
     end
   end

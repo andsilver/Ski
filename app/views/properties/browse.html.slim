@@ -34,13 +34,13 @@
             = content_tag(:option, t('sleeping_capacity'), value: 'sleeping_capacity ASC', selected: sort_method=='sleeping_capacity ASC')
           = content_tag(:option, 'Number of bedrooms', value: 'number_of_bedrooms ASC', selected: sort_method == 'number_of_bedrooms ASC')
       - if search_results_page_type == :rentals
-      .search-field
+      .search-field.search-field-bedrooms
         label for="search_bedrooms" Bedrooms
-        select#search_bedrooms name="bedrooms"
+        select name="bedrooms"
           = content_tag(:option, "Choose", "")
           - (1..20).each do |i|
             = content_tag(:option, i, value: i, selected: params[:bedrooms].to_i == i)
-      .search-field
+      .search-field.search-field-sleeps
         = render 'sleeps_select'
       .search-field
         = render 'board_basis_select'

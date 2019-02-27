@@ -1,0 +1,105 @@
+.ski-regions-resorts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .ski-region-resort {
+    margin-bottom: 3rem;
+    width: 80%;
+    .preview-item {
+      max-height: 350px;
+    }
+    display: flex;
+
+    @media screen and (max-width: 1300px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 960px) {
+      flex-direction: column
+    }
+
+    &-link {
+      width: 35%;
+      margin-right: 24px;
+      @media screen and (max-width: 960px) {
+        width: 100%;
+        margin-bottom: 24px;
+      }
+    }
+
+    &-info {
+      width: 100%;
+      display: flex;
+
+      &-features {
+        width: 100%;
+        h2 {
+          margin-top: 0;
+        }
+        td {
+          color: black;
+        }
+      }
+
+      &-logo {
+        width: 100%;
+        text-align: left;
+        .button {
+          text-align: center;
+          padding: 0.7rem 0;
+          display: block;
+          margin-top: 24px;
+          max-width: 230px;
+        }
+      }
+    }
+
+    .ski-resort-detail {
+      width: 65%;
+      @media screen and (max-width: 960px) {
+        width: 100%;
+      }
+
+      &-table {
+        display: flex;
+        margin-top: 24px;
+        align-items: center;
+      }
+
+      &-link {
+        width: 50%;
+        a {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.region-nav {
+  display: flex;
+  justify-content: space-between;
+  &-item {
+    width: 16%;
+    text-align: center;
+    color: #005e9c;
+    margin-bottom: 24px;    
+    border: 1px solid #005e9c;
+    padding: 7px 0;
+    cursor: pointer;
+    text-decoration: none;
+    &.active {
+      background: #005e9c;
+      color: white;
+    }
+
+    @media screen and (max-width: 960px) {
+      width: 30%;
+    }
+
+  }
+
+  @media screen and (max-width: 960px) {
+    flex-wrap: wrap;
+  }
+}

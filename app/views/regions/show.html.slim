@@ -14,4 +14,23 @@
           li= link_to_with_count resort, resort, resort.property_count
 
 - featured_properties = render('shared/featured_properties')
-= raw Liquid::Template.parse(@region.info).render('featured_properties' => featured_properties)
+- featured_resorts = render('shared/featured_resorts', resorts: @resorts)
+- region_mountain_facts = render('shared/mountain_facts', r: @region)
+= render('regions/region_layout')
+= raw Liquid::Template.parse(@region.info).render('featured_properties' => featured_properties, 'region_mountain_facts' => region_mountain_facts, 'featured_resorts' => featured_resorts)
+= render('shared/list_your_ski_chalet')
+javascript:
+  $("#mountain_facts_nav").click(function() {
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#mountain_facts").offset().top
+    }, 500);
+  });
+/
+  - resort_altitude_icon = render('shared/resort_icon', type: 'resort_altitude')
+  - highest_lift_icon = render('shared/resort_icon', type: 'highest_lift')
+  - kms_pistes_icon = render('shared/resort_icon', type: 'kms_pistes')
+  - n_lifts_icon = render('shared/resort_icon', type: 'n_lifts')
+  - n_beginner_slopes_icon = render('shared/resort_icon', type: 'n_beginner_slopes')
+  - n_blue_pistes_icon = render('shared/resort_icon', type: 'n_blue_pistes')
+  - n_red_pistes_icon = render('shared/resort_icon', type: 'n_red_pistes')
+  - n_black_pistes_icon = render('shared/resort_icon', type: 'n_black_pistes')

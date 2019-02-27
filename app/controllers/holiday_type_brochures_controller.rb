@@ -11,8 +11,13 @@ class HolidayTypeBrochuresController < ApplicationController
         brochurable_type: @brochurable.class.to_s,
         holiday_type_id: @holiday_type.id
       )
+
       if @brochure
         @featured_properties = @brochure.featured_properties(9)
+        if @brochure.brochurable_type == 'Country'
+          @ski_regions = Region.where(country_id: @brochurable.id, featured: true)
+          @ski_resorts = Resort.where(country_id: @brochurable.id, visible: true).order(:name).paginate(page: params[:page], per_page: 20)
+        end
       else
         not_found
       end

@@ -215,6 +215,7 @@ Rails.application.routes.draw do
 
   resources :regions, only: [:show]
   get 'regions/:id/how-to-get-there' => 'regions#how_to_get_there', as: :how_to_get_to_region
+  get 'regions/:id/piste_map' => 'regions#piste_map', as: :region_piste_map
 
   get 'welcome/:role' => 'roles#sales_pitch', as: :sales_pitch
 

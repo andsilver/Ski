@@ -127,7 +127,7 @@ html lang="#{@lang}"
       
       .links
         / = yield :links
-        = render 'layouts/region_nav' if @region
+        / = render 'layouts/region_nav' if @region
         = raw sidebar_html
 
       .footer-logo-container

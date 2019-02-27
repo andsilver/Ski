@@ -517,9 +517,13 @@ en:
   regions:
     how_to_get_there:
       heading: 'How to Get There'
+    piste_map:
+      heading: 'Piste Map'
     show:
       title: '%{region} Region Information'
       heading: 'Region Information'
+      ski_holidays_title: '%{region} Skiing Holidays'
+      ski_holidays_sub_title: 'Skiing & Snowboarding in %{region}'
   registration: Registration
   resort: 'Resort'
   resorts:

@@ -82,8 +82,31 @@
 
 .search-form {
   display: flex;
-  flex-wrap: wrap;
   align-items: stretch;
+
+  @media screen and (max-width: 968px) {
+    flex-wrap: wrap;
+
+    label {
+      text-align: center;
+    }
+
+    .search-field {
+      &-destination {
+        width: 100%;
+      }
+
+      &-bedrooms, &-sleeps {
+        order: 2;
+        width: 50%;
+      }
+
+      &-checkin-checkout {
+        order: 3;
+        width: 100%;
+      }
+    }
+  }
 }
 
 .search-field-input {
@@ -122,9 +145,8 @@
   select {
     -webkit-appearance: none; /* TODO: Dropdown indicator needed */
     background: #fff url('/assets/icon_arrow_down.png') no-repeat scroll right 10px center;
-    border: none;
-    border-radius: 0;
     cursor: pointer;
+    border: none;
     height: 2.625rem;
     padding: 0 0.75rem;
     font-size: 14px;
@@ -163,6 +185,21 @@
       font-size: 24px;
     }
   }
+
+  &-submit {
+    order: 99;
+    background: #fff;
+    border-left: 1px solid #f3f3f3;
+    box-sizing: border-box;
+    align-self: flex-end;
+    height: 2.625rem;
+    margin-top: 1.49rem;
+    padding: 0.3125rem 0.5rem 0 1rem;
+
+    .action-button {
+      width: 100%;
+    }
+  }
 }
 
 .search-field-destination,
@@ -171,26 +208,6 @@
   flex-grow: 2;
 }
 
-.search-field-submit {
-  background: #fff;
-  border-left: 1px solid #f3f3f3;
-  box-sizing: border-box;
-  flex-grow: unset !important;
-  align-self: flex-end;
-  height: 2.625rem;
-  margin-top: 1.49rem;
-  padding: 0.3125rem 0.5rem 0 1rem;
-  min-width: 200px;
-
-  .action-button {
-    width: 100%;
-  }
-}
-
 div.date::after {
   top: 10px;
-}
-
-.search-field select {
-  min-width: 180px;
 }

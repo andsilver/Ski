@@ -7,8 +7,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Dir["./db/pages/*.rb"].each {|file| require file }
-include StaticContent
 
 Amenity.destroy_all
 Image.destroy_all
@@ -29,7 +27,10 @@ Payment.delete_all
 Enquiry.delete_all
 Website.delete_all
 
-website = Website.create!(home_content: WEBSITE)
+require './db/pages/static'
+include Static
+
+website = Website.create!(home_content: STATIC[:website])
 
 CarouselSlide.delete_all
 CarouselSlide.create!([
@@ -38,7 +39,6 @@ CarouselSlide.create!([
                         { caption: '<p>Summer Villas</p><p>A great choice from the blue seas of <br>the Amalfi Coast to the Florida Keys</p>', link: '/holidays/summer-villas', image_url: 'home/sv-home.png' },
                         { caption: '<p>Lakes & Mountains<p><p>Beautiful lakeside resorts in picture <br>postcard settings</p>', link: '/holidays/lakes-and-mountains', image_url: 'home/lm-home.png' }
                       ])
-
 Page.create!([
                { path: '/pages/about', title: 'About' },
                {
@@ -47,7 +47,7 @@ Page.create!([
                  description: 'Looking for a Chamonix chalet or apartment? Over 100 self catering holiday rental chalets and apartments to choose from for all budgets and tastes for your ski or summer holidays - enquire or book online',
                  keywords: 'chamonix chalets, accommodation in chamonix, chalet rentals in chamonix, chamonix holiday rentals , chamonix vacation rentals, apartments for rent in chamonix, luxury chamonix chalets, hot tubs, ski-in, ski-out, mychaletfinder',
                  header_snippet_name: 'intersport',
-                 content: CHAMONIX_RENT_PAGE
+                 content: STATIC[:resorts][:chamonix][:rent]
                },
                {
                  path: '/resorts/chamonix/properties/sale',
@@ -55,29 +55,36 @@ Page.create!([
                  description: 'Chamonix ski chalets & apartments for sale in Chamonix for all budgets - from studio apartments, holiday homes & luxury ski chalets in Chamonix  to buy - see our selection at MyChaletFinder...',
                  keywords: 'accommodation-in-chamonix, chamonix chalets for sale, chamonix apartments for sale, ski holiday accommodation to buy, mychaletfinder',
                  header_snippet_name: 'intersport',
-                 content: CHAMONIX_SALE_PAGE
+                 content: STATIC[:resorts][:chamonix][:sale]
 
                },
                {
                  path: '/pages/heli-skiing-in-greenland',
                  title: 'Greenland Heli-skiing | Ski Tours Kangaamiut, Greenland',
-                 content: HELI_IN_GREENLAND_PAGE
+                 content: STATIC[:experiences][:heli_skiing][:greenland]
                },
                {
                  path: '/pages/heli-skiing',
                  title: 'Heli-skiing',
                  header_snippet_name: 'search',
-                 content: HELI_SKIING_PAGE
+                 content: STATIC[:experiences][:heli_skiing][:main]
                },
                {
                  path: '/pages/property-for-sale',
                  title: 'Property for Sale -  Luxury Ski Chalets, Villas & Apartments for Sale',
-                 content: PROPERTY_FOR_SALE_PAGE
+                 content: STATIC[:properties][:sale]
+               },
+               {
+                 path: '/regions/les-3-vallees/piste_map',
+                 title: 'Les 3 Vallees Piste Map | Trois Vallees Trail & Ski Area Map',
+                 description: 'Plan where to ski with the Trois Vallees piste map - the 3 Valleys provides over 600kms of pistes for every level of skiers and snowboarder across 8 fabulous resorts - from forest trails to glacier skiing, Les 3 Vallees is incredible....',
+                 keywords: '3 valleys piste map, trail map, ski area map for les 3 vallees, mychaletfinder',
+                 content: STATIC[:regions][:les_3_vallees][:piste_map]
                },
                {
                  path: '/countries/switzerland/holidays/ski-holidays',
                  title: 'Switzerland Ski Chalet Holidays | Swiss Ski Resorts | Chalets',
-                 content: SWISS_SKI_HOLIDAYS_PAGE,
+                 content: STATIC[:countries][:swiss][:ski_holidays],
                  description: 'Swiss ski holidays - search through our comprehensive list of Swiss ski resorts for fantastic self catering ski chalets amongst breathtaking scenery - ideal for family holidays. Book your accommodation online for great deals',
                  keywords: ''
                },
@@ -92,21 +99,35 @@ Page.create!([
                  title: 'Verbier Ski Schools | Ski Lessons | Off-Piste Ski Tours | Mountain Guides',
                  description: 'Verbier ski schools cater for absolute beginners to experts with private  and group lessons for skiing, snowboarding, off-piste and guided tours including the famous Haute Route to Zermatt',
                  keywords: 'verbier ski schools, ski touring in verbier, verbier ski guides, haute route guides, snowboarding lessons in verbier, private ski lessons, group snowboarding lessons',
-                 content: VERBIER_ST_BERNARD_RESORT_SKI_SCHOOLS
+                 content: STATIC[:resorts][:verbier_st_island][:ski_schools]
                },
                {
                  path: '/resorts/chamonix/summer-holidays',
                  title: 'Chamonix Summer Holidays Guide | Chalets & Apartments to Rent',
                  description: 'Summer rental accommodation in Chamonix - a resort busier in summer than in winter. Great choice of chalet rentals & apartments to rent in Chamonix for your summer holiday.  Book a holiday rental in Chamonix activities for all ages...',
                  keywords: 'chamonix chalets, chalet rentals in chamonix, holiday rentals in chamonix, summer holidays in chamonix, accommodation in chamonix, holiday homes for rent in chamonix, mychaletfinder',
-                 content: CHAMONIX_RESORT_SUMMER_HOLIDAY
+                 content: STATIC[:resorts][:chamonix][:summer_holidays]
                },
                {
                  path: '/resorts/chamonix/how-to-get-there',
                  title: 'How to get to Chamonix - transfers, car & train',
                  description: 'Chamonix is one of the easiest resorts to get to in the Alps with transfers taking a little over 1 hour and its motorway all the way from Geneva. Car rentals and airport transfers are available at the airport - book online',
                  keywords: 'airport transfers to chamonix, transfers to chamonix, directions to chamonix, cheap transfers to chamonix, geneva to chamonix transfers, mychaletfinder',
-                 content: CHAMONIX_RESORT_HOW_TO_GET_THERE
+                 content: STATIC[:resorts][:chamonix][:how_to_get_there]
+               },
+               {
+                 path: '/countries/france/holidays/ski-holidays',
+                 title: 'France Ski Holidays 2015 | French Ski Chalet Holidays',
+                 description: 'Ski holidays to the French Alps - choose from over 1000 chalets and apartments to rent in over 30 French ski resorts - ideal for family ski holidays, great value and many offering ski-in, ski-out  book online for great deals',
+                 keywords: 'ski holiday, skiing holidays',
+                 content: STATIC[:countries][:france][:ski_holidays]
+               },
+               {
+                 path: '/holidays/ski-holidays',
+                 title: 'Ski Holidays | Skiing Vacations | Ski Holiday Chalets',
+                 description: 'Looking for a ski holiday?  From Europe, Canada, America to India and Morocco, Mychaletfinder covers over 170 ski resorts with resort reviews, features,  chalet accommodation plus suggestions for family holidays, summer ski and ski trips around the world.',
+                 keywords: 'ski holiday, skiing holidays',
+                 content: STATIC[:holidays][:ski_holidays]
                }
              ])
 
@@ -604,11 +625,25 @@ rhone_alpes = Region.create!(country: france, name: 'Rhône Alpes', slug: 'rhone
 rhone_alpes.holiday_type_brochures.build(holiday_type: ski_holidays)
 rhone_alpes.save!
 
+les_3_vallees = Region.create!(
+  country: france,
+  name: 'Les 3 Vallees',
+  slug: 'les-3-vallees',
+  featured: true,
+  image_url: '/ski-regions/les-3-vallees/saint-martin-de-belleville.jpg',
+  logo_url: '/ski-regions/les-3-vallees/logo.png',
+  logo_title: 'Les 3 Vallees',
+  logo_alt: 'Les 3 Vallees',
+  info: STATIC[:regions][:les_3_vallees][:overview]
+)
+les_3_vallees.holiday_type_brochures.build(holiday_type: ski_holidays)
+les_3_vallees.save!
+
 bernese_oberland = Region.create!(
   country: switzerland,
   name: 'Bernese Oberland',
   slug: 'bernese-oberland',
-  info: BERNESE_OBERLAND_REGION
+  info: STATIC[:regions][:bernese_oberland]
 )
 bernese_oberland.holiday_type_brochures.build(holiday_type: ski_holidays)
 bernese_oberland.save!
@@ -617,10 +652,20 @@ valais = Region.create!(
   country: switzerland,
   name: 'Valais',
   slug: 'valais',
-  info: VALAIS_REGION
+  info: STATIC[:regions][:valais]
 )
 valais.holiday_type_brochures.build(holiday_type: ski_holidays)
 valais.save!
+
+val_di_fassa = Region.create!(
+  country: italy,
+  name: 'Val di Fassa',
+  slug: 'val-di-fassa',
+  info: STATIC[:regions][:val_di_fassa]
+)
+
+val_di_fassa.holiday_type_brochures.build(holiday_type: ski_holidays)
+val_di_fassa.save!
 
 htgt = rhone_alpes.create_page('how-to-get-there')
 htgt.content = '<p>How to get to Rhône Alpes...</p>'
@@ -643,7 +688,7 @@ Resort.create!([
   { country: italy,   name: 'Italian Alps', slug: 'italian-alps' }
 ])
 
-verbier_st_bernard = Resort.create!(country: switzerland, name: 'Verbier St-Bernard', info: '', altitude_m: 1500, top_lift_m: 3300, piste_length_km: 410, visible: true, black: 10, red: 55, blue: 35, green: 2, longest_run_km: 15, drags: 46, chair: 24, gondola: 10, cable_car: 5, funicular: 0, railways: 0, slope_direction: 'N,S,E,W', snowboard_parks: 3, mountain_restaurants: 14, glacier_skiing: true, creche: true, babysitting_services: true, featured: false, introduction: VERBIER_ST_BERNARD_RESORT_INTRODUCTION, season: 'Winter & Summer', beginner: 4, intermediate: 5, off_piste: 5, expert: 5, heli_skiing: true, summer_skiing: false, family: 4, visiting: VERBIER_ST_BERNARD_RESORT_RESORT_GUIDE, apres_ski: 'Sophisticated, lively', gallery_content: '<h1>Seasonal Photos of Verbier<span></span></h1>', piste_map_content: VERBIER_ST_BERNARD_RESORT_PISTE_MAP, region: valais, slug: 'verbier-st-bernard')
+verbier_st_bernard = Resort.create!(country: switzerland, name: 'Verbier St-Bernard', info: '', altitude_m: 1500, top_lift_m: 3300, piste_length_km: 410, visible: true, black: 10, red: 55, blue: 35, green: 2, longest_run_km: 15, drags: 46, chair: 24, gondola: 10, cable_car: 5, funicular: 0, railways: 0, slope_direction: 'N,S,E,W', snowboard_parks: 3, mountain_restaurants: 14, glacier_skiing: true, creche: true, babysitting_services: true, featured: false, introduction: STATIC[:resorts][:verbier_st_island][:introduction], season: 'Winter & Summer', beginner: 4, intermediate: 5, off_piste: 5, expert: 5, heli_skiing: true, summer_skiing: false, family: 4, visiting: STATIC[:resorts][:verbier_st_island][:guide], apres_ski: 'Sophisticated, lively', gallery_content: '<h1>Seasonal Photos of Verbier<span></span></h1>', piste_map_content: STATIC[:resorts][:verbier_st_island][:piste_map], region: valais, slug: 'verbier-st-bernard')
 verbier_st_bernard.holiday_type_brochures.build(holiday_type: ski_holidays)
 verbier_st_bernard.save!
 
@@ -657,7 +702,8 @@ chamonix = Resort.create!(country: france, name: 'Chamonix',
                           info: 'Chamonix, with a population of approximately 10,000, is a world famous resort and was the location of the first winter Olympics in 1924.',
                           for_rent_count: 25,
                           for_sale_count: 5,
-                          region: rhone_alpes)
+                          region: rhone_alpes,
+                          image_url: '/resorts/chamonix/ski-holidays-chamonix-r1-mychaletfinder.jpg')
 
 chamonix.holiday_type_brochures.build(holiday_type: ski_holidays)
 chamonix.save!

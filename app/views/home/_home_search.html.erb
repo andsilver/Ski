@@ -7,18 +7,18 @@
     <div class="search-field search-field-checkin-checkout">
       <%= render 'home/date_range_picker', start_date: '', end_date: '' %>
     </div>
-    <div class="search-field">
+    <div class="search-field search-field-bedrooms">
       <label for="search_bedrooms">Bedrooms</label>
-      <select id="search_bedrooms" name="bedrooms">
+      <select name="bedrooms">
         <option value="">Choose</option>
         <% (1..20).each do |i| %>
           <option value="<%= i %>"><%= i %></option>
         <% end %>
       </select>
     </div>
-    <div class="search-field">
+    <div class="search-field search-field-sleeps">
       <label for="search_sleeps">Sleeps</label>
-      <select id="search_sleeps" name="sleeps">
+      <select name="sleeps">
         <option value="">Choose</option>
         <% (1..40).each do |i| %>
           <option value="<%= i %>"><%= i %></option>

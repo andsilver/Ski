@@ -7,12 +7,11 @@
 <input id="check_out" name="end_date" style="display: none">
 
 <script>
-
     $(function () {
         <% if start_date.present? && end_date.present? %>
             $('#check_in').val("<%= start_date %>");
             $('#check_out').val("<%= end_date %>");
-            $('#check_in_out span').html("<%= Date.parse(start_date).strftime("%Y.%m.%d") %>" + ' - ' + "<%= Date.parse(end_date).strftime("%Y.%m.%d") %>");
+            $('#check_in_out span').html("<%= Date.parse(start_date).strftime("%d %b %Y") %>" + ' - ' + "<%= Date.parse(end_date).strftime("%d %b %Y") %>");
             $('#check_in_out span').css('color', 'black');
         <% else %>
             $('#check_in').val(null);
@@ -25,7 +24,14 @@
         "opens": "center",
         "linkedCalendars": false
     }, function(start, end, label) {
-        $('#check_in_out span').html(start.format('YYYY.MM.DD') + ' - ' + end.format('YYYY.MM.DD'));
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May","Jun","Jul", "Aug", "Sepr", "Oct", "Nov","Dec"]
+        const format = (date) => {
+            const new_date = date.format('DD B YYYY');
+            const month = monthNames[Number(date.format('MM')) - 1];
+            return new_date.replace('B', month);
+        }
+
+        $('#check_in_out span').html(format(start) + ' - ' + format(end));
         $('#check_in_out span').css('color', 'black');
         $('#check_in').val(start);
         $('#check_out').val(end);
