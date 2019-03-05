@@ -4,7 +4,7 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@region.breadcrumbs, t('.heading'))
 
-- content_for :search, render('home/quick_search')
+- content_for :search, render('home/home_search')
 - content_for :links do
   - if @region.visible_resorts.any?
     section
@@ -19,12 +19,6 @@
 = render('regions/region_layout')
 = raw Liquid::Template.parse(@region.info).render('featured_properties' => featured_properties, 'region_mountain_facts' => region_mountain_facts, 'featured_resorts' => featured_resorts)
 = render('shared/list_your_ski_chalet')
-javascript:
-  $("#mountain_facts_nav").click(function() {
-    $([document.documentElement, document.body]).animate({
-        scrollTop: $("#mountain_facts").offset().top
-    }, 500);
-  });
 /
   - resort_altitude_icon = render('shared/resort_icon', type: 'resort_altitude')
   - highest_lift_icon = render('shared/resort_icon', type: 'highest_lift')

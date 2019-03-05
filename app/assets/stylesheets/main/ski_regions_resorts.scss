@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 3rem;
   .ski-region-resort {
     margin-bottom: 3rem;
-    width: 80%;
+    width: 90%;
     .preview-item {
-      max-height: 350px;
+      max-height: 300px;
     }
     display: flex;
 
@@ -19,7 +20,7 @@
     }
 
     &-link {
-      width: 35%;
+      width: 55%;
       margin-right: 24px;
       @media screen and (max-width: 960px) {
         width: 100%;

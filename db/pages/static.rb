@@ -11,7 +11,10 @@ module Static
     },
     countries: {
       france: {
-        ski_holidays: File.read('db/pages/countries/france/ski_holidays.html')
+        ski_holidays: File.read('db/pages/countries/france/ski_holidays.html'),
+        ski_regions: File.read('db/pages/countries/france/ski_regions.html'),
+        ski_resorts: File.read('db/pages/countries/france/ski_resorts.html'),
+        transfer_times: File.read('db/pages/countries/france/transfer_times.html')
       },
       swiss: {
         ski_holidays: File.read('db/pages/countries/swiss/ski_holidays.html')

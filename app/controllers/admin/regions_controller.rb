@@ -47,7 +47,7 @@ module Admin
     end
 
     def region_params
-      params.require(:region).permit(:country_id, :info, :name, :slug, :featured, :image_url, :strapline, :logo_url, :logo_alt, :logo_title, :altitude_m, :top_lift_m, :piste_length_km, :lifts_n, :green, :blue, :red, :black)
+      params.require(:region).permit(:country_id, :info, :name, :slug, :featured, :image_url, :strapline, :logo_url, :logo_alt, :logo_title, :altitude_m, :top_lift_m, :piste_length_km, :lifts_n, :green, :blue, :red, :black, :comment)
     end
   end
 end

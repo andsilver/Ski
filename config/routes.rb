@@ -124,7 +124,7 @@ Rails.application.routes.draw do
   resources :holiday_types, only: [:show], path: 'holidays'
 
   get(
-    ':place_type/:place_slug/holidays/:holiday_type_slug' =>
+    ':place_type/:place_slug/holidays/:holiday_type_slug/(*tab)' =>
       'holiday_type_brochures#show',
     as: :holiday_type_brochure,
     constraints: { place_type: /countries|regions|resorts/ }

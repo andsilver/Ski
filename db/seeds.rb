@@ -123,6 +123,27 @@ Page.create!([
                  content: STATIC[:countries][:france][:ski_holidays]
                },
                {
+                 path: '/countries/france/holidays/ski-holidays/ski-areas',
+                 title: 'France Ski Holidays 2015 | French Ski Chalet Holidays',
+                 description: 'Ski holidays to the French Alps - choose from over 1000 chalets and apartments to rent in over 30 French ski resorts - ideal for family ski holidays, great value and many offering ski-in, ski-out  book online for great deals',
+                 keywords: 'ski holiday, skiing holidays',
+                 content: STATIC[:countries][:france][:ski_regions]
+               },
+               {
+                 path: '/countries/france/holidays/ski-holidays/ski-resorts',
+                 title: 'France Ski Holidays 2015 | French Ski Chalet Holidays',
+                 description: 'Ski holidays to the French Alps - choose from over 1000 chalets and apartments to rent in over 30 French ski resorts - ideal for family ski holidays, great value and many offering ski-in, ski-out  book online for great deals',
+                 keywords: 'ski holiday, skiing holidays',
+                 content: STATIC[:countries][:france][:ski_resorts]
+               },
+               {
+                 path: '/countries/france/holidays/ski-holidays/transfer-times',
+                 title: 'France Ski Holidays 2015 | French Ski Chalet Holidays',
+                 description: 'Ski holidays to the French Alps - choose from over 1000 chalets and apartments to rent in over 30 French ski resorts - ideal for family ski holidays, great value and many offering ski-in, ski-out  book online for great deals',
+                 keywords: 'ski holiday, skiing holidays',
+                 content: STATIC[:countries][:france][:transfer_times]
+               },
+               {
                  path: '/holidays/ski-holidays',
                  title: 'Ski Holidays | Skiing Vacations | Ski Holiday Chalets',
                  description: 'Looking for a ski holiday?  From Europe, Canada, America to India and Morocco, Mychaletfinder covers over 170 ski resorts with resort reviews, features,  chalet accommodation plus suggestions for family holidays, summer ski and ski trips around the world.',
@@ -136,57 +157,61 @@ ski_holidays = HolidayType.create!(
   slug: 'ski-holidays',
   mega_menu_html: '
     <li><a href="/countries/france/holidays/ski-holidays">France</a></li>
-    <li><a href="/countries/switzerland/holidays/ski-holidays">Switzerland</a></li>
-    <li><a href="/countries/austria/holidays/ski-holidays">Austria</a></li>
-    <li><a href="/countries/united-states/holidays/ski-holidays">United States</a></li>
-    <li><a href="/countries/canada/holidays/ski-holidays">Canada</a></li>
-    <li><a href="/countries/united-kingdom/holidays/ski-holidays">United Kingdom</a></li>
-    <li><a href="/countries/norway/holidays/ski-holidays">Norway</a></li>
-    <li><a href="/countries/finland/holidays/ski-holidays">Finland</a></li>
-    <li><a href="/countries/andora/holidays/ski-holidays">Andora</a></li>
-    <li><a href="/countries/germany/holidays/ski-holidays">Germany</a></li>'
+    <li><a href="/countries/switzerland/holidays/ski-holidays">Switzerland</a></li>'
 )
+# <li><a href="/countries/austria/holidays/ski-holidays">Austria</a></li>
+# <li><a href="/countries/united-states/holidays/ski-holidays">United States</a></li>
+# <li><a href="/countries/canada/holidays/ski-holidays">Canada</a></li>
+# <li><a href="/countries/united-kingdom/holidays/ski-holidays">United Kingdom</a></li>
+# <li><a href="/countries/norway/holidays/ski-holidays">Norway</a></li>
+# <li><a href="/countries/finland/holidays/ski-holidays">Finland</a></li>
+# <li><a href="/countries/andora/holidays/ski-holidays">Andora</a></li>
+# <li><a href="/countries/germany/holidays/ski-holidays">Germany</a></li>
+
 besk_ski_resorts = HolidayType.create!(
   name: 'Besk Ski Resorts for...',
   slug: 'best-ski-resorts',
   mega_menu_html: '
-    <li><a href="/pages/best-christmas-markets-ski-resorts">Christmas Markets</a></li>
-    <li><a href="/pages/christmas-ski-holidays">Skiing at Christmas</a></li>
-    <li><a href="/pages/best-ski-tours-alps">Ski Touring</a></li>
-    <li><a href="/pages/heli-skiing">Heli-Skiing</a></li>
-    <li><a href="/pages/beginner-ski-resorts">Beginners</a></li>
-    <li><a href="/pages/intermediate-ski-resorts">Intermediates</a></li>
-    <li><a href="/pages/summer-skiing">Summer Skiing</a></li>
-    <li><a href="/pages/ski-in-ski-out-ski-resorts-chalets">Ski-in, Ski-out Chalets</a></li>
-    <li><a href="/pages/lapland-ski-holidays">Northern Lights</a></li>
-    <li><a href="">Families</a></li>
-    '
+    <li><a href="/pages/heli-skiing">Heli-Skiing</a></li>'
 )
+# <li><a href="/pages/best-christmas-markets-ski-resorts">Christmas Markets</a></li>
+# <li><a href="/pages/christmas-ski-holidays">Skiing at Christmas</a></li>
+# <li><a href="/pages/best-ski-tours-alps">Ski Touring</a></li>
+
+# <li><a href="/pages/beginner-ski-resorts">Beginners</a></li>
+# <li><a href="/pages/intermediate-ski-resorts">Intermediates</a></li>
+# <li><a href="/pages/summer-skiing">Summer Skiing</a></li>
+# <li><a href="/pages/ski-in-ski-out-ski-resorts-chalets">Ski-in, Ski-out Chalets</a></li>
+# <li><a href="/pages/lapland-ski-holidays">Northern Lights</a></li>
+# <li><a href="">Families</a></li>
+
 experiences = HolidayType.create!(
   name: 'Experiences',
   slug: 'experiences',
-  mega_menu_html: '
-    <li><a href="">Lapland Ski Resorts</a></li>
-    <li><a href="">Ski Tours</a></li>
-    <li><a href="">Eco Friendly</a></li>
-    <li><a href="">Spa and Wellbeing</a></li>
-    <li><a href="">Beginner Resorts</a></li>
-    <li><a href="">Gastronomic Delights</a></li>
-  '
+  mega_menu_html: ''
 )
+
+# <li><a href="">Lapland Ski Resorts</a></li>
+# <li><a href="">Ski Tours</a></li>
+# <li><a href="">Eco Friendly</a></li>
+# <li><a href="">Spa and Wellbeing</a></li>
+# <li><a href="">Beginner Resorts</a></li>
+# <li><a href="">Gastronomic Delights</a></li>
+
 services = HolidayType.create!(
   name: 'Services',
   slug: 'services',
   mega_menu_html: '
-    <li><a href="/pages/snow-reports-snow-forecasts">Snow Forecasts</a></li>
-    <li><a href="/pages/ski-rentals-ski-hire">Ski Rental</a></li>
-    <li><a href="/pages/airport-transfers">Airport Transfers</a></li>
-    <li><a href="/pages/travel-insurance">Travel Insurance</a></li>
-    <li><a href="/pages/car-hire-car-rentals">Car Hire</a></li>
-    <li><a href="">Newsletters</a></li>
-    <li><a href="/pages/fc-exchange">Foreign Exchange</a></li>
   '
 )
+
+#     <li><a href="/pages/snow-reports-snow-forecasts">Snow Forecasts</a></li>
+#     <li><a href="/pages/ski-rentals-ski-hire">Ski Rental</a></li>
+#     <li><a href="/pages/airport-transfers">Airport Transfers</a></li>
+#     <li><a href="/pages/travel-insurance">Travel Insurance</a></li>
+#     <li><a href="/pages/car-hire-car-rentals">Car Hire</a></li>
+#     <li><a href="">Newsletters</a></li>
+#     <li><a href="/pages/fc-exchange">Foreign Exchange</a></li>
 
 currencies = [
   { name: 'Euro', unit: '€', pre: true, code: 'EUR', in_euros: 1    },
@@ -639,6 +664,56 @@ les_3_vallees = Region.create!(
 les_3_vallees.holiday_type_brochures.build(holiday_type: ski_holidays)
 les_3_vallees.save!
 
+portes_du_soleil = Region.create!(
+  country: france,
+  name: 'Portes du Soleil',
+  slug: 'portes-du-soleil',
+  featured: true,
+  image_url: '/ski-regions/portes-du-soleil/champery-portes-du-soleil.jpg'
+)
+portes_du_soleil.holiday_type_brochures.build(holiday_type: ski_holidays)
+portes_du_soleil.save!
+
+paradiski = Region.create!(
+  country: france,
+  name: 'Paradiski',
+  slug: 'paradiski',
+  featured: true,
+  image_url: '/ski-regions/paradiski/paradiski-les-arcs-2000-mychaletfinder.jpg'
+)
+paradiski.holiday_type_brochures.build(holiday_type: ski_holidays)
+paradiski.save!
+
+french_pyrenees = Region.create!(
+  country: france,
+  name: 'French Pyrenees',
+  slug: 'french-pyrenees',
+  featured: true,
+  image_url: '/ski-regions/french-pyrenees/saint-lary-ski-area.jpg'
+)
+french_pyrenees.holiday_type_brochures.build(holiday_type: ski_holidays)
+french_pyrenees.save!
+
+espace_diamant = Region.create!(
+  country: france,
+  name: 'Espace Diamant',
+  slug: 'espace-diamant',
+  featured: true,
+  image_url: '/ski-regions/espace-diamant/espace-diamant-ski-in-ski-out-chalet.jpg'
+)
+espace_diamant.holiday_type_brochures.build(holiday_type: ski_holidays)
+espace_diamant.save!
+
+evasion_mont_blanc = Region.create!(
+  country: france,
+  name: 'Evasion Mont Blanc',
+  slug: 'evasion-mont-blanc',
+  featured: true,
+  image_url: '/ski-regions/evasion-mont-blanc/evasion-mont-blanc-megeve.jpg'
+)
+evasion_mont_blanc.holiday_type_brochures.build(holiday_type: ski_holidays)
+evasion_mont_blanc.save!
+
 bernese_oberland = Region.create!(
   country: switzerland,
   name: 'Bernese Oberland',
@@ -673,20 +748,20 @@ htgt.save
 
 # Resorts
 Resort.create!([
-  { country: austria, name: 'Alpbach', slug: 'alphach' },
-  { country: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
-  { country: austria, name: 'St Anton',     slug: 'st-anton' },
-  { country: austria, name: 'Tyrol',        slug: 'tyrol' },
-  { country: austria, name: 'Westendorf',   slug: 'westendorf' },
-  { country: france,  name: 'Avoriaz',      slug: 'avoriaz' },
-  { country: france,  name: 'Bernex',       slug: 'bernex' },
-  { country: france,  name: 'La Tania',     slug: 'la-tania' },
-  { country: france,  name: 'Les Houches',  slug: 'les-houches', visible: true },
-  { country: france,  name: 'Morzine',      slug: 'morzine' },
-  { country: italy,   name: 'Cervinia',     slug: 'cervinia' },
-  { country: italy,   name: 'Dolomites',    slug: 'dolomites' },
-  { country: italy,   name: 'Italian Alps', slug: 'italian-alps' }
-])
+                 { country: austria, name: 'Alpbach', slug: 'alphach' },
+                 { country: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
+                 { country: austria, name: 'St Anton',     slug: 'st-anton' },
+                 { country: austria, name: 'Tyrol',        slug: 'tyrol' },
+                 { country: austria, name: 'Westendorf',   slug: 'westendorf' },
+                 { country: france,  name: 'Avoriaz',      slug: 'avoriaz' },
+                 { country: france,  name: 'Bernex',       slug: 'bernex' },
+                 { country: france,  name: 'La Tania',     slug: 'la-tania' },
+                 { country: france,  name: 'Les Houches',  slug: 'les-houches', visible: true },
+                 { country: france,  name: 'Morzine',      slug: 'morzine' },
+                 { country: italy,   name: 'Cervinia',     slug: 'cervinia' },
+                 { country: italy,   name: 'Dolomites',    slug: 'dolomites' },
+                 { country: italy,   name: 'Italian Alps', slug: 'italian-alps' }
+               ])
 
 verbier_st_bernard = Resort.create!(country: switzerland, name: 'Verbier St-Bernard', info: '', altitude_m: 1500, top_lift_m: 3300, piste_length_km: 410, visible: true, black: 10, red: 55, blue: 35, green: 2, longest_run_km: 15, drags: 46, chair: 24, gondola: 10, cable_car: 5, funicular: 0, railways: 0, slope_direction: 'N,S,E,W', snowboard_parks: 3, mountain_restaurants: 14, glacier_skiing: true, creche: true, babysitting_services: true, featured: false, introduction: STATIC[:resorts][:verbier_st_island][:introduction], season: 'Winter & Summer', beginner: 4, intermediate: 5, off_piste: 5, expert: 5, heli_skiing: true, summer_skiing: false, family: 4, visiting: STATIC[:resorts][:verbier_st_island][:guide], apres_ski: 'Sophisticated, lively', gallery_content: '<h1>Seasonal Photos of Verbier<span></span></h1>', piste_map_content: STATIC[:resorts][:verbier_st_island][:piste_map], region: valais, slug: 'verbier-st-bernard')
 verbier_st_bernard.holiday_type_brochures.build(holiday_type: ski_holidays)

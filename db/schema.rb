@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_26_131317) do
+ActiveRecord::Schema.define(version: 2019_03_05_123008) do
 
   create_table "adverts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -567,6 +567,7 @@ ActiveRecord::Schema.define(version: 2019_02_26_131317) do
     t.integer "blue"
     t.integer "red"
     t.integer "black"
+    t.string "comment"
     t.index ["country_id"], name: "index_regions_on_country_id"
     t.index ["slug"], name: "index_regions_on_slug"
     t.index ["visible"], name: "index_regions_on_visible"
@@ -631,6 +632,7 @@ ActiveRecord::Schema.define(version: 2019_02_26_131317) do
     t.integer "ski_area_acre"
     t.string "image_url"
     t.string "strapline"
+    t.string "comment"
     t.index ["country_id"], name: "index_resorts_on_country_id"
     t.index ["featured"], name: "index_resorts_on_featured"
     t.index ["region_id"], name: "index_resorts_on_region_id"

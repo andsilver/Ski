@@ -24,12 +24,14 @@
   /
   p Explore MyChaletFinder
   ul.flat-list.flat-with-margin
-    li About Us
-    li Contact Us
-    li List your property
-    li Business Advertising
-    li Chalets for sale
-    li Blog
+    /li About Us
+    /li Contact Us
+    li
+      a href="/welcome/advertiser" List your property
+    /li Business Advertising
+    li
+      a href="/property_sales" Chalets for sale
+    / li Blog
     / li= link_to I18n.t(:privacy), privacy_path, rel: 'nofollow'
     / li= link_to I18n.t(:terms), terms_path, rel: 'nofollow'
     / li= link_to I18n.t(:contact), contact_path
@@ -37,7 +39,7 @@
     /   a href="/pages/resources" Resources
     / li
     /   a#advertise_link href="/welcome/advertiser"= t('advertise')
-.footer-block
+/.footer-block
   p Continent Traveller Family
   ul.flat-list.flat-with-margin
     li MyCabin Finder

@@ -64,6 +64,7 @@
                             <img src="<%= r['logo_url'] %>" alt="<%= r['logo_alt'] %>" title="<%= r['logo_title'] %>">
                         <% end %>
                     </div>
+                    <p><%= r['comment'] %></p>
                     <a class="button action-button" href="<%= type == 'resort' ? resort_path(r) : region_path(r) %>">More Info</a>
                 </div>
             </div>
