@@ -6,7 +6,7 @@
   ul#carousel-slides
     = render partial: 'carousel_slide', collection: CarouselSlide.active.order(:position)
 
-= content_for :custom_footer do
+/= content_for :custom_footer do
   footer role="contentinfo"
     .content-inset.footer-block-container
       = raw @footer_box
@@ -14,11 +14,11 @@
       / #footer-marker
       /   a href="/"
       /     = image_tag 'marker-grey.png', alt: ''
-      .footer-block
+      /.footer-block
         p MyChaletFinder
         p One of Europe's leading self catering holiday accommodation website offering ski chalets apartments, villas and holiday homes for rent.
         p We also have a wide selection of alpine property for sale here
-      .footer-block
+      /.footer-block
         /
         p Explore MyChaletFinder
         ul.flat-list.flat-with-margin
@@ -35,7 +35,7 @@
           /   a href="/pages/resources" Resources
           / li
           /   a#advertise_link href="/welcome/advertiser"= t('advertise')
-      .footer-block
+      /.footer-block
         p Continent Traveller Family
         ul.flat-list.flat-with-margin
           li MyCabin Finder
@@ -44,7 +44,7 @@
           li MyCaribbean Villas
           li MyCityFlat Finder
           li MyHolidayLodge Park
-    ul#footer-copyright
+    /ul#footer-copyright
       li ©#{Time.now.year} #{COMPANY_NAME}.
       li All rights reserved.  |
       li Terms & Conditions  |
