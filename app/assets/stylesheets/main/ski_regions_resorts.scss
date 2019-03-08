@@ -45,12 +45,14 @@
       &-logo {
         width: 100%;
         text-align: left;
+        display: flex;
+        justify-content: flex-end;
         .button {
           text-align: center;
           padding: 0.7rem 0;
           display: block;
           margin-top: 24px;
-          max-width: 230px;
+          width: 230px;
         }
       }
     }

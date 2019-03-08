@@ -58,14 +58,16 @@
                 </div>
                 <div class="ski-region-resort-info-logo">
                     <div>
-                        <% if type == 'resort' %>
-                            <img src="<%= resort_logo_url(r) %>" alt="" title="">
-                        <% else %>
-                            <img src="<%= r['logo_url'] %>" alt="<%= r['logo_alt'] %>" title="<%= r['logo_title'] %>">
-                        <% end %>
+                        <div>
+                            <% if type == 'resort' %>
+                                <img src="<%= resort_logo_url(r) %>" alt="" title="">
+                            <% else %>
+                                <img src="<%= r['logo_url'] %>" alt="<%= r['logo_alt'] %>" title="<%= r['logo_title'] %>">
+                            <% end %>
+                        </div>
+                        <p><%= r['comment'] %></p>
+                        <a class="button action-button" href="<%= type == 'resort' ? resort_path(r) : region_path(r) %>">More Info</a>
                     </div>
-                    <p><%= r['comment'] %></p>
-                    <a class="button action-button" href="<%= type == 'resort' ? resort_path(r) : region_path(r) %>">More Info</a>
                 </div>
             </div>
         </div>

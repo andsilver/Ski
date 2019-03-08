@@ -4,6 +4,7 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@region.breadcrumbs, t('.heading'))
 
+- @destination = @region.name
 - content_for :search, render('home/home_search')
 - content_for :links do
   - if @region.visible_resorts.any?
