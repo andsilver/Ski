@@ -47,12 +47,17 @@
         text-align: left;
         display: flex;
         justify-content: flex-end;
+        > div {
+          display: flex;
+          flex-direction: column;
+        }
         .button {
           text-align: center;
           padding: 0.7rem 0;
           display: block;
           margin-top: 24px;
           width: 230px;
+          align-self: flex-end;
         }
       }
     }
