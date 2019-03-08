@@ -4,7 +4,7 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading({t('home_page') => root_path}, @holiday_type)
 
-- content_for :search, render('home/quick_search')
+- content_for :search, render('home/home_search')
 - content_for :links do
   section
     h2= @holiday_type
