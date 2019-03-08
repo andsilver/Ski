@@ -10,8 +10,8 @@
 - elsif @region
   = content_for :theme, @region.theme
 
-- content_for :search do
-  #search-options.search-options
+- content_for :search, render('home/home_search')
+  / #search-options.search-options
     = form_tag request.path, class: 'search-form cf', method: 'get' do
       - if @resort
         input type="hidden" name="resort_slug" value="#{@resort.slug}"

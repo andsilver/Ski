@@ -1,7 +1,7 @@
 <div id="bloodhound">
   <form class="search-form cf" action="<%= home_search_path %>">
     <div class="search-field search-field-destination">
-      <label for="destination">Find rentals here</label>
+      <label for="destination">Destination</label>
       <input id="destination" class="typeahead" type="text" placeholder="Find rentals here" name="place_name">
     </div>
     <div class="search-field search-field-checkin-checkout">
@@ -30,7 +30,6 @@
     </div>
   </form>
 </div>
-
 
 <script>
   $('.search-form').on('submit', function() {
@@ -78,4 +77,6 @@
       format: 'd mmm, yyyy'
     });
   });
+
+  $('.tt-input').val("<%= @destination %>");
 </script>

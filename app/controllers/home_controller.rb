@@ -15,6 +15,8 @@ class HomeController < ApplicationController
       redirect_to resort_property_rent_path(@resort, :start_date => start_date, :end_date => end_date, :bedrooms => params[:bedrooms], :sleeps => params[:sleeps])
     elsif @region
       redirect_to region_property_rent_path(@region)
+    # elsif @country
+    #   redirect_to 
     else
       redirect_to root_path
     end
@@ -73,6 +75,7 @@ class HomeController < ApplicationController
       if params[:place_name]
         @resort ||= Resort.find_by(name: params[:place_name])
         @region ||= Region.find_by(name: params[:place_name])
+        @country ||= Country.find_by(name: params[:place_name])
       end
     end
 end

@@ -117,6 +117,7 @@ class ApplicationController < ActionController::Base
 
   def page_defaults
     @footer_box = ''
+    @destination = ''
     @page_info = Page.find_by(path: request.path)
     if @page_info
       @page_title = @page_info.title
