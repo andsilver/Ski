@@ -173,36 +173,35 @@ besk_ski_resorts = HolidayType.create!(
   name: 'Besk Ski Resorts for...',
   slug: 'best-ski-resorts',
   mega_menu_html: '
-    <li><a href="/pages/heli-skiing">Heli-Skiing</a></li>'
+    <li><a href="/pages/beginner-ski-resorts">Beginners</a></li>
+    <li><a href="/pages/intermediate-ski-resorts">Intermediates</a></li>
+    <li><a href="/pages/family-ski-resorts">Families</a></li>
+    <li><a href="/pages/christmas-ski-holidays">Skiing at Christmas</a></li>'
 )
-# <li><a href="/pages/best-christmas-markets-ski-resorts">Christmas Markets</a></li>
-# <li><a href="/pages/christmas-ski-holidays">Skiing at Christmas</a></li>
-# <li><a href="/pages/best-ski-tours-alps">Ski Touring</a></li>
 
-# <li><a href="/pages/beginner-ski-resorts">Beginners</a></li>
-# <li><a href="/pages/intermediate-ski-resorts">Intermediates</a></li>
+# <li><a href="/pages/best-ski-tours-alps">Ski Touring</a></li>
 # <li><a href="/pages/summer-skiing">Summer Skiing</a></li>
 # <li><a href="/pages/ski-in-ski-out-ski-resorts-chalets">Ski-in, Ski-out Chalets</a></li>
 # <li><a href="/pages/lapland-ski-holidays">Northern Lights</a></li>
-# <li><a href="">Families</a></li>
 
 experiences = HolidayType.create!(
   name: 'Experiences',
   slug: 'experiences',
-  mega_menu_html: ''
+  mega_menu_html: '
+    <li><a href="/holidays/spa-resorts">Spa & Wellness</a></li>
+    <li><a href="/pages/best-christmas-markets-ski-resorts">Christmas Markets</a></li>
+    <li><a href="/pages/lapland-ski-holidays">Lapland & Northern Lights</a></li>
+    <li><a href="/pages/best-ski-tours-alps">Ski Tours</a></li>
+    <li><a href="/pages/heli-skiing">Heli-Skiing</a></li>
+  '
 )
-
-# <li><a href="">Lapland Ski Resorts</a></li>
-# <li><a href="">Ski Tours</a></li>
-# <li><a href="">Eco Friendly</a></li>
-# <li><a href="">Spa and Wellbeing</a></li>
-# <li><a href="">Beginner Resorts</a></li>
-# <li><a href="">Gastronomic Delights</a></li>
 
 services = HolidayType.create!(
   name: 'Services',
   slug: 'services',
   mega_menu_html: '
+    <li><a href="/pages/car-hire-car-rentals">Car Hire</a></li>
+    <li><a href="/pages/fc-exchange">Foreign Exchange</a></li>
   '
 )
 
@@ -210,9 +209,7 @@ services = HolidayType.create!(
 #     <li><a href="/pages/ski-rentals-ski-hire">Ski Rental</a></li>
 #     <li><a href="/pages/airport-transfers">Airport Transfers</a></li>
 #     <li><a href="/pages/travel-insurance">Travel Insurance</a></li>
-#     <li><a href="/pages/car-hire-car-rentals">Car Hire</a></li>
 #     <li><a href="">Newsletters</a></li>
-#     <li><a href="/pages/fc-exchange">Foreign Exchange</a></li>
 
 currencies = [
   { name: 'Euro', unit: '€', pre: true, code: 'EUR', in_euros: 1    },
