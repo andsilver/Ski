@@ -156,8 +156,9 @@ ski_holidays = HolidayType.create!(
   name: 'Ski Holidays in...',
   slug: 'ski-holidays',
   mega_menu_html: '
-    <li><a href="/countries/france/holidays/ski-holidays">France</a></li>
-    <li><a href="/countries/switzerland/holidays/ski-holidays">Switzerland</a></li>'
+    <li><a href="/holidays/ski-holidays">Overview</a></li>
+    <li><a href="/countries/france/holidays/ski-holidays">Ski holidays in France</a></li>
+    <li><a href="/countries/switzerland/holidays/ski-holidays">Ski holidays in Switzerland</a></li>'
 )
 # <li><a href="/countries/austria/holidays/ski-holidays">Austria</a></li>
 # <li><a href="/countries/united-states/holidays/ski-holidays">United States</a></li>
