@@ -269,7 +269,10 @@ javascript:
         h4#unavailable-description The property is unavailable for the dates you have requested.
 
 #booking_form
+  br
+  br
   h2 Please select your check-in and check-out days by clicking a date on the calendar.
+  br
   = form_tag action: 'check_interhome_booking', id: @property.id do |form|
     - cal = InterhomeCalendar.new(@accommodation.interhome_vacancy)
     .flex-layout

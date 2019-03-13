@@ -59,4 +59,29 @@ $(function() {
 </script>
 <div id="interhome_booking_form"></div>
 <% end -%>
-
+<br>
+<div class="meta static-page-content">
+  <div class="addtion-info">
+    <div>
+      <h2>Additional Information</h2>
+      <a href="<%= interhome_property_path(@accommodation.permalink) %>" itemprop="url">Permalink</a>
+      <% if @accommodation.geodata_lat.present? -%>
+        <h4 itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+          Latitude:   <%= @accommodation.geodata_lat %><br>
+          Longitude: <%= @accommodation.geodata_lng %>
+          <meta itemprop="latitude" content="<%= @accommodation.geodata_lat %>">
+          <meta itemprop="longitude" content="<%= @accommodation.geodata_lng %>">
+        </h4>
+      <% end -%>
+    </div>
+    <div>
+      <div class="abta">
+        <%= image_tag 'abta.png', alt: 'ABTA Member' %><br>
+        The tour operator<br>
+        (Interhome) is an<br>
+        ABTA Member<br>
+        ABTA No. L7890
+      </div>
+    </div>
+  </div>
+</div>
