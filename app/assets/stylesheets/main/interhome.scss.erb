@@ -7,6 +7,10 @@
   float: right;
 }
 
+#booking_form {
+  margin-top: 3rem;
+}
+
 .interhome {
   label {
     font-weight: bold;
@@ -35,13 +39,13 @@
 
   td, th {
     font-size: 0.875rem;
-    padding: 3px 4px;
-    border: 2px solid #fff;
+    padding: 3px 1px;
+    border-radius: 1px;
   }
 
   td {
     color: #fff;
-    text-align: right;
+    text-align: center;
   }
 
   th {
@@ -54,11 +58,11 @@
   }
 
   td.availability-N, td.availability-unknown {
-    background: red;
+    background: #dd0000;
   }
 
   td.availability-Y {
-    background: green;
+    background: #009900;
     cursor: pointer;
     font-weight: bold;
   }
@@ -78,4 +82,156 @@
   width: 33%;
   float: left;
   margin: 6px 0.3% 0 0;
+  @media screen and (max-width: 968px) {
+    float: none;
+    width: 100%;
+  }
+}
+
+.panel-section {
+  padding: 12px;
+  background: #eee;
+
+  .date_pick, input {
+    width: 150px;
+    padding: 5px;
+    border: 1px solid #ececec;
+    background: white;
+    position: relative;
+    text-align: right;
+    border-radius: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+  } 
+}
+
+#booking_results {
+
+  .form-group {
+    margin: 1rem 0;
+    label {
+      color: #222;
+    }
+  }
+
+  a {
+    color: #005cff;
+    margin: 0 3px;
+    text-decoration: none;
+  }
+
+  table {
+    color: #111;
+    width: 100%;
+
+    td {
+      padding-bottom: 10px;
+      min-width: 100px;
+      line-height: 32px;
+    }
+  }
+
+  #customer_address_street {
+    margin-bottom: 10px;
+  }
+
+  .contact-form {
+    width: 80%;
+    @media screen and (max-width: 640px) {
+      width: 100%;
+    }
+    .form-group {
+      width: 100%;
+      label {
+        display: block;
+        margin-right: 10px;
+        margin-bottom: 5px;
+      }
+      input, select {
+        width: 100%
+      }
+    }
+  }
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border-radius: 4px;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #002f66;
+  color: white;
+
+  h4 {
+    margin: 10px 0;
+    color: white;
+  }
+}
+
+.modal-body {
+  padding: 20px 16px;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
 }

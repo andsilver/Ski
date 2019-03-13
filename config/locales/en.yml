@@ -79,6 +79,8 @@ en:
   basket: Basket
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
+  rooms: 'Rooms'
+  surface_area: 'Surface Area'
   business: Business
   business_details: Business Details
   categories_controller:
@@ -624,7 +626,7 @@ en:
   sign_out: Sign Out
   sign_up: Advertise
   signed_out: 'You are now signed out.'
-  sleeping_capacity: 'Sleeping capacity'
+  sleeping_capacity: 'Capacity'
   sleeps: sleeps
   strapline: 'Strapline'
   strapline_placeholder: "Summarise the property’s key features (e.g., size, location) in under 255 characters."
@@ -708,3 +710,4 @@ en:
       _show_property_heading:
         new_developments: 'New Developments'
   weekly_rent_price: 'Weekly rental price from'
+  rent_price_per_night: 'From %{price} per night'

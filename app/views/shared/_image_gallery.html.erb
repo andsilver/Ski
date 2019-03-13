@@ -1,0 +1,58 @@
+<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">
+  <div class="rg-image-wrapper">
+    {{if itemsCount > 1}}
+      <div class="rg-image-nav">
+        <div>
+          <a href="#" class="rg-image-nav-prev">Previous Image</a>
+          <a href="#" class="rg-image-nav-next">Next Image</a>
+        </div>
+      </div>
+    {{/if}}
+    <div class="rg-image"></div>
+    <div class="rg-loading"></div>
+    <div class="rg-caption-wrapper">
+      <div class="rg-caption" style="display:none;">
+        <p></p>
+      </div>
+    </div>
+  </div>
+</script>
+<script>
+  $(() => {
+    initGallery()
+  })
+</script>
+<div class="container">
+  <div class="content">
+    <div id="rg-gallery" class="rg-gallery">
+      <div class="rg-thumbs">
+        <!-- Elastislide Carousel Thumbnail Viewer -->
+        <div class="es-carousel-wrapper">
+          <div class="es-nav">
+            <div>
+              <span class="es-nav-prev">Previous</span>
+              <span class="es-nav-next">Next</span>
+            </div>
+          </div>
+          <div class="es-carousel">
+            <ul>
+              <% property.images.each do |i| %>
+                <li>
+                  <a href="#">
+                    <img
+                      src="<%= i.sized_url([640, 480], :cropped) %>"
+                      alt="Photo of <%= property.name %>"
+                      data-large="<%= i.sized_url([640, 480], :cropped) %>"
+                      data-description="<%= property.name %>, <%= property.country.name %>"
+                      data-extra="<%= property.for_sale? ? format_currency(property.sale_price, property.currency) : t('rent_price_per_night', price: format_currency(property.weekly_rent_price, property.currency)) %>">
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <!-- End Elastislide Carousel Thumbnail Viewer -->
+      </div><!-- rg-thumbs -->
+    </div><!-- rg-gallery -->
+  </div><!-- content -->
+</div><!-- container -->

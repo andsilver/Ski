@@ -1,68 +1,52 @@
 <%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading) %>
-
 <%= content_for :theme, @property.theme %>
+<% @destination = @property.name %>
+<%= content_for :search, render(partial: 'home/home_search') %>
+<%= render partial: 'shared/image_gallery', locals: { property: @property } %>
 
-<% cache(@accommodation) do %>
-<%= render partial: 'google_map',
-    locals: { lat: @accommodation.geodata_lat, lng: @accommodation.geodata_lng } %>
-<script>
-  $(function() {
-    $('.availability-Q').click(function() {
-      var win = window.open('<%= contact_property_path(@property) %>', '_blank');
-      win.focus();
-    });
-  });
-</script>
-<div class="property interhome" itemscope itemtype="http://schema.org/LodgingBusiness">
-  <div class="group">
-    <%= render partial: 'user_logo', locals: { property: @property } %>
-    <div class="abta">
-      <%= image_tag 'abta.png', alt: 'ABTA Member' %><br>
-      The tour operator<br>
-      (Interhome) is an<br>
-      ABTA Member<br>
-      ABTA No. L7890
-    </div>
-    <h1 class="property_name"><span><%= t('property_name') %>:</span> <span itemprop="name"><%= @property.name %></span>
-    <% unless @property.interhome_accommodation.interhome_place.nil? -%>
-      (<%= @property.interhome_accommodation.interhome_place.name %>)
-    <% end -%>
-    </h1>
-    <%= render partial: 'price_and_id', locals: { property: @property } %>
-  </div>
-  <%= render partial: 'images', locals: { property: @property } %>
-
-<h2><%= I18n.t('features') %></h2>
-<div id="features" class="interhome-features group">
+<div class="interhome-features">
   <div class="column">
-    <%= I18n.t('bedrooms') %>: <%= @accommodation.bedrooms %>
+    <%= render partial: 'shared/resort_icon', locals: { type: 'surface_area', n: @accommodation.sqm } %>
   </div>
   <div class="column">
-    <%= I18n.t('bathrooms') %>: <%= @accommodation.bathrooms %>
+    <%= render partial: 'shared/resort_icon', locals: { type: 'bedroom', n: @accommodation.bedrooms } %>
   </div>
   <div class="column">
-    <%= I18n.t('sleeping_capacity') %>: <%= @accommodation.pax %>
+    <%= render partial: 'shared/resort_icon', locals: { type: 'bathroom', n: @accommodation.bathrooms } %>
   </div>
-  <p class="divider">&nbsp;</p>
-<% @accommodation.feature_list.each do |feature| %>
   <div class="column">
-    <%= feature_tick(true, t("interhome.features.#{feature}")) %><br>
+    <%= render partial: 'shared/resort_icon', locals: { type: 'capacity', n: @accommodation.pax } %>
   </div>
-<% end %>
-  <%= clear %>
+  <div class="column">
+    <%= render partial: 'shared/resort_icon', locals: { type: 'rooms', n: @accommodation.rooms } %>
+  </div>
 </div>
-
-<h2><%= I18n.t('description') %></h2>
-<div itemprop="description">
-  <h3>Inside</h3>
-  <p>
-    <%= @accommodation.inside_description %>
-  </p>
-  <h3>Outside</h3>
-  <p>
-    <%= @accommodation.outside_description %>
-  </p>
+<div class="flex-layout">
+  <div class="flex-3">
+    <h2>Facilities</h2>
+    <% @accommodation.feature_list.each do |feature| %>
+      <h4>
+        <%= t("interhome.features.#{feature}") %><br>
+      </h4>
+    <% end %>
+    <% new_classic_features(@property).each do |feature| %>
+      <% if feature[:type] != 'text' %>
+        <h4><%= feature[:title] %></h4>
+      <% end %>
+    <% end %>
+    <% @property.amenities.each do |amenity| %>
+      <h4><%= amenity.name.capitalize.sub('_', ' ') %></h4>
+    <% end %>
+  </div>
+  <div class="flex-3">
+    <h2><%= I18n.t('description') %></h2>
+    <h4><%= @accommodation.inside_description %></h4>
+    <h4><%= @accommodation.outside_description %></h4>
+  </div>
 </div>
+<div id="map-canvas" style="height: 400px"></div>
+<%= render partial: 'google_map', locals: { lat: @accommodation.geodata_lat, lng: @accommodation.geodata_lng } %>
+
 <% if @accommodation.interhome_vacancy -%>
 <script>
 $(function() {
@@ -76,22 +60,3 @@ $(function() {
 <div id="interhome_booking_form"></div>
 <% end -%>
 
-<div class="meta">
-  <h2>Additional Information</h2>
-  <p>
-    <a href="<%= interhome_property_path(@accommodation.permalink) %>"
-      itemprop="url">Permalink</a>
-  </p>
-  <% if @accommodation.geodata_lat.present? -%>
-  <p itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
-    Latitude: <%= @accommodation.geodata_lat %><br>
-    Longitude: <%= @accommodation.geodata_lng %>
-    <meta itemprop="latitude" content="<%= @accommodation.geodata_lat %>">
-    <meta itemprop="longitude" content="<%= @accommodation.geodata_lng %>">
-  </p>
-  <% end -%>
-</div>
-<%= clear %>
-
-</div><!--.property-->
-<% end %>

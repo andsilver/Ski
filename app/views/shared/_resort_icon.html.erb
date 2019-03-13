@@ -32,4 +32,36 @@
     <img width='30px' src='/ski-resort-icons/america-advanced-trails.png' alt='advanced trails' title='advanced trails'>
 <% elsif type == 'expert_trails' %>
     <img width='30px' src='/ski-resort-icons/america-expert-trails.png' alt='expert trails' title='expert trails'>
+<% elsif type == 'bathroom' %>
+    <% t = "#{n} #{I18n.t('bathrooms')}" %>
+    <img src='/ski-resort-icons/<%= type %>_black.svg' alt='<%= t %>' title='<%= t %>'>
+    <div><%= t %></div>
+<% elsif type == 'capacity' %>
+    <% t = "#{n} #{I18n.t('sleeping_capacity')}" %>
+    <img src='/ski-resort-icons/<%= type %>_black.svg' alt='<%= t %>' title='<%= t %>'>
+    <div><%= t %></div>
+<% elsif type == 'bedroom' %>
+    <% t = "#{n} #{I18n.t('bedrooms')}" %>
+    <img src='/ski-resort-icons/<%= type %>_black.svg' alt='<%= t %>' title='<%= t %>'>
+    <div><%= t %></div>
+<% elsif type == 'exposure' %>
+    <img src='/ski-resort-icons/<%= type %>_black.svg' alt='South West' title='Exposure South West'>
+<% elsif type == 'fireplace' %>
+    <img src='/ski-resort-icons/<%= type %>_black.svg' alt='Fireplace' title='Fireplace'>
+<% elsif type == 'surface_area' %>
+    <% t = "#{I18n.t('surface_area')} #{n}m²" %>
+    <img src='/ski-resort-icons/<%= type %>_black.svg' alt='<%= t %>' title='<%= t %>'>
+    <div><%= t %></div>
+<% elsif type == 'property_size' %>
+    <img src='/ski-resort-icons/<%= type %>_black.svg' alt='Property Size <%= n %>m²' title='Property Size <%= n %>m²'>
+<% elsif type == 'property_view' %>
+    <img src='/ski-resort-icons/<%= type %>_black.svg' alt='View <%= n %>' title='View <%= n %>'>
+<% elsif type == 'garage' %>
+    <img src='/ski-resort-icons/<%= type %>_black.svg' alt='Garage / Garages' title='Garage / Garages'>
+<% elsif type == 'swimming_pool' %>
+    <img src='/ski-resort-icons/<%= type %>_black.svg' alt='Swimming Pool' title='Swimming Pool'>
+<% elsif type == 'rooms' %>
+    <% t = "#{n} #{I18n.t('rooms')}" %>
+    <img src='/ski-resort-icons/<%= type %>_black.svg' alt='<%= t %>' title='<%= t %>'>
+    <div><%= t %></div>
 <% end %>

@@ -1,0 +1,60 @@
+<div id="booking_results">
+<% if @availability.unavailable? -%>
+  <h3 id="quote">The property is unavailable for the dates you have requested.</h3>
+<% else -%>
+  <div id="quote" style="padding: 10px; background: #fff;">
+  <table class="table">
+    <tr>
+      <td>Travel period</td>
+      <td style="text-align: right;"><%= l(Date.parse(@availability.start_date), format: :long) %>&#8211;<%= l(Date.parse(@availability.end_date), format: :long) %></td>
+    </tr>
+    <tr>
+      <td>Travellers</td>
+      <td style="text-align: right;">
+        <%= pluralize(@adults, 'adult') %>, <%= pluralize(@children, 'child') %>, <%= pluralize(@babies, 'baby') %>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Rental price</strong></td>
+      <td style="text-align: right;"><strong><%= number_to_currency(@price_detail.price, unit: '€', precision: 2) %></strong></td>
+    </tr>
+
+<%= render 'interhome_selected_additional_services' unless params[:additional_service].nil? %>
+
+<% if @price_detail.prepayment == '0' -%>
+    <tr>
+      <td>Payment to be made by</td>
+      <td style="text-align: right;"><%= l(Date.parse(@price_detail.expiration_residue), format: :long) %></td>
+    </tr>
+<% else -%>
+    <tr>
+      <td>Deposit</td>
+      <td style="text-align: right;"><%= number_to_currency(@price_detail.prepayment, unit: '€', precision: 2) %></td>
+    </tr>
+    <tr>
+      <td>Deposit to be paid by</td>
+      <td style="text-align: right;"><%= l(Date.parse(@price_detail.expiration_pre_payment), format: :long) %></td>
+    </tr>
+    <tr>
+      <td>Balance remaining to be paid by</td>
+      <td style="text-align: right;"><%= l(Date.parse(@price_detail.expiration_residue), format: :long) %></td>
+    </tr>
+<% end -%><!--/ payment/prepayment-->
+  </table>
+  </div><!--/ padded div -->
+<% if @additional_services -%>
+<div class="trigger-update">
+<%= render 'interhome_bookable_services' unless @additional_services.bookable.empty? %>
+
+<%= render 'interhome_additional_services_not_included' unless @additional_services.not_included.empty? %>
+
+<%= render 'interhome_additional_services_included' unless @additional_services.included.empty? %>
+
+</div><!--.trigger-update-->
+
+<%= render 'interhome_contact_details' %>
+
+<% end -%><!--/ additional services -->
+
+<% end -%><!--/ availability -->
+</div><!--#booking-results-->

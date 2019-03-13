@@ -24,7 +24,7 @@
                     <table class="text-center" style="width: 100%">
                         <tr>
                             <td><%= render partial: 'shared/resort_icon', locals: {type: 'resort_altitude'} %></td>
-                            <td><%= r['altitude_m'] %> ski resorts</td>
+                            <td><%= r['altitude_m'] %> <%= type == 'region' ? 'ski resorts' : 'm' %></td>
                         </tr>
                         <tr>
                             <td><%= render partial: 'shared/resort_icon', locals: {type: 'highest_lift'} %></td>
