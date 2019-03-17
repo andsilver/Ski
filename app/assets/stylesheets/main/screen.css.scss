@@ -92,6 +92,18 @@ img {
   }
 }
 
+.top-nav-btn-breadcrumb {
+  padding-top: 2rem;
+  .flex-2 {
+    margin-bottom: 0 !important;
+  }
+  @media screen and (max-width: 968px) {
+    .flex-2:first-of-type {
+      margin-bottom: 24px !important;
+    }
+  }
+}
+
 .secondary-nav {
   ul {
     display: flex;

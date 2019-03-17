@@ -1,5 +1,6 @@
 <%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading) %>
 <%= content_for :theme, @property.theme %>
+<% @destination = @property.name %>
 <div class="property">
   <%= render partial: 'user_logo', locals: { property: @property } %>
   <div class="flex-layout content-space-between responsive-lg">

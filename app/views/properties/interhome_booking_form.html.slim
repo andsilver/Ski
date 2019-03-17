@@ -1,12 +1,20 @@
 javascript:
+  let checkIn, checkOut
+
   function submit(extraValues) {
     if(window.selectDay) {
       // Date selection is being updated so let's wait for the
       // event that gets triggered after the update.
       return;
     }
+    const min_stay = "#{@property.min_stay}"
+    const duration = Math.floor((checkOut - checkIn) / ( 24 * 60 * 60 * 1000 ))
+    if (duration < min_stay) {
+      $('#duration_unavailable').modal('show')
+      return
+    }
+    $('#interhome_booking_duration').val(duration)
     var valuesToSubmit = $('#booking_form form').serialize() + extraValues;
-    console.log(valuesToSubmit)
     $('#booking_results').replaceWith('<div id="booking_results"></div>');
     $('#checking').modal('show');
     $.ajax({
@@ -131,21 +139,6 @@ javascript:
     return false;
   }
 
-  function updateBookingDurationsSelect(nights) {
-    var valuesToSubmit = 'nights=' + nights;
-    $.ajax({
-      url: '/properties/update_booking_durations_select',
-      type: 'GET',
-      data: valuesToSubmit
-    }).done(function(data) {
-      $('#booking-durations').replaceWith(data);
-    }).fail(function(data) {
-      $('#booking-durations').replaceWith('<span id="booking-durations"><h2>An error occurred. Please <a id="retry-booking-durations">try again</a>.</h2></div>');
-      $('#retry-booking-durations').click(updateBookingDurationsSelect);
-    });
-    return false;
-  }
-
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May","Jun","Jul", "Aug", "Sepr", "Oct", "Nov","Dec"]
 
   function initDatePicker() {
@@ -170,14 +163,18 @@ javascript:
       }, function(start) {
         
         const id = this.element[0].id
+        const date = new Date(start.format('YYYY-MM-DD'))
 
         if (id === 'check_in_date') {
           const dd = start.format('YYYY-MM:DD').split(':')
+          checkIn = date
+
           $('#interhome_booking_arrival_month').val(dd[0]);
           window.selectDay = String(dd[1])
           $('#interhome_booking_arrival_month').change();
           $('#check_in_date').html(format(start));
         } else {
+          checkOut = date
           $('#check_out_date').html(format(start));
         }
       });
@@ -186,6 +183,9 @@ javascript:
   }
 
   $(function() {
+
+    let checkInSelected = false
+
     $(".collapse").collapse({parent: '#accordion', toggle: false});
     // $('td[data-toggle=popover]').popover();
 
@@ -194,22 +194,28 @@ javascript:
     $('#booking_form').on('change', '#interhome_booking_arrival_month', updateDayOfMonthSelect);
     $('#booking_form').submit(function() { submitBooking(); return false; });
     $('.month .availability-Y').click(function(ev) {
-
-      const nights = $(this).data('nights')
-      const day = $(this).data('day')
+      
       const y_m = $(this).data('month').split('-')
+      
       const y = Number(y_m[0])
       const m = Number(y_m[1])
+      const d = Number($(this).data('day'))
       const date = new Date()
-      date.setFullYear(y, m, Number(day))
-      const tmp = date.getTime() + Number(nights[0]) * 60 * 60 * 24 * 1000
-      const outD = new Date(tmp)
+      date.setFullYear(y, m, d)
+      const html = `${d} ${monthNames[m - 1]} ${y}`
+      
+      if (checkInSelected) {
+        $('#check_out_date').html(html)
+        checkOut = date
+        checkInSelected = false
+        return
+      }
 
-      window.selectDay = day;
+      checkIn = date
+      checkInSelected = true
+      window.selectDay = d;
       $('#interhome_booking_arrival_month').val($(this).data('month'));
-      $('#check_in_date').html(`${day} ${monthNames[m]} ${y}`)
-      $('#check_out_date').html(`${outD.getDate()} ${monthNames[outD.getMonth()]} ${outD.getFullYear()}`)
-      updateBookingDurationsSelect(nights);
+      $('#check_in_date').html(html)
       $('#interhome_booking_arrival_month').change();
       ev.preventDefault();
       return false;
@@ -220,18 +226,21 @@ javascript:
 
     const day = $('#interhome_booking_arrival_day').val()
     const y_m = $('#interhome_booking_arrival_month').val().split('-')
-    const nights = $('#interhome_booking_duration').val()
+    const min_stay = "#{@property.min_stay}"
 
     if (day) {
       const y = Number(y_m[0])
       const m = Number(y_m[1])
       const date = new Date()
       date.setFullYear(y, m, Number(day))
-      const tmp = date.getTime() + Number(nights) * 60 * 60 * 24 * 1000
+      const tmp = date.getTime() + Number(min_stay) * 60 * 60 * 24 * 1000
       const outD = new Date(tmp)
+      checkIn = date
+      checkOut = outD
 
-      $('#check_in_date').html(`${day} ${monthNames[m]} ${y}`)
-      $('#check_out_date').html(`${outD.getDate()} ${monthNames[outD.getMonth()]} ${outD.getFullYear()}`)
+      $('#check_in_date').html(`${day} ${monthNames[m - 1]} ${y}`)
+      $('#check_out_date').html(`${outD.getDate()} ${monthNames[outD.getMonth() - 1]} ${outD.getFullYear()}`)
+      $('#interhome_booking_duration').val(min_stay)
     }
 
   });
@@ -267,6 +276,15 @@ javascript:
         h4.modal-title#unavailable-title Property unavailable
       .modal-body
         h4#unavailable-description The property is unavailable for the dates you have requested.
+
+.modal.fade#duration_unavailable role="dialog" aria-labelledby="duration_unavailable-title" aria-describedby="duration_unavailable-description"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title#duration_unavailable-title Select Check-in or Check-out date again
+      .modal-body
+        h4#unavailable-description The minimum duration is #{@property.min_stay} days
 
 #booking_form
   br

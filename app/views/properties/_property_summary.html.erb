@@ -21,7 +21,7 @@
           <% if p.for_sale? %>
             <%= t('.sale_price') %> <strong><%= format_currency(p.sale_price, p.currency) %></strong>
           <% else %>
-            <%= t('.weekly_price') %> <strong><%= format_currency(p.weekly_rent_price, p.currency) %></strong>
+            <%= t('.price_per_night') %> <strong><%= format_currency(p.price_per_night, p.currency) %></strong>
           <% end %>
         <% end %>
       </p>

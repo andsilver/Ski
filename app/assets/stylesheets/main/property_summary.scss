@@ -100,18 +100,30 @@
 
 .property-block {
   display: flex;
-  justify-content: space-between;
   padding: 1rem 0;
-  border-top: 2px solid #005e9c;
 
-  &:last-of-type {
-    border-bottom: 2px solid #005e9c;
+  > a{
+    display: block;
   }
 
   &-images {
     max-height: 350px;
     width: 40%;
     overflow: hidden;
+    position: relative;
+    .property-title {
+      position: absolute;
+      z-index: 99;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      text-align: right;
+      > div {
+        padding: 0 1rem;
+      }
+      h3 {
+        color: white;
+      }
+    }
     .cycle-prev, .cycle-next {
       font-size: 24px;
       width: 24px;
@@ -122,26 +134,46 @@
   }
 
   &-details {
-    width: 57%;
-    font-size: 14px;
+    width: 60%;
+    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
+    background: #ececec;
+
+    > div:first-of-type {
+      padding: 1rem;
+    }
+
+    &-features {
+      margin-top: 2rem;
+      li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.6rem;
+        img {
+          width: 20px;
+          height: 20px;
+          padding-right: 10px;
+        }
+      }
+    }
 
     &-location {
       color: black;
       font-weight: bold;
     }
 
-    &-title {
-      color: #005e9c;
+    &-price {
+      background: rgba(#002f66, 0.9);
+      color: white;
       font-size: 21px;
-      margin: 0.5rem 0;
+      padding: 0.5rem;
     }
 
     &-description {
-      font-weight: 700;
+      color: #555;
     }
 
     h4 {
@@ -173,13 +205,10 @@
     }
   }
 
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 968px) {
     display: block;
     &-images, &-details {
       width: 100%;
-    }
-    &-details {
-      margin-top: 24px;
     }
   }
 }

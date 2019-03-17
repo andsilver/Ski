@@ -402,12 +402,12 @@ en:
     browse_for_rent:
       heading:
         other: "Accommodation & Apartments for Rent in %{place}"
-        ski: "Accommodation, Chalets & Apartments for Rent in %{place}"
+        ski: "Chalets & Apartments for Rent in %{place}"
         summer: "Accommodation, Villas & Apartments for Rent in %{place}"
     browse_for_sale:
       heading:
         other: "Accommodation & Apartments for Sale in %{place}"
-        ski: "Accommodation, Chalets & Apartments for Sale in %{place}"
+        ski: "Chalets & Apartments for Sale in %{place}"
         summer: "Accommodation, Villas & Apartments for Sale in %{place}"
     created: "Your property advert was successfully created. Now let's add some photos."
     created_and_assigned_to_window: "Your property advert was successfully created. We've automatically placed it in one of your free windows. Now let's add some photos."
@@ -711,3 +711,5 @@ en:
         new_developments: 'New Developments'
   weekly_rent_price: 'Weekly rental price from'
   rent_price_per_night: 'From %{price} per night'
+  min_stay: 'Minimum duration to stay'
+  price_per_night: 'Price per night'

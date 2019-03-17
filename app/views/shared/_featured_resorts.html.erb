@@ -18,7 +18,7 @@
                 </a>
             </div>
             <div class="ski-resort-detail">
-                <div class="text-left"><%= raw r.feature %></div>
+                <div class="text-left"><%= r.strapline %></div>
                 <div class="ski-resort-detail-table">
                     <table class="text-left" style="width: 100%">
                         <tr>
@@ -41,7 +41,7 @@
                         </tr>
                         <tr>
                             <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_lifts'} %></td>
-                            <td><%= r['n_lifts'] %></td>
+                            <td><%= r['lifts_n'] %></td>
                             <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_black_pistes'} %></td>
                             <td><%= r['black'] %></td>
                         </tr>

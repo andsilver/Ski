@@ -1,7 +1,6 @@
 <%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading) %>
 <%= content_for :theme, @property.theme %>
 <% @destination = @property.name %>
-<%= content_for :search, render(partial: 'home/home_search') %>
 <%= render partial: 'shared/image_gallery', locals: { property: @property } %>
 
 <div class="interhome-features">

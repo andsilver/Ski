@@ -604,7 +604,7 @@ class PropertiesController < ApplicationController
       :price_description,
       :resort_id, :sale_price,
       :sauna, :short_stays, :ski_in_ski_out, :sleeping_capacity, :smoking,
-      :strapline, :terrace, :tv, :weekly_rent_price, :wifi)
+      :strapline, :terrace, :tv, :weekly_rent_price, :wifi, :min_stay, :price_per_night)
   end
 
   def convert_square_feet_to_square_metres

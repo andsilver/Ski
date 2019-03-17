@@ -1,8 +1,8 @@
-section
-  h2= @region.name
-  ul#resort-nav
-    = link_with_count(region_property_rent_path(@region), "Property for rent in #{@region.name}", t('views.layouts.application.resort_nav.for_rent'), @region.for_rent_count)
-    = link_with_count(region_property_sale_path(@region), "Property for sale in #{@region.name}", t('for_sale'), @region.for_sale_count)
+li class="main-menu-item" aria-expanded=false
+  button= t('region')
+  ul.main-menu-item-links.match-height
     - if @region.has_page?('how-to-get-there')
-      li class="#{current_page?(how_to_get_to_region_path(@region)) ? 'active' : ''}"
-        = link_to 'How to Get There', how_to_get_to_region_path(@region)
+      li= nav_link(how_to_get_to_region_path(@region), "How to Get to #{@region.name}", 'How to Get There')
+    li= nav_link(region_property_rent_path(@region), "Property for rent in #{@region.name}", t('views.layouts.application.resort_nav.for_rent'))
+    li= nav_link(region_property_sale_path(@region), "Property for sale in #{@region.name}", t('for_sale'))
+    li

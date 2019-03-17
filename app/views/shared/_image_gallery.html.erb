@@ -79,7 +79,7 @@
                 <%= property.name %>, <%= property.country.name %>
               </div>
               <div>
-                <%= property.for_sale? ? format_currency(property.sale_price, property.currency) : t('rent_price_per_night', price: format_currency(property.weekly_rent_price, property.currency)) %>
+                <%= property.for_sale? ? format_currency(property.sale_price, property.currency) : t('rent_price_per_night', price: format_currency(property.price_per_night, property.currency)) %>
               </div>
             </div>
           </div>

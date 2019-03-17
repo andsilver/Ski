@@ -154,9 +154,4 @@ module ResortsHelper
 
     content_tag(:li, link_to(h(link_text) + content_tag(:span, "(#{count})"), path, title: title), opts)
   end
-
-  def resort_logo_url(resort)
-    logo_url = resort_images(resort, 'logo')[0]
-    "/resorts/#{resort.name.parameterize}/logo/#{logo_url}"
-  end
 end

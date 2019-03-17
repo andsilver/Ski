@@ -44,11 +44,32 @@
   cursor: pointer;
   border-radius: 5px;
   overflow: hidden;
+  max-height: 300px;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    -moz-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+  }
+
+  &:hover:before {
+    background: none;
+  }
 
   img {
     width: 100%;
     height: 100%;
-    min-height: 200px;
+    display: block;
   }
 
   .overlay {
@@ -57,19 +78,10 @@
     height: 100%;
     top: 0;
     left: 0;
-    transition: 0.5s ease;
-    background-color: rgba(35, 31, 32, 0.4);
-    border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-
-  &:hover {
-    .overlay {
-      background-color: rgba(35, 31, 32, 0.8);
-    }
   }
 
   .title,
@@ -434,8 +446,9 @@
       @media screen and (max-width: 640px) {
         >div {
           font-size: 42px;
-          top: -51px; 
-          > div {
+          top: -51px;
+
+          >div {
             height: 51px;
           }
         }
