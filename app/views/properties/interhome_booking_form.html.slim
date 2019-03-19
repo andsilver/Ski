@@ -193,6 +193,11 @@ javascript:
     $('#booking_form').on('change', '.trigger-update select', invalidateQuote);
     $('#booking_form').on('change', '#interhome_booking_arrival_month', updateDayOfMonthSelect);
     $('#booking_form').submit(function() { submitBooking(); return false; });
+    
+    $('.availability-Q').click(function(ev) {
+      $('#interhome_enquiry').modal('show');
+    })
+
     $('.month .availability-Y').click(function(ev) {
       
       const y_m = $(this).data('month').split('-')
@@ -285,6 +290,15 @@ javascript:
         h4.modal-title#duration_unavailable-title Select Check-in or Check-out date again
       .modal-body
         h4#unavailable-description The minimum duration is #{@property.min_stay} days
+
+.modal.fade#interhome_enquiry role="dialog" aria-labelledby="interhome_enquiry-title" aria-describedby="interhome_enquiry-description"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title#interhome_enquiry-title Interhome Enquiry
+      .modal-body
+        = render partial: 'interhome_enquiry_form', locals: { p: @property, acc: @accommodation }
 
 #booking_form
   br

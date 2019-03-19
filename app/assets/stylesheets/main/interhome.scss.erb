@@ -90,7 +90,7 @@
 }
 
 .panel-section {
-  padding: 12px;
+  padding: 24px;
   background: #eee;
 
   .date_pick, input {
@@ -175,7 +175,7 @@
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 200px; /* Location of the box */
+  padding-top: 80px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -252,4 +252,46 @@
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
+}
+
+.interhome_enquiry_form {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  > div {
+    width: 48%;
+    &:last-of-type {
+      width: 100%;
+    }
+  }
+
+  label {
+    color: #222222;
+    font-weight: bold;
+  }
+
+  .date_pick, input, select, textarea {
+    padding: 5px;
+    background-color: #f3f2e3 !important;
+    position: relative;
+    border-radius: 2px;
+    outline: none;
+    color: #010101 !important;
+    font-size: 14px !important;
+    font-weight: bold;
+  }
+
+  .date_pick {
+    cursor: pointer;
+  }
+
+  #interhome_enquiry_submit {
+    width: 200px;
+  }
+
+  textarea {
+    width: 98%;
+  }
 }

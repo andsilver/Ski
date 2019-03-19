@@ -1,51 +1,58 @@
-/ javascript:
+javascript:
   $(function() {
     calendarControls();
   });
 
-/ h2 Availability
-/ - cal = TripAdvisor::Calendar.new(@property.trip_advisor_property)
-/ .well
-  .btn-group
-    button.button.secondary-button#earlier
-      i.fas.fa-backward>
-      | Earlier
-    button.button.secondary-button#later
-      | Later
-      i.fas.fa-forward<
-  br
-  - today = Date.today
-  - month = today.month
-  - year = today.year
-  - hide = false
-  - 24.times do |i|
-    .month id="month#{month}#{year}" data-month="#{month}" data-year="#{year}" style="#{'display: none' if hide}"
-      = raw cal.show_month(month, year)
-    - hide = true if (i + 1) % 3 == 0
-    - month += 1
-    - if month == 13
-      - month = 1
-      - year += 1
-  .clear
+h2 Please select your check-in and check-out days by clicking a date on the calendar.
+- cal = TripAdvisor::Calendar.new(@property.trip_advisor_property)
+.flex-layout
+  .flex-32.panel-section
+    .display-flex.content-space-between
+      button.button.action-button#earlier style="margin-right: 2rem"
+        i.fas.fa-backward>
+        | Earlier
+      button.button.action-button#later
+        | Later
+        i.fas.fa-forward<
+    br
+    - today = Date.today
+    - month = today.month
+    - year = today.year
+    - hide = false
+    - 24.times do |i|
+      .month id="month#{month}#{year}" data-month="#{month}" data-year="#{year}" style="#{'display: none' if hide}"
+        = raw cal.show_month(month, year)
+      - hide = true if (i + 1) % 3 == 0
+      - month += 1
+      - if month == 13
+        - month = 1
+        - year += 1
+    .clear
+    section.calendar-key
+      table.interhome-calendar
+        tr
+          td.availability-Y Available
+          td.availability-N Not Available
+          td.availability-Y-no-check-in No check-in
+  .flex-3.panel-section style="color: black"
+    = render partial: 'trip_advisor_enquiry'
 
-#availability_calendar
+/#availability_calendar
   h2 Availability
 
-javascript:
+/javascript:
   $(function () {
       var today = new Date();
       var dd = today.getDate();
       var mm = today.getMonth() + 1;
       var yyyy = today.getFullYear();
       today = mm + '/' + dd + '/' + yyyy;
-
-      $('#availability_calendar').daterangepicker({
+     $('#availability_calendar').daterangepicker({
         'opens': 'right',
         'autoApply': true,
         'parentEl': '#availability_calendar',
         'minDate': today,
         'maxDate': '3/18/2019'
       }, function(start, end, label) {});
-
       $('#availability_calendar').click()
   });

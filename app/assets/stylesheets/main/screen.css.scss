@@ -94,11 +94,11 @@ img {
 
 .top-nav-btn-breadcrumb {
   padding-top: 2rem;
-  .flex-2 {
+  .flex-32, .flex-3 {
     margin-bottom: 0 !important;
   }
   @media screen and (max-width: 968px) {
-    .flex-2:first-of-type {
+    .flex-32 {
       margin-bottom: 24px !important;
     }
   }
@@ -204,6 +204,10 @@ img {
 
 .content-space-between {
   justify-content: space-between;
+}
+
+.content-space-around {
+  justify-content: space-around;
 }
 
 .content-end {

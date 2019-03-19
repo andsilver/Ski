@@ -1,10 +1,4 @@
-h2 Interested?
-
-p Fill in when you want to stay and how many adult guests will be staying.
-p Then we will transfer you to our partner site to search for availability, prices, and more details.
-p You will then be able to book or make an enquiry.
-
-= form_tag(get_details_trip_advisor_property_path(@property.trip_advisor_property), id: 'get-details', target: '_blank', class: 'get-details search-form cf')
+= form_tag(get_details_trip_advisor_property_path(@property.trip_advisor_property), id: 'get-details', target: '_blank', style: 'height: 100%', class: 'display-flex direction-column content-space-around')
   javascript:
     $(function() {
       $('#get-details').submit(function(e) {
@@ -17,19 +11,86 @@ p You will then be able to book or make an enquiry.
           return false;
         }
       });
+
+      let checkInSelected = false
+
+      $('.month .availability-Y').click(function(ev) {
+      
+        const y_m = $(this).data('month').split('-')
+        
+        const y = Number(y_m[0])
+        const m = Number(y_m[1])
+        const d = Number($(this).data('day'))
+        const date = new Date()
+        date.setFullYear(y, m, d)
+        const html = `${d}/${y_m[1]}/${y}`
+        
+        if (checkInSelected) {
+          $('#check_out').val(date);
+          $('#check_out_date').val(html);
+          checkInSelected = false
+          return
+        }
+
+        $('#check_in').val(date);
+        $('#check_in_date').val(html);
+        checkInSelected = true
+        ev.preventDefault();
+        return false;
+      });
+
+      initDatePicker()
     });
-  /.enquiry-dates
-    p= text_field_tag('check_in', '', required: true, class: 'form-control datepicker check-in', placeholder: 'Check-in')
-    p= text_field_tag('check_out', '', required: true, class: 'form-control datepicker check-out', placeholder: 'Check-out')
-  div class="search-field search-field-checkin-checkout"
-    = render partial: 'home/date_range_picker', locals: {start_date: '', end_date: ''}
-  div class="search-field"
-    label Guests
-    select name="adults"
+
+    function format(date) {
+      return date.format('DD/MM/YYYY');
+    }
+
+    function initDatePicker() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
+
+        $('.date_pick').val(today);
+        $('#check_in').val(new Date());
+        $('#check_out').val(new Date());
+
+        $('.date_pick').daterangepicker({
+          opens: 'center',
+          singleDatePicker: true,
+          minDate: today
+        }, function(start) {
+          const id = this.element[0].id
+          const date = new Date(format(start))
+
+          if (id === 'check_in_date') {
+            $('#check_in').val(date);
+          } else {
+            $('#check_out').val(date);
+          }
+        });
+    }
+
+
+  .display-flex.content-space-between.align-center
+    label Check-in date
+    input#check_in_date.date_pick
+    input#check_in name="check_in" style="display: none"
+  br
+  .display-flex.content-space-between.align-center
+    label Check-out date
+    input#check_out_date.date_pick
+    input#check_out name="check_out" style="display: none"
+  br
+  .display-flex.content-space-between.align-center.search-field
+    label Adults
+    select name="adults" style="width: 160px"
       - (1..@property.trip_advisor_property.sleeps).each do |guests|
         - if guests == @property.trip_advisor_property.sleeps
           option= pluralize(guests, 'adult guest') + ' (max occupancy)'
         - else
           option= pluralize(guests, 'adult guest')
-  div class="search-field search-field-submit" style="max-width: 200px"
-    input.button.action-button type="submit" value="Get Details"
+  div
+    button.button.action-button type="submit" style="width: 100%; margin-top: 2rem" Check Availability & Price

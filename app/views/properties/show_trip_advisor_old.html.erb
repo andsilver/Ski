@@ -1,0 +1,76 @@
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading) %>
+<%= content_for :theme, @property.theme %>
+<%= render partial: 'google_map', locals: { lat: @property.latitude, lng: @property.longitude } %>
+<div class="property">
+  <%= render partial: 'user_logo', locals: { property: @property } %>
+  <h1 class="property_name">
+    <%= @property.name %>
+  </h1>
+  <%= render partial: 'images', locals: { property: @property } %>
+  <br>
+  <div class="flex-layout property-details">
+    <div class="flex-32">
+      <div>
+        <%= render partial: 'trip_advisor_calendar' %>
+      </div>
+      <br>
+      <div>
+        <%= render partial: 'trip_advisor_enquiry' %>
+      </div>
+      <% unless @property.description.nil? %>
+      <h2>
+        <%= I18n.t('description') %>
+      </h2>
+      <%= md @property.description %>
+      <% end %>
+    </div>
+    <div class="flex-3">
+      <div class="classic-features">
+        <h2><%= I18n.t('features') %></h2>
+        <table class="theme-table">
+          <% classic_features(@property).each do |feature| %>
+          <tr>
+              <td colspan="2"><%= feature %></td>
+          </tr>
+          <% end %>
+          <% @property.amenities.each do |amenity| %>
+          <tr>
+              <td> <%= amenity.name.capitalize.sub('_', ' ') %></td>
+              <td><span class="tick">✔</span></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'location_button_and_modal' if @property.latitude.present? %>
+  <%= clear %>
+  <% if @property.reviews.any? %>
+  <h2 id="reviews">Reviews</h2>
+  <div class="reviews">
+    <% @property.reviews.each do |review| %>
+    <div class="review">
+      <h3 class="review-title">
+        <%= review.rating %>/5
+        <%= review.title %>
+      </h3>
+      <p class="review-author-details">
+        <span class="review-author-name">
+          <%= review.author_name %></span>,
+        <span class="review-author-location">
+          <%= review.author_location %></span>
+        -
+        <span class="review-visited-on">
+          <%= review.visited_on.strftime('%B %Y') %>
+        </span>
+      </p>
+      <p class="review-content">
+        <%= review.content %>
+      </p>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+<!--.property-->

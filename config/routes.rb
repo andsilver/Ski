@@ -156,6 +156,7 @@ Rails.application.routes.draw do
       get  'sale'
       get  'current_time'
 
+      post 'interhome_enquiry'
       post 'check_interhome_booking'
       get 'update_booking_durations_select'
       get 'update_day_of_month_select'

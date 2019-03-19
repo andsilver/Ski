@@ -92,9 +92,9 @@ html lang="#{@lang}"
           = image_tag('marker-blue.svg', class: 'logo-marker', alt: '')
           a.logo href="#{root_path}" title="Home"
             = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
-      .content-inset.flex-layout.content-space-between.align-center.top-nav-btn-breadcrumb
+      .content-inset.flex-layout.content-space-between.align-end.top-nav-btn-breadcrumb
         = render 'layouts/breadcrumbs_and_heading'
-        .rentals-sales.flex-2
+        .rentals-sales.flex-3
           ul
             - rent_path = @resort ? resort_property_rent_path(@resort) : @region ? region_property_rent_path(@region) : '/'
             - sale_path = @resort ? resort_property_sale_path(@resort) : @region ? region_property_sale_path(@region) : '/property_sales'

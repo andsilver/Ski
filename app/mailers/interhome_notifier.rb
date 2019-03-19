@@ -17,4 +17,14 @@ class InterhomeNotifier < ActionMailer::Base
       subject: 'Unavailability Report'
     )
   end
+
+  def request_enquiry(details)
+    @details = details
+
+    mail(
+      to: 'info@interhome.co.uk',
+      cc: ['info@mychaletfinder.com'],
+      subject: 'Enquiry Request'
+    )
+  end
 end
