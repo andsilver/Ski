@@ -5,9 +5,14 @@
 .results-count {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 10px;
+  padding: 1rem 0;
   color: black;
   font-weight: bold;
+
+  select {
+    border: 1px solid #ececec !important;
+    width: 200px !important;
+  }
 }
 
 .properties-container {
@@ -100,6 +105,7 @@
 
 .property-block {
   display: flex;
+  margin-bottom: 30px;
 
   > a{
     display: block;
@@ -112,7 +118,7 @@
     position: relative;
     .property-title {
       position: absolute;
-      z-index: 99;
+      z-index: 97;
       width: 100%;
       background: rgba(0, 0, 0, 0.7);
       text-align: right;
@@ -121,6 +127,9 @@
       }
       h3 {
         color: white;
+      }
+      h5 {
+        margin: 0.5rem 0
       }
     }
     .cycle-prev, .cycle-next {
