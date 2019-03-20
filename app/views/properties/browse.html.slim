@@ -1,5 +1,7 @@
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@breadcrumbs, @heading)
 
+- @destination = @resort ? @resort.name : @region.name
+
 - if @resort
   = content_for :theme, @resort.theme
 
@@ -16,6 +18,7 @@
 
 - content_for :search do
   = render 'home/home_search'
+
 = raw @page_content if first_page?
 
 - if @properties.empty?
