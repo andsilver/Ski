@@ -1,31 +1,95 @@
 module PropertiesHelper
-  def property_search_filters filters
-    html = ''
+  def property_search_filters(filters)
+    html = ""
     filters.each do |f|
-      param = 'filter_' + f.to_s
+      param = "filter_" + f.to_s
       html += '<label class="checkbox"><input'
-      html += ' checked' if params[param]=='on'
+      html += " checked" if params[param] == "on"
       html += ' type="checkbox" name="filter_' + f.to_s + '" onchange="this.form.submit()">'
-      html += I18n.t('properties.filters.' + f.to_s) + '</label>'
+      html += I18n.t("properties.filters." + f.to_s) + "</label>"
     end
     html
   end
 
-  def feature_tick ticked, label
-    html = ''
+  def classic_features(property)
+    [].tap do |features|
+      features << I18n.t("properties.features.bedrooms", bedrooms: property.number_of_bedrooms)
+      features << I18n.t("properties.features.bathrooms", bathrooms: property.number_of_bathrooms)
+      if property.for_rent?
+        features << I18n.t("properties.features.sleeping_capacity", sleeping_capacity: property.sleeping_capacity)
+        features << property.board_basis_description
+        features << property.tv_description
+        features << I18n.t("properties.features.wifi") if property.wifi?
+        features << I18n.t("properties.features.long_term_lets_available") if property.long_term_lets_available?
+        features << I18n.t("properties.features.short_stays") if property.short_stays?
+        features << I18n.t("properties.features.smoking") if property.smoking?
+        features << I18n.t("properties.features.disabled") if property.disabled?
+        features << I18n.t("properties.features.pets") if property.pets?
+        features << I18n.t("properties.features.children_welcome") if property.children_welcome?
+      end
+      features << I18n.t("properties.features.balcony") if property.balcony?
+      features << I18n.t("properties.features.terrace") if property.terrace?
+      features << I18n.t("properties.features.mountain_views") if property.mountain_views?
+      features << I18n.t("properties.features.garden") if property.garden?
+      features << property.parking_description
+      features << I18n.t("properties.features.fully_equipped_kitchen") if property.fully_equipped_kitchen?
+      features << I18n.t("properties.features.ski_in_ski_out") if property.ski_in_ski_out?
+      features << I18n.t("properties.features.cave") if property.cave?
+      features << I18n.t("properties.features.log_fire") if property.log_fire?
+      features << I18n.t("properties.features.hot_tub") if property.hot_tub?
+      features << I18n.t("properties.features.sauna") if property.sauna?
+      features << I18n.t("properties.features.swimming_pool") if property.indoor_swimming_pool? || property.outdoor_swimming_pool?
+    end
+  end
+
+  def new_classic_features(property)
+    [].tap do |features|
+      features << { title: I18n.t("property_type"), value: property_type(property), type: "text" }
+      features << { title: I18n.t("plot_size") + " sqm", value: property.plot_size_metres_2, type: "text" }
+      features << { title: I18n.t("bedrooms"), value: property.number_of_bedrooms, type: "text" }
+      features << { title: I18n.t("bathrooms"), value: property.number_of_bathrooms, type: "text" }
+      if property.for_rent?
+        features << { title: I18n.t("properties.features.sleeping_capacity"), value: property.sleeping_capacity, type: "text" }
+        features << { title: property.board_basis_description, type: "description" }
+        features << { title: property.tv_description, type: "description" }
+        features << { title: I18n.t("properties.features.wifi"), type: "bool" } if property.wifi?
+        features << { title: I18n.t("properties.features.long_term_lets_available"), type: "bool" } if property.long_term_lets_available?
+        features << { title: I18n.t("properties.features.short_stays"), type: "bool" } if property.short_stays?
+        features << { title: I18n.t("properties.features.smoking"), type: "bool" } if property.smoking?
+        features << { title: I18n.t("properties.features.disabled"), type: "bool" } if property.disabled?
+        features << { title: I18n.t("properties.features.pets"), type: "bool" } if property.pets?
+        features << { title: I18n.t("properties.features.children_welcome"), type: "bool" } if property.children_welcome?
+      end
+      features << { title: I18n.t("properties.features.balcony"), type: "bool" } if property.balcony?
+      features << { title: I18n.t("properties.features.terrace"), type: "bool" } if property.terrace?
+      features << { title: I18n.t("properties.features.mountain_views"), type: "bool" } if property.mountain_views?
+      features << { title: I18n.t("properties.features.garden"), type: "bool" } if property.garden?
+      features << { title: I18n.t("properties.features.fully_equipped_kitchen"), type: "bool" } if property.fully_equipped_kitchen?
+      features << { title: I18n.t("properties.features.ski_in_ski_out"), type: "bool" } if property.ski_in_ski_out?
+      features << { title: I18n.t("properties.features.cave"), type: "bool" } if property.cave?
+      features << { title: I18n.t("properties.features.log_fire"), type: "bool" } if property.log_fire?
+      features << { title: I18n.t("properties.features.hot_tub"), type: "bool" } if property.hot_tub?
+      features << { title: I18n.t("properties.features.sauna"), type: "bool" } if property.sauna?
+      features << { title: I18n.t("properties.features.swimming_pool"), type: "bool" } if property.indoor_swimming_pool? || property.outdoor_swimming_pool?
+      features << { title: property.parking_description, type: "description" }
+    end
+  end
+
+  def feature_tick(ticked, label)
+    html = ""
     if ticked
       html += '<div class="ticked_feature"><span>Has</span>'
     else
       html += '<div class="unticked_feature"><span>Does not have</span>'
     end
-    (html + ' ' + label + '</div>').html_safe
+    (html + " " + label + "</div>").html_safe
   end
 
   def featured_properties(properties)
-    html = ''
+    html = ""
     unless properties.nil?
       properties[0..2].each do |p|
-        html += render partial: 'properties/featured', locals: {p: p}
+        html += render partial: "properties/featured", locals: { p: p }
       end
     end
     raw html
@@ -36,15 +100,15 @@ module PropertiesHelper
       p.price_description
     else
       price = p.for_sale? ? format_currency(p.sale_price, p.currency) : format_currency(p.weekly_rent_price, p.currency)
-      key = p.for_sale? ? '.sale_price' : '.weekly_price_from'
+      key = p.for_sale? ? "properties.featured.sale_price" : "properties.featured.weekly_price_from"
       t(key, price: price)
     end
   end
 
   def featured_property_alt_attribute(p)
     keys = {
-      Property::LISTING_TYPE_FOR_RENT => '.alt_for_rent',
-      Property::LISTING_TYPE_FOR_SALE => '.alt_for_sale'
+      Property::LISTING_TYPE_FOR_RENT => ".alt_for_rent",
+      Property::LISTING_TYPE_FOR_SALE => ".alt_for_sale",
     }
     t(keys[p.listing_type], resort: p.resort)
   end
@@ -52,12 +116,12 @@ module PropertiesHelper
   def listing_type_options
     [
       ["For rent", Property::LISTING_TYPE_FOR_RENT],
-      ["For sale", Property::LISTING_TYPE_FOR_SALE]
+      ["For sale", Property::LISTING_TYPE_FOR_SALE],
     ]
   end
 
   def property_layout_options
-    {'Default' => nil}.merge(Property::LAYOUTS.reject{|l| l.nil?}.map{|l| [l,l]}.to_h)
+    { "Default" => nil }.merge(Property::LAYOUTS.reject { |l| l.nil? }.map { |l| [l, l] }.to_h)
   end
 
   def distance_options
@@ -72,14 +136,14 @@ module PropertiesHelper
       ["< 800m", 800],
       ["< 900m", 900],
       ["< 1,000m", 1000],
-      ["1,000m+", 1001]
+      ["1,000m+", 1001],
     ]
   end
 
   def booking_days(month, year)
     days = []
     (1..Time.days_in_month(month, year)).each do |day|
-      days << ["#{Date.new(year, month, day).strftime('%a')[0..1]} #{day}", day]
+      days << ["#{Date.new(year, month, day).strftime("%a")[0..1]} #{day}", day]
     end
     days
   end
@@ -92,7 +156,7 @@ module PropertiesHelper
       year = Date.today.year + (month - 1) / 12
       month = (month - 1) % 12 + 1
       date = Date.new(year, month, 1)
-      months << [date.strftime('%B %Y'), date.to_s[0..6]]
+      months << [date.strftime("%B %Y"), date.to_s[0..6]]
     end
     months
   end
@@ -126,7 +190,7 @@ module PropertiesHelper
       ["25 nights", 25],
       ["26 nights", 26],
       ["27 nights", 27],
-      ["4 weeks", 28]
+      ["4 weeks", 28],
     ].select { |option| nights.include?(option[1]) }
   end
 
@@ -139,7 +203,7 @@ module PropertiesHelper
     select_tag(
       name,
       '<option value="m">square metres</option><option value="f">square feet</option>'.html_safe,
-      { data: { target: target }, class: 'area-unit' }
+      { data: { target: target }, class: "area-unit" }
     )
   end
 
@@ -160,11 +224,11 @@ module PropertiesHelper
   # accommodation details.
   def property_type_for_interhome(interhome_accommodation)
     keys = {
-      'A' => :apartment,
-      'B' => :bungalow,
-      'C' => :chalet,
-      'H' => :holiday_resort,
-      'V' => :villa
+      "A" => :apartment,
+      "B" => :bungalow,
+      "C" => :chalet,
+      "H" => :holiday_resort,
+      "V" => :villa,
     }
     type = keys[interhome_accommodation.details]
 
@@ -190,9 +254,9 @@ module PropertiesHelper
   def property_type_for_accommodation_type(accommodation_type)
     keys = {
       Property::ACCOMMODATION_TYPE_APARTMENT => :apartment,
-      Property::ACCOMMODATION_TYPE_CHALET    => :chalet,
-      Property::ACCOMMODATION_TYPE_HOUSE     => :house,
-      Property::ACCOMMODATION_TYPE_VILLA     => :villa,
+      Property::ACCOMMODATION_TYPE_CHALET => :chalet,
+      Property::ACCOMMODATION_TYPE_HOUSE => :house,
+      Property::ACCOMMODATION_TYPE_VILLA => :villa,
     }
     keys.default = :accommodation
     property_type_i18n(keys[accommodation_type])
@@ -221,14 +285,14 @@ module PropertiesHelper
 
   # Returns the <a> target attribute for a booking link.
   def booking_link_target(property)
-    property.booking_url.present? ? '_blank' : '_self'
+    property.booking_url.present? ? "_blank" : "_self"
   end
 
   # Returns the i18n key to use for the link text of a link to a booking URL.
   # For properties for sale, this represents 'Enquire'. For rentals it
   # represents 'Make a booking'.
   def booking_link_text_key(property)
-    property.for_sale? ? '.enquire' : '.make_a_booking'
+    property.for_sale? ? ".enquire" : ".make_a_booking"
   end
 
   # Returns true if the current page is the first page in a pagniated set.
@@ -245,9 +309,9 @@ module PropertiesHelper
   # type of search results page.
   def search_results_page_type
     action = controller.action_name
-    if ['browse_for_sale', 'new_developments'].include? action
+    if ["browse_for_sale", "new_developments"].include? action
       :sales
-    elsif ['browse_for_rent', 'quick_search'].include? action
+    elsif ["browse_for_rent", "quick_search"].include? action
       :rentals
     end
   end

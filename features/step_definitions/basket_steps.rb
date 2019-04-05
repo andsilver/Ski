@@ -7,12 +7,6 @@ Given /^I have adverts in my basket$/ do
   a.save!
 end
 
-Given /^I have a banner advert in my basket$/ do
-  d = a_directory_advert(is_banner_advert: true)
-  a = Advert.new_for(d)
-  a.save!
-end
-
 def a_directory_advert(opts = {})
   DirectoryAdvert.create!({
     user_id: users(:alice).id,

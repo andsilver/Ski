@@ -79,6 +79,43 @@
     </div>
   </div>
   <div class="form-group">
+    <%= f.label :strapline, class: 'control-label col-lg-2' %>
+    <div class="col-lg-9">
+      <%= f.text_field :strapline, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :image_url, class: 'control-label col-lg-2' %>
+    <div class="col-lg-9">
+      <%= f.text_field :image_url, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <p>Logo Image Size - 200 x 80</p>
+    <%= f.label :logo_url, class: 'control-label col-lg-2' %>
+    <div class="col-lg-9">
+      <%= f.text_field :logo_url, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :logo_alt, class: 'control-label col-lg-2' %>
+    <div class="col-lg-9">
+      <%= f.text_field :logo_alt, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :logo_title, class: 'control-label col-lg-2' %>
+    <div class="col-lg-9">
+      <%= f.text_field :logo_title, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :comment, class: 'control-label col-lg-2' %>
+    <div class="col-lg-9">
+      <%= f.text_field :comment, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
     <%= f.label :info, class: 'control-label col-lg-2' %>
     <div class="col-lg-9">
       <%= editor(f, :info, :html) %>
@@ -138,7 +175,7 @@
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :altitude_m, class: 'control-label col-lg-2' %>
+    <%= f.label :altitude_m, 'Resort height', class: 'control-label col-lg-2' %>
     <div class="col-lg-6">
       <%= f.text_field :altitude_m, class: 'form-control' %>
     </div>

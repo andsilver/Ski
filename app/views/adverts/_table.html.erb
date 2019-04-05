@@ -13,9 +13,8 @@ $(document).ready(function() {
       <th><%= t 'edit' %></th>
       <th><%= t 'resort' %></th>
       <th><%= t 'name' %></th>
-      <% if adverts.first.respond_to? :banner_image %>
+      <% if adverts.first.instance_of? DirectoryAdvert %>
       <th><%= t 'images_controller.directory_image' %></th>
-      <th><%= t 'images_controller.banner_image' %></th>
       <% elsif adverts.first.respond_to? :image %>
       <th><%= t 'images_controller.image' %></th>
       <% end %>
@@ -39,20 +38,12 @@ $(document).ready(function() {
       </td>
       <td><%= a.resort.name %></td>
       <td><%= link_to a.name, polymorphic_path(a) %></td>
-      <% if a.respond_to? :banner_image %>
+      <% if a.instance_of? DirectoryAdvert %>
       <td class="view_image">
         <% if a.image %>
         <a href="#<%= "#{a.class}_img_#{a.id}" %>"><%= t 'images_controller.directory_image' %></a>
         <div style="display: none;">
           <img src="<%= a.image.url %>" id="<%= "#{a.class}_img_#{a.id}" %>">
-        </div>
-        <% end %>
-      </td>
-      <td class="view_image">
-        <% if a.banner_image %>
-        <a href="#<%= "#{a.class}_bimg_#{a.id}" %>"><%= t 'images_controller.banner_image' %></a>
-        <div style="display: none;">
-          <img src="<%= a.banner_image.url %>" id="<%= "#{a.class}_bimg_#{a.id}" %>">
         </div>
         <% end %>
       </td>

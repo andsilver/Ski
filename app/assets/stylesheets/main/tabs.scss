@@ -1,0 +1,43 @@
+#tabs.default-tabs {
+  padding: 0 10px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  > li {
+    list-style:none;
+    border:1px solid #ededee;
+    border-radius: 3px;
+    width: 24%;
+    cursor: pointer;
+    margin-right: 24px;
+    a {
+      padding: 12px 0;
+      display:block;
+      color: #231f20;
+      background: #ededee;
+      font-size: 14px;
+      transition: ease .5s;
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    flex-wrap: wrap;
+    > li {
+      width: 40%;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+#tabs a.inactive {
+  background: #fff !important;
+}
+
+#tabs li > a:hover, #tabs li > a.inactive:hover {
+  opacity: .6;
+}
+
+.tab-container {
+  padding: 24px 0;
+}

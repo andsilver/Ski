@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   attr_reader :page_info
-
-  helper_method :admin?, :current_user, :page_info, :signed_in?
+  
+  helper_method :admin?, :current_user, :page_info, :signed_in?, :page_for_sale?, :page_for_rent?
 
   before_action :initialize_website, :set_locale, :initialize_user, :page_defaults
 
@@ -83,6 +83,14 @@ class ApplicationController < ActionController::Base
     `cat #{Shellwords.escape(bot_file)} | grep #{Shellwords.escape(user_agent)}`.present?
   end
 
+  def page_for_sale?
+    request.env['PATH_INFO'].downcase.include? 'sale'
+  end
+
+  def page_for_rent?
+    request.env['PATH_INFO'] == '/' || request.env['PATH_INFO'].downcase.include?('rent')
+  end
+
   protected
 
   def initialize_website
@@ -109,6 +117,7 @@ class ApplicationController < ActionController::Base
 
   def page_defaults
     @footer_box = ''
+    @destination = ''
     @page_info = Page.find_by(path: request.path)
     if @page_info
       @page_title = @page_info.title
@@ -116,7 +125,6 @@ class ApplicationController < ActionController::Base
       @meta_keywords = @page_info.keywords
       @page_content = @page_info.content
       @footer_box = @page_info.footer.content unless @page_info.footer.nil?
-      @banner_advert_html = @page_info.banner_advert_html unless @page_info.banner_advert_html.blank?
       @page_sidebar_html = @page_info.sidebar_html(@lang)
       @page_header_html = @page_info.header_html(@lang)
     end

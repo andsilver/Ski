@@ -1,0 +1,17 @@
+<div class="preview-layout">
+  <% @featured_ski_regions.each do |p|%>
+    <% cache(p) do -%>
+      <a class="preview-item" href="<%= region_path(p) %>" title="<%= p.name %>">
+        <% if p.image_url %>
+        <%= image_tag(p.image_url, alt: p.name) %>
+        <% else %>
+        <%= image_tag('image-missing.png', alt: 'Image missing') %>
+        <% end %>
+        <div class="overlay">
+            <h3 class="title"><%= p.name %></h3>
+            <div class="description"><%= p.country.name %></div>
+        </div>
+      </a>
+    <% end -%>
+  <% end %>
+</div>

@@ -1,0 +1,287 @@
+javascript:
+  function submit(extraValues) {
+    if(window.selectDay) {
+      // Date selection is being updated so let's wait for the
+      // event that gets triggered after the update.
+      return;
+    }
+    var valuesToSubmit = $('#booking_form form').serialize() + extraValues;
+    $('#booking_results').replaceWith('<div id="booking_results"></div>');
+    $('#checking').modal('show');
+    $.ajax({
+      url: '/properties/check_interhome_booking',
+      type: 'POST',
+      data: valuesToSubmit
+    }).done(function(data) {
+      $('#booking_results').replaceWith(data);
+      $('#checking').modal('hide');
+      if(data.indexOf('unavailable') == -1) {
+        var new_position = $('#booking-step-2').offset();
+        window.scrollTo(new_position.left, new_position.top);
+      } else {
+        var new_position = $('#booking-step-1').offset();
+        window.scrollTo(new_position.left, new_position.top);
+        $('#unavailable').modal('show');
+      }
+    }).fail(function(data) {
+      $('#checking').modal('hide');
+      $('#retry_modal').modal('show');
+      $('#retry').click(
+        function() {
+          $('#retry_modal').modal('hide');
+          submitCheck();
+        }
+      );
+    });
+    return false;
+  }
+
+  function submitCheck() {
+    submit('');
+  }
+
+  function invalidateQuote() {
+    $('#quote').replaceWith('<div style="text-align:center;padding:20px;"><a class="button action-button" onclick="submit(\'\');return false;">Get Quote</a></div>');
+  }
+
+  function submitBooking() {
+    if($('#customer_salutation_type').val() == '') {
+      alert('Please choose your title from the list.');
+      $('#customer_salutation_type').focus();
+      return;
+    }
+    if($('#customer_first_name').val() == '') {
+      alert('Please enter your first name.');
+      $('#customer_first_name').focus();
+      return;
+    }
+    if($('#customer_name').val() == '') {
+      alert('Please enter your surname.');
+      $('#customer_name').focus();
+      return;
+    }
+    email = $('#customer_email').val();
+    if(email == '') {
+      alert('Please enter your email address.');
+      $('#customer_email').focus();
+      return;
+    }
+    emailConfirmation = $('#customer_email_confirmation').val();
+    if(email != emailConfirmation) {
+      alert('Please check and confirm that your email address is correct.');
+      $('#customer_email_confirmation').focus();
+      return;
+    }
+    if(!isValidEmailAddress(email)) {
+      alert('Please enter a valid email address.');
+      $('#customer_email').focus();
+      return;
+    }
+    if(email.length > 69) {
+      alert('Please enter an email address under 70 characters long.');
+      $('#customer_email').focus();
+      return;
+    }
+    if($('#customer_address_street').val() == '') {
+      alert('Please enter the first line of your address.');
+      $('#customer_address_street').focus();
+      return;
+    }
+    if($('#customer_address_place').val() == '') {
+      alert('Please enter the town/city of your address.');
+      $('#customer_address_place').focus();
+      return;
+    }
+    if($('#customer_address_zip').val() == '') {
+      alert('Please enter your postcode/ZIP.');
+      $('#customer_address_zip').focus();
+      return;
+    }
+    if($('#customer_address_country_code').val() == '') {
+      alert('Please choose your country from the list.');
+      $('#customer_address_country_code').focus();
+      return;
+    }
+    if(!$('#terms_accepted').is(':checked')) {
+      alert('You must accept Interhome\'s terms and conditions before you can make a booking.');
+      $('#terms_accepted').focus();
+      return;
+    }
+    submit('&submit=Book');
+  }
+
+  function updateDayOfMonthSelect() {
+    var valuesToSubmit = 'year_month=' + $('#interhome_booking_arrival_month').val();
+    $.ajax({
+      url: '/properties/update_day_of_month_select',
+      type: 'GET',
+      data: valuesToSubmit
+    }).done(function(data) {
+      $('#day-of-month').replaceWith(data);
+      if(window.selectDay) {
+        $('#interhome_booking_arrival_day').val(selectDay);
+        window.selectDay = 0;
+      }
+      invalidateQuote();
+    }).fail(function(data) {
+      $('#day-of-month').replaceWith('<span id="day-of-month"><h2>An error occurred. Please <a id="retry-day-of-month">try again</a>.</h2></div>');
+      $('#retry-day-of-month').click(updateDayOfMonthSelect);
+    });
+    return false;
+  }
+
+  function updateBookingDurationsSelect(nights) {
+    var valuesToSubmit = 'nights=' + nights;
+    $.ajax({
+      url: '/properties/update_booking_durations_select',
+      type: 'GET',
+      data: valuesToSubmit
+    }).done(function(data) {
+      $('#booking-durations').replaceWith(data);
+    }).fail(function(data) {
+      $('#booking-durations').replaceWith('<span id="booking-durations"><h2>An error occurred. Please <a id="retry-booking-durations">try again</a>.</h2></div>');
+      $('#retry-booking-durations').click(updateBookingDurationsSelect);
+    });
+    return false;
+  }
+
+  $(function() {
+    $(".collapse").collapse({parent: '#accordion', toggle: false});
+    $('td[data-toggle=popover]').popover();
+
+    $('#booking_form').on('change', '.trigger-update input', invalidateQuote);
+    $('#booking_form').on('change', '.trigger-update select', invalidateQuote);
+    $('#booking_form').on('change', '#interhome_booking_arrival_month', updateDayOfMonthSelect);
+    $('#booking_form').submit(function() { submitBooking(); return false; });
+    $('.month .availability-Y').click(function(ev) {
+      window.selectDay = $(this).data('day');
+      $('#interhome_booking_arrival_month').val($(this).data('month'));
+      updateBookingDurationsSelect($(this).data('nights'));
+      var new_position = $('#booking_results').offset();
+      window.scrollTo(new_position.left, new_position.top);
+      $('#interhome_booking_arrival_month').change();
+      ev.preventDefault();
+      return false;
+    });
+
+    calendarControls();
+  });
+
+.modal.fade#checking role="dialog" aria-labelledby="checking-title" aria-describedby="checking-description"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title#checking-title Checking...
+      .modal-body
+        p#checking-description We're checking the availability, prices and options for your selection...
+        .progress.progress-striped.active
+          .progress-bar style="width: 100%;"
+
+.modal.fade#retry_modal role="dialog" aria-labelledby="error-title" aria-describedby="error-description"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title#error-title Oops
+      .modal-body
+        p#error-description
+          = 'An error occurred. Please '
+          a#retry try again
+          | .
+
+.modal.fade#unavailable role="dialog" aria-labelledby="unavailable-title" aria-describedby="unavailable-description"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title#unavailable-title Property unavailable
+      .modal-body
+        p#unavailable-description The property is unavailable for the dates you have requested.
+
+#booking_form
+  = form_tag action: 'check_interhome_booking', id: @property.id do |form|
+    - cal = InterhomeCalendar.new(@accommodation.interhome_vacancy)
+    section
+      h2.coloured Book your holiday
+      p Booking your summer or skiing holiday with MyChaletFinder is safe, simple and fast.
+      ul
+        li Follow the steps below to choose your holiday accommodation.
+        li After you click on “Book” your booking will be made and you will receive a confirmation by email with your booking information.
+        li Please keep this confirmation safe as it is your record of your booking. Closer to the date you travel, you will receive details of where you collect the keys.
+        li After booking you will be shown a screen to input your card payment information to pay your deposit, or the full amount if the date is close.
+        li If you have not paid online then the booking office will send you an invoice for the full amount, otherwise the office will send you an invoice for the remainder.
+      p We hope you have a great holiday!
+    h2#booking-step-1 style="line-height: 20px;" 1. Check availability
+    .well
+      .btn-group
+        button.btn.btn-default#earlier
+          i.fas.fa-backward>
+          | Earlier
+        button.btn.btn-default#later
+          | Later
+          i.fas.fa-forward<
+      br
+      - today = Date.today
+      - month = today.month
+      - year = today.year
+      - hide = false
+      - 15.times do |i|
+        .month id="month#{month}#{year}" data-month="#{month}" data-year="#{year}" style="#{'display: none' if hide}"
+          = raw cal.show_month(month, year)
+        - hide = true if (i + 1) % 3 == 0
+        - month += 1
+        - if month == 13
+          - month = 1
+          - year += 1
+
+      = clear
+      section.calendar-key
+        h2 Key
+        table.interhome-calendar
+          tr
+            td.availability-Y Available
+            td.availability-Y-no-check-in data-toggle="popover" data-original-title="No check-in" data-content="Some of our holiday rentals only accept arrivals on certain dates even though the property may be free on other days. Check-in dates are shown on the calendar as the dark green squares."
+              i.fas.fa-info-circle>
+              | No check-in
+            td.availability-N Unavailable
+            td.availability-Q Booking possible only on request
+    h2#booking-step-2 style="line-height: 20px;" 2. Customise your stay
+    .well
+      input type="hidden" name="permalink" value="#{@accommodation.permalink}"
+      span.trigger-update
+        .form-group
+          label Check-in date
+          .row
+            .col-xs-4
+              = select('interhome_booking', 'arrival_month', booking_months, {}, class: 'form-control')
+            .col-xs-3
+              span#day-of-month
+                = select('interhome_booking', 'arrival_day', booking_days(@interhome_booking.arrival_date.month, @interhome_booking.arrival_date.year), {}, class: 'form-control')
+      .trigger-update
+        .form-group
+          label Duration of stay
+          .row
+            .col-xs-3
+              span#booking-durations
+                = render partial: 'booking_durations', locals: {nights: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]}
+        h3 Travellers
+        .row
+          .col-xs-4
+            .form-group
+              label for="interhome_booking_adults"
+                | Adults
+              input#interhome_booking_adults.form-control type="text" name="interhome_booking[adults]" value="#{@interhome_booking.adults}"
+          .col-xs-4
+            .form-group
+              label for="interhome_booking_children"
+                | Children (3-12 years)
+              input#interhome_booking_children.form-control type="text" name="interhome_booking[children]" value="#{@interhome_booking.children}"
+          .col-xs-4
+            .form-group
+              label for="interhome_booking_babies"
+                | Babies (0-2 years)
+              input#interhome_booking_babies.form-control type="text" name="interhome_booking[babies]" value="#{@interhome_booking.babies}"
+      #booking_results
+        #quote
+          p Please select your dates of travel.

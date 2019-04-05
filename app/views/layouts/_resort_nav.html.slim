@@ -1,15 +1,14 @@
-- cache(@resort) do
+/- cache(@resort) do
   section
-    h2= @resort.name
+    / h2= @resort.name
     ul#resort-nav
       = nav_link(resort_path(@resort), "#{@resort.name} resort information", t('resort_options.resort_info'))
       = nav_link(resort_guide_path(@resort), "#{@resort.name} resort guide", t('.resort_guide')) if @resort.has_resort_guide?
       = link_with_count(resort_property_rent_path(@resort), "Property for rent in #{@resort.name}", t('views.layouts.application.resort_nav.for_rent'), @resort.for_rent_count)
       = link_with_count(resort_property_sale_path(@resort), "Property for sale in #{@resort.name}", t('for_sale'), @resort.for_sale_count)
       = link_with_count(resort_property_new_developments_path(@resort), "New property developments in #{@resort.name}", t('resort_options.new_developments'), @resort.new_development_count)
-      / hide temporarily - issue #150
-      / link_with_count(directory_resort_path(@resort), "#{@resort.name} directory", t('directory'), @resort.directory_advert_count)
-
+      hide temporarily - issue #150
+      link_with_count(directory_resort_path(@resort), "#{@resort.name} directory", t('directory'), @resort.directory_advert_count)
       - if @resort.has_piste_maps?
         = nav_link(piste_map_resort_path(@resort), "#{@resort.name} piste maps", t('piste_map'))
       - if @resort.has_visible_page?('ski-and-guiding-schools')
@@ -20,7 +19,7 @@
       - if @resort.has_page?('how-to-get-there')
         = nav_link(how_to_get_there_path(@resort), "How to Get to #{@resort.name}", 'How to Get There')
 
-- cache(@resort.region) do
+/ - cache(@resort.region) do
   - if @resort.region && @resort.region.visible_resorts.any?
     section
       h2= @resort.region.name
@@ -28,7 +27,23 @@
         - @resort.region.visible_resorts.each do |resort|
           li= link_to_with_count resort, resort, resort.property_count
 
-- holiday_type = @resort.holiday_types.first
-- if holiday_type
+/ - holiday_type = @resort.holiday_types.first
+/ - if holiday_type
   = render partial: 'holiday_type_brochures/brochure_list', locals: { heading: t('.regions'), method: :region_brochures, brochurable: @resort.country, holiday_type: holiday_type }
   = render partial: 'holiday_type_brochures/brochure_list', locals: { heading: t('.resorts'), method: :resort_brochures, brochurable: @resort.country, holiday_type: holiday_type }
+li class="main-menu-item" aria-expanded=false
+  button= t('resort')
+  ul.main-menu-item-links.match-height
+    - if @resort.has_resort_guide?
+    li= nav_link(resort_guide_path(@resort), "#{@resort.name} resort guide", t('cms_controller.guide'))
+    - if @resort.has_piste_maps? 
+    li= nav_link(piste_map_resort_path(@resort), "#{@resort.name} piste maps", t('piste_map'))
+    - if has_summer_holidays_page? @resort
+    li= link_with_count(resort_property_rent_path(@resort), "Property for rent in #{@resort.name}", t('views.layouts.application.resort_nav.for_rent'), @resort.for_rent_count)
+    li= nav_link(summer_holidays_path(@resort), "Summer holidays in #{@resort.name}", t('resorts_controller.summer_holidays'))
+    - if @resort.has_page?('how-to-get-there')
+    li= nav_link(how_to_get_there_path(@resort), "How to Get to #{@resort.name}", 'How to Get There')
+    - if @resort.has_visible_page?('ski-and-guiding-schools')
+    li= nav_link(ski_and_guiding_schools_path(@resort), t('.ski_and_guiding_schools_title', resort: @resort.name), t('.ski_and_guiding_schools'))
+    / li= link_with_count(directory_resort_path(@resort), "#{@resort.name} directory", t('directory'), @resort.directory_advert_count)
+    li

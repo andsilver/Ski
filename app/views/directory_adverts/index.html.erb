@@ -1,11 +1,10 @@
-<%= page_header 'Directory & Banner Adverts' %>
+<%= page_header 'Directory Adverts' %>
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th class="numeric">ID</th>
       <th>User</th>
       <th>Resort</th>
-      <th>Banner?</th>
       <th>Business Name</th>
       <th>Strapline</th>
       <th>Actions</th>
@@ -17,7 +16,6 @@
       <td class="numeric"><%= da.id %></td>
       <td><%= da.user.name %></td>
       <td><%= da.resort %></td>
-      <td><%= tick_cross(da.is_banner_advert?) %></td>
       <td><%= da.business_name %></td>
       <td><%= da.strapline %></td>
       <td><%= form_tag directory_advert_path(da), method: :delete do %><input type="submit" value="Delete" class="btn btn-danger"><% end %></td>

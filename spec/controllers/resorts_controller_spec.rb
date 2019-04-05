@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe ResortsController do
+RSpec.describe ResortsController do
   let(:website) { double(Website).as_null_object }
   let(:resort) { FactoryBot.create(:resort) }
 
@@ -11,7 +13,9 @@ describe ResortsController do
 
   shared_examples 'a featured properties finder' do |action, params|
     before do
-      allow(Resort).to receive(:find_by).and_return(double(Resort, visible: true).as_null_object)
+      allow(Resort)
+        .to receive(:find_by)
+        .and_return(double(Resort, visible: true).as_null_object)
     end
 
     it 'assigns @featured_properties' do
@@ -25,7 +29,10 @@ describe ResortsController do
     it_behaves_like 'a featured properties finder', :show, id: 'chamonix'
 
     it 'finds a resort by its slug' do
-      expect(Resort).to receive(:find_by).with(slug: 'chamonix').and_return(Resort.new)
+      expect(Resort)
+        .to receive(:find_by)
+        .with(slug: 'chamonix')
+        .and_return(Resort.new)
       get :show, params: { id: 'chamonix' }
     end
 
@@ -41,7 +48,10 @@ describe ResortsController do
 
       context 'when resort found by its ID' do
         before do
-          expect(Resort).to receive(:find_by).with(id: 'chamonix').and_return resort
+          expect(Resort)
+            .to receive(:find_by)
+            .with(id: 'chamonix')
+            .and_return resort
         end
 
         it 'permanently redirects to that resort' do
@@ -54,7 +64,8 @@ describe ResortsController do
   end
 
   describe 'GET resort_guide' do
-    it_behaves_like 'a featured properties finder', :resort_guide, id: 'chamonix'
+    it_behaves_like 'a featured properties finder', :resort_guide,
+                    id: 'chamonix'
   end
 
   describe 'GET piste_map' do
@@ -112,7 +123,7 @@ describe ResortsController do
         let(:admin) { true }
 
         it 'renders' do
-          expect(response).to be_success
+          expect(response).to be_successful
         end
       end
     end
@@ -121,7 +132,7 @@ describe ResortsController do
       let(:page_info) { Page.new(visible: true) }
 
       it 'renders' do
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
   end

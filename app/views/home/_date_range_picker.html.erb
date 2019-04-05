@@ -1,0 +1,39 @@
+<label>Check in - Check out</label>
+<div id="check_in_out" class="date-range-pick">
+    <i class="far fa-calendar"></i>
+    <span> Check in - Check out</span>
+</div>
+<input id="check_in" name="start_date" style="display: none">
+<input id="check_out" name="end_date" style="display: none">
+
+<script>
+    $(function () {
+        <% if start_date.present? && end_date.present? %>
+            $('#check_in').val("<%= start_date %>");
+            $('#check_out').val("<%= end_date %>");
+            $('#check_in_out span').html("<%= Date.parse(start_date).strftime("%d %b %Y") %>" + ' - ' + "<%= Date.parse(end_date).strftime("%d %b %Y") %>");
+            $('#check_in_out span').css('color', 'black');
+        <% else %>
+            $('#check_in').val(null);
+            $('#check_out').val(null);
+        <% end %>
+    });
+
+    $('#check_in_out').daterangepicker({
+        "autoApply": true,
+        "opens": "center",
+        "linkedCalendars": false
+    }, function(start, end, label) {
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May","Jun","Jul", "Aug", "Sepr", "Oct", "Nov","Dec"]
+        const format = (date) => {
+            const new_date = date.format('DD B YYYY');
+            const month = monthNames[Number(date.format('MM')) - 1];
+            return new_date.replace('B', month);
+        }
+
+        $('#check_in_out span').html(format(start) + ' - ' + format(end));
+        $('#check_in_out span').css('color', 'black');
+        $('#check_in').val(start);
+        $('#check_out').val(end);
+    });
+</script>

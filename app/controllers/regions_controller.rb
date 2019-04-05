@@ -1,10 +1,15 @@
 class RegionsController < ApplicationController
   before_action :set_resort
 
-  def show; end
+  def show
+    @resorts = @region.resorts.select{|r| r.featured}
+  end
 
   def how_to_get_there
     return not_found if @page_content.blank?
+  end
+
+  def piste_map
   end
 
   private

@@ -1,0 +1,458 @@
+#welcome-message,
+#featured-properties,
+#list-properties,
+#ski-holiday-experiences {
+  text-align: center;
+}
+
+#list-properties {
+  .button {
+    padding: 1rem 2.5rem;
+  }
+}
+
+.page-description {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  h1>span {
+    display: block;
+    font-size: 1.25rem;
+    color: #231f20;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+}
+
+.static-page-content,
+.page-description p,
+.page-table {
+  strong {
+    color: #2e2c2f;
+  }
+
+  a {
+    text-decoration: unset;
+    color: #005e9c;
+  }
+}
+
+.preview-item {
+  display: block;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  overflow: hidden;
+  max-height: 300px;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    -moz-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+  }
+
+  &:hover:before {
+    background: none;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title,
+  .description {
+    color: #ffffff;
+    width: 59%;
+  }
+
+  .description {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.preview-layout {
+  display: flex;
+  flex-wrap: wrap;
+
+  .preview-item {
+    margin: 1%;
+    flex-basis: 98%;
+
+    @media screen and (min-width: 640px) {
+      flex-basis: 48%;
+    }
+
+    @media screen and (min-width: 1024px) {
+      flex-basis: 31.3%;
+    }
+  }
+
+  &-basis-50 {
+    flex-basis: 98%;
+    margin-bottom: 24px;
+
+    @media screen and (min-width: 968px) {
+      flex-basis: 45%;
+    }
+  }
+}
+
+%flex-property {
+  flex-basis: 100%;
+  margin-bottom: 24px;
+}
+
+.flex-layout {
+  display: flex;
+
+  &>div {
+    margin-right: 24px;
+  }
+
+  &>div:last-of-type {
+    margin-right: 0;
+  }
+
+  @media screen and (max-width: 968px) {
+    flex-wrap: wrap;
+
+    &>div {
+      margin-right: 0;
+    }
+  }
+
+  .flex-2 {
+    @extend %flex-property;
+
+    @media screen and (min-width: 968px) {
+      flex-basis: 50%;
+    }
+  }
+
+  .flex-3 {
+    @extend %flex-property;
+
+    @media screen and (min-width: 968px) {
+      flex-basis: 33.333333%;
+    }
+  }
+
+  .flex-32 {
+    @extend %flex-property;
+
+    @media screen and (min-width: 968px) {
+      flex-basis: 66.6666667%
+    }
+  }
+
+  .flex-4 {
+    @extend %flex-property;
+
+    @media screen and (min-width: 640px) {
+      flex-basis: 50%;
+    }
+
+    @media screen and (min-width: 968px) {
+      flex-basis: 25%;
+    }
+  }
+
+  .flex-43 {
+    @extend %flex-property;
+
+    @media screen and (min-width: 968px) {
+      flex-basis: 75%;
+    }
+  }
+}
+
+.responsive-sm {
+  @media screen and (max-width: 968px) {
+    flex-wrap: wrap;
+
+    >div {
+      margin-right: 0;
+    }
+  }
+}
+
+.responsive-lg {
+  @media screen and (max-width: 1400px) {
+    flex-wrap: wrap;
+
+    >div {
+      margin-right: 0;
+    }
+  }
+
+  .flex-2 {
+    @extend %flex-property;
+
+    @media screen and (min-width: 1400px) {
+      flex-basis: 50%;
+    }
+  }
+
+  .flex-4 {
+    @media screen and (max-width: 968px) {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.drop-down {
+  position: relative;
+  min-width: 195px;
+
+  &-menu {
+    display: none;
+    position: absolute;
+    width: 75%;
+    top: 34px;
+    left: 14%;
+    background: #fff;
+    padding: 12px 0 0 !important;
+    box-shadow: 0 0 17px -7px #000;
+    z-index: 2;
+    border-radius: 4px;
+
+    &-item {
+      border: none !important;
+      width: 100% !important;
+      padding: 12px 0 12px 25px;
+      cursor: pointer;
+      color: #222222;
+      font-weight: bold;
+
+      &:hover {
+        color: black !important;
+      }
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      left: 50%;
+      top: -8px;
+      margin: 0 0 0 -9px;
+      background: url('/assets/icon_arrow_up.png') no-repeat scroll 0 0;
+      height: 10px;
+      width: 18px;
+    }
+  }
+}
+
+.theme-table {
+  width: 100%;
+  border-top: 2px solid #005e9c;
+  border-bottom: 2px solid #005e9c;
+  border-spacing: 0;
+
+  td,
+  th {
+    padding: 6px;
+    text-align: left;
+    border-bottom: 1px solid #ececec;
+  }
+
+  th {
+    color: #005e9c;
+    border-bottom: 1px solid #005e9c;
+  }
+
+  tbody tr:last-of-type td {
+    border-bottom: none;
+  }
+}
+
+.ski-holidays-ad {
+
+  padding: 24px;
+  border: 1px solid #005e9c;
+
+  table td:nth-child(2) {
+    text-align: right;
+  }
+
+  &-content {
+    display: flex;
+
+    @media screen and (max-width: 1400px) {
+      flex-wrap: wrap;
+    }
+
+    &>div {
+      &:first-of-type {
+        flex-basis: 100%;
+        margin-right: 0;
+
+        a {
+          display: block;
+          text-align: center;
+        }
+
+        @media screen and (min-width: 1400px) {
+          flex-basis: 28%;
+          margin-right: 24px;
+        }
+      }
+
+      &:last-of-type {
+        flex-basis: 100%;
+
+        @media screen and (min-width: 1400px) {
+          flex-basis: 72%;
+        }
+      }
+    }
+  }
+
+  .ad-block {
+
+    :first-child {
+      margin-bottom: 24px;
+      width: 100%;
+      max-width: 280px;
+
+      @media screen and (max-width: 968px) {
+        margin-right: 24px;
+
+        @media screen and (min-width: 640px) {
+          flex-basis: 100% !important;
+        }
+      }
+    }
+
+    @media screen and (max-width: 1400px) {
+      display: flex;
+      margin-bottom: 24px;
+    }
+
+    @media screen and (max-width: 640px) {
+      display: block;
+    }
+  }
+
+  .description-col {
+    vertical-align: top;
+    width: 40%;
+  }
+
+  .ad-table-title {
+    margin: 0;
+    padding: 12px;
+    border-top: 2px solid #005e9c;
+  }
+}
+
+.experience-slide,
+#header-images {
+  img {
+    min-height: 200px;
+
+    @media screen and (min-width: 1400px) {
+      height: 400px;
+    }
+  }
+}
+
+#jssor_1 {
+  position: relative;
+  margin: 0 auto;
+  top: 0px;
+  left: 0px;
+  width: 1400px;
+  height: 880px;
+  overflow: hidden;
+  visibility: hidden;
+
+  .jssorl-009-spin {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .jssort101 {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 1400px;
+    height: 200px;
+    background-color: #000;
+
+    .p {
+      width: 274px;
+      height: 190px;
+    }
+
+    .jsso-description {
+      position: relative;
+
+      >div {
+        position: absolute;
+        z-index: 99;
+        top: -37px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 47, 102, 0.8);
+        color: white;
+        font-size: 20px;
+
+        >div {
+          padding: 0 15px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 36px;
+        }
+      }
+
+      @media screen and (max-width: 968px) {
+        >div {
+          font-size: 28px;
+        }
+      }
+
+      @media screen and (max-width: 640px) {
+        >div {
+          font-size: 42px;
+          top: -51px;
+
+          >div {
+            height: 51px;
+          }
+        }
+      }
+    }
+  }
+}

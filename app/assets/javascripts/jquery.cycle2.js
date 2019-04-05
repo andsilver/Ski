@@ -1,5 +1,5 @@
 /*!
-* jQuery Cycle2; version: 2.1.5 build: 20140415
+* jQuery Cycle2; version: 2.1.6 build: 20141007
 * http://jquery.malsup.com/cycle2/
 * Copyright (c) 2014 M. Alsup; Dual licensed: MIT/GPL
 */
@@ -8,7 +8,7 @@
 ;(function($) {
 "use strict";
 
-var version = '2.1.5';
+var version = '2.1.6';
 
 $.fn.cycle = function( options ) {
     // fix mistakes with the ready state
@@ -30,7 +30,7 @@ $.fn.cycle = function( options ) {
         if ( container.data('cycle.opts') )
             return; // already initialized
 
-        if ( container.data('cycle-log') === false || 
+        if ( container.data('cycle-log') === false ||
             ( options && options.log === false ) ||
             ( opts && opts.log === false) ) {
             log = $.noop;
@@ -85,7 +85,7 @@ $.fn.cycle.API = {
         var slides = opts.slides;
         opts.slideCount = 0;
         opts.slides = $(); // empty set
-        
+
         // add slides that already exist
         slides = slides.jquery ? slides : opts.container.find( slides );
 
@@ -135,7 +135,7 @@ $.fn.cycle.API = {
                 pauseObj = $( opts.pauseOnHover );
 
             pauseObj.hover(
-                function(){ opts.API.pause( true ); }, 
+                function(){ opts.API.pause( true ); },
                 function(){ opts.API.resume( true ); }
             );
         }
@@ -158,7 +158,7 @@ $.fn.cycle.API = {
             alreadyPaused = opts.hoverPaused || opts.paused;
 
         if ( hover )
-            opts.hoverPaused = true; 
+            opts.hoverPaused = true;
         else
             opts.paused = true;
 
@@ -169,7 +169,7 @@ $.fn.cycle.API = {
             if ( slideOpts.timeout ) {
                 clearTimeout( opts.timeoutId );
                 opts.timeoutId = 0;
-                
+
                 // determine how much time is left for the current slide
                 opts._remainingTimeout -= ( $.now() - opts._lastQueue );
                 if ( opts._remainingTimeout < 0 || isNaN(opts._remainingTimeout) )
@@ -184,11 +184,11 @@ $.fn.cycle.API = {
             remaining;
 
         if ( hover )
-            opts.hoverPaused = false; 
+            opts.hoverPaused = false;
         else
             opts.paused = false;
 
-    
+
         if ( ! alreadyResumed ) {
             opts.container.removeClass('cycle-paused');
             // #gh-230; if an animation is in progress then don't queue a new transition; it will
@@ -338,9 +338,9 @@ $.fn.cycle.API = {
 
         // ensure that:
         //      1. advancing to a different slide
-        //      2. this is either a manual event (prev/next, pager, cmd) or 
+        //      2. this is either a manual event (prev/next, pager, cmd) or
         //              a timer event and slideshow is not paused
-        if ( opts.nextSlide != opts.currSlide && 
+        if ( opts.nextSlide != opts.currSlide &&
             (manual || (!opts.paused && !opts.hoverPaused && opts.timeout) )) { // #62
 
             opts.API.trigger('cycle-before', [ slideOpts, curr, next, fwd ]);
@@ -413,7 +413,7 @@ $.fn.cycle.API = {
             return;
         }
         if ( opts.continueAuto !== undefined ) {
-            if ( opts.continueAuto === false || 
+            if ( opts.continueAuto === false ||
                 ($.isFunction(opts.continueAuto) && opts.continueAuto() === false )) {
                 opts.API.log('terminating automatic transitions');
                 opts.timeout = 0;
@@ -428,8 +428,8 @@ $.fn.cycle.API = {
                 opts._remainingTimeout = slideOpts.timeout;
 
             if ( !opts.paused && ! opts.hoverPaused ) {
-                opts.timeoutId = setTimeout(function() { 
-                    opts.API.prepareTx( false, !opts.reverse ); 
+                opts.timeoutId = setTimeout(function() {
+                    opts.API.prepareTx( false, !opts.reverse );
                 }, timeout );
             }
         }
@@ -452,7 +452,7 @@ $.fn.cycle.API = {
         clearTimeout(opts.timeoutId);
         opts.timeoutId = 0;
         opts.nextSlide = opts.currSlide + val;
-        
+
         if (opts.nextSlide < 0)
             opts.nextSlide = opts.slides.length - 1;
         else if (opts.nextSlide >= opts.slides.length)
@@ -501,7 +501,7 @@ $.fn.cycle.API = {
         var slideOpts = $(slide).data('cycle.opts');
         return $.extend( {}, opts, slideOpts );
     },
-    
+
     initSlide: function( slideOpts, slide, suggestedZindex ) {
         var opts = this.opts();
         slide.css( slideOpts.slideCss || {} );
@@ -546,7 +546,7 @@ $.fn.cycle.API = {
 
         if ( opts.updateView !== 0 )
             opts.API.trigger('cycle-update-view', [ opts, slideOpts, currSlide, isAfter ]);
-        
+
         if ( isAfter )
             opts.API.trigger('cycle-update-view-after', [ opts, slideOpts, currSlide ]);
     },
@@ -560,7 +560,7 @@ $.fn.cycle.API = {
         }
         if (selector.jquery)
             return selector;
-        
+
         return $(selector);
     },
 
@@ -667,7 +667,7 @@ $.fn.cycle.defaults = {
     manualFx:         undefined,
     manualSpeed:      undefined,
     manualTrump:      true,
-    maxZ:             100,
+    maxZ:             95,
     pauseOnHover:     false,
     reverse:          false,
     slideActiveClass: 'cycle-slide-active',
@@ -696,7 +696,7 @@ $.extend($.fn.cycle.defaults, {
     autoHeight: 0, // setting this option to false disables autoHeight logic
     autoHeightSpeed: 250,
     autoHeightEasing: null
-});    
+});
 
 $(document).on( 'cycle-initialized', function( e, opts ) {
     var autoHeight = opts.autoHeight;
@@ -714,7 +714,7 @@ $(document).on( 'cycle-initialized', function( e, opts ) {
     if ( autoHeight == 'container' ) {
         opts.container.on( 'cycle-before', onBefore );
     }
-    else if ( t === 'string' && /\d+\:\d+/.test( autoHeight ) ) { 
+    else if ( t === 'string' && /\d+\:\d+/.test( autoHeight ) ) {
         // use ratio
         ratio = autoHeight.match(/(\d+)\:(\d+)/);
         ratio = ratio[1] / ratio[2];
@@ -748,7 +748,7 @@ function initAutoHeight( e, opts ) {
         height = $( opts.slides[ opts.currSlide ] ).outerHeight();
         opts.container.height( height );
     }
-    else if ( opts._autoHeightRatio ) { 
+    else if ( opts._autoHeightRatio ) {
         opts.container.height( opts.container.width() / opts._autoHeightRatio );
     }
     else if ( autoHeight === 'calc' || ( $.type( autoHeight ) == 'number' && autoHeight >= 0 ) ) {
@@ -756,7 +756,7 @@ function initAutoHeight( e, opts ) {
             sentinelIndex = calcSentinelIndex( e, opts );
         else if ( autoHeight >= opts.slides.length )
             sentinelIndex = 0;
-        else 
+        else
             sentinelIndex = autoHeight;
 
         // only recreate sentinel if index is different
@@ -769,7 +769,7 @@ function initAutoHeight( e, opts ) {
 
         // clone existing slide as sentinel
         clone = $( opts.slides[ sentinelIndex ].cloneNode(true) );
-        
+
         // #50; remove special attributes from cloned content
         clone.removeAttr( 'id name rel' ).find( '[id],[name],[rel]' ).removeAttr( 'id name rel' );
 
@@ -782,7 +782,7 @@ function initAutoHeight( e, opts ) {
 
         opts._sentinel = clone;
     }
-}    
+}
 
 function calcSentinelIndex( e, opts ) {
     var index = 0, max = -1;
@@ -830,14 +830,14 @@ $.extend($.fn.cycle.defaults, {
     overlay:          '> .cycle-overlay',
     overlayTemplate:  '<div>{{title}}</div><div>{{desc}}</div>',
     captionModule:    'caption'
-});    
+});
 
 $(document).on( 'cycle-update-view', function( e, opts, slideOpts, currSlide ) {
     if ( opts.captionModule !== 'caption' )
         return;
     var el;
     $.each(['caption','overlay'], function() {
-        var name = this; 
+        var name = this;
         var template = slideOpts[name+'Template'];
         var el = opts.API.getComponent( name );
         if( el.length && template ) {
@@ -914,7 +914,7 @@ $.extend( c2.API, {
         var opts = this.opts();
         if ( opts.busy && ! opts.manualTrump )
             return;
-        
+
         var count = opts.reverse ? -1 : 1;
         if ( opts.allowWrap === false && ( opts.currSlide + count ) >= opts.slideCount )
             return;
@@ -954,7 +954,9 @@ $.extend( c2.API, {
             opts.slides.removeClass( opts.slideActiveClass );
         }
         opts.slides.each(function() {
-            $(this).removeData();
+            var slide = $(this);
+            slide.removeData();
+            slide.removeClass( opts.slideClass );
             clean( this, 'parsedAttrs', false );
         });
     },
@@ -1081,7 +1083,7 @@ function onHashChange( opts, setStartingSlide ) {
         opts._hashFence = false;
         return;
     }
-    
+
     hash = window.location.hash.substring(1);
 
     opts.slides.each(function(i) {
@@ -1178,7 +1180,7 @@ $(document).on( 'cycle-bootstrap', function( e, opts ) {
 
         if ( slideCount )
             opts.container.addClass('cycle-loading');
-        
+
 
         function addSlide( slide ) {
             var curr;
@@ -1414,7 +1416,7 @@ $(document).on( 'cycle-pre-initialize', function( e, opts ) {
         else {
             // plain text, split on delimeter
             slides = slides.split( new RegExp( scriptEl.data('cycle-split') || '\n') );
-            
+
             // #95; look for empty slide
             if ( ! slides[ slides.length - 1 ] )
                 slides.pop();
@@ -1474,11 +1476,11 @@ $(document).on( 'cycle-pre-initialize', function( e, opts ) {
                 opts.API.add( slide );
             }
             else {
-                nextFn.apply( opts.API );    
+                nextFn.apply( opts.API );
             }
         };
     }
-    
+
     if ( prevFn ) {
         API.prev = function() {
             var opts = this.opts();
@@ -1540,6 +1542,6 @@ $.extend($.fn.cycle.API, {
             return str;
         });
     }
-});    
+});
 
 })(jQuery);

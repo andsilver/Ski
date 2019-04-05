@@ -3,16 +3,8 @@
 This document is a general reference for anyone wanting to script or style
 the HTML produced by this application.
 
-## HTML5
-
-The code includes new HTML5 elements. The current code includes modernizr
-and CSS to display:block the block-level elements for older browsers.
-
 ## Part of the Main Layout
 
-* `html.no-js` interacts with modernizr to detect feature support. This
-  class attribute will change if the user's browser has Javascript
-  working. Google modernizr for more information.
 * `div#admin_bar` contains a menu which is displayed when an administrator
   is logged in.
 * `div#wrapper` wraps everything within the body on every page. It is

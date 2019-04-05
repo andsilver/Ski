@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Properties', type: :request do
@@ -33,7 +35,7 @@ RSpec.describe 'Properties', type: :request do
 
         it 'renders the property template (classic by default)' do
           perform
-          assert_select '#property'
+          assert_select '.property'
         end
 
         context 'when TripAdvisor' do
@@ -78,21 +80,22 @@ RSpec.describe 'Properties', type: :request do
         end
       end
 
-      context "when the property is not publicly visible" do
+      context 'when the property is not publicly visible' do
         let(:publicly_visible?) { false }
         before do
           allow(property).to receive(:flip_key_property).and_return(nil)
         end
 
-        context "when not signed in as admin" do
+        context 'when not signed in as admin' do
           before do
-            allow(controller).to receive(:admin?).and_return(false)
+            allow_any_instance_of(ApplicationController)
+              .to receive(:admin?).and_return(false)
           end
 
-          context "but signed is as the owner" do
+          context 'but signed is as the owner' do
             let(:current_user) { property.user }
 
-            it "shows the property" do
+            it 'shows the property' do
               pending
               perform
               signed_in_user
@@ -102,16 +105,16 @@ RSpec.describe 'Properties', type: :request do
             end
           end
 
-          context "when not the owner either" do
-            it "renders not found" do
+          context 'when not the owner either' do
+            it 'renders not found' do
               perform
               expect(response.status).to eql 404
             end
           end
         end
 
-        context "when signed in as admin" do
-          it "shows the property" do
+        context 'when signed in as admin' do
+          it 'shows the property' do
             pending
             perform
             allow(controller).to receive(:admin?).and_return(true)
@@ -122,12 +125,12 @@ RSpec.describe 'Properties', type: :request do
       end
     end
 
-    context "when a property is not found" do
+    context 'when a property is not found' do
       before do
         allow(Property).to receive(:find_by).and_return(nil)
       end
 
-      it "renders not found" do
+      it 'renders not found' do
         get '/properties/1-not-found'
         expect(response.status).to eql 404
       end

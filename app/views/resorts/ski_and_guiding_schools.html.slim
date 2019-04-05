@@ -2,7 +2,7 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@resort.breadcrumbs, t('.heading'))
 
-= content_for :links_and_search, render('search_form')
+= content_for :search, render('search_form')
 
 - unless @page_content.blank?
   = raw @page_content

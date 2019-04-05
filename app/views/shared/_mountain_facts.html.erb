@@ -1,0 +1,34 @@
+<table style="width: 100%">
+    <tr>
+        <td style="width: 50%"><%= render partial: 'shared/resort_icon', locals: {type: 'n_villages'} %></td>
+        <td><%= r['altitude_m'] %> ski resorts</td>
+    </tr>
+    <tr>
+        <td><%= render partial: 'shared/resort_icon', locals: {type: 'highest_lift'} %></td>
+        <td><%= r['top_lift_m'] %> m</td>
+    </tr>
+    <tr>
+        <td><%= render partial: 'shared/resort_icon', locals: {type: 'kms_pistes'} %></td>
+        <td><%= r['piste_length_km'] %> kms</td>
+    </tr>
+    <tr>
+        <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_lifts'} %></td>
+        <td><%= r['lifts_n'] %></td>
+    </tr>
+    <tr>
+        <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_beginner_slopes'} %></td>
+        <td><%= r['green'] %></td>
+    </tr>
+    <tr>
+        <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_blue_pistes'} %></td>
+        <td><%= r['blue'] %></td>
+    </tr>
+    <tr>
+        <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_red_pistes'} %></td>
+        <td><%= r['red'] %></td>
+    </tr>
+    <tr>
+        <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_black_pistes'} %></td>
+        <td><%= r['black'] %></td>
+    </tr>
+</table>

@@ -1,9 +1,26 @@
 = bootstrap_form_for([:admin, @region]) do |f|
   = f.text_field :name
   = f.text_field :slug
+  = f.text_field :strapline
   = f.label :country_id
   = country_select('region')
+  br
+  = f.text_field :image_url
   = f.check_box :visible
+  = f.check_box :featured
+  = f.text_field :altitude_m
+  = f.text_field :top_lift_m
+  = f.text_field :piste_length_km
+  = f.text_field :lifts_n
+  = f.text_field :green
+  = f.text_field :blue
+  = f.text_field :red
+  = f.text_field :black
+  = f.text_field :logo_url
+  = f.text_field :logo_title
+  = f.text_field :logo_alt
+  = f.text_field :comment
+  br
   = editor(f, :info, :html)
   .form-actions
     = f.submit class: 'btn btn-primary'

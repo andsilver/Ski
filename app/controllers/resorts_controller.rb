@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class ResortsController < ApplicationController
   include ResortSetter
 
   before_action :set_resort, only: [:directory, :feature, :gallery,
     :how_to_get_there, :piste_map, :piste_map_full_size, :resort_guide,
     :show, :ski_and_guiding_schools, :summer_holidays]
-  before_action :find_featured_properties, only: [:resort_guide, :show, :summer_holidays]
+  before_action :find_featured_properties, only: [:resort_guide, :show, :summer_holidays, :logo_title, :logo_url, :logo_title]
 
   def show
     default_page_title t('resorts_controller.titles.show', resort: @resort, country: @resort.country)
@@ -61,11 +63,16 @@ class ResortsController < ApplicationController
 
   protected
 
-    def set_resort
-      set_resort_with params[:id]
-    end
+  def set_resort
+    set_resort_with params[:id]
+  end
 
-    def find_featured_properties
-      @featured_properties = Property.order('RAND()').limit(9).where(publicly_visible: true, resort_id: @resort.id)
-    end
+  def find_featured_properties
+    @featured_properties = Property.order(Arel.sql('RAND()'))
+                                   .limit(9)
+                                   .where(
+                                     publicly_visible: true,
+                                     resort_id: @resort.id
+                                   )
+  end
 end

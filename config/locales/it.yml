@@ -150,7 +150,7 @@ it:
     added_to_basket: 'Your directory advert has been added to your basket.'
     created: "Your directory advert was successfully created."
     saved: "Your directory advert was successfully updated."
-  directory_and_banner_adverts: 'Directory and Banner Adverts'
+  directory_adverts: 'Directory Adverts'
   duration: Duration
   edit: Edit
   email: 'Email'
@@ -375,6 +375,7 @@ it:
   property_name: 'Property name'
   property_rentals: 'Property Rentals'
   property_sales: 'Property Sales'
+  property_type: 'Property Type'
   properties_controller:
     added_to_basket: 'Your property advert has been added to your basket.'
     created: "Your property advert was successfully created. Now let's add some photos."

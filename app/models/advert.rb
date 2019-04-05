@@ -78,11 +78,7 @@ class Advert < ActiveRecord::Base
     if property
       :property
     elsif directory_advert
-      if directory_advert.is_banner_advert?
-        :banner_advert
-      else
-        :directory_advert
-      end
+      :directory_advert
     end
   end
 

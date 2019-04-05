@@ -1,0 +1,45 @@
+<div class="property-block">
+    <a href="<%= property_detail_path(p) %>" class="property-block-images">
+        <div class="property-title">
+            <div>
+                <h3><%= p.name %></h3>
+                <h5><%= p.resort %>, <%= p.country %></h5>
+            </div>
+        </div>
+        <%= render partial: 'images', locals: { property: p } %>
+    </a>
+    <div class="property-block-details">
+        <div>
+            <div class="property-block-details-description"><%= p.description %></div>
+            <div class="property-block-details-features">
+                <ul>
+                    <li><%= render partial: 'shared/resort_icon', locals: { type: 'surface_area', n: p.floor_area_metres_2 } %></li>
+                    <li><%= render partial: 'shared/resort_icon', locals: { type: 'capacity', n: p.sleeping_capacity } %></li>
+                    <li><%= render partial: 'shared/resort_icon', locals: { type: 'bedroom', n: p.number_of_bedrooms } %></li>
+                    <li><%= render partial: 'shared/resort_icon', locals: { type: 'bathroom', n:p.number_of_bathrooms } %></li>
+                </ul>
+            </div>
+        </div>
+        <div class="display-flex content-end property-block-details-price">
+            <span>
+                <% if p.price_description.present? %>
+                    <%= p.price_description %>
+                <% else %>
+                    <% if p.for_sale? %>
+                        <%= format_currency(p.sale_price, p.currency) %>
+                    <% else %>
+                        <%= t('rent_price_per_night', price: format_currency(p.price_per_night, p.currency)) %>
+                    <% end %>
+                <% end %>
+            </span>
+        </div>
+    </div>
+</div>
+
+<% if false %>
+    <% classic_features(p).each do |feature| %>
+    <li>
+        <strong><%= feature %></strong>
+    </li>
+    <% end %>
+<% end %>

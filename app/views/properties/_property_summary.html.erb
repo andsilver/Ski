@@ -1,40 +1,47 @@
-<div class="property-summary clear-fix" itemscope itemtype="http://schema.org/LodgingBusiness">
+<div class="property-summary" itemscope itemtype="http://schema.org/LodgingBusiness">
 <% cache(p) do -%>
-  <%
-  link = property_detail_path(p)
-  %>
+  <% link = property_detail_path(p) %>
   <p class="property-thumbnail">
-<% unless p.image.nil? -%>
-    <span><%= link_to(image_tag(property_summary_thumbnail(p), alt: "#{p.name} #{property_type(p)} in #{p.resort}"), link) %></span>
-<% end -%>
+  <% unless p.image.nil? -%>
+    <span><%= link_to(image_tag(property_summary_thumbnail(p), title: "#{p.name}", alt: "#{p.name} #{property_type(p)} in #{p.resort}"), link) %></span>
+  <% end -%>
   </p>
   <div class="property-summary-description">
-    <h3>
-      <%= link_to content_tag(:span, p.truncated_name, itemprop: 'name'), link, title: "Read more about #{p.name}", itemprop: 'url' %>
-      <% unless p.for_sale? %>&middot; <%= t('.sleeps') %> <%= p.sleeping_capacity %><% end %>
+    <h4>
+      <%= link_to content_tag(:h3, p.truncated_name, itemprop: 'name'), link, title: "Read more about #{p.name}", itemprop: 'url' %>
+      <div class="property-type">
+        <%= p.resort %> <%= property_type(p) %>
+      </div>
+      <br>
       <% if sort_method == 'metres_from_lift ASC' %>&middot; <%= t('.nearest_lift' )%> <%= p.nearest_lift %><% end %>
-      &middot;
-      <% if p.price_description.present? %>
-        <%= p.price_description %>
-      <% else %>
-        <%= p.for_sale? ? t('.sale_price', price: format_currency(p.sale_price, p.currency)) : t('.weekly_price', price: format_currency(p.weekly_rent_price, p.currency)) %>
-      <% end %>
-      &middot;
-      <%= property_type(p) %> in <%= p.resort %>
-    </h3>
-    <p class="strapline" itemprop="description">
-      <%= p.strapline %>
-    </p>
-
-    <div class="actions">
-      <% if p.for_sale? %>
-      <p class="additional-info">
-        <%= t('.floor_area') %> <%= p.floor_area_metres_2 %> m<sup>2</sup><br>
-        <%= t('.plot_size') %> <%= p.plot_size_metres_2 %> m<sup>2</sup>
+      <p>
+        <% if p.price_description.present? %>
+          <%= p.price_description %>
+        <% else %>
+          <% if p.for_sale? %>
+            <%= t('.sale_price') %> <strong><%= format_currency(p.sale_price, p.currency) %></strong>
+          <% else %>
+            <%= t('.price_per_night') %> <strong><%= format_currency(p.price_per_night, p.currency) %></strong>
+          <% end %>
+        <% end %>
       </p>
+      <% unless p.for_sale? %>
+        <p><%= t('.sleeps') %> - <%= p.sleeping_capacity %></p>
+        <p><%= t('.bedrooms') %> - <%= p.number_of_bedrooms %></p>
       <% end %>
-      <p class="contact_owner btn-property"><%= link_to 'More info', link, title: "More info about #{p.name}" %><i class="fas fa-caret-right"></i></p>
-    </div>
+      <p class="strapline" itemprop="description">
+        <%= p.strapline %>
+      </p>
+
+      <div class="actions">
+        <% if p.for_sale? %>
+        <p class="additional-info">
+          <%= t('.floor_area') %> - <strong><%= p.floor_area_metres_2 %> m<sup>2</sup></strong>, 
+          <%= t('.plot_size') %> - <strong><%= p.plot_size_metres_2 %> m<sup>2</sup></strong>
+        </p>
+        <% end %>
+      </div>
+    </h4>
   </div>
 <% end -%>
 </div>

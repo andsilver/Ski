@@ -1,76 +1,53 @@
 <%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading) %>
 
 <%= content_for :theme, @property.theme %>
+<% @destination = @property.name %>
+<%= render partial: 'shared/image_gallery', locals: { property: @property } %>
 
-<%= render partial: 'google_map',
-    locals: { lat: @property.latitude, lng: @property.longitude } %>
-<div id="property">
-  <%= render partial: 'user_logo', locals: { property: @property } %>
-<h1 class="property_name"><span><%= t('property_name') %>:</span> <%= @property.name %></h1>
-<%= render partial: 'price_and_id', locals: { property: @property } %>
-
-<%= render partial: 'images', locals: { property: @property } %>
-
-<h2><%= t('features') %></h2>
-
-<div id="features" class="group">
+<div class="interhome-features">
   <div class="column">
-    <%= I18n.t('bedrooms') %>: <%= @property.number_of_bedrooms %>
+    <%= render partial: 'shared/resort_icon', locals: { type: 'surface_area', n: @property.floor_area_metres_2 } %>
   </div>
   <div class="column">
-    <%= I18n.t('bathrooms') %>: <%= @property.number_of_bathrooms %>
+    <%= render partial: 'shared/resort_icon', locals: { type: 'bedroom', n: @property.number_of_bedrooms } %>
   </div>
   <div class="column">
-<% unless @property.for_sale? -%>
-    <%= I18n.t('sleeping_capacity') %>: <%= @property.sleeping_capacity %>
-<% end -%>
+    <%= render partial: 'shared/resort_icon', locals: { type: 'bathroom', n: @property.number_of_bathrooms } %>
   </div>
-  <% if (amenities = @property.amenities).any? %>
-    <p class="divider">&nbsp;</p>
-    <% amenities.each_slice((amenities.count / 3.0).ceil) do |group| %>
-      <div class="column">
-        <% group.each do |amenity| %>
-        <%= feature_tick(true, amenity.name.capitalize.sub('_', ' ')) %><br>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
+  <div class="column">
+    <%= render partial: 'shared/resort_icon', locals: { type: 'capacity', n: @property.sleeping_capacity } %>
+  </div>
 </div>
 
-<%= render partial: 'trip_advisor_calendar' %>
+<div class="flex-layout">
+  <div class="flex-3">
+    <h2>Facilities</h2>
+    <% if (amenities = @property.amenities).any? %>
+      <% amenities.each_slice((amenities.count / 3.0).ceil) do |group| %>
+        <% group.each do |amenity| %>
+          <h4><%= amenity.name.capitalize.sub('_', ' ') %></h4>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="flex-3">
+    <h2><%= I18n.t('description') %></h2>
+    <h4></h4>
+    <h4></h4>
+  </div>
+</div>
 
-<%= render partial: 'trip_advisor_enquiry' %>
+<% if @property.latitude.present? %>
+<div id="map-canvas" style="height: 400px"></div>
+<% end %>
+
+<%= render partial: 'google_map', locals: { lat: @property.latitude, lng: @property.longitude } %>
+
+<%= render partial: 'trip_advisor_calendar' %>
 
 <% unless @property.description.nil? %>
 <h2><%= I18n.t('description') %></h2>
 <%= md @property.description %>
 <% end %>
 
-<%= render 'location_button_and_modal' if @property.latitude.present? %>
-
 <%= clear %>
-
-<% if @property.reviews.any? %>
-<h2 id="reviews">Reviews</h2>
-<div class="reviews">
-  <% @property.reviews.each do |review| %>
-  <div class="review">
-    <h3 class="review-title"><%= review.rating %>/5 <%= review.title %></h3>
-    <p class="review-author-details">
-      <span class="review-author-name"><%= review.author_name %></span>,
-      <span class="review-author-location"><%= review.author_location %></span>
-      -
-      <span class="review-visited-on">
-        <%= review.visited_on.strftime('%B %Y') %>
-      </span>
-    </p>
-    <p class="review-content">
-      <%= review.content %>
-    </p>
-  </div>
-  <% end %>
-</div>
-<% end %>
-
-</div><!--#property-->
-<%= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@property.resort) %>

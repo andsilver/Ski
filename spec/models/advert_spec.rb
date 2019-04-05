@@ -96,18 +96,10 @@ RSpec.describe Advert, type: :model do
       expect(a.virtual_type).to eq(:property)
     end
 
-    it "returns :directory_advert when the object is a DirectoryAdvert but not a banner advert" do
+    it 'returns :directory_advert when the object is a DirectoryAdvert' do
       a = valid_advert
       a.directory_advert = DirectoryAdvert.new
-      a.directory_advert.is_banner_advert = false
       expect(a.virtual_type).to eq(:directory_advert)
-    end
-
-    it "returns :banner_advert when the object is a DirectoryAdvert and a banner advert" do
-      a = valid_advert
-      a.directory_advert = DirectoryAdvert.new
-      a.directory_advert.is_banner_advert = true
-      expect(a.virtual_type).to eq(:banner_advert)
     end
 
     it "returns nil when none of the above apply" do

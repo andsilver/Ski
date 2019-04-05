@@ -17,7 +17,8 @@ describe 'properties/browse' do
 
       it 'includes the distance from lift sort method' do
         render
-        expect(view.content_for(:links_and_search)).to have_content(t 'properties.browse.distance_from_lift')
+        expect(view.content_for(:search))
+          .to have_content(t 'properties.browse.distance_from_lift')
       end
     end
 
@@ -43,12 +44,13 @@ describe 'properties/browse' do
 
     it 'contains a sale price sorting method' do
       render
-      expect(links_and_search).to have_selector 'option[value="normalised_sale_price DESC"]'
+      expect(search)
+        .to have_selector 'option[value="normalised_sale_price DESC"]'
     end
 
     it 'contains a number of bathrooms sorting method' do
       render
-      expect(links_and_search).to have_selector 'option[value="number_of_bathrooms ASC"]'
+      expect(search).to have_selector 'option[value="number_of_bathrooms ASC"]'
     end
   end
 
@@ -57,17 +59,18 @@ describe 'properties/browse' do
 
     it 'contains a rental price sorting method' do
       render
-      expect(links_and_search).to have_selector 'option[value="normalised_weekly_rent_price DESC"]'
+      expect(search)
+        .to have_selector 'option[value="normalised_weekly_rent_price DESC"]'
     end
 
     it 'contains a sleeping capacity sorting method' do
       render
-      expect(links_and_search).to have_selector 'option[value="sleeping_capacity ASC"]'
+      expect(search).to have_selector 'option[value="sleeping_capacity ASC"]'
     end
   end
 
-  def links_and_search
-    view.content_for(:links_and_search)
+  def search
+    view.content_for(:search)
   end
 
   context 'with results' do

@@ -1,0 +1,25 @@
+.breadcrumb {
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    list-style: none;
+    line-height: 36px;
+
+    a {
+      text-decoration: unset;
+      color: #005e9c;
+    }
+
+    &.active {
+      color: black;
+    }
+  }
+
+  > li + li::before {
+    content: " ›› ";
+    padding-left: 5px;
+    color: black;
+  }
+}

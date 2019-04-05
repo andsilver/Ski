@@ -1,6 +1,17 @@
 # README
 
+## Contributing
+
+See CONTRIBUTING.md.
+
+## Getting started
+
+Copy config/database.sample.yml to config/database.yml and make any edits
+as needed. Then install dependencies as below.
+
 ## Dependencies
+
+Install Node.js (https://nodejs.org/) and Yarn (https://yarnpkg.com/).
 
 ### ImageScience
 
@@ -8,6 +19,12 @@ On macOS:
 
 ```
 brew install freeimage
+```
+
+On Ubuntu:
+
+```
+sudo apt-get install libfreeimage3 libfreeimage-dev
 ```
 
 ### expect
@@ -26,7 +43,18 @@ sudo apt-get install expect
 
 ## Running the test suite
 
+We use RSpec.
+
 `bundle exec rspec`
+
+We also use parallel_tests that utilised all your CPU cores:
+
+`rake parallel:spec`
+
+While developing you should use guard which will run tests on your files as you
+save changes to them:
+
+`bundle exec guard`
 
 ## Deployment
 
@@ -58,25 +86,18 @@ resize2fs /dev/sda
 reboot
 ```
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Troubleshooting
 
-Things you may want to cover:
+Errors you may face during setup:
 
-* Ruby version
+```
+fatal error: FreeImage.h: No such file or directory #include "FreeImage.h"
+```
 
-* System dependencies
+Install image ImageScience dependencies as described above.
 
-* Configuration
+Ubuntu Webpacker issues:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+sudo apt install webpack
+```

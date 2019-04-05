@@ -16,7 +16,7 @@ RSpec.describe 'Regions', type: :system do
     rhone_alpes.resorts << FactoryBot.create(:resort, name: 'Chamonix')
 
     visit region_path(rhone_alpes)
-    expect(page.find('#links-and-search')).to have_content 'Resorts'
-    expect(page.find('#links-and-search')).to have_content 'Chamonix'
+    expect(page.find('.links')).to have_content 'Resorts'
+    expect(page.find('.links')).to have_content 'Chamonix'
   end
 end

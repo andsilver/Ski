@@ -1,0 +1,11 @@
+.page-description
+    h1
+        = t('regions.show.ski_holidays_title', region: @region.name)
+        span= t('regions.show.ski_holidays_sub_title', region: @region.name)
+.region-nav
+    a.region-nav-item.active Overview
+    = link_to 'Piste Map', region_piste_map_path(@region), class: 'region-nav-item '
+    = link_to 'Rentals', region_property_rent_path(@region), class: 'region-nav-item'
+    = link_to 'Sales', region_property_sale_path(@region), class: 'region-nav-item'
+    = link_to 'Getting There', how_to_get_to_region_path(@region), class: 'region-nav-item'
+    / a.region-nav-item Getting There

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -23,36 +25,201 @@ Role.delete_all
 Currency.destroy_all
 Payment.delete_all
 Enquiry.delete_all
+Website.delete_all
 
-website = Website.create!
+require './db/pages/static'
+include Static
+
+website = Website.create!(home_content: STATIC[:website])
 
 CarouselSlide.delete_all
 CarouselSlide.create!([
-  { caption: '<p>Ski Holidays</p><p>A wide choice of international<br>ski resorts around the world</p>', link: '/holidays/ski-holidays', image_url: '/images/home/sh-home.png' },
-  { caption: '<p>City Breaks</p><p>All year round destinations – <br>explore something new</p>', link: '/holidays/city-breaks', image_url: '/images/home/ex-slider.png' },
-  { caption: '<p>Summer Villas</p><p>A great choice from the blue seas of <br>the Amalfi Coast to the Florida Keys</p>', link: '/holidays/summer-villas', image_url: '/images/home/sv-home.png' },
-  { caption: '<p>Lakes & Mountains<p><p>Beautiful lakeside resorts in picture <br>postcard settings</p>', link: '/holidays/lakes-and-mountains', image_url: '/images/home/lm-home.png' }
-])
-
+                        { caption: '<p>Ski Holidays</p><p>A wide choice of international<br>ski resorts around the world</p>', link: '/holidays/ski-holidays', image_url: 'home/sh-home.png' },
+                        { caption: '<p>City Breaks</p><p>All year round destinations – <br>explore something new</p>', link: '/holidays/city-breaks', image_url: 'home/ex-slider.png' },
+                        { caption: '<p>Summer Villas</p><p>A great choice from the blue seas of <br>the Amalfi Coast to the Florida Keys</p>', link: '/holidays/summer-villas', image_url: 'home/sv-home.png' },
+                        { caption: '<p>Lakes & Mountains<p><p>Beautiful lakeside resorts in picture <br>postcard settings</p>', link: '/holidays/lakes-and-mountains', image_url: 'home/lm-home.png' }
+                      ])
 Page.create!([
-  { path: '/pages/about', title: 'About' }
-])
+               { path: '/pages/about', title: 'About' },
+               {
+                 path: '/resorts/chamonix/properties/rent',
+                 title: 'Chamonix Chalets & Apartments to Rent | Chamonix Holiday Rental Accommodation',
+                 description: 'Looking for a Chamonix chalet or apartment? Over 100 self catering holiday rental chalets and apartments to choose from for all budgets and tastes for your ski or summer holidays - enquire or book online',
+                 keywords: 'chamonix chalets, accommodation in chamonix, chalet rentals in chamonix, chamonix holiday rentals , chamonix vacation rentals, apartments for rent in chamonix, luxury chamonix chalets, hot tubs, ski-in, ski-out, mychaletfinder',
+                 header_snippet_name: 'intersport',
+                 content: STATIC[:resorts][:chamonix][:rent]
+               },
+               {
+                 path: '/resorts/chamonix/properties/sale',
+                 title: 'Chamonix Chalets & Apartments for Sale | Chamonix Real Estate',
+                 description: 'Chamonix ski chalets & apartments for sale in Chamonix for all budgets - from studio apartments, holiday homes & luxury ski chalets in Chamonix  to buy - see our selection at MyChaletFinder...',
+                 keywords: 'accommodation-in-chamonix, chamonix chalets for sale, chamonix apartments for sale, ski holiday accommodation to buy, mychaletfinder',
+                 header_snippet_name: 'intersport',
+                 content: STATIC[:resorts][:chamonix][:sale]
+
+               },
+               {
+                 path: '/pages/heli-skiing-in-greenland',
+                 title: 'Greenland Heli-skiing | Ski Tours Kangaamiut, Greenland',
+                 content: STATIC[:experiences][:heli_skiing][:greenland]
+               },
+               {
+                 path: '/pages/heli-skiing',
+                 title: 'Heli-skiing',
+                 header_snippet_name: 'search',
+                 content: STATIC[:experiences][:heli_skiing][:main]
+               },
+               {
+                 path: '/pages/property-for-sale',
+                 title: 'Property for Sale -  Luxury Ski Chalets, Villas & Apartments for Sale',
+                 content: STATIC[:properties][:sale]
+               },
+               {
+                 path: '/regions/les-3-vallees/piste_map',
+                 title: 'Les 3 Vallees Piste Map | Trois Vallees Trail & Ski Area Map',
+                 description: 'Plan where to ski with the Trois Vallees piste map - the 3 Valleys provides over 600kms of pistes for every level of skiers and snowboarder across 8 fabulous resorts - from forest trails to glacier skiing, Les 3 Vallees is incredible....',
+                 keywords: '3 valleys piste map, trail map, ski area map for les 3 vallees, mychaletfinder',
+                 content: STATIC[:regions][:les_3_vallees][:piste_map]
+               },
+               {
+                 path: '/countries/switzerland/holidays/ski-holidays',
+                 title: 'Switzerland Ski Chalet Holidays | Swiss Ski Resorts | Chalets',
+                 content: STATIC[:countries][:swiss][:ski_holidays],
+                 description: 'Swiss ski holidays - search through our comprehensive list of Swiss ski resorts for fantastic self catering ski chalets amongst breathtaking scenery - ideal for family holidays. Book your accommodation online for great deals',
+                 keywords: ''
+               },
+               {
+                 path: '/regions/bernese-oberland',
+                 title: 'Bernese Oberland Ski Holidays | Ski Resorts | Chalet Rentals',
+                 description: 'Bernese Oberland ski holidays - with 38 ski resorts including Grindelwald & Wengen in the Jungfrau Region and glitzy Gstaad, the region is a treasure chest waiting to be explored - book ski holiday rentals online...',
+                 keywords: 'bernese oberland, ski, holidays, resorts, chalets, mychaletfinder'
+               },
+               {
+                 path: '/resorts/verbier-st-bernard/ski-and-guiding-schools',
+                 title: 'Verbier Ski Schools | Ski Lessons | Off-Piste Ski Tours | Mountain Guides',
+                 description: 'Verbier ski schools cater for absolute beginners to experts with private  and group lessons for skiing, snowboarding, off-piste and guided tours including the famous Haute Route to Zermatt',
+                 keywords: 'verbier ski schools, ski touring in verbier, verbier ski guides, haute route guides, snowboarding lessons in verbier, private ski lessons, group snowboarding lessons',
+                 content: STATIC[:resorts][:verbier_st_island][:ski_schools]
+               },
+               {
+                 path: '/resorts/chamonix/summer-holidays',
+                 title: 'Chamonix Summer Holidays Guide | Chalets & Apartments to Rent',
+                 description: 'Summer rental accommodation in Chamonix - a resort busier in summer than in winter. Great choice of chalet rentals & apartments to rent in Chamonix for your summer holiday.  Book a holiday rental in Chamonix activities for all ages...',
+                 keywords: 'chamonix chalets, chalet rentals in chamonix, holiday rentals in chamonix, summer holidays in chamonix, accommodation in chamonix, holiday homes for rent in chamonix, mychaletfinder',
+                 content: STATIC[:resorts][:chamonix][:summer_holidays]
+               },
+               {
+                 path: '/resorts/chamonix/how-to-get-there',
+                 title: 'How to get to Chamonix - transfers, car & train',
+                 description: 'Chamonix is one of the easiest resorts to get to in the Alps with transfers taking a little over 1 hour and its motorway all the way from Geneva. Car rentals and airport transfers are available at the airport - book online',
+                 keywords: 'airport transfers to chamonix, transfers to chamonix, directions to chamonix, cheap transfers to chamonix, geneva to chamonix transfers, mychaletfinder',
+                 content: STATIC[:resorts][:chamonix][:how_to_get_there]
+               },
+               {
+                 path: '/countries/france/holidays/ski-holidays',
+                 title: 'France Ski Holidays 2015 | French Ski Chalet Holidays',
+                 description: 'Ski holidays to the French Alps - choose from over 1000 chalets and apartments to rent in over 30 French ski resorts - ideal for family ski holidays, great value and many offering ski-in, ski-out  book online for great deals',
+                 keywords: 'ski holiday, skiing holidays',
+                 content: STATIC[:countries][:france][:ski_holidays]
+               },
+               {
+                 path: '/countries/france/holidays/ski-holidays/ski-areas',
+                 title: 'France Ski Holidays 2015 | French Ski Chalet Holidays',
+                 description: 'Ski holidays to the French Alps - choose from over 1000 chalets and apartments to rent in over 30 French ski resorts - ideal for family ski holidays, great value and many offering ski-in, ski-out  book online for great deals',
+                 keywords: 'ski holiday, skiing holidays',
+                 content: STATIC[:countries][:france][:ski_regions]
+               },
+               {
+                 path: '/countries/france/holidays/ski-holidays/ski-resorts',
+                 title: 'France Ski Holidays 2015 | French Ski Chalet Holidays',
+                 description: 'Ski holidays to the French Alps - choose from over 1000 chalets and apartments to rent in over 30 French ski resorts - ideal for family ski holidays, great value and many offering ski-in, ski-out  book online for great deals',
+                 keywords: 'ski holiday, skiing holidays',
+                 content: STATIC[:countries][:france][:ski_resorts]
+               },
+               {
+                 path: '/countries/france/holidays/ski-holidays/transfer-times',
+                 title: 'France Ski Holidays 2015 | French Ski Chalet Holidays',
+                 description: 'Ski holidays to the French Alps - choose from over 1000 chalets and apartments to rent in over 30 French ski resorts - ideal for family ski holidays, great value and many offering ski-in, ski-out  book online for great deals',
+                 keywords: 'ski holiday, skiing holidays',
+                 content: STATIC[:countries][:france][:transfer_times]
+               },
+               {
+                 path: '/holidays/ski-holidays',
+                 title: 'Ski Holidays | Skiing Vacations | Ski Holiday Chalets',
+                 description: 'Looking for a ski holiday?  From Europe, Canada, America to India and Morocco, Mychaletfinder covers over 170 ski resorts with resort reviews, features,  chalet accommodation plus suggestions for family holidays, summer ski and ski trips around the world.',
+                 keywords: 'ski holiday, skiing holidays',
+                 content: STATIC[:holidays][:ski_holidays]
+               }
+             ])
 
 ski_holidays = HolidayType.create!(
-  name: 'Ski Holidays', slug: 'ski-holidays',
-  mega_menu_html: '<ul><li><a href="/airport_transfers/find">Airport Transfers</a></li></ul>'
+  name: 'Ski Holidays in...',
+  slug: 'ski-holidays',
+  mega_menu_html: '
+    <li><a href="/holidays/ski-holidays">Overview</a></li>
+    <li><a href="/countries/france/holidays/ski-holidays">Ski holidays in France</a></li>
+    <li><a href="/countries/switzerland/holidays/ski-holidays">Ski holidays in Switzerland</a></li>'
 )
-lakes_and_mountains = HolidayType.create!(name: 'Lakes & Mountains', slug: 'lakes-and-mountains')
-summer_villas = HolidayType.create!(name: 'Summer Villas', slug: 'summer-villas')
-city_breaks = HolidayType.create!(name: 'City Breaks', slug: 'city-breaks')
+# <li><a href="/countries/austria/holidays/ski-holidays">Austria</a></li>
+# <li><a href="/countries/united-states/holidays/ski-holidays">United States</a></li>
+# <li><a href="/countries/canada/holidays/ski-holidays">Canada</a></li>
+# <li><a href="/countries/united-kingdom/holidays/ski-holidays">United Kingdom</a></li>
+# <li><a href="/countries/norway/holidays/ski-holidays">Norway</a></li>
+# <li><a href="/countries/finland/holidays/ski-holidays">Finland</a></li>
+# <li><a href="/countries/andora/holidays/ski-holidays">Andora</a></li>
+# <li><a href="/countries/germany/holidays/ski-holidays">Germany</a></li>
 
-euros = Currency.create!(
-  name: 'Euro',
-  unit: '€',
-  pre: true,
-  code: 'EUR',
-  in_euros: 1
+besk_ski_resorts = HolidayType.create!(
+  name: 'Besk Ski Resorts for...',
+  slug: 'best-ski-resorts',
+  mega_menu_html: '
+    <li><a href="/pages/beginner-ski-resorts">Beginners</a></li>
+    <li><a href="/pages/intermediate-ski-resorts">Intermediates</a></li>
+    <li><a href="/pages/family-ski-resorts">Families</a></li>
+    <li><a href="/pages/christmas-ski-holidays">Skiing at Christmas</a></li>'
 )
+
+# <li><a href="/pages/best-ski-tours-alps">Ski Touring</a></li>
+# <li><a href="/pages/summer-skiing">Summer Skiing</a></li>
+# <li><a href="/pages/ski-in-ski-out-ski-resorts-chalets">Ski-in, Ski-out Chalets</a></li>
+# <li><a href="/pages/lapland-ski-holidays">Northern Lights</a></li>
+
+experiences = HolidayType.create!(
+  name: 'Experiences',
+  slug: 'experiences',
+  mega_menu_html: '
+    <li><a href="/holidays/spa-resorts">Spa & Wellness</a></li>
+    <li><a href="/pages/best-christmas-markets-ski-resorts">Christmas Markets</a></li>
+    <li><a href="/pages/lapland-ski-holidays">Lapland & Northern Lights</a></li>
+    <li><a href="/pages/best-ski-tours-alps">Ski Tours</a></li>
+    <li><a href="/pages/heli-skiing">Heli-Skiing</a></li>
+  '
+)
+
+services = HolidayType.create!(
+  name: 'Services',
+  slug: 'services',
+  mega_menu_html: '
+    <li><a href="/pages/car-hire-car-rentals">Car Hire</a></li>
+    <li><a href="/pages/fc-exchange">Foreign Exchange</a></li>
+  '
+)
+
+#     <li><a href="/pages/snow-reports-snow-forecasts">Snow Forecasts</a></li>
+#     <li><a href="/pages/ski-rentals-ski-hire">Ski Rental</a></li>
+#     <li><a href="/pages/airport-transfers">Airport Transfers</a></li>
+#     <li><a href="/pages/travel-insurance">Travel Insurance</a></li>
+#     <li><a href="">Newsletters</a></li>
+
+currencies = [
+  { name: 'Euro', unit: '€', pre: true, code: 'EUR', in_euros: 1    },
+  { name: 'GBP',  unit: '£', pre: true, code: 'GBP', in_euros: 0.89 }
+]
+currencies.each do |c|
+  Currency.create!(name: c[:name], unit: c[:unit], pre: c[:pre], code: c[:code], in_euros: c[:in_euros])
+end
+gbps = Currency.find_by(code: 'GBP')
+euros = Currency.find_by(code: 'EUR')
 
 countries = [
   { name: 'Andorra',               iso_3166_1_alpha_2: 'AD' },
@@ -310,9 +477,13 @@ austria = Country.find_by(name: 'Austria')
 france = Country.find_by(name: 'France')
 italy = Country.find_by(name: 'Italy')
 united_kingdom = Country.find_by(name: 'United Kingdom')
+switzerland = Country.find_by(name: 'Switzerland')
 
 france.holiday_type_brochures.build(holiday_type: ski_holidays)
 france.save!
+
+switzerland.holiday_type_brochures.build(holiday_type: ski_holidays)
+switzerland.save!
 
 admin = Role.create!(
   name: 'Administrator',
@@ -379,46 +550,42 @@ advertiser = Role.create!(
   admin: false,
   select_on_signup: false,
   sales_pitch: <<~HEREDOC
-  <div class="column">
-    <div class="advertiser_type" id="property_owners">
-      <h3>Property Owners</h3>
-      <p>If you own a chalet or apartment
-      and are looking to rent it out or
-      even sell it</p>
-      <a class="learn_more" href="/welcome/property-owner">Learn More</a>
-    </div>
-
-    <div class="advertiser_type" id="estate_agents">
-      <h3>Estate Agents</h3>
-      <p>Access key features designed specifically
-      for estate agents</p>
-      <a class="learn_more" href="/welcome/estate-agent">Learn More</a>
-    </div>
-
-    <div class="advertiser_type" id="property_developers">
-      <h3>Property Developers</h3>
-      <p>MyChaletFinder.com can help you
-      market your new developments to a
-      wider audience</p>
-      <a class="learn_more" href="/welcome/property-developer">Learn More</a>
-    </div>
-  </div><!--.column-->
-
-  <div class="column">
-    <div class="advertiser_type" id="letting_agents">
-      <h3>Letting Agents</h3>
-      <p>MyChaletFinder.com complements your existing
-      letting marketing strategy</p>
-      <a class="learn_more" href="/welcome/letting-agent">Learn More</a>
-    </div>
-
-    <div class="advertiser_type" id="other_businesses">
-      <h3>Banner &amp; Directory Ads</h3>
-      <p>Cafés, bars and restaurants are among other
-      businesses that will benefit from our site</p>
-      <a class="learn_more" href="/welcome/other-business">Learn More</a>
-    </div>
-  </div><!--.column-->
+    <div class="column">
+      <div class="advertiser_type" id="property_owners">
+        <h3>Property Owners</h3>
+        <p>If you own a chalet or apartment
+        and are looking to rent it out or
+        even sell it</p>
+        <a class="learn_more" href="/welcome/property-owner">Learn More</a>
+      </div>
+       <div class="advertiser_type" id="estate_agents">
+        <h3>Estate Agents</h3>
+        <p>Access key features designed specifically
+        for estate agents</p>
+        <a class="learn_more" href="/welcome/estate-agent">Learn More</a>
+      </div>
+       <div class="advertiser_type" id="property_developers">
+        <h3>Property Developers</h3>
+        <p>MyChaletFinder.com can help you
+        market your new developments to a
+        wider audience</p>
+        <a class="learn_more" href="/welcome/property-developer">Learn More</a>
+      </div>
+    </div><!--.column-->
+     <div class="column">
+      <div class="advertiser_type" id="letting_agents">
+        <h3>Letting Agents</h3>
+        <p>MyChaletFinder.com complements your existing
+        letting marketing strategy</p>
+        <a class="learn_more" href="/welcome/letting-agent">Learn More</a>
+      </div>
+       <div class="advertiser_type" id="other_businesses">
+        <h3>Banner &amp; Directory Ads</h3>
+        <p>Cafés, bars and restaurants are among other
+        businesses that will benefit from our site</p>
+        <a class="learn_more" href="/welcome/other-business">Learn More</a>
+      </div>
+    </div><!--.column-->
   HEREDOC
 )
 
@@ -475,45 +642,141 @@ trip_advisor = User.create!(
   phone: '+441234567890'
 )
 
-Resort.create!([
-  { country: austria, name: 'Alpbach',      slug: 'alphach' },
-  { country: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
-  { country: austria, name: 'St Anton',     slug: 'st-anton' },
-  { country: austria, name: 'Tyrol',        slug: 'tyrol' },
-  { country: austria, name: 'Westendorf',   slug: 'westendorf' },
-  { country: france,  name: 'Avoriaz',      slug: 'avoriaz' },
-  { country: france,  name: 'Bernex',       slug: 'bernex' },
-  { country: france,  name: 'La Tania',     slug: 'la-tania' },
-  { country: france,  name: 'Les Houches',  slug: 'les-houches', visible: true },
-  { country: france,  name: 'Morzine',      slug: 'morzine' },
-  { country: italy,   name: 'Cervinia',     slug: 'cervinia' },
-  { country: italy,   name: 'Dolomites',    slug: 'dolomites' },
-  { country: italy,   name: 'Italian Alps', slug: 'italian-alps' },
-])
+# Regions
 
-rhone_alpes = Region.create!(
-  country: france, name: 'Rhône Alpes', slug: 'rhone-alpes'
-)
-
+rhone_alpes = Region.create!(country: france, name: 'Rhône Alpes', slug: 'rhone-alpes')
 rhone_alpes.holiday_type_brochures.build(holiday_type: ski_holidays)
 rhone_alpes.save!
+
+les_3_vallees = Region.create!(
+  country: france,
+  name: 'Les 3 Vallees',
+  slug: 'les-3-vallees',
+  featured: true,
+  image_url: '/ski-regions/les-3-vallees/saint-martin-de-belleville.jpg',
+  logo_url: '/ski-regions/les-3-vallees/logo.png',
+  logo_title: 'Les 3 Vallees',
+  logo_alt: 'Les 3 Vallees',
+  info: STATIC[:regions][:les_3_vallees][:overview]
+)
+les_3_vallees.holiday_type_brochures.build(holiday_type: ski_holidays)
+les_3_vallees.save!
+
+portes_du_soleil = Region.create!(
+  country: france,
+  name: 'Portes du Soleil',
+  slug: 'portes-du-soleil',
+  featured: true,
+  image_url: '/ski-regions/portes-du-soleil/champery-portes-du-soleil.jpg'
+)
+portes_du_soleil.holiday_type_brochures.build(holiday_type: ski_holidays)
+portes_du_soleil.save!
+
+paradiski = Region.create!(
+  country: france,
+  name: 'Paradiski',
+  slug: 'paradiski',
+  featured: true,
+  image_url: '/ski-regions/paradiski/paradiski-les-arcs-2000-mychaletfinder.jpg'
+)
+paradiski.holiday_type_brochures.build(holiday_type: ski_holidays)
+paradiski.save!
+
+french_pyrenees = Region.create!(
+  country: france,
+  name: 'French Pyrenees',
+  slug: 'french-pyrenees',
+  featured: true,
+  image_url: '/ski-regions/french-pyrenees/saint-lary-ski-area.jpg'
+)
+french_pyrenees.holiday_type_brochures.build(holiday_type: ski_holidays)
+french_pyrenees.save!
+
+espace_diamant = Region.create!(
+  country: france,
+  name: 'Espace Diamant',
+  slug: 'espace-diamant',
+  featured: true,
+  image_url: '/ski-regions/espace-diamant/espace-diamant-ski-in-ski-out-chalet.jpg'
+)
+espace_diamant.holiday_type_brochures.build(holiday_type: ski_holidays)
+espace_diamant.save!
+
+evasion_mont_blanc = Region.create!(
+  country: france,
+  name: 'Evasion Mont Blanc',
+  slug: 'evasion-mont-blanc',
+  featured: true,
+  image_url: '/ski-regions/evasion-mont-blanc/evasion-mont-blanc-megeve.jpg'
+)
+evasion_mont_blanc.holiday_type_brochures.build(holiday_type: ski_holidays)
+evasion_mont_blanc.save!
+
+bernese_oberland = Region.create!(
+  country: switzerland,
+  name: 'Bernese Oberland',
+  slug: 'bernese-oberland',
+  info: STATIC[:regions][:bernese_oberland]
+)
+bernese_oberland.holiday_type_brochures.build(holiday_type: ski_holidays)
+bernese_oberland.save!
+
+valais = Region.create!(
+  country: switzerland,
+  name: 'Valais',
+  slug: 'valais',
+  info: STATIC[:regions][:valais]
+)
+valais.holiday_type_brochures.build(holiday_type: ski_holidays)
+valais.save!
+
+val_di_fassa = Region.create!(
+  country: italy,
+  name: 'Val di Fassa',
+  slug: 'val-di-fassa',
+  info: STATIC[:regions][:val_di_fassa]
+)
+
+val_di_fassa.holiday_type_brochures.build(holiday_type: ski_holidays)
+val_di_fassa.save!
 
 htgt = rhone_alpes.create_page('how-to-get-there')
 htgt.content = '<p>How to get to Rhône Alpes...</p>'
 htgt.save
 
+# Resorts
+Resort.create!([
+                 { country: austria, name: 'Alpbach', slug: 'alphach' },
+                 { country: austria, name: 'Bad Gastein',  slug: 'bad-gastein' },
+                 { country: austria, name: 'St Anton',     slug: 'st-anton' },
+                 { country: austria, name: 'Tyrol',        slug: 'tyrol' },
+                 { country: austria, name: 'Westendorf',   slug: 'westendorf' },
+                 { country: france,  name: 'Avoriaz',      slug: 'avoriaz' },
+                 { country: france,  name: 'Bernex',       slug: 'bernex' },
+                 { country: france,  name: 'La Tania',     slug: 'la-tania' },
+                 { country: france,  name: 'Les Houches',  slug: 'les-houches', visible: true },
+                 { country: france,  name: 'Morzine',      slug: 'morzine' },
+                 { country: italy,   name: 'Cervinia',     slug: 'cervinia' },
+                 { country: italy,   name: 'Dolomites',    slug: 'dolomites' },
+                 { country: italy,   name: 'Italian Alps', slug: 'italian-alps' }
+               ])
+
+verbier_st_bernard = Resort.create!(country: switzerland, name: 'Verbier St-Bernard', info: '', altitude_m: 1500, top_lift_m: 3300, piste_length_km: 410, visible: true, black: 10, red: 55, blue: 35, green: 2, longest_run_km: 15, drags: 46, chair: 24, gondola: 10, cable_car: 5, funicular: 0, railways: 0, slope_direction: 'N,S,E,W', snowboard_parks: 3, mountain_restaurants: 14, glacier_skiing: true, creche: true, babysitting_services: true, featured: false, introduction: STATIC[:resorts][:verbier_st_island][:introduction], season: 'Winter & Summer', beginner: 4, intermediate: 5, off_piste: 5, expert: 5, heli_skiing: true, summer_skiing: false, family: 4, visiting: STATIC[:resorts][:verbier_st_island][:guide], apres_ski: 'Sophisticated, lively', gallery_content: '<h1>Seasonal Photos of Verbier<span></span></h1>', piste_map_content: STATIC[:resorts][:verbier_st_island][:piste_map], region: valais, slug: 'verbier-st-bernard')
+verbier_st_bernard.holiday_type_brochures.build(holiday_type: ski_holidays)
+verbier_st_bernard.save!
+
 chamonix = Resort.create!(country: france, name: 'Chamonix',
-  slug: 'chamonix',
-  piste_map_content: '{{ piste_table }}',
-  altitude_m: 1035,
-  top_lift_m: 3842,
-  piste_length_km: 550,
-  visible: true,
-  info: 'Chamonix, with a population of approximately 10,000, is a world famous resort and was the location of the first winter Olympics in 1924.',
-  for_rent_count: 25,
-  for_sale_count: 5,
-  region: rhone_alpes
-)
+                          slug: 'chamonix',
+                          piste_map_content: '{{ piste_table }}',
+                          altitude_m: 1035,
+                          top_lift_m: 3842,
+                          piste_length_km: 550,
+                          visible: true,
+                          info: 'Chamonix, with a population of approximately 10,000, is a world famous resort and was the location of the first winter Olympics in 1924.',
+                          for_rent_count: 25,
+                          for_sale_count: 5,
+                          region: rhone_alpes,
+                          image_url: '/resorts/chamonix/ski-holidays-chamonix-r1-mychaletfinder.jpg')
 
 chamonix.holiday_type_brochures.build(holiday_type: ski_holidays)
 chamonix.save!
@@ -528,22 +791,37 @@ Airport.destroy_all
 geneva = Airport.create!(name: 'Geneva', code: 'GVA', country: france)
 grenoble = Airport.create!(name: 'Grenoble', code: 'GNB', country: france)
 AirportDistance.create!([
-  {airport: geneva, resort: chamonix, distance_km: 90},
-  {airport: grenoble, resort: chamonix, distance_km: 255}
-])
+                          { airport: geneva, resort: chamonix, distance_km: 90 },
+                          { airport: grenoble, resort: chamonix, distance_km: 255 }
+                        ])
 
 bars = Category.create!(name: 'Bars')
 
 Category.create!([
-  { name: 'Restaurants' },
-  { name: 'Nightclubs' },
-  { name: 'Babysitters' },
-  { name: 'Child Clubs' },
-  { name: 'Car Hire' },
-  { name: 'Mountain Guides' },
-  { name: 'Estate Agents' },
-  { name: 'Lawyers' },
-])
+                   { name: 'Restaurants' },
+                   { name: 'Nightclubs' },
+                   { name: 'Babysitters' },
+                   { name: 'Child Clubs' },
+                   { name: 'Car Hire' },
+                   { name: 'Mountain Guides' },
+                   { name: 'Estate Agents' },
+                   { name: 'Lawyers' }
+                 ])
+
+def random_image
+  Image.new.tap do |img|
+    n = rand(1..30)
+    img.image = File.open("test-files/properties/chalet#{n}.jpg", 'rb')
+    img.save!
+  end
+end
+
+def assign_property_images(property)
+  num = rand(5..14)
+  num.times { property.images << random_image }
+  property.image = property.images.first
+  property.save
+end
 
 images = []
 (1..50).each do |i|
@@ -559,9 +837,9 @@ PropertyBasePrice.create!(number_of_months: 12, price: 150)
 TripAdvisorLocation.delete_all
 
 TripAdvisorLocation.create!([
-  { id: 6, name: 'Africa', location_type: 'continent' },
-  { id: 293808, name: 'Madagascar', location_type: 'country', parent_id: 6 }
-])
+                              { id: 6, name: 'Africa', location_type: 'continent' },
+                              { id: 293_808, name: 'Madagascar', location_type: 'country', parent_id: 6 }
+                            ])
 
 trip_advisor_chamonix = TripAdvisorLocation.create!(
   name: 'Chamonix',
@@ -580,37 +858,88 @@ trip_advisor_property = TripAdvisorProperty.create!(
   title: 'TA Prop'
 )
 
+chalet_bibendum = Property.create!(
+  address: '123 street',
+  balcony: true,
+  currency: euros,
+  description: 'Stylish and sophisticated, Radisson Blu Edinburgh is located ' \
+    'on the historic Royal Mile in the heart of the city. Popular ' \
+    'attractions such as Edinburgh Castle, Holyrood Palace and Edinburgh ' \
+    'Vaults are within walking distance. Each of the 238 elegant bedrooms ' \
+    'and suites offer modern...',
+  disabled: true,
+  latitude: 51.509865, longitude: -0.118092,
+  listing_type: Property::LISTING_TYPE_FOR_RENT,
+  metres_from_lift: 5500,
+  name: 'Chalet Bibendum',
+  number_of_bathrooms: 1,
+  number_of_bedrooms: 3,
+  publicly_visible: true,
+  resort: chamonix,
+  sauna: true,
+  sleeping_capacity: 8,
+  tv: Property::TV_FREEVIEW,
+  user: alice,
+  weekly_rent_price: 1350,
+  wifi: true
+)
+
+assign_property_images(chalet_bibendum)
+
+new_development = Property.create!(
+  address: '45 Rue',
+  balcony: true,
+  currency: euros,
+  description: 'Imagine the stunning location, in the heart of the authentic ' \
+    'village of Les Houches, just 7kms from the centre of Chamonix and all ' \
+    'under the gaze of the snow capped Mont Blanc. It is in this exceptional ' \
+    'setting, that our love affair with the Chamonix Valley continues with ' \
+    'the creation of "Chalets Delys" our new outright purchase development.',
+  latitude: 51.509865, longitude: -0.118092,
+  listing_type: Property::LISTING_TYPE_FOR_SALE,
+  metres_from_lift: 5500,
+  name: 'Chalet Delys',
+  new_development: true,
+  number_of_bathrooms: 1,
+  number_of_bedrooms: 3,
+  publicly_visible: true,
+  resort: chamonix,
+  sleeping_capacity: 8,
+  user: alice
+)
+
+assign_property_images(new_development)
+
 properties = Property.create!([
-  { resort: chamonix, user: alice, name: "Alpen Lounge",      address: '123 street', sleeping_capacity: 6,   metres_from_lift: 2500, weekly_rent_price: 1750, currency: euros, image:  images[1], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, layout: 'Showcase' },
-  { resort: chamonix, user: alice, name: "Apartment Teracce", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4700, weekly_rent_price: 2000, currency: euros, image:  images[2], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Brigitte's Mazot",  address: '123 street', sleeping_capacity: 2,   metres_from_lift: 3100, weekly_rent_price: 1825, currency: euros, image:  images[3], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Alaska",     address: '123 street', sleeping_capacity: 5,   metres_from_lift: 8300, weekly_rent_price: 1950, currency: euros, image:  images[4], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Anchorage",  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5000, weekly_rent_price: 1650, currency: euros, image:  images[5], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Arkle",      address: '123 street', sleeping_capacity: 14,  metres_from_lift: 4000, weekly_rent_price: 1725, currency: euros, image:  images[6], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Azimuth",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6300, weekly_rent_price: 2150, currency: euros, image:  images[7], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Bibendum",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 5500, weekly_rent_price: 1350, currency: euros, image:  images[8], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Bornian",    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4400, weekly_rent_price: 1400, currency: euros, image:  images[9], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Chachat",    address: '123 street', sleeping_capacity: 14,  metres_from_lift: 3500, weekly_rent_price: 1500, currency: euros, image: images[10], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Cachemire",  address: '123 street', sleeping_capacity: 20,  metres_from_lift: 1400, weekly_rent_price: 1375, currency: euros, image: images[11], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Chardonnet", address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9300, weekly_rent_price: 2000, currency: euros, image: images[12], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Chintalaya", address: '123 street', sleeping_capacity: 10,  metres_from_lift: 6500, weekly_rent_price: 1475, currency: euros, image: images[13], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Chosalet",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 5900, weekly_rent_price: 2025, currency: euros, image: images[14], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet D'Or",       address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6000, weekly_rent_price: 1550, currency: euros, image: images[15], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet des Sapins", address: '123 street', sleeping_capacity: 10,  metres_from_lift: 4300, weekly_rent_price: 1650, currency: euros, image: images[16], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet des Isles",  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 2600, weekly_rent_price: 1850, currency: euros, image: images[17], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet des Islouts", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 8500, weekly_rent_price: 1550, currency: euros, image: images[18], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Dubrulle",   address: '123 street', sleeping_capacity: 11,  metres_from_lift: 5000, weekly_rent_price: 1575, currency: euros, image: images[19], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Eco-Farm",   address: '123 street', sleeping_capacity: 10,  metres_from_lift: 7200, weekly_rent_price: 2100, currency: euros, image: images[20], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Edelweiss",  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 4200, weekly_rent_price: 1900, currency: euros, image: images[21], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Eftikhia" ,  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5900, weekly_rent_price: 1600, currency: euros, image: images[22], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Flegere",    address: '123 street', sleeping_capacity: 10,  metres_from_lift: 3400, weekly_rent_price: 1700, currency: euros, image: images[23], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Gauthier",   address: '123 street', sleeping_capacity: 16,  metres_from_lift: 4300, weekly_rent_price: 1600, currency: euros, image: images[24], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Les Citronniers",   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, currency: euros, image: images[25], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Grassonnets", address: '123 street', sleeping_capacity: 8,  metres_from_lift: 3500, weekly_rent_price: 1300, currency: euros, image: images[26], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, layout: 'Showcase' },
-  { resort: chamonix, user: alice, name: "Chalet Guapa",      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, currency: euros, image: images[27], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Ibex",       address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, currency: euros, image: images[28], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
-  { resort: chamonix, user: alice, name: "Chalet Jomain",     address: '123 street', sleeping_capacity: 18,  metres_from_lift: 10200, weekly_rent_price: 2050, currency: euros, image: images[29], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true },
-  ])
+                                { resort: chamonix, user: alice, name: 'Alpen Lounge', address: '123 street', sleeping_capacity: 6, metres_from_lift: 2500, weekly_rent_price: 1750, currency: euros, image: images[1], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, layout: 'Showcase', latitude: 51.509865, longitude: -0.018092 },
+                                { resort: chamonix, user: alice, name: 'Apartment Teracce', address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4700, weekly_rent_price: 2000, currency: euros, image:  images[2], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.619865, longitude: -0.118092 },
+                                { resort: chamonix, user: alice, name: "Brigitte's Mazot",  address: '123 street', sleeping_capacity: 2,   metres_from_lift: 3100, weekly_rent_price: 1825, currency: euros, image:  images[3], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.72865, longitude: -0.218092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Alaska',     address: '123 street', sleeping_capacity: 5,   metres_from_lift: 8300, weekly_rent_price: 1950, currency: euros, image:  images[4], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.839865, longitude: -0.318092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Anchorage',  address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5000, weekly_rent_price: 1650, currency: euros, image:  images[5], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.949865, longitude: -0.448092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Arkle',      address: '123 street', sleeping_capacity: 14,  metres_from_lift: 4000, weekly_rent_price: 1725, currency: euros, image:  images[6], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.159865, longitude: -0.518092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Azimuth',    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6300, weekly_rent_price: 2150, currency: euros, image:  images[7], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.269865, longitude: -0.618092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Bornian',    address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4400, weekly_rent_price: 1400, currency: euros, image:  images[9], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.379865, longitude: -0.718092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Chachat',    address: '123 street', sleeping_capacity: 14,  metres_from_lift: 3500, weekly_rent_price: 1500, currency: euros, image: images[10], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.489865, longitude: -0.818092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Cachemire',  address: '123 street', sleeping_capacity: 20,  metres_from_lift: 1400, weekly_rent_price: 1375, currency: euros, image: images[11], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 51.599865, longitude: -0.918092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Chardonnet', address: '123 street', sleeping_capacity: 8,   metres_from_lift: 9300, weekly_rent_price: 2000, currency: euros, image: images[12], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.009865, longitude: -1.018092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Chintalaya', address: '123 street', sleeping_capacity: 10,  metres_from_lift: 6500, weekly_rent_price: 1475, currency: euros, image: images[13], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.119865, longitude: -1.118092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Chosalet',   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 5900, weekly_rent_price: 2025, currency: euros, image: images[14], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.229865, longitude: -1.218092 },
+                                { resort: chamonix, user: alice, name: "Chalet D'Or",       address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6000, weekly_rent_price: 1550, currency: euros, image: images[15], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.339865, longitude: -1.318092 },
+                                { resort: chamonix, user: alice, name: 'Chalet des Sapins', address: '123 street', sleeping_capacity: 10,  metres_from_lift: 4300, weekly_rent_price: 1650, currency: euros, image: images[16], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.449865, longitude: -1.418092 },
+                                { resort: chamonix, user: alice, name: 'Chalet des Isles',  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 2600, weekly_rent_price: 1850, currency: euros, image: images[17], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.559865, longitude: -1.518092 },
+                                { resort: chamonix, user: alice, name: 'Chalet des Islouts', address: '123 street', sleeping_capacity: 8,  metres_from_lift: 8500, weekly_rent_price: 1550, currency: euros, image: images[18], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.669865, longitude: -1.618092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Dubrulle',   address: '123 street', sleeping_capacity: 11,  metres_from_lift: 5000, weekly_rent_price: 1575, currency: euros, image: images[19], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.779865, longitude: -1.718092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Eco-Farm',   address: '123 street', sleeping_capacity: 10,  metres_from_lift: 7200, weekly_rent_price: 2100, currency: euros, image: images[20], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.889865, longitude: -1.818092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Edelweiss',  address: '123 street', sleeping_capacity: 12,  metres_from_lift: 4200, weekly_rent_price: 1900, currency: euros, image: images[21], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 52.999865, longitude: -1.918092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Eftikhia', address: '123 street', sleeping_capacity: 10, metres_from_lift: 5900, weekly_rent_price: 1600, currency: euros, image: images[22], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.709865, longitude: -2.118092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Flegere',    address: '123 street', sleeping_capacity: 10,  metres_from_lift: 3400, weekly_rent_price: 1700, currency: euros, image: images[23], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.819865, longitude: -2.218092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Gauthier',   address: '123 street', sleeping_capacity: 16,  metres_from_lift: 4300, weekly_rent_price: 1600, currency: euros, image: images[24], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.929865, longitude: -2.318092 },
+                                { resort: chamonix, user: alice, name: 'Les Citronniers',   address: '123 street', sleeping_capacity: 8,   metres_from_lift: 6800, weekly_rent_price: 1450, currency: euros, image: images[25], listing_type: Property::LISTING_TYPE_FOR_RENT, publicly_visible: true, latitude: 53.339865, longitude: -2.418092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Grassonnets', address: '123 street', sleeping_capacity: 8,  metres_from_lift: 3500, weekly_rent_price: 1300, currency: euros, image: images[26], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, layout: 'Showcase', latitude: 53.049865, longitude: -2.518092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Guapa',      address: '123 street', sleeping_capacity: 8,   metres_from_lift: 4500, weekly_rent_price: 1800, currency: euros, image: images[27], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, latitude: 54.159865, longitude: -3.118092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Ibex',       address: '123 street', sleeping_capacity: 10,  metres_from_lift: 5600, weekly_rent_price: 1925, currency: euros, image: images[28], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, latitude: 54.369865, longitude: -3.218092 },
+                                { resort: chamonix, user: alice, name: 'Chalet Jomain',     address: '123 street', sleeping_capacity: 18,  metres_from_lift: 10_200, weekly_rent_price: 2050, currency: euros, image: images[29], listing_type: Property::LISTING_TYPE_FOR_SALE, publicly_visible: true, latitude: 55.779865, longitude: -4.118092 }
+                              ])
 
 a_trip_advisor_chalet = Property.create!(
   resort: chamonix, user: trip_advisor, name: 'A TripAdvisor Chalet',
@@ -647,11 +976,11 @@ a_trip_advisor_chalet.reviews << Review.create!(
   visited_on: Date.new(2017, 4, 1)
 )
 
-n = 0
-properties.each do |property|
-  n += 1
-  images[n].property = property
-  images[n].save!
+properties << a_trip_advisor_chalet
+
+properties.each_with_index do |property, index|
+  images[index + 1].property = property
+  images[index + 1].save!
 end
 
 InterhomeAccommodation.destroy_all
@@ -693,7 +1022,7 @@ interhome_property = Property.create!(
   interhome_accommodation_id: interhome_accommodation.id,
   image: images[31]
 )
-40.downto(31).each {|i| interhome_property.images << images[i]}
+40.downto(31).each { |i| interhome_property.images << images[i] }
 
 InterhomeVacancy.destroy_all
 InterhomeVacancy.create!(
@@ -727,7 +1056,8 @@ order = Order.create!(
   country: alice.billing_country,
   phone: '+44.1234567890',
   status: Order::PAYMENT_RECEIVED,
-  total: 50
+  total: 50,
+  currency: gbps
 )
 
 Payment.create!(

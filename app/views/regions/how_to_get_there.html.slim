@@ -5,5 +5,3 @@
 = render 'airport_distances/table', airport_distances: @region.airport_distances
 
 = raw Liquid::Template.parse(@page_content).render()
-
-= content_for :advertising, render(partial: 'directory_adverts/banners', object: [])

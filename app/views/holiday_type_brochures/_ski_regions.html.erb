@@ -1,0 +1,5 @@
+<div class="ski-regions-resorts">
+    <% @ski_regions.each do |region| %>
+        <%= render partial: 'region_resort', locals: {r: region, type: 'region'}%>
+    <% end %>
+</div>

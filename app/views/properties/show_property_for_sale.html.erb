@@ -1,0 +1,84 @@
+<%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading) %>
+<%= content_for :theme, @property.theme %>
+<% @destination = @property.name %>
+<div class="property">
+  <%= render partial: 'user_logo', locals: { property: @property } %>
+  <div class="flex-layout content-space-between responsive-lg">
+    <div class="flex-32">
+      <h1><%= @property.name %></h1>
+      <%= render partial: 'images', locals: { property: @property } %>
+    </div>
+    <div class="flex-4">
+      <div>
+        <h3 class="property-price">
+          <%= @property.for_sale? ? 'Sale price ' : 'Weekly price from ' %>
+          <strong><%= @property.for_sale? ? format_currency(@property.sale_price, @property.currency) : format_currency(@property.weekly_rent_price, @property.currency) %></strong>
+        </h3>
+        <div class="property-features">
+          <h2><%= I18n.t('features') %></h2>
+          <table>
+            <% new_classic_features(@property).each do |feature| %>
+              <tr>
+                <td><%= feature[:title] %></td>
+                <td>
+                  <% if feature[:type] == 'text' %>
+                    <%= feature[:value] %>
+                  <% else %>
+                    <span class="tick">✔</span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+            <% @property.amenities.each do |amenity| %>
+              <tr>
+                <td> <%= amenity.name.capitalize.sub('_', ' ') %></td>
+                <td><span class="tick">✔</span></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="property-details-container">
+    <div class="display-flex">
+      <ul id="tabs" class="content-space-between property-details-tabs">
+        <li><a id="tab1" class="button action-button">Description</a></li>
+        <li><a id="tab2" class="button action-button">Video</a></li>
+        <li><a id="tab3" class="button action-button">Energy</a></li>
+        <li><a id="tab4" class="button action-button">Floorplan</a></li>
+        <li><a id="tab5" class="button action-button">Map</a></li>
+        <div aria-expanded="false" id="drop_down" class="drop-down">
+          <a class="button action-button inactive">Resort Info</a>
+          <%= render 'resort_info' %>
+        </div>
+      </ul>
+      <div class="property-details-actions">
+        <a class="button action-button" style="margin-bottom: 8px">Print</a>
+        <a class="button action-button">Add to Favourites</a>
+      </div>
+    </div>
+    <div class="flex-layout content-space-between">
+      <div style="width: 100%">
+        <div class="tab-container" id="tab1C">
+          <h2><italic>Property Description<italic></h2>
+          <p><%= @property.description.present? ? @property.description : 'No description provided.' %></p>
+        </div>
+        <div class="tab-container" id="tab2C">
+          No Videos were provided.
+        </div>
+        <div class="tab-container" id="tab3C">
+        </div>
+        <div class="tab-container" id="tab4C">
+          <p>we are sorry but this property does not have a floorplan.  Please contact the estate agent for further information - thank you.</p>
+        </div>
+        <div class="tab-container" id="tab5C">
+          <%= render 'location_button_and_modal'%>
+          <%= render partial: 'google_map', locals: { lat: @property.latitude, lng: @property.longitude } %>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+</div>

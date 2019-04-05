@@ -1,0 +1,5 @@
+= content_for :theme, @region.theme
+
+= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@region.breadcrumbs, t('.heading'))
+
+= raw Liquid::Template.parse(@page_content).render()

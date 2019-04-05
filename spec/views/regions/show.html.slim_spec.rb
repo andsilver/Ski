@@ -8,6 +8,7 @@ describe 'regions/show.html.slim' do
   it 'shows the quick search form' do
     assign(:region, FactoryBot.create(:region))
     render
-    expect(view.content_for(:links_and_search)).to have_content(t('home.quick_search.heading'))
+    expect(view.content_for(:search))
+      .to have_content(t('home.quick_search.heading'))
   end
 end

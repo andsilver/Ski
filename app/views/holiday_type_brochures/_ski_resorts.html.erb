@@ -1,0 +1,6 @@
+<div class="ski-regions-resorts">
+    <% @ski_resorts.each do |resort| %>
+        <%= render partial: 'region_resort', locals: {r: resort, type: 'resort'}%>
+    <% end %>
+</div>
+<%= will_paginate @ski_resorts %>

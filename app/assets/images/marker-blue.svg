@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="37px" viewBox="0 0 30 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>marker-blue</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="marker" fill="#002F66" fill-rule="nonzero">
+            <path d="M11.641,36.842 C7.701,30.983 3.228,25.92 0.948,19.48 C-1.228,13.325 0.391,7.368 5.303,3.271 C9.864,-0.543 16.791,-1.078 21.949,1.961 C27.349,5.153 30.414,11.195 28.875,17.265 C28.123,20.219 26.383,23.237 24.281,25.453 C20.444,29.504 16.001,32.977 11.641,36.842 Z M3.08,12.76 C2.226,19.28 6.7,25.266 13.027,26.053 C19.588,26.873 25.357,22.336 26.217,15.684 C27.023,9.489 22.304,3.443 16.092,2.703 C9.757,1.945 3.905,6.47 3.08,12.76 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

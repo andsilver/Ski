@@ -1,58 +1,63 @@
-h3 Contact information
-.form-group
-  label Title
-  select#customer_salutation_type.form-control name="customer_salutation_type"
-    option value="" -- Choose --
-    option value="Mr" Mr
-    option value="Mrs" Mrs
-    option value="MrAndMrs" Mr and Mrs
-    option value="Blank" None of the above
+br
+h2 Booking
+h4
+  | To book this property, please read the
+  a href="/interhome/terms-and-conditions.html" target="_blank" Terms & Conditions
+  | then  complete the information requirements below 
+.contact-form style="background: #ececec; padding: 24px"
+  .form-group.search-field
+    label Title
+    select#customer_salutation_type.form-control name="customer_salutation_type"
+      option value="" -- Choose --
+      option value="Mr" Mr
+      option value="Mrs" Mrs
+      option value="MrAndMrs" Mr and Mrs
+      option value="Blank" None of the above
+
+  .form-group.search-field
+    label Name
+    input#customer_first_name.form-control type="text" name="customer_first_name" value="#{params[:customer_first_name]}"
+
+  .form-group.search-field
+    label Surname
+    input#customer_name.form-control type="text" name="customer_name" value="#{params[:customer_name]}"
+
+  .form-group.search-field
+    label Email address
+    input#customer_email.form-control type="email" name="customer_email" value="#{params[:customer_email]}" 
+
+  .form-group.search-field
+    label Confirm email address
+    input#customer_email_confirmation.form-control type="email" name="customer_email_confirmation" value="#{params[:customer_email_confirmation]}"
+
+  .form-group.search-field
+    label Address
+    input#customer_address_street.form-control type="text" name="customer_address_street" value="#{params[:customer_address_street]}"
+
+    input#customer_address_additional_street.form-control type="text" name="customer_address_additional_street" value="#{params[:customer_address_additional_street]}"
+    span.help-block
+
+  .form-group.search-field
+    label City
+    input#customer_address_place.form-control type="text" name="customer_address_place" value="#{params[:customer_address_place]}"
+
+  .form-group.search-field
+    label Postcode / ZIP code
+    input#customer_address_zip.form-control type="text" name="customer_address_zip" value="#{params[:customer_address_zip]}"
+
+  .form-group.search-field
+    label Country
+    select#customer_address_country_code.form-control name="customer_address_country_code"
+      option value="" -- Choose --
+      - Country.order('name').each do |c|
+        option value="#{c.iso_3166_1_alpha_2}"= c.name
+
+  .checkbox.search-field
+    label
+      input#terms_accepted type="checkbox" name="terms_accepted"
+        | I have read and agree to the tour operator&apos;s
+        a< href="/interhome/terms-and-conditions.html" target="_blank"
+          | terms and conditions
 
 .form-group
-  label Name
-  input#customer_first_name.form-control type="text" name="customer_first_name" value="#{params[:customer_first_name]}"
-
-.form-group
-  label Surname
-  input#customer_name.form-control type="text" name="customer_name" value="#{params[:customer_name]}"
-
-.form-group
-  label Email address
-  input#customer_email.form-control type="email" name="customer_email" value="#{params[:customer_email]}" 
-
-.form-group
-  label Confirm email address
-  input#customer_email_confirmation.form-control type="email" name="customer_email_confirmation" value="#{params[:customer_email_confirmation]}"
-
-.form-group
-  label Address
-  input#customer_address_street.form-control type="text" name="customer_address_street" value="#{params[:customer_address_street]}"
-
-.form-group
-  input#customer_address_additional_street.form-control type="text" name="customer_address_additional_street" value="#{params[:customer_address_additional_street]}"
-  span.help-block Optional
-
-.form-group
-  label City
-  input#customer_address_place.form-control type="text" name="customer_address_place" value="#{params[:customer_address_place]}"
-
-.form-group
-  label Postcode / ZIP code
-  input#customer_address_zip.form-control type="text" name="customer_address_zip" value="#{params[:customer_address_zip]}"
-
-.form-group
-  label Country
-  select#customer_address_country_code.form-control name="customer_address_country_code"
-    option value="" -- Choose --
-    - Country.order('name').each do |c|
-      option value="#{c.iso_3166_1_alpha_2}"= c.name
-
-.checkbox
-  label
-    input#terms_accepted type="checkbox" name="terms_accepted"
-      | I have read and agree to the tour operator&apos;s
-      a< href="/interhome/terms-and-conditions.html" target="_blank"
-        | terms and conditions
-
-.form-group
-  input.btn.btn-primary type="submit" name="submit" value="Book"
+  input.button.action-button style="width: 200px" type="submit" name="submit" value="Book"

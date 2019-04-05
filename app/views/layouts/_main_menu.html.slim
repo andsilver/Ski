@@ -1,0 +1,13 @@
+nav.main-menu role="navigation"
+  ul.content-inset
+    = render 'layouts/resort_nav' if @resort
+    = render 'layouts/region_nav' if @region
+    - HolidayType.on_menu.each do |ht|
+      li class="main-menu-item #{ht.slug}" aria-expanded=false
+        button = ht.name
+        ul.main-menu-item-links.match-height
+          = raw ht.mega_menu_html
+          li.fix-height-match
+            a
+              | View All
+              i.fas.fa-ellipsis-h

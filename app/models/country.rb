@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Country < ActiveRecord::Base
   include Brochures
   include RelatedPages
@@ -47,7 +49,9 @@ class Country < ActiveRecord::Base
   end
 
   def featured_properties(limit)
-    Property.order('RAND()').limit(limit).where(country_id: id, publicly_visible: true)
+    Property.order(Arel.sql('RAND()'))
+            .limit(limit)
+            .where(country_id: id, publicly_visible: true)
   end
 
   def gross_revenue_rentals_ytd
@@ -83,38 +87,47 @@ class Country < ActiveRecord::Base
   end
 
   def paid_order_lines
-    order_lines.select {|ol| ol.order.payment_received?}
+    order_lines.select { |ol| ol.order.payment_received? }
   end
 
   def rentals_order_lines
-    paid_order_lines.keep_if {|ol| ol.advert && ol.advert.property && !ol.advert.property.for_sale?}
+    paid_order_lines.keep_if do |ol|
+      ol.advert&.property && !ol.advert.property.for_sale?
+    end
   end
 
   def sales_order_lines
-    paid_order_lines.keep_if {|ol| ol.advert && ol.advert.property && ol.advert.property.for_sale?}
+    paid_order_lines.keep_if do |ol|
+      ol.advert&.property && ol.advert.property.for_sale?
+    end
   end
 
   def page_title(page_name)
-    key = 'countries_controller.titles.' + page_name.gsub('-', '_')
-    title = I18n.t(key, country: name, default: page_name)
+    key = 'countries_controller.titles.' + page_name.tr('-', '_')
+    I18n.t(key, country: name, default: page_name)
   end
 
   def self.page_names
-    HolidayType.all.map { |ht| ht.slug }
+    HolidayType.all.map(&:slug)
   end
 
-  def property_count_for_holiday_type(ht)
-    resort_brochures(ht.id).inject(0) {|sum, rb| sum + rb.brochurable.property_count}
+  def property_count_for_holiday_type(holiday_type)
+    resort_brochures(holiday_type.id).inject(0) do |sum, rb|
+      sum + rb.brochurable.property_count
+    end
   end
 
   private
 
-    def child_brochures(holiday_type_id, klass)
-      table = klass.to_s.tableize
-      HolidayTypeBrochure
-        .where(holiday_type_id: holiday_type_id, brochurable_type: klass.to_s)
-        .joins("INNER JOIN #{table} ON #{table}.id = holiday_type_brochures.brochurable_id")
-        .where(table => { country_id: id, visible: true })
-        .order("#{table}.name ASC")
-    end
+  def child_brochures(holiday_type_id, klass)
+    table = klass.to_s.tableize
+    HolidayTypeBrochure
+      .where(holiday_type_id: holiday_type_id, brochurable_type: klass.to_s)
+      .joins(
+        "INNER JOIN #{table} " \
+        "ON #{table}.id = holiday_type_brochures.brochurable_id"
+      )
+      .where(table => { country_id: id, visible: true })
+      .order("#{table}.name ASC")
+  end
 end

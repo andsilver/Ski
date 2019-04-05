@@ -1,0 +1,62 @@
+<% cache(r) do -%>
+    <div class="ski-region-resort">
+        <div class="ski-region-resort-link">
+            <a class="preview-item" href="<%= type == 'region' ? region_property_rent_path(r) : resort_property_rent_path(r)%>" title="<%= r.name %>">
+                <% if r.image_url %>
+                <%= image_tag(r.image_url, alt: r.name) %>
+                <% else %>
+                <%= image_tag('image-missing.png', alt: 'Image missing') %>
+                <% end %>
+                <div class="overlay">
+                    <h3 class="title">
+                        <%= r.name %>
+                        <br>
+                        <%= r.country.name %>
+                    </h3>
+                </div>
+            </a>
+        </div>
+        <div style="width: 100%">
+            <h2 style="text-align: left"><%= r.strapline %></h2>
+            <div class="ski-region-resort-info">
+                <div class="ski-region-resort-info-features">
+                    <table class="text-left" style="width: 100%">
+                        <tr>
+                            <td><%= render partial: 'shared/resort_icon', locals: {type: 'resort_altitude'} %></td>
+                            <td><%= r['altitude_m'] %> <%= type == 'region' ? 'ski resorts' : 'm' %></td>
+                            <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_beginner_slopes'} %></td>
+                            <td><%= r['green'] %></td>
+                        </tr>
+                        <tr>
+                            <td><%= render partial: 'shared/resort_icon', locals: {type: 'highest_lift'} %></td>
+                            <td><%= r['top_lift_m'] %></td>
+                            <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_blue_pistes'} %></td>
+                            <td><%= r['blue'] %></td>
+                        </tr>
+                        <tr>
+                            <td><%= render partial: 'shared/resort_icon', locals: {type: 'kms_pistes'} %></td>
+                            <td><%= r['piste_length_km'] %></td>
+                            <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_red_pistes'} %></td>
+                            <td><%= r['red'] %></td>
+                        </tr>
+                        <tr>
+                            <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_lifts'} %></td>
+                            <td><%= r['lifts_n'] %></td>
+                            <td><%= render partial: 'shared/resort_icon', locals: {type: 'n_black_pistes'} %></td>
+                            <td><%= r['black'] %></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="ski-region-resort-info-logo">
+                    <div>
+                        <div>
+                            <img src="<%= r['logo_url'] %>" alt="<%= r['logo_alt'] %>" title="<%= r['logo_title'] %>">
+                        </div>
+                        <p><%= r['comment'] %></p>
+                        <a class="button action-button" href="<%= type == 'resort' ? resort_path(r) : region_path(r) %>">More Info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end -%>

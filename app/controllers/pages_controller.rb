@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
   before_action :admin_required, except: [:show]
   layout 'admin', except: [:show]
@@ -60,6 +62,6 @@ class PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit(:banner_advert_html, :content, :description, :footer_id, :header_snippet_name, :keywords, :path, :sidebar_snippet_name, :title, :visible)
+    params.require(:page).permit(:content, :description, :footer_id, :header_snippet_name, :keywords, :path, :sidebar_snippet_name, :title, :visible)
   end
 end

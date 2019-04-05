@@ -1,4 +1,4 @@
-<% unless lat.empty? -%>
+<% if lat.present? -%>
 <script>
   var map;
   var marker;
@@ -10,7 +10,7 @@
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    map = new google.maps.Map(document.getElementById("map_canvas"),
+    map = new google.maps.Map(document.getElementById("map-canvas"),
       myOptions);
     marker = new google.maps.Marker({
       position: latlng,
@@ -20,17 +20,6 @@
   }
 
   $(function() {
-    $('#location').click(function() {
-      $('#location-modal').modal('show');
-      // prevent the default action, e.g., following a link
-      return false;
-    });
-
-    $('#location-modal').on('shown.bs.modal', function() {
-      google.maps.event.trigger(map, 'resize');
-      map.setCenter(marker.getPosition());
-    });
-
     showMap();
   });
 </script>

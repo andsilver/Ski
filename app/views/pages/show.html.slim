@@ -1,4 +1,8 @@
 = content_for :links_and_search do
   = render 'home/quick_search'
 
+- if @page.header_snippet_name == 'search'
+  = content_for :search do
+    = render 'home/home_search'
+
 = raw @content

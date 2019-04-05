@@ -79,6 +79,8 @@ en:
   basket: Basket
   bathrooms: 'Bathrooms'
   bedrooms: 'Bedrooms'
+  rooms: 'Rooms'
+  surface_area: 'Surface Area'
   business: Business
   business_details: Business Details
   categories_controller:
@@ -155,7 +157,7 @@ en:
     added_to_basket: 'Your directory advert has been added to your basket.'
     created: "Your directory advert was successfully created."
     saved: "Your directory advert was successfully updated."
-  directory_and_banner_adverts: 'Directory and Banner Adverts'
+  directory_adverts: 'Directory Adverts'
   duration: Duration
   edit: Edit
   email: 'Email'
@@ -207,11 +209,9 @@ en:
       check_out_date: 'Check-Out Date'
       help: 'Many properties only accept check-ins on Saturdays and have a minimum stay of 7 nights.'
     quick_search:
-      choose_country: 'Choose Country'
       choose_country_first: 'Choose Country First ↑'
-      choose_holiday: 'Choose Holiday'
       choose_holiday_first: 'Choose Holiday First ↑'
-      choose_resort: 'Choose Resort'
+      choose_resort: 'Choose'
       heading: 'Accommodation Search'
       search: 'Search'
     terms:
@@ -222,7 +222,6 @@ en:
     form:
       none_uploaded: 'No images have been uploaded yet.'
   images_controller:
-    banner_image: 'Banner Image'
     deleted: 'Image deleted.'
     directory_image: 'Directory Image'
     image: 'Image'
@@ -397,17 +396,18 @@ en:
   property_name: 'Property name'
   property_rentals: 'Property Rentals'
   property_sales: 'Property Sales'
+  property_type: 'Property Type'
   properties_controller:
     added_to_basket: 'Your property advert has been added to your basket.'
     browse_for_rent:
       heading:
         other: "Accommodation & Apartments for Rent in %{place}"
-        ski: "Accommodation, Chalets & Apartments for Rent in %{place}"
+        ski: "Chalets & Apartments for Rent in %{place}"
         summer: "Accommodation, Villas & Apartments for Rent in %{place}"
     browse_for_sale:
       heading:
         other: "Accommodation & Apartments for Sale in %{place}"
-        ski: "Accommodation, Chalets & Apartments for Sale in %{place}"
+        ski: "Chalets & Apartments for Sale in %{place}"
         summer: "Accommodation, Villas & Apartments for Sale in %{place}"
     created: "Your property advert was successfully created. Now let's add some photos."
     created_and_assigned_to_window: "Your property advert was successfully created. We've automatically placed it in one of your free windows. Now let's add some photos."
@@ -438,7 +438,9 @@ en:
       weekly_price_from: 'From %{price} weekly'
     features:
       balcony: Balcony
+      bathrooms: 'Bathrooms: %{bathrooms}'
       bed_and_breakfast: 'Bed & breakfast'
+      bedrooms: 'Bedrooms: %{bedrooms}'
       board_basis: Board basis
       cable_or_satellite: Cable or Satellite
       cave: Cave
@@ -467,6 +469,7 @@ en:
       self_catering: Self catering
       short_stays: Short stays
       ski_in_ski_out: Ski in/ski out
+      sleeping_capacity: 'Sleeping capacity: %{sleeping_capacity}'
       smoking: Smoking allowed
       swimming_pool: Swimming pool
       terrace: Terrace
@@ -497,9 +500,9 @@ en:
       floor_area: 'Living area'
       nearest_lift: 'Nearest lift'
       plot_size: 'Total'
-      sale_price: 'Prices from %{price}'
+      sale_price: 'Prices from'
       sleeps: Sleeps
-      weekly_price: 'From %{price} weekly'
+      weekly_price: 'Price per week from'
     select_resort: Select resort
     show_showcase:
       enquire: 'Enquire'
@@ -516,9 +519,13 @@ en:
   regions:
     how_to_get_there:
       heading: 'How to Get There'
+    piste_map:
+      heading: 'Piste Map'
     show:
       title: '%{region} Region Information'
       heading: 'Region Information'
+      ski_holidays_title: '%{region} Skiing Holidays'
+      ski_holidays_sub_title: 'Skiing & Snowboarding in %{region}'
   registration: Registration
   resort: 'Resort'
   resorts:
@@ -619,7 +626,7 @@ en:
   sign_out: Sign Out
   sign_up: Advertise
   signed_out: 'You are now signed out.'
-  sleeping_capacity: 'Sleeping capacity'
+  sleeping_capacity: 'Capacity'
   sleeps: sleeps
   strapline: 'Strapline'
   strapline_placeholder: "Summarise the property’s key features (e.g., size, location) in under 255 characters."
@@ -703,3 +710,6 @@ en:
       _show_property_heading:
         new_developments: 'New Developments'
   weekly_rent_price: 'Weekly rental price from'
+  rent_price_per_night: 'From %{price} per night'
+  min_stay: 'Minimum duration to stay'
+  price_per_night: 'Price per night'

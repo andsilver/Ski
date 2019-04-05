@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     resources :airport_distances, except: [:show]
     resources :airports,          except: [:show]
     resources :alt_attributes,    except: [:show]
-    resources :banner_prices,     except: [:show]
     resources :buying_guides,     except: [:show]
     resources :carousel_slides,   except: [:show] do
       member do
@@ -60,6 +59,9 @@ Rails.application.routes.draw do
   get 'late-availability' => 'late_availability#index'
 
   get 'properties/search' => 'properties#quick_search'
+
+  resources :property_sales, only: [:index]
+
   get "resorts/:resort_slug/properties/rent" => "properties#browse_for_rent", as: :resort_property_rent
   get "resorts/:resort_slug/properties/sale" => "properties#browse_for_sale", as: :resort_property_sale
   get "resorts/:resort_slug/properties/new-developments" => "properties#new_developments",
@@ -122,7 +124,7 @@ Rails.application.routes.draw do
   resources :holiday_types, only: [:show], path: 'holidays'
 
   get(
-    ':place_type/:place_slug/holidays/:holiday_type_slug' =>
+    ':place_type/:place_slug/holidays/:holiday_type_slug/(*tab)' =>
       'holiday_type_brochures#show',
     as: :holiday_type_brochure,
     constraints: { place_type: /countries|regions|resorts/ }
@@ -154,6 +156,7 @@ Rails.application.routes.draw do
       get  'sale'
       get  'current_time'
 
+      post 'interhome_enquiry'
       post 'check_interhome_booking'
       get 'update_booking_durations_select'
       get 'update_day_of_month_select'
@@ -213,6 +216,7 @@ Rails.application.routes.draw do
 
   resources :regions, only: [:show]
   get 'regions/:id/how-to-get-there' => 'regions#how_to_get_there', as: :how_to_get_to_region
+  get 'regions/:id/piste_map' => 'regions#piste_map', as: :region_piste_map
 
   get 'welcome/:role' => 'roles#sales_pitch', as: :sales_pitch
 
@@ -247,6 +251,8 @@ Rails.application.routes.draw do
   get 'search/place_names' => 'search#place_names'
 
   get 'home/search' => 'home#search', as: :home_search
+  get 'home/search_sales' => 'home#search_sales', as: :home_search_sales
+
   get 'home/country_options_for_quick_search' => 'home#country_options_for_quick_search'
   get 'home/resort_options_for_quick_search' => 'home#resort_options_for_quick_search'
   root 'home#index'

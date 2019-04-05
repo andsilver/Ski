@@ -2,11 +2,8 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@resort.breadcrumbs, t('.heading'))
 
-= content_for :links_and_search, render('search_form')
+= content_for :search, render('search_form')
 
-#content-with-side-banners
-  - unless @page_content.blank?
-    - featured_properties = render('shared/featured_properties')
-    = raw Liquid::Template.parse(@page_content).render('featured_properties' => featured_properties)
-
-= render partial: 'directory_adverts/banners', object: DirectoryAdvert.small_banners_for(@resort)
+- unless @page_content.blank?
+  - featured_properties = render('shared/featured_properties')
+  = raw Liquid::Template.parse(@page_content).render('featured_properties' => featured_properties)

@@ -26,7 +26,6 @@ class Basket
   def add_lines_for_adverts(adverts)
     total_adverts = @user.adverts_so_far
     advert_number = {
-      banner_advert: @user.banner_adverts_so_far,
       directory_advert: @user.directory_adverts_so_far,
       property: @user.property_adverts_so_far
     }

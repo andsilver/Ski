@@ -1,18 +1,30 @@
 section
   #quick-search
     = form_tag({controller: 'properties', action: 'quick_search'}, method: 'get') do
-      h2= t('.heading')
-      select#holiday_type_id.form-control name="holiday_type_id"
-        option value=""= t('.choose_holiday')
-        = options_for_select(HolidayType.on_menu.map {|ht| [ht, ht.id]})
-      select#country_id.form-control name="country_id"
-        option value=""= t('.choose_country')
-        option value=""= t('.choose_holiday_first')
-      select#resort_id.form-control name="resort_slug"
-        option value=""= t('.choose_resort')
-        option value=""= t('.choose_country_first')
-      = render 'properties/sleeps_select'
-      = render 'properties/price_range_select'
-      = render 'home/datepickers'
-      p style="text-align: right;"
-        input type="submit" value="#{t('.search')}" class="btn btn-large btn-primary"
+      h5 style="margin-top: 0; margin-bottom: 0;" = t('.heading')
+      .search-form
+        .search-field
+          label for="holiday_type_id" Holiday
+          .search-field-input
+            select#holiday_type_id.form-control name="holiday_type_id"
+              option value=""= t('.choose')
+              = options_for_select(HolidayType.on_menu.map {|ht| [ht, ht.id]})
+        .search-field
+          label for="country_id" Country
+          .search-field-input
+            select#country_id.form-control name="country_id"
+              option value=""= t('.choose')
+              option value=""= t('.choose_holiday_first')
+        .search-field
+          label for="resort_id" Resort
+          .search-field-input
+            select#resort_id.form-control name="resort_slug"
+              option value=""= t('.choose')
+              option value=""= t('.choose_country_first')
+        .search-field
+          = render 'properties/sleeps_select'
+        = render 'properties/price_range_select'
+        .search-field.search-field-checkin-checkout
+          = render 'home/date_range_picker', start_date: '', end_date: ''
+        .search-field-submit
+          input type="submit" value="#{t('.search')}" class="button action-button"

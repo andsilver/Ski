@@ -10,51 +10,15 @@
       - @directory_advert.errors.full_messages.each do |msg|
         li= msg
 
-= form_for(@directory_advert, html: {multipart: true}) do |f|
-
-  - unless @directory_advert.currently_advertised?
-    .well
-      .row
-        .col-md-8
-          h2 Type of Advert
-          p You can have either a directory listing on its own or a banner advert which includes a free directory listing.
-
-          .form-group
-            label.radio
-              = f.radio_button :is_banner_advert, false, class: 'radio'
-      	      = "Directory advert only (#{euros(Website.first.directory_advert_price)} each)"
-
-          .form-group
-            label.radio
-              = f.radio_button :is_banner_advert, true, class: 'radio'
-              | Banner advert with free directory advert
-        .col-md-4
-          h2 Banner Advert Prices
-          table style="background: #fff;"
-            tr
-              th Banner Number
-              th Price Each
-            - BannerPrice.order('current_banner_number').each do |p|
-              tr
-                td= p.current_banner_number
-                td= euros(p.price)
-
+= form_for(@directory_advert, html: { multipart: true }) do |f|
 
   .well
-    - if @directory_advert.banner_image
-      p style="float:right;"
-        img src="#{@directory_advert.banner_image.url}"
-
     h2 Images
-    p Your directory image can be a logo or a photograph that represents your business. It can be any size.<br>Your banner image must be sized to 160 pixels wide and 200 pixels tall.
+    p Your directory image can be a logo or a photograph that represents your business. It can be any size.
 
     .form-group
       label for="image" Directory image (.jpeg, .jpg, .gif, .png)
       = file_field_tag 'image'
-
-    .form-group
-      label for="banner_image" Banner image (.jpeg, .jpg, .gif, .png)
-      = file_field_tag 'banner_image'
 
   .well
     .row
@@ -146,7 +110,6 @@
         .form-group
           = f.label :url, 'Website address (URL)'
           = f.url_field :url, class: 'form-control', placeholder: 'http://www.example.org'
-        p.help-block If you have a banner advert, this is also where the visitor will be sent when they click your banner
       .col-md-7
         p
           br

@@ -36,7 +36,6 @@ module Admin
     def show
       @heading_a = @country.name
       default_page_title(@heading_a)
-      @banner_advert_html ||= @country.banner_advert_html
 
       @featured_properties = @country.featured_properties(9)
     end
@@ -68,7 +67,7 @@ module Admin
     end
 
     def country_params
-      params.require(:country).permit(:banner_advert_html, :image_id, :in_eu, :info, :iso_3166_1_alpha_2, :name, :popular_billing_country, :slug)
+      params.require(:country).permit(:image_id, :in_eu, :info, :iso_3166_1_alpha_2, :name, :popular_billing_country, :slug)
     end
   end
 end
