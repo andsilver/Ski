@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   attr_reader :page_info
-  
+
   helper_method :admin?, :current_user, :page_info, :signed_in?, :page_for_sale?, :page_for_rent?
 
   before_action :initialize_website, :set_locale, :initialize_user, :page_defaults
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     rescue_from Exception, with: :render_error
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
     rescue_from ActionController::RoutingError, with: :not_found
-    rescue_from ActionController::UnknownController, with: :not_found
+    rescue_from AbstractController::ActionNotFound, with: :not_found
   end
 
   def routing_error
