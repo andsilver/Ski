@@ -1,5 +1,5 @@
 module Admin
-  class HolidayTypesController < ApplicationController
+  class HolidayTypesController < AdminController
     before_action :set_holiday_type, only: [:edit, :update, :destroy]
 
     def index
