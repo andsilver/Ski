@@ -15,7 +15,9 @@
 <% end %>
 
 <%= form_for @website do |f| %>
-  <%= f.label :directory_advert_price %>
-  <%= f.text_field :directory_advert_price %> GBP
+  <div class="form-group">
+    <%= f.label :directory_advert_price %>
+    <%= f.text_field :directory_advert_price, class: "form-control" %> GBP
+  </div>
   <br><%= f.submit class: 'btn btn-primary' %>
 <% end %>

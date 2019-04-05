@@ -92,7 +92,7 @@ html lang="en"
             .dropdown-menu aria-labelledby="accountDropdown"
               = link_to t('account'), advertise_path, data: { 'no-turbolink' => true }, class: 'dropdown-item'
               = link_to t('sign_out'), sign_out_path, data: { 'no-turbolink' => true }, class: 'dropdown-item'
-    .container
+    .container-fluid
       - if flash[:notice]
         .alert.alert-info.fade.in
           a.close data-dismiss="alert" href="#" &times;

@@ -6,8 +6,11 @@
   <%= link_to 'Add new role', new_admin_role_path, class: 'btn btn-secondary' %>
 </p>
 
-<ul>
+<table class="table table-bordered">
 <% @roles.each do |role| %>
-  <li><%= link_to role.name, edit_admin_role_path(role) %></li>
+  <tr>
+    <td><%= role.name %></td>
+    <td><%= edit_button [:admin, role] %></td>
+  </tr>
 <% end %>
-</ul>
+</table>

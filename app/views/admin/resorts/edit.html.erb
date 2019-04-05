@@ -1,8 +1,9 @@
 <%= content_for :title, t('.title') %>
+
 <%= page_header t('.title') %>
 
 <div class="row">
-  <div class="span6">
+  <div class="col-md-6">
     <div class="well">
       <legend>Interhome Places</legend>
       <%= form_for(@interhome_place_resort) do |f| %>
@@ -36,7 +37,7 @@
 </div>
 
 <div class="row">
-  <div class="span6">
+  <div class="col-md-6">
     <div class="well" id="additional-pages">
       <legend>Additional Pages / Meta Information</legend>
       <%
@@ -57,7 +58,7 @@
       <% end %>
     </div>
   </div>
-  <div class="span6">
+  <div class="col-md-6">
     <%= render partial: 'admin/holiday_types/link', locals: { object: @resort } %>
   </div>
 </div>

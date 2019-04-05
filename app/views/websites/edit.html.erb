@@ -33,8 +33,10 @@
   <%= f.label :sidebar_html %>
   <%= editor(f, :sidebar_html, :html) %>
 
-	<%= f.label :vat_rate, 'VAT rate' %>
-	<%= f.text_field :vat_rate, class: 'text' %> %
+  <div class="form-group">
+    <%= f.label :vat_rate, 'VAT rate' %>
+    <%= f.text_field :vat_rate, class: 'form-control' %> %
+  </div>
 
 	<label for="website_skip_payment_true">Skip payment?</label>
 	<label class="radio">
@@ -68,11 +70,15 @@
     Test
   </label>
 
-	<%= f.label :worldpay_installation_id, 'Installation ID' %>
-	<%= f.text_field :worldpay_installation_id %>
+  <div class="form-group">
+    <%= f.label :worldpay_installation_id, 'Installation ID' %>
+    <%= f.text_field :worldpay_installation_id, class: "form-control" %>
+  </div>
 
-	<%= f.label :worldpay_payment_response_password, 'Payment response password' %>
-	<%= f.text_field :worldpay_payment_response_password %>
+  <div class="form-group">
+    <%= f.label :worldpay_payment_response_password, 'Payment response password' %>
+    <%= f.text_field :worldpay_payment_response_password, class: "form-control" %>
+  </div>
 
 <div class="form-actions">
   <%= f.submit class: 'btn btn-primary' %>
