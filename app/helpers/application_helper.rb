@@ -104,28 +104,28 @@ module ApplicationHelper
   def edit_button(object)
     link_to '<i class="fas fa-edit"></i> Edit'.html_safe,
     edit_polymorphic_path(object),
-    class: 'btn btn-default',
+    class: 'btn btn-secondary',
     title: "Edit #{object_title(object)}"
   end
 
   def new_button(type)
     link_to '<i class="fas fa-plus"></i> New'.html_safe,
     new_polymorphic_path(type),
-    class: 'btn btn-default',
+    class: 'btn btn-secondary',
     title: "New #{object_title(type)}"
   end
 
   def view_button(object)
     link_to '<i class="fas fa-eye"></i> View'.html_safe,
     object,
-    class: 'btn btn-default'
+    class: 'btn btn-secondary'
   end
 
   def copy_button(object)
     link_to '<i class="fas fa-plus"></i> Copy'.html_safe,
     polymorphic_path(object, {action: :copy}),
     data: { method: :get},
-    class: 'btn btn-default', title: "Copy #{object_title(object)}"
+    class: 'btn btn-secondary', title: "Copy #{object_title(object)}"
   end
 
   def editor(form, attribute, mode)

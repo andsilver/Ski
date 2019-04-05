@@ -20,8 +20,8 @@ table.table.table-condensed.table-bordered
         td= u.role.name
         td= mail_to u.email, u.email
         td= tick u.role.admin?
-        td= link_to 'Switch User', switch_user_path(u.id), class: 'btn btn-default', data: { 'no-turbolink' => true }
+        td= link_to 'Switch User', switch_user_path(u.id), class: 'btn btn-secondary', data: { 'no-turbolink' => true }
         td
-          =' link_to 'Adverts', my_adverts_path(user_id: u.id), class: 'btn btn-default', data: { 'no-turbolink' => true }, title: "View #{u}'s adverts"
+          =' link_to 'Adverts', my_adverts_path(user_id: u.id), class: 'btn btn-secondary', data: { 'no-turbolink' => true }, title: "View #{u}'s adverts"
           =' edit_button u
           = delete_button([:admin, u])

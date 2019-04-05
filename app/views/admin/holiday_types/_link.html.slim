@@ -7,7 +7,7 @@
       = f.label :holiday_type_id
       = select('holiday_type_brochure', 'holiday_type_id', HolidayType.order(:name).collect {|ht| [ ht, ht.id ] }, {prompt: 'Select Holiday Type'}, class: 'form-control')
 
-    p= f.submit 'Link Holiday Type', class: 'btn btn-default'
+    p= f.submit 'Link Holiday Type', class: 'btn btn-secondary'
 
   - unless object.holiday_type_brochures.empty?
     table.table.table-bordered

@@ -15,7 +15,7 @@
         class: 'form-control') %>
       </div>
       <div class="form-group">
-        <%= f.submit 'Link Interhome place to this resort', class: 'btn btn-default' %>
+        <%= f.submit 'Link Interhome place to this resort', class: 'btn btn-secondary' %>
       </div>
       <% end %>
       <% if @resort.interhome_place_resorts.empty? %>
@@ -47,13 +47,13 @@
         resort_path(@resort) + '/piste_map' => 'Edit piste map meta',
       }.each do |k,v|
         if(p = Page.find_by(path: k)) %>
-        <%= link_to(v, edit_page_path(p), class: 'btn btn-default') %>
+        <%= link_to(v, edit_page_path(p), class: 'btn btn-secondary') %>
         <%
         end
       end
       %>
       <% Resort.page_names.each do |n| %>
-      <%= link_to "Edit #{n} page", edit_page_admin_resort_path(@resort, page_name: n), class: 'btn btn-default' %>
+      <%= link_to "Edit #{n} page", edit_page_admin_resort_path(@resort, page_name: n), class: 'btn btn-secondary' %>
       <% end %>
     </div>
   </div>

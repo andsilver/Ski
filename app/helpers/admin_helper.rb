@@ -17,7 +17,7 @@ module AdminHelper
     if object.first?
       content_tag(:td, '&nbsp;'.html_safe)
     else
-      content_tag(:td, link_to('Move Up', send(path_helper, object), class: 'btn btn-default', method: :post))
+      content_tag(:td, link_to('Move Up', send(path_helper, object), class: 'btn btn-secondary', method: :post))
     end
   end
 
@@ -27,7 +27,7 @@ module AdminHelper
     if object.last?
       content_tag(:td, '&nbsp;'.html_safe)
     else
-      content_tag(:td, link_to('Move Down', send(path_helper, object), class: 'btn btn-default', method: :post))
+      content_tag(:td, link_to('Move Down', send(path_helper, object), class: 'btn btn-secondary', method: :post))
     end
   end
 
