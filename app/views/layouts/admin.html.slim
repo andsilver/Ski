@@ -14,12 +14,8 @@ html lang="en"
     script src="/ace-src-min-noconflict/ace.js"
     css:
       .editor {
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
         border-radius: 4px;
         border: 1px solid #ccc;
-        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-        -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
         box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
         height: 300px;
         margin-bottom: 10px;
@@ -28,79 +24,74 @@ html lang="en"
         display: none;
       }
   body
-    div style="height:60px;" &nbsp;
-    nav.navbar.navbar-default.navbar-fixed-top
-      .container
-        a.navbar-brand href="/" Home
-        .nav-collapse
-          ul.nav.navbar-nav
-            li.dropdown
-              a.dropdown-toggle href="#" data-toggle="dropdown"
-                | General
-                b.caret
-              ul.dropdown-menu
-                = admin_menu_links({ 'CMS Guide' => guide_path, 'Export Data' => export_path })
-            li.dropdown
-              a.dropdown-toggle href="#" data-toggle="dropdown"
-                | Financial &amp; Analysis
-                b.caret
-              ul.dropdown-menu
-                = admin_menu_links({\
-                  'Management Information' => management_information_path,\
-                  'Orders' => orders_path,\
-                  'Payments' => admin_payments_path,\
-                  'Tracked Actions' => admin_tracked_actions_path\
-                  })
-            li.dropdown
-              a.dropdown-toggle href="#" data-toggle="dropdown"
-                | Pricing
-                b.caret
-              ul.dropdown-menu
-                = admin_menu_links({\
-                  'Currencies' => admin_currencies_path,\
-                  'Directory Price' => directory_price_path,\
-                  'Promotion Codes' => admin_coupons_path,\
-                  'Property Base Prices' => property_base_prices_path,\
-                  'Property Volume Discounts' => property_volume_discounts_path,\
-                  'Window Base Prices' => admin_window_base_prices_path\
-                  })
-            li.dropdown
-              a.dropdown-toggle href="#" data-toggle="dropdown"
-                | User Management
-                b.caret
-              ul.dropdown-menu
-                = admin_menu_links({ 'Users' => admin_users_path, 'Roles' => admin_roles_path })
-            li.dropdown
-              a.dropdown-toggle href="#" data-toggle="dropdown"
-                | Content
-                b.caret
-              ul.dropdown-menu
-                = admin_menu_links({\
-                  'Carousel Slides' => admin_carousel_slides_path,\
-                  'Snippets' => admin_snippets_path,\
-                  'Buying Guides' => admin_buying_guides_path,\
-                  'Airports' => admin_airports_path,\
-                  'Airport Distances' => admin_airport_distances_path,\
-                  'Holiday Types' => admin_holiday_types_path,\
-                  'Countries' => admin_countries_path,\
-                  'Regions' => admin_regions_path,\
-                  'Resorts' => admin_resorts_path,\
-                  'Categories' => admin_categories_path,\
-                  'Page Meta Data' => pages_path,\
-                  'Alt Attributes' => admin_alt_attributes_path,\
-                  'Footers' => admin_footers_path,\
-                  'Website Misc' => edit_website_path(@w),\
-                  'Directory Adverts' => directory_adverts_path,\
-                  'Properties' => properties_path,\
-                  'TripAdvisor Locations' => admin_trip_advisor_locations_path\
-                  })
-            li.dropdown
-              a.dropdown-toggle href="#" data-toggle="dropdown"
-                | Account
-                b.caret
-              ul.dropdown-menu
-                li= link_to t('account'), advertise_path, data: { 'no-turbolink' => true }
-                li= link_to t('sign_out'), sign_out_path, data: { 'no-turbolink' => true }
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      a.navbar-brand href="/" Home
+      button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarSupportedContent
+        ul.navbar-nav.mr-auto
+          li.nav-item.dropdown
+            a#generalDropdown.nav-link.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+              | General
+            .dropdown-menu aria-labelledby="generalDropdown"
+              = admin_menu_links({ 'CMS Guide' => guide_path, 'Export Data' => export_path })
+          li.nav-item.dropdown
+            a#financialDropdown.nav-link.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+              | Financial &amp; Analysis
+              b.caret
+            .dropdown-menu aria-labelledby="financialDropdown"
+              = admin_menu_links({\
+                'Management Information' => management_information_path,\
+                'Orders' => orders_path,\
+                'Payments' => admin_payments_path,\
+                'Tracked Actions' => admin_tracked_actions_path\
+                })
+          li.nav-item.dropdown
+            a#pricingDropdown.nav-link.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+              | Pricing
+            .dropdown-menu aria-labelledby="pricingDropdown"
+              = admin_menu_links({\
+                'Currencies' => admin_currencies_path,\
+                'Directory Price' => directory_price_path,\
+                'Promotion Codes' => admin_coupons_path,\
+                'Property Base Prices' => property_base_prices_path,\
+                'Property Volume Discounts' => property_volume_discounts_path,\
+                'Window Base Prices' => admin_window_base_prices_path\
+                })
+          li.nav-item.dropdown
+            a#userDropdown.nav-link.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+              | User Management
+            .dropdown-menu aria-labelledby="userDropdown"
+              = admin_menu_links({ 'Users' => admin_users_path, 'Roles' => admin_roles_path })
+          li.nav-item.dropdown
+            a#contentDropdown.nav-link.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+              | Content
+            .dropdown-menu aria-labelledby="contentDropdown"
+              = admin_menu_links({\
+                'Carousel Slides' => admin_carousel_slides_path,\
+                'Snippets' => admin_snippets_path,\
+                'Buying Guides' => admin_buying_guides_path,\
+                'Airports' => admin_airports_path,\
+                'Airport Distances' => admin_airport_distances_path,\
+                'Holiday Types' => admin_holiday_types_path,\
+                'Countries' => admin_countries_path,\
+                'Regions' => admin_regions_path,\
+                'Resorts' => admin_resorts_path,\
+                'Categories' => admin_categories_path,\
+                'Page Meta Data' => pages_path,\
+                'Alt Attributes' => admin_alt_attributes_path,\
+                'Footers' => admin_footers_path,\
+                'Website Misc' => edit_website_path(@w),\
+                'Directory Adverts' => directory_adverts_path,\
+                'Properties' => properties_path,\
+                'TripAdvisor Locations' => admin_trip_advisor_locations_path\
+                })
+          li.nav-item.dropdown
+            a#accountDropdown.nav-link.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+              | Account
+            .dropdown-menu aria-labelledby="accountDropdown"
+              = link_to t('account'), advertise_path, data: { 'no-turbolink' => true }, class: 'dropdown-item'
+              = link_to t('sign_out'), sign_out_path, data: { 'no-turbolink' => true }, class: 'dropdown-item'
     .container
       - if flash[:notice]
         .alert.alert-info.fade.in

@@ -4,11 +4,7 @@ module AdminHelper
   end
 
   def admin_menu_link(text, path)
-    content_tag(
-      :li,
-      link_to(text, path),
-      current_page?(path) ? { class: 'active' } : {}
-    )
+    link_to(text, path, current_page?(path) ? { class: 'active dropdown-item' } : { class: 'dropdown-item' })
   end
 
   # Provides a button in a table cell to move the object up if it is not
