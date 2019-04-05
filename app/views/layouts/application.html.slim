@@ -100,7 +100,7 @@ html lang="#{@lang}"
             - sale_path = @resort ? resort_property_sale_path(@resort) : @region ? region_property_sale_path(@region) : '/property_sales'
             li: a.button.action-button href="#{rent_path}" class=('button-disable' if !page_for_rent?) Rentals
             li: a.button.action-button href="#{sale_path}" class=('button-disable' if !page_for_sale?) Sales
-        
+
       - if content_for? :search
           - unless header_image_urls.empty?
             .search-container-carousel
@@ -128,7 +128,7 @@ html lang="#{@lang}"
         - if content_for? :advertising
           #advertising
             = yield :advertising
-      
+
       .links
         / = yield :links
         / = render 'layouts/region_nav' if @region
@@ -140,20 +140,10 @@ html lang="#{@lang}"
           a.logo href="#{root_path}" title="Home"
             = image_tag('home-link.svg', alt: alt_attribute('/images/home-link.svg', 'My Chalet Finder Ski Accommodation'))
 
-      
+
 
       .social.secondary-nav
         ul
-          / li.google-plus-one
-          /   .g-plusone data-annotation="none" data-size="medium"
-          /   javascript:
-          /     window.___gcfg = {lang: 'en-GB'};
-
-          /     (function() {
-          /       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-          /       po.src = 'https://apis.google.com/js/platform.js';
-          /       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-          /     })();
           li
             a title="Blogger" href="https://mychaletfinder.blogspot.co.uk/"
               i.fas.fa-rss
@@ -178,9 +168,6 @@ html lang="#{@lang}"
       footer role="contentinfo"
         .content-inset.footer-block-container
           = render 'shared/footer_box'
-          / hr
-          / p#copyright
-          /   = "&copy; #{Time.now.year} #{COMPANY_NAME}".html_safe
         ul#footer-copyright
           li ©#{Time.now.year} #{COMPANY_NAME}.
           li All rights reserved.  |
