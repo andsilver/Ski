@@ -1,4 +1,5 @@
 require "rails_helper"
+require "will_paginate/array"
 
 describe "properties/browse" do
   let(:resort) { FactoryBot.create(:resort) }
@@ -9,63 +10,34 @@ describe "properties/browse" do
     assign(:search_filters, [])
   end
 
-  context "when resort" do
-    before { assign(:resort, resort) }
-
-    context "when ski resort" do
-      before { allow(resort).to receive(:ski?).and_return(true) }
-
-      it "includes the distance from lift sort method" do
-        render
-        expect(view.content_for(:search))
-          .to have_content(t("properties.browse.distance_from_lift"))
-      end
+  context "when there are properties and search results page type is :sales" do
+    before do
+      allow(view).to receive(:search_results_page_type).and_return(:sales)
+      assign(:properties, [Property.new(currency: Currency.new)].paginate)
     end
-
-    context "when not ski resort" do
-      before { allow(resort).to receive(:ski?).and_return(false) }
-
-      it "excludes the distance from lift sort method" do
-        render
-        no_distance_from_lift
-      end
-    end
-  end
-
-  context "when not resort" do
-    it "excludes the distance from lift sort method" do
-      render
-      no_distance_from_lift
-    end
-  end
-
-  context "when search results page type is :sales" do
-    before { allow(view).to receive(:search_results_page_type).and_return(:sales) }
 
     it "contains a sale price sorting method" do
       render
-      expect(search)
+      expect(rendered)
         .to have_selector 'option[value="normalised_sale_price DESC"]'
     end
 
     it "contains a number of bathrooms sorting method" do
       render
-      expect(search).to have_selector 'option[value="number_of_bathrooms ASC"]'
+      expect(rendered).to have_selector 'option[value="number_of_bathrooms ASC"]'
     end
   end
 
-  context "when search results page type is :rentals" do
-    before { allow(view).to receive(:search_results_page_type).and_return(:rentals) }
+  context "when there are properties and search results page type is :rentals" do
+    before do
+      allow(view).to receive(:search_results_page_type).and_return(:rentals)
+      assign(:properties, [Property.new(currency: Currency.new)].paginate)
+    end
 
     it "contains a rental price sorting method" do
       render
-      expect(search)
+      expect(rendered)
         .to have_selector 'option[value="normalised_weekly_rent_price DESC"]'
-    end
-
-    it "contains a sleeping capacity sorting method" do
-      render
-      expect(search).to have_selector 'option[value="sleeping_capacity ASC"]'
     end
   end
 

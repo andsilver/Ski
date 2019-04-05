@@ -1,6 +1,6 @@
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@breadcrumbs, @heading)
 
-- @destination = @resort ? @resort.name : @region.name
+- @destination = @resort ? @resort.name : @region.try(:name)
 
 - if @resort
   = content_for :theme, @resort.theme

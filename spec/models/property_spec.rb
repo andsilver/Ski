@@ -293,7 +293,7 @@ RSpec.describe Property, type: :model do
   end
 
   describe "before_save" do
-    let(:property) { FactoryBot.build(:property) }
+    let(:property) { FactoryBot.create(:property) }
 
     it "calls set_country_and_region" do
       expect(property).to receive(:set_country_and_region)
@@ -303,7 +303,8 @@ RSpec.describe Property, type: :model do
 
   describe "before_validation" do
     it "sets empty string layout to nil" do
-      property = FactoryBot.build(:property, layout: "")
+      property = FactoryBot.create(:property)
+      property.layout = ""
       property.save
       expect(property.layout).to be_nil
     end

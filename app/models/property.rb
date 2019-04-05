@@ -187,7 +187,8 @@ class Property < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{name.parameterize}-#{resort.name.parameterize}-#{resort.country.name.parameterize}"
+    # TODO: Fix LOD violation.
+    "#{id}-#{name.parameterize}-#{resort.try(:name).try(:parameterize)}-#{resort.try(:country).try(:name).try(:parameterize)}"
   end
 
   def for_rent?
