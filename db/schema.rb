@@ -424,7 +424,6 @@ ActiveRecord::Schema.define(version: 2019_03_16_143937) do
     t.string "header_snippet_name"
     t.integer "region_id"
     t.integer "resort_id"
-    t.string "banner"
     t.index ["path"], name: "index_pages_on_path"
     t.index ["region_id"], name: "index_pages_on_region_id"
     t.index ["resort_id"], name: "index_pages_on_resort_id"
@@ -555,7 +554,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_143937) do
     t.string "slug", null: false
     t.boolean "visible", default: true, null: false
     t.integer "property_count", default: 0, null: false
-    t.boolean "featured"
+    t.boolean "featured", default: false
     t.string "image_url"
     t.string "strapline"
     t.string "logo_url"
