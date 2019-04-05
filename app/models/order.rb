@@ -21,10 +21,10 @@ class Order < ActiveRecord::Base
 
   def status_description
     {
-      WAITING_FOR_PAYMENT => 'Waiting for payment',
-      PAYMENT_RECEIVED => 'Payment received',
-      PAYMENT_ON_ACCOUNT => 'Payment on account',
-      PAYMENT_NOT_REQUIRED => 'Payment not required'
+      WAITING_FOR_PAYMENT => "Waiting for payment",
+      PAYMENT_RECEIVED => "Payment received",
+      PAYMENT_ON_ACCOUNT => "Payment on account",
+      PAYMENT_NOT_REQUIRED => "Payment not required",
     }[status]
   end
 
@@ -35,7 +35,7 @@ class Order < ActiveRecord::Base
   # create an order number
   # order numbers include date but are not sequential so as to prevent competitor analysis of sales volume
   def create_order_number
-    alpha = %w(0 1 2 3 4 5 6 7 8 9 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
+    alpha = %w[0 1 2 3 4 5 6 7 8 9 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z]
     # try a short order number first
     # in case of collision, increase length of order number
     (4..10).each do |length|
@@ -51,6 +51,6 @@ class Order < ActiveRecord::Base
   # k = number of orders in a day
   # n = number of possible values for order number
   def probability_of_collision k, n
-    1 - Math.exp((-k**2.0)/(2.0*n))
+    1 - Math.exp((-k**2.0) / (2.0 * n))
   end
 end

@@ -15,32 +15,32 @@ module Interhome
     # sets the XML content and also parses it
     def xml=(xml)
       @xml = xml
-      require 'xmlsimple'
+      require "xmlsimple"
       @data = XmlSimple.xml_in(xml)
     end
 
     def errors?
-      result['Errors'][0]
+      result["Errors"][0]
     end
 
     def error_messages_detail
-      error_messages['MessageDetail'][0]['Detail'][0]
+      error_messages["MessageDetail"][0]["Detail"][0]
     end
 
     def error_messages
-      result['ErrorMessages'][0]
+      result["ErrorMessages"][0]
     end
 
     def ok?
-      result['Ok'][0] == 'true'
+      result["Ok"][0] == "true"
     end
 
     def message
-      result['Message'][0]
+      result["Message"][0]
     end
 
     def result
-      raise 'override #result'
+      raise "override #result"
     end
 
     def requested(key)

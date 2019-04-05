@@ -19,18 +19,18 @@ module TripAdvisor
       Net::SFTP.start(host, username, password: password) do |sftp|
         sftp.download!(remote_path, self.class.local_path)
       end
-      Rails.logger.info('Finished downloading TripAdvisor location file')
+      Rails.logger.info("Finished downloading TripAdvisor location file")
     end
 
     # Path to the locally downloaded copy of the locations.json data file.
     def self.local_path
-      File.join(Rails.root, 'trip_advisor', 'locations.json')
+      File.join(Rails.root, "trip_advisor", "locations.json")
     end
 
     private
 
     def remote_path
-      '/drop/locations/locations.json'
+      "/drop/locations/locations.json"
     end
   end
 end

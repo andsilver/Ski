@@ -27,11 +27,10 @@ class Basket
     total_adverts = @user.adverts_so_far
     advert_number = {
       directory_advert: @user.directory_adverts_so_far,
-      property: @user.property_adverts_so_far
+      property: @user.property_adverts_so_far,
     }
 
     adverts.each do |advert|
-
       # Remove advert types that are no longer valid from the basket
       if advert.virtual_type.nil?
         advert.destroy
@@ -54,7 +53,7 @@ class Basket
         discount_line.advert = advert
         discount_line.coupon = @user.coupon
         discount_line.price = -(@user.coupon.percentage_off / 100.0) * line.price
-        discount_line.description = @user.coupon.code + ' #' + total_adverts.to_s
+        discount_line.description = @user.coupon.code + " #" + total_adverts.to_s
         @lines << discount_line
       end
     end

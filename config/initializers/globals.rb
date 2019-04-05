@@ -1,1 +1,1 @@
-COMPANY_NAME = 'Continental Traveller Limited'
+COMPANY_NAME = "Continental Traveller Limited"

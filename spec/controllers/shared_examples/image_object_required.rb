@@ -1,6 +1,6 @@
-shared_examples_for 'an image object requirer' do |method, action, params|
+shared_examples_for "an image object requirer" do |method, action, params|
   let(:country) { FactoryBot.create(:country) }
-  let(:image_mode) { 'country' }
+  let(:image_mode) { "country" }
   let(:country_id) { country.id }
 
   before do
@@ -9,18 +9,18 @@ shared_examples_for 'an image object requirer' do |method, action, params|
     send(method, action, params)
   end
 
-  context 'when session[:image_mode] unset' do
+  context "when session[:image_mode] unset" do
     let(:image_mode) { nil }
 
-    it 'redirects to index' do
+    it "redirects to index" do
       expect(response).to redirect_to images_path
     end
   end
 
-  context 'when session[(:image_mode)_id] unset' do
+  context "when session[(:image_mode)_id] unset" do
     let(:country_id) { nil }
 
-    it 'redirects to index' do
+    it "redirects to index" do
       expect(response).to redirect_to images_path
     end
   end

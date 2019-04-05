@@ -18,7 +18,7 @@ module Brochures
     crumbs = {}
     if theme && country.themes.include?(theme)
       crumbs[holiday_types.first] = holiday_types.first
-      crumbs["#{holiday_types.first} in #{country}"] = Rails.application.routes.url_helpers.holiday_type_brochure_path(place_type: 'countries', place_slug: country.slug, holiday_type_slug: theme)
+      crumbs["#{holiday_types.first} in #{country}"] = Rails.application.routes.url_helpers.holiday_type_brochure_path(place_type: "countries", place_slug: country.slug, holiday_type_slug: theme)
     end
 
     if respond_to?(:region) && region

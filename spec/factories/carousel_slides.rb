@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :carousel_slide do
-    caption   { 'Caption' }
-    image_url { '#' }
-    link      { '#' }
+    caption   { "Caption" }
+    image_url { "#" }
+    link      { "#" }
   end
 end

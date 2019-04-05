@@ -20,6 +20,6 @@ class Role < ActiveRecord::Base
   end
 
   def localisation_key
-    "roles.#{name.downcase.gsub(' ', '_')}"
+    "roles.#{name.downcase.tr(" ", "_")}"
   end
 end

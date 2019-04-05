@@ -1,17 +1,17 @@
 class PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:worldpay_callback]
 
-  FAILURE_MESSAGE = 'Some information was incorrect and your payment may not have gone through properly. Please contact us.'
+  FAILURE_MESSAGE = "Some information was incorrect and your payment may not have gone through properly. Please contact us."
 
   def worldpay_callback
     @payment = Payment.new
-    @payment.service_provider = 'WorldPay'
+    @payment.service_provider = "WorldPay"
     @payment.installation_id = params[:instId]
     @payment.cart_id = params[:cartId]
     @payment.description = params[:desc]
     @payment.amount = params[:amount]
     @payment.currency = params[:currency]
-    @payment.test_mode = (params[:testMode] != '0')
+    @payment.test_mode = (params[:testMode] != "0")
     @payment.name = params[:name]
     @payment.address = params[:address]
     @payment.postcode = params[:postcode]
@@ -20,7 +20,7 @@ class PaymentsController < ApplicationController
     @payment.fax = params[:fax]
     @payment.email = params[:email]
     @payment.transaction_id = params[:transId]
-    @payment.transaction_status = (params[:transStatus] and params[:transStatus]=='Y')
+    @payment.transaction_status = (params[:transStatus] && (params[:transStatus] == "Y"))
     @payment.transaction_time = params[:transTime]
     @payment.raw_auth_message = params[:rawAuthMessage]
     @payment.accepted = false # for now
@@ -29,16 +29,16 @@ class PaymentsController < ApplicationController
 
     @payment.save # this first save is for safety
 
-    if params[:transStatus].nil? or params[:transStatus] != 'Y'
-      @message = t('payments_controller.no_payment_made')
-    elsif !@w.skip_payment? and (params[:callbackPW].nil? or params[:callbackPW] != @w.worldpay_payment_response_password)
+    if params[:transStatus].nil? || (params[:transStatus] != "Y")
+      @message = t("payments_controller.no_payment_made")
+    elsif !@w.skip_payment? && (params[:callbackPW].nil? || (params[:callbackPW] != @w.worldpay_payment_response_password))
       @message = FAILURE_MESSAGE
     elsif params[:cartId].nil?
       @message = FAILURE_MESSAGE
-    elsif params[:testMode] and !@w.worldpay_test_mode and params[:testMode] != '0' and params[:futurePayId].nil?
+    elsif params[:testMode] && !@w.worldpay_test_mode && (params[:testMode] != "0") && params[:futurePayId].nil?
       @message = FAILURE_MESSAGE
     else
-      @message = t('payments_controller.payment_received')
+      @message = t("payments_controller.payment_received")
       @payment.accepted = true
       complete_order
     end
@@ -51,7 +51,7 @@ class PaymentsController < ApplicationController
     if order.payment_received?
       make_adverts_live(order)
     end
-    redirect_to controller: 'orders', action: 'latest_receipt'
+    redirect_to controller: "orders", action: "latest_receipt"
   end
 
   protected
@@ -67,7 +67,7 @@ class PaymentsController < ApplicationController
     order.save
     @payment.order_id = order.id
     make_adverts_live(order)
-    #OrderNotifier.deliver_notification @w, order
+    # OrderNotifier.deliver_notification @w, order
   end
 
   def make_adverts_live(order)

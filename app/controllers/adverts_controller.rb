@@ -4,10 +4,10 @@ class AdvertsController < ApplicationController
 
   def my
     @window_groups = WindowGroups.new
-    if params[:user_id] && admin?
-      @user = User.find(params[:user_id])
+    @user = if params[:user_id] && admin?
+      User.find(params[:user_id])
     else
-      @user = current_user
+      current_user
     end
 
     if @user.advertises_through_windows?
@@ -24,27 +24,27 @@ class AdvertsController < ApplicationController
   end
 
   def update_basket_contents
-    apply_coupon_code and return unless params[:code].blank?
+    apply_coupon_code && return unless params[:code].blank?
 
     update_durations unless params[:months].nil?
     remove_advert if params[:remove_advert]
 
     # TODO: Move 'place_order' from GET to POST
-    redirect_to action: 'place_order' and return if params[:place_order]
+    redirect_to(action: "place_order") && return if params[:place_order]
 
     if params[:empty_basket]
       current_user.empty_basket
       remove_windows_from_basket
-      flash[:notice] = t('adverts_controller.notices.basket_emptied')
+      flash[:notice] = t("adverts_controller.notices.basket_emptied")
     else
-      flash[:notice] = t('adverts_controller.notices.basket_updated')
+      flash[:notice] = t("adverts_controller.notices.basket_updated")
     end
     redirect_to basket_path
   end
 
   def place_order
     # Delete previous unpaid order, if any
-    if session[:order_id] && @order = Order.find_by(id: session[:order_id])
+    if session[:order_id] && (@order = Order.find_by(id: session[:order_id]))
       @order.destroy if @order.status == Order::WAITING_FOR_PAYMENT
     end
 
@@ -89,19 +89,19 @@ class AdvertsController < ApplicationController
     @order.tax_amount = @tax_amount
     @order.tax_description = current_user.tax_description
     @order.sterling_in_euros = Currency.sterling_in_euros
-    if @order.total == 0
-      @order.status = Order::PAYMENT_NOT_REQUIRED
+    @order.status = if @order.total == 0
+      Order::PAYMENT_NOT_REQUIRED
     else
-      @order.status = Order::WAITING_FOR_PAYMENT
+      Order::WAITING_FOR_PAYMENT
     end
     @order.save!
 
     session[:order_id] = @order.id
 
     if @order.total == 0
-      redirect_to controller: 'payments', action: 'complete_payment_not_required'
+      redirect_to controller: "payments", action: "complete_payment_not_required"
     else
-      redirect_to controller: 'orders', action: 'select_payment_method'
+      redirect_to controller: "orders", action: "select_payment_method"
     end
   end
 
@@ -109,13 +109,13 @@ class AdvertsController < ApplicationController
     @advert = Advert.find_by(id: params[:id], user_id: @current_user.id, starts_at: nil)
     if @advert
       @advert.destroy
-      notice = t('notices.advert_removed')
+      notice = t("notices.advert_removed")
     end
     redirect_to basket_path, notice: notice
   end
 
   def buy_windows
-    @window_base_prices = WindowBasePrice.order('quantity')
+    @window_base_prices = WindowBasePrice.order("quantity")
   end
 
   def add_windows_to_basket
@@ -125,7 +125,7 @@ class AdvertsController < ApplicationController
 
   def delete_all_new_advertisables
     current_user.new_advertisables.each {|a| a.destroy}
-    redirect_to my_adverts_path, notice: 'All new adverts have been deleted.'
+    redirect_to my_adverts_path, notice: "All new adverts have been deleted."
   end
 
   protected
@@ -161,20 +161,20 @@ class AdvertsController < ApplicationController
     coupon = Coupon.find_by(code: params[:code])
     if coupon
       if coupon.expired?
-        notice = I18n.t('coupons_controller.coupon_code_expired')
+        notice = I18n.t("coupons_controller.coupon_code_expired")
       else
         @current_user.coupon = coupon
         @current_user.save
-        notice = I18n.t('coupons_controller.coupon_code_applied')
+        notice = I18n.t("coupons_controller.coupon_code_applied")
       end
     else
-      notice = I18n.t('coupons_controller.coupon_code_not_recognised')
+      notice = I18n.t("coupons_controller.coupon_code_not_recognised")
     end
     redirect_to basket_path, notice: notice
   end
 
   def update_durations
-    params[:months].each_pair do |id,months|
+    params[:months].each_pair do |id, months|
       months = months.to_i
       advert = Advert.find_by(id: id, user_id: @current_user.id)
       if advert
@@ -188,7 +188,7 @@ class AdvertsController < ApplicationController
 
   def remove_advert
     params[:remove_advert].each_key do |id|
-      if id=='windows'
+      if id == "windows"
         session[:windows_in_basket] = nil
       else
         Advert.destroy_all(id: id, user_id: @current_user.id)
@@ -202,7 +202,7 @@ class AdvertsController < ApplicationController
 
   def copy_user_details_to_order
     @order.user_id = current_user.id
-    @order.address = "#{current_user.billing_street}\n#{current_user.billing_locality}\n" +
+    @order.address = "#{current_user.billing_street}\n#{current_user.billing_locality}\n" \
       "#{current_user.billing_city}\n#{current_user.billing_county}\n"
     @order.postcode = current_user.billing_postcode
     @order.country_id = current_user.billing_country_id

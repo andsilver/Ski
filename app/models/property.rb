@@ -16,7 +16,7 @@ class Property < ActiveRecord::Base
   has_many :images, dependent: :destroy
 
   # Delete adverts in basket but leave others remaining
-  has_many :adverts_in_basket, -> { where starts_at: nil }, class_name: 'Advert', dependent: :delete_all
+  has_many :adverts_in_basket, -> { where starts_at: nil }, class_name: "Advert", dependent: :delete_all
   has_many :adverts, dependent: :nullify
 
   has_and_belongs_to_many :amenities
@@ -27,7 +27,7 @@ class Property < ActiveRecord::Base
   validates_presence_of :address
 
   validates_presence_of :currency
-  validates :price_description, length: { maximum: 30 }
+  validates :price_description, length: {maximum: 30}
 
   MIN_NAME_LENGTH = 4
   MAX_NAME_LENGTH = 255
@@ -41,7 +41,7 @@ class Property < ActiveRecord::Base
 
   validates_uniqueness_of :pericles_id, allow_nil: true, scope: :user_id
 
-  validates_inclusion_of :layout, in: LAYOUTS = [nil, 'Classic', 'Showcase']
+  validates_inclusion_of :layout, in: LAYOUTS = [nil, "Classic", "Showcase"]
   before_validation :set_empty_layout_to_nil
 
   before_validation :adjust_distances_if_needed
@@ -63,7 +63,7 @@ class Property < ActiveRecord::Base
   LISTING_TYPE_FOR_RENT = 0
   LISTING_TYPE_FOR_SALE = 1
 
-  validates :listing_type, inclusion: { in: (LISTING_TYPE_FOR_RENT..LISTING_TYPE_FOR_SALE) }
+  validates :listing_type, inclusion: {in: (LISTING_TYPE_FOR_RENT..LISTING_TYPE_FOR_SALE)}
 
   ACCOMMODATION_TYPE_CHALET = 0
   ACCOMMODATION_TYPE_APARTMENT = 1
@@ -72,14 +72,14 @@ class Property < ActiveRecord::Base
 
   ACCOMMODATION_TYPES = (ACCOMMODATION_TYPE_CHALET..ACCOMMODATION_TYPE_HOUSE)
 
-  validates :accommodation_type, inclusion: { in: ACCOMMODATION_TYPES }
+  validates :accommodation_type, inclusion: {in: ACCOMMODATION_TYPES}
 
   PARKING_NO = 0
   PARKING_ON_STREET = 1
   PARKING_OFF_STREET = 2
   PARKING_GARAGE = 3
 
-  def initialize(params={})
+  def initialize(params = {})
     super(params)
     @perform_geocode = PERFORM_GEOCODE
   end
@@ -91,10 +91,10 @@ class Property < ActiveRecord::Base
   #   Property.parking_description(parking_param) -> string
   def self.parking_description parking_param
     {
-      PARKING_NO => I18n.t('properties.features.no_parking'),
-      PARKING_ON_STREET => I18n.t('properties.features.on_street_parking'),
-      PARKING_OFF_STREET => I18n.t('properties.features.off_street_parking'),
-      PARKING_GARAGE => I18n.t('properties.features.garage')
+      PARKING_NO => I18n.t("properties.features.no_parking"),
+      PARKING_ON_STREET => I18n.t("properties.features.on_street_parking"),
+      PARKING_OFF_STREET => I18n.t("properties.features.off_street_parking"),
+      PARKING_GARAGE => I18n.t("properties.features.garage"),
     }[parking_param]
   end
 
@@ -114,10 +114,10 @@ class Property < ActiveRecord::Base
 
   def self.tv_description tv_param
     {
-      TV_NO => I18n.t('properties.features.no_tv'),
-      TV_YES => I18n.t('properties.features.tv'),
-      TV_FREEVIEW => I18n.t('properties.features.freeview'),
-      TV_SATELLITE => I18n.t('properties.features.cable_or_satellite')
+      TV_NO => I18n.t("properties.features.no_tv"),
+      TV_YES => I18n.t("properties.features.tv"),
+      TV_FREEVIEW => I18n.t("properties.features.freeview"),
+      TV_SATELLITE => I18n.t("properties.features.cable_or_satellite"),
     }[tv_param]
   end
 
@@ -132,10 +132,10 @@ class Property < ActiveRecord::Base
 
   def self.board_basis_description board_basis_param
     {
-      BOARD_BASIS_SELF_CATERING => I18n.t('properties.features.self_catering'),
-      BOARD_BASIS_BED_AND_BREAKFAST => I18n.t('properties.features.bed_and_breakfast'),
-      BOARD_BASIS_HALF_BOARD => I18n.t('properties.features.half_board'),
-      BOARD_BASIS_FULL_BOARD => I18n.t('properties.features.full_board')
+      BOARD_BASIS_SELF_CATERING => I18n.t("properties.features.self_catering"),
+      BOARD_BASIS_BED_AND_BREAKFAST => I18n.t("properties.features.bed_and_breakfast"),
+      BOARD_BASIS_HALF_BOARD => I18n.t("properties.features.half_board"),
+      BOARD_BASIS_FULL_BOARD => I18n.t("properties.features.full_board"),
     }[board_basis_param]
   end
 
@@ -171,19 +171,19 @@ class Property < ActiveRecord::Base
   # :call-seq:
   #   Property.importable_attributes -> array
   def self.importable_attributes
-    %w(address balcony cave children_welcome currency_id description
-      disabled floor_area_metres_2 for_sale fully_equipped_kitchen garden
-      hot_tub images indoor_swimming_pool log_fire long_term_lets_available
-      metres_from_lift mountain_views name new_development
-      number_of_bathrooms number_of_bedrooms outdoor_swimming_pool parking
-      pets plot_size_metres_2 postcode resort_id sale_price sauna short_stays
-      ski_in_ski_out sleeping_capacity smoking strapline tv weekly_rent_price
-      wifi)
+    %w[address balcony cave children_welcome currency_id description
+       disabled floor_area_metres_2 for_sale fully_equipped_kitchen garden
+       hot_tub images indoor_swimming_pool log_fire long_term_lets_available
+       metres_from_lift mountain_views name new_development
+       number_of_bathrooms number_of_bedrooms outdoor_swimming_pool parking
+       pets plot_size_metres_2 postcode resort_id sale_price sauna short_stays
+       ski_in_ski_out sleeping_capacity smoking strapline tv weekly_rent_price
+       wifi]
   end
 
   # Returns 15 randomly chosen visible properties. Not fast.
   def self.featured
-    Property.order('RAND()').limit(15).where(publicly_visible: true)
+    Property.order("RAND()").limit(15).where(publicly_visible: true)
   end
 
   def to_param
@@ -215,26 +215,26 @@ class Property < ActiveRecord::Base
   end
 
   def set_empty_layout_to_nil
-    self.layout = nil if layout == ''
+    self.layout = nil if layout == ""
   end
 
   def closest_distance d
-    VALID_DISTANCES.min { |a,b| (a-d).abs <=> (b-d).abs }
+    VALID_DISTANCES.min { |a, b| (a - d).abs <=> (b - d).abs }
   end
 
   def geocode
     return unless Property.geocoding?
-    self.latitude = ''
-    self.longitude = ''
-    attempt_geocode(address + ',' + postcode + ',' + resort.name)
+    self.latitude = ""
+    self.longitude = ""
+    attempt_geocode(address + "," + postcode + "," + resort.name)
   end
 
   def attempt_geocode a
     q = CGI.escape("#{a},#{resort.country.name}")
     Rails.logger.info("attempting geocode: #{q}")
     url = "/maps/api/geocode/json?address=#{q}&sensor=false"
-    require 'net/http'
-    http = Net::HTTP.new('maps.googleapis.com', 80)
+    require "net/http"
+    http = Net::HTTP.new("maps.googleapis.com", 80)
     response = http.get(url)
     data = response.body
     Rails.logger.info(data)
@@ -245,9 +245,9 @@ class Property < ActiveRecord::Base
       return
     end
     Rails.logger.info json.inspect
-    if 'OK' == json['status']
-      self.latitude = json['results'][0]['geometry']['location']['lat']
-      self.longitude = json['results'][0]['geometry']['location']['lng']
+    if json["status"] == "OK"
+      self.latitude = json["results"][0]["geometry"]["location"]["lat"]
+      self.longitude = json["results"][0]["geometry"]["location"]["lng"]
     else
       Rails.logger.info "geocode for #{a} failed; url=#{url}; data=#{data}"
     end
@@ -265,7 +265,7 @@ class Property < ActiveRecord::Base
   end
 
   def valid_months
-    PropertyBasePrice.order('number_of_months').all.collect {|pbp| pbp.number_of_months}
+    PropertyBasePrice.order("number_of_months").all.collect {|pbp| pbp.number_of_months}
   end
 
   # Calculates late availability depending on the best availability
@@ -307,10 +307,10 @@ class Property < ActiveRecord::Base
   # HTML is not escaped, ensuring that the lengths do not exceed these
   # limits.
   def tidy_name_and_strapline
-    if strapline.blank?
-      self.strapline = description.blank? ? '' : truncate(description, escape: false, length: 255, separator: ' ')
+    self.strapline = if strapline.blank?
+      description.blank? ? "" : truncate(description, escape: false, length: 255, separator: " ")
     else
-      self.strapline = truncate(strapline, escape: false, length: 255, separator: ' ')
+      truncate(strapline, escape: false, length: 255, separator: " ")
     end
     self.name = name[0...255]
   end
@@ -321,19 +321,19 @@ class Property < ActiveRecord::Base
   end
 
   def basket_advert_type_description
-    'Property'
+    "Property"
   end
 
   def template
     tpl = if layout
-            layout.downcase.tr(' ', '_')
-          elsif new_development?
-            'showcase'
-          elsif trip_advisor_property
-            'trip_advisor'
-          else
-            'classic'
-          end
+      layout.downcase.tr(" ", "_")
+    elsif new_development?
+      "showcase"
+    elsif trip_advisor_property
+      "trip_advisor"
+    else
+      "classic"
+    end
     "show_#{tpl}"
   end
 

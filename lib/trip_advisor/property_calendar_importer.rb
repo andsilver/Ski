@@ -11,9 +11,9 @@ module TripAdvisor
       @ta_prop.clear_calendar
       @calendar.each do |entry|
         TripAdvisorCalendarEntry.create!(
-          status: entry['status'],
-          inclusive_start: entry['inclusive_start'],
-          exclusive_end: entry['exclusive_end'],
+          status: entry["status"],
+          inclusive_start: entry["inclusive_start"],
+          exclusive_end: entry["exclusive_end"],
           trip_advisor_property: @ta_prop
         )
       end

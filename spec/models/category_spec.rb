@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Category do
   it "has an SEO-friendly to_param using i18n" do
@@ -8,7 +8,7 @@ describe Category do
     expect(category.to_param).to eq "1-internet-cafes"
   end
 
-  it 'prevents deletion with associated directory adverts' do
+  it "prevents deletion with associated directory adverts" do
     category = FactoryBot.create(:category)
     da = FactoryBot.create(:directory_advert, category_id: category.id)
     da.save!

@@ -9,18 +9,18 @@ class HolidayType < ActiveRecord::Base
   scope :on_menu, -> { where(visible_on_menu: true) }
 
   def country_brochures
-    holiday_type_brochures.where(brochurable_type: 'Country')
+    holiday_type_brochures.where(brochurable_type: "Country")
   end
 
   def visible_country_brochures
     holiday_type_brochures
-      .where(brochurable_type: 'Country')
+      .where(brochurable_type: "Country")
       .joins(
-        'INNER JOIN countries ON countries.id = brochurable_id ' \
-        'AND countries.id IN ' \
-        '(SELECT DISTINCT(country_id) FROM resorts WHERE visible = 1)'
+        "INNER JOIN countries ON countries.id = brochurable_id " \
+        "AND countries.id IN " \
+        "(SELECT DISTINCT(country_id) FROM resorts WHERE visible = 1)"
       )
-      .order('countries.name')
+      .order("countries.name")
   end
 
   def to_param
@@ -32,15 +32,15 @@ class HolidayType < ActiveRecord::Base
   end
 
   def featured_properties(how_many)
-    Property.order(Arel.sql('RAND()'))
-            .limit(how_many)
-            .where(
-              [
-                'resort_id IN (SELECT brochurable_id FROM ' \
-                'holiday_type_brochures WHERE holiday_type_id = ? ' \
-                'AND brochurable_type = "Resort")',
-                id
-              ]
-            )
+    Property.order(Arel.sql("RAND()"))
+      .limit(how_many)
+      .where(
+        [
+          "resort_id IN (SELECT brochurable_id FROM " \
+          "holiday_type_brochures WHERE holiday_type_id = ? " \
+          'AND brochurable_type = "Resort")',
+          id,
+        ]
+      )
   end
 end

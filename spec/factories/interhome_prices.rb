@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :interhome_price do
-    accommodation_code { 'A' }
+    accommodation_code { "A" }
     days { 1 }
     start_date { Date.today }
     end_date { Date.today }

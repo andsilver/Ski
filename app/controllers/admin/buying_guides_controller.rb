@@ -14,9 +14,9 @@ module Admin
       @buying_guide = BuyingGuide.new(buying_guide_params)
 
       if @buying_guide.save
-        redirect_to(buying_guides_path, notice: t('notices.created'))
+        redirect_to(buying_guides_path, notice: t("notices.created"))
       else
-        render 'new'
+        render "new"
       end
     end
 
@@ -25,9 +25,9 @@ module Admin
 
     def update
       if @buying_guide.update_attributes(buying_guide_params)
-        redirect_to(edit_admin_buying_guide_path(@buying_guide), notice: t('notices.saved'))
+        redirect_to(edit_admin_buying_guide_path(@buying_guide), notice: t("notices.saved"))
       else
-        render 'edit'
+        render "edit"
       end
     end
 

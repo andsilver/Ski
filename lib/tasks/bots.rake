@@ -1,4 +1,4 @@
-desc 'Populate bots file'
+desc "Populate bots file"
 task bots: :environment do
-  sh 'tools/robot_user_agents.rb > bots.txt'
+  sh "tools/robot_user_agents.rb > bots.txt"
 end

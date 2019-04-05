@@ -11,10 +11,11 @@ def a_directory_advert(opts = {})
   DirectoryAdvert.create!({
     user_id: users(:alice).id,
     category_id: categories(:bars).id,
-    business_name: 'Chambre Dix',
-    business_address: '123 av',
+    business_name: "Chambre Dix",
+    business_address: "123 av",
     resort: resorts(:st_anton),
-    strapline: 'A favourite meeting place for locals and visitors alike'}.merge(opts))
+    strapline: "A favourite meeting place for locals and visitors alike",
+  }.merge(opts))
 end
 
 Then /^I should see my adverts$/ do
@@ -22,7 +23,7 @@ Then /^I should see my adverts$/ do
 end
 
 Then /^I should see a drop down box to change advert duration$/ do
-  page.should have_selector('#basket option', text: '12 months')
+  page.should have_selector("#basket option", text: "12 months")
 end
 
 Then /^I should see a remove button$/ do

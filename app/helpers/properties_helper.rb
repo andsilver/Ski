@@ -44,43 +44,43 @@ module PropertiesHelper
 
   def new_classic_features(property)
     [].tap do |features|
-      features << { title: I18n.t("property_type"), value: property_type(property), type: "text" }
-      features << { title: I18n.t("plot_size") + " sqm", value: property.plot_size_metres_2, type: "text" }
-      features << { title: I18n.t("bedrooms"), value: property.number_of_bedrooms, type: "text" }
-      features << { title: I18n.t("bathrooms"), value: property.number_of_bathrooms, type: "text" }
+      features << {title: I18n.t("property_type"), value: property_type(property), type: "text"}
+      features << {title: I18n.t("plot_size") + " sqm", value: property.plot_size_metres_2, type: "text"}
+      features << {title: I18n.t("bedrooms"), value: property.number_of_bedrooms, type: "text"}
+      features << {title: I18n.t("bathrooms"), value: property.number_of_bathrooms, type: "text"}
       if property.for_rent?
-        features << { title: I18n.t("properties.features.sleeping_capacity"), value: property.sleeping_capacity, type: "text" }
-        features << { title: property.board_basis_description, type: "description" }
-        features << { title: property.tv_description, type: "description" }
-        features << { title: I18n.t("properties.features.wifi"), type: "bool" } if property.wifi?
-        features << { title: I18n.t("properties.features.long_term_lets_available"), type: "bool" } if property.long_term_lets_available?
-        features << { title: I18n.t("properties.features.short_stays"), type: "bool" } if property.short_stays?
-        features << { title: I18n.t("properties.features.smoking"), type: "bool" } if property.smoking?
-        features << { title: I18n.t("properties.features.disabled"), type: "bool" } if property.disabled?
-        features << { title: I18n.t("properties.features.pets"), type: "bool" } if property.pets?
-        features << { title: I18n.t("properties.features.children_welcome"), type: "bool" } if property.children_welcome?
+        features << {title: I18n.t("properties.features.sleeping_capacity"), value: property.sleeping_capacity, type: "text"}
+        features << {title: property.board_basis_description, type: "description"}
+        features << {title: property.tv_description, type: "description"}
+        features << {title: I18n.t("properties.features.wifi"), type: "bool"} if property.wifi?
+        features << {title: I18n.t("properties.features.long_term_lets_available"), type: "bool"} if property.long_term_lets_available?
+        features << {title: I18n.t("properties.features.short_stays"), type: "bool"} if property.short_stays?
+        features << {title: I18n.t("properties.features.smoking"), type: "bool"} if property.smoking?
+        features << {title: I18n.t("properties.features.disabled"), type: "bool"} if property.disabled?
+        features << {title: I18n.t("properties.features.pets"), type: "bool"} if property.pets?
+        features << {title: I18n.t("properties.features.children_welcome"), type: "bool"} if property.children_welcome?
       end
-      features << { title: I18n.t("properties.features.balcony"), type: "bool" } if property.balcony?
-      features << { title: I18n.t("properties.features.terrace"), type: "bool" } if property.terrace?
-      features << { title: I18n.t("properties.features.mountain_views"), type: "bool" } if property.mountain_views?
-      features << { title: I18n.t("properties.features.garden"), type: "bool" } if property.garden?
-      features << { title: I18n.t("properties.features.fully_equipped_kitchen"), type: "bool" } if property.fully_equipped_kitchen?
-      features << { title: I18n.t("properties.features.ski_in_ski_out"), type: "bool" } if property.ski_in_ski_out?
-      features << { title: I18n.t("properties.features.cave"), type: "bool" } if property.cave?
-      features << { title: I18n.t("properties.features.log_fire"), type: "bool" } if property.log_fire?
-      features << { title: I18n.t("properties.features.hot_tub"), type: "bool" } if property.hot_tub?
-      features << { title: I18n.t("properties.features.sauna"), type: "bool" } if property.sauna?
-      features << { title: I18n.t("properties.features.swimming_pool"), type: "bool" } if property.indoor_swimming_pool? || property.outdoor_swimming_pool?
-      features << { title: property.parking_description, type: "description" }
+      features << {title: I18n.t("properties.features.balcony"), type: "bool"} if property.balcony?
+      features << {title: I18n.t("properties.features.terrace"), type: "bool"} if property.terrace?
+      features << {title: I18n.t("properties.features.mountain_views"), type: "bool"} if property.mountain_views?
+      features << {title: I18n.t("properties.features.garden"), type: "bool"} if property.garden?
+      features << {title: I18n.t("properties.features.fully_equipped_kitchen"), type: "bool"} if property.fully_equipped_kitchen?
+      features << {title: I18n.t("properties.features.ski_in_ski_out"), type: "bool"} if property.ski_in_ski_out?
+      features << {title: I18n.t("properties.features.cave"), type: "bool"} if property.cave?
+      features << {title: I18n.t("properties.features.log_fire"), type: "bool"} if property.log_fire?
+      features << {title: I18n.t("properties.features.hot_tub"), type: "bool"} if property.hot_tub?
+      features << {title: I18n.t("properties.features.sauna"), type: "bool"} if property.sauna?
+      features << {title: I18n.t("properties.features.swimming_pool"), type: "bool"} if property.indoor_swimming_pool? || property.outdoor_swimming_pool?
+      features << {title: property.parking_description, type: "description"}
     end
   end
 
   def feature_tick(ticked, label)
     html = ""
-    if ticked
-      html += '<div class="ticked_feature"><span>Has</span>'
+    html += if ticked
+      '<div class="ticked_feature"><span>Has</span>'
     else
-      html += '<div class="unticked_feature"><span>Does not have</span>'
+      '<div class="unticked_feature"><span>Does not have</span>'
     end
     (html + " " + label + "</div>").html_safe
   end
@@ -89,7 +89,7 @@ module PropertiesHelper
     html = ""
     unless properties.nil?
       properties[0..2].each do |p|
-        html += render partial: "properties/featured", locals: { p: p }
+        html += render partial: "properties/featured", locals: {p: p}
       end
     end
     raw html
@@ -121,7 +121,7 @@ module PropertiesHelper
   end
 
   def property_layout_options
-    { "Default" => nil }.merge(Property::LAYOUTS.reject { |l| l.nil? }.map { |l| [l, l] }.to_h)
+    {"Default" => nil}.merge(Property::LAYOUTS.reject { |l| l.nil? }.map { |l| [l, l] }.to_h)
   end
 
   def distance_options
@@ -196,14 +196,14 @@ module PropertiesHelper
 
   def additional_service_matched?(code, value)
     return false unless params[:additional_service]
-    return params[:additional_service][code] == value.to_s
+    params[:additional_service][code] == value.to_s
   end
 
   def area_select(name, target)
     select_tag(
       name,
       '<option value="m">square metres</option><option value="f">square feet</option>'.html_safe,
-      { data: { target: target }, class: "area-unit" }
+      {data: {target: target}, class: "area-unit"}
     )
   end
 

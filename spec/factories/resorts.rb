@@ -3,6 +3,6 @@ FactoryBot.define do
     sequence(:name) { |n| "Resort #{n}" }
     association :country
     sequence(:slug) { |n| "resort-#{n}" }
-    visible     { true }
+    visible { true }
   end
 end

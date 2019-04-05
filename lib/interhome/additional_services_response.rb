@@ -11,11 +11,11 @@ module Interhome
     end
 
     def result
-      response['AdditionalServicesResult'][0]
+      response["AdditionalServicesResult"][0]
     end
 
     def response
-      @data['Body'][0]['AdditionalServicesResponse'][0]
+      @data["Body"][0]["AdditionalServicesResponse"][0]
     end
   end
 end

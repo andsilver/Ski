@@ -15,7 +15,7 @@ class AirportTransfersController < ApplicationController
       at.user = current_user
       at.save
     end
-    redirect_to airport_transfers_path, notice: t('notices.added')
+    redirect_to airport_transfers_path, notice: t("notices.added")
   end
 
   def destroy
@@ -23,7 +23,7 @@ class AirportTransfersController < ApplicationController
     if at && at.user == @current_user
       at.destroy
     end
-    redirect_to airport_transfers_path, notice: t('notices.deleted')
+    redirect_to airport_transfers_path, notice: t("notices.deleted")
   end
 
   def find
@@ -32,10 +32,10 @@ class AirportTransfersController < ApplicationController
 
   def results
     airport_id, resort_id = params[:airport_transfer_search][:airport_id],
-      params[:airport_transfer_search][:resort_id]
+                            params[:airport_transfer_search][:resort_id]
 
     if airport_id.blank? || resort_id.blank?
-      redirect_to action: 'find' and return
+      redirect_to(action: "find") && return
     end
 
     @airport = Airport.find(airport_id)

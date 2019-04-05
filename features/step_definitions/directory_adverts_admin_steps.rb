@@ -3,7 +3,7 @@ Then /^I should see a list of directory adverts$/ do
 end
 
 When /^I delete Monkey Bar$/ do
-  click_button 'Delete'
+  click_button "Delete"
 end
 
 Then /^Monkey Bar should no longer be there$/ do

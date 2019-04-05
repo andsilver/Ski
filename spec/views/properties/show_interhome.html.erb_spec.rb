@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'properties/show_interhome.html.erb', type: :view do
+RSpec.describe "properties/show_interhome.html.erb", type: :view do
   let(:accommodation) { FactoryBot.create(:interhome_accommodation) }
   let(:property) { FactoryBot.create(:property, interhome_accommodation: accommodation).decorate }
 
@@ -9,8 +9,8 @@ RSpec.describe 'properties/show_interhome.html.erb', type: :view do
     assign(:property, property)
   end
 
-  it 'displays an ABTA logo for increased customer confidence' do
+  it "displays an ABTA logo for increased customer confidence" do
     render
-    expect(rendered).to have_selector '.abta img'
+    expect(rendered).to have_selector ".abta img"
   end
 end

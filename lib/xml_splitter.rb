@@ -31,7 +31,7 @@ class XMLSplitter
   # Splits the source XML file into multiple smaller XML files.
   # Yields each generated filename if a block is given.
   def split
-    tag = ''
+    tag = ""
     in_tag = false
     open_tag = "<#{@child_element}>"
     close_tag = "</#{@child_element}>"
@@ -40,15 +40,15 @@ class XMLSplitter
     current = 0 # elements in current file
     filenames = []
 
-    src = File.open(@xml_filename, 'r')
+    src = File.open(@xml_filename, "r")
 
     # Output is discarded until the root element has been read
-    dst = File.open('/dev/null', 'w')
+    dst = File.open("/dev/null", "w")
 
-    until (c=src.getc).nil? do
+    until (c = src.getc).nil?
       dst.putc(c)
 
-      if c.chr == '>'
+      if c.chr == ">"
         tag += c.chr
         in_tag = false
 
@@ -70,8 +70,8 @@ class XMLSplitter
 
         # compare_tag strips attributes within a tag
         compare_tag = tag
-        if compare_tag.index ' '
-          compare_tag = compare_tag[0...compare_tag.index(' ')] + '>'
+        if compare_tag.index " "
+          compare_tag = compare_tag[0...compare_tag.index(" ")] + ">"
         end
 
         if compare_tag == open_tag && !started
@@ -80,8 +80,8 @@ class XMLSplitter
           dst.puts(tag)
           started = true
         end
-        tag = ''
-      elsif c.chr == '<'
+        tag = ""
+      elsif c.chr == "<"
         in_tag = true
       end
       tag += c.chr if in_tag
@@ -96,12 +96,12 @@ class XMLSplitter
   protected
 
   def xml_output_filename(chunk)
-    @xml_filename.gsub('.xml', ".#{chunk}.xml")
+    @xml_filename.gsub(".xml", ".#{chunk}.xml")
   end
 
   def start_file(chunk, filenames)
     filenames << xml_output_filename(chunk)
-    dst = File.open(xml_output_filename(chunk), 'w')
+    dst = File.open(xml_output_filename(chunk), "w")
     dst.puts XML_HEADER
     dst.puts "<#{@root_element}>"
     dst

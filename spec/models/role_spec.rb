@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Role, type: :model do
   describe "#only_advertises_properties_for_rent?" do
@@ -47,19 +47,19 @@ RSpec.describe Role, type: :model do
     it "prepends 'roles.'" do
       role = Role.new
       role.name = "admin"
-      expect(role.localisation_key).to eq 'roles.admin'
+      expect(role.localisation_key).to eq "roles.admin"
     end
 
     it "downcases letters" do
       role = Role.new
       role.name = "Admin"
-      expect(role.localisation_key).to eq 'roles.admin'
+      expect(role.localisation_key).to eq "roles.admin"
     end
 
     it "substitutes spaces with underscores" do
       role = Role.new
       role.name = "letting agent"
-      expect(role.localisation_key).to eq 'roles.letting_agent'
+      expect(role.localisation_key).to eq "roles.letting_agent"
     end
   end
 end

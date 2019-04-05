@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if @current_user
       set_user
     else
-      redirect_to sign_in_path, notice: t('sign_in_invalid')
+      redirect_to sign_in_path, notice: t("sign_in_invalid")
     end
   end
 
@@ -26,11 +26,11 @@ class SessionsController < ApplicationController
       set_user
     else
       reset_session
-      flash[:notice] = t('signed_out')
+      flash[:notice] = t("signed_out")
       if params[:redirect_to]
         redirect_to params[:redirect_to]
       else
-        redirect_to action: 'new'
+        redirect_to action: "new"
       end
     end
   end
@@ -47,7 +47,7 @@ class SessionsController < ApplicationController
   def set_user
     reset_session
     session[:user] = @current_user.id
-    flash[:notice] = t('sessions_controller.welcome_back', name: @current_user.first_name)
+    flash[:notice] = t("sessions_controller.welcome_back", name: @current_user.first_name)
     if @current_user.role.admin?
       redirect_to cms_path
     else

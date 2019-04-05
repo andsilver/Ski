@@ -1,53 +1,53 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Basket do
-  describe '#initialize' do
-    it 'sets @lines to an empty array' do
+  describe "#initialize" do
+    it "sets @lines to an empty array" do
       b = Basket.new(user: FactoryBot.build(:user))
       expect(b.lines).to eq []
     end
   end
 
-  describe '#prepare' do
-    it 'adds a line for windows' do
+  describe "#prepare" do
+    it "adds a line for windows" do
       b = Basket.new(user: FactoryBot.build(:user))
       expect(b).to receive(:add_line_for_windows)
       b.prepare
     end
 
-    it 'adds lines for adverts' do
+    it "adds lines for adverts" do
       b = Basket.new(user: FactoryBot.build(:user))
       expect(b).to receive(:add_lines_for_adverts)
       b.prepare
     end
 
-    it 'applies any price override' do
+    it "applies any price override" do
       b = Basket.new(user: FactoryBot.build(:user))
       expect(b).to receive(:apply_price_override)
       b.prepare
     end
   end
 
-  describe '#add_line_for_windows' do
+  describe "#add_line_for_windows" do
     pending
   end
 
-  describe '#add_lines_for_adverts' do
+  describe "#add_lines_for_adverts" do
     pending
   end
 
-  describe '#apply_price_override' do
-    context 'with a user price override' do
+  describe "#apply_price_override" do
+    context "with a user price override" do
       let(:b) { Basket.new(user: FactoryBot.build(:user, apply_price_override: true, price_override: 10)) }
 
-      it 'creates a price override describing the override amount' do
+      it "creates a price override describing the override amount" do
         b.apply_price_override
-        expect(b.lines.first.order_description).to eq 'Price override €10'
+        expect(b.lines.first.order_description).to eq "Price override €10"
       end
     end
   end
 
-  describe '#subtotal' do
+  describe "#subtotal" do
     it "returns the sum of each line's price" do
       b = Basket.new(user: FactoryBot.create(:user))
 

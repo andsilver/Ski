@@ -1,13 +1,13 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'resorts/_search_form.html.erb', type: :view do
+RSpec.describe "resorts/_search_form.html.erb", type: :view do
   let(:resort) { FactoryBot.create(:resort) }
 
   before do
     assign(:resort, resort)
   end
 
-  context 'rendered' do
+  context "rendered" do
     subject { rendered }
     before { render }
     it do

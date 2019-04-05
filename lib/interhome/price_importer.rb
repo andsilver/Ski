@@ -1,4 +1,4 @@
-require 'xmlsimple'
+require "xmlsimple"
 
 module Interhome
   class PriceImporter
@@ -18,7 +18,7 @@ module Interhome
     # returns an array of XML filenames. Set max_files to limit the number
     # of smaller files created (for example, when testing).
     def split_xml(max_files = 0)
-      xs = XMLSplitter.new(root_element: 'prices', child_element: 'price', xml_filename: "interhome/#{xml_filename}", elements_per_file: 2000, max_files: max_files)
+      xs = XMLSplitter.new(root_element: "prices", child_element: "price", xml_filename: "interhome/#{xml_filename}", elements_per_file: 2000, max_files: max_files)
       xs.split
     end
 
@@ -32,32 +32,32 @@ module Interhome
     protected
 
     def import_file(filename)
-      xml_file = File.open(filename, 'rb')
+      xml_file = File.open(filename, "rb")
       xml = XmlSimple.xml_in(xml_file)
       xml_file.close
 
-      xml['price'].each {|p| import_price(p)} if xml
+      xml["price"].each {|p| import_price(p)} if xml
     end
 
     def import_price(p)
       @price = InterhomePrice.new
       @price.days = @days
-      @price.accommodation_code = p['code'][0]
-      @price.start_date = p['startdate'][0]
-      @price.end_date = p['enddate'][0]
+      @price.accommodation_code = p["code"][0]
+      @price.start_date = p["startdate"][0]
+      @price.end_date = p["enddate"][0]
 
       # Price without any special offers.
-      @price.regular_price = p['regularprice'][0]
+      @price.regular_price = p["regularprice"][0]
 
       # Rental price may be the same as the regular or special offer price.
       # It reflects the current price including any special offer.
-      @price.rental_price = p['rentalprice'][0]
+      @price.rental_price = p["rentalprice"][0]
 
-      @price.min_rental_price = p['minrentalprice'][0]
-      @price.max_rental_price = p['maxrentalprice'][0]
-      if p['specialoffer']
-        @price.special_offer_code = p['specialoffer'][0]['code'][0]
-        @price.special_offer_price = p['specialoffer'][0]['specialofferprice'][0]
+      @price.min_rental_price = p["minrentalprice"][0]
+      @price.max_rental_price = p["maxrentalprice"][0]
+      if p["specialoffer"]
+        @price.special_offer_code = p["specialoffer"][0]["code"][0]
+        @price.special_offer_price = p["specialoffer"][0]["specialofferprice"][0]
       end
       @price.save
     end

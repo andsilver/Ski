@@ -1,19 +1,19 @@
 class ExportController < ApplicationController
   before_action :admin_required
 
-  layout 'admin'
+  layout "admin"
 
-  CLASSES = %w{Advert AirportDistance Airport
-    Category Country Coupon Currency DirectoryAdvert Enquiry Image
-    Order OrderLine Page Payment Property PropertyBasePrice
-    PropertyVolumeDiscount Resort Role User Website}
+  CLASSES = %w[Advert AirportDistance Airport
+               Category Country Coupon Currency DirectoryAdvert Enquiry Image
+               Order OrderLine Page Payment Property PropertyBasePrice
+               PropertyVolumeDiscount Resort Role User Website]
 
   def index
     @classes = CLASSES
   end
 
   def spreadsheet
-    Spreadsheet.client_encoding = 'UTF-8'
+    Spreadsheet.client_encoding = "UTF-8"
     book = Spreadsheet::Workbook.new
     sheet = book.create_worksheet name: params[:class_name]
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Image < ActiveRecord::Base
-  IMAGE_STORAGE_PATH = "#{Rails.root.to_s}/public/up/images"
+  IMAGE_STORAGE_PATH = "#{Rails.root}/public/up/images"
   IMAGE_STORAGE_URL = "/up/images"
   IMAGE_MISSING = "image-missing.png"
   S3_ENABLED = false
@@ -16,7 +16,7 @@ class Image < ActiveRecord::Base
   attr_reader :was_sized
 
   def image=(file_data)
-    unless file_data.kind_of? String and file_data.empty?
+    unless file_data.is_a?(String) && file_data.empty?
       @file_data = file_data
     end
   end
@@ -25,9 +25,9 @@ class Image < ActiveRecord::Base
     if @file_data
       self.filename = "image.#{uploaded_extension}"
     elsif !source_url.blank?
-      self.filename = 'image.jpg'
-    else
-      raise "No file data." if new_record?
+      self.filename = "image.jpg"
+    elsif new_record?
+      raise "No file data."
     end
   end
 
@@ -41,7 +41,7 @@ class Image < ActiveRecord::Base
     end
   end
 
-  def url(size=nil)
+  def url(size = nil)
     if size.nil?
       download_from_source_if_needed
       url_for_filename(filename)
@@ -95,7 +95,7 @@ class Image < ActiveRecord::Base
     fn = File.basename(path)
     s3 = AWS::S3.new
     bucket = s3.buckets[s3_bucket_name]
-    obj = bucket.objects.create(
+    bucket.objects.create(
       s3_key(fn),
       Pathname.new(path),
       acl: :public_read,
@@ -124,9 +124,9 @@ class Image < ActiveRecord::Base
 
     f = sized_filename(size, method)
     path = sized_path(size, method)
-    s3_path = path + '.s3uploaded'
+    s3_path = path + ".s3uploaded"
 
-    return s3_url_for_filename(f) if S3_ENABLED && Rails.env == 'production' && File.exist?(s3_path)
+    return s3_url_for_filename(f) if S3_ENABLED && Rails.env == "production" && File.exist?(s3_path)
 
     # create a new image of the required size if it doesn't exist or if it is empty
     if !FileTest.exist?(path) || File.size(path) == 0
@@ -150,7 +150,7 @@ class Image < ActiveRecord::Base
 
     @was_sized = true
 
-    upload_to_s3 = (S3_ENABLED && Rails.env == 'production' && !options[:force_local])
+    upload_to_s3 = (S3_ENABLED && Rails.env == "production" && !options[:force_local])
 
     if upload_to_s3
       unless File.exist?(s3_path)
@@ -171,7 +171,7 @@ class Image < ActiveRecord::Base
   end
 
   def sized_filename(size, method)
-    method.to_s + '_' + size.to_s.gsub(', ', 'x').gsub('[', '').gsub(']', '') + '.' + extension
+    method.to_s + "_" + size.to_s.gsub(", ", "x").delete("[").delete("]") + "." + extension
   end
 
   def sized_path(size, method)
@@ -185,7 +185,7 @@ class Image < ActiveRecord::Base
     src_ar = img.width.to_f / img.height.to_f
     thumb_ar = width.to_f / height.to_f
 
-    if(src_ar > thumb_ar)
+    if src_ar > thumb_ar
       new_width = (img.height.to_f * thumb_ar).to_i
       shave = ((img.width - new_width).to_f / 2.0).to_i
       img.with_crop(shave, 0, img.width - shave, img.height) do |cropped|
@@ -221,7 +221,7 @@ class Image < ActiveRecord::Base
   end
 
   def size_maxpect(img, size, path)
-    if size.kind_of? Array
+    if size.is_a? Array
       width = size[0]
       height = size[1]
     else
@@ -231,8 +231,8 @@ class Image < ActiveRecord::Base
     src_ar = img.width.to_f / img.height.to_f
     thumb_ar = width.to_f / height.to_f
     tolerance = 0.1
-    if(src_ar * (1+tolerance) < thumb_ar || src_ar / (1+tolerance) > thumb_ar)
-      if(src_ar > thumb_ar)
+    if src_ar * (1 + tolerance) < thumb_ar || src_ar / (1 + tolerance) > thumb_ar
+      if src_ar > thumb_ar
         height = (width / src_ar).to_i
       else
         width = (height * src_ar).to_i
@@ -252,31 +252,31 @@ class Image < ActiveRecord::Base
   end
 
   def download_from_source
-    return if Rails.env == 'development'
+    return if Rails.env == "development"
     begin
       FileUtils.makedirs(directory_path)
-      require 'net/http'
+      require "net/http"
       uri = URI.parse(source_url)
       to_get = uri.path
       to_get = "#{to_get}?" + uri.query if uri.query.present?
       request = Net::HTTP::Get.new(to_get)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = uri.port == 443
-      response = http.start do |http|
+      response = http.start { |http|
         http.request(request)
-      end
-      open(original_path, "wb") do |file|
+      }
+      File.open(original_path, "wb") do |file|
         file.write(response.body)
       end
     rescue
-      logger.warn 'Could not download image from source: ' + source_url
+      logger.warn "Could not download image from source: " + source_url
       return
     end
   end
 
   def valid_image_file?
     return true if remote_image?
-    return true unless extension == 'jpg'
+    return true unless extension == "jpg"
 
     begin
       File.open(original_path, "rb") do |file|
@@ -314,16 +314,16 @@ class Image < ActiveRecord::Base
   end
 
   def uploaded_extension
-    if @file_data.respond_to? 'original_filename'
+    if @file_data.respond_to? "original_filename"
       @file_data.original_filename.split(".").last.downcase
     else
-      'jpg'
+      "jpg"
     end
   end
 
   def extension
     e = filename.split(".").last
-    e = '' if e.nil?
+    e = "" if e.nil?
     e
   end
 

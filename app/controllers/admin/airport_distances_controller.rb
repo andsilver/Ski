@@ -14,9 +14,9 @@ module Admin
       @airport_distance = AirportDistance.new(airport_distance_params)
 
       if @airport_distance.save
-        redirect_to(admin_airport_distances_path, notice: t('notices.created'))
+        redirect_to(admin_airport_distances_path, notice: t("notices.created"))
       else
-        render 'new'
+        render "new"
       end
     end
 
@@ -25,7 +25,7 @@ module Admin
 
     def update
       if @airport_distance.update_attributes(airport_distance_params)
-        redirect_to(admin_airport_distances_path, notice: t('notices.saved'))
+        redirect_to(admin_airport_distances_path, notice: t("notices.saved"))
       else
         render "edit"
       end
@@ -33,7 +33,7 @@ module Admin
 
     def destroy
       @airport_distance.destroy
-      redirect_to admin_airport_distances_path, notice: t('notices.deleted')
+      redirect_to admin_airport_distances_path, notice: t("notices.deleted")
     end
 
     protected

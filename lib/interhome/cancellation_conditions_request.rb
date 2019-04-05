@@ -24,7 +24,7 @@ module Interhome
     end
 
     def action
-      'CancellationConditions'
+      "CancellationConditions"
     end
   end
 end

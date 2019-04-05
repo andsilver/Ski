@@ -3,8 +3,13 @@ module Admin
     before_action :set_resort, only: [:edit, :update, :destroy, :edit_page, :destroy_properties, :destroy_directory_adverts]
 
     include EditRelatedPages
-    def klass; Resort; end
-    def object; @resort; end
+    def klass
+      Resort
+    end
+
+    def object
+      @resort
+    end
 
     def index
       @countries = Country.with_resorts
@@ -20,9 +25,9 @@ module Admin
 
       if @resort.save
         session[:last_country_id] = @resort.country_id
-        redirect_to(admin_resorts_path, notice: t('notices.created'))
+        redirect_to(admin_resorts_path, notice: t("notices.created"))
       else
-        render action: 'new'
+        render action: "new"
       end
     end
 
@@ -32,17 +37,17 @@ module Admin
 
     def update
       if @resort.update_attributes(resort_params)
-        redirect_to(edit_admin_resort_path(@resort), notice: t('notices.saved'))
+        redirect_to(edit_admin_resort_path(@resort), notice: t("notices.saved"))
       else
         @interhome_place_resort = InterhomePlaceResort.new(resort_id: @resort.id)
-        render action: 'edit'
+        render action: "edit"
       end
     end
 
     def destroy
       unless @resort.properties.any? || @resort.directory_adverts.any?
         @resort.destroy
-        redirect_to(admin_resorts_path, notice: t('notices.deleted'))
+        redirect_to(admin_resorts_path, notice: t("notices.deleted"))
       end
     end
 
@@ -60,7 +65,7 @@ module Admin
 
     def set_resort
       @resort = Resort.find_by(slug: params[:id])
-      redirect_to(admin_resorts_path, notice: t('resorts_controller.not_found')) unless @resort
+      redirect_to(admin_resorts_path, notice: t("resorts_controller.not_found")) unless @resort
     end
 
     def resort_params

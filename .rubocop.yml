@@ -1,5 +1,0 @@
-AllCops:
-  TargetRubyVersion: 2.4
-Metrics/BlockLength:
-  Exclude:
-    - '**/*_spec.rb'

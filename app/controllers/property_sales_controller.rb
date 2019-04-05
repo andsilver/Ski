@@ -2,5 +2,6 @@
 
 # Controller for actions that are specific to properties for sale.
 class PropertySalesController < ApplicationController
-  def index; end
+  def index
+  end
 end

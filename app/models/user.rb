@@ -4,25 +4,25 @@ class User < ActiveRecord::Base
   VALID_EMAIL_FORMAT = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   belongs_to :role
-  belongs_to :billing_country, class_name: 'Country', optional: true
-  belongs_to :vat_country, class_name: 'Country', optional: true
+  belongs_to :billing_country, class_name: "Country", optional: true
+  belongs_to :vat_country, class_name: "Country", optional: true
   belongs_to :coupon, optional: true
   belongs_to :image, optional: true
 
   has_many :directory_adverts, dependent: :destroy
-  has_many :enquiries, -> { order 'created_at DESC' }, dependent: :delete_all
+  has_many :enquiries, -> { order "created_at DESC" }, dependent: :delete_all
   has_many :adverts, dependent: :delete_all
-  has_many :adverts_in_basket, -> { where starts_at: nil }, class_name: 'Advert'
+  has_many :adverts_in_basket, -> { where starts_at: nil }, class_name: "Advert"
 
   # TODO: these should probably exclude expired windows
-  has_many :windows, -> { where(window_spot: true).order('expires_at DESC') }, class_name: 'Advert'
+  has_many :windows, -> { where(window_spot: true).order("expires_at DESC") }, class_name: "Advert"
 
   has_many :properties, dependent: :destroy
-  has_many :properties_for_rent, -> { where listing_type: Property::LISTING_TYPE_FOR_RENT }, class_name: 'Property'
-  has_many :properties_for_sale, -> { where listing_type: Property::LISTING_TYPE_FOR_SALE }, class_name: 'Property'
+  has_many :properties_for_rent, -> { where listing_type: Property::LISTING_TYPE_FOR_RENT }, class_name: "Property"
+  has_many :properties_for_sale, -> { where listing_type: Property::LISTING_TYPE_FOR_SALE }, class_name: "Property"
   has_many :images, dependent: :destroy
   has_many :orders, dependent: :destroy
-  has_many :orders_with_receipts, -> { where("status NOT IN (#{Order::WAITING_FOR_PAYMENT})").order('created_at DESC') }, class_name: 'Order'
+  has_many :orders_with_receipts, -> { where("status NOT IN (#{Order::WAITING_FOR_PAYMENT})").order("created_at DESC") }, class_name: "Order"
 
   has_many :airport_transfers, dependent: :delete_all
 
@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
     (SE)?[0-9]{12} |                              # Sweden
     (SI)?[0-9]{8} |                               # Slovenia
     (SK)?[0-9]{10}                                # Slovakia
-    )\Z/x, if: Proc.new {|u| u.vat_country}
+    )\Z/x, if: proc {|u| u.vat_country}
 
   validates_presence_of :billing_street
   validates_presence_of :billing_city
@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   validates_presence_of :phone
   validates_presence_of :role_id
 
-  validates_format_of :website, with: /\A(#{URI::regexp(%w(http https))})\Z/, allow_blank: true
+  validates_format_of :website, with: /\A(#{URI.regexp(%w[http https])})\Z/, allow_blank: true
 
   validates_acceptance_of :terms_and_conditions, on: :create, accept: true
 
@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
   before_validation :tidy_vat_number
 
   def empty_windows
-    adverts.where('property_id IS NULL AND window_spot = 1 AND expires_at > ?', Time.zone.now).order('expires_at DESC')
+    adverts.where("property_id IS NULL AND window_spot = 1 AND expires_at > ?", Time.zone.now).order("expires_at DESC")
   end
 
   def delete_old_windows
@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
   end
 
   def advertises_through_windows?
-    role && role.advertises_through_windows?
+    role&.advertises_through_windows?
   end
 
   def self.encrypt(pass, salt)
@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
 
   def self.authenticate(email, pass)
     user = find_by(email: email)
-    user && user.authenticated?(pass) ? user : nil
+    user&.authenticated?(pass) ? user : nil
   end
 
   def authenticated?(pass)
@@ -106,8 +106,8 @@ class User < ActiveRecord::Base
   end
 
   def self.generate_forgot_password_token
-    charset = %w{ 2 3 4 6 7 9 A C D E F G H J K L M N P Q R T V W X Y Z}
-    (0...8).map{ charset.to_a[rand(charset.size)] }.join
+    charset = %w[2 3 4 6 7 9 A C D E F G H J K L M N P Q R T V W X Y Z]
+    (0...8).map { charset.to_a[rand(charset.size)] }.join
   end
 
   def has_properties_for_rent?
@@ -130,13 +130,13 @@ class User < ActiveRecord::Base
   end
 
   def directory_adverts_so_far
-    Advert.where(['user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
-      id]).count
+    Advert.where(["user_id = ? AND directory_advert_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)",
+                  id,]).count
   end
 
   def property_adverts_so_far
-    Advert.where(['user_id = ? AND property_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)',
-      id]).count
+    Advert.where(["user_id = ? AND property_id IS NOT NULL AND starts_at IS NOT NULL AND starts_at > DATE_SUB(NOW(), INTERVAL 365 DAY)",
+                  id,]).count
   end
 
   def adverts_so_far
@@ -159,7 +159,7 @@ class User < ActiveRecord::Base
   # :call-seq:
   #   pays_vat? -> true or false
   def pays_vat?
-    (vat_number.blank? && country_for_checking_vat.in_eu?) || country_for_checking_vat.iso_3166_1_alpha_2 == 'GB'
+    (vat_number.blank? && country_for_checking_vat.in_eu?) || country_for_checking_vat.iso_3166_1_alpha_2 == "GB"
   end
 
   def country_for_checking_vat
@@ -167,7 +167,7 @@ class User < ActiveRecord::Base
   end
 
   def tax_description
-    pays_vat? ? 'VAT' : 'Zero Rated'
+    pays_vat? ? "VAT" : "Zero Rated"
   end
 
   def to_s
@@ -189,7 +189,7 @@ class User < ActiveRecord::Base
   end
 
   def remove_expired_coupon
-    if coupon && coupon.expired?
+    if coupon&.expired?
       self.coupon = nil
       save
     end
@@ -210,6 +210,6 @@ class User < ActiveRecord::Base
   end
 
   def tidy_vat_number
-    self.vat_number = vat_country ? vat_number.upcase.gsub(/[^A-Z0-9]/, '') : ''
+    self.vat_number = vat_country ? vat_number.upcase.gsub(/[^A-Z0-9]/, "") : ""
   end
 end

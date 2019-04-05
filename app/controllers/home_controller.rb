@@ -2,7 +2,7 @@
 
 class HomeController < ApplicationController
   before_action :set_resort_and_region_from_place_name,
-                only: %i[search search_sales]
+    only: %i[search search_sales]
 
   def index
     @featured_properties = @w.featured_properties
@@ -10,13 +10,13 @@ class HomeController < ApplicationController
 
   def search
     if @resort
-      start_date  = params[:start_date].present?  ? params[:start_date].to_date.strftime("%Y.%m.%d") : nil
+      start_date = params[:start_date].present? ? params[:start_date].to_date.strftime("%Y.%m.%d") : nil
       end_date = params[:end_date].present? ? params[:end_date].to_date.strftime("%Y.%m.%d") : nil
-      redirect_to resort_property_rent_path(@resort, :start_date => start_date, :end_date => end_date, :bedrooms => params[:bedrooms], :sleeps => params[:sleeps])
+      redirect_to resort_property_rent_path(@resort, start_date: start_date, end_date: end_date, bedrooms: params[:bedrooms], sleeps: params[:sleeps])
     elsif @region
       redirect_to region_property_rent_path(@region)
     # elsif @country
-    #   redirect_to 
+    #   redirect_to
     else
       redirect_to root_path
     end
@@ -33,10 +33,10 @@ class HomeController < ApplicationController
   end
 
   def country_options_for_quick_search
-    if params[:holiday_type_id].blank?
-      @countries = []
+    @countries = if params[:holiday_type_id].blank?
+      []
     else
-      @countries = HolidayType.find(params[:holiday_type_id]).visible_country_brochures.map { |b| b.brochurable }
+      HolidayType.find(params[:holiday_type_id]).visible_country_brochures.map { |b| b.brochurable }
     end
     render layout: false
   end
@@ -48,34 +48,34 @@ class HomeController < ApplicationController
       @resorts = []
     else
       country = Country.find(params[:country_id])
-      if params[:holiday_type_id].blank?
-        @resorts = country.visible_regions + country.visible_resorts
+      @resorts = if params[:holiday_type_id].blank?
+        country.visible_regions + country.visible_resorts
       else
-        @resorts = country.region_brochures(params[:holiday_type_id]).map { |b| b.brochurable } + country.resort_brochures(params[:holiday_type_id]).map { |b| b.brochurable }
+        country.region_brochures(params[:holiday_type_id]).map { |b| b.brochurable } + country.resort_brochures(params[:holiday_type_id]).map { |b| b.brochurable }
       end
     end
     render layout: false
   end
 
   def contact
-    default_page_title t('contact')
+    default_page_title t("contact")
   end
 
   def privacy
-    default_page_title t('privacy')
+    default_page_title t("privacy")
   end
 
   def terms
-    default_page_title t('terms')
+    default_page_title t("terms")
   end
 
   private
 
-    def set_resort_and_region_from_place_name
-      if params[:place_name]
-        @resort ||= Resort.find_by(name: params[:place_name])
-        @region ||= Region.find_by(name: params[:place_name])
-        @country ||= Country.find_by(name: params[:place_name])
-      end
+  def set_resort_and_region_from_place_name
+    if params[:place_name]
+      @resort ||= Resort.find_by(name: params[:place_name])
+      @region ||= Region.find_by(name: params[:place_name])
+      @country ||= Country.find_by(name: params[:place_name])
     end
+  end
 end

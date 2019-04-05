@@ -22,7 +22,7 @@ module Interhome
     end
 
     def action
-      'Availability'
+      "Availability"
     end
   end
 end

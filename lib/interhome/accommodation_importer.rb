@@ -1,8 +1,8 @@
-require 'xmlsimple'
+require "xmlsimple"
 
 module Interhome
   class AccommodationImporter < ::AccommodationImporter
-    XML_FILENAME = 'accommodation.xml'
+    XML_FILENAME = "accommodation.xml"
 
     def ftp_get
       FTP.get(XML_FILENAME)
@@ -12,12 +12,12 @@ module Interhome
     # returns an array of XML filenames. Set max_files to limit the number
     # of smaller files created (for example, when testing).
     def split_xml(max_files = 0)
-      xs = XMLSplitter.new(root_element: 'accommodations', child_element: 'accommodation', xml_filename: xml_filename, elements_per_file: 500, max_files: max_files)
+      xs = XMLSplitter.new(root_element: "accommodations", child_element: "accommodation", xml_filename: xml_filename, elements_per_file: 500, max_files: max_files)
       xs.split
     end
 
     def user_email
-      'interhome@mychaletfinder.com'
+      "interhome@mychaletfinder.com"
     end
 
     def model_class
@@ -25,9 +25,9 @@ module Interhome
     end
 
     def import_accommodation(a)
-      return unless import_details?(a['details'][0])
+      return unless import_details?(a["details"][0])
 
-      accommodation = InterhomeAccommodation.find_by(code: a['code'][0])
+      accommodation = InterhomeAccommodation.find_by(code: a["code"][0])
       if accommodation
         # ensure the updated_at timestamp is updated
         # the save later won't touch the database if all attributes remain unchanged
@@ -35,41 +35,41 @@ module Interhome
       else
         accommodation = InterhomeAccommodation.new
       end
-      accommodation.code = a['code'][0].strip
-      accommodation.name = a['name'][0]
-      if accommodation.name.kind_of?(String)
+      accommodation.code = a["code"][0].strip
+      accommodation.name = a["name"][0]
+      if accommodation.name.is_a?(String)
         accommodation.name.strip!
       else
-        accommodation.name = ''
+        accommodation.name = ""
       end
-      accommodation.country = a['country'][0].strip
-      accommodation.region = a['region'][0].strip
-      accommodation.place = a['place'][0].strip
-      accommodation.zip = a['zip'] ? a['zip'][0].strip : '' # some countries (e.g. RoI) don't use postal codes
-      accommodation.accommodation_type = a['type'][0]
-      accommodation.details = a['details'][0]
-      accommodation.quality = a['quality'][0]
-      accommodation.brand = a['brand'][0]
-      accommodation.pax = a['pax'] ? a['pax'][0] : 0
-      accommodation.sqm = a['sqm'] ? a['sqm'][0] : 0
-      accommodation.floor = a['floor'] ? a['floor'][0] : 0
-      accommodation.rooms = a['rooms'] ? a['rooms'][0] : 0
-      accommodation.bedrooms = a['bedrooms'] ? a['bedrooms'][0] : 0
-      accommodation.bathrooms = a['bathrooms'] ? a['bathrooms'][0] : 0
-      accommodation.toilets = a['toilets'] ? a['toilets'][0] : 0
+      accommodation.country = a["country"][0].strip
+      accommodation.region = a["region"][0].strip
+      accommodation.place = a["place"][0].strip
+      accommodation.zip = a["zip"] ? a["zip"][0].strip : "" # some countries (e.g. RoI) don't use postal codes
+      accommodation.accommodation_type = a["type"][0]
+      accommodation.details = a["details"][0]
+      accommodation.quality = a["quality"][0]
+      accommodation.brand = a["brand"][0]
+      accommodation.pax = a["pax"] ? a["pax"][0] : 0
+      accommodation.sqm = a["sqm"] ? a["sqm"][0] : 0
+      accommodation.floor = a["floor"] ? a["floor"][0] : 0
+      accommodation.rooms = a["rooms"] ? a["rooms"][0] : 0
+      accommodation.bedrooms = a["bedrooms"] ? a["bedrooms"][0] : 0
+      accommodation.bathrooms = a["bathrooms"] ? a["bathrooms"][0] : 0
+      accommodation.toilets = a["toilets"] ? a["toilets"][0] : 0
       accommodation.features = features(a)
-      if a['geodata']
-        accommodation.geodata_lat = a['geodata'][0]['lat'][0]
-        accommodation.geodata_lng = a['geodata'][0]['lng'][0]
+      if a["geodata"]
+        accommodation.geodata_lat = a["geodata"][0]["lat"][0]
+        accommodation.geodata_lng = a["geodata"][0]["lng"][0]
       else
-        accommodation.geodata_lat = accommodation.geodata_lng = ''
+        accommodation.geodata_lat = accommodation.geodata_lng = ""
       end
       accommodation.themes = themes(a)
       accommodation.permalink = accommodation.code.parameterize
       accommodation.save
 
       place = accommodation.interhome_place
-      if place && ipr = InterhomePlaceResort.find_by(interhome_place_code: place.code)
+      if place && (ipr = InterhomePlaceResort.find_by(interhome_place_code: place.code))
         import_pictures(accommodation, a)
         delete_old_pictures(accommodation)
         create_property(accommodation, ipr.resort_id, place.name)
@@ -81,16 +81,16 @@ module Interhome
     # Imports pictures for the new or existing accommodation.
     # Touch (update timestamp of) existing pictures and add new ones.
     def import_pictures(accommodation, a)
-      return unless a['pictures']
-      a['pictures'][0]['picture'].each do |p|
-        url = p['url'] ? p['url'][0] : ''
+      return unless a["pictures"]
+      a["pictures"][0]["picture"].each do |p|
+        url = p["url"] ? p["url"][0] : ""
         picture = InterhomePicture.find_by(interhome_accommodation_id: accommodation.id, url: url)
         if picture
           picture.touch
         else
           picture = InterhomePicture.new
-          picture.picture_type = p['type'] ? p['type'][0] : ''
-          picture.season = p['season'] ? p['season'][0] : ''
+          picture.picture_type = p["type"] ? p["type"][0] : ""
+          picture.season = p["season"] ? p["season"][0] : ""
           picture.url = url
           accommodation.interhome_pictures << picture
         end
@@ -134,16 +134,16 @@ module Interhome
       property.sleeping_capacity = accommodation.pax
       property.number_of_bedrooms = accommodation.bedrooms
 
-      if accommodation.features.include? 'parking'
-        property.parking = Property::PARKING_OFF_STREET
+      property.parking = if accommodation.features.include? "parking"
+        Property::PARKING_OFF_STREET
       else
-        property.parking = Property::PARKING_ON_STREET
+        Property::PARKING_ON_STREET
       end
 
-      property.pets = accommodation.features.include? 'petsallowed'
-      property.smoking = !(accommodation.features.include? 'nonsmoking')
-      property.tv = Property::TV_YES if accommodation.features.include? 'tv'
-      property.wifi = accommodation.features.include? 'wlan'
+      property.pets = accommodation.features.include? "petsallowed"
+      property.smoking = !(accommodation.features.include? "nonsmoking")
+      property.tv = Property::TV_YES if accommodation.features.include? "tv"
+      property.wifi = accommodation.features.include? "wlan"
 
       unless property.save
         Rails.logger.info(property.errors.messages.to_s)
@@ -162,7 +162,7 @@ module Interhome
           image.save
         end
 
-        if picture.picture_type == 'm'
+        if picture.picture_type == "m"
           property.image_id = image.id
           property.save
         end
@@ -171,7 +171,7 @@ module Interhome
       # Delete orphaned images
       urls_to_keep = accommodation.interhome_pictures.map { |picture| picture.url }
       property.images.each do |image|
-        if !urls_to_keep.include?(image.source_url)
+        unless urls_to_keep.include?(image.source_url)
           property.image = nil if property.image == image
           image.destroy
           Rails.logger.warn "Destroyed orphaned image for Interhome accommodation #{accommodation.id} - #{image.source_url}"
@@ -188,26 +188,26 @@ module Interhome
     end
 
     def gbp
-      @gbp ||= Currency.find_by(code: 'GBP')
+      @gbp ||= Currency.find_by(code: "GBP")
     end
 
     def themes(a)
-      return '' unless a['themes']
+      return "" unless a["themes"]
       themes = []
-      a['themes'][0]['theme'].each {|t| themes << t}
-      themes.join(',')
+      a["themes"][0]["theme"].each {|t| themes << t}
+      themes.join(",")
     end
 
     def features(a)
-      return '' unless a['attributes']
+      return "" unless a["attributes"]
       features = []
-      a['attributes'][0]['attribute'].each {|f| features << f}
-      features.join(',')
+      a["attributes"][0]["attribute"].each {|f| features << f}
+      features.join(",")
     end
 
     def import_details?(d)
-      return true if d.kind_of?(Hash) # Details unspecified
-      'ABCDFHRSV'.include?(d)
+      return true if d.is_a?(Hash) # Details unspecified
+      "ABCDFHRSV".include?(d)
       # A: apart- hotel
       # B: bungalow
       # C: chalet
@@ -225,7 +225,7 @@ module Interhome
     end
 
     def accommodations(xml)
-      xml['accommodation']
+      xml["accommodation"]
     end
   end
 end

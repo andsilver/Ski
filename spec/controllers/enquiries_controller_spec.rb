@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe EnquiriesController, type: :controller do
   let(:website) { double(Website).as_null_object }
@@ -41,7 +41,7 @@ RSpec.describe EnquiriesController, type: :controller do
 
     it "finds a property" do
       expect(Property).to receive(:find).with("1")
-      post :create, params: { enquiry: { property_id: '1' } }
+      post :create, params: {enquiry: {property_id: "1"}}
     end
   end
 

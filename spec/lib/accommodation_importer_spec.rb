@@ -1,28 +1,28 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe AccommodationImporter do
   Accommodation = Struct.new(:dummy)
 
-  describe '#import' do
-    it 'runs setup' do
+  describe "#import" do
+    it "runs setup" do
       i = AccommodationImporter.new
       expect(i).to receive(:setup)
       i.import []
     end
   end
 
-  describe '#setup' do
-    it 'finds the Euro currency and user by email' do
+  describe "#setup" do
+    it "finds the Euro currency and user by email" do
       i = AccommodationImporter.new
-      allow(i).to receive(:user_email).and_return('somebody@example.org')
-      expect(User).to receive(:find_by).with(email: 'somebody@example.org').and_return(true)
-      expect(Currency).to receive(:find_by).with(code: 'EUR').and_return(true)
+      allow(i).to receive(:user_email).and_return("somebody@example.org")
+      expect(User).to receive(:find_by).with(email: "somebody@example.org").and_return(true)
+      expect(Currency).to receive(:find_by).with(code: "EUR").and_return(true)
       i.setup
     end
   end
 
-  describe '#cleanup' do
-    it 'deletes old adverts' do
+  describe "#cleanup" do
+    it "deletes old adverts" do
       i = AccommodationImporter.new
       expect(i).to receive(:delete_old_adverts)
       allow(i).to receive(:setup)
@@ -31,7 +31,7 @@ describe AccommodationImporter do
       i.cleanup
     end
 
-    it 'destroys all accommodations' do
+    it "destroys all accommodations" do
       i = AccommodationImporter.new
       expect(i).to receive(:destroy_all)
       allow(i).to receive(:setup)
@@ -40,9 +40,9 @@ describe AccommodationImporter do
     end
   end
 
-  describe '#delete_old_adverts' do
-    it 'deletes adverts belonging to the user updated before the import ' \
-    'start time' do
+  describe "#delete_old_adverts" do
+    it "deletes adverts belonging to the user updated before the import " \
+    "start time" do
       start = Time.new(2017, 8, 6, 10, 0, 30)
       user = FactoryBot.create(:user)
       a1 = FactoryBot.create(:advert, user: user, updated_at: start - 1.second)
@@ -60,8 +60,8 @@ describe AccommodationImporter do
     end
   end
 
-  describe '#destroy_all' do
-    it 'destroys all accommodation objects updated before the import began' do
+  describe "#destroy_all" do
+    it "destroys all accommodation objects updated before the import began" do
       i = AccommodationImporter.new
       allow(i).to receive(:model_class).and_return(InterhomeAccommodation)
 

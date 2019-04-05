@@ -6,7 +6,7 @@ class TripAdvisorPruneJob < ApplicationJob
 
   def perform(*_args)
     TripAdvisorProperty
-      .where('updated_at < ?', Time.current - 10.days)
+      .where("updated_at < ?", Time.current - 10.days)
       .find_each { |prop| prop.destroy }
   end
 end

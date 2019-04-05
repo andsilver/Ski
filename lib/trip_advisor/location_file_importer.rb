@@ -15,7 +15,7 @@ module TripAdvisor
       end
 
       File.open(path) { |io| LocationImporter.new(io).import }
-      Rails.logger.info('Finished TripAdvisor location file import')
+      Rails.logger.info("Finished TripAdvisor location file import")
     end
   end
 end

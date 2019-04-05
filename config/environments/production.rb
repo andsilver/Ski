@@ -22,7 +22,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new(harmony: true)
@@ -56,7 +56,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   config.cache_store = :mem_cache_store
@@ -97,19 +97,19 @@ Rails.application.configure do
   config.middleware.use ExceptionNotification::Rack,
     email: {
       email_prefix: "[MyChaletFinder Error Report] ",
-      sender_address: %{"MyChaletFinder" <noreply@mychaletfinder.com>},
-      exception_recipients: %w{ianfleeton+mychaletfinder@gmail.com}
+      sender_address: %("MyChaletFinder" <noreply@mychaletfinder.com>),
+      exception_recipients: %w[ianfleeton+mychaletfinder@gmail.com],
     }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.mailgun.org',
-    port:                 587,
-    user_name:            'postmaster@mg.mychaletfinder.com',
-    password:             '8535a3a8b39856f65975c81192c3c1c8-3b1f59cf-cf637821',
-    authentication:       'login',
+    address: "smtp.mailgun.org",
+    port: 587,
+    user_name: "postmaster@mg.mychaletfinder.com",
+    password: "8535a3a8b39856f65975c81192c3c1c8-3b1f59cf-cf637821",
+    authentication: "login",
     enable_starttls_auto: true,
-    domain:               'mychaletfinder.com'
+    domain: "mychaletfinder.com",
   }
 end
 

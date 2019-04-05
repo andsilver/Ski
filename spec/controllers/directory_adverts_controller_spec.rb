@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe DirectoryAdvertsController, type: :controller do
   let(:website) { double(Website).as_null_object }
@@ -38,8 +38,8 @@ RSpec.describe DirectoryAdvertsController, type: :controller do
     let(:directory_advert) { double(DirectoryAdvert).as_null_object }
 
     it "finds a directory advert specified by param[:id]" do
-      expect(DirectoryAdvert).to receive(:find_by).with(id: '1')
-      get 'show', params: { id: '1' }
+      expect(DirectoryAdvert).to receive(:find_by).with(id: "1")
+      get "show", params: {id: "1"}
     end
 
     context "when the advert is found" do
@@ -60,24 +60,24 @@ RSpec.describe DirectoryAdvertsController, type: :controller do
         allow(category).to receive(:name).and_return("bars")
         allow(resort).to receive(:name).and_return("Chamonix")
         allow(country).to receive(:name).and_return("France")
-        expect(controller).to receive(:default_page_title).with(anything())
-        get 'show', params: { id: 1 }
+        expect(controller).to receive(:default_page_title).with(anything)
+        get "show", params: {id: 1}
       end
 
-      context 'with a current advert' do
+      context "with a current advert" do
         before { allow(directory_advert).to receive(:current_advert).and_return(advert) }
 
-        it 'records a view' do
+        it "records a view" do
           expect(advert).to receive(:record_view)
-          get 'show', params: { id: 1 }
+          get "show", params: {id: 1}
         end
       end
 
-      context 'without a current advert' do
+      context "without a current advert" do
         before { allow(directory_advert).to receive(:current_advert).and_return(nil) }
 
-        it 'does not try and record a view' do
-          get 'show', params: { id: '1' }
+        it "does not try and record a view" do
+          get "show", params: {id: "1"}
         end
       end
     end
@@ -88,7 +88,7 @@ RSpec.describe DirectoryAdvertsController, type: :controller do
       end
 
       it "renders not found" do
-        get 'show', params: { id: 1 }
+        get "show", params: {id: 1}
         expect(response.status).to eql 404
       end
     end
@@ -109,10 +109,10 @@ RSpec.describe DirectoryAdvertsController, type: :controller do
 
     def post_valid
       post(
-        'create', params: {
+        "create", params: {
           directory_advert: {
-            category_id: '1', business_address: '123 av', resort_id: ['1']
-          }
+            category_id: "1", business_address: "123 av", resort_id: ["1"],
+          },
         }
       )
     end
@@ -154,77 +154,77 @@ RSpec.describe DirectoryAdvertsController, type: :controller do
       allow(DirectoryAdvert).to receive(:find).and_return(directory_advert)
     end
 
-    it 'finds a directory advert specified by param[:id]' do
-      expect(DirectoryAdvert).to receive(:find).with('1')
-      delete :destroy, params: { id: '1' }
+    it "finds a directory advert specified by param[:id]" do
+      expect(DirectoryAdvert).to receive(:find).with("1")
+      delete :destroy, params: {id: "1"}
     end
 
-    context 'when not owned or admin' do
+    context "when not owned or admin" do
       before { expect(controller).to receive(:owned_or_admin?).with(directory_advert).and_return(false) }
 
-      it 'responds with 404' do
-        delete :destroy, params: { id: '1' }
+      it "responds with 404" do
+        delete :destroy, params: {id: "1"}
         expect(response.status).to eq 404
       end
     end
 
-    context 'when owned or admin' do
+    context "when owned or admin" do
       before { expect(controller).to receive(:owned_or_admin?).with(directory_advert).and_return(true) }
 
-      it 'destroys a directory advert' do
+      it "destroys a directory advert" do
         expect(directory_advert).to receive(:destroy)
-        delete :destroy, params: { id: '1' }
+        delete :destroy, params: {id: "1"}
       end
 
-      context 'when admin' do
+      context "when admin" do
         before { allow(controller).to receive(:admin?).and_return(true) }
 
-        it 'redirects to directory adverts page' do
-          delete :destroy, params: { id: '1' }
+        it "redirects to directory adverts page" do
+          delete :destroy, params: {id: "1"}
           expect(response).to redirect_to(directory_adverts_path)
         end
       end
 
-      context 'when not admin' do
+      context "when not admin" do
         before { allow(controller).to receive(:admin?).and_return(false) }
 
-        it 'redirects to My Adverts' do
-          delete :destroy, params: { id: '1' }
+        it "redirects to My Adverts" do
+          delete :destroy, params: {id: "1"}
           expect(response).to redirect_to(my_adverts_path)
         end
       end
     end
   end
 
-  describe 'POST click' do
-    let(:directory_advert) { FactoryBot.create(:directory_advert, url: 'http://example.org') }
+  describe "POST click" do
+    let(:directory_advert) { FactoryBot.create(:directory_advert, url: "http://example.org") }
 
-    it 'redirects to the directory advert remote URL' do
-      post :click, params: { id: directory_advert.id }
+    it "redirects to the directory advert remote URL" do
+      post :click, params: {id: directory_advert.id}
       expect(response).to redirect_to directory_advert.url
     end
 
-    context 'when user agent is not a bot' do
+    context "when user agent is not a bot" do
       before { allow(controller).to receive(:bot?).and_return(false) }
 
-      it 'tracks a click action' do
+      it "tracks a click action" do
         expect(TrackedAction).to receive(:create).with(hash_including(
-        action_type: :click,
-        http_user_agent: request.env['HTTP_USER_AGENT'],
-        remote_ip: request.remote_ip,
-        trackable_id: directory_advert.id,
-        trackable_type: 'DirectoryAdvert'
+          action_type: :click,
+          http_user_agent: request.env["HTTP_USER_AGENT"],
+          remote_ip: request.remote_ip,
+          trackable_id: directory_advert.id,
+          trackable_type: "DirectoryAdvert"
         ))
-        post :click, params: { id: directory_advert.id }
+        post :click, params: {id: directory_advert.id}
       end
     end
 
-    context 'when user agent is a bot' do
+    context "when user agent is a bot" do
       before { allow(controller).to receive(:bot?).and_return(true) }
 
-      it 'does not track a click action' do
+      it "does not track a click action" do
         expect(TrackedAction).not_to receive(:create)
-        post :click, params: { id: directory_advert.id }
+        post :click, params: {id: directory_advert.id}
       end
     end
   end

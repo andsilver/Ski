@@ -5,6 +5,6 @@ FactoryBot.define do
     sequence(:name)            { |n| "Holiday Type #{n}" }
     sequence(:slug)            { |n| "holiday-type-#{n}" }
     sequence(:mega_menu_html)  { |n| "<li><a href='/holiday-type-link#{n}'></a></li>" }
-    visible_on_menu           { true }
+    visible_on_menu { true }
   end
 end

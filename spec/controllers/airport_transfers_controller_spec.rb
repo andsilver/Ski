@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe AirportTransfersController, type: :controller do
   let(:website) { double(Website).as_null_object }
@@ -10,19 +10,19 @@ RSpec.describe AirportTransfersController, type: :controller do
     allow(controller).to receive(:current_user).and_return(current_user)
   end
 
-  describe 'GET index' do
+  describe "GET index" do
     it "finds the user's transfers" do
       expect(current_user).to receive(:airport_transfers)
-      get 'index'
+      get "index"
     end
   end
 
-  describe 'POST results' do
+  describe "POST results" do
     let(:airport) { FactoryBot.create(:airport) }
     let(:resort)  { FactoryBot.create(:resort) }
 
-    it 'should succeed' do
-      post :results, params: { airport_transfer_search: { airport_id: airport.id, resort_id: resort.id } }
+    it "should succeed" do
+      post :results, params: {airport_transfer_search: {airport_id: airport.id, resort_id: resort.id}}
       expect(response).to be_successful
     end
   end

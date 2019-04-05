@@ -79,6 +79,7 @@ GEM
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     arel (9.0.0)
+    ast (2.4.0)
     autoprefixer-rails (9.5.0)
       execjs
     aws-sdk (1.67.0)
@@ -191,6 +192,7 @@ GEM
       concurrent-ruby (~> 1.0)
     image_science (1.3.0)
       RubyInline (~> 3.9)
+    jaro_winkler (1.5.2)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -239,6 +241,8 @@ GEM
     parallel (1.17.0)
     parallel_tests (2.28.0)
       parallel
+    parser (2.6.2.0)
+      ast (~> 2.4.0)
     pdf-core (0.7.0)
     popper_js (1.14.5)
     prawn (2.2.2)
@@ -247,6 +251,7 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    psych (3.1.0)
     public_suffix (3.0.3)
     puma (3.12.1)
     rack (2.0.7)
@@ -279,6 +284,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
+    rainbow (3.0.0)
     rake (12.3.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
@@ -308,7 +314,16 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    rubocop (0.67.2)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.5, != 2.5.1.1)
+      psych (>= 3.1.0)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.6)
     ruby-ole (1.2.12.2)
+    ruby-progressbar (1.10.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.2)
     sanitize (5.0.0)
@@ -356,6 +371,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    standard (0.0.37)
+      rubocop (~> 0.67.1)
     temple (0.6.10)
     thor (0.20.3)
     thread_safe (0.3.6)
@@ -365,6 +382,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (1.5.0)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -435,6 +453,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
+  standard
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)

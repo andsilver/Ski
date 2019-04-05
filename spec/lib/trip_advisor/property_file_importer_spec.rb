@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 module TripAdvisor
   RSpec.describe PropertyFileImporter do
-    describe '#import' do
-      it 'opens the file at path and asks PropertyImporter to import each ' \
-      'line of JSON' do
-        path = 'trip_advisor/listings_delta_yyyymmdd.txt'
+    describe "#import" do
+      it "opens the file at path and asks PropertyImporter to import each " \
+      "line of JSON" do
+        path = "trip_advisor/listings_delta_yyyymmdd.txt"
 
         pi1 = instance_double(PropertyImporter)
         pi2 = instance_double(PropertyImporter)

@@ -4,7 +4,7 @@ class Website < ActiveRecord::Base
   end
 
   def featured_properties=(properties)
-    self.featured_properties_ids = properties.map {|p| p.id}.join(' ')
+    self.featured_properties_ids = properties.map {|p| p.id}.join(" ")
   end
 
   def vat_for price

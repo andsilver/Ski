@@ -3,11 +3,16 @@ module Admin
     before_action :find_region, only: [:edit, :update, :destroy, :edit_page]
 
     include EditRelatedPages
-    def klass; Region; end
-    def object; @region; end
+    def klass
+      Region
+    end
+
+    def object
+      @region
+    end
 
     def index
-      @regions = Region.order('name')
+      @regions = Region.order("name")
     end
 
     def new
@@ -18,9 +23,9 @@ module Admin
       @region = Region.new(region_params)
 
       if @region.save
-        redirect_to(admin_regions_path, notice: t('notices.created'))
+        redirect_to(admin_regions_path, notice: t("notices.created"))
       else
-        render 'new'
+        render "new"
       end
     end
 
@@ -29,15 +34,15 @@ module Admin
 
     def update
       if @region.update_attributes(region_params)
-        redirect_to(edit_admin_region_path(@region), notice: t('notices.saved'))
+        redirect_to(edit_admin_region_path(@region), notice: t("notices.saved"))
       else
-        render 'edit'
+        render "edit"
       end
     end
 
     def destroy
       @region.destroy
-      redirect_to admin_regions_path, notice: t('notices.deleted')
+      redirect_to admin_regions_path, notice: t("notices.deleted")
     end
 
     protected

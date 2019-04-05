@@ -47,10 +47,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-  #   # Don't boot with headless mode
-  #   vb.gui = true
-  #
-  #   # Use VBoxManage to customize the VM. For example to change memory:
+    #   # Don't boot with headless mode
+    #   vb.gui = true
+    #
+    #   # Use VBoxManage to customize the VM. For example to change memory:
     vb.memory = 1536
     vb.cpus = 2
   end
@@ -123,39 +123,39 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   chef.validation_client_name = "ORGNAME-validator"
 
   # Set up some swap space.
-  config.vm.provision :shell, inline: %q{fallocate -l 1536M /swapfile}
-  config.vm.provision :shell, inline: %q{chmod 600 /swapfile}
-  config.vm.provision :shell, inline: %q{mkswap /swapfile}
-  config.vm.provision :shell, inline: %q{swapon /swapfile}, run: 'always'
+  config.vm.provision :shell, inline: "fallocate -l 1536M /swapfile"
+  config.vm.provision :shell, inline: "chmod 600 /swapfile"
+  config.vm.provision :shell, inline: "mkswap /swapfile"
+  config.vm.provision :shell, inline: "swapon /swapfile", run: "always"
 
   # Update apt.
-  config.vm.provision :shell, inline: %q{apt-get update}
+  config.vm.provision :shell, inline: "apt-get update"
 
   # Install basics.
-  config.vm.provision :shell, inline: %q{apt-get -y install git}
+  config.vm.provision :shell, inline: "apt-get -y install git"
 
   # Install FreeImage (ImageScience dependency).
-  config.vm.provision :shell, inline: %q{apt-get -y install libfreeimage3 libfreeimage-dev}
+  config.vm.provision :shell, inline: "apt-get -y install libfreeimage3 libfreeimage-dev"
 
   # Install curb dependencies.
-  config.vm.provision :shell, inline: %q{apt-get -y install libcurl3 libcurl3-gnutls libcurl4-openssl-dev}
+  config.vm.provision :shell, inline: "apt-get -y install libcurl3 libcurl3-gnutls libcurl4-openssl-dev"
 
   # Install MySQL.
-  config.vm.provision :shell, inline: %q{debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password password secret'}
-  config.vm.provision :shell, inline: %q{debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password_again password secret'}
-  config.vm.provision :shell, inline: %q{apt-get -y install mysql-server-5.6}
-  config.vm.provision :shell, inline: %q{apt-get -y install mysql-client-5.6}
-  config.vm.provision :shell, inline: %q{apt-get -y install libmysqlclient-dev}
+  config.vm.provision :shell, inline: "debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password password secret'"
+  config.vm.provision :shell, inline: "debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password_again password secret'"
+  config.vm.provision :shell, inline: "apt-get -y install mysql-server-5.6"
+  config.vm.provision :shell, inline: "apt-get -y install mysql-client-5.6"
+  config.vm.provision :shell, inline: "apt-get -y install libmysqlclient-dev"
 
   # Install rvm and ruby.
-  config.vm.provision :shell, privileged: false, path: 'install-rvm-ruby.sh'
+  config.vm.provision :shell, privileged: false, path: "install-rvm-ruby.sh"
 
   # Bundle install our gems.
-  config.vm.provision :shell, privileged: false, inline: %q{cd /vagrant && bundle install}
+  config.vm.provision :shell, privileged: false, inline: "cd /vagrant && bundle install"
   # Copy in sample database config.
-  config.vm.provision :shell, inline: %q{cp /vagrant/config/database.sample.yml /vagrant/config/database.yml}
+  config.vm.provision :shell, inline: "cp /vagrant/config/database.sample.yml /vagrant/config/database.yml"
   # Set up database.
-  config.vm.provision :shell, privileged: false, inline: %q{cd /vagrant && rake db:create db:migrate db:seed}
+  config.vm.provision :shell, privileged: false, inline: "cd /vagrant && rake db:create db:migrate db:seed"
   # Copy in sample secrets config.
-  config.vm.provision :shell, inline: %q{cp /vagrant/config/secrets.sample.yml /vagrant/config/secrets.yml}
+  config.vm.provision :shell, inline: "cp /vagrant/config/secrets.sample.yml /vagrant/config/secrets.yml"
 end

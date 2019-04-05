@@ -24,12 +24,12 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find_by(id: params[:id]) ||
-                redirect_to(:root, notice: t('categories_controller.not_found'))
+      redirect_to(:root, notice: t("categories_controller.not_found"))
   end
 
   def directory_adverts
     DirectoryAdvert.advertised_in(@category, @resort)
-                   .order(Arel.sql('RAND()'))
-                   .paginate(page: params[:page])
+      .order(Arel.sql("RAND()"))
+      .paginate(page: params[:page])
   end
 end

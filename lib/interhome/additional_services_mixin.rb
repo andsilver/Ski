@@ -11,27 +11,27 @@ module Interhome
     end
 
     def on_invoice
-      @additional_services.select { |s| s.type == 'N1' || s.type == 'N2' || s.type == 'Y1' }
+      @additional_services.select { |s| s.type == "N1" || s.type == "N2" || s.type == "Y1" }
     end
 
     def bookable
-      @additional_services.select { |s| s.type == 'N1' || s.type == 'N2' }
+      @additional_services.select { |s| s.type == "N1" || s.type == "N2" }
     end
 
     def included
-      @additional_services.select { |s| s.type == 'Y2' }
+      @additional_services.select { |s| s.type == "Y2" }
     end
 
     def not_included
-      @additional_services.select { |s| s.type == 'Y4' }
+      @additional_services.select { |s| s.type == "Y4" }
     end
 
     def additional_service_items
-      additional_services_x[0]['AdditionalServiceItem']
+      additional_services_x[0]["AdditionalServiceItem"]
     end
 
     def additional_services_x
-      result['AdditionalServices']
+      result["AdditionalServices"]
     end
   end
 end

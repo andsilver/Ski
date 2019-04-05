@@ -1,14 +1,14 @@
 class EnquiryNotifier < ActionMailer::Base
   include EmailSetup
   default from: "notifier@mychaletfinder.com"
-  layout 'email'
+  layout "email"
 
   def notify enquiry, property
     @enquiry = enquiry
     @property = property
     cc = []
     if enquiry.user.enquiry_cc_emails.present?
-      cc = enquiry.user.enquiry_cc_emails.split(',').map { |e| e.strip }
+      cc = enquiry.user.enquiry_cc_emails.split(",").map { |e| e.strip }
     end
     mail(
       to: enquiry.user.email,

@@ -7,7 +7,7 @@ class WindowGroup
   end
 
   def days_remaining
-    ((@expires_at - Time.now) / (SECONDS_IN_A_YEAR)).to_i
+    ((@expires_at - Time.now) / SECONDS_IN_A_YEAR).to_i
   end
 
   def number_free

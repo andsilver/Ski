@@ -29,7 +29,7 @@ module Interhome
     end
 
     def action
-      'AdditionalServices'
+      "AdditionalServices"
     end
   end
 end

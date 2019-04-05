@@ -14,9 +14,9 @@ module Admin
       @role = Role.new(role_params)
 
       if @role.save
-        redirect_to(admin_roles_path, notice: t('notices.created'))
+        redirect_to(admin_roles_path, notice: t("notices.created"))
       else
-        render 'new'
+        render "new"
       end
     end
 
@@ -25,9 +25,9 @@ module Admin
 
     def update
       if @role.update_attributes(role_params)
-        redirect_to(edit_admin_role_path(@role), notice: t('notices.saved'))
+        redirect_to(edit_admin_role_path(@role), notice: t("notices.saved"))
       else
-        render 'edit'
+        render "edit"
       end
     end
 

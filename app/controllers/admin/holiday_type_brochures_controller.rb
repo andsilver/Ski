@@ -4,13 +4,13 @@ module Admin
       brochurable = find_brochurable
       brochure = brochurable.holiday_type_brochures.build(holiday_type_brochure_params)
       brochure.save
-      redirect_to(edit_polymorphic_path([:admin, brochurable]), notice: t('notices.created'))
+      redirect_to(edit_polymorphic_path([:admin, brochurable]), notice: t("notices.created"))
     end
 
     def destroy
       htb = HolidayTypeBrochure.find(params[:id])
       htb.destroy
-      redirect_to edit_polymorphic_path([:admin, htb.brochurable]), notice: t('notices.deleted')
+      redirect_to edit_polymorphic_path([:admin, htb.brochurable]), notice: t("notices.deleted")
     end
 
     protected

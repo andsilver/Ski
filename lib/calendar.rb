@@ -9,26 +9,26 @@ class Calendar
 
     days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     d = days_in_month[month - 1]
- 
+
     if month == 2
       # Check for leap year
       # Forget the 4000 rule, I doubt I'll be around then...
-      
-      if year%4 == 0
-        if year%100 == 0
-          if year%400 == 0
-            d = 29;
+
+      if year % 4 == 0
+        if year % 100 == 0
+          if year % 400 == 0
+            d = 29
           end
         else
-          d = 29;
+          d = 29
         end
       end
-        
+
     end
-  
+
     d
   end
-  
+
   def show_month(month, year)
     s = ""
 
@@ -51,15 +51,13 @@ class Calendar
 
     # We need to work out what date to start at so that the first appears in the correct column
     d = 2 - first
-    while d > 1 do
-      d -= 7
-    end
+    d -= 7 while d > 1
 
-    while d <= days do
+    while d <= days
       s += "<tr>\n"
 
-      for i in 0..6
-        if(d > 0 and d <= days)
+      (0..6).each do |i|
+        if (d > 0) && (d <= days)
           day = Date.new(year, month, d)
           s += day_cell(day)
         else
@@ -70,8 +68,8 @@ class Calendar
 
       s += "</tr>\n"
     end
-    
-    s += "</table>\n"   
+
+    s += "</table>\n"
   end
 
   def day_names
@@ -87,14 +85,14 @@ class Calendar
   end
 
   def month_header(month, year)
-    "<h2>" + month_names[month-1] + " " + year.to_s + "</h2>"
+    "<h2>" + month_names[month - 1] + " " + year.to_s + "</h2>"
   end
 
   def empty_day_cell
-    '<td>&nbsp;</td>'
+    "<td>&nbsp;</td>"
   end
 
   def table_class
-    'calendar'
+    "calendar"
   end
 end

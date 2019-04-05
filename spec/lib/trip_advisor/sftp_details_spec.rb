@@ -1,9 +1,9 @@
-require 'rails_helper'
+require "rails_helper"
 
 module TripAdvisor
   RSpec.describe SFTPDetails do
-    describe '.default' do
-      it 'returns default details from secrets.yml' do
+    describe ".default" do
+      it "returns default details from secrets.yml" do
         default = SFTPDetails.default
         secrets = Rails.application.secrets
 

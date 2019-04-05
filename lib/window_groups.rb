@@ -25,6 +25,6 @@ class WindowGroups
   end
 
   def each &block
-    @groups.each{|group| block.call(group)}
+    @groups.each {|group| block.call(group)}
   end
 end

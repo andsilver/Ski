@@ -1,5 +1,5 @@
 module TripAdvisor
-  SFTPDetails = Struct.new(:host, :username, :password) do
+  SFTPDetails = Struct.new(:host, :username, :password) {
     def self.default
       new(
         Rails.application.secrets.trip_advisor_host,
@@ -7,5 +7,5 @@ module TripAdvisor
         Rails.application.secrets.trip_advisor_password
       )
     end
-  end
+  }
 end

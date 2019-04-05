@@ -17,7 +17,7 @@ module Admin
       @carousel_slide = CarouselSlide.new(carousel_slide_params)
 
       if @carousel_slide.save
-        redirect_to admin_carousel_slides_path, notice: t('notices.added')
+        redirect_to admin_carousel_slides_path, notice: t("notices.added")
       else
         render :new
       end
@@ -25,7 +25,7 @@ module Admin
 
     def update
       if @carousel_slide.update_attributes(carousel_slide_params)
-        redirect_to admin_carousel_slides_path, notice: t('notices.saved')
+        redirect_to admin_carousel_slides_path, notice: t("notices.saved")
       else
         render :edit
       end
@@ -33,7 +33,7 @@ module Admin
 
     def destroy
       @carousel_slide.destroy
-      redirect_to admin_carousel_slides_path, notice: t('notices.deleted')
+      redirect_to admin_carousel_slides_path, notice: t("notices.deleted")
     end
 
     def move_up
@@ -58,8 +58,8 @@ module Admin
     end
 
     def moved
-      flash[:notice] = t('notices.moved')
-      redirect_to action: 'index'
+      flash[:notice] = t("notices.moved")
+      redirect_to action: "index"
     end
   end
 end

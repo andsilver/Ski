@@ -1,8 +1,8 @@
-require 'xmlsimple'
+require "xmlsimple"
 
 module Interhome
   class VacancyImporter
-    XML_FILENAME = 'vacancy.xml'
+    XML_FILENAME = "vacancy.xml"
 
     def ftp_get
       FTP.get(XML_FILENAME)
@@ -12,7 +12,7 @@ module Interhome
     # returns an array of XML filenames. Set max_files to limit the number
     # of smaller files created (for example, when testing).
     def split_xml(max_files = 0)
-      xs = XMLSplitter.new(root_element: 'vacancies', child_element: 'vacancy', xml_filename: xml_filename, elements_per_file: 1000, max_files: max_files)
+      xs = XMLSplitter.new(root_element: "vacancies", child_element: "vacancy", xml_filename: xml_filename, elements_per_file: 1000, max_files: max_files)
       xs.split
     end
 
@@ -26,25 +26,25 @@ module Interhome
     protected
 
     def import_file(filename)
-      xml_file = File.open(filename, 'rb')
+      xml_file = File.open(filename, "rb")
       xml = XmlSimple.xml_in(xml_file)
       xml_file.close
 
-      xml['vacancy'].each {|v| import_vacancy(v)} if xml
+      xml["vacancy"].each {|v| import_vacancy(v)} if xml
     end
 
     def import_vacancy(v)
       vacancy = InterhomeVacancy.new
-      vacancy.accommodation_code = v['code'][0]
+      vacancy.accommodation_code = v["code"][0]
       accommodation = InterhomeAccommodation.find_by(code: vacancy.accommodation_code)
       return unless accommodation
 
       vacancy.interhome_accommodation_id = accommodation.id
-      vacancy.startday = v['startday'][0]
-      vacancy.availability = v['availability'][0]
-      vacancy.changeover = v['changeover'][0]
-      vacancy.minstay = v['minstay'][0]
-      vacancy.flexbooking = v['flexbooking'][0]
+      vacancy.startday = v["startday"][0]
+      vacancy.availability = v["availability"][0]
+      vacancy.changeover = v["changeover"][0]
+      vacancy.minstay = v["minstay"][0]
+      vacancy.flexbooking = v["flexbooking"][0]
       vacancy.save
     end
 

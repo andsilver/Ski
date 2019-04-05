@@ -3,7 +3,7 @@
 class DirectoryAdvertsController < ApplicationController
   before_action :user_required, except: [:show, :click]
   before_action :admin_required, only: [:index]
-  layout 'admin', only: [:index]
+  layout "admin", only: [:index]
   before_action :find_directory_advert_for_current_user, only: [:edit, :update, :advertise_now]
   before_action :set_cache_buster, only: [:new, :create]
 
@@ -26,8 +26,8 @@ class DirectoryAdvertsController < ApplicationController
       not_found
     else
       default_page_title("#{@directory_advert.business_name}, #{t(@directory_advert.category.name)} in #{@directory_advert.resort.name}, #{@directory_advert.resort.country.name}")
-      @heading_a = render_to_string(partial: 'show_directory_advert_heading').html_safe
-      @directory_advert.current_advert.record_view if @directory_advert.current_advert
+      @heading_a = render_to_string(partial: "show_directory_advert_heading").html_safe
+      @directory_advert.current_advert&.record_view
     end
   end
 
@@ -35,7 +35,7 @@ class DirectoryAdvertsController < ApplicationController
     resort_ids = params[:directory_advert][:resort_id]
 
     resort_ids.each do |resort_id|
-      next if resort_id == ''
+      next if resort_id == ""
 
       params[:directory_advert].delete(:resort_id)
       @directory_advert = DirectoryAdvert.new(directory_advert_params)
@@ -47,10 +47,10 @@ class DirectoryAdvertsController < ApplicationController
         update_images
         create_advert
       else
-        render "new" and return
+        render("new") && return
       end
     end
-    redirect_to basket_path, notice: t('directory_adverts_controller.created')
+    redirect_to basket_path, notice: t("directory_adverts_controller.created")
   end
 
   def edit
@@ -58,7 +58,7 @@ class DirectoryAdvertsController < ApplicationController
 
   def update
     if @directory_advert.update_attributes(directory_advert_params)
-      flash[:notice] = t('directory_adverts_controller.saved')
+      flash[:notice] = t("directory_adverts_controller.saved")
 
       update_images
 
@@ -77,7 +77,7 @@ class DirectoryAdvertsController < ApplicationController
 
     if owned_or_admin?(@directory_advert)
       @directory_advert.destroy
-      flash.notice = t('notices.deleted')
+      flash.notice = t("notices.deleted")
       redirect_to(admin? ? directory_adverts_path : my_adverts_path)
     else
       not_found
@@ -86,19 +86,19 @@ class DirectoryAdvertsController < ApplicationController
 
   def advertise_now
     create_advert
-    redirect_to(basket_path, notice: t('directory_adverts_controller.added_to_basket'))
+    redirect_to(basket_path, notice: t("directory_adverts_controller.added_to_basket"))
   end
 
   def click
     @directory_advert = DirectoryAdvert.find(params[:id])
-    user_agent = request.env['HTTP_USER_AGENT']
-    if !bot?(user_agent)
+    user_agent = request.env["HTTP_USER_AGENT"]
+    unless bot?(user_agent)
       TrackedAction.create(
         action_type: :click,
         http_user_agent: user_agent,
         remote_ip: request.remote_ip,
         trackable_id: @directory_advert.id,
-        trackable_type: 'DirectoryAdvert'
+        trackable_type: "DirectoryAdvert"
       )
     end
     redirect_to @directory_advert.url
@@ -107,18 +107,16 @@ class DirectoryAdvertsController < ApplicationController
   protected
 
   def update_images
-    begin
-      directory_image = Image.new(image: params[:image])
-      directory_image.user_id = current_user.id
+    directory_image = Image.new(image: params[:image])
+    directory_image.user_id = current_user.id
 
-      if directory_image.save
-        @directory_advert.image.destroy unless @directory_advert.image.nil?
-        @directory_advert.image_id = directory_image.id
-        @directory_advert.save
-      end
-    rescue
-      logger.info "Failed to update directory image for DirectoryAdvert ##{@directory_advert.id}"
+    if directory_image.save
+      @directory_advert.image&.destroy
+      @directory_advert.image_id = directory_image.id
+      @directory_advert.save
     end
+  rescue
+    logger.info "Failed to update directory image for DirectoryAdvert ##{@directory_advert.id}"
   end
 
   def find_directory_advert_for_current_user

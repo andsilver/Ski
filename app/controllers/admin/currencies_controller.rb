@@ -3,7 +3,7 @@ module Admin
     before_action :find_currency, only: [:edit, :update]
 
     def index
-      @currencies = Currency.order('code')
+      @currencies = Currency.order("code")
     end
 
     def new
@@ -14,9 +14,9 @@ module Admin
       @currency = Currency.new(currency_params)
 
       if @currency.save
-        redirect_to(admin_currencies_path, notice: t('notices.created'))
+        redirect_to(admin_currencies_path, notice: t("notices.created"))
       else
-        render 'new'
+        render "new"
       end
     end
 
@@ -25,15 +25,15 @@ module Admin
 
     def update
       if @currency.update_attributes(currency_params)
-        redirect_to(admin_currencies_path, notice: t('notices.saved'))
+        redirect_to(admin_currencies_path, notice: t("notices.saved"))
       else
-        render 'edit'
+        render "edit"
       end
     end
 
     def update_exchange_rates
       Currency.update_exchange_rates
-      redirect_to admin_currencies_path, notice: t('currencies_controller.exchange_rates_updated')
+      redirect_to admin_currencies_path, notice: t("currencies_controller.exchange_rates_updated")
     end
 
     protected

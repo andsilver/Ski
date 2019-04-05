@@ -3,12 +3,12 @@ module Admin
     before_action :set_user, only: [:destroy, :extend_windows]
 
     def index
-      @users = User.order('email')
+      @users = User.order("email")
     end
 
     def destroy
       @user.destroy
-      redirect_to admin_users_path, notice: t('notices.deleted')
+      redirect_to admin_users_path, notice: t("notices.deleted")
     end
 
     def extend_windows

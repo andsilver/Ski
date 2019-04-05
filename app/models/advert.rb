@@ -69,7 +69,7 @@ class Advert < ActiveRecord::Base
 
   def type
     [:directory_advert_id, :property_id].each do |sym|
-      return sym.to_s.gsub('_id', '').to_sym unless send(sym).nil?
+      return sym.to_s.gsub("_id", "").to_sym unless send(sym).nil?
     end
     nil
   end
@@ -97,10 +97,10 @@ class Advert < ActiveRecord::Base
   def start_and_save!
     self.starts_at = Time.now
 
-    if object && object.current_advert
-      self.expires_at = object.current_advert.expires_at + days
+    self.expires_at = if object&.current_advert
+      object.current_advert.expires_at + days
     else
-      self.expires_at = self.starts_at + days
+      starts_at + days
     end
 
     save

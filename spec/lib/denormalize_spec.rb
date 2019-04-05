@@ -1,51 +1,51 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Denormalize do
-  describe '.denormalize' do
+  describe ".denormalize" do
     before { allow(Currency).to receive(:update_exchange_rates) }
 
-    it 'updates featured properties' do
+    it "updates featured properties" do
       expect(Denormalize).to receive(:update_featured_properties)
       Denormalize.denormalize
     end
 
-    it 'updates exchange rates' do
+    it "updates exchange rates" do
       expect(Currency).to receive(:update_exchange_rates)
       Denormalize.denormalize
     end
 
-    it 'updates properties' do
+    it "updates properties" do
       expect(Denormalize).to receive(:update_properties)
       Denormalize.denormalize
     end
 
-    it 'updates resorts' do
+    it "updates resorts" do
       expect(Denormalize).to receive(:update_resorts)
       Denormalize.denormalize
     end
 
-    it 'updates countries' do
+    it "updates countries" do
       expect(Denormalize).to receive(:update_countries)
       Denormalize.denormalize
     end
 
-    it 'updates regions' do
+    it "updates regions" do
       expect(Denormalize).to receive(:update_regions)
       Denormalize.denormalize
     end
   end
 
-  describe '.update_featured_properties' do
-    context 'without a website' do
-      it 'does not raise' do
-        expect{Denormalize.update_featured_properties}.not_to raise_error
+  describe ".update_featured_properties" do
+    context "without a website" do
+      it "does not raise" do
+        expect {Denormalize.update_featured_properties}.not_to raise_error
       end
     end
 
-    context 'with a website' do
+    context "with a website" do
       let!(:website) { Website.first || FactoryBot.create(:website) }
 
-      it 'assigns featured properties to the website' do
+      it "assigns featured properties to the website" do
         featured_properties = [FactoryBot.create(:property)]
         expect(Property).to receive(:featured).and_return featured_properties
         Denormalize.update_featured_properties
@@ -55,16 +55,16 @@ describe Denormalize do
     end
   end
 
-  describe '.update_properties' do
-    it 'suspends geocoding' do
+  describe ".update_properties" do
+    it "suspends geocoding" do
       expect(Property).to receive(:stop_geocoding)
       expect(Property).to receive(:resume_geocoding)
       Denormalize.update_properties
     end
   end
 
-  describe '.update_resorts' do
-    it 'updates the for_rent count' do
+  describe ".update_resorts" do
+    it "updates the for_rent count" do
       r = FactoryBot.create(:resort, visible: true)
       FactoryBot.create(
         :property, listing_type: Property::LISTING_TYPE_FOR_RENT, resort: r
@@ -74,8 +74,8 @@ describe Denormalize do
     end
   end
 
-  describe '.cache_availability' do
-    it 'deletes past availabilities' do
+  describe ".cache_availability" do
+    it "deletes past availabilities" do
       expect(Availability).to receive(:delete_past)
       Denormalize.cache_availability
     end

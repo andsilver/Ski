@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -28,6 +28,6 @@ module MySkiChalet
     # the framework and any gems in your application.
 
     config.eager_load_paths += Dir["#{config.root}/lib"]
-    config.autoload_paths << File.join([config.root, 'app', 'mailers', 'concerns'])
+    config.autoload_paths << File.join([config.root, "app", "mailers", "concerns"])
   end
 end

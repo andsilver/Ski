@@ -3,7 +3,7 @@ module Admin
     before_action :set_airport, only: [:edit, :update, :destroy]
 
     def index
-      @airports = Airport.order('code')
+      @airports = Airport.order("code")
     end
 
     def new
@@ -14,7 +14,7 @@ module Admin
       @airport = Airport.new(airport_params)
 
       if @airport.save
-        redirect_to(admin_airports_path, notice: t('notices.created'))
+        redirect_to(admin_airports_path, notice: t("notices.created"))
       else
         render "new"
       end
@@ -25,7 +25,7 @@ module Admin
 
     def update
       if @airport.update_attributes(airport_params)
-        redirect_to(admin_airports_path, notice: t('notices.saved'))
+        redirect_to(admin_airports_path, notice: t("notices.saved"))
       else
         render "edit"
       end
@@ -33,7 +33,7 @@ module Admin
 
     def destroy
       @airport.destroy
-      redirect_to admin_airports_path, notice: t('notices.deleted')
+      redirect_to admin_airports_path, notice: t("notices.deleted")
     end
 
     protected

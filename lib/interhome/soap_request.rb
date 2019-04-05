@@ -5,7 +5,7 @@ module Interhome
     def initialize(request_object, url)
       @request_object = request_object
 
-      @curl = Curl::Easy.perform(url) do |curl|
+      @curl = Curl::Easy.perform(url) { |curl|
         curl.headers["SOAPAction"] = "http://www.interhome.com/webservice/#{request_object.action}"
         curl.headers["Content-Type"] = "text/xml; charset = utf-8"
         curl.headers["Connection"] = "close"
@@ -13,7 +13,7 @@ module Interhome
         curl.ssl_verify_peer = false
         curl.verbose = true
         curl.post_body = request_object.xml
-      end
+      }
     end
 
     def xml_response

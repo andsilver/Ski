@@ -16,13 +16,13 @@ module TripAdvisor
         return
       end
 
-      extract_dir = path.gsub('.tar.gz', '')
+      extract_dir = path.gsub(".tar.gz", "")
 
       FileUtils.mkdir_p extract_dir
 
       `tar xzf #{path} -C #{extract_dir}`
 
-      Dir[extract_dir + '/*'].each { |path| yield path } if block_given?
+      Dir[extract_dir + "/*"].each { |path| yield path } if block_given?
     end
   end
 end

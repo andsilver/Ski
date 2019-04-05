@@ -3,7 +3,7 @@ module Admin
     before_action :set_alt_attribute, only: [:edit, :update, :show, :destroy]
 
     def index
-      @alt_attributes = AltAttribute.order('path')
+      @alt_attributes = AltAttribute.order("path")
     end
 
     def new
@@ -14,9 +14,9 @@ module Admin
       @alt_attribute = AltAttribute.new(alt_attribute_params)
 
       if @alt_attribute.save
-        redirect_to(admin_alt_attributes_path, notice: t('notices.created'))
+        redirect_to(admin_alt_attributes_path, notice: t("notices.created"))
       else
-        render 'new'
+        render "new"
       end
     end
 
@@ -25,15 +25,15 @@ module Admin
 
     def update
       if @alt_attribute.update_attributes(alt_attribute_params)
-        redirect_to(admin_alt_attributes_path, notice: t('notices.saved'))
+        redirect_to(admin_alt_attributes_path, notice: t("notices.saved"))
       else
-        render 'edit'
+        render "edit"
       end
     end
 
     def destroy
       @alt_attribute.destroy
-      redirect_to admin_alt_attributes_path, notice: t('notices.deleted')
+      redirect_to admin_alt_attributes_path, notice: t("notices.deleted")
     end
 
     protected

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'csv'
-require 'open-uri'
+require "csv"
+require "open-uri"
 
 class Currency < ActiveRecord::Base
-  # Associations.
+  #  Associations.
   has_many :trip_advisor_properties, dependent: :destroy
 
   # Validations.
@@ -17,16 +17,16 @@ class Currency < ActiveRecord::Base
   # Returns the value of one pound sterling in euros at the current exchange
   # rate, or nil if the data is missing.
   def self.sterling_in_euros
-    find_by(code: 'GBP').try(:in_euros)
+    find_by(code: "GBP").try(:in_euros)
   end
 
   # It returns the euro currency.
   def self.euro
-    Currency.find_by(code: 'EUR')
+    Currency.find_by(code: "EUR")
   end
 
   def self.gbp
-    Currency.find_by(code: 'GBP')
+    Currency.find_by(code: "GBP")
   end
 
   def self.update_exchange_rates

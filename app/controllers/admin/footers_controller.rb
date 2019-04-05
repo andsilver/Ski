@@ -14,7 +14,7 @@ module Admin
       @footer = Footer.new(footer_params)
 
       if @footer.save
-        redirect_to(admin_footers_path, notice: t('notices.created'))
+        redirect_to(admin_footers_path, notice: t("notices.created"))
       else
         render "new"
       end
@@ -25,7 +25,7 @@ module Admin
 
     def update
       if @footer.update_attributes(footer_params)
-        redirect_to(admin_footers_path, notice: t('notices.saved'))
+        redirect_to(admin_footers_path, notice: t("notices.saved"))
       else
         render "edit"
       end
@@ -33,7 +33,7 @@ module Admin
 
     def destroy
       @footer.destroy
-      redirect_to admin_footers_path, notice: t('notices.deleted')
+      redirect_to admin_footers_path, notice: t("notices.deleted")
     end
 
     protected

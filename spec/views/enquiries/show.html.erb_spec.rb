@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'enquiries/show.html.erb', type: :view do
+RSpec.describe "enquiries/show.html.erb", type: :view do
   let(:user) { FactoryBot.create(:user) }
   let(:enquiry) { FactoryBot.create(:enquiry) }
 
@@ -9,7 +9,7 @@ RSpec.describe 'enquiries/show.html.erb', type: :view do
     assign(:enquiry, enquiry)
   end
 
-  it 'renders' do
+  it "renders" do
     render
   end
 end

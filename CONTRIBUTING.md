@@ -21,8 +21,9 @@ project-related files.
 * If you see opportunities to make other changes, check that they are required.
 It may be that making a change causes more work and is therefore undesirable.
 
-* Use rubocop on changed files. Fix any failures in your new code changes. It
-is not necessary to fix other failures in the file.
+* Use standard on changed files. Fix any failures in your new code changes:
+
+  `bundle exec standardrb --fix app lib spec`
 
 * Do not add new dependencies unless agreed (JavaScript libraries, gems, CSS
 frameworks, etc.).

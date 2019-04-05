@@ -1,11 +1,11 @@
 module Interhome
   class ClientBookingRequest < Request
     def xml
-      as_str = ''
-      if @details[:additional_services]
-        @details[:additional_services].each do |code, count|
-          as_str += "<AdditionalServiceInputItem><Code>#{code}</Code>" +     
-          "<Count>#{count}</Count></AdditionalServiceInputItem>" unless count == '0'
+      as_str = ""
+      @details[:additional_services]&.each do |code, count|
+        unless count == "0"
+          as_str += "<AdditionalServiceInputItem><Code>#{code}</Code>" \
+            "<Count>#{count}</Count></AdditionalServiceInputItem>"
         end
       end
 
@@ -63,7 +63,7 @@ module Interhome
     end
 
     def action
-      'ClientBooking'
+      "ClientBooking"
     end
   end
 end

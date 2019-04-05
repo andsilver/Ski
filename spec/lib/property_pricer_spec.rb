@@ -1,10 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe PropertyPricer do
   it "raises ArgumentError if either :property_number or :months are omitted" do
-    expect{ PropertyPricer.new(invalid: true) }.to raise_error(ArgumentError)
-    expect{ PropertyPricer.new(months: 6) }.to raise_error(ArgumentError)
-    expect{ PropertyPricer.new(property_number: 20) }.to raise_error(ArgumentError)
+    expect { PropertyPricer.new(invalid: true) }.to raise_error(ArgumentError)
+    expect { PropertyPricer.new(months: 6) }.to raise_error(ArgumentError)
+    expect { PropertyPricer.new(property_number: 20) }.to raise_error(ArgumentError)
   end
 
   describe "#price_in_cents" do
@@ -13,9 +13,9 @@ describe PropertyPricer do
     it "returns correct prices" do
       example_cases = [
         {months: 1, property_number: 1, cents: 1500},
-        {months: 1, property_number: 2, cents: 1500}, #boundary check
-        {months: 1, property_number: 3, cents: 1425}, #boundary check
-        {months: 1, property_number: 4, cents: 1425}, #boundary check
+        {months: 1, property_number: 2, cents: 1500}, # boundary check
+        {months: 1, property_number: 3, cents: 1425}, # boundary check
+        {months: 1, property_number: 4, cents: 1425}, # boundary check
         {months: 1, property_number: 11, cents: 1395},
         {months: 1, property_number: 21, cents: 1350},
         {months: 1, property_number: 31, cents: 1275},

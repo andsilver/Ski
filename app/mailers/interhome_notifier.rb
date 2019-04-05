@@ -1,11 +1,11 @@
 class InterhomeNotifier < ActionMailer::Base
   include EmailSetup
-  default from: 'notifier@mychaletfinder.com'
-  layout 'email'
+  default from: "notifier@mychaletfinder.com"
+  layout "email"
 
   def booking_confirmation(details)
     @details = details
-    mail(to: details[:customer_email], subject: 'My Chalet Finder Booking Confirmation')
+    mail(to: details[:customer_email], subject: "My Chalet Finder Booking Confirmation")
   end
 
   def unavailability_report(accommodation, details)
@@ -13,8 +13,8 @@ class InterhomeNotifier < ActionMailer::Base
     @details = details
 
     mail(
-      to: 'ianfleeton+mychaletfinder@gmail.com',
-      subject: 'Unavailability Report'
+      to: "ianfleeton+mychaletfinder@gmail.com",
+      subject: "Unavailability Report"
     )
   end
 
@@ -22,9 +22,9 @@ class InterhomeNotifier < ActionMailer::Base
     @details = details
 
     mail(
-      to: 'info@interhome.co.uk',
-      cc: ['info@mychaletfinder.com'],
-      subject: 'Enquiry Request'
+      to: "info@interhome.co.uk",
+      cc: ["info@mychaletfinder.com"],
+      subject: "Enquiry Request"
     )
   end
 end

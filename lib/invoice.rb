@@ -16,9 +16,8 @@ class Invoice
   def render
     FileUtils.makedirs(directory)
 
-    Prawn::Document.generate(filename, page_size: 'A4') do |pdf|
-      spacing = 3
-      pdf.font 'fonts/Aller_Lt.ttf'
+    Prawn::Document.generate(filename, page_size: "A4") do |pdf|
+      pdf.font "fonts/Aller_Lt.ttf"
       pdf.font_size 18
       pdf.text "Invoice number #{@order.order_number}"
       pdf.move_down 24
@@ -38,7 +37,7 @@ class Invoice
 
       cells = []
       headers = ["Product", "Price"]
-      headers <<= 'Sterling' if @order.sterling_in_euros
+      headers <<= "Sterling" if @order.sterling_in_euros
       cells << headers
       @order.order_lines.each do |line|
         cells << [line.description, euros_from_cents(line.amount)]
@@ -58,7 +57,7 @@ class Invoice
         pdf.text "1 GBP = #{@order.sterling_in_euros} EUR"
       end
 
-      logopath = "#{Rails.root.to_s}/public/images/my-chalet-finder-logo.png"
+      logopath = "#{Rails.root}/public/images/my-chalet-finder-logo.png"
       pdf.bounding_box([300, 770], width: 126, height: 22) do
         pdf.image logopath, width: 126, height: 22
       end
@@ -72,6 +71,6 @@ class Invoice
 
   # Returns the directory to which the rendered PDF will be written.
   def directory
-    "#{Rails.root.to_s}/public/invoices/#{@order.hash.to_s}"
+    "#{Rails.root}/public/invoices/#{@order.hash}"
   end
 end

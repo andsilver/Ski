@@ -52,7 +52,7 @@ class TripAdvisorProperty < ApplicationRecord
 
   # TODO: Improve this naive test.
   def check_in_on?(date)
-    return !booked_on?(date)
+    !booked_on?(date)
   end
 
   # Returns valid check out dates for the given check in date, up to a

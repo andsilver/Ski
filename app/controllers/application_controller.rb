@@ -27,37 +27,37 @@ class ApplicationController < ActionController::Base
   def restart
     clear_failed_jobs
     restart_script
-    redirect_to cms_path, notice: 'Application restarted.'
+    redirect_to cms_path, notice: "Application restarted."
   end
 
   # Removes Delayed Jobs from the job queue that have failed at least once.
   def clear_failed_jobs
     ActiveRecord::Base.connection.execute(
-      'DELETE FROM delayed_jobs WHERE attempts > 0'
+      "DELETE FROM delayed_jobs WHERE attempts > 0"
     )
   end
 
   def precompile_assets
     `bundle exec rake assets:precompile RAILS_ENV=production && touch tmp/restart.txt`
-    redirect_to cms_path, notice: 'Assets precompiled.'
+    redirect_to cms_path, notice: "Assets precompiled."
   end
 
   def sitemap
     @urls = [
-      '/contact',
-      '/enquiries/new',
-      '/privacy',
-      '/resorts/featured',
-      '/sign_in',
-      '/sign_up',
-      '/terms',
-      '/users/forgot_password',
-      '/welcome/advertiser',
-      '/welcome/estate-agent',
-      '/welcome/letting-agent',
-      '/welcome/other-business',
-      '/welcome/property-owner',
-    ].collect{|x| 'https://' + request.domain + x}
+      "/contact",
+      "/enquiries/new",
+      "/privacy",
+      "/resorts/featured",
+      "/sign_in",
+      "/sign_up",
+      "/terms",
+      "/users/forgot_password",
+      "/welcome/advertiser",
+      "/welcome/estate-agent",
+      "/welcome/letting-agent",
+      "/welcome/other-business",
+      "/welcome/property-owner",
+    ].collect {|x| "https://" + request.domain + x}
     Country.with_visible_resorts.each do |country|
       country.visible_resorts.each do |resort|
         @urls << resort_url(resort)
@@ -70,10 +70,10 @@ class ApplicationController < ActionController::Base
       end
     end
     Property.where(publicly_visible: true).includes(:interhome_accommodation).find_each(batch_size: 500) do |property|
-      if property.interhome_accommodation_id
-        @urls << interhome_property_url(property.interhome_accommodation.permalink)
+      @urls << if property.interhome_accommodation_id
+        interhome_property_url(property.interhome_accommodation.permalink)
       else
-        @urls << property_url(property)
+        property_url(property)
       end
     end
   end
@@ -84,11 +84,11 @@ class ApplicationController < ActionController::Base
   end
 
   def page_for_sale?
-    request.env['PATH_INFO'].downcase.include? 'sale'
+    request.env["PATH_INFO"].downcase.include? "sale"
   end
 
   def page_for_rent?
-    request.env['PATH_INFO'] == '/' || request.env['PATH_INFO'].downcase.include?('rent')
+    request.env["PATH_INFO"] == "/" || request.env["PATH_INFO"].downcase.include?("rent")
   end
 
   protected
@@ -116,8 +116,8 @@ class ApplicationController < ActionController::Base
   end
 
   def page_defaults
-    @footer_box = ''
-    @destination = ''
+    @footer_box = ""
+    @destination = ""
     @page_info = Page.find_by(path: request.path)
     if @page_info
       @page_title = @page_info.title
@@ -137,26 +137,26 @@ class ApplicationController < ActionController::Base
   end
 
   def use_default_footer
-    footer = Footer.find_by(name: 'Default')
+    footer = Footer.find_by(name: "Default")
     @footer_box = footer.content unless footer.nil?
   end
 
   def user_required
     unless signed_in?
-      redirect_to sign_in_path, notice: t('notices.sign_in_required')
+      redirect_to sign_in_path, notice: t("notices.sign_in_required")
     end
   end
 
   def admin_required
     unless admin?
-      redirect_to sign_in_path, notice: t('notices.admin_required')
+      redirect_to sign_in_path, notice: t("notices.admin_required")
     end
   end
 
   def ssl_required
-    if Rails.env == 'production' && !request.ssl?
+    if Rails.env == "production" && !request.ssl?
       flash.keep
-      redirect_to protocol: 'https://'
+      redirect_to protocol: "https://"
     end
   end
 
@@ -165,22 +165,22 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    signed_in? and current_user.role.admin?
+    signed_in? && current_user.role.admin?
   end
 
   def not_found(exception = nil)
-    render file: "#{Rails.root.to_s}/public/404", formats: [:html], layout: false, status: 404
+    render file: "#{Rails.root}/public/404", formats: [:html], layout: false, status: 404
   end
 
   def render_error(exception)
     ExceptionNotifier::Notifier
       .exception_notification(request.env, exception)
       .deliver
-    render file: "#{Rails.root.to_s}/public/500", layout: false, status: 500
+    render file: "#{Rails.root}/public/500", layout: false, status: 500
   end
 
   def default_meta_description(options = {})
-    options[:default] = ''
+    options[:default] = ""
     key = "#{params[:controller]}_controller.meta_descriptions.#{params[:action]}"
     @meta_description = t(key, options) if @meta_description.blank?
   end
@@ -201,19 +201,19 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def bot_file
-      'bots.txt'
-    end
+  def bot_file
+    "bots.txt"
+  end
 
-    def render_html(exception)
-      if request.format != 'html'
-        render formats: [:html]
-      else
-        raise exception
-      end
+  def render_html(exception)
+    if request.format != "html"
+      render formats: [:html]
+    else
+      raise exception
     end
+  end
 
-    def restart_script
-      `./restart.sh`
-    end
+  def restart_script
+    `./restart.sh`
+  end
 end

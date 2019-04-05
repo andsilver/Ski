@@ -8,11 +8,11 @@ module SidebarHelper
   end
 
   def holiday_type_sidebar_html
-    require 'set'
+    require "set"
     holiday_types = Set.new
     holiday_types << @holiday_type if @holiday_type
     [@country, @region, @resort].each do |place|
-      place.holiday_types.each {|ht| holiday_types << ht} if place
+      place&.holiday_types&.each {|ht| holiday_types << ht}
     end
     holiday_types.map {|ht| ht.sidebar_html}.join
   end

@@ -8,9 +8,9 @@ class BasketLine
   def order_description
     if @advert
       if @coupon
-        "#{@advert.months.to_s} month(s): #{@advert} [#{@description}]"
+        "#{@advert.months} month(s): #{@advert} [#{@description}]"
       else
-        "#{@advert.months.to_s} month(s): #{@advert}"
+        "#{@advert.months} month(s): #{@advert}"
       end
     else
       @description

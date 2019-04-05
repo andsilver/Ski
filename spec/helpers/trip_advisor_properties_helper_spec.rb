@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe TripAdvisorPropertiesHelper, type: :helper do
-  describe '#javascript_check_out_dates' do
-    it 'returns a JavaScript mapping of check in to check out dates' do
+  describe "#javascript_check_out_dates" do
+    it "returns a JavaScript mapping of check in to check out dates" do
       ci1 = Date.new(2014, 8, 23)
       ci2 = Date.new(2014, 8, 30)
       co1 = Date.new(2014, 8, 30)

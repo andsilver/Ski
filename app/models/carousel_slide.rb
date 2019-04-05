@@ -6,7 +6,7 @@ class CarouselSlide < ActiveRecord::Base
   before_validation :ensure_active_range
 
   def self.active
-    where('active_from <= ? AND active_until >= ?', DateTime.now, DateTime.now)
+    where("active_from <= ? AND active_until >= ?", DateTime.now, DateTime.now)
   end
 
   def ensure_active_range

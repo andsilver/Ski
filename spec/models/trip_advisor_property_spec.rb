@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe TripAdvisorProperty, type: :model do
-  describe 'associations' do
+  describe "associations" do
     it { should have_one(:property).dependent(:destroy) }
     it { should belong_to :trip_advisor_location }
     it { should delegate_method(:resort).to(:trip_advisor_location) }
@@ -13,7 +13,7 @@ RSpec.describe TripAdvisorProperty, type: :model do
     end
   end
 
-  describe 'validations' do
+  describe "validations" do
     it do
       should validate_numericality_of(:review_average)
         .is_less_than_or_equal_to(5)
@@ -25,14 +25,14 @@ RSpec.describe TripAdvisorProperty, type: :model do
     it { should validate_presence_of :starting_price }
   end
 
-  describe '#cache_availability' do
-    it 'accepts an array of dates' do
+  describe "#cache_availability" do
+    it "accepts an array of dates" do
       prop = FactoryBot.build_stubbed(:property)
       ta_prop = TripAdvisorProperty.new(property: prop)
       ta_prop.cache_availability([Date.current])
     end
 
-    it 'creates an AVAILABLE entry for each date with no booked calendar' do
+    it "creates an AVAILABLE entry for each date with no booked calendar" do
       prop = FactoryBot.create(:property)
       ta_prop = FactoryBot.create(:trip_advisor_property, property: prop)
       dates = [Date.new(2017, 12, 2), Date.new(2017, 12, 3)]
@@ -46,19 +46,19 @@ RSpec.describe TripAdvisorProperty, type: :model do
       end
     end
 
-    it 'creates an UNAVAILABLE availability for each booked date' do
+    it "creates an UNAVAILABLE availability for each booked date" do
       prop = FactoryBot.create(:property)
       ta_prop = FactoryBot.create(:trip_advisor_property, property: prop)
       FactoryBot.create(
         :trip_advisor_calendar_entry,
         trip_advisor_property: ta_prop,
-        status: 'BOOKED',
+        status: "BOOKED",
         inclusive_start: Date.new(2017, 12, 3),
         exclusive_end: Date.new(2017, 12, 5)
       )
       dates = [
         Date.new(2017, 12, 2), Date.new(2017, 12, 3),
-        Date.new(2017, 12, 4), Date.new(2017, 12, 5)
+        Date.new(2017, 12, 4), Date.new(2017, 12, 5),
       ]
       ta_prop.cache_availability(dates)
       availabilities = prop.availabilities.order(:start_date).to_a
@@ -78,8 +78,8 @@ RSpec.describe TripAdvisorProperty, type: :model do
     end
   end
 
-  describe '#clear_calendar' do
-    it 'deletes all TripAdvisorCalendarEntries' do
+  describe "#clear_calendar" do
+    it "deletes all TripAdvisorCalendarEntries" do
       ta_prop = FactoryBot.create(:trip_advisor_property)
       FactoryBot.create(
         :trip_advisor_calendar_entry, trip_advisor_property: ta_prop
@@ -89,12 +89,12 @@ RSpec.describe TripAdvisorProperty, type: :model do
     end
   end
 
-  describe '#booked_on?' do
-    it 'returns falsey for any date when there are no bookings' do
+  describe "#booked_on?" do
+    it "returns falsey for any date when there are no bookings" do
       expect(TripAdvisorProperty.new.booked_on?(Date.current)).to be_falsey
     end
 
-    it 'returns falsey when the date is not one which is booked' do
+    it "returns falsey when the date is not one which is booked" do
       prop = FactoryBot.create(:trip_advisor_property)
       TripAdvisorCalendarEntry.create!(
         trip_advisor_property: prop,
@@ -106,7 +106,7 @@ RSpec.describe TripAdvisorProperty, type: :model do
       expect(prop.booked_on?(Date.current + 2.days)).to be_falsey
     end
 
-    it 'returns truthy when the date is one which is booked' do
+    it "returns truthy when the date is one which is booked" do
       prop = FactoryBot.create(:trip_advisor_property)
       TripAdvisorCalendarEntry.create!(
         trip_advisor_property: prop,
@@ -118,12 +118,12 @@ RSpec.describe TripAdvisorProperty, type: :model do
     end
   end
 
-  describe '#check_in_dates' do
-    it 'returns up to a [leap] year of dates' do
+  describe "#check_in_dates" do
+    it "returns up to a [leap] year of dates" do
       expect(TripAdvisorProperty.new.check_in_dates.length).to eq 366
     end
 
-    it 'does not include dates which are booked on' do
+    it "does not include dates which are booked on" do
       prop = FactoryBot.create(:trip_advisor_property)
       TripAdvisorCalendarEntry.create!(
         trip_advisor_property: prop,
@@ -138,20 +138,20 @@ RSpec.describe TripAdvisorProperty, type: :model do
     end
   end
 
-  describe '#check_out_dates' do
-    it 'returns first date after min_stay_low days' do
+  describe "#check_out_dates" do
+    it "returns first date after min_stay_low days" do
       prop = TripAdvisorProperty.new(min_stay_low: 4)
       expect(prop.check_out_dates(Date.current).first)
         .to eq (Date.current + 4.days)
     end
 
-    it 'returns up to 30 days (with a min_stay_low of 1)' do
+    it "returns up to 30 days (with a min_stay_low of 1)" do
       prop = TripAdvisorProperty.new(min_stay_low: 1)
       expect(prop.check_out_dates(Date.current).length).to eq 30
     end
 
-    it 'stops returning dates when interrupted by a booking, though includes ' \
-    'first date of booking as latest check out' do
+    it "stops returning dates when interrupted by a booking, though includes " \
+    "first date of booking as latest check out" do
       prop = FactoryBot.create(:trip_advisor_property, min_stay_low: 1)
       TripAdvisorCalendarEntry.create!(
         trip_advisor_property: prop,

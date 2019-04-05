@@ -4,7 +4,7 @@ class WebsitesController < ApplicationController
   before_action :admin_required
   before_action :find_website, only: [:edit, :edit_prices, :update]
 
-  layout 'admin'
+  layout "admin"
 
   def edit
   end
@@ -14,9 +14,9 @@ class WebsitesController < ApplicationController
 
   def update
     if @website.update_attributes(website_params)
-      redirect_to(edit_website_path(@website), notice: t('notices.saved'))
+      redirect_to(edit_website_path(@website), notice: t("notices.saved"))
     else
-      render 'edit'
+      render "edit"
     end
   end
 

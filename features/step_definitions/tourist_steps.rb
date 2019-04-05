@@ -2,10 +2,10 @@ Given /^there are bars advertised in Chamonix$/ do
   da = DirectoryAdvert.create!(
     category_id: categories(:bars).id,
     user_id: users(:alice).id,
-    business_address: '123 av',
+    business_address: "123 av",
     resort_id: resorts(:chamonix).id,
-    business_name: 'Business',
-    strapline: 'Strapline'
+    business_name: "Business",
+    strapline: "Strapline"
   )
   a = Advert.new_for(da)
   a.expires_at = Time.now + 1.day

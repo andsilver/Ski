@@ -21,7 +21,7 @@ module Interhome
     end
 
     def action
-      'AccommodationDetail'
+      "AccommodationDetail"
     end
   end
 end

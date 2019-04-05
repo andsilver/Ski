@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Extend a user's windows", type: :system do
   fixtures :users, :roles
@@ -9,7 +9,7 @@ RSpec.describe "Extend a user's windows", type: :system do
   let!(:advert) do
     Advert.create(
       user: advertiser, window_spot: true, starts_at: Time.zone.now,
-      expires_at: '2015-01-01'
+      expires_at: "2015-01-01"
     )
   end
 
@@ -21,8 +21,8 @@ RSpec.describe "Extend a user's windows", type: :system do
   scenario "View a user's adverts starting from the admin user list" do
     visit admin_users_path
     click_link "View #{advertiser}'s adverts"
-    fill_in 'Days', with: '365'
-    click_button 'Extend Windows'
-    expect(advert.reload.expires_at).to eq Time.parse('2016-01-01')
+    fill_in "Days", with: "365"
+    click_button "Extend Windows"
+    expect(advert.reload.expires_at).to eq Time.parse("2016-01-01")
   end
 end

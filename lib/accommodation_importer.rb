@@ -1,4 +1,4 @@
-require 'xmlsimple'
+require "xmlsimple"
 
 # A base class for importing accommodation from external providers.
 # XML is assumed to be the format of the accommodation feed.
@@ -42,7 +42,7 @@ class AccommodationImporter
     raise "A user with email #{user_email} is required" unless @user
 
     @euro = Currency.euro
-    raise 'A currency with code EUR is required' unless @euro
+    raise "A currency with code EUR is required" unless @euro
 
     @import_start_time = Time.now
   end
@@ -56,7 +56,7 @@ class AccommodationImporter
   # Imports a single XML file. Property geocoding is suspended for the
   # duration of the file's import.
   def import_file(filename)
-    xml_file = File.open(filename, 'rb')
+    xml_file = File.open(filename, "rb")
     begin
       xml = XmlSimple.xml_in(xml_file)
     ensure
@@ -83,20 +83,20 @@ class AccommodationImporter
 
   def delete_old_adverts
     Advert
-      .where(['user_id = ? AND updated_at < ?', @user.id, @import_start_time])
+      .where(["user_id = ? AND updated_at < ?", @user.id, @import_start_time])
       .delete_all
   end
 
   def destroy_all
-    model_class.where(['updated_at < ?', @import_start_time]).destroy_all
+    model_class.where(["updated_at < ?", @import_start_time]).destroy_all
   end
 
   def accommodations(xml)
-    raise 'Subclass should return an array of all accommodation XML'
+    raise "Subclass should return an array of all accommodation XML"
   end
 
   def import_accommodation(a)
-    raise 'Subclass should import the data'
+    raise "Subclass should import the data"
   end
 
   # Prepares a property by finding an existing +Property+ or initializing a
@@ -113,10 +113,10 @@ class AccommodationImporter
   end
 
   def model_class
-    raise 'Subclass should return an ActiveRecord model subclass'
+    raise "Subclass should return an ActiveRecord model subclass"
   end
 
   def user_email
-    raise 'Subclass should return an email address for a user that will own the imported data'
+    raise "Subclass should return an email address for a user that will own the imported data"
   end
 end

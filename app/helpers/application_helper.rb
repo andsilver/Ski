@@ -1,28 +1,28 @@
 module ApplicationHelper
   def flash_notice
-    notice = ''
+    notice = ""
     if flash[:now]
       notice = flash[:now]
       flash[:now] = nil
     end
     if flash[:notice]
-      notice += ' ' + flash[:notice]
+      notice += " " + flash[:notice]
     end
     unless notice.empty?
-      content_tag('div', h(notice), {id: "flash_notice"})
+      content_tag("div", h(notice), {id: "flash_notice"})
     end
   end
 
   def page_header(title)
-    content_tag(:h1, title, class: 'page-header')
+    content_tag(:h1, title, class: "page-header")
   end
 
   def euros(number)
-    number_to_currency(number, unit: '€', precision: 0)
+    number_to_currency(number, unit: "€", precision: 0)
   end
 
   def euros_from_cents(number)
-    number_to_currency(number / 100.00, unit: '€', precision: 2)
+    number_to_currency(number / 100.00, unit: "€", precision: 2)
   end
 
   def gbps_from_pence(number)
@@ -40,7 +40,7 @@ module ApplicationHelper
   end
 
   def md(text)
-    text ? RDiscount.new(text).to_html.html_safe : ''
+    text ? RDiscount.new(text).to_html.html_safe : ""
   end
 
   def required_field
@@ -59,7 +59,7 @@ module ApplicationHelper
     '<span class="cross">✘</span>'.html_safe
   end
 
-  def tick_cross yes, show_cross=true
+  def tick_cross yes, show_cross = true
     if yes
       a_tick
     elsif show_cross
@@ -94,57 +94,57 @@ module ApplicationHelper
 
   def delete_button(object)
     link_to '<i class="fas fa-trash"></i> Delete'.html_safe,
-    object,
-    data: { confirm: 'Are you sure?' },
-    method: :delete,
-    class: 'btn btn-danger',
-    title: "Delete #{object_title(object)}"
+      object,
+      data: {confirm: "Are you sure?"},
+      method: :delete,
+      class: "btn btn-danger",
+      title: "Delete #{object_title(object)}"
   end
 
   def edit_button(object)
     link_to '<i class="fas fa-edit"></i> Edit'.html_safe,
-    edit_polymorphic_path(object),
-    class: 'btn btn-secondary',
-    title: "Edit #{object_title(object)}"
+      edit_polymorphic_path(object),
+      class: "btn btn-secondary",
+      title: "Edit #{object_title(object)}"
   end
 
   def new_button(type)
     link_to '<i class="fas fa-plus"></i> New'.html_safe,
-    new_polymorphic_path(type),
-    class: 'btn btn-secondary',
-    title: "New #{object_title(type)}"
+      new_polymorphic_path(type),
+      class: "btn btn-secondary",
+      title: "New #{object_title(type)}"
   end
 
   def view_button(object)
     link_to '<i class="fas fa-eye"></i> View'.html_safe,
-    object,
-    class: 'btn btn-secondary'
+      object,
+      class: "btn btn-secondary"
   end
 
   def copy_button(object)
     link_to '<i class="fas fa-plus"></i> Copy'.html_safe,
-    polymorphic_path(object, {action: :copy}),
-    data: { method: :get},
-    class: 'btn btn-secondary', title: "Copy #{object_title(object)}"
+      polymorphic_path(object, {action: :copy}),
+      data: {method: :get},
+      class: "btn btn-secondary", title: "Copy #{object_title(object)}"
   end
 
   def editor(form, attribute, mode)
     textarea_id = "##{form.object_name}_#{attribute}"
     editor_id = "editor_#{attribute}"
     form_classes = ".new_#{form.object_name}, .edit_#{form.object_name}"
-    form.text_area(attribute, class: 'editor-textarea') +
-    content_tag('div', form.object.send(attribute), id: editor_id, class: 'editor') +
-    javascript_tag(
-      "var #{editor_id} = ace.edit('#{editor_id}');
-  #{editor_id}.setTheme('ace/theme/chrome');
-  #{editor_id}.getSession().setMode('ace/mode/#{mode}');
-  #{editor_id}.getSession().setTabSize(2);
-  #{editor_id}.getSession().setUseSoftTabs(true);
-  $('#{form_classes}').submit(function() {
-    $('#{textarea_id}').val(#{editor_id}.getSession().getValue());
-  });
-  "
-    )
+    form.text_area(attribute, class: "editor-textarea") +
+      content_tag("div", form.object.send(attribute), id: editor_id, class: "editor") +
+      javascript_tag(
+        "var #{editor_id} = ace.edit('#{editor_id}');
+    #{editor_id}.setTheme('ace/theme/chrome');
+    #{editor_id}.getSession().setMode('ace/mode/#{mode}');
+    #{editor_id}.getSession().setTabSize(2);
+    #{editor_id}.getSession().setUseSoftTabs(true);
+    $('#{form_classes}').submit(function() {
+      $('#{textarea_id}').val(#{editor_id}.getSession().getValue());
+    });
+    "
+      )
   end
 
   def link_to_with_count(text, object, count)
@@ -154,7 +154,7 @@ module ApplicationHelper
   end
 
   def nav_link(path, title, link_text)
-    opts = current_page?(path) ? {class: 'active'} : {}
+    opts = current_page?(path) ? {class: "active"} : {}
 
     content_tag(:li, link_to(h(link_text), path, title: title), opts)
   end
@@ -165,26 +165,25 @@ module ApplicationHelper
 
   def breadcrumbs_and_heading(breadcrumbs, heading)
     content_tag(:ul,
-      breadcrumbs.map {|k,v| content_tag(:li, link_to(k,v)) }.join.html_safe +
-      content_tag(:li, heading, class: 'active'),
-      class: 'breadcrumb'
-    )
+      breadcrumbs.map {|k, v| content_tag(:li, link_to(k, v)) }.join.html_safe +
+      content_tag(:li, heading, class: "active"),
+      class: "breadcrumb")
   end
 
   # Hides the links and search sidebar.
   def hide_links_and_search
-    javascript_tag '$(function() { hideLinksAndSearch(); });'
+    javascript_tag "$(function() { hideLinksAndSearch(); });"
   end
 
   def body_classes
     classes = []
-    classes <<= 'home-page' if request.fullpath == '/'
-    classes.join(' ')
+    classes <<= "home-page" if request.fullpath == "/"
+    classes.join(" ")
   end
 
   protected
 
-    def object_title(object)
-      object.instance_of?(Array) ? object.last : object
-    end
+  def object_title(object)
+    object.instance_of?(Array) ? object.last : object
+  end
 end

@@ -6,6 +6,6 @@ module EmailSetup
   end
 
   def set_mandrill_subaccount
-    headers['X-MC-Subaccount'] = 'MyChaletFinder'
+    headers["X-MC-Subaccount"] = "MyChaletFinder"
   end
 end

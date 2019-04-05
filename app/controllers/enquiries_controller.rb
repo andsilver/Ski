@@ -9,7 +9,7 @@ class EnquiriesController < ApplicationController
 
   def show
     @enquiry = Enquiry.find(params[:id])
-    not_found and return unless @enquiry.user == @current_user
+    not_found && return unless @enquiry.user == @current_user
   end
 
   def create
@@ -18,7 +18,7 @@ class EnquiriesController < ApplicationController
     @enquiry = Enquiry.new(enquiry_params)
 
     unless good_token?
-      render 'properties/contact'
+      render "properties/contact"
       return
     end
 
@@ -26,9 +26,9 @@ class EnquiriesController < ApplicationController
 
     if @enquiry.save
       EnquiryNotifier.notify(@enquiry, @property).deliver_now
-      redirect_to @property, notice: t('enquiries_controller.your_enquiry_has_been_sent')
+      redirect_to @property, notice: t("enquiries_controller.your_enquiry_has_been_sent")
     else
-      render 'properties/contact'
+      render "properties/contact"
       return
     end
   end

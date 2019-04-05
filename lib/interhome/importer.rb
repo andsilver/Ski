@@ -5,7 +5,7 @@ module Interhome
         skip_ftp: false,
         skip_places: false,
         skip_prices: false,
-        max_xml_files: 0
+        max_xml_files: 0,
       }.merge(opts)
     end
 
@@ -18,9 +18,9 @@ module Interhome
 
       import_prices unless @opts[:skip_prices]
 
-      import_descriptions('InterhomeInsideDescription')
+      import_descriptions("InterhomeInsideDescription")
 
-      import_descriptions('InterhomeOutsideDescription')
+      import_descriptions("InterhomeOutsideDescription")
 
       import_accommodation
 
@@ -34,7 +34,7 @@ module Interhome
     end
 
     def import_prices
-      importer = PriceImporter.new('3535', 7)
+      importer = PriceImporter.new("3535", 7)
       importer.ftp_get unless skip_ftp?
       filenames = importer.split_xml(@opts[:max_xml_files])
       importer.import(filenames)
@@ -64,7 +64,7 @@ module Interhome
 
     def self.import_local_accommodation_only
       importer = AccommodationImporter.new
-      filenames = Dir.entries('interhome')
+      filenames = Dir.entries("interhome")
         .select { |e| e =~ /\Aaccommodation\.\d+\.xml\z/ }
         .map    { |f| "interhome/#{f}" }
       importer.import(filenames)

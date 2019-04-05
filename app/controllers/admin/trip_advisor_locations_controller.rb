@@ -10,8 +10,8 @@ module Admin
     end
 
     def update
-      @location.cascade_resort_id= params[:trip_advisor_location][:resort_id]
-      redirect_to [:admin, @location], notice: 'Updated.'
+      @location.cascade_resort_id = params[:trip_advisor_location][:resort_id]
+      redirect_to [:admin, @location], notice: "Updated."
     end
 
     private

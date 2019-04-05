@@ -39,14 +39,14 @@ module TripAdvisor
     private
 
     def full_filename(date)
-      "listings_#{date.strftime('%Y%m%d')}.tar.gz"
+      "listings_#{date.strftime("%Y%m%d")}.tar.gz"
     end
 
     def delta_filename(date)
       if date.cwday == 7
-        date = date - 1.day
+        date -= 1.day
       end
-      "listings_delta_#{date.strftime('%Y%m%d')}.tar.gz"
+      "listings_delta_#{date.strftime("%Y%m%d")}.tar.gz"
     end
 
     def mk_local_full_dir
@@ -71,19 +71,19 @@ module TripAdvisor
     end
 
     def local_full_directory
-      File.join(Rails.root, 'trip_advisor', 'listings')
+      File.join(Rails.root, "trip_advisor", "listings")
     end
 
     def local_delta_directory
-      File.join(local_full_directory, 'delta')
+      File.join(local_full_directory, "delta")
     end
 
     def remote_full_path(filename)
-      '/drop/listings/' + filename
+      "/drop/listings/" + filename
     end
 
     def remote_delta_path(filename)
-      '/drop/listings/delta/' + filename
+      "/drop/listings/delta/" + filename
     end
   end
 end

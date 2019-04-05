@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe SessionsController, type: :controller do
   let(:website) { double(Website).as_null_object }
@@ -22,7 +22,7 @@ RSpec.describe SessionsController, type: :controller do
 
     it "authenticates the user" do
       expect(User).to receive(:authenticate).with("email", "password")
-      post :create, params: { email: 'email', password: 'password' }
+      post :create, params: {email: "email", password: "password"}
     end
 
     context "when authentication is successful" do
@@ -38,7 +38,7 @@ RSpec.describe SessionsController, type: :controller do
 
       it "welcomes the user back" do
         post :create
-        expect(flash[:notice]).to match /Welcome back, /
+        expect(flash[:notice]).to match(/Welcome back, /)
       end
 
       context "when user is an admin" do
@@ -65,7 +65,7 @@ RSpec.describe SessionsController, type: :controller do
 
       it "informs the user" do
         post :create
-        expect(flash[:notice]).to match /Your sign in attempt failed/
+        expect(flash[:notice]).to match(/Your sign in attempt failed/)
       end
 
       it "redirects to the sign in page" do
@@ -81,17 +81,17 @@ RSpec.describe SessionsController, type: :controller do
       delete :destroy
     end
 
-    it 'redirects to the sign in page' do
+    it "redirects to the sign in page" do
       delete :destroy
       expect(response).to redirect_to sign_in_path
     end
   end
 
-  describe 'GET switch_user' do
-    it 'requires admin' do
+  describe "GET switch_user" do
+    it "requires admin" do
       allow(controller).to receive(:admin?).and_return(false)
       allow(User).to receive(:find).and_return(double(User).as_null_object)
-      get 'switch_user', params: { user_id: '1' }
+      get "switch_user", params: {user_id: "1"}
       expect(response).to redirect_to sign_in_path
     end
   end

@@ -13,12 +13,12 @@ class InterhomeAccommodation < ActiveRecord::Base
 
   def inside_description
     desc = InterhomeInsideDescription.find_by(accommodation_code: code)
-    desc ? desc.description : ''
+    desc ? desc.description : ""
   end
 
   def outside_description
     desc = InterhomeOutsideDescription.find_by(accommodation_code: code)
-    desc ? desc.description : ''
+    desc ? desc.description : ""
   end
 
   def partner_link
@@ -29,7 +29,7 @@ class InterhomeAccommodation < ActiveRecord::Base
   # today then returns the earliest price in the table. If no prices are
   # found then nil is returned.
   def current_price
-    prices = InterhomePrice.where(accommodation_code: code).order('start_date')
+    prices = InterhomePrice.where(accommodation_code: code).order("start_date")
     prices.each {|p| return p.rental_price if p.start_date <= Date.today && p.end_date >= Date.today}
     prices.first ? prices.first.rental_price : nil
   end
@@ -43,7 +43,7 @@ class InterhomeAccommodation < ActiveRecord::Base
   #   a = InterhomeAccommodation.new(features: 'shower,bbq')
   #   a.feature_list # => ["shower", "bbq"]
   def feature_list
-    features.try(:split, ',') || []
+    features.try(:split, ",") || []
   end
 
   def cache_availability(dates)

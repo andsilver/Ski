@@ -3,7 +3,7 @@ module Admin
     before_action :set_holiday_type, only: [:edit, :update, :destroy]
 
     def index
-      @holiday_types = HolidayType.order('name')
+      @holiday_types = HolidayType.order("name")
     end
 
     def new
@@ -14,9 +14,9 @@ module Admin
       @holiday_type = HolidayType.new(holiday_type_params)
 
       if @holiday_type.save
-        redirect_to(admin_holiday_types_path, notice: t('notices.created'))
+        redirect_to(admin_holiday_types_path, notice: t("notices.created"))
       else
-        render 'new'
+        render "new"
       end
     end
 
@@ -25,15 +25,15 @@ module Admin
 
     def update
       if @holiday_type.update_attributes(holiday_type_params)
-        redirect_to(admin_holiday_types_path, notice: t('notices.saved'))
+        redirect_to(admin_holiday_types_path, notice: t("notices.saved"))
       else
-        render 'edit'
+        render "edit"
       end
     end
 
     def destroy
       @holiday_type.destroy
-      redirect_to admin_holiday_types_path, notice: t('notices.deleted')
+      redirect_to admin_holiday_types_path, notice: t("notices.deleted")
     end
 
     protected

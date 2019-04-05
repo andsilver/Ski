@@ -12,7 +12,7 @@ class DirectoryAdvert < ActiveRecord::Base
 
   has_many :adverts, dependent: :nullify
 
-  has_many :clicks, -> { where(action_type: TrackedAction.action_types[:click]) }, class_name: 'TrackedAction', as: :trackable
+  has_many :clicks, -> { where(action_type: TrackedAction.action_types[:click]) }, class_name: "TrackedAction", as: :trackable
 
   validates_presence_of :category
   validates_presence_of :resort
@@ -20,7 +20,7 @@ class DirectoryAdvert < ActiveRecord::Base
   validates_presence_of :business_name
   validates_presence_of :business_address
   validates :strapline, presence: true, length: 1..255
-  validates_format_of :url, with: /\A(#{URI::regexp(%w(http https))})\Z/, allow_blank: true
+  validates_format_of :url, with: /\A(#{URI.regexp(%w[http https])})\Z/, allow_blank: true
 
   def to_s
     "#{business_name} in #{resort}"
@@ -48,7 +48,7 @@ class DirectoryAdvert < ActiveRecord::Base
   end
 
   def basket_advert_type_description
-    'Directory Advert'
+    "Directory Advert"
   end
 
   def self.advertised_in(category, resort)

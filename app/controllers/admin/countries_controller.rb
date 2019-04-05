@@ -3,7 +3,7 @@ module Admin
     before_action :set_country, only: [:edit, :update, :destroy]
 
     def index
-      @countries = Country.order('name')
+      @countries = Country.order("name")
     end
 
     def new
@@ -15,9 +15,9 @@ module Admin
 
       if @country.save
         set_image_mode
-        redirect_to(new_image_path, notice: t('notices.created'))
+        redirect_to(new_image_path, notice: t("notices.created"))
       else
-        render 'new'
+        render "new"
       end
     end
 
@@ -27,9 +27,9 @@ module Admin
 
     def update
       if @country.update_attributes(country_params)
-        redirect_to(edit_admin_country_path(@country), notice: t('notices.saved'))
+        redirect_to(edit_admin_country_path(@country), notice: t("notices.saved"))
       else
-        render 'edit'
+        render "edit"
       end
     end
 
@@ -48,7 +48,7 @@ module Admin
       @errors << "This country has users associated with it. " unless @country.users.empty?
       if @errors.empty?
         @country.destroy
-        redirect_to admin_countries_path, notice: t('notices.deleted')
+        redirect_to admin_countries_path, notice: t("notices.deleted")
       else
         redirect_to admin_countries_path, notice: "This country could not be deleted because: " +
           @errors.join
@@ -62,7 +62,7 @@ module Admin
     end
 
     def set_image_mode
-      session[:image_mode] = 'country'
+      session[:image_mode] = "country"
       session[:country_id] = @country.id
     end
 

@@ -16,11 +16,11 @@ class Denormalize
   end
 
   def self.count_properties(resort, attribute, value)
-    Property.where(resort_id: resort.id, publicly_visible: true, attribute => value).count
+    Property.where(:resort_id => resort.id, :publicly_visible => true, attribute => value).count
   end
 
   def self.update_featured_properties
-    if website = Website.first
+    if (website = Website.first)
       website.featured_properties = Property.featured
       website.save
     end
@@ -74,8 +74,6 @@ class Denormalize
   end
 
   def self.cache_availability
-    start_time = Time.now
-
     dates = []
     (18 * 30).times do |d|
       dates << Date.today + d.days

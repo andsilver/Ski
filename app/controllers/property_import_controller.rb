@@ -5,33 +5,31 @@ class PropertyImportController < ApplicationController
   end
 
   def import
-    cleanup_import 'No file uploaded' and return if params[:file].nil?
+    cleanup_import("No file uploaded") && return if params[:file].nil?
 
     @file = params[:file]
-    @path = "#{Rails.root.to_s}/public/up/users/#{@current_user.id}/properties_upload"
+    @path = "#{Rails.root}/public/up/users/#{@current_user.id}/properties_upload"
     FileUtils.makedirs(@path)
     zip_filename = "#{@path}/properties.zip"
     File.open(zip_filename, "wb") { |file| file.write(@file.read) }
     zip_result = system("unzip -jo #{zip_filename} -d #{@path}")
-    cleanup_import "Error extracting ZIP file" and return unless zip_result
+    cleanup_import("Error extracting ZIP file") && return unless zip_result
 
     csv_filename = "#{@path}/properties.csv"
-    cleanup_import "Could not find properties.csv in ZIP file" and return unless File.exist?(csv_filename)
+    cleanup_import("Could not find properties.csv in ZIP file") && return unless File.exist?(csv_filename)
 
-    require 'csv'
+    require "csv"
 
     @total_read = @newly_imported = @updated = @failed = 0
     flash[:errors] = []
 
-    csv = File.open(csv_filename, 'rb')
+    csv = File.open(csv_filename, "rb")
     @parsed_file = defined?(CSV::Reader) ? CSV::Reader.parse(csv) : CSV.parse(csv)
 
     @parsed_file.each do |row|
-      begin
-        process_row(row)
-      rescue RuntimeError => e
-        cleanup_import(e) and return
-      end
+      process_row(row)
+    rescue RuntimeError => e
+      cleanup_import(e) && (return)
     end
 
     cleanup_import "Total read: #{@total_read}, Newly imported: #{@newly_imported}, Updated: #{@updated}, Failed: #{@failed}"
@@ -40,32 +38,32 @@ class PropertyImportController < ApplicationController
   def pericles_import
     default_resort = Resort.find_by(id: params[:resort_id])
     unless default_resort
-      redirect_to property_importer_new_pericles_import_path, notice: 'Please select a default resort.'
+      redirect_to property_importer_new_pericles_import_path, notice: "Please select a default resort."
       return
     end
 
-    @path = "#{Rails.root.to_s}/public/up/users/#{@current_user.id}/properties_upload"
+    @path = "#{Rails.root}/public/up/users/#{@current_user.id}/properties_upload"
     xml_filename = "#{@path}/mbiarve.XML"
 
-    require 'xmlsimple'
+    require "xmlsimple"
 
     @total_read = @newly_imported = @updated = @failed = 0
     flash[:errors] = []
 
-    xml_file = File.open(xml_filename, 'rb')
+    xml_file = File.open(xml_filename, "rb")
     xml = XmlSimple.xml_in(xml_file)
     xml_file.close
-    xml['BIEN'].each do |property_xml|
+    xml["BIEN"].each do |property_xml|
       @total_read += 1
       begin
         p_p = PericlesProperty.new(property_xml)
       rescue RuntimeError => e
         @failed += 1
-        flash[:errors] << "Property with NO_ASP=#{property_xml['NO_ASP'][0]} failed: #{e}"
+        flash[:errors] << "Property with NO_ASP=#{property_xml["NO_ASP"][0]} failed: #{e}"
         next
       end
       puts p_p
-      puts '-------'
+      puts "-------"
       property = Property.find_by(user_id: @current_user.id, pericles_id: p_p.pericles_id)
       property ||= new_import_property
 
@@ -75,7 +73,7 @@ class PropertyImportController < ApplicationController
       property.resort_id = default_resort.id
 
       p(property)
-      puts '-------'
+      puts "-------"
 
       if property.save
         GC.start if property.id % 50 == 0
@@ -98,7 +96,6 @@ class PropertyImportController < ApplicationController
       end
 
       process_imported_pericles_images(p_p, property) if new_record
-
     end
 
     redirect_to property_importer_new_pericles_import_path,
@@ -110,7 +107,7 @@ class PropertyImportController < ApplicationController
   def process_row(row)
     if @mapping.nil?
       @mapping = csv_mapping_from_header(row)
-      %w(resort_id name address description for_sale).each do |required|
+      %w[resort_id name address description for_sale].each do |required|
         raise "CSV missing required field: #{required}" if @mapping[required].nil?
       end
       return
@@ -118,13 +115,13 @@ class PropertyImportController < ApplicationController
 
     @total_read += 1
 
-    property = Property.find_by(user_id: @current_user.id, name: row[@mapping['name']])
+    property = Property.find_by(user_id: @current_user.id, name: row[@mapping["name"]])
     property ||= new_import_property
 
     new_record = property.new_record?
 
     Property.importable_attributes.each do |attribute|
-      unless @mapping[attribute].nil? || attribute == 'images'
+      unless @mapping[attribute].nil? || attribute == "images"
         unless row[@mapping[attribute]].blank?
           property[attribute] = row[@mapping[attribute]]
           puts "#{attribute} = #{property[attribute]}"
@@ -139,7 +136,7 @@ class PropertyImportController < ApplicationController
       if new_record
         @newly_imported += 1
       else
-        @updated +=1
+        @updated += 1
       end
     else
       if @failed < 5
@@ -154,8 +151,8 @@ class PropertyImportController < ApplicationController
       @failed += 1
     end
 
-    if new_record and @mapping['images']
-      process_imported_images(property, row[@mapping['images']])
+    if new_record && @mapping["images"]
+      process_imported_images(property, row[@mapping["images"]])
     end
   end
 
@@ -169,14 +166,14 @@ class PropertyImportController < ApplicationController
   def process_imported_images(property, images)
     return if images.nil?
 
-    image_filenames = images.split('|')
+    image_filenames = images.split("|")
     first = true
     image_filenames.each do |filename|
       filename.strip!
       puts "processing image: #{filename}"
 
       image = nil
-      if filename[0..3]=="http"
+      if filename[0..3] == "http"
         image = Image.new(source_url: filename)
       else
         filename = File.basename(filename)
@@ -204,7 +201,7 @@ class PropertyImportController < ApplicationController
 
   def process_imported_pericles_images(pericles_property, property)
     first = true
-    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'].each do |letter|
+    ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"].each do |letter|
       filename = "#{pericles_property.company_code}-#{pericles_property.site_code}-#{pericles_property.pericles_id}-#{letter}.jpg"
       puts "processing image: #{filename}"
       path = "#{@path}/#{filename}"
@@ -231,7 +228,7 @@ class PropertyImportController < ApplicationController
   end
 
   def csv_mapping_from_header(row)
-    mapping = Hash.new
+    mapping = {}
     row.each_with_index do |header, pos|
       puts "looking at: #{header}"
       mapping[header] = pos if Property.importable_attributes.include? header

@@ -31,7 +31,7 @@ module TripAdvisor
     end
 
     def property
-      @property ||= TripAdvisorProperty.find_or_initialize_by(id: data['id'])
+      @property ||= TripAdvisorProperty.find_or_initialize_by(id: data["id"])
     end
 
     private
@@ -41,7 +41,7 @@ module TripAdvisor
     end
 
     def details
-      data['details']
+      data["details"]
     end
 
     def title
@@ -50,16 +50,16 @@ module TripAdvisor
 
     # Returns the text for the most suitable locale provided.
     def suitable_locale_text(texts)
-      english = texts.select { |t| english_locales.include? t['locale'] }
-      (english + texts).first['text']
+      english = texts.select { |t| english_locales.include? t["locale"] }
+      (english + texts).first["text"]
     end
 
     def english_locales
-      %w(en_GB en_US)
+      %w[en_GB en_US]
     end
 
     def titles
-      details['title']
+      details["title"]
     end
 
     def description
@@ -67,96 +67,96 @@ module TripAdvisor
     end
 
     def descriptions
-      details['description']
+      details["description"]
     end
 
     def bedrooms
-      details['bedrooms']
+      details["bedrooms"]
     end
 
     def beds
-      details['beds']
+      details["beds"]
     end
 
     def sleeps
-      details['sleeps']
+      details["sleeps"]
     end
 
     def bathrooms
-      details['bathrooms']
+      details["bathrooms"]
     end
 
     def country
-      details['country']
+      details["country"]
     end
 
     def city
-      details['city']
+      details["city"]
     end
 
     def url
-      details['url']
+      details["url"]
     end
 
     def status
-      details['status']
+      details["status"]
     end
 
     def review_average
-      details['review_average']
+      details["review_average"]
     end
 
     def show_pin
-      details['show_pin']
+      details["show_pin"]
     end
 
     def lat_long
-      details['lat_long']
+      details["lat_long"]
     end
 
     def country_code
-      details['country_code']
+      details["country_code"]
     end
 
     def trip_advisor_location_id
-      details['ta_geo_location_id']
+      details["ta_geo_location_id"]
     end
 
     def postal_code
-      details['postal_code']
+      details["postal_code"]
     end
 
     def search_url
       # TripAdvisor has a typo
-      details['seach_url']
+      details["seach_url"]
     end
 
     def can_accept_inquiry
-      details['can_accept_inquiry']
+      details["can_accept_inquiry"]
     end
 
     def booking_option
-      details['booking_option']
+      details["booking_option"]
     end
 
     def starting_price
-      if details['starting_price']
-        details['starting_price']['amount']
+      if details["starting_price"]
+        details["starting_price"]["amount"]
       end
     end
 
     def currency
-      if details['starting_price']
-        Currency.find_by(code: details['starting_price']['currency'])
+      if details["starting_price"]
+        Currency.find_by(code: details["starting_price"]["currency"])
       end
     end
 
     def min_stay_high
-      details['min_stay_high']
+      details["min_stay_high"]
     end
 
     def min_stay_low
-      details['min_stay_low']
+      details["min_stay_low"]
     end
   end
 end

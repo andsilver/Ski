@@ -9,7 +9,7 @@ class TripAdvisorLocation < ApplicationRecord
   has_many :trip_advisor_properties, dependent: :nullify
   belongs_to :resort, optional: true
 
-  acts_as_tree order: 'name'
+  acts_as_tree order: "name"
 
   # Sets the resort ID for this location and all children recursively.
   def cascade_resort_id=(resort_id)

@@ -11,7 +11,7 @@ module TripAdvisor
     end
 
     def import
-      photo_urls.each { |pu| import_photo(pu['jumbo_url']) }
+      photo_urls.each { |pu| import_photo(pu["jumbo_url"]) }
       delete_old_photos
       set_main_photo
     end
@@ -19,7 +19,7 @@ module TripAdvisor
     private
 
     def photo_urls
-      data['photo_urls'] || []
+      data["photo_urls"] || []
     end
 
     def data
@@ -41,7 +41,7 @@ module TripAdvisor
     end
 
     def delete_old_photos
-      property.images.where('updated_at < ?', Time.current - 1.day).destroy_all
+      property.images.where("updated_at < ?", Time.current - 1.day).destroy_all
     end
 
     def set_main_photo

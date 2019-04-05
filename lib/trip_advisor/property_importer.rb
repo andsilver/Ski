@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../trip_advisor'
+require_relative "../trip_advisor"
 
 module TripAdvisor
   class PropertyImporter
@@ -32,7 +32,7 @@ module TripAdvisor
     end
 
     def import_calendar
-      PropertyCalendarImporter.new(ta_property, data['calendar']).import
+      PropertyCalendarImporter.new(ta_property, data["calendar"]).import
     end
 
     def create_base_property
@@ -52,30 +52,30 @@ module TripAdvisor
     end
 
     def import_amenities
-      return unless property && data['details']['amenities']
+      return unless property && data["details"]["amenities"]
 
       property.amenities.delete_all
 
-      data['details']['amenities'].each do |a|
+      data["details"]["amenities"].each do |a|
         property.amenities << Amenity.find_or_create_by(name: a)
       end
       property.save
     end
 
     def import_reviews
-      return unless property && data['reviews']
+      return unless property && data["reviews"]
 
       property.reviews.delete_all
 
-      data['reviews']['reviews'].each do |r|
+      data["reviews"]["reviews"].each do |r|
         review = Review.create(
-          author_location: r['author_location'],
-          author_name: r['author_name'],
-          content: r['text'],
+          author_location: r["author_location"],
+          author_name: r["author_name"],
+          content: r["text"],
           property: property,
-          rating: r['rating'],
-          title: r['title'],
-          visited_on: Date.parse("#{r['visit_date']}-01")
+          rating: r["rating"],
+          title: r["title"],
+          visited_on: Date.parse("#{r["visit_date"]}-01")
         )
         property.reviews << review
       end
@@ -85,14 +85,12 @@ module TripAdvisor
     private
 
     def data_valid?
-      begin
-        data
-      rescue
-        Rails.logger.warn(
-          'Malformed JSON found in TripAdvisor::PropertyImporter'
-        )
-        false
-      end
+      data
+    rescue
+      Rails.logger.warn(
+        "Malformed JSON found in TripAdvisor::PropertyImporter"
+      )
+      false
     end
 
     def data

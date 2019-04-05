@@ -2,28 +2,28 @@ module ResortsHelper
   THUMBNAIL_SIZE = 160
   PHOTO_SIZE = 500
   PISTE_MAP_SIZE = 821
-  COUNTRIES_DIRECTORY = "#{Rails.root.to_s}/public/countries/"
-  REGIONS_DIRECTORY = "#{Rails.root.to_s}/public/regions/"
-  RESORTS_DIRECTORY = "#{Rails.root.to_s}/public/resorts/"
+  COUNTRIES_DIRECTORY = "#{Rails.root}/public/countries/"
+  REGIONS_DIRECTORY = "#{Rails.root}/public/regions/"
+  RESORTS_DIRECTORY = "#{Rails.root}/public/resorts/"
 
   def gallery_thumbnail(resort, filename)
-    resort_image(resort, filename, THUMBNAIL_SIZE, 'gallery')
+    resort_image(resort, filename, THUMBNAIL_SIZE, "gallery")
   end
 
   def gallery_photo(resort, filename)
-    resort_image(resort, filename, PHOTO_SIZE, 'gallery')
+    resort_image(resort, filename, PHOTO_SIZE, "gallery")
   end
 
   def piste_map(resort, filename)
-    resort_image(resort, filename, PISTE_MAP_SIZE, 'piste-maps')
+    resort_image(resort, filename, PISTE_MAP_SIZE, "piste-maps")
   end
 
   def resort_image(resort, filename, size, sub_dir)
     thumbnails_url = "/resorts/#{@resort.name.parameterize}/#{sub_dir}/#{size}"
     url = "#{thumbnails_url}/#{filename}"
-    original_path = "#{Rails.root.to_s}/public/resorts/#{@resort.name.parameterize}/#{sub_dir}/#{filename}"
-    path = "#{Rails.root.to_s}/public/#{url}"
-    thumbnails_path = "#{Rails.root.to_s}/public/#{thumbnails_url}"
+    original_path = "#{Rails.root}/public/resorts/#{@resort.name.parameterize}/#{sub_dir}/#{filename}"
+    path = "#{Rails.root}/public/#{url}"
+    thumbnails_path = "#{Rails.root}/public/#{thumbnails_url}"
 
     FileUtils.makedirs(thumbnails_path)
 
@@ -38,10 +38,10 @@ module ResortsHelper
           end
         end
       rescue
-        return ''
+        return ""
       end
     end
-    url.gsub(' ', '%20')
+    url.gsub(" ", "%20")
   end
 
   # Returns header image URLs for the current page.
@@ -54,14 +54,14 @@ module ResortsHelper
       :resort_header_urls,
       :page_header_urls,
       :region_header_urls,
-      :country_header_urls
+      :country_header_urls,
     ].each do |source|
       if urls.empty?
         urls = send(source) || []
       end
     end
 
-    urls.map! {|u| u.gsub(' ', '%20')}
+    urls.map! {|u| u.gsub(" ", "%20")}
     urls
   end
 
@@ -74,9 +74,9 @@ module ResortsHelper
   end
 
   def page_header_urls
-    if controller.controller_name == 'pages' && controller.action_name == 'show'
+    if controller.controller_name == "pages" && controller.action_name == "show"
       slug = params[:id]
-      images_in_directory("#{Rails.root.to_s}/public/pages/#{slug}/headers")
+      images_in_directory("#{Rails.root}/public/pages/#{slug}/headers")
         .map {|img| "/pages/#{slug}/headers/#{img}"}
     end
   end
@@ -85,9 +85,9 @@ module ResortsHelper
   # the how-to-get-there page uses header images at this time as other region
   # pages use manually entered HTML and images.
   def region_header_urls
-    if @region && controller.action_name == 'how_to_get_there'
+    if @region && controller.action_name == "how_to_get_there"
       region_images(@region)
-        .map{|img| "/regions/#{@region.name.parameterize}/headers/#{img}"}
+        .map {|img| "/regions/#{@region.name.parameterize}/headers/#{img}"}
     end
   end
 
@@ -97,7 +97,7 @@ module ResortsHelper
       if @country.image
         urls << @country.image.url
       end
-      country_images(@country, 'headers')
+      country_images(@country, "headers")
       @images.each do |img|
         urls << "/countries/#{@country.name.parameterize}/headers/#{img}"
       end
@@ -108,9 +108,9 @@ module ResortsHelper
   # Returns a sub-directory containing a resort's header images based on the
   # resort page being shown.
   def header_image_sub_directory
-    dirs = Hash.new('headers')
-    dirs['ski_and_guiding_schools'] = 'ski-school-headers'
-    dirs['summer_holidays'] = 'summer-headers'
+    dirs = Hash.new("headers")
+    dirs["ski_and_guiding_schools"] = "ski-school-headers"
+    dirs["summer_holidays"] = "summer-headers"
     dirs[controller.action_name]
   end
 
@@ -130,15 +130,13 @@ module ResortsHelper
   end
 
   def images_in_directory(dir)
-    begin
-      Dir.entries(dir).select {|e| e[0..0] != "." && e.include?(".")}.sort!
-    rescue Errno::ENOENT
-      []
-    end
+    Dir.entries(dir).select {|e| e[0..0] != "." && e.include?(".")}.sort!
+  rescue Errno::ENOENT
+    []
   end
 
   def has_summer_holidays_page?(resort)
-    resort.ski? && !resort.summer_only? && resort.has_visible_page?('summer-holidays')
+    resort.ski? && !resort.summer_only? && resort.has_visible_page?("summer-holidays")
   end
 
   # Returns HTML for a link to +path+ with +count+ in parentheses after the
@@ -150,7 +148,7 @@ module ResortsHelper
   def link_with_count(path, title, link_text, count)
     return if count == 0
 
-    opts = current_page?(path) ? {class: 'active'} : {}
+    opts = current_page?(path) ? {class: "active"} : {}
 
     content_tag(:li, link_to(h(link_text) + content_tag(:span, "(#{count})"), path, title: title), opts)
   end

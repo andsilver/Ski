@@ -3,7 +3,7 @@ module Admin
     before_action :set_snippet, only: [:edit, :update, :destroy]
 
     def index
-      @snippets = Snippet.order('name')
+      @snippets = Snippet.order("name")
     end
 
     def new
@@ -14,23 +14,23 @@ module Admin
       @snippet = Snippet.new(snippet_params)
 
       if @snippet.save
-        redirect_to admin_snippets_path, notice: 'Saved.'
+        redirect_to admin_snippets_path, notice: "Saved."
       else
-        render action: 'new'
+        render action: "new"
       end
     end
 
     def update
       if @snippet.update_attributes(snippet_params)
-        redirect_to admin_snippets_path, notice: 'Saved.'
+        redirect_to admin_snippets_path, notice: "Saved."
       else
-        render action: 'edit'
+        render action: "edit"
       end
     end
 
     def destroy
       @snippet.destroy
-      redirect_to admin_snippets_path, notice: 'Snippet deleted.'
+      redirect_to admin_snippets_path, notice: "Snippet deleted."
     end
 
     protected

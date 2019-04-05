@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Property, type: :model do
-  describe 'associations' do
+  describe "associations" do
     it { should have_many(:images) }
     it { should have_many(:adverts) }
     it { should have_and_belong_to_many(:amenities) }
@@ -16,106 +16,106 @@ RSpec.describe Property, type: :model do
   it { should validate_presence_of(:resort) }
   it { should validate_inclusion_of(:layout).in_array(Property::LAYOUTS) }
 
-  describe '.parking_description' do
+  describe ".parking_description" do
     pending
   end
 
-  describe '#parking_description' do
+  describe "#parking_description" do
     pending
   end
 
-  describe '.tv_description' do
+  describe ".tv_description" do
     pending
   end
 
-  describe '#tv_description' do
+  describe "#tv_description" do
     pending
   end
 
-  describe '.board_basis_description' do
+  describe ".board_basis_description" do
     pending
   end
 
-  describe '#board_basis_description' do
+  describe "#board_basis_description" do
     pending
   end
 
-  describe '.normalise_prices' do
+  describe ".normalise_prices" do
     pending
   end
 
-  describe '.importable_attributes' do
+  describe ".importable_attributes" do
     pending
   end
 
-  describe '#to_param' do
+  describe "#to_param" do
     pending
   end
 
-  describe '#for_rent?' do
-    it 'returns true when listing_type is LISTING_TYPE_FOR_RENT' do
+  describe "#for_rent?" do
+    it "returns true when listing_type is LISTING_TYPE_FOR_RENT" do
       property = Property.new(listing_type: Property::LISTING_TYPE_FOR_RENT)
       expect(property.for_rent?).to be_truthy
     end
 
-    it 'returns false when listing_type is anything else' do
+    it "returns false when listing_type is anything else" do
       property = Property.new(listing_type: Property::LISTING_TYPE_FOR_SALE)
       expect(property.for_rent?).to be_falsey
     end
   end
 
-  describe '#for_sale?' do
-    it 'returns true when listing_type is LISTING_TYPE_FOR_SALE' do
+  describe "#for_sale?" do
+    it "returns true when listing_type is LISTING_TYPE_FOR_SALE" do
       property = Property.new(listing_type: Property::LISTING_TYPE_FOR_SALE)
       expect(property.for_sale?).to be_truthy
     end
   end
 
-  describe '#price' do
+  describe "#price" do
     pending
   end
 
-  describe '#has_amenity?' do
-    it 'returns truthy if property has an amenity with the given name' do
+  describe "#has_amenity?" do
+    it "returns truthy if property has an amenity with the given name" do
       property = FactoryBot.create(:property)
-      property.amenities << Amenity.create(name: 'DVD')
-      expect(property).to have_amenity 'DVD'
+      property.amenities << Amenity.create(name: "DVD")
+      expect(property).to have_amenity "DVD"
     end
 
-    it 'returns falsey if property has no amenity with the given name' do
-      expect(Property.new).not_to have_amenity 'DVD'
+    it "returns falsey if property has no amenity with the given name" do
+      expect(Property.new).not_to have_amenity "DVD"
     end
   end
 
-  describe '#features' do
+  describe "#features" do
     pending
   end
 
-  describe '#adjust_distances_if_needed' do
+  describe "#adjust_distances_if_needed" do
     pending
   end
 
-  describe '#closest_distance' do
+  describe "#closest_distance" do
     pending
   end
 
-  describe '#geocode' do
+  describe "#geocode" do
     pending
   end
 
-  describe '#attempt_geocode' do
+  describe "#attempt_geocode" do
     pending
   end
 
-  describe '#normalise_prices' do
+  describe "#normalise_prices" do
     pending
   end
 
-  describe '#properties_for_rent_cannot_be_new_developments' do
+  describe "#properties_for_rent_cannot_be_new_developments" do
     pending
   end
 
-  describe '#valid_months' do
+  describe "#valid_months" do
     let(:property) { Property.new }
 
     it "returns a sorted array of months from Property Base Prices" do
@@ -123,14 +123,14 @@ RSpec.describe Property, type: :model do
       PropertyBasePrice.create!([
         {number_of_months: 3,  price: 55},
         {number_of_months: 12, price: 149},
-        {number_of_months: 6,  price: 89}
+        {number_of_months: 6,  price: 89},
       ])
       expect(property.valid_months).to eq [3, 6, 12]
     end
   end
 
-  describe '#cache_availability' do
-    it 'deletes existing availabilities for the property' do
+  describe "#cache_availability" do
+    it "deletes existing availabilities for the property" do
       property = FactoryBot.create(:property)
       FactoryBot.create(:availability, property: property)
 
@@ -143,7 +143,7 @@ RSpec.describe Property, type: :model do
       it "delegates to its #{klass}" do
         property = Property.new
         sub_prop = klass.new
-        setter = klass.to_s.underscore + '='
+        setter = klass.to_s.underscore + "="
         property.send(setter, sub_prop)
         dates = [Date.current]
 
@@ -154,7 +154,7 @@ RSpec.describe Property, type: :model do
     end
   end
 
-  describe '#default_months' do
+  describe "#default_months" do
     let(:property) { Property.new }
 
     context "when property is for sale" do
@@ -179,48 +179,48 @@ RSpec.describe Property, type: :model do
       context "when the description is blank" do
         it "leaves the strapline blank" do
           property.tidy_name_and_strapline
-          expect(property.strapline).to eq('')
+          expect(property.strapline).to eq("")
         end
       end
 
       context "when the description is not blank" do
         it "leaves sets the strapline to the first 252 chars of description with an elipsis" do
-          property.description = 'x' * 256
+          property.description = "x" * 256
           property.tidy_name_and_strapline
-          expect(property.strapline).to eq('x' * 252 + '...')
+          expect(property.strapline).to eq("x" * 252 + "...")
         end
       end
     end
 
     context "when the strapline is not blank" do
       it "truncates strapline to 252 chars with an elipsis" do
-        property.strapline = 'x' * 256
+        property.strapline = "x" * 256
         property.tidy_name_and_strapline
-        expect(property.strapline).to eq('x' * 252 + '...')
+        expect(property.strapline).to eq("x" * 252 + "...")
       end
     end
 
     it "truncates name to 255 chars" do
-      property.name = 'x' * 256
+      property.name = "x" * 256
       property.tidy_name_and_strapline
-      expect(property.name).to eq('x' * 255)
+      expect(property.name).to eq("x" * 255)
     end
   end
 
-  describe '#calculate_late_availability' do
-    context 'when not Interhome accommodation' do
-      it 'returns true if the property is not for sale' do
+  describe "#calculate_late_availability" do
+    context "when not Interhome accommodation" do
+      it "returns true if the property is not for sale" do
         p = Property.new(listing_type: Property::LISTING_TYPE_FOR_RENT)
         expect(p.calculate_late_availability([])).to be_truthy
       end
 
-      it 'returns false if the property is for sale' do
+      it "returns false if the property is for sale" do
         p = Property.new(listing_type: Property::LISTING_TYPE_FOR_SALE)
         expect(p.calculate_late_availability([])).to be_falsey
       end
     end
 
-    it 'returns the value of the Interhome accommodation availability' do
+    it "returns the value of the Interhome accommodation availability" do
       available = InterhomeAccommodation.new
       expect(available).to receive(:available_to_check_in_on_dates?).and_return(true)
       p = Property.new
@@ -234,7 +234,7 @@ RSpec.describe Property, type: :model do
     end
   end
 
-  describe '#set_country_and_region' do
+  describe "#set_country_and_region" do
     let(:property) { FactoryBot.build(:property) }
 
     before do
@@ -246,16 +246,16 @@ RSpec.describe Property, type: :model do
       property.set_country_and_region
     end
 
-    it 'sets country' do
+    it "sets country" do
       expect(property.country).to eq @country
     end
 
-    it 'sets region' do
+    it "sets region" do
       expect(property.region).to eq @region
     end
   end
 
-  describe '#template' do
+  describe "#template" do
     let(:property) do
       Property.new(layout: layout, trip_advisor_property: ta_prop)
     end
@@ -268,42 +268,42 @@ RSpec.describe Property, type: :model do
 
     subject { property.template }
 
-    context 'when layout is set' do
-      let(:layout) { 'Cool Layout' }
-      it { should eq 'show_cool_layout' }
+    context "when layout is set" do
+      let(:layout) { "Cool Layout" }
+      it { should eq "show_cool_layout" }
     end
 
-    context 'when layout not set' do
+    context "when layout not set" do
       let(:layout) { nil }
 
-      context 'when neither a new development nor FlipKey' do
-        it { should eq 'show_classic' }
+      context "when neither a new development nor FlipKey" do
+        it { should eq "show_classic" }
       end
 
-      context 'when a new development' do
+      context "when a new development" do
         let(:new_development?) { true }
-        it { should eq 'show_showcase' }
+        it { should eq "show_showcase" }
       end
 
-      context 'when a TripAdvisor property' do
+      context "when a TripAdvisor property" do
         let(:ta_prop) { TripAdvisorProperty.new }
-        it { should eq 'show_trip_advisor' }
+        it { should eq "show_trip_advisor" }
       end
     end
   end
 
-  describe 'before_save' do
+  describe "before_save" do
     let(:property) { FactoryBot.build(:property) }
 
-    it 'calls set_country_and_region' do
+    it "calls set_country_and_region" do
       expect(property).to receive(:set_country_and_region)
       property.save
     end
   end
 
-  describe 'before_validation' do
-    it 'sets empty string layout to nil' do
-      property = FactoryBot.build(:property, layout: '')
+  describe "before_validation" do
+    it "sets empty string layout to nil" do
+      property = FactoryBot.build(:property, layout: "")
       property.save
       expect(property.layout).to be_nil
     end

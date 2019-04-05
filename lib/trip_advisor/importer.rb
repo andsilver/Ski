@@ -27,10 +27,10 @@ module TripAdvisor
       # instead for that day. As we download yesterday's data, we need to pull
       # the full Sunday feed on a Monday.
       archive = if Date.current.monday?
-                  downloader.download_full
-                else
-                  downloader.download_delta
-                end
+        downloader.download_full
+      else
+        downloader.download_delta
+      end
       PropertyExtractor.new(path: archive).extract do |extracted|
         PropertyFileImporter.new(path: extracted).import
       end
