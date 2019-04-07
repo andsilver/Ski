@@ -9,7 +9,7 @@ class Region < ActiveRecord::Base
     inverse_of: :region, dependent: :nullify
   has_many :airport_distances, through: :resorts
 
-  validates :country_id, presence: true
+  validates :country, presence: true
   validates :name,
     length: {maximum: 100}, presence: true,
     uniqueness: {scope: :country}
