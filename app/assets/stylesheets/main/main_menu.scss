@@ -1,7 +1,3 @@
-ol, ul {
-	list-style: none;
-}
-
 .clearfix {
 	display: block;
 	min-height: 1%;
@@ -16,6 +12,9 @@ ol, ul {
 }
 
 .main-menu {
+  ol, ul {
+  	list-style: none;
+  }
 
   border-bottom: 1px solid #f2f3f3;
 
@@ -45,6 +44,7 @@ ol, ul {
         display: block;
         background: #fff url('/assets/icon_arrow_down.png') no-repeat scroll right 30px center;
         font-size: 16px;
+        font-weight: 500;
         padding: 20px 0 20px 15px;
         text-decoration: none;
         cursor: pointer;

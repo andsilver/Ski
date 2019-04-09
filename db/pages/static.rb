@@ -35,6 +35,7 @@ module Static
     },
     resorts: {
       chamonix: {
+        piste_map: File.read("db/pages/resorts/chamonix/piste_map.html"),
         rent: File.read("db/pages/resorts/chamonix/rent.html"),
         sale: File.read("db/pages/resorts/chamonix/sale.html"),
         summer_holiday: File.read("db/pages/resorts/chamonix/summer-holiday.html"),

@@ -16,7 +16,7 @@ body {
   color: #8c8a8b;
 }
 
-h1, h2, h3, p, input, button, select, textarea, b, strong, label {
+h1, h2, h3, p, li, input, button, select, textarea, b, strong, label {
   font-family: 'Raleway', Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
@@ -47,8 +47,11 @@ a, button {
 }
 
 p {
-  font-size: 1.125rem;
   margin: 0;
+}
+
+p, li {
+  font-size: 1.125rem;
   line-height: 1.65rem;
 }
 

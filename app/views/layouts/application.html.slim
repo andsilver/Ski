@@ -29,7 +29,7 @@ html lang="#{@lang}"
     meta name="google-site-verification" content="#{t('google.site_verification')}"
     javascript:
       WebFontConfig = {
-        google: { families: [ 'Raleway:400,600:latin-ext' ] }
+        google: { families: [ 'Raleway:500,600:latin-ext' ] }
       };
       (function() {
         var wf = document.createElement('script');
@@ -168,7 +168,7 @@ html lang="#{@lang}"
       footer role="contentinfo"
         .content-inset.footer-block-container
           = render 'shared/footer_box'
-        ul#footer-copyright
+        ul.footer-copyright
           li ©#{Time.now.year} #{COMPANY_NAME}.
           li All rights reserved.  |
           li Terms & Conditions  |

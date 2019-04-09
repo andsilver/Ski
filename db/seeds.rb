@@ -767,7 +767,7 @@ verbier_st_bernard.save!
 
 chamonix = Resort.create!(country: france, name: "Chamonix",
                           slug: "chamonix",
-                          piste_map_content: "{{ piste_table }}",
+                          piste_map_content: STATIC[:resorts][:chamonix][:piste_map],
                           altitude_m: 1035,
                           top_lift_m: 3842,
                           piste_length_km: 550,
