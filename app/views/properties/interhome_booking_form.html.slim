@@ -173,9 +173,11 @@ javascript:
           window.selectDay = String(dd[1])
           $('#interhome_booking_arrival_month').change();
           $('#check_in_date').html(format(start));
+          $('#check_in_date_en').html(format(start));
         } else {
           checkOut = date
           $('#check_out_date').html(format(start));
+          $('#check_out_date_en').html(format(start));
         }
       });
 
@@ -243,8 +245,15 @@ javascript:
       checkIn = date
       checkOut = outD
 
-      $('#check_in_date').html(`${day} ${monthNames[m - 1]} ${y}`)
-      $('#check_out_date').html(`${outD.getDate()} ${monthNames[outD.getMonth() - 1]} ${outD.getFullYear()}`)
+      const ci = `${day} ${monthNames[m - 1]} ${y}`
+      const co = `${outD.getDate()} ${monthNames[outD.getMonth() - 1]} ${outD.getFullYear()}`
+
+      $('#check_in_date').html(ci)
+      $('#check_in_date_en').html(ci)
+
+      $('#check_out_date').html(co)
+      $('#check_out_date_en').html(co)
+
       $('#interhome_booking_duration').val(min_stay)
     }
 
@@ -334,10 +343,10 @@ javascript:
         section.calendar-key
           table.interhome-calendar
             tr
-              td.availability-Y Available
-              td.availability-N Not Available
-              td.availability-Q On request
-              td.availability-Y-no-check-in data-toggle="popover" data-original-title="No check-in" data-content="Some of our holiday rentals only accept arrivals on certain dates even though the property may be free on other days. Check-in dates are shown on the calendar as the dark green squares."
+              td.availability-Y style="width: 25%" Available
+              td.availability-N style="width: 25%" Not Available
+              td.availability-Q style="width: 25%" On request
+              td.availability-Y-no-check-in style="width: 25%" data-toggle="popover" data-original-title="No check-in" data-content="Some of our holiday rentals only accept arrivals on certain dates even though the property may be free on other days. Check-in dates are shown on the calendar as the dark green squares."
                 | No check-in
       .flex-3.panel-section style="color: black"
         input type="hidden" name="permalink" value="#{@accommodation.permalink}"

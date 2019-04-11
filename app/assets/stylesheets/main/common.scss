@@ -237,13 +237,13 @@
     top: 34px;
     left: 14%;
     background: #fff;
-    padding: 12px 0 0 !important;
+    padding: 3px 0 !important;
     box-shadow: 0 0 17px -7px #000;
     z-index: 2;
     border-radius: 4px;
 
     &-item {
-      border: none !important;
+      
       width: 100% !important;
       padding: 12px 0 12px 25px;
       cursor: pointer;
@@ -253,6 +253,8 @@
       &:hover {
         color: black !important;
       }
+
+      border-bottom: 1px solid #ececec
     }
 
     &::before {
@@ -388,7 +390,7 @@
   top: 0px;
   left: 0px;
   width: 1400px;
-  height: 880px;
+  height: 1080px;
   overflow: hidden;
   visibility: hidden;
 
@@ -407,12 +409,12 @@
     left: 0px;
     bottom: 0px;
     width: 1400px;
-    height: 200px;
-    background-color: #000;
+    height: 300px;
 
     .p {
-      width: 274px;
-      height: 190px;
+      cursor: pointer;
+      width: 360px;
+      height: 230px;
     }
 
     .jsso-description {

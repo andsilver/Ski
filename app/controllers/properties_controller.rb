@@ -595,19 +595,20 @@ class PropertiesController < ApplicationController
   def property_params
     convert_square_feet_to_square_metres
     params.require(:property).permit(:accommodation_type, :address, :balcony,
-      :board_basis, :booking_url, :cave,
-      :children_welcome, :currency_id, :description, :disabled,
-      :distance_from_town_centre_m, :floor_area_metres_2,
-      :fully_equipped_kitchen, :garden, :hot_tub, :indoor_swimming_pool,
-      :latitude, :layout, :listing_type, :log_fire,
-      :long_term_lets_available, :longitude,
-      :metres_from_lift, :mountain_views, :name, :new_development, :number_of_bathrooms,
-      :number_of_bedrooms, :outdoor_swimming_pool, :parking, :pets,
-      :plot_size_metres_2, :postcode,
-      :price_description,
-      :resort_id, :sale_price,
-      :sauna, :short_stays, :ski_in_ski_out, :sleeping_capacity, :smoking,
-      :strapline, :terrace, :tv, :weekly_rent_price, :wifi, :min_stay, :price_per_night)
+                                     :board_basis, :booking_url, :cave,
+                                     :children_welcome, :currency_id, :description, :disabled,
+                                     :distance_from_town_centre_m, :floor_area_metres_2,
+                                     :fully_equipped_kitchen, :garden, :hot_tub, :indoor_swimming_pool,
+                                     :latitude, :layout, :listing_type, :log_fire,
+                                     :long_term_lets_available, :longitude,
+                                     :metres_from_lift, :mountain_views, :name, :new_development, :number_of_bathrooms,
+                                     :number_of_bedrooms, :outdoor_swimming_pool, :parking, :pets,
+                                     :plot_size_metres_2, :postcode,
+                                     :price_description,
+                                     :resort_id, :sale_price,
+                                     :sauna, :short_stays, :ski_in_ski_out, :sleeping_capacity, :smoking,
+                                     :strapline, :terrace, :tv, :weekly_rent_price, :wifi, :min_stay, :price_per_night,
+                                     :video, :energy_performance, :floorplan)
   end
 
   def convert_square_feet_to_square_metres

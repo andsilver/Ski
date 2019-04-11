@@ -1,45 +1,128 @@
 <%= content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@property.breadcrumbs, @heading) %>
 <%= content_for :theme, @property.theme %>
 <% @destination = @property.name %>
-<div class="property classic-property">
-  <%= render partial: 'user_logo', locals: { property: @property } %>
-  <h1 class="property-name"><%= @property.name %></h1>
-  <div>
-    <%= render partial: 'images', locals: { property: @property } %>
-    <div class="flex-layout property-details">
-      <div>
-        <div class="flex-layout content-space-between align-end">
-          <div>
-            <h1><%= @property.name %></h1>
-          </div>
-          <div class="property-price action-button button">
-            <span><%= @property.for_sale? ? 'Sale price ' : 'Weekly price from ' %></span>
-            <strong><%= @property.for_sale? ? format_currency(@property.sale_price, @property.currency) : format_currency(@property.weekly_rent_price, @property.currency) %></strong>
-          </div>
-        </div>
-        <% if @property.description.present? %>
-          <p style="padding: 1rem 0"><%= md @property.description %></p>
+<%= render partial: 'shared/image_gallery', locals: { property: @property } %>
+<div class="interhome-features">
+  <div class="column">
+    <%= render partial: 'shared/resort_icon', locals: { type: 'surface_area', n: @property.floor_area_metres_2 } %>
+  </div>
+  <div class="column">
+    <%= render partial: 'shared/resort_icon', locals: { type: 'plot_size', n: @property.plot_size_metres_2 } %>
+  </div>
+  <div class="column">
+    <%= render partial: 'shared/resort_icon', locals: { type: 'bedroom', n: @property.number_of_bedrooms } %>
+  </div>
+  <div class="column">
+    <%= render partial: 'shared/resort_icon', locals: { type: 'bathroom', n: @property.number_of_bathrooms } %>
+  </div>
+  <div class="column">
+    <%= render partial: 'shared/resort_icon', locals: { type: 'capacity', n: @property.sleeping_capacity } %>
+  </div>
+</div>
+<div class="property-detail-nav">
+  <a class="property-detail-nav-item active" id="nav_description">Description</a>
+  <a class="property-detail-nav-item" id="nav_video">Video</a>
+  <a class="property-detail-nav-item" id="nav_energy">Energy</a>
+  <a class="property-detail-nav-item" id="nav_floorplan">Floorplan</a>
+  <a class="property-detail-nav-item" id="nav_map">Map</a>
+  <div aria-expanded="false" id="drop_down" class="property-detail-nav-item drop-down" style="min-width: unset">
+    <a class="inactive">Resort Info</a>
+    <%= render 'resort_info' %>
+  </div>
+</div>
+<div class="property-features">
+  <div class="flex-layout">
+    <div class="flex-3">
+      <h2><%= I18n.t('features') %></h2>
+      <table>
+        <% new_classic_features(@property).each do |feature| %>
+          <% if feature[:type] != 'text' %>
+            <tr>
+              <td><%= feature[:title] %></td>
+              <td><span class="tick">✔</span></td>
+            </tr>
+          <% end %>
         <% end %>
-        <div>
-          <h3><%= I18n.t('helpers.properties.property_type.accommodation') %></h3>
-          <%= render 'location_button_and_modal' if @property.latitude.present? %>
-          <%= render partial: 'google_map_street_view', locals: { lat: @property.latitude, lng: @property.longitude } %>
-        </div>
-        <div>
-          <%= link_to t('enquire'), contact_property_path(@property), class: 'property-enquire button action-button' %>
-        </div>
-      </div>
-      <div class="flex-4">
-        <div class="classic-features">
-          <h3><%= I18n.t('features') %></h3>
-          <ul>
-            <% classic_features(@property).each do |feature| %>
-              <li><%= feature %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
+        <% @property.amenities.each do |amenity| %>
+          <tr>
+            <td> <%= amenity.name.capitalize.sub('_', ' ') %></td>
+            <td><span class="tick">✔</span></td>
+          </tr>
+        <% end %>
+      </table>
     </div>
   </div>
-  <%= clear %>
+  <div id="property_description_section">
+    <h2>Property Description</h2>
+    <% if @property.description.present? %>
+      <p><%= md @property.description %></p>
+    <% end %>
+  </div>
+  <div id="property_video_section">
+    <h2>Video</h2>
+    <div>
+      <% if @property.video %>
+        <img src="<%= @property.video %>" alt="">
+      <% else %>
+        Video was not provided.
+      <% end %>
+    </div>
+  </div>
+  <div id="property_energy_section">
+    <h2>Energy Performance</h2>
+    <div>
+      <% if @property.energy_performance %>
+        <img src="<%= @property.energy_performance %>" alt="">
+      <% else %>
+        Energy performance was not provided.
+      <% end %>
+    </div>
+  </div>
+  <div id="property_floorplan_section">
+    <h2>Floorplan</h2>
+    <div>
+      <% if @property.floorplan %>
+        <img src="<%= @property.floorplan %>" alt="">
+      <% else %>
+        we are sorry but this property does not have a floorplan.  Please contact the estate agent for further information - thank you.
+      <% end %>
+    </div>
+  </div>
+  <div id="property_map_section">
+    <h2>Google Map</h2>
+    <div id="map-canvas" style="height: 400px"></div>
+    <%= render partial: 'google_map', locals: { lat: @property.latitude, lng: @property.longitude } %>
+  </div>
 </div>
+
+<script>
+  $('#nav_description').click(() => {
+    $('html, body').animate({
+      scrollTop: $('#property_description_section').offset().top
+    }, 500)
+  })
+
+  $('#nav_video').click(() => {
+    $('html, body').animate({
+      scrollTop: $('#property_video_section').offset().top
+    }, 500)
+  })
+
+  $('#nav_floorplan').click(() => {
+    $('html, body').animate({
+      scrollTop: $('#property_floorplan_section').offset().top
+    }, 500)
+  })
+
+  $('#nav_energy').click(() => {
+    $('html, body').animate({
+      scrollTop: $('#property_energy_section').offset().top
+    }, 500)
+  })
+
+  $('#nav_map').click(() => {
+    $('html, body').animate({
+      scrollTop: $('#property_map_section').offset().top
+    }, 500)
+  })
+</script>

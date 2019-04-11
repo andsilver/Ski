@@ -17,7 +17,10 @@
   = content_for :theme, @region.theme
 
 - content_for :search do
-  = render 'home/home_search'
+  - if search_results_page_type == :sales
+    = render 'property_sales/home_search'
+  - else
+    = render 'home/home_search'
 
 = raw @page_content if first_page?
 
@@ -37,9 +40,7 @@
             - else
               = content_tag(:option, 'Price low to high', value: 'normalised_weekly_rent_price ASC', selected: sort_method=='normalised_weekly_rent_price ASC')
               = content_tag(:option, 'Price high to low', value: 'normalised_weekly_rent_price DESC', selected: sort_method=='normalised_weekly_rent_price DESC')
-            - if search_results_page_type == :sales
-              = content_tag(:option, 'Number of bathrooms', value: 'number_of_bathrooms ASC', selected: sort_method=='number_of_bathrooms ASC')
-            - else
+            - if search_results_page_type != :sales
               = content_tag(:option, t('sleeping_capacity'), value: 'sleeping_capacity ASC', selected: sort_method=='sleeping_capacity ASC')
             = content_tag(:option, 'Number of bedrooms', value: 'number_of_bedrooms ASC', selected: sort_method == 'number_of_bedrooms ASC')
       div

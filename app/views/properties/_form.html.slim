@@ -307,6 +307,15 @@ javascript:
     .form-group
       = f.label :description, t('description')
       = f.text_area :description, class: 'form-control'
+    .form-group
+      = f.label :video, t('video')
+      = f.text_field :video, class: 'form-control'
+    .form-group
+      = f.label :energy_performance, t('energy_performance')
+      = f.text_field :energy_performance, class: 'form-control'
+    .form-group
+      = f.label :floorplan, t('floorplan')
+      = f.text_field :floorplan, class: 'form-control'
 
   .form-group
     = f.submit I18n.t('save'), class: 'btn btn-primary'

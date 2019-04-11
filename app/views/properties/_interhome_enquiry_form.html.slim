@@ -18,10 +18,10 @@
       input#enquiry_property_id name="property_id" type="text" readonly=true value="#{acc.permalink}"
     div#enquiry_check_in
       label Check-in
-      input#check_in_date.date_pick name="check_in" type="text" required=true
+      input#check_in_date_en.date_pick name="check_in" type="text" required=true
     div#enquiry_check_out
       label Check-out
-      input#check_out_date.date_pick name="check_out" type="text" required=true
+      input#check_out_date_en.date_pick name="check_out" type="text" required=true
     - options = [*1..30].map{|i| [i, i]}
     div#enquiry_adults
       label Adults
@@ -39,8 +39,8 @@ javascript:
   $('#interhome_enquiry_submit').click(ev => {
     if (!('#enquiry_first_name').val() ||
        !('#enquiry_last_name').val() ||
-       !('#enquiry_check_in #check_in_date').val() ||
-       !('#enquiry_check_out #check_out_date').val()){
+       !('#enquiry_check_in #check_in_date_en').val() ||
+       !('#enquiry_check_out #check_out_date_en').val()){
         return
     }
     $('#interhome_enquiry').modal('hide')

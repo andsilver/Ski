@@ -2,6 +2,9 @@
 
 = content_for :breadcrumbs_and_heading, breadcrumbs_and_heading(@resort.breadcrumbs, @heading)
 
+- @destination = @resort.name
+= content_for :search, render('home/home_search')
+
 - template_params = { 'piste_table' => render('piste_table') }
 = lt(@resort.piste_map_content, template_params)
 

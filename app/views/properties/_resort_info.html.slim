@@ -1,4 +1,4 @@
-ul.drop-down-menu.match-height
+ul.drop-down-menu.match-height style="width: 110px !important; padding-left: 0"
     - if @resort.has_resort_guide?
     = content_tag(:li, link_to(h(t('cms_controller.guide')), resort_guide_path(@resort), title: "#{@resort.name} resort guide"), { class: "drop-down-menu-item"})
     - if @resort.has_piste_maps? 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_16_143937) do
+ActiveRecord::Schema.define(version: 2019_04_05_015951) do
 
   create_table "adverts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -520,6 +520,9 @@ ActiveRecord::Schema.define(version: 2019_03_16_143937) do
     t.integer "trip_advisor_property_id"
     t.integer "min_stay", default: 3, null: false
     t.float "price_per_night", default: 0.0, null: false
+    t.string "video"
+    t.string "energy_performance"
+    t.string "floorplan"
     t.index ["country_id"], name: "index_properties_on_country_id"
     t.index ["flip_key_property_id"], name: "index_properties_on_flip_key_property_id"
     t.index ["interhome_accommodation_id"], name: "index_properties_on_interhome_accommodation_id"

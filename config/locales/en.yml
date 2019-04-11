@@ -713,3 +713,6 @@ en:
   rent_price_per_night: 'From %{price} per night'
   min_stay: 'Minimum duration to stay'
   price_per_night: 'Price per night'
+  video: 'Video'
+  energy_performance: 'Energy Performance'
+  floorplan: 'Floorplan'

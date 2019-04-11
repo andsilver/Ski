@@ -2,9 +2,11 @@
   padding: 0;
   margin: 0;
   height: 500px !important;
+
   li {
     width: 100%;
     height: 100%;
+
     img {
       width: 100%;
       height: 100%;
@@ -32,9 +34,10 @@
   }
 }
 
-.search-container, .search-container-carousel {
+.search-container,
+.search-container-carousel {
   .search {
-    background: rgba(0,47,102,0.8);
+    background: rgba(0, 47, 102, 0.8);
     color: #fff;
     padding: 0.7rem;
 
@@ -48,6 +51,7 @@
   position: fixed !important;
   display: block !important;
   height: unset !important;
+
   .search {
     z-index: 99;
     margin: 0;
@@ -56,6 +60,7 @@
 
 .search-container-carousel {
   position: relative;
+
   .search-fields {
     width: 100%;
     height: 100%;
@@ -72,8 +77,8 @@
       flex-grow: 1;
     }
 
-    @media screen and (max-width: 968px) {
-      align-items: start;
+    @media screen and (max-width: 768px) {
+      
       .search {
         z-index: 99;
         margin: 0;
@@ -86,7 +91,7 @@
   display: flex;
   align-items: stretch;
 
-  @media screen and (max-width: 968px) {
+  @media screen and (max-width: 768px) {
     flex-wrap: wrap;
 
     label {
@@ -95,17 +100,18 @@
 
     .search-field {
       &-destination {
-        width: 100%;
+        width: 50%;
       }
 
-      &-bedrooms, &-sleeps {
+      &-bedrooms,
+      &-sleeps {
         order: 2;
         width: 50%;
       }
 
       &-checkin-checkout {
-        order: 3;
-        width: 100%;
+        order: 1;
+        width: 50%;
       }
     }
   }
@@ -116,7 +122,6 @@
 }
 
 .search-field {
-
   flex-grow: 1;
 
   label {
@@ -127,14 +132,17 @@
     margin-top: 0.5rem;
   }
 
-  input[type=text], input[type=email], .twitter-typeahead {
+  input[type=text],
+  input[type=email],
+  .twitter-typeahead {
     box-sizing: border-box;
     height: 2.625rem;
     outline: none;
     width: 100%;
   }
 
-  input[type=text], input[type=email] {
+  input[type=text],
+  input[type=email] {
     border: none;
     border-radius: 0;
     padding: 0.75rem;
@@ -145,7 +153,8 @@
   }
 
   select {
-    -webkit-appearance: none; /* TODO: Dropdown indicator needed */
+    -webkit-appearance: none;
+    /* TODO: Dropdown indicator needed */
     background: #fff url('/assets/icon_arrow_down.png') no-repeat scroll right 10px center;
     cursor: pointer;
     border: none;
@@ -155,9 +164,12 @@
     white-space: pre-line;
     border-left: 1px solid #ececec;
     border-right: 1px slid #ececec;
-    &:focus, &:active {
+
+    &:focus,
+    &:active {
       outline: none;
     }
+
     width: 100%;
   }
 
@@ -169,7 +181,8 @@
     background: #fff;
   }
 
-  .date-range-pick, .price-range-pick {
+  .date-range-pick,
+  .price-range-pick {
     height: 2.625rem;
     background: #fff;
     border-left: 1px solid #ececec;
@@ -182,9 +195,13 @@
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
+
     svg {
       margin-right: 12px;
       font-size: 24px;
+      @media screen and (max-width: 768px) {
+        font-size: 16px;
+      }
     }
   }
 
@@ -202,14 +219,38 @@
       width: 100%;
     }
   }
+
 }
 
 .search-field-destination,
 .search-field-transfers-airport,
-.search-field-transfers-resort{
+.search-field-transfers-resort {
   flex-grow: 2;
 }
 
 div.date::after {
   top: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .search-fields {
+    position: relative !important;
+  }
+
+  .search {
+    .search-field {
+      
+      &-submit {
+        background: none;
+        border: none;
+        text-align: right;
+        .action-button {
+          width: 200px;
+          border: 1px solid white;
+        }
+      }
+    }
+  }
 }

@@ -117,8 +117,9 @@ html lang="#{@lang}"
                 = yield :search
       - else
         .divider-bar
-
-      = render "layouts/main_menu"
+      
+      - if !@property
+        = render "layouts/main_menu"
 
       .page-surround
         #content.group.wide role="main"

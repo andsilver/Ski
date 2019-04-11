@@ -52,6 +52,10 @@
     <% t = "#{I18n.t('surface_area')} #{n}m²" %>
     <img src='/ski-resort-icons/<%= type %>_black.svg' alt='<%= t %>' title='<%= t %>'>
     <div><%= t %></div>
+<% elsif type == 'plot_size' %>
+    <% t = "#{I18n.t('plot_size')} #{n}m²" %>
+    <img src='/ski-resort-icons/property_size_black.svg' alt='<%= t %>' title='<%= t %>'>
+    <div><%= t %></div>
 <% elsif type == 'property_size' %>
     <img src='/ski-resort-icons/<%= type %>_black.svg' alt='Property Size <%= n %>m²' title='Property Size <%= n %>m²'>
 <% elsif type == 'property_view' %>

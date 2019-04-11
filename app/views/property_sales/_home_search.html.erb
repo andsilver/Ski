@@ -2,7 +2,7 @@
   <form class="search-form cf" action="<%= home_search_sales_path %>">
     <div class="search-field search-field-destination">
       <label for="destination">Find properties here</label>
-      <input id="destination" class="typeahead" type="text" placeholder="Enter place name" name="place_name">
+      <input id="destination" class="typeahead" type="text" placeholder="Enter place name" name="place_name" value="<%= @destination %>">
     </div>
     <div class="search-field">
       <label for="min_price">Min Price</label>
@@ -20,6 +20,17 @@
         <input id="max_price" name="max" style="display: none">
       </div>
     </div>
+    <% if @resort || @region %>
+      <div class="search-field search-field-bedrooms">
+        <label for="search_bedrooms">Bedrooms</label>
+        <select name="bedrooms">
+          <option value="">Choose</option>
+          <% (1..20).each do |i| %>
+            <option value="<%= i %>"><%= i %></option>
+          <% end %>
+        </select>
+      </div>
+    <% end %>
     <div class="search-field search-field-submit">
       <input class="button action-button form-control" type="submit" value="Search">
     </div>
