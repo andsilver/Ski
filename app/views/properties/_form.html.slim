@@ -107,7 +107,7 @@ javascript:
         = f.label :number_of_bathrooms, t('number_of_bathrooms'), class: 'control-label col-lg-4'
         .col-lg-2
           = select("property", "number_of_bathrooms", ((1..10).collect {|n| [ n, n ] }), {prompt: 'Choose'}, class: 'form-control')
-      
+
       .form-group
         = f.label :min_stay, t('min_stay')
         div

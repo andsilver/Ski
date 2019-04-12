@@ -161,7 +161,7 @@ javascript:
         singleDatePicker: true,
         minDate: today
       }, function(start) {
-        
+
         const id = this.element[0].id
         const date = new Date(start.format('YYYY-MM-DD'))
 
@@ -195,22 +195,22 @@ javascript:
     $('#booking_form').on('change', '.trigger-update select', invalidateQuote);
     $('#booking_form').on('change', '#interhome_booking_arrival_month', updateDayOfMonthSelect);
     $('#booking_form').submit(function() { submitBooking(); return false; });
-    
+
     $('.availability-Q').click(function(ev) {
       $('#interhome_enquiry').modal('show');
     })
 
     $('.month .availability-Y').click(function(ev) {
-      
+
       const y_m = $(this).data('month').split('-')
-      
+
       const y = Number(y_m[0])
       const m = Number(y_m[1])
       const d = Number($(this).data('day'))
       const date = new Date()
       date.setFullYear(y, m, d)
       const html = `${d} ${monthNames[m - 1]} ${y}`
-      
+
       if (checkInSelected) {
         $('#check_out_date').html(html)
         checkOut = date

@@ -1,7 +1,7 @@
 ul.drop-down-menu.match-height style="width: 110px !important; padding-left: 0"
     - if @resort.has_resort_guide?
     = content_tag(:li, link_to(h(t('cms_controller.guide')), resort_guide_path(@resort), title: "#{@resort.name} resort guide"), { class: "drop-down-menu-item"})
-    - if @resort.has_piste_maps? 
+    - if @resort.has_piste_maps?
     = content_tag(:li, link_to(h(t('piste_map')), piste_map_resort_path(@resort), title: "#{@resort.name} piste maps" ), { class: "drop-down-menu-item"})
     - if has_summer_holidays_page? @resort
     = content_tag(:li, link_to(h('Summer'), summer_holidays_path(@resort), title: "Summer holidays in #{@resort.name}" ), { class: "drop-down-menu-item"})
