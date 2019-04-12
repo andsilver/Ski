@@ -58,7 +58,7 @@ describe "properties/_property_summary" do
 
     it "displays sleeping capacity" do
       render "properties/property_summary", p: property
-      expect(rendered).to have_content("Sleeps 8")
+      expect(rendered).to have_content("Sleeps - 8")
     end
   end
 
