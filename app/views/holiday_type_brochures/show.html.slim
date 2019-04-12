@@ -4,9 +4,9 @@
 
 - @destination = @brochurable.name
 - content_for :search, render('home/home_search')
-- content_for :links do
-  = render partial: 'brochure_list', locals: { heading: t('.regions'), method: :region_brochures, brochurable: @brochurable, holiday_type: @holiday_type }
-  = render partial: 'brochure_list', locals: { heading: t('.resorts'), method: :resort_brochures, brochurable: @brochurable, holiday_type: @holiday_type }
+/- content_for :links do
+/  = render partial: 'brochure_list', locals: { heading: t('.regions'), method: :region_brochures, brochurable: @brochurable, holiday_type: @holiday_type }
+/  = render partial: 'brochure_list', locals: { heading: t('.resorts'), method: :resort_brochures, brochurable: @brochurable, holiday_type: @holiday_type }
 
 - featured_properties = render('shared/featured_properties')
 - ski_regions = render('ski_regions')

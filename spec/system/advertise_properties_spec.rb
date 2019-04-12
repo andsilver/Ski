@@ -65,7 +65,7 @@ RSpec.describe "Advertise Properties", type: :system do
     select "< 800m", from: "Distance from town centre"
     select "< 500m", from: "Nearest lift"
     select "France > Chamonix", from: "Resort"
-    select "4", from: "Sleeping capacity"
+    select "4", from: "Capacity"
     select "2", from: "Number of bedrooms"
     select "Freeview", from: "TV"
     select "No parking", from: "Parking"

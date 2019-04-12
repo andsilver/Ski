@@ -131,7 +131,7 @@ html lang="#{@lang}"
             = yield :advertising
 
       .links
-        / = yield :links
+        = yield :links
         / = render 'layouts/region_nav' if @region
         = raw sidebar_html
 
