@@ -163,12 +163,12 @@ html lang="#{@lang}"
           li
             a title="Twitter" href="https://twitter.com/#!/MyChaletFinder"
               i.fab.fa-twitter
-      - if content_for? :custom_footer
-        = yield :custom_footer
-      - else
       footer role="contentinfo"
         .content-inset.footer-block-container
-          = render 'shared/footer_box'
+          - if content_for? :custom_footer
+            = yield :custom_footer
+          - else
+            = render "shared/footer_box"
         ul.footer-copyright
           li ©#{Time.now.year} #{COMPANY_NAME}.
           li All rights reserved.  |
