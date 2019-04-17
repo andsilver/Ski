@@ -15,16 +15,16 @@
       let checkInSelected = false
 
       $('.month .availability-Y').click(function(ev) {
-      
+
         const y_m = $(this).data('month').split('-')
-        
+
         const y = Number(y_m[0])
         const m = Number(y_m[1])
         const d = Number($(this).data('day'))
         const date = new Date()
         date.setFullYear(y, m, d)
         const html = `${d}/${y_m[1]}/${y}`
-        
+
         if (checkInSelected) {
           $('#check_out').val(date);
           $('#check_out_date').val(html);
@@ -43,34 +43,35 @@
     });
 
     function format(date) {
-      return date.format('DD/MM/YYYY');
+      return date.format('YYYY-MM-DD');
     }
 
     function initDatePicker() {
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1;
-        var yyyy = today.getFullYear();
-        today = mm + '/' + dd + '/' + yyyy;
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1;
+      var yyyy = today.getFullYear();
+      today = mm + '/' + dd + '/' + yyyy;
 
-        $('.date_pick').val(today);
-        $('#check_in').val(new Date());
-        $('#check_out').val(new Date());
+      $('.date_pick').val(today);
+      $('#check_in').val(new Date());
+      $('#check_out').val(new Date());
 
-        $('.date_pick').daterangepicker({
-          opens: 'center',
-          singleDatePicker: true,
-          minDate: today
-        }, function(start) {
-          const id = this.element[0].id
-          const date = new Date(format(start))
+      $('.date_pick').daterangepicker({
+        opens: 'center',
+        singleDatePicker: true,
+        minDate: today
+        },
+      }, function(start) {
+        const id = this.element[0].id;
+        const date = new Date(format(start));
 
-          if (id === 'check_in_date') {
-            $('#check_in').val(date);
-          } else {
-            $('#check_out').val(date);
-          }
-        });
+        if (id === 'check_in_date') {
+          $('#check_in').val(date);
+        } else {
+          $('#check_out').val(date);
+        }
+      });
     }
 
 
