@@ -79,7 +79,7 @@ module Admin
         :piste_length_km,
         :piste_map_content, :railways, :red, :region_id, :season, :ski_area_acre,
         :slope_direction, :slug, :snowboard_parks, :summer_only,
-        :summer_skiing, :top_lift_m, :weather_code, :visible, :visiting, :image_url, :strapline, :comment)
+        :summer_skiing, :top_lift_m, :weather_code, :visible, :visiting, :image_url, :strapline, :comment, :logo_url, :logo_alt, :logo_title)
     end
   end
 end
