@@ -15,9 +15,11 @@
   <div class="column">
     <%= render partial: 'shared/resort_icon', locals: { type: 'bathroom', n: @property.number_of_bathrooms } %>
   </div>
+  <% unless @property.for_sale? %>
   <div class="column">
     <%= render partial: 'shared/resort_icon', locals: { type: 'capacity', n: @property.sleeping_capacity } %>
   </div>
+  <% end %>
 </div>
 <div class="property-detail-nav">
   <a class="property-detail-nav-item active" id="nav_description">Description</a>

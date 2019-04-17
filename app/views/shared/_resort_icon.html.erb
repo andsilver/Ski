@@ -37,7 +37,7 @@
     <img src='/ski-resort-icons/<%= type %>_black.svg' alt='<%= t %>' title='<%= t %>'>
     <div><%= t %></div>
 <% elsif type == 'capacity' %>
-    <% t = "#{n} #{I18n.t('sleeping_capacity')}" %>
+    <% t = "#{I18n.t('sleeping_capacity')}: #{n}" %>
     <img src='/ski-resort-icons/<%= type %>_black.svg' alt='<%= t %>' title='<%= t %>'>
     <div><%= t %></div>
 <% elsif type == 'bedroom' %>
