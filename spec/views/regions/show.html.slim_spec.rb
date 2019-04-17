@@ -1,14 +1,15 @@
 require "rails_helper"
 
-describe "regions/show.html.slim" do
+RSpec.describe "regions/show.html.slim" do
   before do
     assign(:featured_properties, [])
   end
 
-  it "shows the quick search form" do
+  it "shows the home search form" do
     assign(:region, FactoryBot.create(:region))
+    assign(:resorts, [])
     render
     expect(view.content_for(:search))
-      .to have_content(t("home.quick_search.heading"))
+      .to have_selector(".search-form")
   end
 end
