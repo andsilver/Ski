@@ -601,7 +601,7 @@ class PropertiesController < ApplicationController
                                      :fully_equipped_kitchen, :garden, :hot_tub, :indoor_swimming_pool,
                                      :latitude, :layout, :listing_type, :log_fire,
                                      :long_term_lets_available, :longitude,
-                                     :metres_from_lift, :mountain_views, :name, :new_development, :number_of_bathrooms,
+                                     :mountain_views, :name, :new_development, :number_of_bathrooms,
                                      :number_of_bedrooms, :outdoor_swimming_pool, :parking, :pets,
                                      :plot_size_metres_2, :postcode,
                                      :price_description,

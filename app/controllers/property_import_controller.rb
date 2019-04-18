@@ -159,7 +159,7 @@ class PropertyImportController < ApplicationController
   def new_import_property
     property = Property.new
     property.user_id = @current_user.id
-    property.distance_from_town_centre_m = property.metres_from_lift = 0
+    property.distance_from_town_centre_m = 0
     property
   end
 

@@ -309,7 +309,6 @@ fr:
   my_enquiries: My Email Enquiries
   my_details_saved: 'Your details have been saved.'
   name: 'Nom'
-  nearest_lift: 'Nearest lift'
   new_developments: 'Nouveaux Développements'
   notices:
     added: Added.
@@ -453,7 +452,6 @@ fr:
     no_matching_resorts: "Il n'ya pas de propriétés annoncées à cette station de ski qui correspondent à vos critères de recherche. De nombreuses locations de vacances seulement accepter des arrivées les samedis et avoir un séjour minimum de 7 jours. Si possible et vous êtes flexible pour les dates, s'il vous plaît essayer de modifier vos dates d'arrivée et / ou la durée de votre séjour - merci."
     place_in_window: 'Place in Window'
     property_summary:
-      nearest_lift: 'Nearest lift'
       sleeps: Sleeps
     select_resort: Sélectionnez une station
     strapline_example: Slogan Par Exemple

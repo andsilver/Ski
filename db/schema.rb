@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_05_015951) do
+ActiveRecord::Schema.define(version: 2019_04_18_181655) do
 
   create_table "adverts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -462,7 +462,6 @@ ActiveRecord::Schema.define(version: 2019_04_05_015951) do
     t.integer "resort_id", null: false
     t.string "name", default: "", null: false
     t.string "strapline", default: "", null: false
-    t.integer "metres_from_lift", default: 0, null: false
     t.integer "sleeping_capacity", default: 0, null: false
     t.integer "number_of_bedrooms", default: 0, null: false
     t.boolean "new_development", default: false, null: false
