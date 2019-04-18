@@ -6,7 +6,6 @@ def valid_property attributes
     address: "74400",
     listing_type: Property::LISTING_TYPE_FOR_SALE,
     distance_from_town_centre_m: 100,
-    metres_from_lift: 100,
     currency: currencies(:euros),
   }
 

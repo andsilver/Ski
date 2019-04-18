@@ -37,7 +37,6 @@ class Property < ActiveRecord::Base
   VALID_DISTANCES = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1001]
 
   validates_inclusion_of :distance_from_town_centre_m, in: VALID_DISTANCES
-  validates_inclusion_of :metres_from_lift,            in: VALID_DISTANCES
 
   validates_uniqueness_of :pericles_id, allow_nil: true, scope: :user_id
 
@@ -174,7 +173,7 @@ class Property < ActiveRecord::Base
     %w[address balcony cave children_welcome currency_id description
        disabled floor_area_metres_2 for_sale fully_equipped_kitchen garden
        hot_tub images indoor_swimming_pool log_fire long_term_lets_available
-       metres_from_lift mountain_views name new_development
+       mountain_views name new_development
        number_of_bathrooms number_of_bedrooms outdoor_swimming_pool parking
        pets plot_size_metres_2 postcode resort_id sale_price sauna short_stays
        ski_in_ski_out sleeping_capacity smoking strapline tv weekly_rent_price
@@ -208,11 +207,9 @@ class Property < ActiveRecord::Base
     amenities.where(name: amenity_name).any?
   end
 
-  # Snaps distances (from town centre and from lift) to the closest
-  # VALID_DISTANCE.
+  # Snaps distances (from town centre) to the closest VALID_DISTANCE.
   def adjust_distances_if_needed
     self.distance_from_town_centre_m = closest_distance(distance_from_town_centre_m)
-    self.metres_from_lift = closest_distance(metres_from_lift)
   end
 
   def set_empty_layout_to_nil

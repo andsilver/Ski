@@ -308,7 +308,6 @@ de:
   my_enquiries: My Email Enquiries
   my_details_saved: 'Your details have been saved.'
   name: 'Name'
-  nearest_lift: 'Nearest lift'
   new_developments: 'New Developments'
   notices:
     added: Added.
@@ -452,7 +451,6 @@ de:
     no_matching_properties: 'There are no properties advertised at this resort that match your search criteria. Many holiday rentals only accept check-ins on Saturdays and have a minimum stay of 7 days. If possible and you are flexible with your dates, please try amending your check-in dates and / or duration of your holiday - thank you.'
     place_in_window: 'Place in Window'
     property_summary:
-      nearest_lift: 'Nearest lift'
       sleeps: Sleeps
     select_resort: Select resort
     strapline_example: Strapline Example

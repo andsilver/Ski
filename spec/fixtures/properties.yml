@@ -3,7 +3,6 @@ alpen_lounge:
   user: bob
   name: Alpen Lounge
   sleeping_capacity: 6
-  metres_from_lift: 8000
   number_of_bedrooms: 3
   listing_type: 0 # For rent
   weekly_rent_price: 1200

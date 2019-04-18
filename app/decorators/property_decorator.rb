@@ -3,10 +3,6 @@ class PropertyDecorator < Draper::Decorator
 
   include Rails.application.routes.url_helpers
 
-  def nearest_lift
-    metres_from_lift == 1001 ? "> 1km" : "#{metres_from_lift}m"
-  end
-
   def breadcrumbs
     crumbs = resort.breadcrumbs
 
