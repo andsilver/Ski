@@ -302,7 +302,11 @@ module PropertiesHelper
 
   # Thumbnail image for property summary on property listing page.
   def property_summary_thumbnail(property)
-    property.image.sized_url(165, :height)
+    # We are purposely using the full image URL for the time being since our
+    # thumbnails are often pretty large anyway.
+    # This full image is usually around 800x600 and decently compressed; but
+    # not guaranteed.
+    property.image.url
   end
 
   # Returns <tt>:sales</tt>, <tt>:rentals</tt> or <tt>nil</tt> depending on the

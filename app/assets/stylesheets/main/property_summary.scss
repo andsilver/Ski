@@ -34,77 +34,20 @@
 }
 
 .property-summary {
-  box-sizing: border-box;
-  border: 1px solid #f2f2f2;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  margin-bottom: 10px;
-  flex-basis: 100%;
-
   img {
     width: 100%;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-  }
-
-  .actions {
-    a {
-      display: block;
-    }
-
-    p:first-child {
-      margin-top: 0;
-    }
-
-    p:last-child {
-      margin-top: 0;
-    }
-  }
-
-  @media screen and (min-width: 524px) {
-    flex-basis: 49%;
-
-    &:nth-of-type(2n) {
-      margin-left: 1%;
-    }
-
-    &:nth-of-type(2n - 1) {
-      margin-right: 1%;
-    }
   }
 }
 
 .property-thumbnail {
   margin: 0;
-}
 
-.property-summary-description {
-  padding: 0.5rem;
-  text-align: center;
-
-  a {
-    text-decoration: none;
-
-    h3 {
-      color: #005e9c;
-      transition: .4s ease;
-      margin: 0;
-    }
-
-    &:hover h3 {
-      color: rgba(0, 95, 155, 0.5)
-    }
-  }
-
-  p {
-    color: #000;
-    font-weight: normal;
+  img {
+    display: block;
   }
 }
-
 
 .property-block {
-  display: flex;
   margin-bottom: 30px;
 
   > a{
@@ -113,7 +56,6 @@
 
   &-images {
     max-height: 350px;
-    width: 40%;
     overflow: hidden;
     position: relative;
     .property-title {
@@ -132,22 +74,9 @@
         margin: 0.5rem 0
       }
     }
-    .cycle-prev, .cycle-next {
-      font-size: 24px;
-      width: 24px;
-      height: 24px;
-      line-height: 24px;
-      top: calc(50% - 20px);
-    }
   }
 
   &-details {
-    width: 60%;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
     background: #ececec;
 
     > div:first-of-type {
@@ -213,10 +142,18 @@
     }
   }
 
-  @media screen and (max-width: 968px) {
-    display: block;
-    &-images, &-details {
-      width: 100%;
+  @media screen and (min-width: 968px) {
+    display: flex;
+    &-images {
+      width: 40%;
+    }
+
+    &-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: stretch;
+      width: 60%;
     }
   }
 }
