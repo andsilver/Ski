@@ -45,6 +45,6 @@
             = content_tag(:option, 'Number of bedrooms', value: 'number_of_bedrooms ASC', selected: sort_method == 'number_of_bedrooms ASC')
       div
         - @properties.each do |p|
-          = render partial: 'properties/new_property_summary', locals: {p: p.decorate}
+          = render partial: 'properties/property_summary', locals: {p: p.decorate}
     .flex-layout.content-center style="padding: 3rem 0"
         = will_paginate @properties

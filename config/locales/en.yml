@@ -497,11 +497,7 @@ en:
     no_matching_properties: 'We are sorry but there are no properties advertised at this resort that match your search criteria. Many holiday rentals only accept check-ins on Saturdays and have a minimum stay of 7 days. If possible and you are flexible with your dates, please try amending your check-in dates and / or duration of your holiday - thank you.'
     place_in_window: 'Place in Window'
     property_summary:
-      floor_area: 'Living area'
-      nearest_lift: 'Nearest lift'
-      plot_size: 'Total'
       sale_price: 'Prices from'
-      sleeps: Sleeps
       weekly_price: 'Price per week from'
     select_resort: Select resort
     show_showcase:
