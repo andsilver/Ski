@@ -32,11 +32,11 @@
   = render partial: 'holiday_type_brochures/brochure_list', locals: { heading: t('.regions'), method: :region_brochures, brochurable: @resort.country, holiday_type: holiday_type }
   = render partial: 'holiday_type_brochures/brochure_list', locals: { heading: t('.resorts'), method: :resort_brochures, brochurable: @resort.country, holiday_type: holiday_type }
 li class="main-menu-item" aria-expanded=false
-  button= t('resort')
+  button= t(".resort_info")
   ul.main-menu-item-links.match-height
     - if @resort.has_resort_guide?
     li= nav_link(resort_guide_path(@resort), "#{@resort.name} resort guide", t('cms_controller.guide'))
-    - if @resort.has_piste_maps? 
+    - if @resort.has_piste_maps?
     li= nav_link(piste_map_resort_path(@resort), "#{@resort.name} piste maps", t('piste_map'))
     - if has_summer_holidays_page? @resort
     li= link_with_count(resort_property_rent_path(@resort), "Property for rent in #{@resort.name}", t('views.layouts.application.resort_nav.for_rent'), @resort.for_rent_count)
