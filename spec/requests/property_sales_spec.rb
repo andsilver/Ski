@@ -11,7 +11,6 @@ RSpec.describe "Property sales", type: :request do
         content: '<h1 class="home">International Property Sales</h1>'
       )
       get "/property_sales"
-      puts response.body
       assert_select "h1.home", "International Property Sales"
     end
   end
