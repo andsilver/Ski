@@ -1,7 +1,7 @@
 require "rails_helper"
 
-describe "layouts/_resort_nav" do
-  let(:resort) { double(Resort).as_null_object }
+RSpec.describe "layouts/_resort_nav", type: :view do
+  let(:resort) { instance_double(Resort, name: "Chamonix").as_null_object }
   before { assign(:resort, resort) }
 
   context "when resort has guide" do

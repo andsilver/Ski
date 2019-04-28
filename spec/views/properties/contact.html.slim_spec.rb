@@ -2,7 +2,7 @@ require "rails_helper"
 require_relative "property_header_image"
 
 RSpec.describe "properties/contact.html.slim", type: :view do
-  let(:property) { FactoryBot.build(:property) }
+  let(:property) { FactoryBot.create(:property) }
 
   before do
     assign(:enquiry, Enquiry.new)
@@ -12,7 +12,7 @@ RSpec.describe "properties/contact.html.slim", type: :view do
 
   context "when for rent" do
     before do
-      assign(:property, FactoryBot.build(:property, listing_type: Property::LISTING_TYPE_FOR_RENT))
+      assign(:property, FactoryBot.create(:property, listing_type: Property::LISTING_TYPE_FOR_RENT))
     end
 
     it "has a general introduction" do

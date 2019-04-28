@@ -320,7 +320,7 @@ en:
       how_to_get_there: 'How to Get There'
     resort_nav:
       resort_info: "Resort Info"
-      resort_guide: 'Resort Guide'
+      resort_guide: "Guide"
       ski_and_guiding_schools: 'Ski & Guiding Schools'
       ski_and_guiding_schools_title: 'Ski & Guiding Schools in %{resort}'
   main_image: 'Main image'
