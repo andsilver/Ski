@@ -63,7 +63,6 @@ RSpec.describe "Advertise Properties", type: :system do
     fill_in "Weekly rental price from", with: "1650"
     fill_in "Price description", with: "From £165 pp"
     select "< 800m", from: "Distance from town centre"
-    select "< 500m", from: "Nearest lift"
     select "France > Chamonix", from: "Resort"
     select "4", from: "Capacity"
     select "2", from: "Number of bedrooms"
