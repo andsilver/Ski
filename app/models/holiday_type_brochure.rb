@@ -20,6 +20,14 @@ class HolidayTypeBrochure < ActiveRecord::Base
       .where(resort_matches_holiday_type)
   end
 
+  def regions
+    collection(Region)
+  end
+
+  def resorts
+    collection(Resort)
+  end
+
   def resort_matches_holiday_type
     if %w[Region Country].include? brochurable_type
       [
@@ -30,5 +38,19 @@ class HolidayTypeBrochure < ActiveRecord::Base
     else
       {}
     end
+  end
+
+  private
+
+  def collection(of)
+    association = of.to_s.tableize
+    return of.none unless brochurable.respond_to? association
+
+    unfiltered = brochurable.send(association)
+    unfiltered.where([
+      "id IN (SELECT brochurable_id FROM holiday_type_brochures " \
+      'WHERE holiday_type_id = ? AND brochurable_type = ?)',
+      holiday_type.id, of
+    ])
   end
 end

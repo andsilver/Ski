@@ -15,9 +15,9 @@ class HolidayTypeBrochuresController < ApplicationController
       if @brochure
         @featured_properties = @brochure.featured_properties(9)
         if @brochure.brochurable_type == "Country"
-          @ski_regions = Region.where(country_id: @brochurable.id)
-          @featured_ski_regions = Region.where(country_id: @brochurable.id, featured: true)
-          @ski_resorts = Resort.where(country_id: @brochurable.id, visible: true).order(:name).paginate(page: params[:page], per_page: 20)
+          @ski_regions = @brochure.regions
+          @featured_ski_regions = @brochure.regions.where(featured: true)
+          @ski_resorts = @brochure.resorts.where(visible: true).order(:name).paginate(page: params[:page], per_page: 20)
         end
       else
         not_found
